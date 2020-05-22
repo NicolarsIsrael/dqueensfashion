@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DQueensFashion.Data", "DQue
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DQueensFashion.Service", "DQueensFashion.Service\DQueensFashion.Service.csproj", "{2165876B-B649-47DE-BC0C-63634BE83F8D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DQueensFashion.Utilities", "DQueensFashion.Utilities\DQueensFashion.Utilities.csproj", "{0BAED1EC-C1BF-410C-8994-5747C1608563}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{2165876B-B649-47DE-BC0C-63634BE83F8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2165876B-B649-47DE-BC0C-63634BE83F8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2165876B-B649-47DE-BC0C-63634BE83F8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BAED1EC-C1BF-410C-8994-5747C1608563}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BAED1EC-C1BF-410C-8994-5747C1608563}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BAED1EC-C1BF-410C-8994-5747C1608563}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BAED1EC-C1BF-410C-8994-5747C1608563}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
