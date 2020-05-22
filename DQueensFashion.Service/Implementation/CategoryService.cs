@@ -19,16 +19,47 @@ namespace DQueensFashion.Service.Implementation
 
         public void AddCategory(Category category)
         {
-            if (category == null)
-                throw new Exception();
+            try
+            {
+                if (!ValidateCategoryDetails(category))
+                    throw new Exception();
 
-            uow.CategoryRepo.Add(category);
-            uow.Save();
+                uow.CategoryRepo.Add(category);
+                uow.Save();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public int GetAllCategoriesCount()
         {
             return uow.CategoryRepo.Count();
         }
+
+        public Category GetCategoryByName(string categoryName)
+        {
+            return uow.CategoryRepo.GetAll().Where(c => string.Compare(c.Name, categoryName, true) == 0).FirstOrDefault();
+        }
+
+        public IEnumerable<Category> GetAllCategories()
+        {
+            return uow.CategoryRepo.GetAll().ToList();
+        }
+
+        private bool ValidateCategoryDetails(Category category)
+        {
+            if (category == null)
+                return false;
+
+            if (string.IsNullOrEmpty(category.Name) || string.IsNullOrWhiteSpace(category.Name)
+               || category.Name.Length > 50 || category.Name.Length < 2 || !char.IsLetter(category.Name[0]))
+                return false;
+
+            return true;
+        }
+        
     }
 }

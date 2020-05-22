@@ -121,6 +121,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomValidation.cs" />
     <Compile Include="Model\ApplicationUser.cs" />
     <Compile Include="Model\Category.cs" />
     <Compile Include="Model\Entity.cs" />

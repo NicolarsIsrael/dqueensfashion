@@ -11,5 +11,7 @@ namespace DQueensFashion.Service.Contract
     {
         void AddCategory(Category category);
         int GetAllCategoriesCount();
+        IEnumerable<Category> GetAllCategories();
+        Category GetCategoryByName(string categoryName);
     }
 }

@@ -134,6 +134,14 @@
     <Compile Include="Migrations\202005221738560_categoryAddedToDb.Designer.cs">
       <DependentUpon>202005221738560_categoryAddedToDb.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005221812162_categoryNameDesc.cs" />
+    <Compile Include="Migrations\202005221812162_categoryNameDesc.Designer.cs">
+      <DependentUpon>202005221812162_categoryNameDesc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005221813535_categoryNameDesc2.cs" />
+    <Compile Include="Migrations\202005221813535_categoryNameDesc2.Designer.cs">
+      <DependentUpon>202005221813535_categoryNameDesc2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -150,6 +158,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202005221738560_categoryAddedToDb.resx">
       <DependentUpon>202005221738560_categoryAddedToDb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005221812162_categoryNameDesc.resx">
+      <DependentUpon>202005221812162_categoryNameDesc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005221813535_categoryNameDesc2.resx">
+      <DependentUpon>202005221813535_categoryNameDesc2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

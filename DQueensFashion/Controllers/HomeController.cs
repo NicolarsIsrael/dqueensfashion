@@ -19,11 +19,6 @@ namespace DQueensFashion.Controllers
         }
         public ActionResult Index()
         {
-            Category category = new Category()
-            {
-                Name = "Abc",
-            };
-            _categoryService.AddCategory(category);
 
             ViewBag.CategoryCount = _categoryService.GetAllCategoriesCount();
             ViewBag.ProductsCount = _productService.GetAllProductsCount();
