@@ -1,4 +1,5 @@
-﻿using DQueensFashion.Service.Contract;
+﻿using DQueensFashion.Core.Model;
+using DQueensFashion.Service.Contract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,12 @@ namespace DQueensFashion.Controllers
         }
         public ActionResult Index()
         {
+            Product product = new Product()
+            {
+                Name = "Ade",
+            };
+
+            _productService.AddProduct(product);
             ViewBag.ProductsCount = _productService.GetAllProductsCount();
             return View();
         }

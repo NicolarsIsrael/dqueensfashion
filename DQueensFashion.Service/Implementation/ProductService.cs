@@ -1,4 +1,5 @@
-﻿using DQueensFashion.Data.Contract;
+﻿using DQueensFashion.Core.Model;
+using DQueensFashion.Data.Contract;
 using DQueensFashion.Service.Contract;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,15 @@ namespace DQueensFashion.Service.Implementation
         public ProductService(IUnitOfWork _uow)
         {
             uow = _uow;
+        }
+
+        public void AddProduct(Product product)
+        {
+            if (product == null)
+                throw new Exception();
+
+            uow.ProductRepo.Add(product);
+            uow.Save();
         }
 
         public int GetAllProductsCount()

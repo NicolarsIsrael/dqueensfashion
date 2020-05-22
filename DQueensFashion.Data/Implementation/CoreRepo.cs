@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace DQueensFashion.Data.Implementation
 {
 
-    public class CoreRepo<TEntity> : ICoreRepo<TEntity> where TEntity : class
+    public class CoreRepo<TEntity> : ICoreRepo<TEntity> where TEntity : Entity
     {
         protected readonly System.Data.Entity.DbContext _dbContext;
 
@@ -25,6 +25,7 @@ namespace DQueensFashion.Data.Implementation
             {
                 (entity as Entity).DateCreated = DateTime.UtcNow;
                 (entity as Entity).DateModified = DateTime.UtcNow;
+                (entity as Entity).IsDeleted = false;
             }
 
             _dbContext.Set<TEntity>().Add(entity);
@@ -32,23 +33,28 @@ namespace DQueensFashion.Data.Implementation
 
         public void AddRange(IEnumerable<TEntity> entities)
         {
-            //entities.ToList().ForEach(e => e.DateCreated = DateTime.Now);
+            entities.ToList().ForEach(e => e.DateCreated = DateTime.Now);
+            entities.ToList().ForEach(e => e.DateModified = DateTime.Now);
+            entities.ToList().ForEach(e => e.IsDeleted = false);
             _dbContext.Set<TEntity>().AddRange(entities);
         }
 
         public TEntity Get(object id)
         {
-            return _dbContext.Set<TEntity>().Find(id);
+            var entity = _dbContext.Set<TEntity>().Find(id);
+            if (entity.IsDeleted == false)
+                return entity;
+            return null;
         }
 
         public IEnumerable<TEntity> GetAll()
         {
-            return _dbContext.Set<TEntity>().ToList();
+            return _dbContext.Set<TEntity>().Where(t=>t.IsDeleted ==false).ToList();
         }
 
         public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
         {
-            return _dbContext.Set<TEntity>().Where(predicate);
+            return _dbContext.Set<TEntity>().Where(predicate).Where(t=>t.IsDeleted==false);
         }
 
         //public IEnumerable<TEntity> FindUsingDictionary(Dictionary<string, object> dictionary)
@@ -58,17 +64,23 @@ namespace DQueensFashion.Data.Implementation
 
         public int Count()
         {
-            return _dbContext.Set<TEntity>().Count();
+            return _dbContext.Set<TEntity>().Where(t=>t.IsDeleted==false).Count();
         }
 
         public void Remove(TEntity entity)
         {
-            _dbContext.Set<TEntity>().Remove(entity);
+            entity.IsDeleted = true;
+            Update(entity);
+            //_dbContext.Set<TEntity>().Remove(entity);
         }
 
         public void RemoveRange(IEnumerable<TEntity> entities)
         {
-            _dbContext.Set<TEntity>().RemoveRange(entities);
+            //_dbContext.Set<TEntity>().RemoveRange(entities);
+            foreach (var item in entities)
+            {
+                Remove(item);
+            }
         }
 
         public void Update(TEntity entity)
