@@ -1,16 +1,42 @@
 ﻿@using Microsoft.AspNet.Identity
+@using DQueensFashion.Utilities
+
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
         @Html.AntiForgeryToken()
 
-        <ul class="nav navbar-nav navbar-right">
-            <li class="nav-item">
-                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class="nav-link" })
-            </li>
-            <li class="nav-item"><a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link">Log off</a></li>
-        </ul>
+    <ul class="nav navbar-nav navbar-right">
+
+        @{
+            if (User.IsInRole(AppConstant.AdminRole))
+            {
+                <li class="nav-item">
+                    @Html.ActionLink("Dashboard", "Dashboard", "Admin", null, htmlAttributes: new { @class = "nav-link" })
+                </li>
+            }
+            else if (User.IsInRole(AppConstant.CustomerRole))
+            {
+                <li class="nav-item">
+                    @Html.ActionLink("Dashboard", "Dashboard", "Customer", null, htmlAttributes: new { @class = "nav-link" })
+                </li>
+            }
+            else if (User.IsInRole(AppConstant.EmployeeRole))
+            {
+                <li class="nav-item">
+                    @Html.ActionLink("Dashboard", "Dashboard", "Employee", null, htmlAttributes: new { @class = "nav-link" })
+                </li>
+            }
+
+        }
+
+
+        <li class="nav-item">
+            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "nav-link" })
+        </li>
+        <li class="nav-item"><a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link">Log off</a></li>
+    </ul>
     }
 }
 else

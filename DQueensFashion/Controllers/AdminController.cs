@@ -21,6 +21,11 @@ namespace DQueensFashion.Controllers
         // GET: Admin
         public ActionResult Index()
         {
+            return RedirectToAction(nameof(Dashboard));
+        }
+
+        public ActionResult Dashboard()
+        {
             return View();
         }
 
