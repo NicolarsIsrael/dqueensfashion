@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DQueensFashion.Service.Contract;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,8 +9,14 @@ namespace DQueensFashion.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IProductService _productService;
+        public HomeController(IProductService productService)
+        {
+            _productService = productService;
+        }
         public ActionResult Index()
         {
+            ViewBag.ProductsCount = _productService.GetAllProductsCount();
             return View();
         }
 

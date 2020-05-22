@@ -11,6 +11,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using DQueensFashion.Models;
+using DQueensFashion.Core.Model;
+using DQueensFashion.Data;
 
 namespace DQueensFashion
 {
@@ -104,6 +106,27 @@ namespace DQueensFashion
         public static ApplicationSignInManager Create(IdentityFactoryOptions<ApplicationSignInManager> options, IOwinContext context)
         {
             return new ApplicationSignInManager(context.GetUserManager<ApplicationUserManager>(), context.Authentication);
+        }
+    }
+
+    // added the below
+    public class MyUserStore : UserStore<ApplicationUser>
+    {
+        public MyUserStore(DbContext ctx) : base(ctx)
+        {
+
+        }
+    }
+    public interface IAuthenticationManagerFactory
+    {
+        IAuthenticationManager Create();
+    }
+
+    public class AuthenticationManagerFactory : IAuthenticationManagerFactory
+    {
+        public IAuthenticationManager Create()
+        {
+            return HttpContext.Current.GetOwinContext().Authentication;
         }
     }
 }

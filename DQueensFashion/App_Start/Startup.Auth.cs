@@ -6,6 +6,8 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using DQueensFashion.Models;
+using DQueensFashion.Data;
+using DQueensFashion.Core.Model;
 
 namespace DQueensFashion
 {
