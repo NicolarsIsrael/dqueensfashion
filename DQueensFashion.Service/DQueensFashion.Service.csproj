@@ -121,7 +121,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contract\ICategoryService.cs" />
     <Compile Include="Contract\IProductService.cs" />
+    <Compile Include="Implementation\CategoryService.cs" />
     <Compile Include="Implementation\ProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -9,6 +9,7 @@ namespace DQueensFashion.Data.Contract
     public interface IUnitOfWork
     {
         IProductRepo ProductRepo { get; set; }
+        ICategoryRepo CategoryRepo { get; set; }
         void Save();
     }
 }

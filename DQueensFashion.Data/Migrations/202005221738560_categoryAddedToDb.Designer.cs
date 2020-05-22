@@ -7,13 +7,13 @@ namespace DQueensFashion.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.0-30225")]
-    public sealed partial class inital : IMigrationMetadata
+    public sealed partial class categoryAddedToDb : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(inital));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(categoryAddedToDb));
         
         string IMigrationMetadata.Id
         {
-            get { return "202005221601085_inital"; }
+            get { return "202005221738560_categoryAddedToDb"; }
         }
         
         string IMigrationMetadata.Source

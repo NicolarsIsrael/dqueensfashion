@@ -49,11 +49,13 @@ namespace DQueensFashion
 
             //configure the services
             container.Register<IProductService, ProductService>(Lifestyle.Scoped);
+            container.Register<ICategoryService, CategoryService>(Lifestyle.Scoped);
             
 
             //configure the Repos
             container.Register<IUnitOfWork, UnitOfWork>(Lifestyle.Scoped);
             container.Register<IProductRepo, ProductRepo>(Lifestyle.Scoped);
+            container.Register<ICategoryRepo, CategoryRepo>(Lifestyle.Scoped);
 
             //registering Logic
             //container.Register<IMailer, Mailer>(Lifestyle.Scoped);

@@ -11,12 +11,21 @@ namespace DQueensFashion.Controllers
     public class HomeController : Controller
     {
         private readonly IProductService _productService;
-        public HomeController(IProductService productService)
+        private readonly ICategoryService _categoryService;
+        public HomeController(IProductService productService, ICategoryService categoryService)
         {
             _productService = productService;
+            _categoryService = categoryService;
         }
         public ActionResult Index()
         {
+            Category category = new Category()
+            {
+                Name = "Abc",
+            };
+            _categoryService.AddCategory(category);
+
+            ViewBag.CategoryCount = _categoryService.GetAllCategoriesCount();
             ViewBag.ProductsCount = _productService.GetAllProductsCount();
             return View();
         }

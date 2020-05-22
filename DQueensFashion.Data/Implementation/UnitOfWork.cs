@@ -12,11 +12,13 @@ namespace DQueensFashion.Data.Implementation
         private System.Data.Entity.DbContext context;// = new DbContext();
 
         public IProductRepo ProductRepo { get; set; }
+        public ICategoryRepo CategoryRepo { get; set; }
 
-        public UnitOfWork(System.Data.Entity.DbContext _context,IProductRepo _productRepo)
+        public UnitOfWork(System.Data.Entity.DbContext _context,IProductRepo _productRepo, ICategoryRepo _categoryRepo)
         {
             context = _context;
             ProductRepo = _productRepo;
+            CategoryRepo = _categoryRepo;
         }
 
         public void Save()
