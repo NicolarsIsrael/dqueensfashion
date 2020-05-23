@@ -27,6 +27,15 @@ namespace DQueensFashion.Service.Implementation
             uow.Save();
         }
 
+        public void UpdateProduct(Product product)
+        {
+            if (!ValidateProductDetails(product))
+                throw new Exception();
+
+            uow.ProductRepo.Update(product);
+            uow.Save();
+        }
+
         public int GetAllProductsCount()
         {
             return uow.ProductRepo.GetAll().Count();
@@ -35,6 +44,11 @@ namespace DQueensFashion.Service.Implementation
         public IEnumerable<Product> GetAllProducts()
         {
             return uow.ProductRepo.GetAllProductsWithRelationships();
+        }
+
+        public Product GetProductById(int id)
+        {
+            return uow.ProductRepo.GetProductByIdWithRelationships(id);
         }
 
         private bool ValidateProductDetails(Product product)

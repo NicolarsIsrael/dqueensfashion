@@ -426,6 +426,7 @@
     <Content Include="Views\Admin\EditCategory.cshtml" />
     <Content Include="Views\Admin\AddProduct.cshtml" />
     <Content Include="Views\Admin\ViewProducts.cshtml" />
+    <Content Include="Views\Admin\EditProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

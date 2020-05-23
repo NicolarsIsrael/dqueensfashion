@@ -10,7 +10,9 @@ namespace DQueensFashion.Service.Contract
     public interface IProductService
     {
         int GetAllProductsCount();
+        Product GetProductById(int id);
         void AddProduct(Product product);
+        void UpdateProduct(Product product);
         IEnumerable<Product> GetAllProducts();
     }
 }

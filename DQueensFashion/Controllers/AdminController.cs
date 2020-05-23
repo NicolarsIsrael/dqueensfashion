@@ -144,6 +144,7 @@ namespace DQueensFashion.Controllers
                     Quantity = p.Quantity.ToString(),
                     Price = p.Price.ToString(),
                     Category = p.Category.Name,
+                    Tags = p.Tags != null ? String.Join(" ", p.Tags) : "",
                     Image1 = p.ImagePath1,
                     Image2 = p.ImagePath2,
                     Image3 = p.ImagePath3,
@@ -240,9 +241,134 @@ namespace DQueensFashion.Controllers
                 ImagePath4 = imgPath4,
                 Category = category,
                 Tags = productModel.Tags != null ? String.Join(",", productModel.Tags) : "",
-        };
+            };
 
             _productService.AddProduct(product);
+            return RedirectToAction(nameof(ViewProducts));
+        }
+
+        public ActionResult EditProduct(int id)
+        {
+            Product product = _productService.GetProductById(id);
+            var allCategories = _categoryService.GetAllCategories().ToList();
+            allCategories.Remove(product.Category);
+            EditProductViewModel productModel = new EditProductViewModel()
+            {
+                Id = product.Id,
+                Name = product.Name,
+                Description = product.Description,
+                Quantity = product.Quantity,
+                Price = product.Price,
+                PreviousCategory = new CategoryNameAndId()
+                {
+                    Id = product.Category.Id,
+                    Name = product.Name,
+                },
+                Categories = allCategories.Select(c => new CategoryNameAndId()
+                {
+                    Id = c.Id,
+                    Name = c.Name,
+                }),
+                ImagePath1 = string.IsNullOrEmpty(product.ImagePath1) ? AppConstant.DefaultProductImage : product.ImagePath1,
+                ImagePath2 = string.IsNullOrEmpty(product.ImagePath2) ? AppConstant.DefaultProductImage : product.ImagePath2,
+                ImagePath3 = string.IsNullOrEmpty(product.ImagePath3) ? AppConstant.DefaultProductImage : product.ImagePath3,
+                ImagePath4 = string.IsNullOrEmpty(product.ImagePath4) ? AppConstant.DefaultProductImage : product.ImagePath4,
+                Tags=string.IsNullOrEmpty(product.Tags)?new List<string>():product.Tags.Split(',').ToList(),
+            };
+            
+            return View(productModel);
+        }
+
+        [HttpPost]
+        public ActionResult EditProduct(EditProductViewModel productModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "One or more validation errors");
+                Category _category = _categoryService.GetCategoryById(productModel.CategoryId);
+                if (_category == null)
+                    throw new Exception();
+
+                Product _product = _productService.GetProductById(productModel.Id);
+                if (_product == null)
+                    throw new Exception();
+
+                var allCategories = _categoryService.GetAllCategories().ToList();
+                allCategories.Remove(_category);
+
+                productModel.PreviousCategory = new CategoryNameAndId()
+                {
+                    Id = _category.Id,
+                    Name = _category.Name,
+                };
+                productModel.Categories = allCategories.Select(c => new CategoryNameAndId()
+                {
+                    Id = c.Id,
+                    Name = c.Name,
+                }).ToList();
+                productModel.ImagePath1 = string.IsNullOrEmpty(_product.ImagePath1) ? AppConstant.DefaultProductImage : _product.ImagePath1;
+                productModel.ImagePath2 = string.IsNullOrEmpty(_product.ImagePath2) ? AppConstant.DefaultProductImage : _product.ImagePath2;
+                productModel.ImagePath3 = string.IsNullOrEmpty(_product.ImagePath3) ? AppConstant.DefaultProductImage : _product.ImagePath3;
+                productModel.ImagePath4 = string.IsNullOrEmpty(_product.ImagePath4) ? AppConstant.DefaultProductImage : _product.ImagePath4;
+                productModel.Tags = productModel.Tags == null ? new List<string>() : productModel.Tags;
+
+                return View(productModel);
+            }
+
+            Product product = _productService.GetProductById(productModel.Id);
+            if (product == null)
+                throw new Exception();
+
+            Category category = _categoryService.GetCategoryById(productModel.CategoryId);
+            if (category == null)
+                throw new Exception();
+
+            string imgPath1 = string.Empty, imgPath2 = string.Empty, imgPath3 = string.Empty, imgPath4 = string.Empty;
+            //file 1
+            if (productModel.ImageFile1 != null)
+            {
+                string fileName1 = FileService.GetFileName(productModel.ImageFile1);
+                imgPath1 = "~/Content/Images/Products/" + fileName1;
+                fileName1 = Path.Combine(Server.MapPath("~/Content/Images/Products/"), fileName1);
+                FileService.SaveImage(productModel.ImageFile1, fileName1);
+            }
+            //file 2
+            if (productModel.ImageFile2 != null)
+            {
+                string fileName2 = FileService.GetFileName(productModel.ImageFile2);
+                imgPath2 = "~/Content/Images/Products/" + fileName2;
+                fileName2 = Path.Combine(Server.MapPath("~/Content/Images/Products/"), fileName2);
+                FileService.SaveImage(productModel.ImageFile2, fileName2);
+            }
+            //file 3
+            if (productModel.ImageFile3 != null)
+            {
+                string fileName3 = FileService.GetFileName(productModel.ImageFile3);
+                imgPath3 = "~/Content/Images/Products/" + fileName3;
+                fileName3 = Path.Combine(Server.MapPath("~/Content/Images/Products/"), fileName3);
+                FileService.SaveImage(productModel.ImageFile3, fileName3);
+            }
+            //file 4
+            if (productModel.ImageFile4 != null)
+            {
+                string fileName4 = FileService.GetFileName(productModel.ImageFile4);
+                imgPath4 = "~/Content/Images/Products/" + fileName4;
+                fileName4 = Path.Combine(Server.MapPath("~/Content/Images/Products/"), fileName4);
+                FileService.SaveImage(productModel.ImageFile4, fileName4);
+            }
+
+            product.Name = productModel.Name;
+            product.Description = productModel.Description;
+            product.Quantity = productModel.Quantity;
+            product.Price = productModel.Price;
+            product.Category = category;
+            product.Tags = productModel.Tags != null ? String.Join(",", productModel.Tags) : "";
+            product.ImagePath1 = string.IsNullOrEmpty(imgPath1) ? product.ImagePath1 : imgPath1;
+            product.ImagePath2 = string.IsNullOrEmpty(imgPath2) ? product.ImagePath2 : imgPath2;
+            product.ImagePath3 = string.IsNullOrEmpty(imgPath3) ? product.ImagePath3 : imgPath3;
+            product.ImagePath4 = string.IsNullOrEmpty(imgPath4) ? product.ImagePath4 : imgPath4;
+
+            _productService.UpdateProduct(product);
             return RedirectToAction(nameof(ViewProducts));
         }
 

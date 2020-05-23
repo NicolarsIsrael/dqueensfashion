@@ -56,5 +56,43 @@ namespace DQueensFashion.Models
         public string Image3 { get; set; }
         public string Image4 { get; set; }
         public string Category { get; set; }
+        public string Tags { get; set; }
+    }
+
+    public class EditProductViewModel
+    {
+        public int Id { get; set; }
+
+        [Required]
+        [BeginWIthAlphabeth(ErrorMessage = "Product name must begin with an alphabeth")]
+        [StringLength(50, MinimumLength = 2, ErrorMessage = "Product name must at least be 2 characters long and not more than 50")]
+        public string Name { get; set; }
+
+        [Required]
+        [BeginWIthAlphabeth(ErrorMessage = "Description must begin with an alphabeth")]
+        [StringLength(10000, MinimumLength = 2, ErrorMessage = "Description must at least be 2 characters long and not more than 10000")]
+        public string Description { get; set; }
+
+        [Range(0, double.MaxValue, ErrorMessage = "Price must be greater than 0")]
+        [Required]
+        public decimal Price { get; set; }
+
+        [Range(1, int.MaxValue, ErrorMessage = "Quantity must be greater than 1")]
+        [Required]
+        public int Quantity { get; set; }
+
+        public string ImagePath1 { get; set; }
+        public string ImagePath2 { get; set; }
+        public string ImagePath3 { get; set; }
+        public string ImagePath4 { get; set; }
+        public List<string> Tags { get; set; }
+        public HttpPostedFileBase ImageFile1 { get; set; }
+        public HttpPostedFileBase ImageFile2 { get; set; }
+        public HttpPostedFileBase ImageFile3 { get; set; }
+        public HttpPostedFileBase ImageFile4 { get; set; }
+        [Display(Name = "Category")]
+        public int CategoryId { get; set; }
+        public CategoryNameAndId PreviousCategory { get; set; }
+        public IEnumerable<CategoryNameAndId> Categories { get; set; }
     }
 }
