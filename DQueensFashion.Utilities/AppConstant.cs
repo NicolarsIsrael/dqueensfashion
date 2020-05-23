@@ -15,5 +15,7 @@ namespace DQueensFashion.Utilities
         public const string AdminRole = "Admin";
         public const string EmployeeRole = "Employee";
         public const string CustomerRole = "Customer";
+
+        public const string DefaultProductImage = "https://image.freepik.com/free-vector/farmer-peasant-illustration-man-with-beard-spade-farmland_33099-575.jpg";
     }
 }

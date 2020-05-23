@@ -9,6 +9,8 @@ namespace DQueensFashion.Data.Contract
 {
     public interface IProductRepo : ICoreRepo<Product>
     {
+        Product GetProductByIdWithRelationships(int productId);
+        IEnumerable<Product> GetAllProductsWithRelationships();
     }
 
 }

@@ -32,4 +32,10 @@ namespace DQueensFashion.Models
         [Remote("CheckUniqueCategoryNameInEdit", "Admin", ErrorMessage = "category already exists")]
         public string Name { get; set; }
     }
+
+    public class CategoryNameAndId
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+    }
 }

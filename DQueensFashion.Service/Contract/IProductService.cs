@@ -11,5 +11,6 @@ namespace DQueensFashion.Service.Contract
     {
         int GetAllProductsCount();
         void AddProduct(Product product);
+        IEnumerable<Product> GetAllProducts();
     }
 }

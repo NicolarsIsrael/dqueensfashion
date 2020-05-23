@@ -17,6 +17,21 @@ namespace DQueensFashion.Data.Implementation
         }
 
         //other functions
+        public IEnumerable<Product> GetAllProductsWithRelationships()
+        {
+            return _dbContext.Set<Product>()
+                .Include(p => p.Category)
+                .ToList();
+        }
+
+        public Product GetProductByIdWithRelationships(int productId)
+        {
+            return _dbContext.Set<Product>()
+                .Include(p => p.Category)
+                .Where(p => p.Id == productId)
+                .FirstOrDefault();
+        }
     }
 
 }
+
