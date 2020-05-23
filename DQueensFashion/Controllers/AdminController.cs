@@ -239,7 +239,8 @@ namespace DQueensFashion.Controllers
                 ImagePath3 = imgPath3,
                 ImagePath4 = imgPath4,
                 Category = category,
-            };
+                Tags = productModel.Tags != null ? String.Join(",", productModel.Tags) : "",
+        };
 
             _productService.AddProduct(product);
             return RedirectToAction(nameof(ViewProducts));

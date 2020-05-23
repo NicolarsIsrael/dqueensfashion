@@ -31,7 +31,7 @@ namespace DQueensFashion.Models
         public string ImagePath2 { get; set; }
         public string ImagePath3 { get; set; }
         public string ImagePath4 { get; set; }
-
+        public List<string> Tags { get; set; }
         public HttpPostedFileBase ImageFile1 { get; set; }
         public HttpPostedFileBase ImageFile2 { get; set; }
         public HttpPostedFileBase ImageFile3 { get; set; }
