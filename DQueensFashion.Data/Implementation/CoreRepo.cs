@@ -42,6 +42,7 @@ namespace DQueensFashion.Data.Implementation
         public TEntity Get(object id)
         {
             var entity = _dbContext.Set<TEntity>().Find(id);
+            if (entity == null) return null;
             if (entity.IsDeleted == false)
                 return entity;
             return null;

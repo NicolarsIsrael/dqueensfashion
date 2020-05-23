@@ -34,9 +34,30 @@ namespace DQueensFashion.Service.Implementation
             }
         }
 
+        public void UpdateCategory(Category category)
+        {
+            try
+            {
+                if (!ValidateCategoryDetails(category))
+                    throw new Exception();
+
+                uow.CategoryRepo.Update(category);
+                uow.Save();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         public int GetAllCategoriesCount()
         {
             return uow.CategoryRepo.Count();
+        }
+        public Category GetCategoryById(int id)
+        {
+            return uow.CategoryRepo.Get(id);
         }
 
         public Category GetCategoryByName(string categoryName)

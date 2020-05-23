@@ -21,4 +21,15 @@ namespace DQueensFashion.Models
         [Remote("CheckUniqueCategoryName", "Admin", ErrorMessage = "category already exists")]
         public string Name { get; set; }
     }
+
+    public class EditCategoryViewModel
+    {
+        public int Id { get; set; }
+
+        [Required]
+        [BeginWIthAlphabeth(ErrorMessage = "Name must begin with an alphabeth")]
+        [StringLength(50, MinimumLength = 2, ErrorMessage = "Category name must at least be 2 characters long and not more than 50")]
+        [Remote("CheckUniqueCategoryNameInEdit", "Admin", ErrorMessage = "category already exists")]
+        public string Name { get; set; }
+    }
 }

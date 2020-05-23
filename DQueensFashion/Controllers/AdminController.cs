@@ -46,6 +46,7 @@ namespace DQueensFashion.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult AddCategory(AddCategoryViewModel categoryModel)
         {
             if (!ModelState.IsValid)
@@ -78,8 +79,56 @@ namespace DQueensFashion.Controllers
             }
         }
 
+        public ActionResult EditCategory(int id=0)
+        {
+            try
+            {
+                Category category = _categoryService.GetCategoryById(id);
+                if (category == null)
+                    return HttpNotFound();
 
+                EditCategoryViewModel categoryModel = new EditCategoryViewModel()
+                {
+                    Id = category.Id,
+                    Name = category.Name,
+                };
+                TempData["categoryName"] = category.Name;
+                return View(categoryModel);
+            }
+            catch (Exception)
+            {
 
+                throw;
+            }
+        }
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditCategory(EditCategoryViewModel categoryModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "One or more validation errors");
+                return View();
+            }
+            try
+            {
+
+                Category category = _categoryService.GetCategoryById(categoryModel.Id);
+                if (category == null)
+                    return HttpNotFound();
+
+                category.Name = categoryModel.Name;
+                _categoryService.UpdateCategory(category);
+
+                return RedirectToAction(nameof(ViewCategories));
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
 
         #region private functions
         public JsonResult CheckUniqueCategoryName(string name)
@@ -88,21 +137,19 @@ namespace DQueensFashion.Controllers
             return Json(result == null, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult CheckUniqueCategoryNameInEdit(string name)
+        {
+            string _name = TempData["categoryName"].ToString();
+            TempData["categoryName"] = _name;
+            if (string.Compare(_name.ToLower(), name.ToLower(), true) == 0)
+            {
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
 
+            var result = _categoryService.GetCategoryByName(name);
+            return Json(result == null, JsonRequestBehavior.AllowGet);
+        }
 
-        //public JsonResult EnsureUniqueCourseCodeInEdit(string courseCode)
-        //{
-        //    string _courseCode = TempData["Course"].ToString();
-        //    if (string.Compare(_courseCode.ToLower(), courseCode.ToLower(), true) == 0)
-        //    {
-        //        TempData["Course"] = _courseCode;
-        //        return Json(true, JsonRequestBehavior.AllowGet);
-        //    }
-
-        //    TempData["Course"] = _courseCode;
-        //    var result = _courseService.GetCourseByCourseCode(courseCode);
-        //    return Json(result == null, JsonRequestBehavior.AllowGet);
-        //}
         #endregion
     }
 }
