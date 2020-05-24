@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using DQueensFashion.Core;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace DQueensFashion.Models
@@ -68,6 +69,12 @@ namespace DQueensFashion.Models
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
+
+        [Display(Name = "Full name")]
+        [Required]
+        [BeginWIthAlphabeth(ErrorMessage ="The full name must begin with an alphabeth")]
+        [StringLength(100,MinimumLength =2,ErrorMessage ="Full name must be at least 2 characters long and not more than 100")]
+        public string Fullname { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]

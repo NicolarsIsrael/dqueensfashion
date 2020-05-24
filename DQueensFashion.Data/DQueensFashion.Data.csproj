@@ -164,6 +164,10 @@
     <Compile Include="Migrations\202005240739291_customerAddedToDb.Designer.cs">
       <DependentUpon>202005240739291_customerAddedToDb.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005240810027_userIdChangedtoString.cs" />
+    <Compile Include="Migrations\202005240810027_userIdChangedtoString.Designer.cs">
+      <DependentUpon>202005240810027_userIdChangedtoString.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -201,6 +205,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005240739291_customerAddedToDb.resx">
       <DependentUpon>202005240739291_customerAddedToDb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005240810027_userIdChangedtoString.resx">
+      <DependentUpon>202005240810027_userIdChangedtoString.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

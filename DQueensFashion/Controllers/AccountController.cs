@@ -10,6 +10,10 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using DQueensFashion.Models;
 using DQueensFashion.Core.Model;
+using DQueensFashion.Service.Contract;
+using DQueensFashion.Utilities;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System.Data.Entity;
 
 namespace DQueensFashion.Controllers
 {
@@ -18,11 +22,15 @@ namespace DQueensFashion.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private readonly ICustomerService _customerService;
+        private DbContext _ctx;
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager,ICustomerService customerService, DbContext ctx)
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            _customerService = customerService;
+            _ctx = ctx;
         }
 
         public ApplicationSignInManager SignInManager
@@ -152,14 +160,45 @@ namespace DQueensFashion.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    //add customer role
+                    var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(_ctx));
+                    if (!roleManager.RoleExists(AppConstant.CustomerRole))
+                    {
+                        var userRole = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                        userRole.Name = AppConstant.CustomerRole;
+                        roleManager.Create(userRole);
+                    }
+                    UserManager.AddToRole(user.Id, AppConstant.CustomerRole);
+
+
+
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
+                    //create customer profile
+                    try
+                    {
+                        Customer customer = new Customer()
+                        {
+                            Email = model.Email,
+                            Fullname = model.Fullname,
+                            UserId = user.Id,
+                        };
+                        _customerService.AddCustomer(customer);
+                    }
+                    catch (Exception)
+                    {
+                        //delete user if creation of customer account fails
+                        UserManager.Delete(user);
+                        throw;
+                    }
+
+
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
