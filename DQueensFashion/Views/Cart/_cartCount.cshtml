@@ -1,3 +1,18 @@
 ﻿@model DQueensFashion.Models.ViewCartViewModel
 
-@Model.Count
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        @Model.Count
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        @foreach (var cartItem in Model.Carts)
+        {
+            <div class="dropdown-item">
+                <div class="dropdown-item-text">@cartItem.Product.Name ( @cartItem.Quantity )</div>
+            </div>
+        }
+
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#">CHECK OUT</a>
+    </div>
+</li>

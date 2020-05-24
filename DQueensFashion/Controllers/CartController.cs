@@ -30,13 +30,13 @@ namespace DQueensFashion.Controllers
 
             if (Session["cart"] == null)
             {
-                List<AddCartViewModel> cart = new List<AddCartViewModel>();
-                cart.Add(new AddCartViewModel { Product = product, Quantity = 1 });
+                List<Cart> cart = new List<Cart>();
+                cart.Add(new Cart { Product = product, Quantity = 1 });
                 Session["cart"] = cart;
             }
             else
             {
-                List<AddCartViewModel> cart = (List<AddCartViewModel>)Session["cart"];
+                List<Cart> cart = (List<Cart>)Session["cart"];
                 int index = isExist(id);
                 if (index != -1)
                 {
@@ -44,13 +44,15 @@ namespace DQueensFashion.Controllers
                 }
                 else
                 {
-                    cart.Add(new AddCartViewModel { Product = product, Quantity = 1 });
+                    cart.Add(new Cart { Product = product, Quantity = 1 });
                 }
                 Session["cart"] = cart;
             }
+
             ViewCartViewModel viewCart = new ViewCartViewModel()
             {
-                Count = Session["cart"] == null ? 0 : ((List<AddCartViewModel>)Session["cart"]).Sum(c => c.Quantity),
+                Count = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.Quantity),
+                Carts = Session["cart"] == null ? new List<Cart>() : (List<Cart>)Session["cart"],
             };
 
             return PartialView("_cartCount",viewCart);
@@ -60,15 +62,21 @@ namespace DQueensFashion.Controllers
         {
             ViewCartViewModel viewCart = new ViewCartViewModel()
             {
-                Count = Session["cart"] == null ? 0 : ((List<AddCartViewModel>)Session["cart"]).Sum(c => c.Quantity),
+                Count = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.Quantity),
+                Carts = Session["cart"] == null ? new List<Cart>() : (List<Cart>)Session["cart"],
             };
 
             return PartialView("_cartCount", viewCart);
         }
 
+        public ActionResult RemoveCart()
+        {
+            return View();
+        }
+
         private int isExist(int id)
         {
-            List<AddCartViewModel> cart = (List<AddCartViewModel>)Session["cart"];
+            List<Cart> cart = (List<Cart>)Session["cart"];
             for (int i = 0; i < cart.Count; i++)
                 if (cart[i].Product.Id.Equals(id))
                     return i;

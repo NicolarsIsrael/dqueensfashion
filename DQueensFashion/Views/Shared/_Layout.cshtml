@@ -21,9 +21,10 @@
                 <li class="nav-item active">
                     @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })
                 </li>
-                <li class="nav-item">
-                    <div class="nav-link" id="cartCount"></div>
-                </li>
+                <div id="cartCount">
+
+                </div>
+              
             </ul>
             @Html.Partial("_LoginPartial")
         </div>

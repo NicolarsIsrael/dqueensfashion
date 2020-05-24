@@ -38,7 +38,7 @@ namespace DQueensFashion.Controllers
                 Products = products,
             };
 
-            ViewBag.CartCount = Session["cart"]==null?0: ((List<AddCartViewModel>)Session["cart"]).Sum(c=>c.Quantity);
+            ViewBag.CartCount = Session["cart"]==null?0: ((List<Cart>)Session["cart"]).Sum(c=>c.Quantity);
             return View(homeIndex);
         }
 
