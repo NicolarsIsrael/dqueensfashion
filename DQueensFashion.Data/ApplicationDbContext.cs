@@ -18,6 +18,7 @@ namespace DQueensFashion.Data
 
         public DbSet<Product> Product { get; set; }
         public DbSet<Category> Category { get; set; }
+        public DbSet<Customer> Customer { get; set; }
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

@@ -13,12 +13,14 @@ namespace DQueensFashion.Data.Implementation
 
         public IProductRepo ProductRepo { get; set; }
         public ICategoryRepo CategoryRepo { get; set; }
+        public ICustomerRepo CustomerRepo { get; set; }
 
-        public UnitOfWork(System.Data.Entity.DbContext _context,IProductRepo _productRepo, ICategoryRepo _categoryRepo)
+        public UnitOfWork(System.Data.Entity.DbContext _context,IProductRepo _productRepo, ICategoryRepo _categoryRepo,ICustomerRepo _customerRepo)
         {
             context = _context;
             ProductRepo = _productRepo;
             CategoryRepo = _categoryRepo;
+            CustomerRepo = _customerRepo;
         }
 
         public void Save()

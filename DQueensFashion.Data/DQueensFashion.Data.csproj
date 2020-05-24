@@ -124,10 +124,12 @@
     <Compile Include="ApplicationDbContext.cs" />
     <Compile Include="Contract\ICategoryRepo.cs" />
     <Compile Include="Contract\ICoreRepo.cs" />
+    <Compile Include="Contract\ICustomerRepo.cs" />
     <Compile Include="Contract\IProductRepo.cs" />
     <Compile Include="Contract\IUnitOfWork.cs" />
     <Compile Include="Implementation\CategoryRepo.cs" />
     <Compile Include="Implementation\CoreRepo.cs" />
+    <Compile Include="Implementation\CustomerRepo.cs" />
     <Compile Include="Implementation\ProductRepo.cs" />
     <Compile Include="Implementation\UnitOfWork.cs" />
     <Compile Include="Migrations\202005221738560_categoryAddedToDb.cs" />
@@ -157,6 +159,10 @@
     <Compile Include="Migrations\202005231325295_tagsAddedToproducts.cs" />
     <Compile Include="Migrations\202005231325295_tagsAddedToproducts.Designer.cs">
       <DependentUpon>202005231325295_tagsAddedToproducts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005240739291_customerAddedToDb.cs" />
+    <Compile Include="Migrations\202005240739291_customerAddedToDb.Designer.cs">
+      <DependentUpon>202005240739291_customerAddedToDb.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -192,6 +198,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005231325295_tagsAddedToproducts.resx">
       <DependentUpon>202005231325295_tagsAddedToproducts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005240739291_customerAddedToDb.resx">
+      <DependentUpon>202005240739291_customerAddedToDb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
