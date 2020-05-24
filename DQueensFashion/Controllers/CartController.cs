@@ -69,6 +69,22 @@ namespace DQueensFashion.Controllers
             return PartialView("_cartCount", viewCart);
         }
 
+        public ActionResult RemoveFromCart(int id)
+        {
+            List<Cart> cart = (List<Cart>)Session["cart"];
+            int index = isExist(id);
+            cart.RemoveAt(index);
+            Session["cart"] = cart;
+
+            ViewCartViewModel viewCart = new ViewCartViewModel()
+            {
+                Count = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.Quantity),
+                Carts = Session["cart"] == null ? new List<Cart>() : (List<Cart>)Session["cart"],
+            };
+
+            return PartialView("_cartCount", viewCart);
+        }
+
         public ActionResult RemoveCart()
         {
             return View();

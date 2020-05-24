@@ -269,6 +269,8 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\iconfinder_Streamline-70_185090.png" />
+    <Content Include="Content\Images\trash-2.svg" />
     <Content Include="Content\js\content-file-input.js" />
     <Content Include="Content\js\jquery.js" />
     <Content Include="Content\js\site.js" />
