@@ -140,15 +140,10 @@ namespace DQueensFashion.Controllers
                 {
                     Id = p.Id,
                     Name = p.Name,
-                    Description = p.Description,
                     Quantity = p.Quantity.ToString(),
                     Price = p.Price.ToString(),
                     Category = p.Category.Name,
-                    Tags = p.Tags != null ? String.Join(" ", p.Tags) : "",
                     Image1 = p.ImagePath1,
-                    Image2 = p.ImagePath2,
-                    Image3 = p.ImagePath3,
-                    Image4 = p.ImagePath4,
                     DateCreated = p.DateCreated,
                     DateCreatedString = p.DateCreated.ToString("dd-MMM-yyyy : hh-mm-ss"),
                 }).OrderBy(p=>p.DateCreated).ToList();
@@ -247,7 +242,7 @@ namespace DQueensFashion.Controllers
             return RedirectToAction(nameof(ViewProducts));
         }
 
-        public ActionResult EditProduct(int id)
+        public ActionResult EditProduct(int id=0)
         {
             Product product = _productService.GetProductById(id);
             var allCategories = _categoryService.GetAllCategories().ToList();
@@ -370,6 +365,31 @@ namespace DQueensFashion.Controllers
 
             _productService.UpdateProduct(product);
             return RedirectToAction(nameof(ViewProducts));
+        }
+
+        public ActionResult ProductDetails(int id=0)
+        {
+            Product product = _productService.GetProductById(id);
+            if (product == null)
+                return HttpNotFound();
+
+            ViewProductsViewModel productModel = new ViewProductsViewModel()
+            {
+                Id = product.Id,
+                Name = product.Name,
+                Description = product.Description,
+                Price = product.Price.ToString(),
+                Quantity = product.Quantity.ToString(),
+                Category = product.Category.Name,
+                Tags = product.Tags,
+                DateCreatedString = product.DateCreated.ToString("dd-MMM-yyyy : hh-mm-ss"),
+                Image1 = string.IsNullOrEmpty(product.ImagePath1)?"":product.ImagePath1,
+                Image2 = string.IsNullOrEmpty(product.ImagePath2) ? "" : product.ImagePath2,
+                Image3 = string.IsNullOrEmpty(product.ImagePath3) ? "" : product.ImagePath3,
+                Image4 = string.IsNullOrEmpty(product.ImagePath4) ? "" : product.ImagePath4,
+            };
+
+            return View(productModel);
         }
 
         #region private functions

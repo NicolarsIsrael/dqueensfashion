@@ -6,7 +6,7 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+<script src="~/Content/js/site.js"></script>
 </head>
 <body>
 
@@ -20,6 +20,9 @@
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
                     @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })
+                </li>
+                <li class="nav-item">
+                    <div class="nav-link" id="cartCount"></div>
                 </li>
             </ul>
             @Html.Partial("_LoginPartial")

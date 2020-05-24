@@ -4,7 +4,14 @@
     ViewBag.Title = "ViewProducts";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@*Id = p.Id,
+    Name = p.Name,
+    Quantity = p.Quantity.ToString(),
+    Price = p.Price.ToString(),
+    Category = p.Category.Name,
+    Image1 = p.ImagePath1,
+    DateCreated = p.DateCreated,
+    DateCreatedString = p.DateCreated.ToString("dd-MMM-yyyy : hh-mm-ss"),*@
 <h2>ViewProducts</h2>
 
 <p>
@@ -16,16 +23,13 @@
             @Html.DisplayNameFor(model => model.Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Price)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Quantity)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Tags)
+            @Html.DisplayNameFor(model => model.Category)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.DateCreatedString)
@@ -33,99 +37,45 @@
         <th>
             @Html.DisplayNameFor(model => model.Image1)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Image2)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Image3)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Image4)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Category)
-        </th>
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.Name)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Description)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Price)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Quantity)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Tags)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.DateCreatedString)
-    </td>
-    @{
-        if (!string.IsNullOrEmpty(item.Image1))
-        {
+        <tr>
             <td>
-                <img src="@Url.Content(item.Image1)" style="height:50px;width:100px;" />
+                @Html.DisplayFor(modelItem => item.Name)
             </td>
-        }
-        else
-        {
-            <td></td>
-        }
-    }
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateCreatedString)
+            </td>
+            @{
+                if (!string.IsNullOrEmpty(item.Image1))
+                {
+                    <td>
+                        <img src="@Url.Content(item.Image1)" style="height:50px;width:100px;" />
+                    </td>
+                }
+                else
+                {
+                    <td></td>
+                }
+            }
 
-    @{
-        if (!string.IsNullOrEmpty(item.Image2))
-        {
             <td>
-                <img src="@Url.Content(item.Image2)" style="height:50px;width:100px;" />
+                @Html.ActionLink("Edit", "EditProduct", new { id = item.Id }) |
+                @Html.ActionLink("Details", "ProductDetails", new { id = item.Id })
             </td>
-        }
-        else
-        {
-            <td></td>
-        }
-    }
-    @{
-        if (!string.IsNullOrEmpty(item.Image3))
-        {
-            <td>
-                <img src="@Url.Content(item.Image3)" style="height:50px;width:100px;" />
-            </td>
-        }
-        else
-        {
-            <td></td>
-        }
-    }
-    @{
-        if (!string.IsNullOrEmpty(item.Image4))
-        {
-            <td>
-                <img src="@Url.Content(item.Image4)" style="height:50px;width:100px;" />
-            </td>
-        }
-        else
-        {
-            <td></td>
-        }
-    }
-    <td>
-        @Html.DisplayFor(modelItem => item.Category)
-    </td>
-    <td>
-        @Html.ActionLink("Edit", "EditProduct", new { id = item.Id }) |
-        @Html.ActionLink("Details", "Details", new { id = item.Id })
-    </td>
-</tr>
+        </tr>
     }
 
 </table>

@@ -1,4 +1,5 @@
 ﻿using DQueensFashion.Core.Model;
+using DQueensFashion.Models;
 using DQueensFashion.Service.Contract;
 using System;
 using System.Collections.Generic;
@@ -21,11 +22,24 @@ namespace DQueensFashion.Controllers
         }
         public ActionResult Index()
         {
+            IEnumerable<ViewProductsViewModel> products = _productService.GetAllProducts()
+                .Select(p => new ViewProductsViewModel()
+                {
+                    Id = p.Id,
+                    Name = p.Name,
+                    Description = p.Description.Length > 35 ? p.Description.Substring(0, 35) + "..." : p.Description,
+                    Image1 = p.ImagePath1,
+                    Quantity = p.Quantity.ToString(),
+                    Price=p.Price.ToString(),
 
-            ViewBag.CategoryCount = _categoryService.GetAllCategoriesCount();
-            ViewBag.ProductsCount = _productService.GetAllProductsCount();
-            ViewBag.CustomerCount = _customerService.GetAllCustomerCount();
-            return View();
+                }).ToList();
+            HomeIndexViewModel homeIndex = new HomeIndexViewModel()
+            {
+                Products = products,
+            };
+
+            ViewBag.CartCount = Session["cart"]==null?0: ((List<AddCartViewModel>)Session["cart"]).Sum(c=>c.Quantity);
+            return View(homeIndex);
         }
 
         public ActionResult About()
