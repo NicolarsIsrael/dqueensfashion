@@ -56,6 +56,10 @@ namespace DQueensFashion.Data.Contract
         /// <param name="entity"></param>
         void Remove(TEntity entity);
 
+        //totally delete item from db
+        void DeeleFromDb(TEntity entity);
+
+
         /// <summary>
         /// Removes a group of entities from the collection
         /// </summary>

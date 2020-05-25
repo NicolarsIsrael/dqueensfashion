@@ -1,0 +1,45 @@
+﻿@model IEnumerable<DQueensFashion.Models.ViewWishListViewModel>
+
+@{
+    ViewBag.Title = "Wishlist";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Wishlist</h2>
+
+<table class="table" id="wishListTable">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductImagePath)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            @{
+                if (!string.IsNullOrEmpty(item.ProductImagePath))
+                {
+                    <td>
+                        <img src="@Url.Content(item.ProductImagePath)" style="height:50px;width:100px;" />
+                    </td>
+                }
+                else
+                {
+                    <td></td>
+                }
+            }
+            <td>
+               <button class="btn btn-primary" onclick="RemoveFromWishList(@item.WishListId)">Remove</button>
+            </td>
+        </tr>
+    }
+
+</table>

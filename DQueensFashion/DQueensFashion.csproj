@@ -261,6 +261,7 @@
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
+    <Compile Include="Models\WishListViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -456,11 +457,12 @@
     <Content Include="Views\Admin\ProductDetails.cshtml" />
     <Content Include="Views\Cart\_cartCount.cshtml" />
     <Content Include="Views\Customer\Dashboard.cshtml" />
+    <Content Include="Views\Customer\Wishlist.cshtml" />
+    <Content Include="Views\Wishlist\_wishListTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Images\Products\" />
-    <Folder Include="Views\Wishlist\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

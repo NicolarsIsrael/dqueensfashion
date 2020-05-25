@@ -11,5 +11,8 @@ namespace DQueensFashion.Service.Contract
     {
         int GetAllWishListCount();
         void AddWishList(WishList wishList);
+        IEnumerable<WishList> GetAllCustomerWishList(int customerId);
+        void DeleteWishList(WishList wishList);
+        WishList GetWishListById(int wishList);
     }
 }

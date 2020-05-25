@@ -31,9 +31,29 @@ namespace DQueensFashion.Service.Implementation
             
         }
 
+        public void DeleteWishList(WishList wishList)
+        {
+            if (wishList != null)
+            {
+                uow.WishListRepo.DeeleFromDb(wishList);
+                uow.Save();
+            }
+                
+        }
+
+        public IEnumerable<WishList> GetAllCustomerWishList(int customerId)
+        {
+            return uow.WishListRepo.GetAll().Where(w => w.CustomerId == customerId).ToList();
+        }
+
         public int GetAllWishListCount()
         {
             return uow.WishListRepo.Count();
+        }
+
+        public WishList GetWishListById(int wishList)
+        {
+            return uow.WishListRepo.Get(wishList);
         }
 
         private bool CheckIfProductExistInCustomerWishList(int productId, int customerId)
