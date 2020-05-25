@@ -45,5 +45,10 @@ namespace DQueensFashion.Service.Implementation
 
             return true;
         }
+
+        public Customer GedCustomerByUserId(string userId)
+        {
+            return uow.CustomerRepo.GetAll().Where(c => string.Compare(c.UserId, userId, false) == 0).FirstOrDefault();
+        }
     }
 }
