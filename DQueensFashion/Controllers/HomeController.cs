@@ -14,11 +14,13 @@ namespace DQueensFashion.Controllers
         private readonly IProductService _productService;
         private readonly ICategoryService _categoryService;
         private readonly ICustomerService _customerService;
-        public HomeController(IProductService productService, ICategoryService categoryService,ICustomerService customerService)
+        private readonly IWishListService _wishListService;
+        public HomeController(IProductService productService, ICategoryService categoryService,ICustomerService customerService, IWishListService wishListService)
         {
             _productService = productService;
             _categoryService = categoryService;
             _customerService = customerService;
+            _wishListService = wishListService;
         }
         public ActionResult Index()
         {
@@ -38,7 +40,7 @@ namespace DQueensFashion.Controllers
                 Products = products,
             };
 
-            ViewBag.CartCount = Session["cart"]==null?0: ((List<Cart>)Session["cart"]).Sum(c=>c.Quantity);
+            ViewBag.WishListCount = _wishListService.GetAllWishListCount();
             return View(homeIndex);
         }
 

@@ -127,6 +127,7 @@
     <Compile Include="Model\Customer.cs" />
     <Compile Include="Model\Entity.cs" />
     <Compile Include="Model\Product.cs" />
+    <Compile Include="Model\WishList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

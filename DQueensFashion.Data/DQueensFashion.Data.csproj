@@ -127,11 +127,13 @@
     <Compile Include="Contract\ICustomerRepo.cs" />
     <Compile Include="Contract\IProductRepo.cs" />
     <Compile Include="Contract\IUnitOfWork.cs" />
+    <Compile Include="Contract\IWishListRepo.cs" />
     <Compile Include="Implementation\CategoryRepo.cs" />
     <Compile Include="Implementation\CoreRepo.cs" />
     <Compile Include="Implementation\CustomerRepo.cs" />
     <Compile Include="Implementation\ProductRepo.cs" />
     <Compile Include="Implementation\UnitOfWork.cs" />
+    <Compile Include="Implementation\WishListRepo.cs" />
     <Compile Include="Migrations\202005221738560_categoryAddedToDb.cs" />
     <Compile Include="Migrations\202005221738560_categoryAddedToDb.Designer.cs">
       <DependentUpon>202005221738560_categoryAddedToDb.cs</DependentUpon>
@@ -167,6 +169,10 @@
     <Compile Include="Migrations\202005240810027_userIdChangedtoString.cs" />
     <Compile Include="Migrations\202005240810027_userIdChangedtoString.Designer.cs">
       <DependentUpon>202005240810027_userIdChangedtoString.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005250754376_WishListAddedToDb.cs" />
+    <Compile Include="Migrations\202005250754376_WishListAddedToDb.Designer.cs">
+      <DependentUpon>202005250754376_WishListAddedToDb.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -208,6 +214,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005240810027_userIdChangedtoString.resx">
       <DependentUpon>202005240810027_userIdChangedtoString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005250754376_WishListAddedToDb.resx">
+      <DependentUpon>202005250754376_WishListAddedToDb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

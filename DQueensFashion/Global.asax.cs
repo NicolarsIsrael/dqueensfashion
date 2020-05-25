@@ -51,12 +51,14 @@ namespace DQueensFashion
             container.Register<IProductService, ProductService>(Lifestyle.Scoped);
             container.Register<ICategoryService, CategoryService>(Lifestyle.Scoped);
             container.Register<ICustomerService, CustomerService>(Lifestyle.Scoped);
+            container.Register<IWishListService, WishListService>(Lifestyle.Scoped);
 
             //configure the Repos
             container.Register<IUnitOfWork, UnitOfWork>(Lifestyle.Scoped);
             container.Register<IProductRepo, ProductRepo>(Lifestyle.Scoped);
             container.Register<ICategoryRepo, CategoryRepo>(Lifestyle.Scoped);
             container.Register<ICustomerRepo, CustomerRepo>(Lifestyle.Scoped);
+            container.Register<IWishListRepo, WishListRepo>(Lifestyle.Scoped);
 
             //registering Logic
             //container.Register<IMailer, Mailer>(Lifestyle.Scoped);

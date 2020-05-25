@@ -124,9 +124,11 @@
     <Compile Include="Contract\ICategoryService.cs" />
     <Compile Include="Contract\ICustomerService.cs" />
     <Compile Include="Contract\IProductService.cs" />
+    <Compile Include="Contract\IWishListService.cs" />
     <Compile Include="Implementation\CategoryService.cs" />
     <Compile Include="Implementation\CustomerService.cs" />
     <Compile Include="Implementation\ProductService.cs" />
+    <Compile Include="Implementation\WishListService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
