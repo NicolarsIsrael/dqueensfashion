@@ -70,6 +70,9 @@ namespace DQueensFashion.Service.Implementation
             if (product.Price < 0)
                 return false;
 
+            if (product.Tags == null)
+                return false;
+
             return true;
         }
     }
