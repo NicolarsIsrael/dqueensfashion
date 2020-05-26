@@ -9,4 +9,9 @@ namespace DQueensFashion.Models
     {
         public IEnumerable<ViewProductsViewModel> Products { get; set; }
     }
+
+    public class ProductIndexViewModel
+    {
+        public IEnumerable<ViewProductsViewModel> Products { get; set; }
+    }
 }
