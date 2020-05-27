@@ -106,11 +106,36 @@ namespace DQueensFashion.Controllers
 
                 return PartialView("_productsList", products);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                var a = ex;
                 throw;
             }
+        }
+
+
+        public ActionResult ProductDetails(int id)
+        {
+            Product product = _productService.GetProductById(id);
+            if (product == null)
+                return HttpNotFound();
+
+            ViewProductsViewModel productModel = new ViewProductsViewModel()
+            {
+                Id = product.Id,
+                Name = product.Name,
+                Description = product.Description,
+                Price = product.Price.ToString(),
+                Quantity = product.Quantity.ToString(),
+                Category = product.Category.Name,
+                Tags = product.Tags,
+                DateCreatedString = product.DateCreated.ToString("dd-MMM-yyyy : hh-mm-ss"),
+                Image1 = string.IsNullOrEmpty(product.ImagePath1) ? "" : product.ImagePath1,
+                Image2 = string.IsNullOrEmpty(product.ImagePath2) ? "" : product.ImagePath2,
+                Image3 = string.IsNullOrEmpty(product.ImagePath3) ? "" : product.ImagePath3,
+                Image4 = string.IsNullOrEmpty(product.ImagePath4) ? "" : product.ImagePath4,
+            };
+
+            return View(productModel);
         }
     }
 }
