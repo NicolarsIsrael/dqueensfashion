@@ -10,10 +10,12 @@ namespace DQueensFashion.Models
     {
         public Product Product { get; set; }
         public int Quantity { get; set; }
+        public decimal Price { get; set; }
     }
 
     public class ViewCartViewModel
     {
+        public decimal SubTotal { get; set; }
         public int Count { get; set; }
         public IEnumerable<Cart> Carts { get; set; }
     }

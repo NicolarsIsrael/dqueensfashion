@@ -1,0 +1,111 @@
+﻿@model DQueensFashion.Models.ViewCartViewModel
+
+@{
+    ViewBag.Title = "ViewCart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ViewCart</h2>
+
+<table class="table" id="viewCartTable">
+    <tr>
+        <th></th>
+        <th></th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Carts)
+    {
+        <tr>
+            @{
+                if (!string.IsNullOrEmpty(item.Product.ImagePath1))
+                {
+                    <td>
+                        <img src="@Url.Content(item.Product.ImagePath1)" style="width:100px;height:100px" />
+                    </td>
+                }
+                else
+                {
+                    <td></td>
+                }
+            }
+            <td>
+                @Html.DisplayFor(modelItem=>item.Product.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem=>item.Product.Price)
+            </td>
+            <td>
+                <button class="btn btn-sm btn-warning" onclick="DecreaseQuantity(@item.Product.Id)">-</button>
+                @Html.DisplayFor(modelItem => item.Quantity)
+                <button class="btn btn-sm btn-success" onclick="IncreaseQuantity(@item.Product.Id)">+</button>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem=> item.Price)
+            </td>
+            <td>
+                <button class="btn btn-sm btn-danger" onclick="RemoveCartItem(@item.Product.Id)">Remove</button>
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+<script>
+    function IncreaseQuantity(productId) {
+
+        $.ajax({
+            url: '/Cart/increasequantity/' + productId,
+            dataType: "html",
+            data: { id: productId },
+            success: function (result) {
+                $("#viewCartTable").html(result);
+            },
+            error: function (xhr, status, error) {
+
+            }
+        });
+
+        GetCart();
+    }
+
+
+
+    function DecreaseQuantity(productId) {
+
+        $.ajax({
+            url: '/Cart/decreasequantity/' + productId,
+            dataType: "html",
+            data: { id: productId },
+            success: function (result) {
+                $("#viewCartTable").html(result);
+            },
+            error: function (xhr, status, error) {
+
+            }
+        });
+
+        GetCart();
+        }
+
+     function RemoveCartItem(productId) {
+
+        $.ajax({
+            url: '/Cart/removecartitem/' + productId,
+            dataType: "html",
+            data: { id: productId },
+            success: function (result) {
+                $("#viewCartTable").html(result);
+            },
+            error: function (xhr, status, error) {
+
+            }
+        });
+
+        GetCart();
+    }
+</script>
