@@ -44,6 +44,32 @@
         <h5>Category: @Model.Category</h5>
         <h5>Tags: @Model.Tags</h5>
         <h5>Date created: @Model.DateCreatedString</h5>
+
+
+        @using (Html.BeginForm("BuyProduct","Product"))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                @Html.Hidden("id")
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.Label("Quantity", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <input type="number" name="quantity" class="form-control" value="1" min="1"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="BUY NOW" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+        }
+
+
     </div>
+
 </div>
 

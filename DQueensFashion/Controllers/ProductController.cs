@@ -1,6 +1,8 @@
 ﻿using DQueensFashion.Core.Model;
 using DQueensFashion.Models;
 using DQueensFashion.Service.Contract;
+using DQueensFashion.Utilities;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +14,14 @@ namespace DQueensFashion.Controllers
     public class ProductController : Controller
     {
         private readonly IProductService _productService;
+        private readonly ICustomerService _customerService;
+        private readonly IOrderService _orderService;
 
-        public ProductController(IProductService productService)
+        public ProductController(IProductService productService, ICustomerService customerService, IOrderService orderService)
         {
             _productService = productService;
+            _customerService = customerService;
+            _orderService = orderService;
         }
         // GET: Product
         public ActionResult Index()
@@ -137,5 +143,57 @@ namespace DQueensFashion.Controllers
 
             return View(productModel);
         }
+
+
+        [Authorize(Roles = AppConstant.CustomerRole)]
+        [HttpPost]
+        public ActionResult BuyProduct(int id,int quantity)
+        {
+            Product product = _productService.GetProductById(id);
+            if (product == null || quantity<1)
+                throw new Exception();
+
+            Customer customer = GetLoggedInCustomer();
+            if (customer == null)
+                throw new Exception();
+
+            product.Quantity = product.Quantity - quantity;
+            LineItem lineItem = new LineItem()
+            {
+                Product = product,
+                Quantity = quantity,
+                TotalAmount = product.Price * quantity,
+                DateCreated=DateTime.Now,
+                DateModified= DateTime.Now,
+            };
+            List<LineItem> lineItems = new List<LineItem>();
+            lineItems.Add(lineItem);
+
+            Order order = new Order()
+            {
+                Customer = customer,
+                LineItems = lineItems,
+                TotalAmount = lineItems.Sum(l => l.TotalAmount),
+                TotalQuantity = lineItems.Sum(l => l.Quantity),
+            };
+
+            _orderService.CreateOrder(order);
+            return RedirectToAction("Index");
+        }
+
+
+        #region private function
+        private string GetLoggedInUserId()
+        {
+            return User.Identity.GetUserId();
+        }
+
+        private Customer GetLoggedInCustomer()
+        {
+            var userId = GetLoggedInUserId();
+            return _customerService.GedCustomerByUserId(userId);
+        }
+
+        #endregion
     }
 }
