@@ -46,23 +46,24 @@
         <h5>Date created: @Model.DateCreatedString</h5>
 
 
-        @using (Html.BeginForm("BuyProduct","Product"))
+        @using (Html.BeginForm("BuyProduct", "Product"))
         {
             @Html.AntiForgeryToken()
-
+            <input type="hidden" value="@Model.Quantity" id="productQuantity" />
             <div class="form-horizontal">
                 @Html.Hidden("id")
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
                     @Html.Label("Quantity", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        <input type="number" name="quantity" class="form-control" value="1" min="1"/>
+                        <input type="number" name="quantity" class="form-control" value="1" min="1" id="quantity" onchange="checkQuantity()" oninput="checkQuantity()"/>
+                        <p class="mb-0 text-danger" id="quantityValidationError"></p>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="BUY NOW" class="btn btn-primary" />
+                        <input type="submit" value="BUY NOW" class="btn btn-primary" onclick="return validateBuy()"/>
                     </div>
                 </div>
             </div>
@@ -72,4 +73,30 @@
     </div>
 
 </div>
+
+<script>
+    var productQuantity = document.getElementById("productQuantity");
+    var quantity = document.getElementById("quantity");
+    var quantityValidationError = document.getElementById("quantityValidationError");
+
+    function checkQuantity() {
+        if (Number(productQuantity.value) < Number(quantity.value)) {
+            quantity.value = productQuantity.value;
+            quantityValidationError.innerHTML = "Not enough items available";
+        }
+        else {
+            quantityValidationError.innerHTML = '';
+        }
+    }
+
+    function validateBuy() {
+        if (Number(productQuantity.value) < Number(quantity.value)) {
+            quantity.focus();
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+</script>
 

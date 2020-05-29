@@ -119,7 +119,7 @@ namespace DQueensFashion.Controllers
         }
 
 
-        public ActionResult ProductDetails(int id)
+        public ActionResult ProductDetails(int id=0)
         {
             Product product = _productService.GetProductById(id);
             if (product == null)
@@ -155,6 +155,9 @@ namespace DQueensFashion.Controllers
 
             Customer customer = GetLoggedInCustomer();
             if (customer == null)
+                throw new Exception();
+
+            if (product.Quantity < quantity)
                 throw new Exception();
 
             product.Quantity = product.Quantity - quantity;
