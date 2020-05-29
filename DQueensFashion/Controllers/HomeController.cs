@@ -15,12 +15,18 @@ namespace DQueensFashion.Controllers
         private readonly ICategoryService _categoryService;
         private readonly ICustomerService _customerService;
         private readonly IWishListService _wishListService;
-        public HomeController(IProductService productService, ICategoryService categoryService,ICustomerService customerService, IWishListService wishListService)
+        private readonly ILineItemService _lineItemService;
+        private readonly IOrderService _orderService;
+
+        public HomeController(IProductService productService, ICategoryService categoryService,ICustomerService customerService, IWishListService wishListService,
+            ILineItemService lineItemService, IOrderService orderService)
         {
             _productService = productService;
             _categoryService = categoryService;
             _customerService = customerService;
             _wishListService = wishListService;
+            _lineItemService = lineItemService;
+            _orderService = orderService;
         }
         public ActionResult Index()
         {
@@ -40,7 +46,8 @@ namespace DQueensFashion.Controllers
                 Products = products,
             };
 
-            ViewBag.WishListCount = _wishListService.GetAllWishListCount();
+            ViewBag.LineItemCount = _lineItemService.GetLineItemsCount();
+            ViewBag.OrderCount = _orderService.GetOrderCount();
             return View(homeIndex);
         }
 

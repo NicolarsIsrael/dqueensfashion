@@ -125,12 +125,16 @@
     <Compile Include="Contract\ICategoryRepo.cs" />
     <Compile Include="Contract\ICoreRepo.cs" />
     <Compile Include="Contract\ICustomerRepo.cs" />
+    <Compile Include="Contract\ILineItemRepo.cs" />
+    <Compile Include="Contract\IOrderRepo.cs" />
     <Compile Include="Contract\IProductRepo.cs" />
     <Compile Include="Contract\IUnitOfWork.cs" />
     <Compile Include="Contract\IWishListRepo.cs" />
     <Compile Include="Implementation\CategoryRepo.cs" />
     <Compile Include="Implementation\CoreRepo.cs" />
     <Compile Include="Implementation\CustomerRepo.cs" />
+    <Compile Include="Implementation\LineItemRepo.cs" />
+    <Compile Include="Implementation\OrderRepo.cs" />
     <Compile Include="Implementation\ProductRepo.cs" />
     <Compile Include="Implementation\UnitOfWork.cs" />
     <Compile Include="Implementation\WishListRepo.cs" />
@@ -173,6 +177,10 @@
     <Compile Include="Migrations\202005250754376_WishListAddedToDb.cs" />
     <Compile Include="Migrations\202005250754376_WishListAddedToDb.Designer.cs">
       <DependentUpon>202005250754376_WishListAddedToDb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005291036071_lineItemAndOrderAddedToDb.cs" />
+    <Compile Include="Migrations\202005291036071_lineItemAndOrderAddedToDb.Designer.cs">
+      <DependentUpon>202005291036071_lineItemAndOrderAddedToDb.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -217,6 +225,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005250754376_WishListAddedToDb.resx">
       <DependentUpon>202005250754376_WishListAddedToDb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005291036071_lineItemAndOrderAddedToDb.resx">
+      <DependentUpon>202005291036071_lineItemAndOrderAddedToDb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

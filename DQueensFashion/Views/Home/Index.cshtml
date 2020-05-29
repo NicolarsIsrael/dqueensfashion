@@ -4,7 +4,8 @@
 @{
     ViewBag.Title = "Home Page";
 }
-<p>@ViewBag.WishListCount</p>
+<p>@ViewBag.LineItemCount</p>
+<p>@ViewBag.OrderCount</p>
 
 <div class="row pt-5">
     @foreach (var product in Model.Products)
@@ -23,7 +24,7 @@
                 </div>
                 <div class="card-footer">
                     <span class="float-right" onclick="AddToCart(@product.Id)" style="cursor:pointer">Cart</span>
-                    <span class="float-right" onclick="AddToWishList(@product.Id)" style="cursor:pointer">Add to wish list | </span> 
+                    <span class="float-right" onclick="AddToWishList(@product.Id)" style="cursor:pointer">Add to wish list | </span>
                     <span><i class=""></i>@product.Quantity</span>
                 </div>
             </div>
@@ -33,6 +34,4 @@
 </div>
 
 <style>
-
-
 </style>

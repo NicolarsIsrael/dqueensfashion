@@ -20,6 +20,8 @@ namespace DQueensFashion.Data
         public DbSet<Category> Category { get; set; }
         public DbSet<Customer> Customer { get; set; }
         public DbSet<WishList> WishLit { get; set; }
+        public DbSet<LineItem> LineItem { get; set; }
+        public DbSet<Order> Order { get; set; }
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
