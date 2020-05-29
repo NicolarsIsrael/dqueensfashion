@@ -51,6 +51,25 @@ namespace DQueensFashion.Controllers
             return View(homeIndex);
         }
 
+        public ActionResult GetCategories()
+        {
+
+            ViewCartViewModel viewCart = new ViewCartViewModel()
+            {
+                Count = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.Quantity),
+                Carts = Session["cart"] == null ? new List<Cart>() : (List<Cart>)Session["cart"],
+            };
+
+            IEnumerable<ViewCategoryViewModel> categories = _categoryService.GetAllCategories()
+                .Select(c => new ViewCategoryViewModel()
+                {
+                    Id = c.Id,
+                    Name = c.Name,
+                }).OrderBy(c=>c.Name);
+
+            return PartialView("_navbarCategories", categories);
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

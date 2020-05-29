@@ -56,7 +56,7 @@ namespace DQueensFashion.Controllers
                 Carts = Session["cart"] == null ? new List<Cart>() : (List<Cart>)Session["cart"],
             };
 
-            return PartialView("_cartCount",viewCart);
+            return PartialView("_navbarCart", viewCart);
         }
 
         public ActionResult GetCart()
@@ -67,7 +67,7 @@ namespace DQueensFashion.Controllers
                 Carts = Session["cart"] == null ? new List<Cart>() : (List<Cart>)Session["cart"],
             };
 
-            return PartialView("_cartCount", viewCart);
+            return PartialView("_navbarCart", viewCart);
         }
 
         public ActionResult RemoveFromCart(int id)
@@ -83,7 +83,7 @@ namespace DQueensFashion.Controllers
                 Carts = Session["cart"] == null ? new List<Cart>() : (List<Cart>)Session["cart"],
             };
 
-            return PartialView("_cartCount", viewCart);
+            return PartialView("_navbarCart", viewCart);
         }
 
 

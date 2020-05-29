@@ -1,14 +1,41 @@
-﻿function AddToCart(productId) {
+﻿
+$.ajax({
+    url: '/home/getcategories',
+    dataType: "html",
+    data: {},
+    success: function (result) {
+        $("#navbarCategories").html(result);
+    },
+    error: function (xhr, status, error) {
+        alertify.error("Error occured");
+    }
+});
+
+$.ajax({
+    url: '/Cart/getcart/',
+    dataType: "html",
+    data: {},
+    success: function (result) {
+        $("#navbarCart").html(result);
+    },
+    error: function (xhr, status, error) {
+        alertify.error("Error occured");
+    }
+});
+
+
+function AddToCart(productId) {
 
     $.ajax({
         url: '/Cart/addtocart/' + productId,
         dataType: "html",
         data: { id: productId},
         success: function (result) {
-            $("#cartCount").html(result);
+            $("#navbarCart").html(result);
+            alertify.success("Product added to cart");
         },
         error: function (xhr, status, error) {
-            alert("Error");
+            alertify.error("Error");
         }
     });
 }
@@ -20,10 +47,10 @@ function GetCart() {
         dataType: "html",
         data: { },
         success: function (result) {
-            $("#cartCount").html(result);
+            $("#navbarCart").html(result);
         },
         error: function (xhr, status, error) {
-            alert("Error");
+            alertify.error("Error");
         }
     });
 }
@@ -35,10 +62,11 @@ function RemoveFromCart(productId) {
         dataType: "html",
         data: { id: productId },
         success: function (result) {
-            $("#cartCount").html(result);
+            $("#navbarCart").html(result);
+            alertify.success("Product removed from cart");
         },
         error: function (xhr, status, error) {
-            alert("Error");
+            alertify.error("Error");
         }
     });
 }
@@ -78,7 +106,3 @@ function RemoveFromWishList(wishlistId) {
     });
 
 }
-
-
-
-window.onload = GetCart;
