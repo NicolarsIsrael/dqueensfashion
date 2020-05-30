@@ -9,5 +9,7 @@ namespace DQueensFashion.Data.Contract
 {
     public interface IOrderRepo : ICoreRepo<Order>
     {
+        IEnumerable<Order> GetAllOrdersWithRelationships();
+        Order GetOrdertByIdWithRelationships(int orderId);
     }
 }

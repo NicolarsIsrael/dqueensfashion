@@ -16,10 +16,13 @@ namespace DQueensFashion.Controllers
     {
         private readonly ICategoryService _categoryService;
         private readonly IProductService _productService;
-        public AdminController(ICategoryService categoryService, IProductService productService)
+        private readonly IOrderService _orderService;
+
+        public AdminController(ICategoryService categoryService, IProductService productService, IOrderService orderService)
         {
             _categoryService = categoryService;
             _productService = productService;
+            _orderService = orderService;
         }
         // GET: Admin
         public ActionResult Index()
@@ -145,7 +148,7 @@ namespace DQueensFashion.Controllers
                     Category = p.Category.Name,
                     Image1 = p.ImagePath1,
                     DateCreated = p.DateCreated,
-                    DateCreatedString = p.DateCreated.ToString("dd-MMM-yyyy : hh-mm-ss"),
+                    DateCreatedString = p.DateCreated.ToString("dd/MMM/yyyy : hh-mm-ss"),
                 }).OrderBy(p=>p.DateCreated).ToList();
             return View(products);
         }
@@ -382,7 +385,7 @@ namespace DQueensFashion.Controllers
                 Quantity = product.Quantity.ToString(),
                 Category = product.Category.Name,
                 Tags = product.Tags,
-                DateCreatedString = product.DateCreated.ToString("dd-MMM-yyyy : hh-mm-ss"),
+                DateCreatedString = product.DateCreated.ToString("dd/MMM/yyyy : hh-mm-ss"),
                 Image1 = string.IsNullOrEmpty(product.ImagePath1)?"":product.ImagePath1,
                 Image2 = string.IsNullOrEmpty(product.ImagePath2) ? "" : product.ImagePath2,
                 Image3 = string.IsNullOrEmpty(product.ImagePath3) ? "" : product.ImagePath3,
@@ -390,6 +393,31 @@ namespace DQueensFashion.Controllers
             };
 
             return View(productModel);
+        }
+
+        public ActionResult ViewOrders()
+        {
+            var orders = _orderService.GetAllOrders();
+            IEnumerable<ViewOrderViewModel> orderModel = _orderService.GetAllOrders()
+                .Select(order => new ViewOrderViewModel()
+                {
+                    OrderId = order.Id,
+                    CustomerId = order.Customer.Id,
+                    CustomerName = order.Customer.Fullname,
+                    TotalAmount = order.TotalAmount,
+                    TotalQuantity = order.TotalQuantity,
+                    LineItems = order.LineItems
+                        .Select(lineItem => new ViewLineItem()
+                        {
+                            Product = lineItem.Product.Name,
+                            Quantity = lineItem.Quantity,
+                            TotalAmount = lineItem.TotalAmount,
+                        }),
+                    DateCreated = order.DateCreated,
+                    DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy : hh-mm-ss"),
+                }).OrderBy(order=>order.DateCreated).ToList();
+
+            return View(orderModel);
         }
 
         #region private functions

@@ -134,7 +134,7 @@ namespace DQueensFashion.Controllers
                 Quantity = product.Quantity.ToString(),
                 Category = product.Category.Name,
                 Tags = product.Tags,
-                DateCreatedString = product.DateCreated.ToString("dd-MMM-yyyy : hh-mm-ss"),
+                DateCreatedString = product.DateCreated.ToString("dd/MMM/yyyy : hh-mm-ss"),
                 Image1 = string.IsNullOrEmpty(product.ImagePath1) ? "" : product.ImagePath1,
                 Image2 = string.IsNullOrEmpty(product.ImagePath2) ? "" : product.ImagePath2,
                 Image3 = string.IsNullOrEmpty(product.ImagePath3) ? "" : product.ImagePath3,

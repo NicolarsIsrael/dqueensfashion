@@ -30,6 +30,12 @@ namespace DQueensFashion.Service.Implementation
             uow.OrderRepo.Add(order);
             uow.Save();
         }
+        
+        public IEnumerable<Order> GetAllOrders()
+        {
+            return uow.OrderRepo.GetAllOrdersWithRelationships();
+        }
+
 
         private bool ValidateOrderDetails(Order order)
         {

@@ -15,8 +15,24 @@ namespace DQueensFashion.Data.Implementation
         {
 
         }
-        
+
         //other functions
+        public IEnumerable<Order> GetAllOrdersWithRelationships()
+        {
+            return _dbContext.Set<Order>()
+                .Include(order => order.LineItems.Select(lineItem=>lineItem.Product))
+                .Include(order=> order.Customer)
+                .ToList();
+        }
+
+        public Order GetOrdertByIdWithRelationships(int orderId)
+        {
+            return _dbContext.Set<Order>()
+                .Include(order => order.LineItems.Select(lineItem => lineItem.Product))
+                .Include(order => order.Customer)
+                .Where(order => order.Id == orderId)
+                .FirstOrDefault();
+        }
     }
 
 }

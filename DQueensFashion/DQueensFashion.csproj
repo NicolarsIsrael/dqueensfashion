@@ -261,6 +261,7 @@
     <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Models\ControllerActionViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\OrderViewModel.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
     <Compile Include="Models\WishListViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -468,6 +469,7 @@
     <Content Include="Views\Cart\_increaseQuantity.cshtml" />
     <Content Include="Views\Home\_navbarCategories.cshtml" />
     <Content Include="Views\Product\_productQuickView.cshtml" />
+    <Content Include="Views\Admin\ViewOrders.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
