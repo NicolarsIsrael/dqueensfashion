@@ -147,6 +147,7 @@ namespace DQueensFashion.Controllers
 
         [Authorize(Roles = AppConstant.CustomerRole)]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult BuyProduct(int id,int quantity)
         {
             Product product = _productService.GetProductById(id);
@@ -184,6 +185,27 @@ namespace DQueensFashion.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult ProductQuickView(int id)
+        {
+            Product product = _productService.GetProductById(id);
+            if (product == null)
+                throw new Exception();
+
+            ViewProductsViewModel productModel = new ViewProductsViewModel()
+            {
+                Id = product.Id,
+                Name = product.Name,
+                Description = product.Description,
+                Image1 = product.ImagePath1,
+                Image2 = product.ImagePath2,
+                Image3 = product.ImagePath3,
+                Image4 = product.ImagePath4,
+                Category = product.Category.Name,
+                Price = product.Price.ToString(),
+            };
+
+            return PartialView("_productQuickView", productModel);
+        }
 
         #region private function
         private string GetLoggedInUserId()

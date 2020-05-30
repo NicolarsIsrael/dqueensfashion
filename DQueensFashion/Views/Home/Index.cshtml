@@ -4,38 +4,68 @@
 @{
     ViewBag.Title = "Home Page";
 }
-<p>@ViewBag.LineItemCount</p>
-<p>@ViewBag.OrderCount</p>
+
+
+<!--modals-->
+<!--quick view product-->
+<div class="modal fade" id="productQuickView">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Product quick view</h3>
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+            </div>
+            <div class="modal-body" id="productQuickViewBody">
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
 
 <div class="row pt-5">
     @foreach (var product in Model.Products)
     {
-    <div class="col-md-3">
-       
-        <div class="card">
+        <div class="col-md-3">
 
-            <a href="@Url.Action("ProductDetails","Product",new { id= product.Id})">
-                <img class="card-img-top" src="@Url.Content(product.Image1)" style="height:250px">
-                <div class="card-block">
-                    <h4 class="card-title">@product.Name</h4>
-                    <div class="meta">
-                        <a href="#">@product.Price</a>
+            <div class="card">
+
+                <a href="@Url.Action("ProductDetails","Product",new { id= product.Id})">
+                    <img class="card-img-top" src="@Url.Content(product.Image1)" style="height:250px">
+                    <div class="card-block">
+                        <h4 class="card-title">@product.Name</h4>
+                        <div class="meta">
+                            <a href="#">@product.Price</a>
+                        </div>
+                        <div class="card-text">
+                            @product.Description
+                        </div>
                     </div>
-                    <div class="card-text">
-                        @product.Description
-                    </div>
+                </a>
+                <div class="card-footer">
+                    <span class="float-right" onclick="AddToCart(@product.Id)" style="cursor:pointer">Cart</span>
+                    <span class="float-right" onclick="AddToWishList(@product.Id)" style="cursor:pointer">Add to wish list | </span>
+                    <span class="float-right" onclick="productQuickView(@product.Id)" style="cursor:pointer">QV |</span>
+                    <span><i class=""></i>@product.Quantity</span>
                 </div>
-            </a>
-            <div class="card-footer">
-                <span class="float-right" onclick="AddToCart(@product.Id)" style="cursor:pointer">Cart</span>
-                <span class="float-right" onclick="AddToWishList(@product.Id)" style="cursor:pointer">Add to wish list | </span>
-                <span><i class=""></i>@product.Quantity</span>
             </div>
         </div>
-    </div>
     }
 
 </div>
 
-<style>
-</style>
+
+<script>
+    function productQuickView(productId) {
+        var url = "/Product/ProductQuickView/" + productId;
+
+        $("#productQuickViewBody").load(url, function () {
+            $("#productQuickView").modal("show");
+
+        })
+    }
+</script>
