@@ -5,6 +5,27 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
+<!--update order status modal-->
+<div class="modal fade" id="updateOrder">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Update Order Status</h3>
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+            </div>
+            <div class="modal-body" id="updateOrderBody">
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
 <h2>View Orders</h2>
 
 <table class="table">
@@ -30,35 +51,49 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @{ 
-                foreach(var lineItem in item.LineItems)
-                {
-                    <p>@lineItem.Product ( @lineItem.Quantity ) </p>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @{
+                    foreach (var lineItem in item.LineItems)
+                    {
+                        <p>@lineItem.Product ( @lineItem.Quantity ) </p>
+                    }
                 }
-            }
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateCreatedString)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CustomerName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TotalAmount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TotalQuantity)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem=>item.OrderStatus)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) 
-        </td>
-    </tr>
-}
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateCreatedString)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalQuantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderStatus)
+            </td>
+            <td>
+                <button class="btn btn-primary" onclick="UpdateStatus(@item.OrderId)">Update status</button>
+            </td>
+        </tr>
+    }
 
 </table>
+
+
+<script>
+    function UpdateStatus(orderId) {
+        var url = "/Admin/UpdateOrderStatus/" + orderId;
+
+        $("#updateOrderBody").load(url, function () {
+            $("#updateOrder").modal("show");
+
+        })
+    }
+
+</script>

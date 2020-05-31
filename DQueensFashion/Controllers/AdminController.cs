@@ -580,6 +580,43 @@ namespace DQueensFashion.Controllers
             return RedirectToAction(nameof(ViewCompletedOrders));
         }
 
+        public ActionResult UpdateOrderStatus(int id)
+        {
+            try
+            {
+                Order order = _orderService.GetOrderById(id);
+                if (order == null)
+                    throw new Exception();
+
+                UpdateOrderStatusViewModel orderModel = new UpdateOrderStatusViewModel()
+                {
+                    Id=order.Id,
+                    OrderStatus = order.OrderStatus,
+                };
+
+                return PartialView("_updateOrderStatus",orderModel);
+            }
+            catch (Exception ex)
+            {
+                var a = ex;
+                throw;
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UpdateOrderStatus(UpdateOrderStatusViewModel orderModel)
+        {
+            Order order = _orderService.GetOrderById(orderModel.Id);
+            if (order == null)
+                throw new Exception();
+
+            order.OrderStatus = orderModel.OrderStatus;
+            _orderService.UpdateOrder(order);
+
+            return RedirectToAction(nameof(ViewOrders));
+        }
+
         #region private functions
         public JsonResult CheckUniqueCategoryName(string name)
         {

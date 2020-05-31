@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DQueensFashion.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -24,6 +25,12 @@ namespace DQueensFashion.Models
         public decimal TotalAmount { get; set; }
         public int Quantity { get; set; }
         public string Product { get; set; }
+    }
+
+    public class UpdateOrderStatusViewModel
+    {
+        public int Id { get; set; }
+        public OrderStatus OrderStatus { get; set; }
     }
 }
 
