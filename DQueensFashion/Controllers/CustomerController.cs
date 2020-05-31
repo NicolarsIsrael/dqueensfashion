@@ -16,11 +16,13 @@ namespace DQueensFashion.Controllers
     {
         private readonly ICustomerService _customerService;
         private readonly IWishListService _wishListService;
+        private readonly IOrderService _orderService;
 
-        public CustomerController(ICustomerService customerService, IWishListService wishListService)
+        public CustomerController(ICustomerService customerService, IWishListService wishListService, IOrderService orderService)
         {
             _customerService = customerService;
             _wishListService = wishListService;
+            _orderService = orderService;
         }
 
         // GET: Customer
@@ -52,6 +54,33 @@ namespace DQueensFashion.Controllers
             return View(wishLists);
         }
 
+        public ActionResult ViewOrders()
+        {
+            Customer customer = GetLoggedInCustomer();
+            if (customer == null)
+                throw new Exception(); ;
+
+            IEnumerable<ViewOrderViewModel> orderModel = _orderService.GetAllOrdersForCustomer(customer.Id)
+                .Select(order => new ViewOrderViewModel()
+                {
+                    OrderId = order.Id,
+                    CustomerId = order.Customer.Id,
+                    TotalAmount = order.TotalAmount,
+                    TotalQuantity = order.TotalQuantity,
+                    LineItems = order.LineItems
+                        .Select(lineItem => new ViewLineItem()
+                        {
+                            Product = lineItem.Product.Name,
+                            Quantity = lineItem.Quantity,
+                            TotalAmount = lineItem.TotalAmount,
+                        }),
+                    OrderStatus = order.OrderStatus.ToString(),
+                    DateCreated = order.DateCreated,
+                    DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy : hh-mm-ss"),
+                }).OrderBy(order => order.DateCreated).ToList();
+
+            return View(orderModel);
+        }
 
 
         #region private function

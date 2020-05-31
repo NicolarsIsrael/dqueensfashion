@@ -31,7 +31,12 @@ namespace DQueensFashion.Service.Implementation
             uow.OrderRepo.Add(order);
             uow.Save();
         }
-        
+
+        public IEnumerable<Order> GetAllOrdersForCustomer(int customerId)
+        {
+            return uow.OrderRepo.GetAllOrdersWithRelationships().Where(order=>order.Customer.Id==customerId);
+        }
+
         public IEnumerable<Order> GetAllOrders()
         {
             return uow.OrderRepo.GetAllOrdersWithRelationships();
