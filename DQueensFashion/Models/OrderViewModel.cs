@@ -15,6 +15,7 @@ namespace DQueensFashion.Models
         public int CustomerId { get; set; }
         public decimal TotalAmount { get; set; }
         public int TotalQuantity { get; set; }
+        public string OrderStatus { get; set; }
         public IEnumerable<ViewLineItem> LineItems { get; set; }
     }
 

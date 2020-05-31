@@ -412,6 +412,7 @@ namespace DQueensFashion.Controllers
                             Quantity = lineItem.Quantity,
                             TotalAmount = lineItem.TotalAmount,
                         }),
+                    OrderStatus= order.OrderStatus.ToString(),
                     DateCreated = order.DateCreated,
                     DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy : hh-mm-ss"),
                 }).OrderBy(order=>order.DateCreated).ToList();
@@ -553,6 +554,30 @@ namespace DQueensFashion.Controllers
             _orderService.UpdateOrder(order);
 
             return RedirectToAction(nameof(ViewDeliveredOrders));
+        }
+
+        public ActionResult ReturnOrder(int id)
+        {
+            Order order = _orderService.GetOrderById(id);
+            if (order == null)
+                throw new Exception();
+
+            order.OrderStatus = OrderStatus.Returned;
+            _orderService.UpdateOrder(order);
+
+            return RedirectToAction(nameof(ViewReturnedOrders));
+        }
+
+        public ActionResult CompleteOrder(int id)
+        {
+            Order order = _orderService.GetOrderById(id);
+            if (order == null)
+                throw new Exception();
+
+            order.OrderStatus = OrderStatus.Completed;
+            _orderService.UpdateOrder(order);
+
+            return RedirectToAction(nameof(ViewCompletedOrders));
         }
 
         #region private functions

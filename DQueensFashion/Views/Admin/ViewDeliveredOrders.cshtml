@@ -52,8 +52,10 @@
                 @Html.DisplayFor(modelItem => item.TotalQuantity)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Returned", "ReturnOrder", new { id = item.OrderId }) |
+                @Html.ActionLink("Completed", "CompleteOrder", new { id = item.OrderId })
             </td>
+
         </tr>
     }
 
