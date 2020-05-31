@@ -56,6 +56,7 @@ namespace DQueensFashion.Models
         public string Image3 { get; set; }
         public string Image4 { get; set; }
         public string Category { get; set; }
+        public int CategoryId { get; set; }
         public string Tags { get; set; }
     }
 

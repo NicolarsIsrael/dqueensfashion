@@ -8,6 +8,7 @@ namespace DQueensFashion.Models
     public class HomeIndexViewModel
     {
         public IEnumerable<ViewProductsViewModel> Products { get; set; }
+        public IEnumerable<CategoryNameAndId> Categories { get; set; }
     }
 
     public class ProductIndexViewModel

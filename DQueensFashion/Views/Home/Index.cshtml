@@ -36,72 +36,182 @@
     <!-- Mask & flexbox options-->
 </div>
 
-<div class="container-fluid">
+<!-- CATEGORIES -->
 
-    <div class="row pt-5">
-        @foreach (var product in Model.Products)
-        {
-            <div class="col-md-3">
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="section_header">
+                <div class="section_header_text">
+                    <h2 style="margin-top: 15px;">CATEGORIES</h2>
+                </div>
+                <div class="categories_tab">
 
-                <div class="card">
-
-                    <a href="@Url.Action("ProductDetails","Product",new { id= product.Id})">
-                        <img class="card-img-top" src="@Url.Content(product.Image1)" style="height:250px">
-                        <div class="card-block">
-                            <h4 class="card-title">@product.Name</h4>
-                            <div class="meta">
-                                <a href="#">@product.Price</a>
-                            </div>
-                            <div class="card-text">
-                                @product.Description
-                            </div>
-                        </div>
-                    </a>
-                    <div class="card-footer">
-                        <span class="float-right" onclick="AddToCart(@product.Id)" style="cursor:pointer">Cart</span>
-                        <span class="float-right" onclick="AddToWishList(@product.Id)" style="cursor:pointer">Add to wish list | </span>
-                        <span class="float-right" onclick="productQuickView(@product.Id)" style="cursor:pointer">QV |</span>
-                        <span><i class=""></i>@product.Quantity</span>
-                    </div>
+                    <ul class="nav nav-tabs justify-content-center justify-content-md-end" id="tabmenubar" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active tab-link" id="all-tab" data-toggle="tab" href="#all" role="tab"
+                               aria-controls="arrival" aria-selected="true">ALL</a>
+                        </li>
+                        @{
+                            foreach (var category in Model.Categories)
+                            {
+                                string categoryId = "category" + category.Id.ToString();
+                                string categoryTab = category.Name + "_tab";
+                                <li class="nav-item">
+                                    <a class="nav-link tab-link" id="@categoryTab" data-toggle="tab" href="#@categoryId" role="tab"
+                                       aria-controls="@category.Name" aria-selected="true">@category.Name</a>
+                                </li>
+                            }
+                        }
+                    </ul>
                 </div>
             </div>
-        }
-
+        </div>
     </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="tab_slider">
+                <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="arrival-tab">
 
+                    <div class="row">
+                        @foreach (var product in Model.Products)
+                        {
+                            <div class="col-md-3 col-6" style="margin-bottom: 20px;">
+                                <div class="card">
+                                    <div class="product">
+                                        <a href="@Url.Action("ProductDetails","Product",new { id= product.Id})" class="atag">
+                                            <img class="product_img" src="@Url.Content(product.Image1)" alt="product_img">
+                                            <div class="product_info">
+                                                <h6 class="product_title">@product.Name</h6>
+                                                <strong class="product_price">@product.Price</strong>
+                                            </div>
+                                        </a>
+                                        <hr style="margin:0">
+                                        <div style="margin:5px 5px;cursor:pointer" class="float-right" onclick="AddToCart(@product.Id)">
+                                            <img src="~/Content/Images/shopping-cart (orange).svg" class="product_button">
+                                        </div>
+                                        <div style="margin:5px 5px;cursor:pointer" class="float-right" onclick="AddToWishList(@product.Id)">
+                                            <img src="~/Content/Images/heart.svg" class="product_button">
+                                        </div>
+                                        <div style="margin:5px 5px;cursor:pointer" class="float-right" onclick="productQuickView(@product.Id)">
+                                            <img src="~/Content/Images/eye.svg" class="product_button">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="d-xs-block d-sm-block d-md-none d-lg-none d-xl-none">
+                        <div class="row">
+                            <div class="col-6">
+                                <button class="btn btn-block" style="color: white;background-color:#E97128;">View more</button>
+                            </div>
+                            <div class="col-6"></div>
+                        </div>
 
+                    </div>
+                    <div class="d-none d-md-block">
+                        <div class="row">
+                            <div class="col-3">
+                                <button class="btn btn-block" style="color: white;background-color:#E97128;">View more</button>
+                            </div>
+                            <div class="col-9"></div>
+                        </div>
+                    </div>
+                </div>
+                @{
+                    foreach (var category in Model.Categories)
+                    {
+                        string categoryId = "category" + category.Id.ToString();
+                        string categoryTab = category.Name + "_tab";
+                        <div class="tab-pane fade" id="@categoryId" role="tabpanel" aria-labelledby="@categoryTab">
+                            <div class="row">
+                                @foreach (var product in Model.Products)
+                                {
+                                    if (product.CategoryId == category.Id)
+                                    {
+                                        <div class="col-md-3 col-6" style="margin-bottom: 20px;">
+                                            <div class="card">
+                                                <div class="product">
+                                                    <a href="@Url.Action("ProductDetails","Product",new { id= product.Id})" class="atag">
+                                                        <img class="product_img" src="@Url.Content(product.Image1)" alt="product_img">
+                                                        <div class="product_info">
+                                                            <h6 class="product_title">@product.Name</h6>
+                                                            <strong class="product_price">@product.Price</strong>
+                                                        </div>
+                                                    </a>
+                                                    <hr style="margin:0">
+                                                    <div style="margin:5px 5px;cursor:pointer" class="float-right" onclick="AddToCart(@product.Id)" >
+                                                        <img src="~/Content/Images/shopping-cart (orange).svg" class="product_button">
+                                                    </div>
+                                                    <div style="margin:5px 5px;cursor:pointer" class="float-right"  onclick="AddToWishList(@product.Id)" >
+                                                        <img src="~/Content/Images/heart.svg" class="product_button">
+                                                    </div>
+                                                    <div style="margin:5px 5px;cursor:pointer" class="float-right" onclick="productQuickView(@product.Id)" >
+                                                        <img src="~/Content/Images/eye.svg" class="product_button">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+
+                            </div>
+                            <div class="d-xs-block d-sm-block d-md-none d-lg-none d-xl-none">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <button class="btn btn-block" style="color: white;background-color:#E97128;">View more</button>
+                                    </div>
+                                    <div class="col-6"></div>
+                                </div>
+
+                            </div>
+                            <div class="d-none d-md-block">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <button class="btn btn-block" style="color: white;background-color:#E97128;">View more</button>
+                                    </div>
+                                    <div class="col-9"></div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+
+            </div>
+        </div>
+    </div>
 </div>
 
 
-
-    <!--modals-->
-    <!--quick view product-->
-    <div class="modal fade" id="productQuickView">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3 class="modal-title">Product quick view</h3>
-                    <a href="#" class="close" data-dismiss="modal">&times;</a>
-                </div>
-                <div class="modal-body" id="productQuickViewBody">
-
-
-                </div>
+<!--modals-->
+<!--quick view product-->
+<div class="modal fade" id="productQuickView">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Product quick view</h3>
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+            </div>
+            <div class="modal-body" id="productQuickViewBody">
 
 
             </div>
+
 
         </div>
 
     </div>
 
-    <script>
-        function productQuickView(productId) {
-            var url = "/Product/ProductQuickView/" + productId;
+</div>
 
-            $("#productQuickViewBody").load(url, function () {
-                $("#productQuickView").modal("show");
+<script>
+    function productQuickView(productId) {
+        var url = "/Product/ProductQuickView/" + productId;
 
-            })
-        }
-    </script>
+        $("#productQuickViewBody").load(url, function () {
+            $("#productQuickView").modal("show");
+
+        })
+    }
+</script>

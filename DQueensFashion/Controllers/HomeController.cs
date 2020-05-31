@@ -39,11 +39,21 @@ namespace DQueensFashion.Controllers
                     Image1 = p.ImagePath1,
                     Quantity = p.Quantity.ToString(),
                     Price=p.Price.ToString(),
-
+                    Category = p.Category.Name,
+                    CategoryId = p.Category.Id,
                 }).ToList();
+
+            IEnumerable<CategoryNameAndId> categories = _categoryService.GetAllCategories()
+                .Select(category => new CategoryNameAndId()
+                {
+                    Id = category.Id,
+                    Name = category.Name.ToUpper(),
+                }).OrderBy(c=>c.Name).ToList();
+
             HomeIndexViewModel homeIndex = new HomeIndexViewModel()
             {
                 Products = products,
+                Categories = categories,
             };
 
             ViewBag.LineItemCount = _lineItemService.GetLineItemsCount();
