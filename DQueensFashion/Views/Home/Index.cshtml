@@ -46,8 +46,13 @@
                     <h2 style="margin-top: 15px;">CATEGORIES</h2>
                 </div>
                 <div class="categories_tab">
-
-                    <ul class="nav nav-tabs justify-content-center justify-content-md-end" id="tabmenubar" role="tablist">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#categoriesMenuBar"
+                            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="blackline"></span>
+                        <span class="blackline"></span>
+                        <span class="blackline" style="margin-bottom: 0;"></span>
+                    </button>
+                    <ul class="nav nav-tabs justify-content-center justify-content-md-end" id="categoriesMenuBar" role="tablist">
                         <li class="nav-item">
                             <a class="nav-link active tab-link" id="all-tab" data-toggle="tab" href="#all" role="tab"
                                aria-controls="arrival" aria-selected="true">ALL</a>
@@ -204,6 +209,54 @@
     </div>
 
 </div>
+
+<style>
+    
+
+
+/* -------------------------------------------------
+  min-width: 992px
+---------------------------------------------------*/
+@@media only screen and (min-width: 992px) {
+.navbar-toggler {
+	display: none;
+}
+
+
+}
+/* -------------------------------------------------
+  max-width: 991px
+---------------------------------------------------*/
+    @@media only screen and (max-width: 991px) {
+       
+        
+        #categoriesMenuBar {
+            position: absolute;
+            right: 0;
+            top: 100%;
+            z-index: 999;
+            display: block;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            padding: 15px;
+            opacity: 0;
+            visibility: hidden;
+            height: auto !important;
+        }
+
+            #categoriesMenuBar.show {
+                opacity: 1;
+                visibility: visible;
+                margin-top: 0;
+            }
+
+            #categoriesMenuBar li a {
+                text-align: left;
+            }
+
+       
+    }
+</style>
 
 <script>
     function productQuickView(productId) {

@@ -37,6 +37,14 @@ textarea {
         margin-bottom: 5px;
     }
 
+    .navbar-toggler .blackline {
+        width: 100%;
+        float: left;
+        height: 2px;
+        background-color: black;
+        margin-bottom: 5px;
+    }
+
 .navbar {
     padding: 10px 100px;
 }
