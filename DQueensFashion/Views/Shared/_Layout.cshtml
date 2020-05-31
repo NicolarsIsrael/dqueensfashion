@@ -12,36 +12,32 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        @Html.ActionLink("DqueensFashion", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+
+
+    <nav class="navbar navbar-expand-lg fixed-top" style="background-color: #0a0c13;">
+        @Html.ActionLink("DQueens", "Index", "Home", new { area = "" }, new { @class = "navbar-brand", @style = "color:#E97128" })
+        <ul class="navbar-nav flex-row ml-auto">
+            <li class="nav-item">
+                <a class="nav-link navbar-link" href="@Url.Action("Dashboard","Customer")"><img src="~/Content/Images/user.svg"></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link navbar-link" href="@Url.Action("ViewCart","Cart")"><img src="~/Content/Images/shopping-cart.svg"></a>
+            </li>
+        </ul>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="line"></span>
+            <span class="line"></span>
+            <span class="line" style="margin-bottom: 0;"></span>
         </button>
-
+        
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarCartDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img src="~/Content/Images/shopping-cart.svg" />
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarCartDropdown">
-                        <div id="navbarCart"></div>
-
-                        <div class="dropdown-divider"></div>
-                        @Html.ActionLink("View cart", "viewcart", "cart", new { area = "" }, new { @class = "dropdown-item" })
-                    </div>
-                </li>
-
-            </ul>
-            <ul class="navbar-nav">
+            <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    @Html.ActionLink("Shop", "Index", "Product", new { area = "" }, new { @class = "nav-link" })
+                    @Html.ActionLink("Shop", "Index", "Product", new { area = "" }, new { @class = "nav-link navbar-link" })
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarCategoriesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link navbar-link dropdown-toggle" href="#" id="navbarCategoriesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Categories
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarCategoriesDropdown">
@@ -51,7 +47,6 @@
 
                 </li>
             </ul>
-
             @Html.Partial("_LoginPartial")
         </div>
     </nav>
