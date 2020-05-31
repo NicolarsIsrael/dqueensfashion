@@ -106,3 +106,7 @@ function RemoveFromWishList(wishlistId) {
     });
 
 }
+
+function ShopByCategory(categoryId) {
+    window.location.href = "/Product/Index?categoryId=" + categoryId;
+}

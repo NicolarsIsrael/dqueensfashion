@@ -13,5 +13,6 @@ namespace DQueensFashion.Models
     public class ProductIndexViewModel
     {
         public IEnumerable<ViewProductsViewModel> Products { get; set; }
+        public IEnumerable<CategoryNameAndId> Categories { get; set; }
     }
 }

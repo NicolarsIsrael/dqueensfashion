@@ -37,6 +37,17 @@
     <option value="6">Date, new to old</option>
     <option value="7">Date, old to new</option>
 </select>
+<div class="form-group">
+    <label>Category</label>
+    <select class="form-control" id="categoryId">
+        <option  value="0">All</option>
+        @foreach(var category in Model.Categories)
+        {
+            <option value="@category.Id" selected="@category.Selected">@category.Name</option>
+        }
+    </select>
+</div>
+
 <input type="button" class="btn btn-secondary mt-1" value="SEARCH" onclick="SearchProduct()" />
 
 <div id="productsList">
@@ -80,12 +91,13 @@
 
     var _searchString = document.getElementById("searchString");
     var _sortString = document.getElementById("sortString");
-    function SearchProduct() {
+    var _categoryId = document.getElementById("categoryId");
 
+    function SearchProduct() {
         $.ajax({
             url: '/product/searchproduct',
             dataType: "html",
-            data: { searchString: _searchString.value, sortString: _sortString.value },
+            data: { searchString: _searchString.value, sortString: _sortString.value, categoryId: _categoryId.value },
             success: function (result) {
                 $("#productsList").html(result);
             },

@@ -260,7 +260,7 @@ namespace DQueensFashion.Controllers
                 PreviousCategory = new CategoryNameAndId()
                 {
                     Id = product.Category.Id,
-                    Name = product.Name,
+                    Name = product.Category.Name,
                 },
                 Categories = allCategories.Select(c => new CategoryNameAndId()
                 {

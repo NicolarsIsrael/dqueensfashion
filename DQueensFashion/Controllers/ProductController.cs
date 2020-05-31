@@ -16,18 +16,24 @@ namespace DQueensFashion.Controllers
         private readonly IProductService _productService;
         private readonly ICustomerService _customerService;
         private readonly IOrderService _orderService;
+        private readonly ICategoryService _categoryService;
 
-        public ProductController(IProductService productService, ICustomerService customerService, IOrderService orderService)
+        public ProductController(IProductService productService, ICustomerService customerService, IOrderService orderService, ICategoryService categoryService)
         {
             _productService = productService;
             _customerService = customerService;
             _orderService = orderService;
+            _categoryService = categoryService;
         }
         // GET: Product
-        public ActionResult Index()
+        public ActionResult Index(int categoryId=0)
         {
+            IEnumerable<Product> _products = _productService.GetAllProducts().ToList();
+           
+            if (categoryId > 0)
+                _products = _products.Where(p => p.Category.Id == categoryId);
 
-            IEnumerable<ViewProductsViewModel> products = _productService.GetAllProducts()
+            IEnumerable<ViewProductsViewModel> products = _products
                 .Select(p => new ViewProductsViewModel()
                 {
                     Id = p.Id,
@@ -42,12 +48,24 @@ namespace DQueensFashion.Controllers
             ProductIndexViewModel productIndex = new ProductIndexViewModel()
             {
                 Products = products,
+                Categories = _categoryService.GetAllCategories()
+                    .Select(c => new CategoryNameAndId()
+                    {
+                        Id = c.Id,
+                        Name = c.Name,
+                    }).OrderBy(c=>c.Name).ToList(),
             };
+
+            foreach(var category in productIndex.Categories)
+            {
+                if (category.Id == categoryId)
+                    category.Selected = "selected";
+            }
 
             return View(productIndex);
         }
 
-        public ActionResult SearchProduct(string searchString, int sortString)
+        public ActionResult SearchProduct(string searchString, int sortString, int categoryId=0)
         {
             try
             {
@@ -56,6 +74,9 @@ namespace DQueensFashion.Controllers
                     _products = _products.Where(p => p.Name.ToLower().Contains(searchString.ToLower())
                     || p.Tags.ToLower().Contains(searchString.ToLower())
                     || p.Description.ToLower().Contains(searchString.ToLower())).ToList();
+
+                if (categoryId > 0)
+                    _products = _products.Where(p => p.Category.Id == categoryId);
 
                 IEnumerable<ViewProductsViewModel> products = _products
                     .Select(p => new ViewProductsViewModel()
