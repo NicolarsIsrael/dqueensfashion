@@ -438,7 +438,8 @@ namespace DQueensFashion.Controllers
                         }),
                     DateCreated = order.DateCreated,
                     DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy : hh-mm-ss"),
-                }).OrderBy(order => order.DateCreated).ToList();
+                    DateModified = order.DateModified,
+                }).OrderBy(order => order.DateModified).ToList();
 
             return View(orderModel);
         }
@@ -462,7 +463,8 @@ namespace DQueensFashion.Controllers
                         }),
                     DateCreated = order.DateCreated,
                     DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy : hh-mm-ss"),
-                }).OrderBy(order => order.DateCreated).ToList();
+                    DateModified = order.DateModified,
+                }).OrderBy(order => order.DateModified).ToList();
 
             return View(orderModel);
         }
@@ -486,7 +488,8 @@ namespace DQueensFashion.Controllers
                         }),
                     DateCreated = order.DateCreated,
                     DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy : hh-mm-ss"),
-                }).OrderBy(order => order.DateCreated).ToList();
+                    DateModified = order.DateModified,
+                }).OrderBy(order => order.DateModified).ToList();
 
             return View(orderModel);
         }
@@ -510,9 +513,46 @@ namespace DQueensFashion.Controllers
                        }),
                    DateCreated = order.DateCreated,
                    DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy : hh-mm-ss"),
-               }).OrderBy(order => order.DateCreated).ToList();
+                   DateModified = order.DateModified,
+               }).OrderBy(order => order.DateModified).ToList();
 
             return View(orderModel);
+        }
+        public ActionResult ViewCompletedOrders()
+        {
+            IEnumerable<ViewOrderViewModel> orderModel = _orderService.GetCompletedOrders()
+              .Select(order => new ViewOrderViewModel()
+              {
+                  OrderId = order.Id,
+                  CustomerId = order.Customer.Id,
+                  CustomerName = order.Customer.Fullname,
+                  TotalAmount = order.TotalAmount,
+                  TotalQuantity = order.TotalQuantity,
+                  LineItems = order.LineItems
+                      .Select(lineItem => new ViewLineItem()
+                      {
+                          Product = lineItem.Product.Name,
+                          Quantity = lineItem.Quantity,
+                          TotalAmount = lineItem.TotalAmount,
+                      }),
+                  DateCreated = order.DateCreated,
+                  DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy : hh-mm-ss"),
+                  DateModified = order.DateModified,
+              }).OrderBy(order => order.DateModified).ToList();
+
+            return View(orderModel);
+        }
+
+        public ActionResult DeliverOrder(int id)
+        {
+            Order order = _orderService.GetOrderById(id);
+            if (order == null)
+                throw new Exception();
+
+            order.OrderStatus = OrderStatus.Delivered;
+            _orderService.UpdateOrder(order);
+
+            return RedirectToAction(nameof(ViewDeliveredOrders));
         }
 
         #region private functions

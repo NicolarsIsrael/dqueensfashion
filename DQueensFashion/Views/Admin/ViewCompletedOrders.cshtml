@@ -1,12 +1,12 @@
 ﻿@model IEnumerable<DQueensFashion.Models.ViewOrderViewModel>
 
-
 @{
-    ViewBag.Title = "ViewProcessingOrders";
+    ViewBag.Title = "ViewCompletedOrders";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>View Processing Orders</h2>
+<h2>View Completed Orders</h2>
+
 
 
 <table class="table">
@@ -26,7 +26,6 @@
         <th>
             @Html.DisplayNameFor(model => model.TotalQuantity)
         </th>
-        <th></th>
     </tr>
 
     @foreach (var item in Model)
@@ -51,9 +50,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.TotalQuantity)
-            </td>
-            <td>
-                @Html.ActionLink("Delivered", "DeliverOrder", new {  id=item.OrderId })
             </td>
         </tr>
     }

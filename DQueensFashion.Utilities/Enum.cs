@@ -8,6 +8,6 @@ namespace DQueensFashion.Utilities
 {
     public enum OrderStatus
     {
-        Processing, Delivered, Returned, Deleted
+        Processing, Delivered, Returned, Deleted, Completed
     }
 }

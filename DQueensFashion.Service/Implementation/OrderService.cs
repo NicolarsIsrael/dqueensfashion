@@ -61,6 +61,26 @@ namespace DQueensFashion.Service.Implementation
                 .Where(order => order.OrderStatus == OrderStatus.Deleted);
         }
 
+        public IEnumerable<Order> GetCompletedOrders()
+        {
+            return uow.OrderRepo.GetAllOrdersWithRelationships()
+    .Where(order => order.OrderStatus == OrderStatus.Completed);
+        }
+
+        public Order GetOrderById(int id)
+        {
+            return uow.OrderRepo.GetOrdertByIdWithRelationships(id);
+        }
+
+        public void UpdateOrder(Order order)
+        {
+            if (!ValidateOrderDetails(order))
+                throw new Exception();
+
+            uow.OrderRepo.Update(order);
+            uow.Save();
+        }
+
         private bool ValidateOrderDetails(Order order)
         {
             if (order == null)
@@ -74,5 +94,6 @@ namespace DQueensFashion.Service.Implementation
 
             return true;
         }
+
     }
 }

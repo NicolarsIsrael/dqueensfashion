@@ -9,6 +9,7 @@ namespace DQueensFashion.Models
     {
         public int OrderId { get; set; }
         public DateTime DateCreated { get; set; }
+        public DateTime DateModified { get; set; }
         public string DateCreatedString { get; set; }
         public string CustomerName { get; set; }
         public int CustomerId { get; set; }
