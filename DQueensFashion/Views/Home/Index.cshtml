@@ -5,67 +5,103 @@
     ViewBag.Title = "Home Page";
 }
 
-
-<!--modals-->
-<!--quick view product-->
-<div class="modal fade" id="productQuickView">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Product quick view</h3>
-                <a href="#" class="close" data-dismiss="modal">&times;</a>
+<div class="background">
+    <!-- Mask & flexbox options-->
+    <div class="d-flex justify-content-center align-items-center">
+        <!-- Content -->
+        <div class="container">
+            <!--Grid row-->
+            <div class="row">
+                <!--Grid column-->
+                <div class="col-md-6 col-10 text-md-left mb-5 background-text">
+                    <h1 class="h1-responsive mt-sm-5" style="color: #E97128;">
+                        FASHION WITH STYLE
+                    </h1>
+                    <hr class="hr-light" style="background-color: #E97128;" />
+                    <h6 class="mb-4" style="color: white;">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem
+                        repellendus quasi fuga nesciunt dolorum nulla magnam veniam
+                        sapiente, fugiat! Commodi sequi non animi ea dolor molestiae
+                        iste.
+                    </h6>
+                    <a class="btn btn-white" style="margin-top: 5px;">Shop now</a>
+                    <a class="btn btn-outline-white" style="margin-top: 5px;">Learn more</a>
+                </div>
+                <!--Grid column-->
             </div>
-            <div class="modal-body" id="productQuickViewBody">
+            <!--Grid row-->
+        </div>
+        <!-- Content -->
+    </div>
+    <!-- Mask & flexbox options-->
+</div>
+
+<div class="container-fluid">
+
+    <div class="row pt-5">
+        @foreach (var product in Model.Products)
+        {
+            <div class="col-md-3">
+
+                <div class="card">
+
+                    <a href="@Url.Action("ProductDetails","Product",new { id= product.Id})">
+                        <img class="card-img-top" src="@Url.Content(product.Image1)" style="height:250px">
+                        <div class="card-block">
+                            <h4 class="card-title">@product.Name</h4>
+                            <div class="meta">
+                                <a href="#">@product.Price</a>
+                            </div>
+                            <div class="card-text">
+                                @product.Description
+                            </div>
+                        </div>
+                    </a>
+                    <div class="card-footer">
+                        <span class="float-right" onclick="AddToCart(@product.Id)" style="cursor:pointer">Cart</span>
+                        <span class="float-right" onclick="AddToWishList(@product.Id)" style="cursor:pointer">Add to wish list | </span>
+                        <span class="float-right" onclick="productQuickView(@product.Id)" style="cursor:pointer">QV |</span>
+                        <span><i class=""></i>@product.Quantity</span>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+
+
+</div>
+
+
+
+    <!--modals-->
+    <!--quick view product-->
+    <div class="modal fade" id="productQuickView">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Product quick view</h3>
+                    <a href="#" class="close" data-dismiss="modal">&times;</a>
+                </div>
+                <div class="modal-body" id="productQuickViewBody">
+
+
+                </div>
 
 
             </div>
-
 
         </div>
 
     </div>
 
-</div>
+    <script>
+        function productQuickView(productId) {
+            var url = "/Product/ProductQuickView/" + productId;
 
-<div class="row pt-5">
-    @foreach (var product in Model.Products)
-    {
-        <div class="col-md-3">
+            $("#productQuickViewBody").load(url, function () {
+                $("#productQuickView").modal("show");
 
-            <div class="card">
-
-                <a href="@Url.Action("ProductDetails","Product",new { id= product.Id})">
-                    <img class="card-img-top" src="@Url.Content(product.Image1)" style="height:250px">
-                    <div class="card-block">
-                        <h4 class="card-title">@product.Name</h4>
-                        <div class="meta">
-                            <a href="#">@product.Price</a>
-                        </div>
-                        <div class="card-text">
-                            @product.Description
-                        </div>
-                    </div>
-                </a>
-                <div class="card-footer">
-                    <span class="float-right" onclick="AddToCart(@product.Id)" style="cursor:pointer">Cart</span>
-                    <span class="float-right" onclick="AddToWishList(@product.Id)" style="cursor:pointer">Add to wish list | </span>
-                    <span class="float-right" onclick="productQuickView(@product.Id)" style="cursor:pointer">QV |</span>
-                    <span><i class=""></i>@product.Quantity</span>
-                </div>
-            </div>
-        </div>
-    }
-
-</div>
-
-
-<script>
-    function productQuickView(productId) {
-        var url = "/Product/ProductQuickView/" + productId;
-
-        $("#productQuickViewBody").load(url, function () {
-            $("#productQuickView").modal("show");
-
-        })
-    }
-</script>
+            })
+        }
+    </script>
