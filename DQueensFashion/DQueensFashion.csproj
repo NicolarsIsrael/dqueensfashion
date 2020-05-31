@@ -470,6 +470,10 @@
     <Content Include="Views\Home\_navbarCategories.cshtml" />
     <Content Include="Views\Product\_productQuickView.cshtml" />
     <Content Include="Views\Admin\ViewOrders.cshtml" />
+    <Content Include="Views\Admin\ViewProcessingOrders.cshtml" />
+    <Content Include="Views\Admin\ViewDeliveredOrders.cshtml" />
+    <Content Include="Views\Admin\ViewReturnedOrders.cshtml" />
+    <Content Include="Views\Admin\ViewDeletedOrders.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

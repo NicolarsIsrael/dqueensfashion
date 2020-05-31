@@ -1,6 +1,7 @@
 ﻿using DQueensFashion.Core.Model;
 using DQueensFashion.Data.Contract;
 using DQueensFashion.Service.Contract;
+using DQueensFashion.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +37,29 @@ namespace DQueensFashion.Service.Implementation
             return uow.OrderRepo.GetAllOrdersWithRelationships();
         }
 
+        public IEnumerable<Order> GetProcessingOrders()
+        {
+            return uow.OrderRepo.GetAllOrdersWithRelationships()
+                .Where(order => order.OrderStatus == OrderStatus.Processing);
+        }
+
+        public IEnumerable<Order> GetDeliveredOrders()
+        {
+            return uow.OrderRepo.GetAllOrdersWithRelationships()
+                .Where(order => order.OrderStatus == OrderStatus.Delivered);
+        }
+
+        public IEnumerable<Order> GetReturnedOrders()
+        {
+            return uow.OrderRepo.GetAllOrdersWithRelationships()
+                .Where(order => order.OrderStatus == OrderStatus.Returned);
+        }
+
+        public IEnumerable<Order> GetDeletedOrders()
+        {
+            return uow.OrderRepo.GetAllOrdersWithRelationships()
+                .Where(order => order.OrderStatus == OrderStatus.Deleted);
+        }
 
         private bool ValidateOrderDetails(Order order)
         {

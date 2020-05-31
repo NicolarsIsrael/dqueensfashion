@@ -12,5 +12,9 @@ namespace DQueensFashion.Service.Contract
         int GetOrderCount();
         void CreateOrder(Order order);
         IEnumerable<Order> GetAllOrders();
+        IEnumerable<Order> GetProcessingOrders();
+        IEnumerable<Order> GetDeliveredOrders();
+        IEnumerable<Order> GetReturnedOrders();
+        IEnumerable<Order> GetDeletedOrders();
     }
 }

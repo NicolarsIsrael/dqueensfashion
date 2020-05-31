@@ -1,0 +1,61 @@
+﻿@model IEnumerable<DQueensFashion.Models.ViewOrderViewModel>
+
+@{
+    ViewBag.Title = "ViewDeletedOrders";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ViewDeletedOrders</h2>
+
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.LineItems)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateCreatedString)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalQuantity)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @{
+                    foreach (var lineItem in item.LineItems)
+                    {
+                        <p>@lineItem.Product ( @lineItem.Quantity ) </p>
+                    }
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateCreatedString)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalQuantity)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
+
+</table>

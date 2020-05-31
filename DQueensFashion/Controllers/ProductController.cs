@@ -179,6 +179,7 @@ namespace DQueensFashion.Controllers
                 LineItems = lineItems,
                 TotalAmount = lineItems.Sum(l => l.TotalAmount),
                 TotalQuantity = lineItems.Sum(l => l.Quantity),
+                OrderStatus=  OrderStatus.Processing,
             };
 
             _orderService.CreateOrder(order);

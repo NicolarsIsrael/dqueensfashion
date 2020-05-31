@@ -21,6 +21,7 @@ namespace DQueensFashion.Data.Implementation
         {
             return _dbContext.Set<Product>()
                 .Include(p => p.Category)
+                .Where(p => !p.IsDeleted)
                 .ToList();
         }
 
@@ -29,6 +30,7 @@ namespace DQueensFashion.Data.Implementation
             return _dbContext.Set<Product>()
                 .Include(p => p.Category)
                 .Where(p => p.Id == productId)
+                .Where(p => !p.IsDeleted)
                 .FirstOrDefault();
         }
     }

@@ -397,7 +397,6 @@ namespace DQueensFashion.Controllers
 
         public ActionResult ViewOrders()
         {
-            var orders = _orderService.GetAllOrders();
             IEnumerable<ViewOrderViewModel> orderModel = _orderService.GetAllOrders()
                 .Select(order => new ViewOrderViewModel()
                 {
@@ -416,6 +415,102 @@ namespace DQueensFashion.Controllers
                     DateCreated = order.DateCreated,
                     DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy : hh-mm-ss"),
                 }).OrderBy(order=>order.DateCreated).ToList();
+
+            return View(orderModel);
+        }
+
+        public ActionResult ViewProcessingOrders()
+        {
+            IEnumerable<ViewOrderViewModel> orderModel = _orderService.GetProcessingOrders()
+                .Select(order => new ViewOrderViewModel()
+                {
+                    OrderId = order.Id,
+                    CustomerId = order.Customer.Id,
+                    CustomerName = order.Customer.Fullname,
+                    TotalAmount = order.TotalAmount,
+                    TotalQuantity = order.TotalQuantity,
+                    LineItems = order.LineItems
+                        .Select(lineItem => new ViewLineItem()
+                        {
+                            Product = lineItem.Product.Name,
+                            Quantity = lineItem.Quantity,
+                            TotalAmount = lineItem.TotalAmount,
+                        }),
+                    DateCreated = order.DateCreated,
+                    DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy : hh-mm-ss"),
+                }).OrderBy(order => order.DateCreated).ToList();
+
+            return View(orderModel);
+        }
+
+        public ActionResult ViewDeliveredOrders()
+        {
+            IEnumerable<ViewOrderViewModel> orderModel = _orderService.GetDeliveredOrders()
+                .Select(order => new ViewOrderViewModel()
+                {
+                    OrderId = order.Id,
+                    CustomerId = order.Customer.Id,
+                    CustomerName = order.Customer.Fullname,
+                    TotalAmount = order.TotalAmount,
+                    TotalQuantity = order.TotalQuantity,
+                    LineItems = order.LineItems
+                        .Select(lineItem => new ViewLineItem()
+                        {
+                            Product = lineItem.Product.Name,
+                            Quantity = lineItem.Quantity,
+                            TotalAmount = lineItem.TotalAmount,
+                        }),
+                    DateCreated = order.DateCreated,
+                    DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy : hh-mm-ss"),
+                }).OrderBy(order => order.DateCreated).ToList();
+
+            return View(orderModel);
+        }
+
+        public ActionResult ViewReturnedOrders()
+        {
+            IEnumerable<ViewOrderViewModel> orderModel = _orderService.GetReturnedOrders()
+                .Select(order => new ViewOrderViewModel()
+                {
+                    OrderId = order.Id,
+                    CustomerId = order.Customer.Id,
+                    CustomerName = order.Customer.Fullname,
+                    TotalAmount = order.TotalAmount,
+                    TotalQuantity = order.TotalQuantity,
+                    LineItems = order.LineItems
+                        .Select(lineItem => new ViewLineItem()
+                        {
+                            Product = lineItem.Product.Name,
+                            Quantity = lineItem.Quantity,
+                            TotalAmount = lineItem.TotalAmount,
+                        }),
+                    DateCreated = order.DateCreated,
+                    DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy : hh-mm-ss"),
+                }).OrderBy(order => order.DateCreated).ToList();
+
+            return View(orderModel);
+        }
+
+        public ActionResult ViewDeletedOrders()
+        {
+            IEnumerable<ViewOrderViewModel> orderModel = _orderService.GetDeletedOrders()
+               .Select(order => new ViewOrderViewModel()
+               {
+                   OrderId = order.Id,
+                   CustomerId = order.Customer.Id,
+                   CustomerName = order.Customer.Fullname,
+                   TotalAmount = order.TotalAmount,
+                   TotalQuantity = order.TotalQuantity,
+                   LineItems = order.LineItems
+                       .Select(lineItem => new ViewLineItem()
+                       {
+                           Product = lineItem.Product.Name,
+                           Quantity = lineItem.Quantity,
+                           TotalAmount = lineItem.TotalAmount,
+                       }),
+                   DateCreated = order.DateCreated,
+                   DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy : hh-mm-ss"),
+               }).OrderBy(order => order.DateCreated).ToList();
 
             return View(orderModel);
         }
