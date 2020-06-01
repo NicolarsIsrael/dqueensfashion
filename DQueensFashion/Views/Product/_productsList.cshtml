@@ -30,6 +30,17 @@
                 }
             }
         </div>
+        @for (int i = 1; i <= ViewBag.NumberOfPages; i++)
+        {
+            if (i == ViewBag.CurrentPage)
+            {
+                @i
+            }
+            else
+            {
+                <div style="cursor:pointer;color:blue" class="page-number" onclick="ProductPagination(@i)">@i</div>
+            }
+        }
     </div>
 
 

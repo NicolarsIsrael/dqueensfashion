@@ -17,6 +17,7 @@ namespace DQueensFashion.Controllers
         private readonly ICustomerService _customerService;
         private readonly IOrderService _orderService;
         private readonly ICategoryService _categoryService;
+        private const int ProductIndexPageSize = 2;
 
         public ProductController(IProductService productService, ICustomerService customerService, IOrderService orderService, ICategoryService categoryService)
         {
@@ -45,6 +46,12 @@ namespace DQueensFashion.Controllers
 
                 }).ToList();
 
+            //pagination
+            ViewBag.NumberOfPages = Convert.ToInt32(Math.Ceiling((double)products.Count() / ProductIndexPageSize));
+            ViewBag.CurrentPage = 1;
+            products = products.Skip(ProductIndexPageSize * 0).Take(ProductIndexPageSize).ToList();
+
+
             ProductIndexViewModel productIndex = new ProductIndexViewModel()
             {
                 Products = products,
@@ -61,6 +68,7 @@ namespace DQueensFashion.Controllers
                 if (category.Id == categoryId)
                     category.Selected = "selected";
             }
+
 
             return View(productIndex);
         }
@@ -130,6 +138,89 @@ namespace DQueensFashion.Controllers
 
                 }
 
+                //pagination
+                ViewBag.NumberOfPages = Convert.ToInt32(Math.Ceiling((double)products.Count() / ProductIndexPageSize));
+                ViewBag.CurrentPage = 1;
+                products = products.Skip(ProductIndexPageSize * 0).Take(ProductIndexPageSize).ToList();
+
+                return PartialView("_productsList", products);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+
+        public ActionResult ProductPagination(string searchString, int sortString, int categoryId = 0, int pageNumber = 1)
+        {
+            try
+            {
+                IEnumerable<Product> _products = _productService.GetAllProducts().ToList();
+                if (!string.IsNullOrEmpty(searchString))
+                    _products = _products.Where(p => p.Name.ToLower().Contains(searchString.ToLower())
+                    || p.Tags.ToLower().Contains(searchString.ToLower())
+                    || p.Description.ToLower().Contains(searchString.ToLower())).ToList();
+
+                if (categoryId > 0)
+                    _products = _products.Where(p => p.Category.Id == categoryId);
+
+                IEnumerable<ViewProductsViewModel> products = _products
+                    .Select(p => new ViewProductsViewModel()
+                    {
+                        Id = p.Id,
+                        Name = p.Name,
+                        Description = p.Description.Length > 35 ? p.Description.Substring(0, 35) + "..." : p.Description,
+                        Image1 = p.ImagePath1,
+                        Quantity = p.Quantity.ToString(),
+                        Price = p.Price.ToString(),
+                        DateCreated = p.DateCreated,
+                    }).ToList();
+
+                //sort
+                switch (sortString)
+                {
+                    //sort by best selling
+                    case 1:
+                        break;
+
+                    //alphabetically a-z
+                    case 2:
+                        products = products.OrderBy(p => p.Name);
+                        break;
+
+                    //alphabetically z-a
+                    case 3:
+                        products = products.OrderByDescending(p => p.Name);
+                        break;
+
+                    //price low to high
+                    case 4:
+                        products = products.OrderBy(p => p.Price);
+                        break;
+
+                    //price high to low
+                    case 5:
+                        products = products.OrderByDescending(p => p.Price);
+                        break;
+
+                    //date new to old
+                    case 6:
+                        products = products.OrderByDescending(p => p.DateCreated);
+                        break;
+
+                    //date old to new
+                    case 7:
+                        products = products.OrderBy(p => p.DateCreated);
+                        break;
+
+
+                }
+
+                //pagination
+                ViewBag.NumberOfPages = Convert.ToInt32(Math.Ceiling((double)products.Count() / ProductIndexPageSize));
+                ViewBag.CurrentPage = pageNumber;
+                products = products.Skip(ProductIndexPageSize * (pageNumber - 1)).Take(ProductIndexPageSize).ToList();
 
                 return PartialView("_productsList", products);
             }

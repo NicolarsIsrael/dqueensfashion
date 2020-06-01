@@ -5,6 +5,83 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+    <div class="container-fluid body-content">
+        <div class="mt-2"></div>
+        <input type="text" class="form-control" id="searchString" />
+        <select class="form-control" id="sortString">
+            <option value="1">Best selling</option>
+            <option value="2">Alphabetically, A - Z</option>
+            <option value="3">Alphabetically, Z - A</option>
+            <option value="4">Price, low to high</option>
+            <option value="5">Price, high to low</option>
+            <option value="6">Date, new to old</option>
+            <option value="7">Date, old to new</option>
+        </select>
+        <div class="form-group">
+            <label>Category</label>
+            <select class="form-control" id="categoryId">
+                <option value="0">All</option>
+                @foreach (var category in Model.Categories)
+                {
+                    <option value="@category.Id" selected="@category.Selected">@category.Name</option>
+                }
+            </select>
+        </div>
+
+        <input type="button" class="btn btn-secondary mt-1" value="SEARCH" onclick="SearchProduct()" />
+
+        <div id="productsList">
+            <div class="row pt-5" id="">
+                @foreach (var product in Model.Products)
+                {
+                    <div class="col-md-3">
+                        <a href="@Url.Action("ProductDetails","Product",new { id= product.Id})">
+                            <div class="card">
+                                <img class="card-img-top" src="@Url.Content(product.Image1)" style="height:250px">
+                                <div class="card-block">
+                                    <h4 class="card-title">@product.Name</h4>
+                                    <div class="meta">
+                                        <a href="#">@product.Price</a>
+                                    </div>
+                                    <div class="card-text">
+                                        @product.Description
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <span class="float-right" onclick="AddToCart(@product.Id)" style="cursor:pointer">Cart</span>
+                                    <span class="float-right" onclick="AddToWishList(@product.Id)" style="cursor:pointer">Add to wish list | </span>
+                                    <span class="float-right" onclick="productQuickView(@product.Id)" style="cursor:pointer">QV |</span>
+                                    <span><i class=""></i>@product.Quantity</span>
+                                </div>
+                            </div>
+                        </a>
+
+                    </div>
+                }
+                @{
+                    if (Model.Products.Count() == 0)
+                    {
+                        <h4>No item</h4>
+                    }
+                }
+            </div>
+            @for (int i = 1; i <= ViewBag.NumberOfPages; i++)
+            {
+                if (i == ViewBag.CurrentPage)
+                {
+                    @i
+                }
+                else
+                {
+                    <div style="cursor:pointer;color:blue" class="page-number" onclick="ProductPagination(@i)">@i</div>
+                }
+            }
+        </div>
+      
+    </div>
+
+
+
 <!--modals-->
 <!--quick view product-->
 <div class="modal fade" id="productQuickView">
@@ -26,66 +103,6 @@
 
 </div>
 
-<div class="mt-2"></div>
-<input type="text" class="form-control" id="searchString" />
-<select class="form-control" id="sortString">
-    <option value="1">Best selling</option>
-    <option value="2">Alphabetically, A - Z</option>
-    <option value="3">Alphabetically, Z - A</option>
-    <option value="4">Price, low to high</option>
-    <option value="5">Price, high to low</option>
-    <option value="6">Date, new to old</option>
-    <option value="7">Date, old to new</option>
-</select>
-<div class="form-group">
-    <label>Category</label>
-    <select class="form-control" id="categoryId">
-        <option  value="0">All</option>
-        @foreach(var category in Model.Categories)
-        {
-            <option value="@category.Id" selected="@category.Selected">@category.Name</option>
-        }
-    </select>
-</div>
-
-<input type="button" class="btn btn-secondary mt-1" value="SEARCH" onclick="SearchProduct()" />
-
-<div id="productsList">
-    <div class="row pt-5" id="">
-        @foreach (var product in Model.Products)
-        {
-            <div class="col-md-3">
-                <a href="@Url.Action("ProductDetails","Product",new { id= product.Id})">
-                    <div class="card">
-                        <img class="card-img-top" src="@Url.Content(product.Image1)" style="height:250px">
-                        <div class="card-block">
-                            <h4 class="card-title">@product.Name</h4>
-                            <div class="meta">
-                                <a href="#">@product.Price</a>
-                            </div>
-                            <div class="card-text">
-                                @product.Description
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <span class="float-right" onclick="AddToCart(@product.Id)" style="cursor:pointer">Cart</span>
-                            <span class="float-right" onclick="AddToWishList(@product.Id)" style="cursor:pointer">Add to wish list | </span>
-                            <span class="float-right" onclick="productQuickView(@product.Id)" style="cursor:pointer">QV |</span>
-                            <span><i class=""></i>@product.Quantity</span>
-                        </div>
-                    </div>
-                </a>
-
-            </div>
-        }
-        @{
-            if (Model.Products.Count() == 0)
-            {
-                <h4>No item</h4>
-            }
-        }
-    </div>
-</div>
 
 <script>
 
@@ -106,6 +123,20 @@
             }
         });
 
+    }
+
+    function ProductPagination(pageNumber) {
+        $.ajax({
+            url: '/product/ProductPagination',
+            dataType: "html",
+            data: { searchString: _searchString.value, sortString: _sortString.value, categoryId: _categoryId.value, pageNumber: pageNumber },
+            success: function (result) {
+                $("#productsList").html(result);
+            },
+            error: function (xhr, status, error) {
+                alert("Error");
+            }
+        });
     }
 
     function productQuickView(productId) {
