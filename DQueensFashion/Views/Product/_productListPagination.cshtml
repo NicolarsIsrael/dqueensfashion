@@ -1,0 +1,118 @@
+﻿
+<nav aria-label="Page navigation" class="mt-3">
+    <ul class="pagination justify-content-center">
+        @{
+            if (ViewBag.CurrentPage == 1)
+            {
+                <li class="page-item disabled">
+                    <div class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </div>
+                </li>
+            }
+            else
+            {
+                <li class="page-item">
+                    <div style="cursor:pointer" class="page-link" aria-label="Previous" onclick="ProductPagination(@ViewBag.CurrentPage-1)">
+                        <span aria-hidden="true" style="color:#0a0c13">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </div>
+                </li>
+            }
+
+            if (ViewBag.NumberOfPages < 7)
+            {
+                for (int pageNo = 1; pageNo <= ViewBag.NumberOfPages; pageNo++)
+                {
+
+
+                    if (pageNo == ViewBag.CurrentPage)
+                    {
+                        <li class="page-item">
+                            <div style="background-color:#0a0c13;color:white" class="page-link">@pageNo</div>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="page-item">
+                            <div style="cursor:pointer;color:#0a0c13" class="page-link" href="#" onclick="ProductPagination(@pageNo)">@pageNo</div>
+                        </li>
+                    }
+                }
+            }
+            else
+            {
+                bool pageAssigned = false;
+                for (int pageNo = 1; pageNo <= 2; pageNo++)
+                {
+                    if (pageNo == ViewBag.CurrentPage)
+                    {
+                        <li class="page-item">
+                            <div style="background-color:#0a0c13;color:white" class="page-link">@pageNo</div>
+                        </li>
+                        pageAssigned = true;
+                    }
+                    else
+                    {
+                        <li class="page-item">
+                            <div style="cursor:pointer;color:#0a0c13" class="page-link" href="#" onclick="ProductPagination(@pageNo)">@pageNo</div>
+                        </li>
+                    }
+                }
+
+                if (!pageAssigned && ((ViewBag.NumberOfPages - ViewBag.CurrentPage) > 1))
+                {
+                    <li class="page-item">
+                        <div style="background-color:#0a0c13;color:white" class="page-link">@ViewBag.CurrentPage</div>
+                    </li>
+                }
+
+                <li class="page-item">
+                    <div style="color:#0a0c13" class="page-link">...</div>
+                </li>
+                for (int pageNo = (ViewBag.NumberOfPages - 1); pageNo <= ViewBag.NumberOfPages; pageNo++)
+                {
+
+
+                    if (pageNo == ViewBag.CurrentPage)
+                    {
+                        <li class="page-item">
+                            <div style="background-color:#0a0c13;color:white" class="page-link">@pageNo</div>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="page-item">
+                            <div style="cursor:pointer;color:#0a0c13" class="page-link" href="#" onclick="ProductPagination(@pageNo)">@pageNo</div>
+                        </li>
+                    }
+                }
+            }
+
+
+
+            if (ViewBag.CurrentPage == ViewBag.NumberOfPages)
+            {
+                <li class="page-item disabled">
+                    <div class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </div>
+                </li>
+            }
+            else
+            {
+                <li class="page-item">
+                    <div class="page-link" href="#" aria-label="Next" style="cursor:pointer" onclick="ProductPagination(@ViewBag.CurrentPage+1)">
+                        <span aria-hidden="true" style="color:#0a0c13">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </div>
+                </li>
+            }
+        }
+
+
+
+    </ul>
+</nav>

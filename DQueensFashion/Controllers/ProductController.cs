@@ -46,7 +46,7 @@ namespace DQueensFashion.Controllers
                 }).ToList();
 
             //pagination
-            ViewBag.NumberOfPages = Convert.ToInt32(Math.Ceiling((double)products.Count() / AppConstant.ProductIndexPageSize));
+            ViewBag.NumberOfPages = 20;// Convert.ToInt32(Math.Ceiling((double)products.Count() / AppConstant.ProductIndexPageSize));
             ViewBag.CurrentPage = 1;
             products = products.Skip(AppConstant.ProductIndexPageSize * 0).Take(AppConstant.ProductIndexPageSize).ToList();
 
@@ -138,7 +138,7 @@ namespace DQueensFashion.Controllers
                 }
 
                 //pagination
-                ViewBag.NumberOfPages = Convert.ToInt32(Math.Ceiling((double)products.Count() / AppConstant.ProductIndexPageSize));
+                ViewBag.NumberOfPages = 20;// Convert.ToInt32(Math.Ceiling((double)products.Count() / AppConstant.ProductIndexPageSize));
                 ViewBag.CurrentPage = 1;
                 products = products.Skip(AppConstant.ProductIndexPageSize * 0).Take(AppConstant.ProductIndexPageSize).ToList();
 
@@ -219,7 +219,7 @@ namespace DQueensFashion.Controllers
                 //pagination
                 if (pageNumber < 1)
                     pageNumber = 1;
-                ViewBag.NumberOfPages = Convert.ToInt32(Math.Ceiling((double)products.Count() / AppConstant.ProductIndexPageSize));
+                ViewBag.NumberOfPages = 20;// Convert.ToInt32(Math.Ceiling((double)products.Count() / AppConstant.ProductIndexPageSize));
                 ViewBag.CurrentPage = pageNumber;
                 products = products.Skip(AppConstant.ProductIndexPageSize * (pageNumber - 1)).Take(AppConstant.ProductIndexPageSize).ToList();
 
