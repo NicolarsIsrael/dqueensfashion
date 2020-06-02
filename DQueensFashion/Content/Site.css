@@ -3,7 +3,7 @@
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    margin-top:62px;
+    margin-top:70px;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -33,26 +33,6 @@ textarea {
     .navbar-toggler:focus {
         outline: none !important;
     }
-
-
-
-    /*.navbar-toggler .line {
-        width: 100%;
-        float: left;
-        height: 2px;
-        background-color: #E97128;
-        margin-bottom: 5px;
-    }
-
-    .navbar-toggler .blackline {
-        width: 100%;
-        float: left;
-        height: 2px;
-        background-color: black;
-        margin-bottom: 5px;
-    }*/
-
-
 
     .navbar-toggler span {
         display: block;

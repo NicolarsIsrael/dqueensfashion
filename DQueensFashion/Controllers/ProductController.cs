@@ -17,7 +17,6 @@ namespace DQueensFashion.Controllers
         private readonly ICustomerService _customerService;
         private readonly IOrderService _orderService;
         private readonly ICategoryService _categoryService;
-        private const int ProductIndexPageSize = 2;
 
         public ProductController(IProductService productService, ICustomerService customerService, IOrderService orderService, ICategoryService categoryService)
         {
@@ -47,9 +46,9 @@ namespace DQueensFashion.Controllers
                 }).ToList();
 
             //pagination
-            ViewBag.NumberOfPages = Convert.ToInt32(Math.Ceiling((double)products.Count() / ProductIndexPageSize));
+            ViewBag.NumberOfPages = Convert.ToInt32(Math.Ceiling((double)products.Count() / AppConstant.ProductIndexPageSize));
             ViewBag.CurrentPage = 1;
-            products = products.Skip(ProductIndexPageSize * 0).Take(ProductIndexPageSize).ToList();
+            products = products.Skip(AppConstant.ProductIndexPageSize * 0).Take(AppConstant.ProductIndexPageSize).ToList();
 
 
             ProductIndexViewModel productIndex = new ProductIndexViewModel()
@@ -139,9 +138,9 @@ namespace DQueensFashion.Controllers
                 }
 
                 //pagination
-                ViewBag.NumberOfPages = Convert.ToInt32(Math.Ceiling((double)products.Count() / ProductIndexPageSize));
+                ViewBag.NumberOfPages = Convert.ToInt32(Math.Ceiling((double)products.Count() / AppConstant.ProductIndexPageSize));
                 ViewBag.CurrentPage = 1;
-                products = products.Skip(ProductIndexPageSize * 0).Take(ProductIndexPageSize).ToList();
+                products = products.Skip(AppConstant.ProductIndexPageSize * 0).Take(AppConstant.ProductIndexPageSize).ToList();
 
                 return PartialView("_productsList", products);
             }
@@ -218,9 +217,11 @@ namespace DQueensFashion.Controllers
                 }
 
                 //pagination
-                ViewBag.NumberOfPages = Convert.ToInt32(Math.Ceiling((double)products.Count() / ProductIndexPageSize));
+                if (pageNumber < 1)
+                    pageNumber = 1;
+                ViewBag.NumberOfPages = Convert.ToInt32(Math.Ceiling((double)products.Count() / AppConstant.ProductIndexPageSize));
                 ViewBag.CurrentPage = pageNumber;
-                products = products.Skip(ProductIndexPageSize * (pageNumber - 1)).Take(ProductIndexPageSize).ToList();
+                products = products.Skip(AppConstant.ProductIndexPageSize * (pageNumber - 1)).Take(AppConstant.ProductIndexPageSize).ToList();
 
                 return PartialView("_productsList", products);
             }

@@ -5,95 +5,228 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-    <div class="container-fluid body-content">
-        <div class="mt-2"></div>
-        <input type="text" class="form-control" id="searchString" />
-        <select class="form-control" id="sortString">
-            <option value="1">Best selling</option>
-            <option value="2">Alphabetically, A - Z</option>
-            <option value="3">Alphabetically, Z - A</option>
-            <option value="4">Price, low to high</option>
-            <option value="5">Price, high to low</option>
-            <option value="6">Date, new to old</option>
-            <option value="7">Date, old to new</option>
-        </select>
-        <div class="form-group">
-            <label>Category</label>
-            <select class="form-control" id="categoryId">
-                <option value="0">All</option>
-                @foreach (var category in Model.Categories)
-                {
-                    <option value="@category.Id" selected="@category.Selected">@category.Name</option>
-                }
-            </select>
-        </div>
 
-        <input type="button" class="btn btn-secondary mt-1" value="SEARCH" onclick="SearchProduct()" id="btnFilter" />
+<style>
+    .collapsible {
+        background-color: #0a0c13;
+        color: white;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+        border-top: 4px solid #E97128;
+    }
 
-        <div id="productScroll">
-            @*To scroll page to after pagination*@
-        </div>
-        <div id="productsList">
-            <div class="row pt-5" id="">
-                @foreach (var product in Model.Products)
-                {
-                    <div class="col-md-3">
-                        <a href="@Url.Action("ProductDetails","Product",new { id= product.Id})">
-                            <div class="card">
-                                <img class="card-img-top" src="@Url.Content(product.Image1)" style="height:250px">
-                                <div class="card-block">
-                                    <h4 class="card-title">@product.Name</h4>
-                                    <div class="meta">
-                                        <a href="#">@product.Price</a>
-                                    </div>
-                                    <div class="card-text">
-                                        @product.Description
-                                    </div>
-                                </div>
-                                <div class="card-footer">
-                                    <span class="float-right" onclick="AddToCart(@product.Id)" style="cursor:pointer">Cart</span>
-                                    <span class="float-right" onclick="AddToWishList(@product.Id)" style="cursor:pointer">Add to wish list | </span>
-                                    <span class="float-right" onclick="productQuickView(@product.Id)" style="cursor:pointer">QV |</span>
-                                    <span><i class=""></i>@product.Quantity</span>
-                                </div>
-                            </div>
-                        </a>
+        .collapsible:focus {
+            outline: none;
+        }
 
+        .collapsible:after {
+            content: '\002B';
+            color: white;
+            font-weight: bold;
+            float: right;
+            margin-left: 5px;
+        }
+
+    .active:after {
+        content: "\2212";
+    }
+
+    .content {
+        padding: 0 18px;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease-out;
+        background-color: #f1f1f1;
+    }
+
+    .filter-btn{
+        border:none;
+    }
+
+    .filter-btn:active,
+    .filter-btn:focus{
+        outline:none !important;
+        border:none !important;
+        box-shadow: none !important;
+    }
+
+</style>
+
+
+<div class="container-fluid body-content">
+    <div class="row">
+        <div class="col-md-4 col-12 mb-3">
+            <button class="collapsible active">FILTER</button>
+            <div class="content" style="max-height:100vh;padding-bottom:10px">
+                <div style="padding-top:10px">
+                    <div class="col-12 mb-3">
+                        <div class="form-row">
+                            <label class="col-3 col-form-label" for="name">Search</label>
+                            <input type="text" class="form-control col-9" id="searchString" />
+                        </div>
                     </div>
-                }
-                @{
-                    if (Model.Products.Count() == 0)
-                    {
-                        <h4>No item</h4>
-                    }
-                }
+                    <div class="col-12 mb-3">
+                        <div class="form-row">
+                            <label class="col-3 col-form-label" for="name">Category</label>
+                            <select class="form-control col-9" id="categoryId">
+                                <option value="0">All</option>
+                                @foreach (var category in Model.Categories)
+                                {
+                                    <option value="@category.Id" selected="@category.Selected">@category.Name</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12 mb-3">
+                        <div class="form-row">
+                            <label class="col-3 col-form-label" for="name">Sort by</label>
+                            <select class="form-control col-9" id="sortString">
+                                <option value="1">Best selling</option>
+                                <option value="2">Alphabetically, A - Z</option>
+                                <option value="3">Alphabetically, Z - A</option>
+                                <option value="4">Price, low to high</option>
+                                <option value="5">Price, high to low</option>
+                                <option value="6">Date, new to old</option>
+                                <option value="7">Date, old to new</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <button class="btn btn-block filter-btn" onclick="SearchProduct()" id="btnFilter" style="background-color:#E97128;color:white;width:100%" >FILTER <img src="~/Content/Images/filter.svg" /></button>
+                    </div>
+                </div>
+
             </div>
 
-            <h4>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+        </div>
+        <div class="col-md-8 col-sm-12">
 
-                Why do we use it?
-                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-
-
-                Where does it come from?
-                Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
-            </h4>
-
-            @for (int i = 1; i <= ViewBag.NumberOfPages; i++)
+            <div id="productsList">
+                <div class="row" id="">
+                    @foreach (var product in Model.Products)
+                    {
+                        <div class="col-md-4 col-6">
+                            <div class="card">
+                                <div class="product">
+                                    <a href="@Url.Action("ProductDetails","Product",new { id= product.Id})" class="atag">
+                                        <img class="product_img" src="@Url.Content(product.Image1)" alt="product_img">
+                                        <div class="product_info">
+                                            <h6 class="product_title">@product.Name</h6>
+                                            <strong class="product_price">@product.Price</strong>
+                                        </div>
+                                    </a>
+                                    <hr style="margin:0">
+                                    <div style="margin:5px 5px;cursor:pointer" class="float-right" onclick="AddToCart(@product.Id)">
+                                        <img src="~/Content/Images/shopping-cart (orange).svg" class="product_button">
+                                    </div>
+                                    <div style="margin:5px 5px;cursor:pointer" class="float-right" onclick="AddToWishList(@product.Id)">
+                                        <img src="~/Content/Images/heart.svg" class="product_button">
+                                    </div>
+                                    <div style="margin:5px 5px;cursor:pointer" class="float-right" onclick="productQuickView(@product.Id)">
+                                        <img src="~/Content/Images/eye.svg" class="product_button">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    @{
+                        if (Model.Products.Count() == 0)
+                        {
+                            <h4>No item</h4>
+                        }
+                    }
+                </div>
+                @*@for (int i = 1; i <= ViewBag.NumberOfPages; i++)
+        {
+            if (i == ViewBag.CurrentPage)
             {
-                if (i == ViewBag.CurrentPage)
-                {
-                    @i
-                }
-                else
-                {
-                    <div style="cursor:pointer;color:blue" class="page-number" onclick="ProductPagination(@i)">@i</div>
-                }
+                @i
             }
+            else
+            {
+                <div style="cursor:pointer;color:blue" class="page-number" onclick="ProductPagination(@i)">@i</div>
+            }
+        }*@
+
+                <nav aria-label="Page navigation" class="mt-3">
+                    <ul class="pagination justify-content-center">
+                        @{
+                            if (ViewBag.CurrentPage == 1)
+                            {
+                                <li class="page-item disabled">
+                                    <div class="page-link" href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                        <span class="sr-only">Previous</span>
+                                    </div>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="page-item">
+                                    <div style="cursor:pointer" class="page-link" aria-label="Previous" onclick="ProductPagination(@ViewBag.CurrentPage-1)">
+                                        <span aria-hidden="true" style="color:#0a0c13">&laquo;</span>
+                                        <span class="sr-only">Previous</span>
+                                    </div>
+                                </li>
+                            }
+
+                            for (int pageNo = 1; pageNo <= ViewBag.NumberOfPages; pageNo++)
+                            {
+
+
+                                if (pageNo == ViewBag.CurrentPage)
+                                {
+                                    <li class="page-item">
+                                        <div style="background-color:#0a0c13;color:white" class="page-link">@pageNo</div>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li class="page-item">
+                                        <div style="cursor:pointer;color:#0a0c13" class="page-link" href="#" onclick="ProductPagination(@pageNo)">@pageNo</div>
+                                    </li>
+                                }
+                            }
+
+                            if (ViewBag.CurrentPage == ViewBag.NumberOfPages)
+                            {
+                                <li class="page-item disabled">
+                                    <div class="page-link" href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                        <span class="sr-only">Next</span>
+                                    </div>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="page-item">
+                                    <div class="page-link" href="#" aria-label="Next" style="cursor:pointer" onclick="ProductPagination(@ViewBag.CurrentPage+1)">
+                                        <span aria-hidden="true" style="color:#0a0c13">&raquo;</span>
+                                        <span class="sr-only">Next</span>
+                                    </div>
+                                </li>
+                            }
+                        }
+
+
+
+                    </ul>
+                </nav>
+
+            </div>
+
+         
+
         </div>
 
     </div>
+
+</div>
 
 
 
@@ -118,13 +251,11 @@
 
 </div>
 
-
 <script>
 
     var _searchString = document.getElementById("searchString");
     var _sortString = document.getElementById("sortString");
     var _categoryId = document.getElementById("categoryId");
-    var productScroll = document.getElementById("productScroll");
 
     function SearchProduct() {
         $.ajax({
@@ -148,8 +279,7 @@
             data: { searchString: _searchString.value, sortString: _sortString.value, categoryId: _categoryId.value, pageNumber: pageNumber },
             success: function (result) {
                 $("#productsList").html(result);
-                productScroll.scrollIntoView();
-                
+                $(window).scrollTop(0);
             },
             error: function (xhr, status, error) {
                 alert("Error");
@@ -164,6 +294,22 @@
             $("#productQuickView").modal("show");
 
         })
+    }
+
+
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        });
     }
 </script>
 
