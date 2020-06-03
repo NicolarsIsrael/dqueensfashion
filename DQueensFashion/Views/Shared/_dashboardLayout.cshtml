@@ -1,0 +1,182 @@
+﻿@using Microsoft.AspNet.Identity
+@using DQueensFashion.Utilities
+<!DOCTYPE html>
+<style>
+
+    .card-center {
+        margin-left: auto;
+        margin-right: auto;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        height: 80vh;
+    }
+
+    .email-button, .password-button {
+        max-width: 100%;
+    }
+</style>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link href="~/Content/Dashboard/css/main.css" rel="stylesheet" />
+
+    <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
+
+</head>
+
+<body class="hold-transition sidebar-mini">
+    <style>
+        .user-panel img {
+            width: auto;
+            max-width: 7rem;
+            max-height: 7rem;
+            height: 7rem;
+            width: 7rem;
+        }
+
+        .user-panel {
+            flex-direction: column;
+        }
+    </style>
+    <div class="wrapper">
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav" style="margin-right:auto">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars" style="padding-top: 0.5rem"></i></a>
+                </li>
+
+            </ul>
+            @Html.Partial("_LoginPartial")
+
+
+        </nav>
+        <!-- /.navbar -->
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary ">
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <a class="nav-link" href="@Url.Action("")">
+                    <div class="user-panel mt-3 pb-3 mb-2 d-flex">
+                        <div class="info m-auto">
+                            <p class="d-block">@User.Identity.Name</p>
+                        </div>
+
+                    </div>
+                </a>
+
+                <!-- Sidebar -->
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                        data-accordion="false">
+                        <!-- Add icons to the links using the .nav-icon class
+                        with font-awesome or any other icon font library -->
+
+                        @if (Request.IsAuthenticated)
+                        {
+
+                            if (User.IsInRole(AppConstant.AdminRole))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" href="@Url.Action("viewcourses","lecturer")">
+                                        <i class="fas fa-th"></i>
+                                        <p>
+                                            COURSES
+                                        </p>
+                                    </a>
+
+                                </li>
+                            }
+                            else if (User.IsInRole(AppConstant.CustomerRole))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" href="@Url.Action("wishlist", "customer")">
+                                        <i class="fas fa-th"></i>
+                                        <p>
+                                            WISH LIST
+                                        </p>
+                                    </a>
+
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" href="@Url.Action("vieworders", "customer")">
+                                        <i class="fas fa-th"></i>
+                                        <p>
+                                            ORDERS
+                                        </p>
+                                    </a>
+
+                                </li>
+
+                            }
+                            
+                        }
+
+
+
+                    </ul>
+
+                </nav>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+
+        </aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+
+            <!-- Main content -->
+            <div class="content">
+                <div class="container-fluid" style="padding-top:20px;">
+                    @RenderBody()
+                </div>
+                <!-- /.container-fluid -->
+            </div>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+        <!-- Main Footer -->
+        <footer class="main-footer">
+            <div class="container text-center">
+                &copy; @DateTime.Now.Year - Course and Exam Mgt
+            </div>
+        </footer>
+        <style>
+            .main-footer {
+                background-color: #212529 !important;
+                color: white !important;
+            }
+
+            @@media screen and (max-width: 2000px) and (min-width: 520px) {
+                .main-footer {
+                    margin-left: 0rem !important;
+                }
+            }
+        </style>
+    </div>
+
+    <!-- ./wrapper -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <!-- REQUIRED SCRIPTS -->
+    <script src="~/Content/Dashboard/js/main.js"></script>
+
+
+</body>
+
+</html>

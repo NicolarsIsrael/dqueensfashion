@@ -17829,7 +17829,7 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .content-wrapper,
     }
 
 [class*=sidebar-dark-] {
-    background-color: #343a40
+    background-color: #212529;
 }
 
     [class*=sidebar-dark-] .user-panel a:hover {
