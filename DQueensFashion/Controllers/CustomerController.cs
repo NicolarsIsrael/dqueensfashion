@@ -54,7 +54,7 @@ namespace DQueensFashion.Controllers
             return View(wishLists);
         }
 
-        public ActionResult ViewOrders()
+        public ActionResult Orders()
         {
             Customer customer = GetLoggedInCustomer();
             if (customer == null)
