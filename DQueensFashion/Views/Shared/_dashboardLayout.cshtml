@@ -77,7 +77,7 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
-                        with font-awesome or any other icon font library -->
+    with font-awesome or any other icon font library -->
 
                         @if (Request.IsAuthenticated)
                         {
@@ -103,6 +103,65 @@
                                     </a>
 
                                 </li>
+                                <li class="nav-item has-treeview">
+                                    <a href="#" class="nav-link">
+                                        <i class="fas fa-users"></i>
+                                        <p>
+                                            ORDERS
+                                            <i class="fas fa-angle-left right"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+
+                                        <li class="nav-item">
+                                            <a class="nav-link" asp-area="" href="@Url.Action("Orders","Admin")">
+                                                <i class="fas fa-calendar"></i>
+                                                <p>
+                                                    ALL ORDERS
+                                                </p>
+                                            </a>
+
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a class="nav-link" asp-area="" href="@Url.Action("ProcessingOrders","Admin")">
+                                                <i class="fas fa-calendar"></i>
+                                                <p>
+                                                    PROCESSING
+                                                </p>
+                                            </a>
+
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a class="nav-link" asp-area="" href="@Url.Action("DeliveredOrders","Admin")">
+                                                <i class="fas fa-calendar"></i>
+                                                <p>
+                                                    DELIVERED
+                                                </p>
+                                            </a>
+
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" asp-area="" href="@Url.Action("ReturnedOrders","Admin")">
+                                                <i class="fas fa-calendar"></i>
+                                                <p>
+                                                    RETURNED
+                                                </p>
+                                            </a>
+
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" asp-area="" href="@Url.Action("DeletedOrders","Admin")">
+                                                <i class="fas fa-calendar"></i>
+                                                <p>
+                                                    DELETED
+                                                </p>
+                                            </a>
+
+                                        </li>
+                                    </ul>
+                                </li>
                             }
                             else if (User.IsInRole(AppConstant.CustomerRole))
                             {
@@ -127,7 +186,7 @@
                                 </li>
 
                             }
-                            
+
                         }
 
 
@@ -162,7 +221,7 @@
         <!-- Main Footer -->
         <footer class="main-footer">
             <div class="container text-center">
-                &copy; @DateTime.Now.Year - Course and Exam Mgt
+                &copy; @DateTime.Now.Year - House of the queens
             </div>
         </footer>
         <style>
