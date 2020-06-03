@@ -5,53 +5,52 @@
     Layout = "~/Views/Shared/_dashboardLayout.cshtml";
 }
 
-<h2>ViewReturnedOrders</h2>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Returned</h3>
+
+                <div class="card-tools">
+                    <div class="input-group input-group-sm" style="width: 150px;">
+                        <input type="text" name="table_search" class="form-control float-right" id="search" placeholder="Search">
+
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-default" style="width:50px" onclick="SearchReturnedOrderTable()">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body table-responsive p-0" style="height: 65vh">
+
+                @Html.Partial("_returnedOrdersTable", Model)
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+</div>
 
 
+<script>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.LineItems)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateCreatedString)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CustomerName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TotalAmount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TotalQuantity)
-        </th>
-    </tr>
+    var search = document.getElementById("search");
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @{
-                    foreach (var lineItem in item.LineItems)
-                    {
-                        <p>@lineItem.Product ( @lineItem.Quantity ) </p>
-                    }
-                }
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateCreatedString)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CustomerName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TotalAmount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TotalQuantity)
-            </td>
-        </tr>
+    function SearchReturnedOrderTable() {
+        $.ajax({
+            url: '/Admin/SearchReturnedOrders',
+            dataType: "html",
+            data: { searchString: search.value },
+            success: function (result) {
+
+                $("#returnedOrdersTable").html(result);
+            },
+            error: function (xhr, status, error) {
+                alertify.error("Error");
+            }
+        });
     }
-
-</table>
+</script>
