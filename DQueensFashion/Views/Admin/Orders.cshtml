@@ -26,67 +26,48 @@
 
 </div>
 
-<h2>View Orders</h2>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.LineItems)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateCreatedString)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CustomerName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TotalAmount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TotalQuantity)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OrderStatus)
-        </th>
-        <th></th>
-    </tr>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">All orders</h3>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @{
-                    foreach (var lineItem in item.LineItems)
-                    {
-                        <p>@lineItem.Product ( @lineItem.Quantity ) </p>
-                    }
-                }
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateCreatedString)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CustomerName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TotalAmount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TotalQuantity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OrderStatus)
-            </td>
-            <td>
-                <button class="btn btn-primary" onclick="UpdateStatus(@item.OrderId)">Update status</button>
-            </td>
-        </tr>
-    }
+                <div class="card-tools">
+                    <div class="input-group input-group-sm" style="width: 150px;">
+                        <input type="text" name="table_search" class="form-control float-right" id="search" placeholder="Search">
 
-</table>
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-default"><i class="fas fa-search" onclick="SearchOrderTable()"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body table-responsive p-0" style="height: 65vh">
+
+                @Html.Partial("_ordersTable",Model)
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
 
 
 <script>
+    var search = document.getElementById("search");
+
     function UpdateStatus(orderId) {
         var url = "/Admin/UpdateOrderStatus/" + orderId;
 
@@ -94,6 +75,20 @@
             $("#updateOrder").modal("show");
 
         })
+    }
+
+    function SearchOrderTable() {
+         $.ajax({
+            url: '/Admin/SearchOrders',
+            dataType: "html",
+            data: { searchString: search.value },
+            success: function (result) {
+                $("#ordersTable").html(result);
+            },
+             error: function (xhr, status, error) {
+                 alertify.error("Error");
+            }
+        });
     }
 
 </script>

@@ -286,6 +286,7 @@ namespace DQueensFashion.Controllers
             List<LineItem> lineItems = new List<LineItem>();
             lineItems.Add(lineItem);
 
+
             Order order = new Order()
             {
                 Customer = customer,

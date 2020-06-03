@@ -18,6 +18,7 @@ namespace DQueensFashion.Models
         public int TotalQuantity { get; set; }
         public string OrderStatus { get; set; }
         public IEnumerable<ViewLineItem> LineItems { get; set; }
+        public string LineItemConcatenatedString { get; set; }
     }
 
     public class ViewLineItem
