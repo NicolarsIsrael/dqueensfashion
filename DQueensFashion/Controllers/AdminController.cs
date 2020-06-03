@@ -495,7 +495,7 @@ namespace DQueensFashion.Controllers
             return View(orderModel);
         }
 
-        public ActionResult ViewDeletedOrders()
+        public ActionResult DeletedOrders()
         {
             IEnumerable<ViewOrderViewModel> orderModel = _orderService.GetDeletedOrders()
                .Select(order => new ViewOrderViewModel()
