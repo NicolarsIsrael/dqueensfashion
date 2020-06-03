@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<DQueensFashion.Models.ViewOrderViewModel>
 
-<table class="table table-head-fixed  table-striped" id="processingOrdersTable">
+<table class="table table-head-fixed  table-striped" id="completedOrdersTable">
     <thead>
         <tr>
             <th>ID</th>
@@ -41,10 +41,7 @@
             </tr>
 
         }
-        @if (Model.Count() == 0)
-        {
-            <div style="text-align:center">No item</div>
-        }
+
     </tbody>
 </table>
 
