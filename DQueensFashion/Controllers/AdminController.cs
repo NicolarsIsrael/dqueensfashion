@@ -35,7 +35,7 @@ namespace DQueensFashion.Controllers
             return View();
         }
 
-        public ActionResult ViewCategories()
+        public ActionResult Categories()
         {
             IEnumerable<ViewCategoryViewModel> categories = _categoryService.GetAllCategories()
                 .Select(c => new ViewCategoryViewModel()
@@ -76,7 +76,7 @@ namespace DQueensFashion.Controllers
                 };
                 _categoryService.AddCategory(category);
 
-                return RedirectToAction(nameof(ViewCategories));
+                return RedirectToAction(nameof(Categories));
             }
             catch (Exception)
             {
@@ -127,7 +127,7 @@ namespace DQueensFashion.Controllers
                 category.Name = categoryModel.Name;
                 _categoryService.UpdateCategory(category);
 
-                return RedirectToAction(nameof(ViewCategories));
+                return RedirectToAction(nameof(Categories));
             }
             catch (Exception)
             {

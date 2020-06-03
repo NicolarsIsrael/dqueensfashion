@@ -460,7 +460,7 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Admin\AddCategory.cshtml" />
-    <Content Include="Views\Admin\ViewCategories.cshtml" />
+    <Content Include="Views\Admin\Categories.cshtml" />
     <Content Include="Views\Admin\Dashboard.cshtml" />
     <Content Include="Views\Admin\EditCategory.cshtml" />
     <Content Include="Views\Admin\AddProduct.cshtml" />
