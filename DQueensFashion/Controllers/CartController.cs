@@ -22,7 +22,7 @@ namespace DQueensFashion.Controllers
             return View();
         }
 
-        public ActionResult AddToCart(int id)
+        public ActionResult AddToCart(int id,int quantity=1)
         {
             Product product = _productService.GetProductById(id);
             if (product == null)
@@ -31,7 +31,7 @@ namespace DQueensFashion.Controllers
             if (Session["cart"] == null)
             {
                 List<Cart> cart = new List<Cart>();
-                cart.Add(new Cart { Product = product, Quantity = 1,Price = product.Price });
+                cart.Add(new Cart { Product = product, Quantity = quantity,Price = product.Price * quantity });
                 Session["cart"] = cart;
             }
             else
@@ -40,12 +40,12 @@ namespace DQueensFashion.Controllers
                 int index = isExist(id);
                 if (index != -1)
                 {
-                    cart[index].Quantity++;
+                    cart[index].Quantity+=quantity;
                     cart[index].Price = cart[index].Product.Price * cart[index].Quantity;
                 }
                 else
                 {
-                    cart.Add(new Cart { Product = product, Quantity = 1, Price = product.Price });
+                    cart.Add(new Cart { Product = product, Quantity = quantity, Price = product.Price * quantity });
                 }
                 Session["cart"] = cart;
             }

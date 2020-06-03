@@ -24,12 +24,12 @@ $.ajax({
 });
 
 
-function AddToCart(productId) {
-
+function AddToCart(productId, _quantity) {
+    
     $.ajax({
-        url: '/Cart/addtocart/' + productId,
+        url: '/Cart/addtocart/',
         dataType: "html",
-        data: { id: productId},
+        data: { id: productId, quantity:_quantity },
         success: function (result) {
             $("#navbarCart").html(result);
             alertify.success("Product added to cart");
