@@ -470,7 +470,7 @@ namespace DQueensFashion.Controllers
             return View(orderModel);
         }
 
-        public ActionResult ViewReturnedOrders()
+        public ActionResult ReturnedOrders()
         {
             IEnumerable<ViewOrderViewModel> orderModel = _orderService.GetReturnedOrders()
                 .Select(order => new ViewOrderViewModel()
@@ -565,7 +565,7 @@ namespace DQueensFashion.Controllers
             order.OrderStatus = OrderStatus.Returned;
             _orderService.UpdateOrder(order);
 
-            return RedirectToAction(nameof(ViewReturnedOrders));
+            return RedirectToAction(nameof(ReturnedOrders));
         }
 
         public ActionResult CompleteOrder(int id)

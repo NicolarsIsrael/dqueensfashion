@@ -481,7 +481,7 @@
     <Content Include="Views\Admin\Orders.cshtml" />
     <Content Include="Views\Admin\ProcessingOrders.cshtml" />
     <Content Include="Views\Admin\DeliveredOrders.cshtml" />
-    <Content Include="Views\Admin\ViewReturnedOrders.cshtml" />
+    <Content Include="Views\Admin\ReturnedOrders.cshtml" />
     <Content Include="Views\Admin\ViewDeletedOrders.cshtml" />
     <Content Include="Views\Admin\ViewCompletedOrders.cshtml" />
     <Content Include="Views\Admin\_updateOrderStatus.cshtml" />
