@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<DQueensFashion.Models.ViewOrderViewModel>
 
-<table class="table table-head-fixed  table-striped" id="processingOrdersTable">
+
+<table class="table table-head-fixed  table-striped" id="deliveredOrdersTable">
     <thead>
         <tr>
             <th>ID</th>
@@ -40,7 +41,8 @@
                     @Html.DisplayFor(modelItem => item.DateCreatedString)
                 </td>
                 <td>
-                    @Html.ActionLink("Deliver", "DeliverOrder", new { id = item.OrderId })
+                    @Html.ActionLink("Returned", "ReturnOrder", new { id = item.OrderId }) | 
+                    @Html.ActionLink("Completed", "CompleteOrder", new { id = item.OrderId })
                 </td>
             </tr>
 
@@ -51,4 +53,3 @@
         }
     </tbody>
 </table>
-

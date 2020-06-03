@@ -9,7 +9,6 @@
             <th>Total Qty</th>
             <th>Total Amt</th>
             <th>Date</th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -38,9 +37,6 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.DateCreatedString)
-                </td>
-                <td>
-                    @Html.ActionLink("Deliver", "DeliverOrder", new { id = item.OrderId })
                 </td>
             </tr>
 

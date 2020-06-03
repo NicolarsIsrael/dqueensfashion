@@ -490,6 +490,8 @@
     <Content Include="Views\Shared\_dashboardLayout.cshtml" />
     <Content Include="Views\Admin\_ordersTable.cshtml" />
     <Content Include="Views\Admin\_processingOrdersTable.cshtml" />
+    <Content Include="Views\Admin\_processingOrdersTable - Copy.cshtml" />
+    <Content Include="Views\Admin\_deliveredOrdersTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
