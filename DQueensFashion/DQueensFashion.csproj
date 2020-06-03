@@ -478,7 +478,7 @@
     <Content Include="Views\Cart\_increaseQuantity.cshtml" />
     <Content Include="Views\Home\_navbarCategories.cshtml" />
     <Content Include="Views\Product\_productQuickView.cshtml" />
-    <Content Include="Views\Admin\ViewOrders.cshtml" />
+    <Content Include="Views\Admin\Orders.cshtml" />
     <Content Include="Views\Admin\ViewProcessingOrders.cshtml" />
     <Content Include="Views\Admin\ViewDeliveredOrders.cshtml" />
     <Content Include="Views\Admin\ViewReturnedOrders.cshtml" />

@@ -395,7 +395,7 @@ namespace DQueensFashion.Controllers
             return View(productModel);
         }
 
-        public ActionResult ViewOrders()
+        public ActionResult Orders()
         {
             IEnumerable<ViewOrderViewModel> orderModel = _orderService.GetAllOrders()
                 .Select(order => new ViewOrderViewModel()
@@ -614,7 +614,7 @@ namespace DQueensFashion.Controllers
             order.OrderStatus = orderModel.OrderStatus;
             _orderService.UpdateOrder(order);
 
-            return RedirectToAction(nameof(ViewOrders));
+            return RedirectToAction(nameof(Orders));
         }
 
         #region private functions
