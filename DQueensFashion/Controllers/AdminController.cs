@@ -449,7 +449,7 @@ namespace DQueensFashion.Controllers
                 || order.LineItemConcatenatedString.ToLower().Contains(searchString.ToLower())
                 || order.OrderStatus.ToString().ToLower().Contains(searchString.ToLower())
                 || (string.Compare(order.OrderId.ToString(),searchString,true)==0)
-                );
+                ).ToList();
 
             return PartialView("_ordersTable",orderModel);
         }
@@ -479,6 +479,45 @@ namespace DQueensFashion.Controllers
             return View(orderModel);
         }
 
+        public ActionResult SearchProcessingOrders(string searchString)
+        {
+            try
+            {
+                IEnumerable<ViewOrderViewModel> orderModel = _orderService.GetProcessingOrders()
+                       .Select(order => new ViewOrderViewModel()
+                       {
+                           OrderId = order.Id,
+                           CustomerId = order.Customer.Id,
+                           CustomerName = order.Customer.Fullname,
+                           TotalAmount = order.TotalAmount,
+                           TotalQuantity = order.TotalQuantity,
+                           LineItems = order.LineItems
+                               .Select(lineItem => new ViewLineItem()
+                               {
+                                   Product = lineItem.Product.Name,
+                                   Quantity = lineItem.Quantity,
+                                   TotalAmount = lineItem.TotalAmount,
+                               }),
+                           DateCreated = order.DateCreated,
+                           DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy : hh-mm-ss"),
+                           LineItemConcatenatedString = string.Join(",", order.LineItems.Select(x => x.Product.Name)),
+                           DateModified = order.DateModified,
+                       }).OrderBy(order => order.DateModified).ToList();
+
+                if (!string.IsNullOrEmpty(searchString))
+                    orderModel = orderModel.Where(order => order.CustomerName.ToLower().Contains(searchString.ToLower())
+                    || order.LineItemConcatenatedString.ToLower().Contains(searchString.ToLower())
+                    || (string.Compare(order.OrderId.ToString(), searchString, true) == 0)
+                    ).ToList();
+                return PartialView("_processingOrdersTable", orderModel);
+            }
+            catch (Exception ex)
+            {
+                var a = ex;
+                throw;
+            }
+        }
+        
         public ActionResult DeliveredOrders()
         {
             IEnumerable<ViewOrderViewModel> orderModel = _orderService.GetDeliveredOrders()
