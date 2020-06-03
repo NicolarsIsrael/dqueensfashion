@@ -420,7 +420,7 @@ namespace DQueensFashion.Controllers
             return View(orderModel);
         }
 
-        public ActionResult ViewProcessingOrders()
+        public ActionResult ProcessingOrders()
         {
             IEnumerable<ViewOrderViewModel> orderModel = _orderService.GetProcessingOrders()
                 .Select(order => new ViewOrderViewModel()
