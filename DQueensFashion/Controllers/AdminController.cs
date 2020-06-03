@@ -136,7 +136,7 @@ namespace DQueensFashion.Controllers
             }
         }
 
-        public ActionResult ViewProducts()
+        public ActionResult Products()
         {
             IEnumerable<ViewProductsViewModel> products = _productService.GetAllProducts()
                 .Select(p => new ViewProductsViewModel()
@@ -242,7 +242,7 @@ namespace DQueensFashion.Controllers
             };
 
             _productService.AddProduct(product);
-            return RedirectToAction(nameof(ViewProducts));
+            return RedirectToAction(nameof(Products));
         }
 
         public ActionResult EditProduct(int id=0)
@@ -367,7 +367,7 @@ namespace DQueensFashion.Controllers
             product.ImagePath4 = string.IsNullOrEmpty(imgPath4) ? product.ImagePath4 : imgPath4;
 
             _productService.UpdateProduct(product);
-            return RedirectToAction(nameof(ViewProducts));
+            return RedirectToAction(nameof(Products));
         }
 
         public ActionResult ProductDetails(int id=0)
