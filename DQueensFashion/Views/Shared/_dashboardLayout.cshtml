@@ -85,10 +85,20 @@
                             if (User.IsInRole(AppConstant.AdminRole))
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link" asp-area="" href="@Url.Action("viewcourses","lecturer")">
+                                    <a class="nav-link" asp-area="" href="@Url.Action("Viewcategories","Admin")">
                                         <i class="fas fa-th"></i>
                                         <p>
-                                            COURSES
+                                            CATEGORIES
+                                        </p>
+                                    </a>
+
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" href="@Url.Action("viewproducts","Admin")">
+                                        <i class="fas fa-th"></i>
+                                        <p>
+                                            PRODUCTCS
                                         </p>
                                     </a>
 

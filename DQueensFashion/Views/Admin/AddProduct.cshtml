@@ -3,11 +3,18 @@
 
 @{
     ViewBag.Title = "AddProduct";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_dashboardLayout.cshtml";
 }
 <script src="~/Content/js/jquery.js"></script>
 
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+<style>
+    .select2-container--default .select2-selection--multiple .select2-selection__choice {
+        background-color: #212529;
+    }
+</style>
+
+
 @using (Html.BeginForm("AddProduct", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
