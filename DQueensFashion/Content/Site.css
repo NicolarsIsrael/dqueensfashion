@@ -18,7 +18,7 @@
 input,
 select,
 textarea {
-    max-width: 280px;
+    /*max-width: 280px;*/
 }
 
 
@@ -307,6 +307,16 @@ textarea {
 .product_button {
     margin: 5px;
 }
+
+.card-center {
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    height: 80vh;
+}
+
 
 /*smart phones*/
 @media screen and (max-width: 420px) and (min-width: 0px) {
