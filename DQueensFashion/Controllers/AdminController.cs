@@ -166,8 +166,33 @@ namespace DQueensFashion.Controllers
                     Image1 = p.ImagePath1,
                     DateCreated = p.DateCreated,
                     DateCreatedString = p.DateCreated.ToString("dd/MMM/yyyy : hh-mm-ss"),
-                }).OrderBy(p=>p.DateCreated).ToList();
+                }).OrderBy(p=>p.Name).ToList();
             return View(products);
+        }
+
+        public ActionResult SearchProducts(string searchString)
+        {
+            IEnumerable<ViewProductsViewModel> products = _productService.GetAllProducts()
+              .Select(p => new ViewProductsViewModel()
+              {
+                  Id = p.Id,
+                  Name = p.Name,
+                  Quantity = p.Quantity.ToString(),
+                  Price = p.Price.ToString(),
+                  Category = p.Category.Name,
+                  Image1 = p.ImagePath1,
+                  DateCreated = p.DateCreated,
+                  DateCreatedString = p.DateCreated.ToString("dd/MMM/yyyy : hh-mm-ss"),
+              }).OrderBy(p => p.Name).ToList();
+
+            if (!string.IsNullOrEmpty(searchString))
+                products = products.Where(p => p.Name.ToLower().Contains(searchString.ToLower())
+                || p.Category.ToLower().Contains(searchString.ToLower())
+                || string.Compare(p.Quantity, searchString, true) == 0
+                || string.Compare(p.Price, searchString, true) == 0
+                );
+
+            return PartialView("_productsTable",products);
         }
 
         public ActionResult AddProduct()

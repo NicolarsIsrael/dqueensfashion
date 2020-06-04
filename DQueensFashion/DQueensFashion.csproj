@@ -496,6 +496,7 @@
     <Content Include="Views\Admin\_completedOrdersTable.cshtml" />
     <Content Include="Views\Admin\_deletedOrdersTable.cshtml" />
     <Content Include="Views\Admin\_categoriesTable.cshtml" />
+    <Content Include="Views\Admin\_productsTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
