@@ -4,51 +4,112 @@
     Layout = "~/Views/Shared/_dashboardLayout.cshtml";
 }
 
-<h2>Product Details</h2>
-<div class="row">
-    <div class="col-md-6">
-        <img src="@Url.Content(Model.Image1)" style="width:100%;height:300px" />
-        <div class="row mt-5">
-            @{
-                if (!string.IsNullOrEmpty(Model.Image2))
-                {
-                    <div class="col-md-4">
-                        <img src="@Url.Content(Model.Image2)" style="width:100%;height:100px" />
-                    </div>
-                }
+<style>
+    .checked {
+        color: orange;
+    }
 
-                if (!string.IsNullOrEmpty(Model.Image3))
-                {
-                    <div class="col-md-4">
-                        <img src="@Url.Content(Model.Image3)" style="width:100%;height:100px" />
-                    </div>
-                }
+    .product-details {
+        margin: 0px;
+    }
+</style>
 
-                if (!string.IsNullOrEmpty(Model.Image4))
-                {
-                    <div class="col-md-4">
-                        <img src="@Url.Content(Model.Image4)" style="width:100%;height:100px" />
-                    </div>
-                }
-            }
-
-          
-        </div>
+<div class="card" style="width:1000px">
+    <div class="card-header">
+        <h4 style="text-align:center">Product Details</h4>
     </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="@Url.Content(Model.Image1)" style="width:100%;height:300px" id="productDisplayImage" />
+                <div class="row" style="margin-top:10px">
+                    @{
+                        if (!string.IsNullOrEmpty(Model.Image1))
+                        {
+                            <div class="col-3">
+                                <img src="@Url.Content(Model.Image1)" style="width:100%;height:100px" onclick='changeProductImage("image1")' id="image1" />
+                            </div>
+                        }
 
-    <div class="col-md-6">
-        <h5>Name: @Model.Name</h5>
-        <h5>Description: @Model.Description</h5>
-        <h5>Price: @Model.Price</h5>
-        <h5>Quantity: @Model.Quantity</h5>
-        <h5>Category: @Model.Category</h5>
-        <h5>Tags: @Model.Tags</h5>
-        <h5>Date created: @Model.DateCreatedString</h5>
+                        if (!string.IsNullOrEmpty(Model.Image2))
+                        {
+                            <div class="col-3">
+                                <img src="@Url.Content(Model.Image2)" style="width:100%;height:100px" onclick='changeProductImage("image2")' id="image2" />
+                            </div>
+                        }
 
-        @Html.ActionLink("Edit", "EditProduct", new { id = Model.Id })
+                        if (!string.IsNullOrEmpty(Model.Image3))
+                        {
+                            <div class="col-3">
+                                <img src="@Url.Content(Model.Image3)" style="width:100%;height:100px" onclick='changeProductImage("image3")' id="image3" />
+                            </div>
+                        }
 
-        @Html.ActionLink("view products", "Products")
+                        if (!string.IsNullOrEmpty(Model.Image4))
+                        {
+                            <div class="col-3">
+                                <img src="@Url.Content(Model.Image4)" style="width:100%;height:100px" onclick='changeProductImage("image4")' id="image4" />
+                            </div>
+                        }
+                    }
+
+
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-12">
+                        <h1>@Model.Name</h1>
+                    </div>
+                </div>
+                <hr class="m-1" />
+                <div class="row">
+                    <div class="col-12">
+                        <p class="product-details">Category: @Model.Category</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <p class="product-details">Product Availability: @Model.Quantity</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <p class="product-details">Price: $@Model.Price</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <p class="product-details" style="display:inline">Rating:</p>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <p class="product-details">Description</p>
+                        <div class="card p-2"><p class="product-details">@Model.Description</p></div>
+                    </div>
+                </div>
+
+                @Html.ActionLink("Edit", "EditProduct", new { id = Model.Id })
+
+                @Html.ActionLink("view products", "Products")
+            </div>
+
+        </div>
     </div>
 </div>
 
-    
+
+<script>
+    var productImage = document.getElementById("productDisplayImage");
+
+    function changeProductImage(imgId) {
+        productImage.src = document.getElementById(imgId).src;
+    }
+</script>

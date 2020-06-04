@@ -21,6 +21,10 @@
         background:#fff; 
     padding:0 10px; 
     }
+
+    .product-details {
+        margin: 0px;
+    }
 </style>
 
 <div class="container-fluid body-content">
@@ -139,11 +143,6 @@
     </div>
 </div>
 
-<style>
-    .product-details {
-        margin: 0px;
-    }
-</style>
 
 <script>
     var productQuantity = document.getElementById("productQuantity");
@@ -174,7 +173,7 @@
     function changeProductImage(imgId) {
 
         productImage.src = document.getElementById(imgId).src;
-        }
+    }
 
     function addToCartFromProductDetails(productId) {
         AddToCart(productId,quantity.value);
