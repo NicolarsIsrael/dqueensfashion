@@ -498,6 +498,7 @@
     <Content Include="Views\Admin\_categoriesTable.cshtml" />
     <Content Include="Views\Admin\_productsTable.cshtml" />
     <Content Include="Views\Customer\_wishlistTable.cshtml" />
+    <Content Include="Views\Customer\_ordersTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

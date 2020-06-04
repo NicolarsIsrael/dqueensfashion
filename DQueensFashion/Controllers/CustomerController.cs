@@ -142,6 +142,41 @@ namespace DQueensFashion.Controllers
             return View(orderModel);
         }
 
+        public ActionResult SearchOrders(string searchString)
+        {
+            Customer customer = GetLoggedInCustomer();
+            if (customer == null)
+                throw new Exception(); ;
+
+            IEnumerable<ViewOrderViewModel> orderModel = _orderService.GetAllOrdersForCustomer(customer.Id)
+                .Select(order => new ViewOrderViewModel()
+                {
+                    OrderId = order.Id,
+                    CustomerId = order.Customer.Id,
+                    TotalAmount = order.TotalAmount,
+                    TotalQuantity = order.TotalQuantity,
+                    LineItems = order.LineItems
+                        .Select(lineItem => new ViewLineItem()
+                        {
+                            Product = lineItem.Product.Name,
+                            Quantity = lineItem.Quantity,
+                            TotalAmount = lineItem.TotalAmount,
+                        }),
+                    OrderStatus = order.OrderStatus.ToString(),
+                    DateCreated = order.DateCreated,
+                    DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy : hh-mm-ss"),
+                    LineItemConcatenatedString = string.Join(",", order.LineItems.Select(x => x.Product.Name)),
+                }).OrderBy(order => order.DateCreated).ToList();
+
+            if (!string.IsNullOrEmpty(searchString))
+                orderModel = orderModel.Where(order => order.LineItemConcatenatedString.ToLower().Contains(searchString.ToLower())
+                || order.OrderStatus.ToString().ToLower().Contains(searchString.ToLower())
+                || (string.Compare(order.OrderId.ToString(), searchString, true) == 0)
+                ).ToList();
+
+
+            return PartialView("_ordersTable", orderModel);
+        }
 
         #region private function
         private string GetLoggedInUserId()
