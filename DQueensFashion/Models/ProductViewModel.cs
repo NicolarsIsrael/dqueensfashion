@@ -23,7 +23,7 @@ namespace DQueensFashion.Models
         [Required]
         public decimal Price { get; set; }
 
-        [Range(1,int.MaxValue,ErrorMessage ="Quantity must be greater than 1")]
+        [Range(1,int.MaxValue,ErrorMessage ="Quantity must be greater than 0")]
         [Required]
         public int Quantity { get; set; }
 

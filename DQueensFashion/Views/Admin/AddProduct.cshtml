@@ -20,8 +20,7 @@
 
         <div>
             <div class="form-horizontal">
-                <h4>Add Product</h4>
-                <hr />
+                <h6 style="text-align:center">Add Product</h6>
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="row">
                     <div class="col-md-8 col-12">
@@ -84,8 +83,7 @@
                                     <div class="form-group">
                                         @Html.LabelFor(model => model.Tags, htmlAttributes: new { @class = "control-label col-12" })
                                         <div class="col-12">
-                                            <select class="form-control js-example-tokenizer" multiple="multiple" name="Tags" style="border:1px solid #ced4da">
-                                            </select>
+                                            <select class="form-control js-example-tokenizer" multiple="multiple" name="Tags" style="border:1px solid #ced4da"></select>
                                         </div>
                                     </div>
                                 </div>
@@ -220,15 +218,16 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Create" class="btn btn-primary" onclick="return validate()" />
-                    </div>
+                    <button type="submit" class="btn" style="background-color:#E97128;color:white">
+                        <img src="~/Content/Images/plus.svg" />
+                        Add
+                    </button>
                 </div>
             </div>
         </div>
     }
 
-<div>
+<div  class="mb-2">
     @Html.ActionLink("view products", "Products")
 </div>
 
@@ -459,17 +458,24 @@
     }
 
     function validate() {
-        if (!validateImageFiles(img1_File))
+        if (!validateImageFiles(img1_File)) {
+            alertify.error("Invalid image 1 file");
             return false;
+        }
+        if (!validateImageFiles(img2_File)) {
+           alertify.error("Invalid image 2 file");
+            return false;
+        }
 
-        if (!validateImageFiles(img2_File))
+        if (!validateImageFiles(img3_File)) {
+            alertify.error("Invalid image 3 file");
             return false;
+        }
 
-        if (!validateImageFiles(img3_File))
+        if (!validateImageFiles(img4_File)) {
+          alertify.error("Invalid image 4 file");
             return false;
-
-        if (!validateImageFiles(img4_File))
-            return false;
+        }
     }
 
 
