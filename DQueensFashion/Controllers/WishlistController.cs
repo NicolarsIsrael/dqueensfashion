@@ -60,42 +60,7 @@ namespace DQueensFashion.Controllers
 
         }
 
-        public ActionResult RemoveFromWishList(int id)
-        {
-            try
-            {
-                var customer = GetLoggedInCustomer();
-                if (customer == null)
-                    throw new Exception();
-
-                WishList wishList = _wishListService.GetWishListById(id);
-                if (wishList == null)
-                    throw new Exception();
-
-                if (wishList.CustomerId != customer.Id)
-                    throw new Exception();
-
-                _wishListService.DeleteWishList(wishList);
-
-                IEnumerable<ViewWishListViewModel> wishLists = _wishListService.GetAllCustomerWishList(customer.Id)
-                    .Select(w => new ViewWishListViewModel()
-                    {
-                        ProductId = w.ProductId,
-                        ProductImagePath = w.ProductImagePath,
-                        ProductName = w.ProductName,
-                        WishListId=w.Id,
-                    }).ToList();
-
-
-                return PartialView("_wishListTable", wishLists);
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
-
+      
         #region private function
         private string GetLoggedInUserId()
         {

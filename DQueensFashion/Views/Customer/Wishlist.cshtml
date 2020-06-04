@@ -5,41 +5,71 @@
     Layout = "~/Views/Shared/_dashboardLayout.cshtml";
 }
 
-<h2>Wishlist</h2>
 
-<table class="table" id="wishListTable">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ProductName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ProductImagePath)
-        </th>
-        <th></th>
-    </tr>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Wishlist</h3>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductName)
-            </td>
-            @{
-                if (!string.IsNullOrEmpty(item.ProductImagePath))
-                {
-                    <td>
-                        <img src="@Url.Content(item.ProductImagePath)" style="height:50px;width:100px;" />
-                    </td>
-                }
-                else
-                {
-                    <td></td>
-                }
+                <div class="card-tools">
+                    <div class="input-group input-group-sm" style="width: 150px;">
+                        <input type="text" name="table_search" class="form-control float-right" id="wishListSearch" placeholder="Search">
+
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-default" style="width:50px" onclick="SearchWishListTable()">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body table-responsive p-0" style="height: 65vh">
+
+                @Html.Partial("_wishlistTable", Model)
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+</div>
+
+<script>
+    var wishListSearch = document.getElementById("wishListSearch");
+
+    function SearchWishListTable() {
+        $.ajax({
+            url: '/Customer/SearchWishList',
+            dataType: "html",
+            data: { searchString: wishListSearch.value },
+            success: function (result) {
+
+                $("#wishlistTable").html(result);
+            },
+            error: function (xhr, status, error) {
+                alertify.error("Error");
             }
-            <td>
-               <button class="btn btn-primary" onclick="RemoveFromWishList(@item.WishListId)">Remove</button>
-            </td>
-        </tr>
+        });
     }
 
-</table>
+
+    function RemoveFromWishList(wishlistId) {
+        console.log(wishListSearch.value);
+        debugger;
+            $.ajax({
+                url: '/Customer/removefromwishlist/',
+                dataType: "html",
+                data: { id: wishlistId, searchString: wishListSearch.value },
+                success: function (result) {
+                    $("#wishlistTable").html(result);
+                },
+                error: function (xhr, status, error) {
+
+                }
+            });
+
+        }
+
+
+</script>

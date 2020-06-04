@@ -54,6 +54,66 @@ namespace DQueensFashion.Controllers
             return View(wishLists);
         }
 
+        public ActionResult SearchWishList(string searchString)
+        {
+            Customer customer = GetLoggedInCustomer();
+            if (customer == null)
+                throw new Exception();
+
+            IEnumerable<ViewWishListViewModel> wishLists = _wishListService.GetAllCustomerWishList(customer.Id)
+                .Select(w => new ViewWishListViewModel()
+                {
+                    ProductId = w.ProductId,
+                    ProductImagePath = w.ProductImagePath,
+                    ProductName = w.ProductName,
+                    WishListId = w.Id,
+                }).ToList();
+
+            if (!string.IsNullOrEmpty(searchString))
+                wishLists = wishLists.Where(w => w.ProductName.ToLower().Contains(searchString.ToLower()));
+
+            return PartialView("_wishlistTable",wishLists);
+        }
+
+        public ActionResult RemoveFromWishList(int id, string searchString)
+        {
+            try
+            {
+                var customer = GetLoggedInCustomer();
+                if (customer == null)
+                    throw new Exception();
+
+                WishList wishList = _wishListService.GetWishListById(id);
+                if (wishList == null)
+                    throw new Exception();
+
+                if (wishList.CustomerId != customer.Id)
+                    throw new Exception();
+
+                _wishListService.DeleteWishList(wishList);
+
+                IEnumerable<ViewWishListViewModel> wishLists = _wishListService.GetAllCustomerWishList(customer.Id)
+                    .Select(w => new ViewWishListViewModel()
+                    {
+                        ProductId = w.ProductId,
+                        ProductImagePath = w.ProductImagePath,
+                        ProductName = w.ProductName,
+                        WishListId = w.Id,
+                    }).ToList();
+
+                if (!string.IsNullOrEmpty(searchString))
+                    wishLists = wishLists.Where(w => w.ProductName.ToLower().Contains(searchString.ToLower()));
+
+                return PartialView("_wishlistTable", wishLists);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+
         public ActionResult Orders()
         {
             Customer customer = GetLoggedInCustomer();

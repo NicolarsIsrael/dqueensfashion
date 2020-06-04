@@ -91,22 +91,6 @@ function AddToWishList(productId) {
 
 }
 
-function RemoveFromWishList(wishlistId) {
-
-    $.ajax({
-        url: '/wishlist/removefromwishlist/' + wishlistId,
-        dataType: "html",
-        data: { id: wishlistId },
-        success: function (result) {
-            $("#wishListTable").html(result);
-        },
-        error: function (xhr, status, error) {
-            
-        }
-    });
-
-}
-
 function ShopByCategory(categoryId) {
     window.location.href = "/Product/Index?categoryId=" + categoryId;
 }

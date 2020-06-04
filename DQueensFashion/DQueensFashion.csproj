@@ -472,7 +472,6 @@
     <Content Include="Views\Cart\_navbarCart.cshtml" />
     <Content Include="Views\Customer\Dashboard.cshtml" />
     <Content Include="Views\Customer\Wishlist.cshtml" />
-    <Content Include="Views\Wishlist\_wishListTable.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Product\_productsList.cshtml" />
     <Content Include="Views\Product\ProductDetails.cshtml" />
@@ -498,10 +497,12 @@
     <Content Include="Views\Admin\_deletedOrdersTable.cshtml" />
     <Content Include="Views\Admin\_categoriesTable.cshtml" />
     <Content Include="Views\Admin\_productsTable.cshtml" />
+    <Content Include="Views\Customer\_wishlistTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Images\Products\" />
+    <Folder Include="Views\Wishlist\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
