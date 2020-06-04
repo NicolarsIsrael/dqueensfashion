@@ -13,150 +13,264 @@
         background-color: #212529;
     }
 </style>
+
+
+
+
+
 @using (Html.BeginForm("EditProduct", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    @Html.HiddenFor(m=>m.Id)
+
     <div>
         <div class="form-horizontal">
-            <h4>Edit Product</h4>
-            <hr />
+            <h6 style="text-align:center">Edit Product</h6>
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
+                <div class="col-md-8 col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-12" })
+                                        <div class="col-12">
+                                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.CategoryId, htmlAttributes: new { @class = "control-label  col-12" })
+                                        <div class="col-12">
+                                            <select class="form-control" name="@Html.NameFor(m=>m.CategoryId)">
+                                                @foreach (var item in Model.Categories)
+                                                {
+                                                    <option value="@item.Id">@item.Name</option>
+                                                }
+                                            </select>
+                                            @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.CategoryId, htmlAttributes: new { @class = "control-label  col-md-2" })
-                        <div class="col-md-10">
-                            <select class="form-control" name="@Html.NameFor(m=>m.CategoryId)">
-                                <option value="@Model.PreviousCategory.Id">@Model.PreviousCategory.Name</option>
-                                @foreach (var item in Model.Categories)
-                                {
-                                    <option value="@item.Id">@item.Name</option>
-                                }
-                            </select>
-                            @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Tags, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            <select class="form-control js-example-tokenizer" multiple="multiple" name="Tags">
-                                @foreach(var tags in Model.Tags)
-                                {
-                                    <option selected="selected">@tags</option>
-                                }
-                            </select>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-12" })
+                                <div class="col-12">
+                                    @Html.TextAreaFor(model => model.Description, new { @class = "form-control", @rows = 5 })
+                                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-12" })
+                                        <div class="col-12">
+                                            @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-12" })
+                                        <div class="col-12">
+                                            @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Tags, htmlAttributes: new { @class = "control-label col-12" })
+                                    <div class="col-12">
+                                        <select class="form-control js-example-tokenizer" multiple="multiple" name="Tags" style="border:1px solid #ced4da">
+                                            @foreach (var tags in Model.Tags)
+                                            {
+                                                <option selected="selected">@tags</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="row">
 
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.ImagePath1, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    <img class="img-responsive" id="targetImg1" style="height:162px;width:250px;margin-bottom:10px" src="@Url.Content(Model.ImagePath1)" />
-                                    <div class="custom-file">
-                                        <input type="file" class="form-control custom-file-input" name="ImageFile1" id="image1_Browse" accept="image/x-png,image/jpg,image/jpeg" />
-                                        <label class="custom-file-label" for="exampleInputFile">Select picture</label>
-                                    </div>
-                                    <p class="mb-0 text-danger" id="image1_sizeError"></p>
-                                    <p class="mb-0 text-danger" id="image1_formatError"></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.ImagePath2, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    <img class="img-responsive" id="targetImg2" style="height:162px;width:250px;margin-bottom:10px" src="@Url.Content(Model.ImagePath2)" />
-                                    <div class="custom-file">
-                                        <input type="file" class="form-control custom-file-input" name="ImageFile2" id="image2_Browse" accept="image/x-png,image/jpg,image/jpeg" />
-                                        <label class="custom-file-label" for="exampleInputFile">Select picture</label>
-                                    </div>
-                                    <p class="mb-0 text-danger" id="image2_sizeError"></p>
-                                    <p class="mb-0 text-danger" id="image2_formatError"></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.ImagePath3, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    <img class="img-responsive" id="targetImg3" style="height:162px;width:250px;margin-bottom:10px" src="@Url.Content(Model.ImagePath3)" />
-                                    <div class="custom-file">
-                                        <input type="file" class="form-control custom-file-input" name="ImageFile3" id="image3_Browse" accept="image/x-png,image/jpg,image/jpeg" />
-                                        <label class="custom-file-label" for="exampleInputFile">Select picture</label>
-                                    </div>
-                                    <p class="mb-0 text-danger" id="image3_sizeError"></p>
-                                    <p class="mb-0 text-danger" id="image3_formatError"></p>
-                                </div>
-                            </div>
-                        </div>
+                <div class="col-md-4 col-12">
+                    <div class="card card-outline card-primary collapsed-card" style="border-top: 3px solid #E97128;">
+                        <div class="card-header">
+                            <h3 class="card-title">Image 1</h3>
 
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.ImagePath4, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    <img class="img-responsive" id="targetImg4" style="height:162px;width:250px;margin-bottom:10px" src="@Url.Content(Model.ImagePath4)" />
-                                    <div class="custom-file">
-                                        <input type="file" class="form-control custom-file-input" name="ImageFile4" id="image4_Browse" accept="image/x-png,image/jpg,image/jpeg" />
-                                        <label class="custom-file-label" for="exampleInputFile">Select picture</label>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                            <!-- /.card-tools -->
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <div class="col-12">
+                                        <img class="img-responsive" id="targetImg1" style="height:162px;width:250px;margin-bottom:10px" src="@Url.Content(Model.ImagePath1)" />
+                                        <div class="custom-file">
+                                            <input type="file" class="form-control custom-file-input" name="ImageFile1" id="image1_Browse" accept="image/x-png,image/jpg,image/jpeg" />
+                                            <label class="custom-file-label" for="exampleInputFile">Select picture</label>
+                                        </div>
+                                        <p class="mb-0 text-danger" id="image1_sizeError"></p>
+                                        <p class="mb-0 text-danger" id="image1_formatError"></p>
                                     </div>
-                                    <p class="mb-0 text-danger" id="image4_sizeError"></p>
-                                    <p class="mb-0 text-danger" id="image4_formatError"></p>
                                 </div>
                             </div>
                         </div>
+                        <!-- /.card-body -->
                     </div>
+                    <!-- /.card -->
+
+                    <div class="card card-outline card-primary collapsed-card" style="border-top: 3px solid #E97128;">
+                        <div class="card-header">
+                            <h3 class="card-title">Image 2</h3>
+
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                            <!-- /.card-tools -->
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <div class="col-12">
+                                        <img class="img-responsive" id="targetImg2" style="height:162px;width:250px;margin-bottom:10px" src="@Url.Content(Model.ImagePath2)" />
+                                        <div class="custom-file">
+                                            <input type="file" class="form-control custom-file-input" name="ImageFile2" id="image2_Browse" accept="image/x-png,image/jpg,image/jpeg" />
+                                            <label class="custom-file-label" for="exampleInputFile">Select picture</label>
+                                        </div>
+                                        <p class="mb-0 text-danger" id="image2_sizeError"></p>
+                                        <p class="mb-0 text-danger" id="image2_formatError"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+
+                    <div class="card card-outline card-primary collapsed-card" style="border-top: 3px solid #E97128;">
+                        <div class="card-header">
+                            <h3 class="card-title">Image 3</h3>
+
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                            <!-- /.card-tools -->
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <div class="col-12">
+                                        <img class="img-responsive" id="targetImg3" style="height:162px;width:250px;margin-bottom:10px" src="@Url.Content(Model.ImagePath3)" />
+                                        <div class="custom-file">
+                                            <input type="file" class="form-control custom-file-input" name="ImageFile3" id="image3_Browse" accept="image/x-png,image/jpg,image/jpeg" />
+                                            <label class="custom-file-label" for="exampleInputFile">Select picture</label>
+                                        </div>
+                                        <p class="mb-0 text-danger" id="image3_sizeError"></p>
+                                        <p class="mb-0 text-danger" id="image3_formatError"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+
+                    <div class="card card-outline card-primary collapsed-card" style="border-top: 3px solid #E97128;">
+                        <div class="card-header">
+                            <h3 class="card-title">Image 4</h3>
+
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                            <!-- /.card-tools -->
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <div class="col-12">
+                                        <img class="img-responsive" id="targetImg4" style="height:162px;width:250px;margin-bottom:10px" src="@Url.Content(Model.ImagePath4)" />
+                                        <div class="custom-file">
+                                            <input type="file" class="form-control custom-file-input" name="ImageFile4" id="image4_Browse" accept="image/x-png,image/jpg,image/jpeg" />
+                                            <label class="custom-file-label" for="exampleInputFile">Select picture</label>
+                                        </div>
+                                        <p class="mb-0 text-danger" id="image4_sizeError"></p>
+                                        <p class="mb-0 text-danger" id="image4_formatError"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-primary" onclick="return validate()" />
-                </div>
+                <button type="submit" class="btn" style="background-color:#E97128;color:white">
+                    <img src="~/Content/Images/edit.svg" />
+                    Edit
+                </button>
             </div>
         </div>
     </div>
 }
 
-<div>
+<div class="mb-2">
     @Html.ActionLink("view products", "Products")
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <script src="~/Content/js/content-file-input.js"></script>
@@ -385,24 +499,31 @@
     }
 
     function validate() {
-        if (!validateImageFiles(img1_File))
+        if (!validateImageFiles(img1_File)) {
+            alertify.error("Invalid image 1 file");
             return false;
+        }
+        if (!validateImageFiles(img2_File)) {
+           alertify.error("Invalid image 2 file");
+            return false;
+        }
 
-        if (!validateImageFiles(img2_File))
+        if (!validateImageFiles(img3_File)) {
+            alertify.error("Invalid image 3 file");
             return false;
+        }
 
-        if (!validateImageFiles(img3_File))
+        if (!validateImageFiles(img4_File)) {
+          alertify.error("Invalid image 4 file");
             return false;
-
-        if (!validateImageFiles(img4_File))
-            return false;
+        }
     }
 
 
     $(".js-example-tokenizer").select2({
         tags: true,
         tokenSeparators: [',', ' '],
-         selectOnClose: true,
+        selectOnClose: true,
     })
 
 
