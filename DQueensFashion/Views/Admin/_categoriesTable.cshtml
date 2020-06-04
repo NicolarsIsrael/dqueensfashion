@@ -1,0 +1,25 @@
+﻿@model IEnumerable<DQueensFashion.Models.ViewCategoryViewModel>
+
+
+<table class="table table-head-fixed  table-striped" id="categoriesTable">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Editcategory", new { id = item.Id })
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>

@@ -45,6 +45,23 @@ namespace DQueensFashion.Controllers
                 }).OrderBy(c => c.Name);
             return View(categories);
         }
+        
+        public ActionResult SearchCategories(string searchString)
+        {
+            IEnumerable<ViewCategoryViewModel> categories = _categoryService.GetAllCategories()
+               .Select(c => new ViewCategoryViewModel()
+               {
+                   Id = c.Id,
+                   Name = c.Name,
+               }).OrderBy(c => c.Name);
+
+            if (!string.IsNullOrEmpty(searchString))
+                categories = categories.Where(c => c.Name.ToLower().Contains(searchString.ToLower())
+                || string.Compare(c.Id.ToString(),searchString,true)==0
+                );
+
+            return PartialView("_categoriesTable",categories);
+        }
 
         public ActionResult AddCategory()
         {

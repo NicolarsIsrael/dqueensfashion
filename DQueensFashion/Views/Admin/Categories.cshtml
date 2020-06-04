@@ -5,28 +5,69 @@
     Layout = "~/Views/Shared/_dashboardLayout.cshtml";
 }
 
-<h2>View Categories</h2>
-
 <p>
-    @Html.ActionLink("Add new category", "addcategory")
+    
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Editcategory", new { id=item.Id }) 
-        </td>
-    </tr>
-}
+<div class="row">
+    <div class="col-12">
+        <div>
+            <div style="text-align:right;margin-bottom:10px;">
+                <a href="@Url.Action("AddCategory")" class = "btn btn-sm", style = "background-color:#E97128;color:white" >
+                    <img src="~/Content/Images/plus.svg" />
+                    Add new
+                </a>
+                
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Categories</h3>
 
-</table>
+
+                <div class="card-tools">
+
+                    <div class="input-group input-group-sm" style="width: 150px;">
+                        <input type="text" name="table_search" class="form-control float-right" id="search" placeholder="Search">
+
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-default" style="width:50px" onclick="SearchCategoriesTable()">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body table-responsive p-0" style="height: 60vh">
+
+                @Html.Partial("_categoriesTable", Model)
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+</div>
+
+
+<script>
+        var search = document.getElementById("search");
+
+    function SearchCategoriesTable() {
+         $.ajax({
+            url: '/Admin/SearchCategories',
+            dataType: "html",
+            data: { searchString: search.value },
+            success: function (result) {
+
+                $("#categoriesTable").html(result);
+            },
+            error: function (xhr, status, error) {
+                alertify.error("Error");
+            }
+        });
+    }
+</script>
