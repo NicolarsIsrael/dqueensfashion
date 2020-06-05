@@ -6,6 +6,7 @@
 }
 
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
 <style>
     .collapsible {
         background-color: #0a0c13;
@@ -44,17 +45,16 @@
         background-color: #f1f1f1;
     }
 
-    .filter-btn{
-        border:none;
+    .filter-btn {
+        border: none;
     }
 
-    .filter-btn:active,
-    .filter-btn:focus{
-        outline:none !important;
-        border:none !important;
-        box-shadow: none !important;
-    }
-
+        .filter-btn:active,
+        .filter-btn:focus {
+            outline: none !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
 </style>
 
 
@@ -97,7 +97,7 @@
                         </div>
                     </div>
                     <div class="col-12">
-                        <button class="btn btn-block filter-btn" onclick="SearchProduct()" id="btnFilter" style="background-color:#E97128;color:white;width:100%" >FILTER <img src="~/Content/Images/filter.svg" /></button>
+                        <button class="btn btn-block filter-btn" onclick="SearchProduct()" id="btnFilter" style="background-color:#E97128;color:white;width:100%">FILTER <img src="~/Content/Images/filter.svg" /></button>
                     </div>
                 </div>
 
@@ -106,7 +106,7 @@
         </div>
         <div class="col-md-8 col-sm-12">
 
-            @Html.Partial("_ProductsList",Model.Products)
+            @Html.Partial("_ProductsList", Model.Products)
 
 
         </div>
