@@ -1,80 +1,58 @@
 ﻿@model IEnumerable<DQueensFashion.Models.ViewProductsViewModel>
     <div id="productsList">
-        <div class="row" id="">
-            @foreach (var product in Model)
-            {
-                @*<div class="col-md-4 col-6">
-                    <div class="card">
-                        <div class="product">
-                            <a href="@Url.Action("ProductDetails","Product",new { id= product.Id})" class="atag">
-                                <img class="product_img" src="@Url.Content(product.Image1)" alt="product_img">
-                                <div class="product_info">
-                                    <h6 class="product_title">@product.Name</h6>
-                                    <strong class="product_price">@product.Price</strong>
-                                </div>
-                            </a>
-                            <hr style="margin:0">
-                            <div style="margin:5px 5px;cursor:pointer" class="float-right" onclick="AddToCart(@product.Id,1)">
-                                <img src="~/Content/Images/shopping-cart (orange).svg" class="product_button">
-                            </div>
-                            <div style="margin:5px 5px;cursor:pointer" class="float-right" onclick="AddToWishList(@product.Id)">
-                                <img src="~/Content/Images/heart.svg" class="product_button">
-                            </div>
-                            <div style="margin:5px 5px;cursor:pointer" class="float-right" onclick="productQuickView(@product.Id)">
-                                <img src="~/Content/Images/eye.svg" class="product_button">
-                            </div>
-                        </div>
-                    </div>
-                </div>*@
-
-                <div class="col-lg-4 col-12">
-
-                    <div class="product-box">
-                        <div onclick="NavigateToProductDetails(@product.Id)" style="cursor:pointer">
-                            <div class="product-time-label">New</div>
-                            <div class="product-discount-label">10%</div>
-                            <div class="img-box">
-                                <img src="@Url.Content(product.Image1)">
-                            </div>
-                        </div>
-                        <div class="product-details">
-                            <div onclick="NavigateToProductDetails(@product.Id)" style="cursor:pointer">
-                                <div class="product-title">@product.Name</div>
-                                <div class="product-category">@product.Category</div>
-                                <span class="product-initial-price">$@product.Price</span>
-                                <span class="product-price">$@product.Price</span>
-                            </div>
-                            <div class="star-rating">
-                                <i class="fas fa-star" id="star1" onclick="add(this,1)"></i>
-                                <i class="fas fa-star" id="star2" onclick="add(this,2)"></i>
-                                <i class="fas fa-star" id="star3" onclick="add(this,3)"></i>
-                                <i class="far fa-star" id="star4" onclick="add(this,4)"></i>
-                                <i class="far fa-star" id="star5" onclick="add(this,5)"></i>
-                                <span class="float-right mb-1">
-                                    <img src="~/Content/Images/eye.svg" style="margin-right: 10px; cursor:pointer" onclick="productQuickView(@product.Id)">
-                                    <img src="~/Content/Images/heart.svg" style=" cursor:pointer" onclick="AddToWishList(@product.Id)">
-                                </span>
-                            </div>
-
-                            <div class="cart" onclick="AddToCart(@product.Id)">
-                                <div href="#">Add to cart</div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-            }
-            @{
-                if (Model.Count() == 0)
+        <div class="container">
+            <div class="row">
+                @foreach (var product in Model)
                 {
-                    <h4>No item</h4>
+
+                    <div class="col-lg-3 col-12">
+
+                        <div class="product-box">
+                            <div onclick="NavigateToProductDetails(@product.Id)" style="cursor:pointer">
+                                <div class="product-time-label">New</div>
+                                <div class="product-discount-label">10%</div>
+                                <div class="img-box">
+                                    <img src="@Url.Content(product.Image1)">
+                                </div>
+                            </div>
+                            <div class="product-details">
+                                <div onclick="NavigateToProductDetails(@product.Id)" style="cursor:pointer">
+                                    <div class="product-title">@product.Name</div>
+                                    <div class="product-category">@product.Category</div>
+                                    <span class="product-initial-price">$@product.Price</span>
+                                    <span class="product-price">$@product.Price</span>
+                                </div>
+                                <div class="star-rating">
+                                    <i class="fas fa-star" id="star1" onclick="add(this,1)"></i>
+                                    <i class="fas fa-star" id="star2" onclick="add(this,2)"></i>
+                                    <i class="fas fa-star" id="star3" onclick="add(this,3)"></i>
+                                    <i class="far fa-star" id="star4" onclick="add(this,4)"></i>
+                                    <i class="far fa-star" id="star5" onclick="add(this,5)"></i>
+                                    <span class="float-right mb-1">
+                                        <img src="~/Content/Images/eye.svg" style="margin-right: 10px; cursor:pointer" onclick="productQuickView(@product.Id)">
+                                        <img src="~/Content/Images/heart.svg" style=" cursor:pointer" onclick="AddToWishList(@product.Id)">
+                                    </span>
+                                </div>
+
+                                <div class="cart" onclick="AddToCart(@product.Id)">
+                                    <div href="#">Add to cart</div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
                 }
-            }
+                @{
+                    if (Model.Count() == 0)
+                    {
+                        <h4>No item</h4>
+                    }
+                }
+            </div>
+
+            @Html.Partial("_productListPagination")
         </div>
-
-     @Html.Partial("_productListPagination")
-
     </div>
 
 

@@ -60,51 +60,43 @@
 
 <div class="container-fluid body-content">
     <div class="row">
-        <div class="col-md-4 col-12 mb-3">
-            <button class="collapsible active">FILTER</button>
-            <div class="content" style="max-height:100vh;padding-bottom:10px">
-                <div style="padding-top:10px">
-                    <div class="col-12 mb-3">
-                        <div class="form-row">
-                            <label class="col-3 col-form-label" for="name">Search</label>
-                            <input type="text" class="form-control col-9" id="searchString" />
-                        </div>
+
+        <div class="col-12">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 p-1">
+                        <input type="text" class="form-control-sm"  id="searchString" placeholder="search by name, category, tags" style="width:100%"/>
                     </div>
-                    <div class="col-12 mb-3">
-                        <div class="form-row">
-                            <label class="col-3 col-form-label" for="name">Category</label>
-                            <select class="form-control col-9" id="categoryId">
-                                <option value="0">All</option>
-                                @foreach (var category in Model.Categories)
-                                {
-                                    <option value="@category.Id" selected="@category.Selected">@category.Name</option>
-                                }
-                            </select>
-                        </div>
+                    <div class="col-md-3 col-6 p-1">
+                        <select class="form-control-sm col-12" id="categoryId">
+                            <option value="0">Category</option>
+                            <option value="0">All</option>
+                            @foreach (var category in Model.Categories)
+                            {
+                                <option value="@category.Id" selected="@category.Selected">@category.Name</option>
+                            }
+                        </select>
                     </div>
-                    <div class="col-12 mb-3">
-                        <div class="form-row">
-                            <label class="col-3 col-form-label" for="name">Sort by</label>
-                            <select class="form-control col-9" id="sortString">
-                                <option value="1">Best selling</option>
-                                <option value="2">Alphabetically, A - Z</option>
-                                <option value="3">Alphabetically, Z - A</option>
-                                <option value="4">Price, low to high</option>
-                                <option value="5">Price, high to low</option>
-                                <option value="6">Date, new to old</option>
-                                <option value="7">Date, old to new</option>
-                            </select>
-                        </div>
+                    <div class="col-md-3 col-6 p-1">
+                        <select class="form-control-sm col-12" id="sortString">
+                            <option value="0">Sort by</option>
+                            <option value="1">Best selling</option>
+                            <option value="2">Alphabetically, A - Z</option>
+                            <option value="3">Alphabetically, Z - A</option>
+                            <option value="4">Price, low to high</option>
+                            <option value="5">Price, high to low</option>
+                            <option value="6">Date, new to old</option>
+                            <option value="7">Date, old to new</option>
+                        </select>
                     </div>
-                    <div class="col-12">
-                        <button class="btn btn-block filter-btn" onclick="SearchProduct()" id="btnFilter" style="background-color:#E97128;color:white;width:100%">FILTER <img src="~/Content/Images/filter.svg" /></button>
+                    <div class="col-md-2 p-1">
+                        <button class="btn btn-sm btn-block filter-btn" onclick="SearchProduct()" id="btnFilter" style="background-color:#E97128;color:white;width:100%">FILTER <img src="~/Content/Images/filter.svg" /></button>
                     </div>
                 </div>
-
+                <hr />
             </div>
-
         </div>
-        <div class="col-md-8 col-sm-12">
+        <div class="col-12">
 
             @Html.Partial("_ProductsList", Model.Products)
 
