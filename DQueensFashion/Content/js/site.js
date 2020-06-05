@@ -94,3 +94,7 @@ function AddToWishList(productId) {
 function ShopByCategory(categoryId) {
     window.location.href = "/Product/Index?categoryId=" + categoryId;
 }
+
+function NavigateToProductDetails(productId){
+    window.location.href = '/Product/ProductDetails/' + productId;
+}

@@ -5,6 +5,7 @@
     ViewBag.Title = "Home Page";
 }
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
 <div class="background">
     <!-- Mask & flexbox options-->
     <div class="d-flex justify-content-center align-items-center">
@@ -81,35 +82,50 @@
                     <div class="row">
                         @foreach (var product in Model.Products)
                         {
-                            <div class="col-md-3 col-6" style="margin-bottom: 20px;">
-                                <div class="card">
-                                    <div class="product">
-                                        <a href="@Url.Action("ProductDetails","Product",new { id= product.Id})" class="atag">
-                                            <img class="product_img" src="@Url.Content(product.Image1)" alt="product_img">
-                                            <div class="product_info">
-                                                <h6 class="product_title">@product.Name</h6>
-                                                <strong class="product_price">@product.Price</strong>
-                                            </div>
-                                        </a>
-                                        <hr style="margin:0">
-                                        <div style="margin:5px 5px;cursor:pointer" class="float-right" onclick="AddToCart(@product.Id,1)">
-                                            <img src="~/Content/Images/shopping-cart (orange).svg" class="product_button">
-                                        </div>
-                                        <div style="margin:5px 5px;cursor:pointer" class="float-right" onclick="AddToWishList(@product.Id)">
-                                            <img src="~/Content/Images/heart.svg" class="product_button">
-                                        </div>
-                                        <div style="margin:5px 5px;cursor:pointer" class="float-right" onclick="productQuickView(@product.Id)">
-                                            <img src="~/Content/Images/eye.svg" class="product_button">
+                           
+                            <div class="col-lg-3 col-12">
+
+                                <div class="product-box">
+                                    <div onclick="NavigateToProductDetails(@product.Id)" style="cursor:pointer">
+                                        <div class="product-time-label">New</div>
+                                        <div class="product-discount-label">10%</div>
+                                        <div class="img-box">
+                                            <img src="@Url.Content(product.Image1)">
                                         </div>
                                     </div>
+                                    <div class="product-details">
+                                        <div  onclick="NavigateToProductDetails(@product.Id)" style="cursor:pointer">
+                                            <div class="product-title">@product.Name</div>
+                                            <div class="product-category">@product.Category</div>
+                                            <span class="product-initial-price">$@product.Price</span>
+                                            <span class="product-price">$@product.Price</span>
+                                        </div>
+                                        <div class="star-rating">
+                                            <i class="fas fa-star" id="star1" onclick="add(this,1)"></i>
+                                            <i class="fas fa-star" id="star2" onclick="add(this,2)"></i>
+                                            <i class="fas fa-star" id="star3" onclick="add(this,3)"></i>
+                                            <i class="far fa-star" id="star4" onclick="add(this,4)"></i>
+                                            <i class="far fa-star" id="star5" onclick="add(this,5)"></i>
+                                            <span class="float-right mb-1">
+                                                <img src="~/Content/Images/eye.svg" style="margin-right: 10px; cursor:pointer" onclick="productQuickView(@product.Id)">
+                                                <img src="~/Content/Images/heart.svg" style=" cursor:pointer" onclick="AddToWishList(@product.Id)">
+                                            </span>
+                                        </div>
+                                       
+                                        <div class="cart" onclick="AddToCart(@product.Id)">
+                                            <div href="#">Add to cart</div>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
+
                         }
                     </div>
                     <div class="d-xs-block d-sm-block d-md-none d-lg-none d-xl-none">
                         <div class="row">
                             <div class="col-6">
-                                <button class="btn btn-block" style="color: white;background-color:#E97128;" onclick="ShopByCategory(0)">View more</button>
+                                <button class="btn btn-block" style="color: white;background-color:#212529;" onclick="ShopByCategory(0)">View more</button>
                             </div>
                             <div class="col-6"></div>
                         </div>
@@ -118,7 +134,7 @@
                     <div class="d-none d-md-block">
                         <div class="row">
                             <div class="col-3">
-                                <button class="btn btn-block" style="color: white;background-color:#E97128;" onclick="ShopByCategory(0)">View more</button>
+                                <button class="btn btn-block" style="color: white;background-color:#212529;" onclick="ShopByCategory(0)">View more</button>
                             </div>
                             <div class="col-9"></div>
                         </div>
@@ -135,29 +151,46 @@
                                 {
                                     if (product.CategoryId == category.Id)
                                     {
-                                        <div class="col-md-3 col-6" style="margin-bottom: 20px;">
-                                            <div class="card">
-                                                <div class="product">
-                                                    <a href="@Url.Action("ProductDetails","Product",new { id= product.Id})" class="atag">
-                                                        <img class="product_img" src="@Url.Content(product.Image1)" alt="product_img">
-                                                        <div class="product_info">
-                                                            <h6 class="product_title">@product.Name</h6>
-                                                            <strong class="product_price">@product.Price</strong>
-                                                        </div>
-                                                    </a>
-                                                    <hr style="margin:0">
-                                                    <div style="margin:5px 5px;cursor:pointer" class="float-right" onclick="AddToCart(@product.Id,1)" >
-                                                        <img src="~/Content/Images/shopping-cart (orange).svg" class="product_button">
-                                                    </div>
-                                                    <div style="margin:5px 5px;cursor:pointer" class="float-right"  onclick="AddToWishList(@product.Id)" >
-                                                        <img src="~/Content/Images/heart.svg" class="product_button">
-                                                    </div>
-                                                    <div style="margin:5px 5px;cursor:pointer" class="float-right" onclick="productQuickView(@product.Id)" >
-                                                        <img src="~/Content/Images/eye.svg" class="product_button">
+                                        <div class="col-lg-3 col-12">
+
+                                            <div class="product-box">
+                                                <div onclick="NavigateToProductDetails(@product.Id)" style="cursor:pointer">
+                                                    <div class="product-time-label">New</div>
+                                                    <div class="product-discount-label">10%</div>
+                                                    <div class="img-box">
+                                                        <img src="@Url.Content(product.Image1)">
                                                     </div>
                                                 </div>
+                                                <div class="product-details">
+                                                    <div onclick="NavigateToProductDetails(@product.Id)" style="cursor:pointer">
+                                                        <div class="product-title">@product.Name</div>
+                                                        <div class="product-category">@product.Category</div>
+                                                        <span class="product-initial-price">$@product.Price</span>
+                                                        <span class="product-price">$@product.Price</span>
+                                                    </div>
+                                                    <div class="star-rating">
+                                                        <i class="fas fa-star" id="star1" onclick="add(this,1)"></i>
+                                                        <i class="fas fa-star" id="star2" onclick="add(this,2)"></i>
+                                                        <i class="fas fa-star" id="star3" onclick="add(this,3)"></i>
+                                                        <i class="far fa-star" id="star4" onclick="add(this,4)"></i>
+                                                        <i class="far fa-star" id="star5" onclick="add(this,5)"></i>
+                                                        <span class="float-right mb-1">
+                                                            <img src="~/Content/Images/eye.svg" style="margin-right: 10px; cursor:pointer" onclick="productQuickView(@product.Id)">
+                                                            <img src="~/Content/Images/heart.svg" style=" cursor:pointer" onclick="AddToWishList(@product.Id)">
+                                                        </span>
+                                                    </div>
+
+                                                    <div class="cart" onclick="AddToCart(@product.Id)">
+                                                        <div href="#">Add to cart</div>
+                                                    </div>
+                                                </div>
+
                                             </div>
                                         </div>
+
+
+
+
                                     }
                                 }
 
@@ -165,7 +198,7 @@
                             <div class="d-xs-block d-sm-block d-md-none d-lg-none d-xl-none">
                                 <div class="row">
                                     <div class="col-6">
-                                        <button class="btn btn-block" style="color: white;background-color:#E97128;" onclick="ShopByCategory(@category.Id)">View more</button>
+                                        <button class="btn btn-block" style="color: white;background-color:#212529;" onclick="ShopByCategory(@category.Id)">View more</button>
                                     </div>
                                     <div class="col-6"></div>
                                 </div>
@@ -174,7 +207,7 @@
                             <div class="d-none d-md-block">
                                 <div class="row">
                                     <div class="col-3">
-                                        <button class="btn btn-block" style="color: white;background-color:#E97128;" onclick="ShopByCategory(@category.Id)">View more</button>
+                                        <button class="btn btn-block" style="color: white;background-color:#212529;" onclick="ShopByCategory(@category.Id)">View more</button>
                                     </div>
                                     <div class="col-9"></div>
                                 </div>
@@ -211,25 +244,23 @@
 </div>
 
 <style>
-    
 
 
-/* -------------------------------------------------
-  min-width: 992px
----------------------------------------------------*/
-@@media only screen and (min-width: 992px) {
-.navbar-toggler {
-	display: none;
-}
 
-
-}
-/* -------------------------------------------------
-  max-width: 991px
----------------------------------------------------*/
+    /* -------------------------------------------------
+      min-width: 992px
+    ---------------------------------------------------*/
+    @@media only screen and (min-width: 992px) {
+        .navbar-toggler {
+            display: none;
+        }
+    }
+    /* -------------------------------------------------
+      max-width: 991px
+    ---------------------------------------------------*/
     @@media only screen and (max-width: 991px) {
-       
-        
+
+
         #categoriesMenuBar {
             position: absolute;
             right: 0;
@@ -253,8 +284,6 @@
             #categoriesMenuBar li a {
                 text-align: left;
             }
-
-       
     }
 </style>
 
