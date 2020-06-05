@@ -1,4 +1,5 @@
 ﻿using DQueensFashion.Core.Model;
+using DQueensFashion.CustomFilters;
 using DQueensFashion.Models;
 using DQueensFashion.Service.Contract;
 using System;
@@ -9,12 +10,15 @@ using System.Web.Mvc;
 
 namespace DQueensFashion.Controllers
 {
+    [CartSetGlobalVariable]
     public class CartController : Controller
     {
         private readonly IProductService _productService;
-        public CartController(IProductService productService)
+        private readonly ICategoryService _categoryService;
+        public CartController(IProductService productService, ICategoryService categoryService)
         {
             _productService = productService;
+            _categoryService = categoryService;
         }
         // GET: Cart
         public ActionResult Index()
@@ -55,8 +59,8 @@ namespace DQueensFashion.Controllers
                 Count = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.Quantity),
                 Carts = Session["cart"] == null ? new List<Cart>() : (List<Cart>)Session["cart"],
             };
-
-            return PartialView("_navbarCart", viewCart);
+            ViewBag.CartNumber = GetCartNumber();
+            return PartialView("_navbarCartNumber");
         }
 
         public ActionResult GetCart()
@@ -178,7 +182,25 @@ namespace DQueensFashion.Controllers
             return -1;
         }
 
+        public int GetCartNumber()
+        {
+            if (Session["cart"] != null)
+                return ((List<Cart>)Session["cart"]).Sum(c => c.Quantity);
+            else
+                return 0;
+        }
 
-        
+        public IEnumerable<CategoryNameAndId> GetCategories()
+        {
+            IEnumerable<CategoryNameAndId> categories = _categoryService.GetAllCategories()
+                .Select(c => new CategoryNameAndId()
+                {
+                    Id = c.Id,
+                    Name = c.Name,
+                }).OrderBy(c => c.Name);
+
+            return categories;
+        }
+
     }
 }

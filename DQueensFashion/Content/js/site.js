@@ -1,29 +1,4 @@
 ﻿
-$.ajax({
-    url: '/home/getcategories',
-    dataType: "html",
-    data: {},
-    success: function (result) {
-        $("#navbarCategories").html(result);
-    },
-    error: function (xhr, status, error) {
-        alertify.error("Error occured");
-    }
-});
-
-$.ajax({
-    url: '/Cart/getcart/',
-    dataType: "html",
-    data: {},
-    success: function (result) {
-        $("#navbarCart").html(result);
-    },
-    error: function (xhr, status, error) {
-        alertify.error("Error occured");
-    }
-});
-
-
 function AddToCart(productId, _quantity) {
     
     $.ajax({
@@ -31,7 +6,7 @@ function AddToCart(productId, _quantity) {
         dataType: "html",
         data: { id: productId, quantity:_quantity },
         success: function (result) {
-            $("#navbarCart").html(result);
+            $("#navbarCartNumber").html(result);
             alertify.success("Product added to cart");
         },
         error: function (xhr, status, error) {

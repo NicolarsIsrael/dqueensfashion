@@ -16,10 +16,16 @@
         @Html.ActionLink("DQueens", "Index", "Home", new { area = "" }, new { @class = "navbar-brand", @style = "color:#E97128" })
         <ul class="navbar-nav flex-row ml-auto">
             <li class="nav-item">
-                <a class="nav-link navbar-link" href="@Url.Action("Dashboard","Customer")"><img src="~/Content/Images/user.svg"></a>
+
+                <a class="nav-link navbar-link" href="@Url.Action("Dashboard","Customer")">
+                    <img src="~/Content/Images/user.svg">
+                </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link navbar-link" href="@Url.Action("ViewCart","Cart")"><img src="~/Content/Images/shopping-cart.svg"></a>
+                <a class="nav-link navbar-link" href="@Url.Action("ViewCart","Cart")">
+                    <img src="~/Content/Images/shopping-cart.svg">
+                    @Html.Partial("~/Views/Cart/_navbarCartNumber.cshtml")
+                </a>
             </li>
         </ul>
         <button class="navbar-toggler collapsed position-relative" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -39,8 +45,7 @@
                         Categories
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarCategoriesDropdown">
-                        <div id="navbarCategories"></div>
-
+                        @Html.Partial("~/Views/Home/_navbarCategories.cshtml")
                     </div>
 
                 </li>

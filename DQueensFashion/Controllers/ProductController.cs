@@ -1,4 +1,5 @@
 ﻿using DQueensFashion.Core.Model;
+using DQueensFashion.CustomFilters;
 using DQueensFashion.Models;
 using DQueensFashion.Service.Contract;
 using DQueensFashion.Utilities;
@@ -11,6 +12,7 @@ using System.Web.Mvc;
 
 namespace DQueensFashion.Controllers
 {
+    [ProductSetGlobalVariable]
     public class ProductController : Controller
     {
         private readonly IProductService _productService;
@@ -334,6 +336,26 @@ namespace DQueensFashion.Controllers
             return _customerService.GedCustomerByUserId(userId);
         }
 
+
+        public int GetCartNumber()
+        {
+            if (Session["cart"] != null)
+                return ((List<Cart>)Session["cart"]).Sum(c => c.Quantity);
+            else
+                return 0;
+        }
+
+        public IEnumerable<CategoryNameAndId> GetCategories()
+        {
+            IEnumerable<CategoryNameAndId> categories = _categoryService.GetAllCategories()
+                .Select(c => new CategoryNameAndId()
+                {
+                    Id = c.Id,
+                    Name = c.Name,
+                }).OrderBy(c => c.Name);
+
+            return categories;
+        }
         #endregion
     }
 }

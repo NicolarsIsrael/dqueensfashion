@@ -1,4 +1,5 @@
 ﻿using DQueensFashion.Core.Model;
+using DQueensFashion.CustomFilters;
 using DQueensFashion.Models;
 using DQueensFashion.Service.Contract;
 using System;
@@ -9,6 +10,7 @@ using System.Web.Mvc;
 
 namespace DQueensFashion.Controllers
 {
+    [HomeSetGlobalVariable]
     public class HomeController : Controller
     {
         private readonly IProductService _productService;
@@ -61,24 +63,6 @@ namespace DQueensFashion.Controllers
             return View(homeIndex);
         }
 
-        public ActionResult GetCategories()
-        {
-
-            ViewCartViewModel viewCart = new ViewCartViewModel()
-            {
-                Count = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.Quantity),
-                Carts = Session["cart"] == null ? new List<Cart>() : (List<Cart>)Session["cart"],
-            };
-
-            IEnumerable<ViewCategoryViewModel> categories = _categoryService.GetAllCategories()
-                .Select(c => new ViewCategoryViewModel()
-                {
-                    Id = c.Id,
-                    Name = c.Name,
-                }).OrderBy(c=>c.Name);
-
-            return PartialView("_navbarCategories", categories);
-        }
 
         public ActionResult About()
         {
@@ -92,6 +76,27 @@ namespace DQueensFashion.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        public int GetCartNumber()
+        {
+            if (Session["cart"] != null)
+                return ((List<Cart>)Session["cart"]).Sum(c => c.Quantity);
+            else
+                return 0;
+        }
+
+
+        public IEnumerable<CategoryNameAndId> GetCategories()
+        {
+            IEnumerable<CategoryNameAndId> categories = _categoryService.GetAllCategories()
+                .Select(c => new CategoryNameAndId()
+                {
+                    Id = c.Id,
+                    Name = c.Name,
+                }).OrderBy(c => c.Name);
+
+            return categories;
         }
     }
 }

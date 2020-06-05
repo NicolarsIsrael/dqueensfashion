@@ -14,22 +14,28 @@ using DQueensFashion.Service.Contract;
 using DQueensFashion.Utilities;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
+using System.Collections.Generic;
+using DQueensFashion.CustomFilters;
 
 namespace DQueensFashion.Controllers
 {
+    [AccountSetGlobalVariable]
     [Authorize]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         private readonly ICustomerService _customerService;
+        private readonly ICategoryService _categoryService;
         private DbContext _ctx;
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager,ICustomerService customerService, DbContext ctx)
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager,ICustomerService customerService, 
+            ICategoryService categoryService, DbContext ctx)
         {
             UserManager = userManager;
             SignInManager = signInManager;
             _customerService = customerService;
+            _categoryService = categoryService;
             _ctx = ctx;
         }
 
@@ -457,6 +463,26 @@ namespace DQueensFashion.Controllers
             }
 
             base.Dispose(disposing);
+        }
+
+        public int GetCartNumber()
+        {
+            if (Session["cart"] != null)
+                return ((List<Cart>)Session["cart"]).Sum(c => c.Quantity);
+            else
+                return 0;
+        }
+
+        public IEnumerable<CategoryNameAndId> GetCategories()
+        {
+            IEnumerable<CategoryNameAndId> categories = _categoryService.GetAllCategories()
+                .Select(c => new CategoryNameAndId()
+                {
+                    Id = c.Id,
+                    Name = c.Name,
+                }).OrderBy(c => c.Name);
+
+            return categories;
         }
 
         #region Helpers

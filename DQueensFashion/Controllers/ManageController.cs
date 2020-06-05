@@ -7,23 +7,29 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using DQueensFashion.Models;
+using System.Collections.Generic;
+using DQueensFashion.CustomFilters;
+using DQueensFashion.Service.Contract;
 
 namespace DQueensFashion.Controllers
 {
     [Authorize]
+    [ManageSetGlobalVariable]
     public class ManageController : Controller
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private readonly ICategoryService _categoryService;
 
         public ManageController()
         {
         }
 
-        public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, ICategoryService categoryService)
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            _categoryService = categoryService;
         }
 
         public ApplicationSignInManager SignInManager
@@ -333,7 +339,26 @@ namespace DQueensFashion.Controllers
             base.Dispose(disposing);
         }
 
-#region Helpers
+        public int GetCartNumber()
+        {
+            if (Session["cart"] != null)
+                return ((List<Cart>)Session["cart"]).Sum(c => c.Quantity);
+            else
+                return 0;
+        }
+
+        public IEnumerable<CategoryNameAndId> GetCategories()
+        {
+            IEnumerable<CategoryNameAndId> categories = _categoryService.GetAllCategories()
+                .Select(c => new CategoryNameAndId()
+                {
+                    Id = c.Id,
+                    Name = c.Name,
+                }).OrderBy(c => c.Name);
+
+            return categories;
+        }
+        #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 

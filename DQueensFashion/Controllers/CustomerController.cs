@@ -1,4 +1,5 @@
 ﻿using DQueensFashion.Core.Model;
+using DQueensFashion.CustomFilters;
 using DQueensFashion.Models;
 using DQueensFashion.Service.Contract;
 using DQueensFashion.Utilities;
@@ -12,17 +13,20 @@ using System.Web.Mvc;
 namespace DQueensFashion.Controllers
 {
     [Authorize(Roles=AppConstant.CustomerRole)]
+    [CustomerSetGlobalVariable]
     public class CustomerController : Controller
     {
         private readonly ICustomerService _customerService;
         private readonly IWishListService _wishListService;
         private readonly IOrderService _orderService;
+        private readonly ICategoryService _categoryService;
 
-        public CustomerController(ICustomerService customerService, IWishListService wishListService, IOrderService orderService)
+        public CustomerController(ICustomerService customerService, IWishListService wishListService, IOrderService orderService, ICategoryService categoryService)
         {
             _customerService = customerService;
             _wishListService = wishListService;
             _orderService = orderService;
+            _categoryService = categoryService;
         }
 
         // GET: Customer
@@ -176,6 +180,26 @@ namespace DQueensFashion.Controllers
 
 
             return PartialView("_ordersTable", orderModel);
+        }
+
+        public int GetCartNumber()
+        {
+            if (Session["cart"] != null)
+                return ((List<Cart>)Session["cart"]).Sum(c => c.Quantity);
+            else
+                return 0;
+        }
+
+        public IEnumerable<CategoryNameAndId> GetCategories()
+        {
+            IEnumerable<CategoryNameAndId> categories = _categoryService.GetAllCategories()
+                .Select(c => new CategoryNameAndId()
+                {
+                    Id = c.Id,
+                    Name = c.Name,
+                }).OrderBy(c => c.Name);
+
+            return categories;
         }
 
         #region private function

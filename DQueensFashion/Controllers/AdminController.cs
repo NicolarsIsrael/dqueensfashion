@@ -1,4 +1,5 @@
 ﻿using DQueensFashion.Core.Model;
+using DQueensFashion.CustomFilters;
 using DQueensFashion.Models;
 using DQueensFashion.Service.Contract;
 using DQueensFashion.Utilities;
@@ -12,6 +13,7 @@ using System.Web.Mvc;
 namespace DQueensFashion.Controllers
 {
     [Authorize(Roles =AppConstant.AdminRole)]
+    [AdminSetGlobalVariable]
     public class AdminController : Controller
     {
         private readonly ICategoryService _categoryService;
@@ -870,6 +872,26 @@ namespace DQueensFashion.Controllers
             _orderService.UpdateOrder(order);
 
             return RedirectToAction(nameof(Orders));
+        }
+
+        public int GetCartNumber()
+        {
+            if (Session["cart"] != null)
+                return ((List<Cart>)Session["cart"]).Sum(c => c.Quantity);
+            else
+                return 0;
+        }
+
+        public IEnumerable<CategoryNameAndId> GetCategories()
+        {
+            IEnumerable<CategoryNameAndId> categories = _categoryService.GetAllCategories()
+                .Select(c => new CategoryNameAndId()
+                {
+                    Id = c.Id,
+                    Name = c.Name,
+                }).OrderBy(c => c.Name);
+
+            return categories;
         }
 
         #region private functions
