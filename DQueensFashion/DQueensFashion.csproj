@@ -308,6 +308,7 @@
     <Content Include="Content\js\jquery.js" />
     <Content Include="Content\js\site.js" />
     <Content Include="Content\Images\plus.svg" />
+    <Content Include="Content\Images\x-circle.svg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />

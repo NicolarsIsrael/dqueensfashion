@@ -5,56 +5,60 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>ViewCart</h2>
+    <div class="container body-content">
+        <h4  class="mt-3">Your Cart</h4>
 
-<table class="table" id="viewCartTable">
-    <tr>
-        <th></th>
-        <th></th>
-        <th>Price</th>
-        <th>Quantity</th>
-        <th>Total</th>
-        <th></th>
-    </tr>
+        <table class="table" id="viewCartTable">
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+            </tr>
 
-    @foreach (var item in Model.Carts)
-    {
-        <tr>
-            @{
-                if (!string.IsNullOrEmpty(item.Product.ImagePath1))
-                {
-                    <td>
-                        <img src="@Url.Content(item.Product.ImagePath1)" style="width:100px;height:100px" />
+            @foreach (var item in Model.Carts)
+            {
+                <tr>
+
+                    <td style="vertical-align:middle">
+                        <div onclick="RemoveCartItem(@item.Product.Id)" style="cursor:pointer">
+                            <img src="~/Content/Images/x-circle.svg" />
+                        </div>
                     </td>
-                }
-                else
-                {
-                    <td></td>
-                }
+                    @{
+                        if (!string.IsNullOrEmpty(item.Product.ImagePath1))
+                        {
+                            <td>
+                                <img src="@Url.Content(item.Product.ImagePath1)" style="width:100px;height:100px" />
+                            </td>
+                        }
+                        else
+                        {
+                            <td></td>
+                        }
+                    }
+                    <td style="vertical-align:middle">
+                        @Html.DisplayFor(modelItem => item.Product.Name)
+                    </td>
+                    <td style="vertical-align:middle">
+                        @Html.DisplayFor(modelItem => item.Product.Price)
+                    </td>
+                    <td style="vertical-align:middle">
+                        <button class="btn btn-sm btn-warning" onclick="DecreaseQuantity(@item.Product.Id)">-</button>
+                        @Html.DisplayFor(modelItem => item.Quantity)
+                        <button class="btn btn-sm btn-success" onclick="IncreaseQuantity(@item.Product.Id)">+</button>
+                    </td>
+                    <td style="vertical-align:middle">
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                </tr>
             }
-            <td>
-                @Html.DisplayFor(modelItem=>item.Product.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem=>item.Product.Price)
-            </td>
-            <td>
-                <button class="btn btn-sm btn-warning" onclick="DecreaseQuantity(@item.Product.Id)">-</button>
-                @Html.DisplayFor(modelItem => item.Quantity)
-                <button class="btn btn-sm btn-success" onclick="IncreaseQuantity(@item.Product.Id)">+</button>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem=> item.Price)
-            </td>
-            <td>
-                <button class="btn btn-sm btn-danger" onclick="RemoveCartItem(@item.Product.Id)">Remove</button>
-            </td>
-        </tr>
-    }
 
-</table>
+        </table>
 
-
+    </div>
 <script>
     function IncreaseQuantity(productId) {
 
