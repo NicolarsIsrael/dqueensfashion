@@ -165,7 +165,7 @@ namespace DQueensFashion.Controllers
                     Quantity = p.Quantity.ToString(),
                     Price = p.Price.ToString(),
                     Category = p.Category.Name,
-                    Image1 = p.ImagePath1,
+                    MainImage = string.IsNullOrEmpty(p.ImagePath1) ? AppConstant.DefaultProductImage : p.ImagePath1,
                     DateCreated = p.DateCreated,
                     DateCreatedString = p.DateCreated.ToString("dd/MMM/yyyy : hh-mm-ss"),
                 }).OrderBy(p=>p.Name).ToList();
@@ -182,7 +182,7 @@ namespace DQueensFashion.Controllers
                   Quantity = p.Quantity.ToString(),
                   Price = p.Price.ToString(),
                   Category = p.Category.Name,
-                  Image1 = p.ImagePath1,
+                  MainImage = string.IsNullOrEmpty(p.ImagePath1) ? AppConstant.DefaultProductImage : p.ImagePath1,
                   DateCreated = p.DateCreated,
                   DateCreatedString = p.DateCreated.ToString("dd/MMM/yyyy : hh-mm-ss"),
               }).OrderBy(p => p.Name).ToList();
@@ -420,6 +420,8 @@ namespace DQueensFashion.Controllers
             if (product == null)
                 return HttpNotFound();
 
+            var productImages = SetProductImages(product.ImagePath2, product.ImagePath3, product.ImagePath4);
+
             ViewProductsViewModel productModel = new ViewProductsViewModel()
             {
                 Id = product.Id,
@@ -430,10 +432,8 @@ namespace DQueensFashion.Controllers
                 Category = product.Category.Name,
                 Tags = product.Tags,
                 DateCreatedString = product.DateCreated.ToString("dd/MMM/yyyy : hh-mm-ss"),
-                Image1 = string.IsNullOrEmpty(product.ImagePath1)?"":product.ImagePath1,
-                Image2 = string.IsNullOrEmpty(product.ImagePath2) ? "" : product.ImagePath2,
-                Image3 = string.IsNullOrEmpty(product.ImagePath3) ? "" : product.ImagePath3,
-                Image4 = string.IsNullOrEmpty(product.ImagePath4) ? "" : product.ImagePath4,
+                MainImage = string.IsNullOrEmpty(product.ImagePath1) ? AppConstant.DefaultProductImage : product.ImagePath1,
+                OtherImagePaths = productImages,
             };
 
             return View(productModel);
@@ -912,6 +912,23 @@ namespace DQueensFashion.Controllers
 
             var result = _categoryService.GetCategoryByName(name);
             return Json(result == null, JsonRequestBehavior.AllowGet);
+        }
+
+        private List<string> SetProductImages(string image2, string image3, string image4)
+        {
+            List<string> productImages = new List<string>();
+
+            if (!string.IsNullOrEmpty(image2))
+                productImages.Add(image2);
+
+            if (!string.IsNullOrEmpty(image3))
+                productImages.Add(image3);
+
+
+            if (!string.IsNullOrEmpty(image4))
+                productImages.Add(image4);
+
+            return productImages;
         }
 
         #endregion

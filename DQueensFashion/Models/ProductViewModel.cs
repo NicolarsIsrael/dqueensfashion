@@ -51,12 +51,8 @@ namespace DQueensFashion.Models
         public DateTime DateCreated { get; set; }
         [Display(Name ="Date created")]
         public string DateCreatedString { get; set; }
-        public List<string> ImagePaths { get; set; }
+        public List<string> OtherImagePaths { get; set; }
         public string MainImage { get; set; }
-        public string Image1 { get; set; }
-        public string Image2 { get; set; }
-        public string Image3 { get; set; }
-        public string Image4 { get; set; }
         public string Category { get; set; }
         public int CategoryId { get; set; }
         public string Tags { get; set; }

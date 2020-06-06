@@ -41,7 +41,7 @@ namespace DQueensFashion.Controllers
                     Id = p.Id,
                     Name = p.Name,
                     Description = p.Description.Length > 35 ? p.Description.Substring(0, 35) + "..." : p.Description,
-                    Image1 = p.ImagePath1,
+                    MainImage = string.IsNullOrEmpty(p.ImagePath1) ? AppConstant.DefaultProductImage : p.ImagePath1,
                     Quantity = p.Quantity.ToString(),
                     Price = p.Price.ToString(),
 
@@ -93,7 +93,7 @@ namespace DQueensFashion.Controllers
                         Id = p.Id,
                         Name = p.Name,
                         Description = p.Description.Length > 35 ? p.Description.Substring(0, 35) + "..." : p.Description,
-                        Image1 = p.ImagePath1,
+                        MainImage = string.IsNullOrEmpty(p.ImagePath1) ? AppConstant.DefaultProductImage : p.ImagePath1,
                         Quantity = p.Quantity.ToString(),
                         Price = p.Price.ToString(),
                         DateCreated= p.DateCreated,
@@ -172,7 +172,7 @@ namespace DQueensFashion.Controllers
                         Id = p.Id,
                         Name = p.Name,
                         Description = p.Description.Length > 35 ? p.Description.Substring(0, 35) + "..." : p.Description,
-                        Image1 = p.ImagePath1,
+                        MainImage = string.IsNullOrEmpty(p.ImagePath1) ? AppConstant.DefaultProductImage : p.ImagePath1,
                         Quantity = p.Quantity.ToString(),
                         Price = p.Price.ToString(),
                         DateCreated = p.DateCreated,
@@ -240,6 +240,8 @@ namespace DQueensFashion.Controllers
             if (product == null)
                 return HttpNotFound();
 
+            var productImages = SetProductImages(product.ImagePath2, product.ImagePath3, product.ImagePath4);
+
             ViewProductsViewModel productDetails = new ViewProductsViewModel()
             {
                 Id = product.Id,
@@ -250,10 +252,8 @@ namespace DQueensFashion.Controllers
                 Category = product.Category.Name,
                 Tags = product.Tags,
                 DateCreatedString = product.DateCreated.ToString("dd/MMM/yyyy : hh-mm-ss"),
-                Image1 = string.IsNullOrEmpty(product.ImagePath1) ? "" : product.ImagePath1,
-                Image2 = string.IsNullOrEmpty(product.ImagePath2) ? "" : product.ImagePath2,
-                Image3 = string.IsNullOrEmpty(product.ImagePath3) ? "" : product.ImagePath3,
-                Image4 = string.IsNullOrEmpty(product.ImagePath4) ? "" : product.ImagePath4,
+                MainImage = string.IsNullOrEmpty(product.ImagePath1) ? AppConstant.DefaultProductImage : product.ImagePath1,
+                OtherImagePaths = productImages,
             };
 
             IEnumerable<ViewProductsViewModel> relatedProducts = _productService.GetRelatedProducts(product.Id,product.CategoryId)
@@ -262,7 +262,7 @@ namespace DQueensFashion.Controllers
                     Id = p.Id,
                     Name = p.Name,
                     Description = p.Description.Length > 35 ? p.Description.Substring(0, 35) + "..." : p.Description,
-                    Image1 = p.ImagePath1,
+                    MainImage = string.IsNullOrEmpty(p.ImagePath1) ? AppConstant.DefaultProductImage : p.ImagePath1,
                     Quantity = p.Quantity.ToString(),
                     Price = p.Price.ToString(),
                     Category = p.Category.Name,
@@ -326,15 +326,15 @@ namespace DQueensFashion.Controllers
             if (product == null)
                 throw new Exception();
 
+            var productImages = SetProductImages(product.ImagePath2, product.ImagePath3, product.ImagePath4);
+
             ViewProductsViewModel productModel = new ViewProductsViewModel()
             {
                 Id = product.Id,
                 Name = product.Name,
                 Description = product.Description,
-                Image1 = product.ImagePath1,
-                Image2 = product.ImagePath2,
-                Image3 = product.ImagePath3,
-                Image4 = product.ImagePath4,
+                MainImage = string.IsNullOrEmpty(product.ImagePath1) ? AppConstant.DefaultProductImage : product.ImagePath1,
+                OtherImagePaths = productImages,
                 Category = product.Category.Name,
                 Price = product.Price.ToString(),
                 Quantity = product.Quantity.ToString(),
@@ -355,6 +355,22 @@ namespace DQueensFashion.Controllers
             return _customerService.GedCustomerByUserId(userId);
         }
 
+        private List<string> SetProductImages(string image2, string image3, string image4)
+        {
+            List<string> productImages = new List<string>();
+           
+            if (!string.IsNullOrEmpty(image2))
+                productImages.Add(image2);
+
+            if (!string.IsNullOrEmpty(image3))
+                productImages.Add(image3);
+
+
+            if (!string.IsNullOrEmpty(image4))
+                productImages.Add(image4);
+
+            return productImages;
+        }
 
         public int GetCartNumber()
         {

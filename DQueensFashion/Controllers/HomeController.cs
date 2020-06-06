@@ -2,6 +2,7 @@
 using DQueensFashion.CustomFilters;
 using DQueensFashion.Models;
 using DQueensFashion.Service.Contract;
+using DQueensFashion.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,7 +39,7 @@ namespace DQueensFashion.Controllers
                     Id = p.Id,
                     Name = p.Name,
                     Description = p.Description.Length > 35 ? p.Description.Substring(0, 35) + "..." : p.Description,
-                    Image1 = p.ImagePath1,
+                    MainImage = string.IsNullOrEmpty(p.ImagePath1) ? AppConstant.DefaultProductImage : p.ImagePath1,
                     Quantity = p.Quantity.ToString(),
                     Price=p.Price.ToString(),
                     Category = p.Category.Name,

@@ -32,10 +32,10 @@
                 @Html.DisplayFor(modelItem => item.DateCreatedString)
             </td>
             @{
-                if (!string.IsNullOrEmpty(item.Image1))
+                if (!string.IsNullOrEmpty(item.MainImage))
                 {
                     <td>
-                        <img src="@Url.Content(item.Image1)" style="height:50px;width:100px;" />
+                        <img src="@Url.Content(item.MainImage)" style="height:50px;width:100px;" />
                     </td>
                 }
                 else
