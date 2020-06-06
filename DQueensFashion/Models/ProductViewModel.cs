@@ -91,7 +91,6 @@ namespace DQueensFashion.Models
         public HttpPostedFileBase ImageFile4 { get; set; }
         [Display(Name = "Category")]
         public int CategoryId { get; set; }
-        public CategoryNameAndId PreviousCategory { get; set; }
         public IEnumerable<CategoryNameAndId> Categories { get; set; }
     }
 

@@ -293,7 +293,7 @@ namespace DQueensFashion.Controllers
         {
             Product product = _productService.GetProductById(id);
             var allCategories = _categoryService.GetAllCategories().ToList();
-            allCategories.Remove(product.Category);
+
             EditProductViewModel productModel = new EditProductViewModel()
             {
                 Id = product.Id,
@@ -301,23 +301,24 @@ namespace DQueensFashion.Controllers
                 Description = product.Description,
                 Quantity = product.Quantity,
                 Price = product.Price,
-                PreviousCategory = new CategoryNameAndId()
-                {
-                    Id = product.Category.Id,
-                    Name = product.Category.Name,
-                },
                 Categories = allCategories.Select(c => new CategoryNameAndId()
                 {
                     Id = c.Id,
                     Name = c.Name,
-                }),
+                }).OrderBy(c => c.Name).ToList(),
                 ImagePath1 = string.IsNullOrEmpty(product.ImagePath1) ? AppConstant.DefaultProductImage : product.ImagePath1,
                 ImagePath2 = string.IsNullOrEmpty(product.ImagePath2) ? AppConstant.DefaultProductImage : product.ImagePath2,
                 ImagePath3 = string.IsNullOrEmpty(product.ImagePath3) ? AppConstant.DefaultProductImage : product.ImagePath3,
                 ImagePath4 = string.IsNullOrEmpty(product.ImagePath4) ? AppConstant.DefaultProductImage : product.ImagePath4,
                 Tags=string.IsNullOrEmpty(product.Tags)?new List<string>():product.Tags.Split(',').ToList(),
             };
-            
+
+            foreach (var category in productModel.Categories)
+            {
+                if (category.Id == product.CategoryId)
+                    category.Selected = "selected";
+            }
+
             return View(productModel);
         }
 
@@ -335,24 +336,23 @@ namespace DQueensFashion.Controllers
                 if (_product == null)
                     throw new Exception();
 
-                var allCategories = _categoryService.GetAllCategories().ToList();
-                allCategories.Remove(_category);
+                productModel.Categories = _categoryService.GetAllCategories()
+                    .Select(c => new CategoryNameAndId() {
+                        Id = c.Id,
+                        Name = c.Name,
+                    }).OrderBy(c => c.Name).ToList();
 
-                productModel.PreviousCategory = new CategoryNameAndId()
-                {
-                    Id = _category.Id,
-                    Name = _category.Name,
-                };
-                productModel.Categories = allCategories.Select(c => new CategoryNameAndId()
-                {
-                    Id = c.Id,
-                    Name = c.Name,
-                }).ToList();
                 productModel.ImagePath1 = string.IsNullOrEmpty(_product.ImagePath1) ? AppConstant.DefaultProductImage : _product.ImagePath1;
                 productModel.ImagePath2 = string.IsNullOrEmpty(_product.ImagePath2) ? AppConstant.DefaultProductImage : _product.ImagePath2;
                 productModel.ImagePath3 = string.IsNullOrEmpty(_product.ImagePath3) ? AppConstant.DefaultProductImage : _product.ImagePath3;
                 productModel.ImagePath4 = string.IsNullOrEmpty(_product.ImagePath4) ? AppConstant.DefaultProductImage : _product.ImagePath4;
                 productModel.Tags = productModel.Tags == null ? new List<string>() : productModel.Tags;
+
+                foreach(var c in productModel.Categories)
+                {
+                    if (c.Id == productModel.CategoryId)
+                        c.Selected = "selected";
+                }
 
                 return View(productModel);
             }

@@ -47,7 +47,7 @@
                                             <select class="form-control" name="@Html.NameFor(m=>m.CategoryId)">
                                                 @foreach (var item in Model.Categories)
                                                 {
-                                                    <option value="@item.Id">@item.Name</option>
+                                                    <option value="@item.Id" selected="@item.Selected">@item.Name</option>
                                                 }
                                             </select>
                                             @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
