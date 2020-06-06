@@ -1,22 +1,30 @@
 ﻿@model DQueensFashion.Models.ViewCartViewModel
+
+
 <table class="table" id="viewCartTable">
     <tr>
+        <th></th>
         <th></th>
         <th></th>
         <th>Price</th>
         <th>Quantity</th>
         <th>Total</th>
-        <th></th>
     </tr>
 
     @foreach (var item in Model.Carts)
     {
         <tr>
+
+            <td style="vertical-align:middle">
+                <div onclick="RemoveCartItem(@item.Product.Id)" style="cursor:pointer">
+                    <img src="~/Content/Images/x-circle.svg" />
+                </div>
+            </td>
             @{
                 if (!string.IsNullOrEmpty(item.Product.ImagePath1))
                 {
                     <td>
-                        <img src="@Url.Content(item.Product.ImagePath1)" style="width:100px;height:100px" />
+                        <img src="@Url.Content(item.Product.ImagePath1)" style="width:70px;height:70px" />
                     </td>
                 }
                 else
@@ -24,24 +32,20 @@
                     <td></td>
                 }
             }
-            <td>
+            <td style="vertical-align:middle">
                 @Html.DisplayFor(modelItem => item.Product.Name)
             </td>
-            <td>
+            <td style="vertical-align:middle">
                 @Html.DisplayFor(modelItem => item.Product.Price)
             </td>
-            <td>
+            <td style="vertical-align:middle">
                 <button class="btn btn-sm btn-warning" onclick="DecreaseQuantity(@item.Product.Id)">-</button>
                 @Html.DisplayFor(modelItem => item.Quantity)
                 <button class="btn btn-sm btn-success" onclick="IncreaseQuantity(@item.Product.Id)">+</button>
             </td>
-            <td>
+            <td style="vertical-align:middle">
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
-            <td>
-                <button class="btn btn-sm btn-danger" onclick="RemoveCartItem(@item.Product.Id)">Remove</button>
-            </td>
-
         </tr>
     }
 

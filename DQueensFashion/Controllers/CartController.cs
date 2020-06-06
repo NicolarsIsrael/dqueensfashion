@@ -65,13 +65,8 @@ namespace DQueensFashion.Controllers
 
         public ActionResult GetCart()
         {
-            ViewCartViewModel viewCart = new ViewCartViewModel()
-            {
-                Count = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.Quantity),
-                Carts = Session["cart"] == null ? new List<Cart>() : (List<Cart>)Session["cart"],
-            };
-
-            return PartialView("_navbarCart", viewCart);
+            ViewBag.CartNumber = GetCartNumber();
+            return PartialView("_navbarCartNumber");
         }
 
         public ActionResult RemoveFromCart(int id)
@@ -123,7 +118,7 @@ namespace DQueensFashion.Controllers
                 Carts = Session["cart"] == null ? new List<Cart>() : (List<Cart>)Session["cart"],
             };
 
-            return PartialView("_increaseQuantity",viewCart);
+            return PartialView("_cartTable",viewCart);
         }
 
         public ActionResult DecreaseQuantity(int id)
@@ -149,7 +144,7 @@ namespace DQueensFashion.Controllers
                 Carts = Session["cart"] == null ? new List<Cart>() : (List<Cart>)Session["cart"],
             };
 
-            return PartialView("_increaseQuantity", viewCart);
+            return PartialView("_cartTable", viewCart);
         }
 
         public ActionResult RemoveCartItem(int id)
@@ -170,7 +165,7 @@ namespace DQueensFashion.Controllers
                 Carts = Session["cart"] == null ? new List<Cart>() : (List<Cart>)Session["cart"],
             };
 
-            return PartialView("_increaseQuantity", viewCart);
+            return PartialView("_cartTable", viewCart);
         }
 
         private int isExist(int id)

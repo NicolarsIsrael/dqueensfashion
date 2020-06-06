@@ -15,14 +15,15 @@ function AddToCart(productId, _quantity) {
     });
 }
 
-function GetCart() {
+
+function UpdateCartNumber() {
 
     $.ajax({
         url: '/Cart/getcart/',
         dataType: "html",
         data: { },
         success: function (result) {
-            $("#navbarCart").html(result);
+            $("#navbarCartNumber").html(result);
         },
         error: function (xhr, status, error) {
             alertify.error("Error");
