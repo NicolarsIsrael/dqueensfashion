@@ -4,112 +4,172 @@
     Layout = "~/Views/Shared/_dashboardLayout.cshtml";
 }
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
     .checked {
         color: orange;
     }
 
+    .orButton {
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid #000;
+        line-height: 0.1em;
+        margin: 10px 0 20px;
+    }
+
+        .orButton span {
+            background: #fff;
+            padding: 0 10px;
+        }
+
     .product-details {
         margin: 0px;
     }
+
+    .carousel-item {
+        height: 350px;
+    }
+
+    .carousel-indicators li {
+        width: 10px;
+        height: 10px;
+        border-radius: 100%;
+        background-color: #212529;
+    }
+
+    .carousel-indicators {
+        bottom: -50px;
+    }
+
+
+    .product-details-title {
+        white-space: normal;
+        font-weight: 700;
+        font-size: 30px;
+        color: #29303b;
+        margin-bottom: 0px;
+    }
+
+    .product-details-detail {
+        white-space: normal;
+        font-size: 15px;
+        margin: 0;
+        padding: 3px;
+    }
+
+        .product-details-detail > span {
+            white-space: normal;
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+
+    .product-details-initial-price {
+        font-size: 20px;
+        line-height: 15px;
+        color: #29303b;
+        text-decoration: line-through;
+        padding: 3px;
+    }
+
+    .product-details-price {
+        font-size: 30px;
+        font-weight: 700;
+        padding: 3px;
+        color: red;
+    }
 </style>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
 
-<div class="card" style="width:1000px">
-    <div class="card-header">
-        <h4 style="text-align:center">Product Details</h4>
-    </div>
-    <div class="card-body">
-        <div class="row">
-            <div class="col-md-6">
-                @*<img src="@Url.Content(Model.Image1)" style="width:100%;height:300px" id="productDisplayImage" />
-                <div class="row" style="margin-top:10px">
+            <div id="productCarousel" class="carousel slide mb-3" data-ride="carousel" data-interval="false">
+                <ol class="carousel-indicators">
+                    <li data-target="#productCarousel" data-slide-to="0" class="active"></li>
                     @{
-                        if (!string.IsNullOrEmpty(Model.Image1))
+                        int productCount = 1;
+                        foreach (var productImage in Model.OtherImagePaths)
                         {
-                            <div class="col-3">
-                                <img src="@Url.Content(Model.Image1)" style="width:100%;height:100px" onclick='changeProductImage("image1")' id="image1" />
-                            </div>
+                            <li data-target="#productCarousel" data-slide-to="@productCount"></li>
+                            productCount++;
                         }
+                    }
 
-                        if (!string.IsNullOrEmpty(Model.Image2))
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img class="d-block " style="width:500px;height:500px" src="@Url.Content(Model.MainImage)" alt="First slide">
+                    </div>
+                    @{
+                        foreach (var productImage in Model.OtherImagePaths)
                         {
-                            <div class="col-3">
-                                <img src="@Url.Content(Model.Image2)" style="width:100%;height:100px" onclick='changeProductImage("image2")' id="image2" />
-                            </div>
-                        }
-
-                        if (!string.IsNullOrEmpty(Model.Image3))
-                        {
-                            <div class="col-3">
-                                <img src="@Url.Content(Model.Image3)" style="width:100%;height:100px" onclick='changeProductImage("image3")' id="image3" />
-                            </div>
-                        }
-
-                        if (!string.IsNullOrEmpty(Model.Image4))
-                        {
-                            <div class="col-3">
-                                <img src="@Url.Content(Model.Image4)" style="width:100%;height:100px" onclick='changeProductImage("image4")' id="image4" />
+                            <div class="carousel-item">
+                                <img class="d-block" style="width:500px;height:500px" src="@Url.Content(productImage)" alt="Second slide">
                             </div>
                         }
                     }
 
+                </div>
 
-                </div>*@
             </div>
-
-            <div class="col-md-6">
-                <div class="row">
-                    <div class="col-12">
-                        <h1>@Model.Name</h1>
-                    </div>
-                </div>
-                <hr class="m-1" />
-                <div class="row">
-                    <div class="col-12">
-                        <p class="product-details">Category: @Model.Category</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <p class="product-details">Product Availability: @Model.Quantity</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <p class="product-details">Price: $@Model.Price</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <p class="product-details" style="display:inline">Rating:</p>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span>
-                        <span class="fa fa-star"></span>
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-12">
-                        <p class="product-details">Description</p>
-                        <div class="card p-2"><p class="product-details">@Model.Description</p></div>
-                    </div>
-                </div>
-
-                @Html.ActionLink("Edit", "EditProduct", new { id = Model.Id })
-
-                @Html.ActionLink("view products", "Products")
-            </div>
-
         </div>
+
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-12">
+                    <div class="product-details-title">@Model.Name</div>
+                </div>
+            </div>
+            <hr class="m-0" />
+            <div class="row">
+                <div class="col-12">
+                    <div class="product-details-detail"><span>CATEGORY:</span> @Model.Category</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="product-details-detail"><span>PRODUCT AVAILABILITY:</span>@Model.Quantity</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <span class="product-details-initial-price">$@Model.Price</span>
+                    <span class="product-details-price">$@Model.Price</span>
+
+                </div>
+            </div>
+            <div class="row" style="padding:3px">
+                <div class="col-12">
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    (53)
+                </div>
+            </div>
+            <div>
+                @Html.ActionLink("Edit product details", "EditProduct", new { id = Model.Id })
+            </div>
+            <div>
+                @Html.ActionLink("View Products", "Products")
+            </div>
+        </div>
+
     </div>
+
+    <div style="font-weight:500;font-size:30px;margin-top:15px">
+        DESCRIPTION
+    </div>
+    <hr class="m-1" />
+    @Html.Raw(Model.Description.Replace(Environment.NewLine, "<br/>"))
+
+    <div style="font-weight:500;font-size:30px;margin-top:15px">
+        REVIEWS
+    </div>
+    <hr class="m-1" />
+
+    @Html.Partial("_productReview")
+
 </div>
-
-
-<script>
-    var productImage = document.getElementById("productDisplayImage");
-
-    function changeProductImage(imgId) {
-        productImage.src = document.getElementById(imgId).src;
-    }
-</script>
