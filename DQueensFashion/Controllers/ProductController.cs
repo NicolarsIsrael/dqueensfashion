@@ -265,6 +265,7 @@ namespace DQueensFashion.Controllers
                     Image1 = p.ImagePath1,
                     Quantity = p.Quantity.ToString(),
                     Price = p.Price.ToString(),
+                    Category = p.Category.Name,
                 }).ToList();
 
             ProductDetailsViewModel productModel = new ProductDetailsViewModel()
@@ -336,6 +337,7 @@ namespace DQueensFashion.Controllers
                 Image4 = product.ImagePath4,
                 Category = product.Category.Name,
                 Price = product.Price.ToString(),
+                Quantity = product.Quantity.ToString(),
             };
 
             return PartialView("_productQuickView", productModel);

@@ -61,7 +61,28 @@
     <footer style="background-color:#0a0c13">
         <p style="color:white;margin:0">&copy; @DateTime.Now.Year - My ASP.NET Application</p>
     </footer>
-  
+
+
+    <!--modals-->
+    <!--quick view product-->
+    <div class="modal fade" id="productQuickView">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="padding:5px 10px">
+                    <a href="#" class="close" data-dismiss="modal">&times;</a>
+                </div>
+                <div class="modal-body" id="productQuickViewBody">
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
 
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

@@ -31,21 +31,6 @@ function UpdateCartNumber() {
     });
 }
 
-//function RemoveFromCart(productId) {
-
-//    $.ajax({
-//        url: '/Cart/removefromcart/' + productId,
-//        dataType: "html",
-//        data: { id: productId },
-//        success: function (result) {
-//            $("#navbarCart").html(result);
-//            alertify.success("Product removed from cart");
-//        },
-//        error: function (xhr, status, error) {
-//            alertify.error("Error");
-//        }
-//    });
-//}
 
 function AddToWishList(productId) {
 
@@ -73,4 +58,13 @@ function ShopByCategory(categoryId) {
 
 function NavigateToProductDetails(productId){
     window.location.href = '/Product/ProductDetails/' + productId;
+}
+
+function productQuickView(productId) {
+    var url = "/Product/ProductQuickView/" + productId;
+
+    $("#productQuickViewBody").load(url, function () {
+        $("#productQuickView").modal("show");
+
+    })
 }

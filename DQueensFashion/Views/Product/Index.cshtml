@@ -107,29 +107,6 @@
 
 </div>
 
-
-
-<!--modals-->
-<!--quick view product-->
-<div class="modal fade" id="productQuickView">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Product quick view</h3>
-                <a href="#" class="close" data-dismiss="modal">&times;</a>
-            </div>
-            <div class="modal-body" id="productQuickViewBody">
-
-
-            </div>
-
-
-        </div>
-
-    </div>
-
-</div>
-
 <script>
 
     var _searchString = document.getElementById("searchString");
@@ -165,16 +142,6 @@
             }
         });
     }
-
-    function productQuickView(productId) {
-        var url = "/Product/ProductQuickView/" + productId;
-
-        $("#productQuickViewBody").load(url, function () {
-            $("#productQuickView").modal("show");
-
-        })
-    }
-
 
     var coll = document.getElementsByClassName("collapsible");
     var i;
