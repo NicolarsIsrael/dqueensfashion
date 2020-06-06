@@ -31,21 +31,21 @@ function UpdateCartNumber() {
     });
 }
 
-function RemoveFromCart(productId) {
+//function RemoveFromCart(productId) {
 
-    $.ajax({
-        url: '/Cart/removefromcart/' + productId,
-        dataType: "html",
-        data: { id: productId },
-        success: function (result) {
-            $("#navbarCart").html(result);
-            alertify.success("Product removed from cart");
-        },
-        error: function (xhr, status, error) {
-            alertify.error("Error");
-        }
-    });
-}
+//    $.ajax({
+//        url: '/Cart/removefromcart/' + productId,
+//        dataType: "html",
+//        data: { id: productId },
+//        success: function (result) {
+//            $("#navbarCart").html(result);
+//            alertify.success("Product removed from cart");
+//        },
+//        error: function (xhr, status, error) {
+//            alertify.error("Error");
+//        }
+//    });
+//}
 
 function AddToWishList(productId) {
 

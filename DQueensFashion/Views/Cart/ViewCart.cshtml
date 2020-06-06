@@ -5,10 +5,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-    <div class="container body-content">
-        <h4  class="mt-3">Your Cart</h4>
-        @Html.Partial("_cartTable",Model)
-    </div>
+<div class="container body-content">
+    <h4 class="mt-3">Your Cart</h4>
+    @Html.Partial("_cartTable", Model)
+
+    <div class="mb-3"></div>
+</div>
 <script>
     function IncreaseQuantity(productId) {
 
@@ -18,7 +20,7 @@
             data: { id: productId },
             success: function (result) {
                 UpdateCartNumber();
-                $("#viewCartTable").html(result);
+                $(".viewCartTable").html(result);
             },
             error: function (xhr, status, error) {
 
@@ -36,25 +38,24 @@
             data: { id: productId },
             success: function (result) {
                 UpdateCartNumber();
-                $("#viewCartTable").html(result);
+                $(".viewCartTable").html(result);
             },
             error: function (xhr, status, error) {
 
             }
         });
 
-        //GetCart();
-        }
+    }
 
-     function RemoveCartItem(productId) {
+    function RemoveCartItem(productId) {
 
         $.ajax({
-            url: '/Cart/removecartitem/' + productId,
+            url: '/Cart/removecartitem/',
             dataType: "html",
             data: { id: productId },
             success: function (result) {
                 UpdateCartNumber()
-                $("#viewCartTable").html(result);
+                $(".viewCartTable").html(result);
             },
             error: function (xhr, status, error) {
 
