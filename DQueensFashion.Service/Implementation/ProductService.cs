@@ -46,6 +46,17 @@ namespace DQueensFashion.Service.Implementation
             return uow.ProductRepo.GetAllProductsWithRelationships();
         }
 
+        public IEnumerable<Product> GetAllProductsForCategory(int categoryId)
+        {
+            return GetAllProducts().Where(p => p.CategoryId == categoryId);
+        }
+
+        public IEnumerable<Product> GetRelatedProducts(int productId,int categoryId)
+        {
+            return GetAllProducts().Where(p => p.Id!=productId && p.CategoryId == categoryId);
+        }
+
+
         public Product GetProductById(int id)
         {
             return uow.ProductRepo.GetProductByIdWithRelationships(id);
@@ -75,6 +86,7 @@ namespace DQueensFashion.Service.Implementation
 
             return true;
         }
+
     }
 
 }

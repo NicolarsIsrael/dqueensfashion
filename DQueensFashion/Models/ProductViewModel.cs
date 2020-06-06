@@ -96,4 +96,10 @@ namespace DQueensFashion.Models
         public CategoryNameAndId PreviousCategory { get; set; }
         public IEnumerable<CategoryNameAndId> Categories { get; set; }
     }
+
+    public class ProductDetailsViewModel
+    {
+        public ViewProductsViewModel Product { get; set; }
+        public IEnumerable<ViewProductsViewModel> RelatedProducts { get; set; }
+    }
 }

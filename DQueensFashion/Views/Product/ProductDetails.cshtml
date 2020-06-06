@@ -1,4 +1,4 @@
-﻿@model DQueensFashion.Models.ViewProductsViewModel
+﻿@model DQueensFashion.Models.ProductDetailsViewModel
 @{
     ViewBag.Title = "ProductDetails";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -17,172 +17,298 @@
         margin: 10px 0 20px;
     }
 
-    .orButton span{
-        background:#fff; 
-    padding:0 10px; 
-    }
+        .orButton span {
+            background: #fff;
+            padding: 0 10px;
+        }
 
     .product-details {
         margin: 0px;
     }
+
+    .carousel-item {
+    height: 350px;
+}
+
+.carousel-indicators li {
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    background-color:#212529;
+}
+
+.carousel-indicators {
+    bottom: -50px;
+}
+
+
+.product-details-title{
+    white-space: normal;
+    font-weight: 700;
+    font-size: 30px;
+    color: #29303b;
+    margin-bottom: 0px;
+}
+
+.product-details-detail{
+    white-space:normal;
+    font-size: 15px;
+    margin: 0;
+    padding: 3px;
+}
+
+.product-details-detail>span{
+    white-space:normal;
+    font-size: 15px;
+    font-weight:700;
+}
+
+
+.product-details-initial-price {
+    font-size: 20px;
+    line-height: 15px;
+    color: #29303b;
+    text-decoration: line-through;
+    padding:3px;
+}
+
+.product-details-price {
+    font-size: 30px;
+    font-weight: 700;
+    padding:3px;
+    color:red;
+}
+
+
 </style>
 
-<div class="container-fluid body-content">
+<div class="container body-content">
     <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-8 mt-lg-2">
-            <div class="card p-2">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <img src="@Url.Content(Model.Image1)" style="width:100%;height:300px" id="productDisplayImage" />
-                            <div class="row" style="margin-top:10px">
-                                @{
-                                    if (!string.IsNullOrEmpty(Model.Image1))
-                                    {
-                                        <div class="col-3">
-                                            <img src="@Url.Content(Model.Image1)" style="width:100%;height:100px" onclick='changeProductImage("image1")' id="image1" />
-                                        </div>
-                                    }
+        <div class="col-md-6">
 
-                                    if (!string.IsNullOrEmpty(Model.Image2))
-                                    {
-                                        <div class="col-3">
-                                            <img src="@Url.Content(Model.Image2)" style="width:100%;height:100px" onclick='changeProductImage("image2")' id="image2" />
-                                        </div>
-                                    }
+            <div id="productCarousel" class="carousel slide mb-3" data-ride="carousel" data-interval="false">
+                <ol class="carousel-indicators">
+                    <li data-target="#productCarousel" data-slide-to="0" class="active"></li>
 
-                                    if (!string.IsNullOrEmpty(Model.Image3))
-                                    {
-                                        <div class="col-3">
-                                            <img src="@Url.Content(Model.Image3)" style="width:100%;height:100px" onclick='changeProductImage("image3")' id="image3" />
-                                        </div>
-                                    }
+                    @if (!string.IsNullOrEmpty(Model.Product.Image2))
+                    {
+                        <li data-target="#productCarousel" data-slide-to="1"></li>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.Product.Image3))
+                    {
+                        <li data-target="#productCarousel" data-slide-to="2"></li>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.Product.Image4))
+                    {
+                        <li data-target="#productCarousel" data-slide-to="3"></li>
+                    }
 
-                                    if (!string.IsNullOrEmpty(Model.Image4))
-                                    {
-                                        <div class="col-3">
-                                            <img src="@Url.Content(Model.Image4)" style="width:100%;height:100px" onclick='changeProductImage("image4")' id="image4" />
-                                        </div>
-                                    }
-                                }
-
-
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="row">
-                                <div class="col-12">
-                                    <h1>@Model.Name</h1>
-                                </div>
-                            </div>
-                            <hr class="m-1" />
-                            <div class="row">
-                                <div class="col-12">
-                                    <p class="product-details">Category: @Model.Category</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <p class="product-details">Product Availability: @Model.Quantity</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <p class="product-details">Price: $@Model.Price</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <p class="product-details" style="display:inline">Rating:</p>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star"></span>
-                                    <a href="#">Add a review</a>
-                                </div>
-                            </div>
-
-                            @using (Html.BeginForm("BuyProduct", "Product"))
-                            {
-                                @Html.AntiForgeryToken()
-                                <input type="hidden" value="@Model.Quantity" id="productQuantity" />
-                                <div class="form-horizontal">
-                                    @Html.Hidden("id")
-                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                    <div class="input-group mb-1">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">Qty</span>
-                                        </div>
-                                        <input type="number" name="quantity" class="form-control" value="1" min="1" id="quantity" onchange="checkQuantity()" oninput="checkQuantity()" style="max-width:120px;" />
-                                    </div>
-                                    <p class="mb-0 text-danger" id="quantityValidationError"></p>
-                                    <div class="mb-3">
-                                        <button type="button" class="btn" style="background-color:#0a0c13;color:white" onclick="AddToWishList(@Model.Id)">Add to wishlist</button>
-                                        <button type="button" class="btn" style="background-color:#0a0c13;color:white" onclick="addToCartFromProductDetails(@Model.Id)">Add to cart</button>
-                                    </div>
-                                    <h6 class="orButton"><span>OR</span></h6>
-                                    <input type="submit" value="BUY NOW" class="btn mt-0" onclick="return validateBuy()" style="max-width:150px;background-color:#E97128;color:white" />
-                                </div>
-                            }
-
-                        </div>
-
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img class="d-block " style="width:500px;height:500px" src="@Url.Content(Model.Product.Image1)" alt="First slide">
                     </div>
-
-                    <div class="row">
-                        <div class="col-12">
-                            <p class="product-details">Description</p>
-                            <div class="card">
-                                <div class="card-body">
-                                    @Html.Raw(Model.Description.Replace(Environment.NewLine, "<br/>"))
-                                </div>
-                            </div>
+                    @if (!string.IsNullOrEmpty(Model.Product.Image2))
+                    {
+                        <div class="carousel-item">
+                            <img class="d-block" style="width:500px;height:500px" src="@Url.Content(Model.Product.Image2)" alt="Second slide">
                         </div>
-                    </div>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.Product.Image3))
+                    {
+                        <div class="carousel-item">
+                            <img class="d-block" style="width:500px;height:500px" src="@Url.Content(Model.Product.Image3)" alt="Third slide">
+                        </div>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.Product.Image4))
+                    {
+                        <div class="carousel-item">
+                            <img class="d-block" style="width:500px;height:500px" src="@Url.Content(Model.Product.Image4)" alt="Third slide">
+                        </div>
+                    }
+
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-12">
+                    <div class="product-details-title">@Model.Product.Name</div>
+                </div>
+            </div>
+            <hr class="m-0" />
+            <div class="row">
+                <div class="col-12">
+                    <div class="product-details-detail"><span>CATEGORY:</span> @Model.Product.Category</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="product-details-detail"><span>PRODUCT AVAILABILITY:</span>@Model.Product.Quantity</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <span class="product-details-initial-price">$@Model.Product.Price</span>
+                    <span class="product-details-price">$@Model.Product.Price</span>
 
                 </div>
             </div>
+            <div class="row" style="padding:3px">
+                <div class="col-12">
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    (53)
+                </div>
+                <div class="col-12">
+                    <a href="#">Add a review</a>
+                </div>
+            </div>
+
+            @using (Html.BeginForm("BuyProduct", "Product"))
+            {
+                @Html.AntiForgeryToken()
+                <input type="hidden" value="@Model.Product.Quantity" id="productQuantity" />
+                <div class="form-horizontal">
+                    @Html.Hidden("id")
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="input-group mb-1">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Qty</span>
+                        </div>
+                        <input type="number" name="quantity" class="form-control" value="1" min="1" id="quantity" onchange="checkQuantity()" oninput="checkQuantity()" style="max-width:120px;" />
+                    </div>
+                    <p class="mb-0 text-danger" id="quantityValidationError"></p>
+                    <div class="mb-3">
+                        <button type="button" class="btn" style="background-color:#0a0c13;color:white" onclick="AddToWishList(@Model.Product.Id)">Add to wishlist</button>
+                        <button type="button" class="btn" style="background-color:#0a0c13;color:white" onclick="addToCartFromProductDetails(@Model.Product.Id)">Add to cart</button>
+                    </div>
+                    <h6 class="orButton"><span>OR</span></h6>
+                    <input type="submit" value="BUY NOW" class="btn mt-0" onclick="return validateBuy()" style="max-width:150px;background-color:#E97128;color:white" />
+                </div>
+            }
+
         </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="section_header" style="margin-bottom:1px">
+                <div class="section_header_text">
+                    <h5 style="margin-top: 15px;">DESCRIPTION</h5>
+                </div>
+            </div>
+            @Html.Raw(Model.Product.Description.Replace(Environment.NewLine, "<br/>"))
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-12">
+            <div class="section_header" style="margin-bottom:1px">
+                <div class="section_header_text">
+                    <h5 style="margin-top: 15px;">REVIEWS (300)</h5>
+                </div>
+            </div>
+            @Html.Partial("_productReview")
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="section_header" style="margin-bottom:1px">
+                <div class="section_header_text">
+                    <h5 style="margin-top: 15px;">RELATED PRODUCTS</h5>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row mt-1">
+
+        @{
+            foreach (var product in Model.RelatedProducts)
+            {
+                <div class="col-lg-3 col-12">
+
+                    <div class="product-box">
+                        <div onclick="NavigateToProductDetails(@product.Id)" style="cursor:pointer">
+                            <div class="product-time-label">New</div>
+                            <div class="product-discount-label">10%</div>
+                            <div class="img-box">
+                                <img src="@Url.Content(product.Image1)">
+                            </div>
+                        </div>
+                        <div class="product-details">
+                            <div onclick="NavigateToProductDetails(@product.Id)" style="cursor:pointer">
+                                <div class="product-title">@product.Name</div>
+                                <div class="product-category">@product.Category</div>
+                                <span class="product-initial-price">$@product.Price</span>
+                                <span class="product-price">$@product.Price</span>
+                            </div>
+                            <div class="star-rating">
+                                <i class="fas fa-star" id="star1" onclick="add(this,1)"></i>
+                                <i class="fas fa-star" id="star2" onclick="add(this,2)"></i>
+                                <i class="fas fa-star" id="star3" onclick="add(this,3)"></i>
+                                <i class="far fa-star" id="star4" onclick="add(this,4)"></i>
+                                <i class="far fa-star" id="star5" onclick="add(this,5)"></i>
+                                (34)
+                                <span class="float-right mb-1">
+                                    <img src="~/Content/Images/eye.svg" style="margin-right: 10px; cursor:pointer" onclick="productQuickView(@product.Id)">
+                                    <img src="~/Content/Images/heart.svg" style=" cursor:pointer" onclick="AddToWishList(@product.Id)">
+                                </span>
+                            </div>
+
+                            <div class="cart" onclick="AddToCart(@product.Id)">
+                                <div href="#">Add to cart</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            }
+        }
+
     </div>
 </div>
 
 
-<script>
-    var productQuantity = document.getElementById("productQuantity");
-    var quantity = document.getElementById("quantity");
-    var quantityValidationError = document.getElementById("quantityValidationError");
-    var productImage = document.getElementById("productDisplayImage");
+    <script>
+        var productQuantity = document.getElementById("productQuantity");
+        var quantity = document.getElementById("quantity");
+        var quantityValidationError = document.getElementById("quantityValidationError");
+        var productImage = document.getElementById("productDisplayImage");
 
-    function checkQuantity() {
-        if (Number(productQuantity.value) < Number(quantity.value)) {
-            quantity.value = productQuantity.value;
-            quantityValidationError.innerHTML = "Not enough items available";
+        function checkQuantity() {
+            if (Number(productQuantity.value) < Number(quantity.value)) {
+                quantity.value = productQuantity.value;
+                quantityValidationError.innerHTML = "Not enough items available";
+            }
+            else {
+                quantityValidationError.innerHTML = '';
+            }
         }
-        else {
-            quantityValidationError.innerHTML = '';
+
+        function validateBuy() {
+            if (Number(productQuantity.value) < Number(quantity.value)) {
+                quantity.focus();
+                return false;
+            }
+            else {
+                return true;
+            }
         }
-    }
 
-    function validateBuy() {
-        if (Number(productQuantity.value) < Number(quantity.value)) {
-            quantity.focus();
-            return false;
+
+        function addToCartFromProductDetails(productId) {
+            AddToCart(productId, quantity.value);
         }
-        else {
-            return true;
-        }
-    }
-
-    function changeProductImage(imgId) {
-
-        productImage.src = document.getElementById(imgId).src;
-    }
-
-    function addToCartFromProductDetails(productId) {
-        AddToCart(productId,quantity.value);
-    }
-</script>
+    </script>
 

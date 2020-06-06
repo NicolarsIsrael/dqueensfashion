@@ -20,5 +20,6 @@ namespace DQueensFashion.Utilities
         public const int ProductIndexPageSize = 4;
 
         //orange #E97128
+        //deep blue #212529
     }
 }

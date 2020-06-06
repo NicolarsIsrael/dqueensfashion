@@ -240,7 +240,7 @@ namespace DQueensFashion.Controllers
             if (product == null)
                 return HttpNotFound();
 
-            ViewProductsViewModel productModel = new ViewProductsViewModel()
+            ViewProductsViewModel productDetails = new ViewProductsViewModel()
             {
                 Id = product.Id,
                 Name = product.Name,
@@ -254,6 +254,23 @@ namespace DQueensFashion.Controllers
                 Image2 = string.IsNullOrEmpty(product.ImagePath2) ? "" : product.ImagePath2,
                 Image3 = string.IsNullOrEmpty(product.ImagePath3) ? "" : product.ImagePath3,
                 Image4 = string.IsNullOrEmpty(product.ImagePath4) ? "" : product.ImagePath4,
+            };
+
+            IEnumerable<ViewProductsViewModel> relatedProducts = _productService.GetRelatedProducts(product.Id,product.CategoryId)
+                .Take(4).Select(p => new ViewProductsViewModel()
+                {
+                    Id = p.Id,
+                    Name = p.Name,
+                    Description = p.Description.Length > 35 ? p.Description.Substring(0, 35) + "..." : p.Description,
+                    Image1 = p.ImagePath1,
+                    Quantity = p.Quantity.ToString(),
+                    Price = p.Price.ToString(),
+                }).ToList();
+
+            ProductDetailsViewModel productModel = new ProductDetailsViewModel()
+            {
+                Product = productDetails,
+                RelatedProducts = relatedProducts,
             };
 
             return View(productModel);

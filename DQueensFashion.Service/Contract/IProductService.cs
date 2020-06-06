@@ -14,5 +14,7 @@ namespace DQueensFashion.Service.Contract
         void AddProduct(Product product);
         void UpdateProduct(Product product);
         IEnumerable<Product> GetAllProducts();
+        IEnumerable<Product> GetAllProductsForCategory(int categoryId);
+        IEnumerable<Product> GetRelatedProducts(int productId, int categoryId);
     }
 }

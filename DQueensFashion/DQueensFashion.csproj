@@ -500,6 +500,7 @@
     <Content Include="Views\Admin\_productsTable.cshtml" />
     <Content Include="Views\Customer\_wishlistTable.cshtml" />
     <Content Include="Views\Customer\_ordersTable.cshtml" />
+    <Content Include="Views\Product\_productReview.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
