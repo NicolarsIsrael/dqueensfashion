@@ -1,29 +1,39 @@
-﻿@for (int i = 0; i < 5; i++)
-{
-    <span class="review-name">
-        MR. Fashola Aderibigbe
-    </span>
-    <span class="review-date">
-        1-12-2020
-    </span>
-    <div class="review-rating">
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span>
-        (53)
-    </div>
+﻿@model IEnumerable<DQueensFashion.Models.ViewReviewViewModel>
+<div id="reviewList">
 
-    <div class="review-summary">
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+    @foreach (var review in Model)
+    {
+        <span class="review-name">
+            @review.Name
+        </span>
+        <span class="review-date">
+            @review.DateCreated
+        </span>
+        <div class="review-rating">
+            <div class="">
+                @for (int i = 1; i <= review.Rating; i++)
+                {
+                    <i class="fas fa-star starcolor"></i>
+                }
+                @for (int i = 1; i <= (5 - review.Rating); i++)
+                {
+                    <i class="far fa-star starcolor"></i>
+                }
 
-    </div>
-    <hr />
-}
+            </div>
+        </div>
 
+        <div class="review-comment">
+            @review.Comment
+        </div>
+        <hr />
+    }
+    @if (Model.Count() > 0)
+    {
+        @*@Html.Partial("_reviewListPagination")*@
+    }
 
-
+</div>
 <style>
     .review-name {
         font-weight: 500;
@@ -33,8 +43,9 @@
         float: right;
     }
 
-    .review-summary {
+    .review-comment {
         text-align: justify;
         text-justify: inter-word;
     }
+
 </style>

@@ -1,0 +1,72 @@
+﻿.section_header {
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-align: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+    .section_header [class*="heading_"] {
+        float: left;
+    }
+
+
+
+.section_header_text {
+    position: relative;
+}
+
+    .section_header_text h1, .section_header_text h2, .section_header_text h3, .section_header_text h4, .section_header_text h5, .section_header_text h6 {
+        font-weight: 700;
+        margin: 0;
+        text-transform: capitalize;
+    }
+
+    .section_header_text h1,
+    .section_header_text h2,
+    .section_header_text h3,
+    .section_header_text h4,
+    .section_header_text h5,
+    .section_header_text h6 {
+        position: relative;
+        z-index: 9;
+    }
+
+    .section_header_text .sub_heading {
+        font-size: 100px;
+        font-weight: bold;
+        padding: 0;
+        margin-bottom: -15px;
+        z-index: 0;
+        position: relative;
+        line-height: 100px;
+        background: -moz-linear-gradient(top, rgba(0,0,0,0.1) 0%, rgba(255,255,255,0.1) 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(top, rgba(0,0,0,0.1) 0%,rgba(255,255,255,0.1) 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%,rgba(255,255,255,0.1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4d000000', endColorstr='#1affffff',GradientType=0 );
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .section_header_text.heading_light .sub_heading {
+        background: -moz-linear-gradient(top, rgba(255,255,255,0.1) 0%, rgba(0,0,0,0.01) 100%);
+        background: -webkit-linear-gradient(top, rgba(255,255,255,0.1) 0%,rgba(0,0,0,0.01) 100%);
+        background: linear-gradient(to bottom, rgba(255,255,255,0.1) 0%, rgba(0,0,0,0.01) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4dffffff', endColorstr='#1a000000',GradientType=0 );
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
+    }
+
+.starcolor {
+    color: #f4c150;
+}

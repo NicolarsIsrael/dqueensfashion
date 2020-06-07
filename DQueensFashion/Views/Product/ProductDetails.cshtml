@@ -18,7 +18,7 @@
     }
 
         .orButton span {
-            background: #fff;
+            background: #F4F6F6;
             padding: 0 10px;
         }
 
@@ -174,18 +174,21 @@
     </div>
 
     <div id="review-scroll-to"></div>
-    <div class="row">
+    <div class="row mt-5">
         <div class="col-12">
             <div class="section_header" style="margin-bottom:1px">
                 <div class="section_header_text">
                     <h5 style="margin-top: 15px;">DESCRIPTION</h5>
                 </div>
             </div>
-            @Html.Raw(Model.Product.Description.Replace(Environment.NewLine, "<br/>"))
+            <div style="text-justify:inter-word;text-align:justify">
+                @Html.Raw(Model.Product.Description.Replace(Environment.NewLine, "<br/>"))
+            </div>
+            
         </div>
     </div>
 
-    <div class="row mt-3">
+    <div class="row mt-5">
         <div class="col-12">
             <div class="section_header" style="margin-bottom:1px">
                 <div class="section_header_text">

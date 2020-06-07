@@ -286,6 +286,7 @@
     <Content Include="Content\alertifyjs\themes\semantic.min.css" />
     <Content Include="Content\alertifyjs\themes\semantic.rtl.css" />
     <Content Include="Content\alertifyjs\themes\semantic.rtl.min.css" />
+    <Content Include="Content\dashboard-custom.css" />
     <Content Include="Content\Dashboard\css\main.css" />
     <Content Include="Content\Dashboard\jquery.js" />
     <Content Include="Content\Dashboard\js\main.js" />

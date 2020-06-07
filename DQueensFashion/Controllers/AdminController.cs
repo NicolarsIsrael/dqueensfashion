@@ -19,12 +19,14 @@ namespace DQueensFashion.Controllers
         private readonly ICategoryService _categoryService;
         private readonly IProductService _productService;
         private readonly IOrderService _orderService;
+        private readonly IReviewService _reviewService;
 
-        public AdminController(ICategoryService categoryService, IProductService productService, IOrderService orderService)
+        public AdminController(ICategoryService categoryService, IProductService productService, IOrderService orderService, IReviewService reviewService)
         {
             _categoryService = categoryService;
             _productService = productService;
             _orderService = orderService;
+            _reviewService = reviewService;
         }
         // GET: Admin
         public ActionResult Index()
@@ -421,8 +423,9 @@ namespace DQueensFashion.Controllers
                 return HttpNotFound();
 
             var productImages = SetProductImages(product.ImagePath2, product.ImagePath3, product.ImagePath4);
+            double averageRating = _reviewService.GetAverageRating(product.Id);
 
-            ViewProductsViewModel productModel = new ViewProductsViewModel()
+            ViewProductsViewModel productDetails = new ViewProductsViewModel()
             {
                 Id = product.Id,
                 Name = product.Name,
@@ -434,7 +437,39 @@ namespace DQueensFashion.Controllers
                 DateCreatedString = product.DateCreated.ToString("dd/MMM/yyyy : hh-mm-ss"),
                 MainImage = string.IsNullOrEmpty(product.ImagePath1) ? AppConstant.DefaultProductImage : product.ImagePath1,
                 OtherImagePaths = productImages,
+                Rating = new RatingViewModel()
+                {
+                    AverageRating = averageRating.ToString("0.0"),
+                    TotalReviewCount = _reviewService.GetReviewCountForProduct(product.Id).ToString(),
+                    IsDouble = (averageRating % 1) == 0 ? false : true,
+                    FloorAverageRating = (int)Math.Floor(averageRating)
+                },
+
+                Reviews = _reviewService.GetAllReviewsForProduct(product.Id).ToList()
+                    .Select(r => new ViewReviewViewModel()
+                    {
+                        ReviewId = r.Id,
+                        Name = r.Name,
+                        Email = r.Email,
+                        Comment = r.Comment,
+                        Rating = r.Rating,
+                        DateCreated = r.DateCreated.ToString("dd/MMM/yyyy"),
+                        DateOrder = r.DateCreated,
+                    }).OrderByDescending(r => r.DateOrder).ToList(),
             };
+
+            ProductDetailsViewModel productModel = new ProductDetailsViewModel()
+            {
+                Product = productDetails,
+            };
+
+            //pagination
+            ViewBag.ProductId = product.Id;
+            ViewBag.NumberOfPages = Convert.ToInt32(Math.Ceiling((double)productModel.Product.Reviews.Count() / AppConstant.ReviewsPageSize));
+            ViewBag.CurrentPage = 1;
+            productModel.Product.Reviews = productModel.Product.Reviews
+                                            .Skip(AppConstant.ReviewsPageSize * 0)
+                                            .Take(AppConstant.ReviewsPageSize).ToList();
 
             return View(productModel);
         }
