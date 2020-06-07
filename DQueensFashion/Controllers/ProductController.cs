@@ -152,7 +152,6 @@ namespace DQueensFashion.Controllers
             }
         }
 
-
         public ActionResult ProductPagination(string searchString, int sortString, int categoryId = 0, int pageNumber = 1)
         {
             try
@@ -233,7 +232,6 @@ namespace DQueensFashion.Controllers
             }
         }
 
-
         public ActionResult ProductDetails(int id=0)
         {
             Product product = _productService.GetProductById(id);
@@ -277,7 +275,6 @@ namespace DQueensFashion.Controllers
             return View(productModel);
         }
 
-
         [Authorize(Roles = AppConstant.CustomerRole)]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -320,7 +317,7 @@ namespace DQueensFashion.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult ProductQuickView(int id)
+        public ActionResult ProductQuickView(int id=0)
         {
             Product product = _productService.GetProductById(id);
             if (product == null)
@@ -341,6 +338,31 @@ namespace DQueensFashion.Controllers
             };
 
             return PartialView("_productQuickView", productModel);
+        }
+
+        public ActionResult AddReview(int id=0)
+        {
+            Product product = _productService.GetProductById(id);
+            if (product == null)
+                return HttpNotFound();
+
+            AddReviewViewModel reviewModel = new AddReviewViewModel()
+            {
+                ProductId = product.Id,
+                ProductName = product.Name,
+                ProductImage = product.ImagePath1,
+                ProductPrice = product.Price.ToString(),
+                ProductCategory = product.Category.Name,
+            };
+
+            return View(reviewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddReview(AddReviewViewModel reviewModel)
+        {
+            return View();
         }
 
         #region private function

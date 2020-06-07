@@ -1,0 +1,80 @@
+﻿@model DQueensFashion.Models.AddReviewViewModel
+
+@{
+    ViewBag.Title = "AddReview";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+    <div class="container body-content">
+
+        <h4>@Model.ProductName</h4>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Add Review</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ProductId)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <input name="Rating" id="rating-value" />
+        <div class="form-group">
+            <div class="col-12">
+                @Html.LabelFor(model => model.Rating, htmlAttributes: new { @class = "control-label" })
+                <span class="text-warning">
+                    <i class="far fa-star rating-star" data-value="1"></i>
+                    <i class="far fa-star rating-star" data-value="2"></i>
+                    <i class="far fa-star rating-star" data-value="3"></i>
+                    <i class="far fa-star rating-star" data-value="4"></i>
+                    <i class="far fa-star rating-star" data-value="5"></i>
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ReviewSummary, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.ReviewSummary, new { @class = "form-control", @rows = 5 })
+                @Html.ValidationMessageFor(model => model.ReviewSummary, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+        }
+    </div>
+
+
+
+<script>
+    $(".rating-star").click(function () {
+        $(".rating-star").addClass("far").removeClass("fas");
+
+        $(this).prevAll(".rating-star").addClass("fas").removeClass("far");
+        $(this).addClass("fas").removeClass("far");
+
+        var starValue = $(this).attr("data-value");
+        $("#rating-value").val(starValue);
+    });
+</script>
