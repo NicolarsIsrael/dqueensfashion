@@ -39,6 +39,7 @@ namespace DQueensFashion.Models
         public string Name { get; set; }
         public string Email { get; set; }
         public string DateCreated { get; set; }
+        public DateTime DateOrder { get; set; }
     }
 
     public class RatingViewModel

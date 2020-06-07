@@ -27,59 +27,57 @@
     }
 
     .carousel-item {
-    height: 350px;
-}
+        height: 350px;
+    }
 
-.carousel-indicators li {
-    width: 10px;
-    height: 10px;
-    border-radius: 100%;
-    background-color:#212529;
-}
+    .carousel-indicators li {
+        width: 10px;
+        height: 10px;
+        border-radius: 100%;
+        background-color: #212529;
+    }
 
-.carousel-indicators {
-    bottom: -50px;
-}
-
-
-.product-details-title{
-    white-space: normal;
-    font-weight: 700;
-    font-size: 30px;
-    color: #29303b;
-    margin-bottom: 0px;
-}
-
-.product-details-detail{
-    white-space:normal;
-    font-size: 15px;
-    margin: 0;
-    padding: 3px;
-}
-
-.product-details-detail>span{
-    white-space:normal;
-    font-size: 15px;
-    font-weight:700;
-}
+    .carousel-indicators {
+        bottom: -50px;
+    }
 
 
-.product-details-initial-price {
-    font-size: 20px;
-    line-height: 15px;
-    color: #29303b;
-    text-decoration: line-through;
-    padding:3px;
-}
+    .product-details-title {
+        white-space: normal;
+        font-weight: 700;
+        font-size: 30px;
+        color: #29303b;
+        margin-bottom: 0px;
+    }
 
-.product-details-price {
-    font-size: 30px;
-    font-weight: 700;
-    padding:3px;
-    color:red;
-}
+    .product-details-detail {
+        white-space: normal;
+        font-size: 15px;
+        margin: 0;
+        padding: 3px;
+    }
+
+        .product-details-detail > span {
+            white-space: normal;
+            font-size: 15px;
+            font-weight: 700;
+        }
 
 
+    .product-details-initial-price {
+        font-size: 20px;
+        line-height: 15px;
+        color: #29303b;
+        text-decoration: line-through;
+        padding: 3px;
+    }
+
+    .product-details-price {
+        font-size: 30px;
+        font-weight: 700;
+        padding: 3px;
+        color: red;
+    }
 </style>
 
 <div class="container body-content">
@@ -97,7 +95,7 @@
                             productCount++;
                         }
                     }
-                   
+
                 </ol>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
@@ -111,7 +109,7 @@
                             </div>
                         }
                     }
-                  
+
                 </div>
 
             </div>
@@ -142,9 +140,9 @@
                 </div>
             </div>
             <div class="row" style="padding:3px">
-                @Html.Partial("_averageRating",Model.Product.Rating)
+                @Html.Partial("_averageRating", Model.Product.Rating)
                 <div class="col-12">
-                    @Html.ActionLink("Add a review","AddReview", new { id = Model.Product.Id})
+                    @Html.ActionLink("Add a review", "AddReview", new { id = Model.Product.Id })
                 </div>
             </div>
 
@@ -175,6 +173,7 @@
 
     </div>
 
+    <div id="review-scroll-to"></div>
     <div class="row">
         <div class="col-12">
             <div class="section_header" style="margin-bottom:1px">
@@ -186,7 +185,6 @@
         </div>
     </div>
 
-
     <div class="row">
         <div class="col-12">
             <div class="section_header" style="margin-bottom:1px">
@@ -194,7 +192,7 @@
                     <h5 style="margin-top: 15px;">REVIEWS (@Model.Product.Rating.TotalReviewCount)</h5>
                 </div>
             </div>
-            @Html.Partial("_productReview",Model.Product.Reviews)
+            @Html.Partial("_productReview", Model.Product.Reviews)
         </div>
     </div>
 
@@ -257,35 +255,57 @@
 </div>
 
 
-    <script>
-        var productQuantity = document.getElementById("productQuantity");
-        var quantity = document.getElementById("quantity");
-        var quantityValidationError = document.getElementById("quantityValidationError");
-        var productImage = document.getElementById("productDisplayImage");
+<script>
+    var productQuantity = document.getElementById("productQuantity");
+    var quantity = document.getElementById("quantity");
+    var quantityValidationError = document.getElementById("quantityValidationError");
+    var productImage = document.getElementById("productDisplayImage");
 
-        function checkQuantity() {
-            if (Number(productQuantity.value) < Number(quantity.value)) {
-                quantity.value = productQuantity.value;
-                quantityValidationError.innerHTML = "Not enough items available";
-            }
-            else {
-                quantityValidationError.innerHTML = '';
-            }
+    function checkQuantity() {
+        if (Number(productQuantity.value) < Number(quantity.value)) {
+            quantity.value = productQuantity.value;
+            quantityValidationError.innerHTML = "Not enough items available";
         }
-
-        function validateBuy() {
-            if (Number(productQuantity.value) < Number(quantity.value)) {
-                quantity.focus();
-                return false;
-            }
-            else {
-                return true;
-            }
+        else {
+            quantityValidationError.innerHTML = '';
         }
+    }
 
-
-        function addToCartFromProductDetails(productId) {
-            AddToCart(productId, quantity.value);
+    function validateBuy() {
+        if (Number(productQuantity.value) < Number(quantity.value)) {
+            quantity.focus();
+            return false;
         }
-    </script>
+        else {
+            return true;
+        }
+    }
+
+
+    function addToCartFromProductDetails(productId) {
+        AddToCart(productId, quantity.value);
+    }
+
+
+    function ReviewPagination(productId, pageNumber) {
+        console.log(productId);
+        console.log(pageNumber);
+
+        $.ajax({
+            url: '/product/ReviewPagination',
+            dataType: "html",
+            data: { productId: productId, pageNumber: pageNumber },
+            success: function (result) {
+                
+                $("#reviewList").html(result);
+                document.getElementById("review-scroll-to").scrollIntoView();
+            },
+            error: function (xhr, status, error) {
+                alert("Error");
+            }
+        });
+    }
+
+
+</script>
 
