@@ -185,12 +185,22 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row mt-3">
         <div class="col-12">
             <div class="section_header" style="margin-bottom:1px">
                 <div class="section_header_text">
-                    <h5 style="margin-top: 15px;">REVIEWS (@Model.Product.Rating.TotalReviewCount)</h5>
+                    <h5 style="margin-top: 15px;display:inline">REVIEWS (@Model.Product.Rating.TotalReviewCount)</h5>
                 </div>
+                <span>
+                    <select class="form-control-sm" id="sort-review" onchange="SortReview(@Model.Product.Id)">
+                        <option value="0">Sort by</option>
+                        <option value="1">Most recent</option>
+                        <option value="2">Least recent</option>
+                        <option value="3">Highest rating</option>
+                        <option value="4">Lowest recent</option>
+                        <option value="5">Most Helpful</option>
+                    </select>
+                </span>
             </div>
             @Html.Partial("_productReview", Model.Product.Reviews)
         </div>
@@ -260,6 +270,8 @@
     var quantity = document.getElementById("quantity");
     var quantityValidationError = document.getElementById("quantityValidationError");
     var productImage = document.getElementById("productDisplayImage");
+    var _sortReview = document.getElementById("sort-review");
+
 
     function checkQuantity() {
         if (Number(productQuantity.value) < Number(quantity.value)) {
@@ -288,24 +300,38 @@
 
 
     function ReviewPagination(productId, pageNumber) {
-        console.log(productId);
-        console.log(pageNumber);
 
         $.ajax({
             url: '/product/ReviewPagination',
             dataType: "html",
-            data: { productId: productId, pageNumber: pageNumber },
+            data: { productId: productId, pageNumber: pageNumber, sortId: _sortReview.value },
             success: function (result) {
-                
                 $("#reviewList").html(result);
                 document.getElementById("review-scroll-to").scrollIntoView();
             },
             error: function (xhr, status, error) {
-                alert("Error");
+                alertify.error("Error");
             }
         });
     }
 
+    function SortReview(productId) {
+        if (_sortReview.value > 0) {
+            $.ajax({
+                url: '/product/SortReview',
+                dataType: "html",
+                data: { productId: productId, sortId: _sortReview.value },
+                success: function (result) {
+                    $("#reviewList").html(result);
+                },
+                error: function (xhr, status, error) {
+                    alertify.error("Error");
+                }
+            });
+        }
+
+
+    }
 
 </script>
 

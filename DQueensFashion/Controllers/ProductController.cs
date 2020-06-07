@@ -305,7 +305,7 @@ namespace DQueensFashion.Controllers
             return View(productModel);
         }
 
-        public PartialViewResult ReviewPagination(int productId, int pageNumber = 1)
+        public PartialViewResult ReviewPagination(int productId,int sortId, int pageNumber = 1)
         {
             Product product = _productService.GetProductById(productId);
             if (product == null)
@@ -323,6 +323,29 @@ namespace DQueensFashion.Controllers
                        DateOrder = r.DateCreated,
                    }).OrderByDescending(r => r.DateOrder).ToList();
 
+            switch (sortId)
+            {
+                case 1:
+                    reviews = reviews.OrderByDescending(r => r.DateOrder);
+                    break;
+
+                case 2:
+                    reviews = reviews.OrderBy(r => r.DateOrder);
+                    break;
+
+                case 3:
+                    reviews = reviews.OrderByDescending(r => r.Rating);
+                    break;
+
+                case 4:
+                    reviews = reviews.OrderBy(r => r.Rating);
+                    break;
+
+                case 5:
+                    break;
+                    //order by most helpful
+            }
+
             //pagination
             if (pageNumber < 1)
                 pageNumber = 1;
@@ -330,6 +353,57 @@ namespace DQueensFashion.Controllers
             ViewBag.NumberOfPages = Convert.ToInt32(Math.Ceiling((double)reviews.Count() / AppConstant.ReviewsPageSize));
             ViewBag.CurrentPage = pageNumber;
             reviews = reviews.Skip(AppConstant.ReviewsPageSize * (pageNumber - 1)).Take(AppConstant.ReviewsPageSize).ToList();
+
+            return PartialView("_productReview", reviews);
+        }
+
+        public PartialViewResult SortReview(int productId, int sortId)
+        {
+            Product product = _productService.GetProductById(productId);
+            if (product == null)
+                throw new Exception();
+
+            IEnumerable<ViewReviewViewModel> reviews = _reviewService.GetAllReviewsForProduct(product.Id)
+                   .Select(r => new ViewReviewViewModel()
+                   {
+                       ReviewId = r.Id,
+                       Name = r.Name,
+                       Email = r.Email,
+                       Comment = r.Comment,
+                       Rating = r.Rating,
+                       DateCreated = r.DateCreated.ToString("dd/MMM/yyyy"),
+                       DateOrder = r.DateCreated,
+                   }).OrderByDescending(r=>r.DateOrder).ToList();
+
+            switch (sortId)
+            {
+                case 1:
+                    reviews = reviews.OrderByDescending(r => r.DateOrder);
+                    break;
+
+                case 2:
+                    reviews = reviews.OrderBy(r => r.DateOrder);
+                    break;
+
+                case 3:
+                    reviews = reviews.OrderByDescending(r => r.Rating);
+                    break;
+
+                case 4:
+                    reviews = reviews.OrderBy(r => r.Rating);
+                    break;
+
+                case 5:
+                    break;
+                    //order by most helpful
+            }
+
+            //pagination
+            ViewBag.ProductId = product.Id;
+            ViewBag.NumberOfPages = Convert.ToInt32(Math.Ceiling((double)reviews.Count() / AppConstant.ReviewsPageSize));
+            ViewBag.CurrentPage = 1;
+            reviews = reviews.Skip(AppConstant.ReviewsPageSize * 0)
+                                            .Take(AppConstant.ReviewsPageSize).ToList();
 
             return PartialView("_productReview", reviews);
         }
