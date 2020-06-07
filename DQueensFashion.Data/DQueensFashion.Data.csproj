@@ -198,6 +198,10 @@
     <Compile Include="Migrations\202006070138063_NameAndEmailAddedToReview.Designer.cs">
       <DependentUpon>202006070138063_NameAndEmailAddedToReview.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006070717440_SummaryChanegedToComment.cs" />
+    <Compile Include="Migrations\202006070717440_SummaryChanegedToComment.Designer.cs">
+      <DependentUpon>202006070717440_SummaryChanegedToComment.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -253,6 +257,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006070138063_NameAndEmailAddedToReview.resx">
       <DependentUpon>202006070138063_NameAndEmailAddedToReview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006070717440_SummaryChanegedToComment.resx">
+      <DependentUpon>202006070717440_SummaryChanegedToComment.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

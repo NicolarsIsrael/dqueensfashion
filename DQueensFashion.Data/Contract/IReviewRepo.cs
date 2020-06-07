@@ -9,5 +9,7 @@ namespace DQueensFashion.Data.Contract
 {
     public interface IReviewRepo : ICoreRepo<Review>
     {
+        IEnumerable<Review> GetAllReviewsWithRelationships();
+        Review GetReviewByIdWithRelationships();
     }
 }

@@ -56,6 +56,8 @@ namespace DQueensFashion.Models
         public string Category { get; set; }
         public int CategoryId { get; set; }
         public string Tags { get; set; }
+        public RatingViewModel Rating { get; set; }
+        public IEnumerable<ViewReviewViewModel> Reviews { get; set; }
     }
 
     public class EditProductViewModel

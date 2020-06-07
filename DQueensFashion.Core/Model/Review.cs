@@ -17,7 +17,7 @@ namespace DQueensFashion.Core.Model
         public int Rating { get; set; }
 
         [Required]
-        public string Summary { get; set; }
+        public string Comment { get; set; }
 
         public int ProductId { get; set; }
         public Product Product { get; set; }

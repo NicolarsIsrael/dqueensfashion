@@ -17,5 +17,18 @@ namespace DQueensFashion.Data.Implementation
         }
 
         //other functions
+        public IEnumerable<Review> GetAllReviewsWithRelationships()
+        {
+            return _dbContext.Set<Review>()
+                .Include(r => r.Product)
+                .ToList();
+        }
+
+        public Review GetReviewByIdWithRelationships()
+        {
+            return _dbContext.Set<Review>()
+                .Include(r => r.Product)
+                .FirstOrDefault();
+        }
     }
 }

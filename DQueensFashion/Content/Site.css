@@ -369,6 +369,7 @@ textarea {
     font-size: 18px;
     font-weight: 700;
     line-height: 20px;
+    color: #B01A24;
 }
 
 .cart {
@@ -419,7 +420,9 @@ textarea {
     height: 80vh;
 }
 
-
+.starcolor {
+    color: #f4c150;
+}
 /*smart phones*/
 @media screen and (max-width: 420px) and (min-width: 0px) {
     .background-text {

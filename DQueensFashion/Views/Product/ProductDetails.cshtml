@@ -3,7 +3,7 @@
     ViewBag.Title = "ProductDetails";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+@*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">*@
 <style>
     .checked {
         color: orange;
@@ -143,12 +143,34 @@
             </div>
             <div class="row" style="padding:3px">
                 <div class="col-12">
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
-                    (53)
+                    @{
+                        for (int i = 1; i <= Model.Product.Rating.FloorAverageRating; i++)
+                        {
+                            <span class="fas fa-star starcolor"></span>
+                        }
+                        if (Model.Product.Rating.IsDouble)
+                        {
+                            <span class="fas fa-star-half-alt starcolor"></span>
+
+                            for (int i = 1; i <= (4 - Model.Product.Rating.FloorAverageRating); i++)
+                            {
+                                <span class="far fa-star starcolor"></span>
+                            }
+                        }
+                        else
+                        {
+                            for (int i = 1; i <= (5 - Model.Product.Rating.FloorAverageRating); i++)
+                            {
+                                <span class="far fa-star starcolor"></span>
+                            }
+                        }
+
+                    }
+
+
+
+
+                    <span style="font-weight:bold">@Model.Product.Rating.AverageRating</span> (@Model.Product.Rating.TotalReviewCount)
                 </div>
                 <div class="col-12">
                     @Html.ActionLink("Add a review","AddReview", new { id = Model.Product.Id})
@@ -198,10 +220,10 @@
         <div class="col-12">
             <div class="section_header" style="margin-bottom:1px">
                 <div class="section_header_text">
-                    <h5 style="margin-top: 15px;">REVIEWS (300)</h5>
+                    <h5 style="margin-top: 15px;">REVIEWS (@Model.Product.Rating.TotalReviewCount)</h5>
                 </div>
             </div>
-            @Html.Partial("_productReview")
+            @Html.Partial("_productReview",Model.Product.Reviews)
         </div>
     </div>
 

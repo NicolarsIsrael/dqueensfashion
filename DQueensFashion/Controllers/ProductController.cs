@@ -19,13 +19,16 @@ namespace DQueensFashion.Controllers
         private readonly ICustomerService _customerService;
         private readonly IOrderService _orderService;
         private readonly ICategoryService _categoryService;
+        private readonly IReviewService _reviewService;
 
-        public ProductController(IProductService productService, ICustomerService customerService, IOrderService orderService, ICategoryService categoryService)
+        public ProductController(IProductService productService, ICustomerService customerService, IOrderService orderService, ICategoryService categoryService,
+            IReviewService reviewService)
         {
             _productService = productService;
             _customerService = customerService;
             _orderService = orderService;
             _categoryService = categoryService;
+            _reviewService = reviewService;
         }
         // GET: Product
         public ActionResult Index(int categoryId=0)
@@ -239,7 +242,7 @@ namespace DQueensFashion.Controllers
                 return HttpNotFound();
 
             var productImages = SetProductImages(product.ImagePath2, product.ImagePath3, product.ImagePath4);
-
+            double averageRating = _reviewService.GetAverageRating(product.Id);
             ViewProductsViewModel productDetails = new ViewProductsViewModel()
             {
                 Id = product.Id,
@@ -252,6 +255,23 @@ namespace DQueensFashion.Controllers
                 DateCreatedString = product.DateCreated.ToString("dd/MMM/yyyy : hh-mm-ss"),
                 MainImage = string.IsNullOrEmpty(product.ImagePath1) ? AppConstant.DefaultProductImage : product.ImagePath1,
                 OtherImagePaths = productImages,
+                Rating = new RatingViewModel()
+                {
+                    AverageRating = averageRating.ToString("0.0"),
+                    TotalReviewCount = _reviewService.GetReviewCountForProduct(product.Id).ToString(),
+                    IsDouble = (averageRating % 1) == 0 ? false: true,
+                    FloorAverageRating = (int) Math.Floor(averageRating)
+                },
+                
+                Reviews = _reviewService.GetAllReviewsForProduct(product.Id).ToList()
+                    .Select(r => new ViewReviewViewModel() {
+                        ReviewId = r.Id,
+                        Name = r.Name,
+                        Email = r.Email,
+                        Comment = r.Comment,
+                        Rating = r.Rating,
+                        DateCreated = r.DateCreated.ToString("dd/MMM/yyyy"),
+                    }),
             };
 
             IEnumerable<ViewProductsViewModel> relatedProducts = _productService.GetRelatedProducts(product.Id,product.CategoryId)
@@ -352,6 +372,7 @@ namespace DQueensFashion.Controllers
                 ProductName = product.Name,
                 ProductImage = product.ImagePath1,
                 ProductPrice = product.Price.ToString(),
+                ProductSubTotal = product.Price.ToString(),
                 ProductCategory = product.Category.Name,
             };
 
@@ -362,7 +383,27 @@ namespace DQueensFashion.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddReview(AddReviewViewModel reviewModel)
         {
-            return View();
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "One or more validation errors");
+                return View(reviewModel);
+            }
+
+            Product product = _productService.GetProductById(reviewModel.ProductId);
+            if (product == null)
+                throw new Exception();
+
+            Review review = new Review()
+            {
+                Name = reviewModel.Name,
+                Email = reviewModel.Email,
+                Comment = reviewModel.Comment,
+                Rating = reviewModel.Rating,
+                Product = product,
+            };
+
+            _reviewService.AddReview(review);
+            return RedirectToAction(nameof(ProductDetails),new { id = review.ProductId});
         }
 
         #region private function

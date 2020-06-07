@@ -6,66 +6,119 @@
 }
     <div class="container body-content">
 
-        <h4>@Model.ProductName</h4>
-
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
-
-    <div class="form-horizontal">
-        <h4>Add Review</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.ProductId)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <input name="Rating" id="rating-value" />
-        <div class="form-group">
+        <div class="row mb-1">
             <div class="col-12">
-                @Html.LabelFor(model => model.Rating, htmlAttributes: new { @class = "control-label" })
-                <span class="text-warning">
-                    <i class="far fa-star rating-star" data-value="1"></i>
-                    <i class="far fa-star rating-star" data-value="2"></i>
-                    <i class="far fa-star rating-star" data-value="3"></i>
-                    <i class="far fa-star rating-star" data-value="4"></i>
-                    <i class="far fa-star rating-star" data-value="5"></i>
-                </span>
+                <div class="float-left">
+                    <img src="@Url.Content(Model.ProductImage)" class="d-block review-product-image" />
+                </div>
+                <div class="ml-3 float-left">
+                    <div class="product-title">@Model.ProductName</div>
+                    <div class="product-category">@Model.ProductCategory</div>
+                    <span class="product-initial-price">$@Model.ProductSubTotal</span>
+                    <span class="product-price">$@Model.ProductSubTotal</span>
+                    <div class="text-warning" style="font:100">
+                        @for (int i = 1; i <= 5; i++)
+                        {
+                            <i class="fas fa-star"></i>
+                        }
+
+                        <span style="color:black"> (34) </span>
+                    </div>
+                    <div>@Html.ActionLink("Product details", "ProductDetails", new { id = Model.ProductId })</div>
+                </div>
+
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ReviewSummary, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextAreaFor(model => model.ReviewSummary, new { @class = "form-control", @rows = 5 })
-                @Html.ValidationMessageFor(model => model.ReviewSummary, "", new { @class = "text-danger" })
+        <div class="card mb-3">
+            <div class="card-header" style="background-color:white">
+                <div style="text-align:right">
+                    <h5>ADD REVIEW</h5>
+                </div>
             </div>
-        </div>
+            <div class="card-body">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    @Html.HiddenFor(model => model.ProductId)
+                    @Html.HiddenFor(model => model.ProductName)
+                    @Html.HiddenFor(model => model.ProductSubTotal)
+                    @Html.HiddenFor(model => model.ProductPrice)
+                    @Html.HiddenFor(model => model.ProductCategory)
+                    @Html.HiddenFor(model => model.ProductImage)
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="col-12">
+                                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Name" } })
+                                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="col-12">
+                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Email, this will not be shared publicly" } })
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <input hidden name="Rating" id="rating-value" value="1" />
+                    <div class="form-group">
+                        <div class="col-12">
+                            @Html.LabelFor(model => model.Rating, htmlAttributes: new { @class = "control-label" })
+                            <span class="text-warning">
+                                <i class="fas fa-star rating-star" data-value="1"></i>
+                                <i class="far fa-star rating-star" data-value="2"></i>
+                                <i class="far fa-star rating-star" data-value="3"></i>
+                                <i class="far fa-star rating-star" data-value="4"></i>
+                                <i class="far fa-star rating-star" data-value="5"></i>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-12">
+                            @Html.TextAreaFor(model => model.Comment, new { @class = "form-control", @rows = 5, @placeholder = "Commment" })
+                            @Html.ValidationMessageFor(model => model.Comment, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <button type="submit" class="btn" style="background-color:#E97128;color:white">
+                                <img src="~/Content/Images/plus.svg" />
+                                Add
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+                }
             </div>
         </div>
     </div>
+
+<style>
+    .review-product-image{
+        width:200px;
+    }
+
+    /*smart phones*/
+    @@media screen and (max-width: 420px) and (min-width: 0px) {
+        .review-product-image {
+            width: 100px;
         }
-    </div>
+    }
 
 
+</style>
 
 <script>
     $(".rating-star").click(function () {
@@ -78,3 +131,9 @@
         $("#rating-value").val(starValue);
     });
 </script>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

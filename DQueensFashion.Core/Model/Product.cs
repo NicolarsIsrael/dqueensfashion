@@ -12,6 +12,8 @@ namespace DQueensFashion.Core.Model
         public string Name { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }
+        public decimal Discount { get; set; }
+        public decimal SubTotal { get; set; }
         public int Quantity { get; set; }
         public string Tags { get; set; }
 
