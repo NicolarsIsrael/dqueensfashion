@@ -40,6 +40,10 @@ namespace DQueensFashion.Service.Implementation
         {
             int TotalRating = uow.ReviewRepo.GetAllReviewsWithRelationships().Where(r => r.ProductId == productId).Sum(r => r.Rating);
             int TotalReviewCount = uow.ReviewRepo.GetAllReviewsWithRelationships().Where(r => r.ProductId == productId).Count();
+
+            if (TotalReviewCount < 1)
+                return 0;
+
             double averageRating = TotalRating / (double)TotalReviewCount;
             return averageRating;
 

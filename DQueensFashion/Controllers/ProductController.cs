@@ -243,6 +243,7 @@ namespace DQueensFashion.Controllers
 
             var productImages = SetProductImages(product.ImagePath2, product.ImagePath3, product.ImagePath4);
             double averageRating = _reviewService.GetAverageRating(product.Id);
+
             ViewProductsViewModel productDetails = new ViewProductsViewModel()
             {
                 Id = product.Id,
@@ -366,6 +367,8 @@ namespace DQueensFashion.Controllers
             if (product == null)
                 return HttpNotFound();
 
+            double averageRating = _reviewService.GetAverageRating(product.Id);
+
             AddReviewViewModel reviewModel = new AddReviewViewModel()
             {
                 ProductId = product.Id,
@@ -374,6 +377,13 @@ namespace DQueensFashion.Controllers
                 ProductPrice = product.Price.ToString(),
                 ProductSubTotal = product.Price.ToString(),
                 ProductCategory = product.Category.Name,
+                ProductAverageRating = new RatingViewModel()
+                {
+                    AverageRating = averageRating.ToString("0.0"),
+                    TotalReviewCount = _reviewService.GetReviewCountForProduct(product.Id).ToString(),
+                    IsDouble = (averageRating % 1) == 0 ? false : true,
+                    FloorAverageRating = (int)Math.Floor(averageRating)
+                },
             };
 
             return View(reviewModel);

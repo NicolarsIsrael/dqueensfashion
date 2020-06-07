@@ -142,36 +142,7 @@
                 </div>
             </div>
             <div class="row" style="padding:3px">
-                <div class="col-12">
-                    @{
-                        for (int i = 1; i <= Model.Product.Rating.FloorAverageRating; i++)
-                        {
-                            <span class="fas fa-star starcolor"></span>
-                        }
-                        if (Model.Product.Rating.IsDouble)
-                        {
-                            <span class="fas fa-star-half-alt starcolor"></span>
-
-                            for (int i = 1; i <= (4 - Model.Product.Rating.FloorAverageRating); i++)
-                            {
-                                <span class="far fa-star starcolor"></span>
-                            }
-                        }
-                        else
-                        {
-                            for (int i = 1; i <= (5 - Model.Product.Rating.FloorAverageRating); i++)
-                            {
-                                <span class="far fa-star starcolor"></span>
-                            }
-                        }
-
-                    }
-
-
-
-
-                    <span style="font-weight:bold">@Model.Product.Rating.AverageRating</span> (@Model.Product.Rating.TotalReviewCount)
-                </div>
+                @Html.Partial("_averageRating",Model.Product.Rating)
                 <div class="col-12">
                     @Html.ActionLink("Add a review","AddReview", new { id = Model.Product.Id})
                 </div>

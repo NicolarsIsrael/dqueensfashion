@@ -10,14 +10,14 @@
         @review.DateCreated
     </span>
     <div class="review-rating">
-        <div class="text-warning">
+        <div class="">
             @for (int i = 1; i <= review.Rating; i++)
             {
-                <i class="fas fa-star"></i>
+                <i class="fas fa-star starcolor"></i>
             }
             @for (int i = 1; i <= (5 - review.Rating); i++)
             {
-                <i class="far fa-star"></i>
+                <i class="far fa-star starcolor"></i>
             }
 
         </div>

@@ -15,6 +15,7 @@ namespace DQueensFashion.Models
         public string ProductImage { get; set; }
         public string ProductPrice { get; set; }
         public string ProductSubTotal { get; set; }
+        public RatingViewModel ProductAverageRating { get; set; }
 
         [Required]
         public string Comment { get; set; }

@@ -9,20 +9,16 @@
         <div class="row mb-1">
             <div class="col-12">
                 <div class="float-left">
-                    <img src="@Url.Content(Model.ProductImage)" class="d-block review-product-image" />
+                    <img src="@Url.Content(Model.ProductImage)" class="review-product-image" />
                 </div>
                 <div class="ml-3 float-left">
                     <div class="product-title">@Model.ProductName</div>
                     <div class="product-category">@Model.ProductCategory</div>
                     <span class="product-initial-price">$@Model.ProductSubTotal</span>
                     <span class="product-price">$@Model.ProductSubTotal</span>
-                    <div class="text-warning" style="font:100">
-                        @for (int i = 1; i <= 5; i++)
-                        {
-                            <i class="fas fa-star"></i>
-                        }
-
-                        <span style="color:black"> (34) </span>
+                    <div class="row">
+                       @Html.Partial("_averageRating",Model.ProductAverageRating)
+                       
                     </div>
                     <div>@Html.ActionLink("Product details", "ProductDetails", new { id = Model.ProductId })</div>
                 </div>
@@ -107,14 +103,8 @@
 
 <style>
     .review-product-image{
-        width:200px;
-    }
-
-    /*smart phones*/
-    @@media screen and (max-width: 420px) and (min-width: 0px) {
-        .review-product-image {
-            width: 100px;
-        }
+        width:100px;
+        height:100px;
     }
 
 
