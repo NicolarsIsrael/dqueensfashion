@@ -129,6 +129,7 @@
     <Compile Include="Model\LineItem.cs" />
     <Compile Include="Model\Order.cs" />
     <Compile Include="Model\Product.cs" />
+    <Compile Include="Model\Review.cs" />
     <Compile Include="Model\WishList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

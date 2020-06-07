@@ -24,5 +24,7 @@ namespace DQueensFashion.Core.Model
         [ForeignKey("Category")]
         public int CategoryId { get; set; }
         public Category Category { get; set; }
+
+        public IEnumerable<Review> Reviews { get; set; }
     }
 }

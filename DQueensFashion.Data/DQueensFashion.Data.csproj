@@ -130,6 +130,7 @@
     <Compile Include="Contract\ILineItemRepo.cs" />
     <Compile Include="Contract\IOrderRepo.cs" />
     <Compile Include="Contract\IProductRepo.cs" />
+    <Compile Include="Contract\IReviewRepo.cs" />
     <Compile Include="Contract\IUnitOfWork.cs" />
     <Compile Include="Contract\IWishListRepo.cs" />
     <Compile Include="Implementation\CategoryRepo.cs" />
@@ -138,6 +139,7 @@
     <Compile Include="Implementation\LineItemRepo.cs" />
     <Compile Include="Implementation\OrderRepo.cs" />
     <Compile Include="Implementation\ProductRepo.cs" />
+    <Compile Include="Implementation\ReviewRepo.cs" />
     <Compile Include="Implementation\UnitOfWork.cs" />
     <Compile Include="Implementation\WishListRepo.cs" />
     <Compile Include="Migrations\202005221738560_categoryAddedToDb.cs" />
@@ -188,6 +190,10 @@
     <Compile Include="Migrations\202005310734536_orderstatusAddedTodb.Designer.cs">
       <DependentUpon>202005310734536_orderstatusAddedTodb.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006070116251_ReviewAddedToDb.cs" />
+    <Compile Include="Migrations\202006070116251_ReviewAddedToDb.Designer.cs">
+      <DependentUpon>202006070116251_ReviewAddedToDb.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -237,6 +243,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005310734536_orderstatusAddedTodb.resx">
       <DependentUpon>202005310734536_orderstatusAddedTodb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006070116251_ReviewAddedToDb.resx">
+      <DependentUpon>202006070116251_ReviewAddedToDb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

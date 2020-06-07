@@ -54,6 +54,7 @@ namespace DQueensFashion
             container.Register<IWishListService, WishListService>(Lifestyle.Scoped);
             container.Register<ILineItemService, LineItemService>(Lifestyle.Scoped);
             container.Register<IOrderService, OrderService>(Lifestyle.Scoped);
+            container.Register<IReviewService, ReviewService>(Lifestyle.Scoped);
 
             //configure the Repos
             container.Register<IUnitOfWork, UnitOfWork>(Lifestyle.Scoped);
@@ -63,6 +64,7 @@ namespace DQueensFashion
             container.Register<IWishListRepo, WishListRepo>(Lifestyle.Scoped);
             container.Register<ILineItemRepo, LineItemRepo>(Lifestyle.Scoped);
             container.Register<IOrderRepo, OrderRepo>(Lifestyle.Scoped);
+            container.Register<IReviewRepo, ReviewRepo>(Lifestyle.Scoped);
 
             //registering Logic
             //container.Register<IMailer, Mailer>(Lifestyle.Scoped);

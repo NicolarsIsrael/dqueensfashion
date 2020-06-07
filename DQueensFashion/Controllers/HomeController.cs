@@ -20,9 +20,10 @@ namespace DQueensFashion.Controllers
         private readonly IWishListService _wishListService;
         private readonly ILineItemService _lineItemService;
         private readonly IOrderService _orderService;
+        private readonly IReviewService _reviewService;
 
         public HomeController(IProductService productService, ICategoryService categoryService,ICustomerService customerService, IWishListService wishListService,
-            ILineItemService lineItemService, IOrderService orderService)
+            ILineItemService lineItemService, IOrderService orderService, IReviewService reviewService)
         {
             _productService = productService;
             _categoryService = categoryService;
@@ -30,6 +31,7 @@ namespace DQueensFashion.Controllers
             _wishListService = wishListService;
             _lineItemService = lineItemService;
             _orderService = orderService;
+            _reviewService = reviewService;
         }
         public ActionResult Index()
         {
@@ -75,9 +77,10 @@ namespace DQueensFashion.Controllers
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
-
+            ViewBag.ReviewCount = _reviewService.GetAllReviewCount();
             return View();
         }
+
 
         public int GetCartNumber()
         {

@@ -22,6 +22,7 @@ namespace DQueensFashion.Data
         public DbSet<WishList> WishLit { get; set; }
         public DbSet<LineItem> LineItem { get; set; }
         public DbSet<Order> Order { get; set; }
+        public DbSet<Review> Review { get; set; }
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

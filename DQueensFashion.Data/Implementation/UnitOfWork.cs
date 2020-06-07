@@ -17,9 +17,10 @@ namespace DQueensFashion.Data.Implementation
         public IWishListRepo WishListRepo { get; set; }
         public ILineItemRepo LineItemRepo { get; set; }
         public IOrderRepo OrderRepo { get; set; }
+        public IReviewRepo ReviewRepo { get; set; }
 
         public UnitOfWork(System.Data.Entity.DbContext _context,IProductRepo _productRepo, ICategoryRepo _categoryRepo,ICustomerRepo _customerRepo,
-            IWishListRepo _wishListRepo, ILineItemRepo _lineItemRepo, IOrderRepo _orderRepo)
+            IWishListRepo _wishListRepo, ILineItemRepo _lineItemRepo, IOrderRepo _orderRepo, IReviewRepo _reviewRepo)
         {
             context = _context;
             ProductRepo = _productRepo;
@@ -28,6 +29,7 @@ namespace DQueensFashion.Data.Implementation
             WishListRepo = _wishListRepo;
             LineItemRepo = _lineItemRepo;
             OrderRepo = _orderRepo;
+            ReviewRepo = _reviewRepo;
         }
 
         public void Save()
