@@ -18,7 +18,7 @@ namespace DQueensFashion.Utilities
 
         public const string DefaultProductImage = "https://image.freepik.com/free-vector/farmer-peasant-illustration-man-with-beard-spade-farmland_33099-575.jpg";
         public const int ProductIndexPageSize = 20;
-        public const int ReviewsPageSize = 2;
+        public const int ReviewsPageSize = 10;
 
         //orange #E97128
         //deep blue #212529

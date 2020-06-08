@@ -119,6 +119,7 @@ namespace DQueensFashion.Controllers
                             IsDouble = (p.AverageRating % 1) == 0 ? false : true,
                             FloorAverageRating = (int)Math.Floor(p.AverageRating)
                         },
+                        
                     }).ToList();
 
                 //sort
@@ -158,6 +159,13 @@ namespace DQueensFashion.Controllers
                         products = products.OrderBy(p => p.DateCreated);
                         break;
 
+                    case 8:
+                        products = products.OrderByDescending(p => p.Rating.AverageRating);
+                        break;
+
+                    case 9:
+                        products = products.OrderBy(p => p.Rating.AverageRating);
+                        break;
 
                 }
 
@@ -246,6 +254,13 @@ namespace DQueensFashion.Controllers
                         products = products.OrderBy(p => p.DateCreated);
                         break;
 
+                    case 8:
+                        products = products.OrderByDescending(p => p.Rating.AverageRating);
+                        break;
+
+                    case 9:
+                        products = products.OrderBy(p => p.Rating.AverageRating);
+                        break;
 
                 }
 
@@ -315,7 +330,16 @@ namespace DQueensFashion.Controllers
                     MainImage = string.IsNullOrEmpty(p.ImagePath1) ? AppConstant.DefaultProductImage : p.ImagePath1,
                     Quantity = p.Quantity.ToString(),
                     Price = p.Price.ToString(),
+                    Discount = p.Discount,
+                    SubTotal = p.SubTotal.ToString(),
                     Category = p.Category.Name,
+                    Rating = new RatingViewModel()
+                    {
+                        AverageRating = p.AverageRating.ToString("0.0"),
+                        TotalReviewCount = _reviewService.GetReviewCountForProduct(p.Id).ToString(),
+                        IsDouble = (p.AverageRating % 1) == 0 ? false : true,
+                        FloorAverageRating = (int)Math.Floor(p.AverageRating)
+                    },
                 }).ToList();
 
             ProductDetailsViewModel productModel = new ProductDetailsViewModel()
