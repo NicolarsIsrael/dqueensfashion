@@ -47,6 +47,8 @@ namespace DQueensFashion.Controllers
                     MainImage = string.IsNullOrEmpty(p.ImagePath1) ? AppConstant.DefaultProductImage : p.ImagePath1,
                     Quantity = p.Quantity.ToString(),
                     Price = p.Price.ToString(),
+                    Discount = p.Discount,
+                    SubTotal = p.SubTotal.ToString(),
                     Category = p.Category.Name,
                     Rating = new RatingViewModel()
                     {
@@ -107,7 +109,9 @@ namespace DQueensFashion.Controllers
                         Category = p.Category.Name,
                         Quantity = p.Quantity.ToString(),
                         Price = p.Price.ToString(),
-                        DateCreated= p.DateCreated,
+                        Discount = p.Discount,
+                        SubTotal = p.SubTotal.ToString(),
+                        DateCreated = p.DateCreated,
                         Rating = new RatingViewModel()
                         {
                             AverageRating = p.AverageRating.ToString("0.0"),
@@ -193,6 +197,8 @@ namespace DQueensFashion.Controllers
                         Category = p.Category.Name,
                         Quantity = p.Quantity.ToString(),
                         Price = p.Price.ToString(),
+                        Discount = p.Discount,
+                        SubTotal = p.SubTotal.ToString(),
                         DateCreated = p.DateCreated,
                         Rating = new RatingViewModel()
                         {
