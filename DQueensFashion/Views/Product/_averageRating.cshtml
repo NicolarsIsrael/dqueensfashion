@@ -1,37 +1,34 @@
 ﻿@model DQueensFashion.Models.RatingViewModel
 
-    <div class="col-12">
-        @{
-            for (int i = 1; i <= Model.FloorAverageRating; i++)
-            {
-                <span class="fas fa-star starcolor"></span>
-            }
-            if (Model.IsDouble)
-            {
-                <span class="fas fa-star-half-alt starcolor"></span>
+@{
+    for (int i = 1; i <= Model.FloorAverageRating; i++)
+    {
+        <span class="fas fa-star starcolor"></span>
+    }
+    if (Model.IsDouble)
+    {
+        <span class="fas fa-star-half-alt starcolor"></span>
 
-                for (int i = 1; i <= (4 - Model.FloorAverageRating); i++)
-                {
-                    <span class="far fa-star starcolor"></span>
-                }
-            }
-            else
-            {
-                for (int i = 1; i <= (5 - Model.FloorAverageRating); i++)
-                {
-                    <span class="far fa-star starcolor"></span>
-                }
-            }
-
-            if (Model.FloorAverageRating < 1)
-            {
-                <span style="font-weight:bold">(0)</span>
-            }
-            else
-            {
-                <span style="font-weight:bold">@Model.AverageRating</span>
-                <span>(@Model.TotalReviewCount)</span> 
-            }
+        for (int i = 1; i <= (4 - Model.FloorAverageRating); i++)
+        {
+            <span class="far fa-star starcolor"></span>
         }
+    }
+    else
+    {
+        for (int i = 1; i <= (5 - Model.FloorAverageRating); i++)
+        {
+            <span class="far fa-star starcolor"></span>
+        }
+    }
 
-    </div>
+    if (Model.FloorAverageRating < 1)
+    {
+        <span style="font-weight:bold">(0)</span>
+    }
+    else
+    {
+        <span style="font-weight:bold">@Model.AverageRating</span>
+        <span>(@Model.TotalReviewCount)</span>
+    }
+}

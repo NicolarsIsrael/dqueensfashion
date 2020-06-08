@@ -46,6 +46,14 @@ namespace DQueensFashion.Controllers
                     Price=p.Price.ToString(),
                     Category = p.Category.Name,
                     CategoryId = p.Category.Id,
+                    Rating = new RatingViewModel()
+                    {
+                        AverageRating = _reviewService.GetAverageRating(p.Id).ToString("0.0"),
+                        TotalReviewCount = _reviewService.GetReviewCountForProduct(p.Id).ToString(),
+                        IsDouble = (_reviewService.GetAverageRating(p.Id) % 1) == 0 ? false : true,
+                        FloorAverageRating = (int)Math.Floor(_reviewService.GetAverageRating(p.Id))
+                    },
+                    
                 }).ToList();
 
             IEnumerable<CategoryNameAndId> categories = _categoryService.GetAllCategories()

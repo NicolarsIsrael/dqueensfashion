@@ -81,7 +81,7 @@
                     <div class="row">
                         @foreach (var product in Model.Products.Take(8))
                         {
-                           
+
                             <div class="col-lg-3 col-12">
 
                                 <div class="product-box">
@@ -93,25 +93,20 @@
                                         </div>
                                     </div>
                                     <div class="product-details">
-                                        <div  onclick="NavigateToProductDetails(@product.Id)" style="cursor:pointer">
+                                        <div onclick="NavigateToProductDetails(@product.Id)" style="cursor:pointer">
                                             <div class="product-title">@product.Name</div>
                                             <div class="product-category">@product.Category</div>
                                             <span class="product-initial-price">$@product.Price</span>
                                             <span class="product-price">$@product.Price</span>
                                         </div>
-                                        <div class="star-rating">
-                                            <i class="fas fa-star" id="star1" onclick="add(this,1)"></i>
-                                            <i class="fas fa-star" id="star2" onclick="add(this,2)"></i>
-                                            <i class="fas fa-star" id="star3" onclick="add(this,3)"></i>
-                                            <i class="far fa-star" id="star4" onclick="add(this,4)"></i>
-                                            <i class="far fa-star" id="star5" onclick="add(this,5)"></i>
-                                            (16)
+                                        <div class="">
+                                            @Html.Partial("~/views/Product/_averageRating.cshtml", product.Rating)
                                             <span class="float-right mb-1">
                                                 <img src="~/Content/Images/eye.svg" style="margin-right: 10px; cursor:pointer" onclick="productQuickView(@product.Id)">
                                                 <img src="~/Content/Images/heart.svg" style=" cursor:pointer" onclick="AddToWishList(@product.Id)">
                                             </span>
                                         </div>
-                                       
+
                                         <div class="cart" onclick="AddToCart(@product.Id)">
                                             <div href="#">Add to cart</div>
                                         </div>
@@ -122,23 +117,7 @@
 
                         }
                     </div>
-                    <div class="d-xs-block d-sm-block d-md-none d-lg-none d-xl-none">
-                        <div class="row">
-                            <div class="col-6">
-                                <button class="btn btn-block" style="color: white;background-color:#212529;" onclick="ShopByCategory(0)">View more</button>
-                            </div>
-                            <div class="col-6"></div>
-                        </div>
-
-                    </div>
-                    <div class="d-none d-md-block">
-                        <div class="row">
-                            <div class="col-3">
-                                <button class="btn btn-block" style="color: white;background-color:#212529;" onclick="ShopByCategory(0)">View more</button>
-                            </div>
-                            <div class="col-9"></div>
-                        </div>
-                    </div>
+                    <button class="btn" style="color: white;background-color:#212529;" onclick="ShopByCategory(0)">View more</button>
                 </div>
                 @{
                     foreach (var category in Model.Categories)
@@ -197,23 +176,7 @@
                                 }
 
                             </div>
-                            <div class="d-xs-block d-sm-block d-md-none d-lg-none d-xl-none">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <button class="btn btn-block" style="color: white;background-color:#212529;" onclick="ShopByCategory(@category.Id)">View more</button>
-                                    </div>
-                                    <div class="col-6"></div>
-                                </div>
-
-                            </div>
-                            <div class="d-none d-md-block">
-                                <div class="row">
-                                    <div class="col-3">
-                                        <button class="btn btn-block" style="color: white;background-color:#212529;" onclick="ShopByCategory(@category.Id)">View more</button>
-                                    </div>
-                                    <div class="col-9"></div>
-                                </div>
-                            </div>
+                            <button class="btn" style="color: white;background-color:#212529;" onclick="ShopByCategory(@category.Id)">View more</button>
                         </div>
                     }
                 }

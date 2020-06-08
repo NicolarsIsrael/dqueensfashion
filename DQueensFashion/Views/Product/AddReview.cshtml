@@ -17,8 +17,9 @@
                     <span class="product-initial-price">$@Model.ProductSubTotal</span>
                     <span class="product-price">$@Model.ProductSubTotal</span>
                     <div class="row">
-                       @Html.Partial("_averageRating",Model.ProductAverageRating)
-                       
+                        <div class="col-12">
+                            @Html.Partial("_averageRating", Model.ProductAverageRating)
+                        </div>
                     </div>
                     <div>@Html.ActionLink("Product details", "ProductDetails", new { id = Model.ProductId })</div>
                 </div>

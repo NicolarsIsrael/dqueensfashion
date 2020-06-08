@@ -140,7 +140,9 @@
                 </div>
             </div>
             <div class="row" style="padding:3px">
-                @Html.Partial("_averageRating", Model.Product.Rating)
+                <div class="col-12">
+                    @Html.Partial("_averageRating", Model.Product.Rating)
+                </div>
                 <div class="col-12">
                     @Html.ActionLink("Add a review", "AddReview", new { id = Model.Product.Id })
                 </div>
