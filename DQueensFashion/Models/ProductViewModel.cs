@@ -23,6 +23,10 @@ namespace DQueensFashion.Models
         [Required]
         public decimal Price { get; set; }
 
+        [Range(0,100,ErrorMessage ="Discount must be between 0 and 100")]
+        [Display(Name="Discount(%)")]
+        public decimal Discount { get; set; }
+
         [Range(1,int.MaxValue,ErrorMessage ="Quantity must be greater than 0")]
         [Required]
         public int Quantity { get; set; }
@@ -47,6 +51,8 @@ namespace DQueensFashion.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public string Price { get; set; }
+        public string SubTotal { get; set; }
+        public string Discount { get; set; }
         public string Quantity { get; set; }
         public DateTime DateCreated { get; set; }
         [Display(Name ="Date created")]

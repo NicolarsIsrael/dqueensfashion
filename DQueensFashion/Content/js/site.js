@@ -68,3 +68,17 @@ function productQuickView(productId) {
 
     })
 }
+
+function SetProductTotalPrice(price,discount) {
+    price = Number(price);
+    discount = Number(discount);
+
+    var totalPrice = price * (1 - discount / 100);
+    if (totalPrice > price)
+        totalPrice = price;
+
+    if (totalPrice < 0)
+        totalPrice = 0;
+
+    document.getElementById("product-total-price").value = totalPrice;
+}

@@ -16,5 +16,6 @@ namespace DQueensFashion.Service.Contract
         IEnumerable<Product> GetAllProducts();
         IEnumerable<Product> GetAllProductsForCategory(int categoryId);
         IEnumerable<Product> GetRelatedProducts(int productId, int categoryId);
+        decimal CalculateProductPrice(decimal price, decimal discount);
     }
 }

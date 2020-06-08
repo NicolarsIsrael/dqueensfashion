@@ -5,7 +5,9 @@
         <tr>
             <th>Name</th>
             <th>Category</th>
-            <th>Price</th>
+            <th>Price($)</th>
+            <th>Discount(%)</th>
+            <th>Total($)</th>
             <th>Qty</th>
             <th>Date created</th>
             <th>Image</th>
@@ -26,6 +28,12 @@
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.Discount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubTotal)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Quantity)
             </td>
             <td>
@@ -35,7 +43,7 @@
                 if (!string.IsNullOrEmpty(item.MainImage))
                 {
                     <td>
-                        <img src="@Url.Content(item.MainImage)" style="height:50px;width:100px;" />
+                        <img src="@Url.Content(item.MainImage)" style="height:50px;width:50px;" />
                     </td>
                 }
                 else

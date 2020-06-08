@@ -166,10 +166,12 @@ namespace DQueensFashion.Controllers
                     Name = p.Name,
                     Quantity = p.Quantity.ToString(),
                     Price = p.Price.ToString(),
+                    Discount = p.Discount.ToString(),
+                    SubTotal = p.SubTotal.ToString(),
                     Category = p.Category.Name,
                     MainImage = string.IsNullOrEmpty(p.ImagePath1) ? AppConstant.DefaultProductImage : p.ImagePath1,
                     DateCreated = p.DateCreated,
-                    DateCreatedString = p.DateCreated.ToString("dd/MMM/yyyy : hh-mm-ss"),
+                    DateCreatedString = p.DateCreated.ToString("dd/MMM/yyyy"),
                 }).OrderBy(p=>p.Name).ToList();
             return View(products);
         }
@@ -183,10 +185,12 @@ namespace DQueensFashion.Controllers
                   Name = p.Name,
                   Quantity = p.Quantity.ToString(),
                   Price = p.Price.ToString(),
+                  Discount = p.Discount.ToString(),
+                  SubTotal = p.SubTotal.ToString(),
                   Category = p.Category.Name,
                   MainImage = string.IsNullOrEmpty(p.ImagePath1) ? AppConstant.DefaultProductImage : p.ImagePath1,
                   DateCreated = p.DateCreated,
-                  DateCreatedString = p.DateCreated.ToString("dd/MMM/yyyy : hh-mm-ss"),
+                  DateCreatedString = p.DateCreated.ToString("dd/MMM/yyyy"),
               }).OrderBy(p => p.Name).ToList();
 
             if (!string.IsNullOrEmpty(searchString))
@@ -278,7 +282,9 @@ namespace DQueensFashion.Controllers
                 Name = productModel.Name,
                 Description = productModel.Description,
                 Quantity = productModel.Quantity,
-                Price = productModel.Price,
+                Price = Math.Round(productModel.Price,2),
+                Discount = productModel.Discount,
+                SubTotal = _productService.CalculateProductPrice(productModel.Price,productModel.Discount),
                 ImagePath1 = string.IsNullOrEmpty(imgPath1) ? AppConstant.DefaultProductImage : imgPath1,
                 ImagePath2 = imgPath2,
                 ImagePath3 = imgPath3,
@@ -286,7 +292,7 @@ namespace DQueensFashion.Controllers
                 Category = category,
                 Tags = productModel.Tags != null ? String.Join(",", productModel.Tags) : "",
             };
-
+            
             _productService.AddProduct(product);
             return RedirectToAction(nameof(Products));
         }

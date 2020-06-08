@@ -62,6 +62,12 @@ namespace DQueensFashion.Service.Implementation
             return uow.ProductRepo.GetProductByIdWithRelationships(id);
         }
 
+        public decimal CalculateProductPrice(decimal price, decimal discount)
+        {
+            decimal p = price * (1 - (discount / (decimal)100));
+            return Math.Round(p, 2);
+        }
+
         private bool ValidateProductDetails(Product product)
         {
             if (product == null )
@@ -82,6 +88,12 @@ namespace DQueensFashion.Service.Implementation
                 return false;
 
             if (product.Price < 0)
+                return false;
+
+            if (product.Discount < 0 || product.Discount > 100)
+                return false;
+
+            if (product.SubTotal < 0 || product.SubTotal > product.Price)
                 return false;
 
             if (product.Tags == null)

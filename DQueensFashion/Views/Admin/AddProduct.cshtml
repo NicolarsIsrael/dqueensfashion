@@ -60,7 +60,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-12 col-md-6">
+                                    <div class="col-12 col-md-3">
                                         <div class="form-group">
                                             @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-12" })
                                             <div class="col-12">
@@ -69,12 +69,29 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-12 col-md-6">
+                                    <div class="col-12 col-md-3">
                                         <div class="form-group">
                                             @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-12" })
                                             <div class="col-12">
-                                                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control", @id="product-price" } })
                                                 @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-3">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.Discount, htmlAttributes: new { @class = "control-label col-12" })
+                                            <div class="col-12">
+                                                @Html.EditorFor(model => model.Discount, new { htmlAttributes = new { @class = "form-control", @id="product-discount" } })
+                                                @Html.ValidationMessageFor(model => model.Discount, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-3">
+                                        <div class="form-group">
+                                            @Html.Label("Total", htmlAttributes: new { @class = "control-label col-12" })
+                                            <div class="col-12">
+                                                <input type="text" value="@Model.Price" disabled class="form-control" id="product-total-price"/>
                                             </div>
                                         </div>
                                     </div>
@@ -254,6 +271,9 @@
     var img4_sizeError = document.getElementById("image4_sizeError");
     var img4_formatError = document.getElementById("image4_formatError");
     var img4_File = document.getElementById("image4_Browse");
+
+    var productPrice = document.getElementById("product-price");
+    var productDiscount = document.getElementById("product-discount");
 
     //image1 read
     $(document).ready(function () {
@@ -482,9 +502,20 @@
     $(".js-example-tokenizer").select2({
         tags: true,
         tokenSeparators: [',', ' '],
-         selectOnClose: true,
-    })
+        selectOnClose: true,
+    });
 
+    function GetProductTotalPrice() {
+        SetProductTotalPrice(productPrice.value, productDiscount.value);
+    }
+
+    $('#product-price').bind('input', function () {
+        GetProductTotalPrice();
+    });
+
+     $('#product-discount').bind('input', function () {
+        GetProductTotalPrice();
+    });
 
 </script>
 
