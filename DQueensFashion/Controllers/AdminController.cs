@@ -309,6 +309,8 @@ namespace DQueensFashion.Controllers
                 Description = product.Description,
                 Quantity = product.Quantity,
                 Price = product.Price,
+                Discount = product.Discount,
+                SubTotal = product.SubTotal,
                 Categories = allCategories.Select(c => new CategoryNameAndId()
                 {
                     Id = c.Id,
@@ -410,7 +412,9 @@ namespace DQueensFashion.Controllers
             product.Name = productModel.Name;
             product.Description = productModel.Description;
             product.Quantity = productModel.Quantity;
-            product.Price = productModel.Price;
+            product.Price = Math.Round(productModel.Price,2);
+            product.Discount = productModel.Discount;
+            product.SubTotal = Math.Round(_productService.CalculateProductPrice(productModel.Price, productModel.Discount));
             product.Category = category;
             product.Tags = productModel.Tags != null ? String.Join(",", productModel.Tags) : "";
             product.ImagePath1 = string.IsNullOrEmpty(imgPath1) ? product.ImagePath1 : imgPath1;

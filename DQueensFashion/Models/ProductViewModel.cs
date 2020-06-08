@@ -84,6 +84,12 @@ namespace DQueensFashion.Models
         [Required]
         public decimal Price { get; set; }
 
+        [Range(0, 100, ErrorMessage = "Discount must be between 0 and 100")]
+        [Display(Name = "Discount(%)")]
+        public decimal Discount { get; set; }
+
+        public decimal SubTotal { get; set; }
+
         [Range(1, int.MaxValue, ErrorMessage = "Quantity must be greater than 1")]
         [Required]
         public int Quantity { get; set; }
