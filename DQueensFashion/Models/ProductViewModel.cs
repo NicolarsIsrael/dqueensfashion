@@ -10,12 +10,12 @@ namespace DQueensFashion.Models
     public class AddProductViewModel
     {
         [Required]
-        [BeginWIthAlphabeth(ErrorMessage = "Product name must begin with an alphabeth")]
+        [BeginWIthAlphaNumeric(ErrorMessage = "Product name must begin with an alphabeth")]
         [StringLength(50, MinimumLength = 2, ErrorMessage = "Product name must at least be 2 characters long and not more than 50")]
         public string Name { get; set; }
 
         [Required]
-        [BeginWIthAlphabeth(ErrorMessage = "Description must begin with an alphabeth")]
+        [BeginWIthAlphaNumeric(ErrorMessage = "Description must begin with an alphabeth")]
         [StringLength(10000, MinimumLength = 2, ErrorMessage = "Description must at least be 2 characters long and not more than 10000")]
         public string Description { get; set; }
 
@@ -71,12 +71,12 @@ namespace DQueensFashion.Models
         public int Id { get; set; }
 
         [Required]
-        [BeginWIthAlphabeth(ErrorMessage = "Product name must begin with an alphabeth")]
+        [BeginWIthAlphaNumeric(ErrorMessage = "Product name must begin with an alphabeth")]
         [StringLength(50, MinimumLength = 2, ErrorMessage = "Product name must at least be 2 characters long and not more than 50")]
         public string Name { get; set; }
 
         [Required]
-        [BeginWIthAlphabeth(ErrorMessage = "Description must begin with an alphabeth")]
+        [BeginWIthAlphaNumeric(ErrorMessage = "Description must begin with an alphabeth")]
         [StringLength(10000, MinimumLength = 2, ErrorMessage = "Description must at least be 2 characters long and not more than 10000")]
         public string Description { get; set; }
 

@@ -77,11 +77,11 @@ namespace DQueensFashion.Service.Implementation
                 return false;
 
             if (string.IsNullOrEmpty(product.Name) || string.IsNullOrWhiteSpace(product.Name)
-               || product.Name.Length > 50 || product.Name.Length < 2 || !char.IsLetter(product.Name[0]))
+               || product.Name.Length > 50 || product.Name.Length < 2 || !char.IsLetterOrDigit(product.Name[0]))
                 return false;
 
             if (string.IsNullOrEmpty(product.Description) || string.IsNullOrWhiteSpace(product.Description)
-              || product.Description.Length > 10000 || product.Description.Length < 2 || !char.IsLetter(product.Description[0]))
+              || product.Description.Length > 10000 || product.Description.Length < 2 || !char.IsLetterOrDigit(product.Description[0]))
                 return false;
 
             if (product.Quantity < 1)
