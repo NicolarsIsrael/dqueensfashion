@@ -64,7 +64,10 @@ namespace DQueensFashion.Service.Implementation
 
         private bool ValidateProductDetails(Product product)
         {
-            if (product == null || product.Category==null)
+            if (product == null )
+                return false;
+
+            if (product.Category == null)
                 return false;
 
             if (string.IsNullOrEmpty(product.Name) || string.IsNullOrWhiteSpace(product.Name)

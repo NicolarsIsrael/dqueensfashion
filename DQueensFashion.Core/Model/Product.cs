@@ -16,6 +16,7 @@ namespace DQueensFashion.Core.Model
         public decimal SubTotal { get; set; }
         public int Quantity { get; set; }
         public string Tags { get; set; }
+        public double AverageRating { get; set; }
 
         public string ImagePath1 { get; set; }
         public string ImagePath2 { get; set; }

@@ -35,6 +35,7 @@ namespace DQueensFashion.Controllers
         }
         public ActionResult Index()
         {
+
             IEnumerable<ViewProductsViewModel> products = _productService.GetAllProducts()
                 .Select(p => new ViewProductsViewModel()
                 {
@@ -48,10 +49,10 @@ namespace DQueensFashion.Controllers
                     CategoryId = p.Category.Id,
                     Rating = new RatingViewModel()
                     {
-                        AverageRating = _reviewService.GetAverageRating(p.Id).ToString("0.0"),
+                        AverageRating = p.AverageRating.ToString("0.0"),
                         TotalReviewCount = _reviewService.GetReviewCountForProduct(p.Id).ToString(),
-                        IsDouble = (_reviewService.GetAverageRating(p.Id) % 1) == 0 ? false : true,
-                        FloorAverageRating = (int)Math.Floor(_reviewService.GetAverageRating(p.Id))
+                        IsDouble = (p.AverageRating % 1) == 0 ? false : true,
+                        FloorAverageRating = (int)Math.Floor(p.AverageRating)
                     },
                     
                 }).ToList();

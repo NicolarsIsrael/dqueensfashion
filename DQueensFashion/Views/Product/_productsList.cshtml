@@ -22,13 +22,8 @@
                                     <span class="product-initial-price">$@product.Price</span>
                                     <span class="product-price">$@product.Price</span>
                                 </div>
-                                <div class="star-rating">
-                                    <i class="fas fa-star" id="star1" onclick="add(this,1)"></i>
-                                    <i class="fas fa-star" id="star2" onclick="add(this,2)"></i>
-                                    <i class="fas fa-star" id="star3" onclick="add(this,3)"></i>
-                                    <i class="far fa-star" id="star4" onclick="add(this,4)"></i>
-                                    <i class="far fa-star" id="star5" onclick="add(this,5)"></i>
-                                    (34)
+                                <div>
+                                    @Html.Partial("~/views/Product/_averageRating.cshtml", product.Rating)
                                     <span class="float-right mb-1">
                                         <img src="~/Content/Images/eye.svg" style="margin-right: 10px; cursor:pointer" onclick="productQuickView(@product.Id)">
                                         <img src="~/Content/Images/heart.svg" style=" cursor:pointer" onclick="AddToWishList(@product.Id)">
