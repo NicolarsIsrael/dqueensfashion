@@ -134,8 +134,12 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <span class="product-details-initial-price">$@Model.Product.Price</span>
-                    <span class="product-details-price">$@Model.Product.Price</span>
+                    @if (Model.Product.Discount > 0)
+                    {
+                        <span class="product-details-initial-price">$@Model.Product.Price</span>
+                    }
+
+                    <span class="product-details-price">$@Model.Product.SubTotal</span>
 
                 </div>
             </div>
@@ -181,8 +185,7 @@
                         <option value="1">Most recent</option>
                         <option value="2">Least recent</option>
                         <option value="3">Highest rating</option>
-                        <option value="4">Lowest recent</option>
-                        <option value="5">Most Helpful</option>
+                        <option value="4">Lowest rating</option>
                     </select>
                 </span>
             </div>

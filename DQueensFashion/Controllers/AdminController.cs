@@ -441,6 +441,8 @@ namespace DQueensFashion.Controllers
                 Name = product.Name,
                 Description = product.Description,
                 Price = product.Price.ToString(),
+                Discount = product.Discount,
+                SubTotal = product.SubTotal.ToString(),
                 Quantity = product.Quantity.ToString(),
                 Category = product.Category.Name,
                 Tags = product.Tags,
