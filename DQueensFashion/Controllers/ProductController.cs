@@ -486,7 +486,7 @@ namespace DQueensFashion.Controllers
             AddReviewViewModel reviewModel = new AddReviewViewModel()
             {
                 ProductId = product.Id,
-                ProductName = product.Name,
+                ProductName = product.Name.Length>20? product.Name.Substring(0,20) + "...":product.Name,
                 ProductImage = product.ImagePath1,
                 ProductPrice = product.Price.ToString(),
                 ProductSubTotal = product.Price.ToString(),
