@@ -166,7 +166,7 @@ namespace DQueensFashion.Controllers
                     Name = p.Name,
                     Quantity = p.Quantity.ToString(),
                     Price = p.Price.ToString(),
-                    Discount = p.Discount.ToString(),
+                    Discount = p.Discount,
                     SubTotal = p.SubTotal.ToString(),
                     Category = p.Category.Name,
                     MainImage = string.IsNullOrEmpty(p.ImagePath1) ? AppConstant.DefaultProductImage : p.ImagePath1,
@@ -185,7 +185,7 @@ namespace DQueensFashion.Controllers
                   Name = p.Name,
                   Quantity = p.Quantity.ToString(),
                   Price = p.Price.ToString(),
-                  Discount = p.Discount.ToString(),
+                  Discount = p.Discount,
                   SubTotal = p.SubTotal.ToString(),
                   Category = p.Category.Name,
                   MainImage = string.IsNullOrEmpty(p.ImagePath1) ? AppConstant.DefaultProductImage : p.ImagePath1,
@@ -282,9 +282,9 @@ namespace DQueensFashion.Controllers
                 Name = productModel.Name,
                 Description = productModel.Description,
                 Quantity = productModel.Quantity,
-                Price = Math.Round(productModel.Price,2),
-                Discount = productModel.Discount,
-                SubTotal = _productService.CalculateProductPrice(productModel.Price,productModel.Discount),
+                Price = Math.Round(productModel.Price, 2),
+                Discount = Math.Round(productModel.Discount, 2),
+                SubTotal = _productService.CalculateProductPrice(productModel.Price, productModel.Discount),
                 ImagePath1 = string.IsNullOrEmpty(imgPath1) ? AppConstant.DefaultProductImage : imgPath1,
                 ImagePath2 = imgPath2,
                 ImagePath3 = imgPath3,
@@ -413,7 +413,7 @@ namespace DQueensFashion.Controllers
             product.Description = productModel.Description;
             product.Quantity = productModel.Quantity;
             product.Price = Math.Round(productModel.Price,2);
-            product.Discount = productModel.Discount;
+            product.Discount = Math.Round(productModel.Discount, 2);
             product.SubTotal = Math.Round(_productService.CalculateProductPrice(productModel.Price, productModel.Discount));
             product.Category = category;
             product.Tags = productModel.Tags != null ? String.Join(",", productModel.Tags) : "";

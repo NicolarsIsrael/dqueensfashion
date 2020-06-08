@@ -45,6 +45,8 @@ namespace DQueensFashion.Controllers
                     MainImage = string.IsNullOrEmpty(p.ImagePath1) ? AppConstant.DefaultProductImage : p.ImagePath1,
                     Quantity = p.Quantity.ToString(),
                     Price=p.Price.ToString(),
+                    Discount = p.Discount,
+                    SubTotal = p.SubTotal.ToString(),
                     Category = p.Category.Name,
                     CategoryId = p.Category.Id,
                     Rating = new RatingViewModel()

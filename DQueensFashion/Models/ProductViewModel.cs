@@ -52,7 +52,7 @@ namespace DQueensFashion.Models
         public string Description { get; set; }
         public string Price { get; set; }
         public string SubTotal { get; set; }
-        public string Discount { get; set; }
+        public decimal Discount { get; set; }
         public string Quantity { get; set; }
         public DateTime DateCreated { get; set; }
         [Display(Name ="Date created")]
