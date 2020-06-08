@@ -257,7 +257,7 @@ textarea {
 
 
 .tab_slider > .tab-pane {
-    display: block;
+    display: none;
     height: 0;
 }
 
