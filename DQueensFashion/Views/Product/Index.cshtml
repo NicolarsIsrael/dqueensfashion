@@ -99,7 +99,7 @@
             </div>
         </div>
         <div class="col-12">
-
+            
             @Html.Partial("_ProductsList", Model.Products)
 
 
@@ -116,6 +116,8 @@
     var _categoryId = document.getElementById("categoryId");
 
     function SearchProduct() {
+        document.getElementById("loading-effect").style.display = "block";
+        
         $.ajax({
             url: '/product/searchproduct',
             dataType: "html",
@@ -131,6 +133,8 @@
     }
 
     function ProductPagination(pageNumber) {
+         document.getElementById("loading-effect").style.display = "block";
+        
         $.ajax({
             url: '/product/ProductPagination',
             dataType: "html",
@@ -145,19 +149,5 @@
         });
     }
 
-    var coll = document.getElementsByClassName("collapsible");
-    var i;
-
-    for (i = 0; i < coll.length; i++) {
-        coll[i].addEventListener("click", function () {
-            this.classList.toggle("active");
-            var content = this.nextElementSibling;
-            if (content.style.maxHeight) {
-                content.style.maxHeight = null;
-            } else {
-                content.style.maxHeight = content.scrollHeight + "px";
-            }
-        });
-    }
 </script>
 
