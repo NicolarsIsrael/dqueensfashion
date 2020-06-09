@@ -1,0 +1,38 @@
+﻿@model DQueensFashion.Models.ViewProductsViewModel
+
+
+<div class="product-box">
+    <div onclick="NavigateToProductDetails(@Model.Id)" style="cursor:pointer">
+        <div class="product-time-label">New</div>
+        @if (Model.Discount > 0)
+        {
+            <div class="product-discount-label">@Model.Discount% off oo</div>
+        }
+        <div class="img-box">
+            <img src="@Url.Content(Model.MainImage)">
+        </div>
+    </div>
+    <div class="product-details">
+        <div onclick="NavigateToProductDetails(@Model.Id)" style="cursor:pointer">
+            <div class="product-title">@Model.Name</div>
+            <div class="product-category">@Model.Category</div>
+            @if (Model.Discount > 0)
+            {
+                <span class="product-initial-price">$@Model.Price</span>
+            }
+            <span class="product-price">$@Model.SubTotal</span>
+        </div>
+        <div>
+            @Html.Partial("~/views/Product/_averageRating.cshtml", Model.Rating)
+            <span class="float-right mb-1">
+                <img src="~/Content/Images/eye.svg" style="margin-right: 10px; cursor:pointer" onclick="productQuickView(@Model.Id)">
+                <img src="~/Content/Images/heart.svg" style=" cursor:pointer" onclick="AddToWishList(@Model.Id)">
+            </span>
+        </div>
+
+        <div class="cart" onclick="AddToCart(@Model.Id)">
+            <div href="#">Add to cart</div>
+        </div>
+    </div>
+
+</div>

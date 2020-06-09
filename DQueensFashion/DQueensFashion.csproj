@@ -508,6 +508,7 @@
     <Content Include="Views\Product\AddReview.cshtml" />
     <Content Include="Views\Product\_averageRating.cshtml" />
     <Content Include="Views\Product\_reviewListPagination.cshtml" />
+    <Content Include="Views\Product\_productCard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
