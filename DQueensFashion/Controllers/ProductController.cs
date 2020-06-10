@@ -42,7 +42,7 @@ namespace DQueensFashion.Controllers
                 .Select(p => new ViewProductsViewModel()
                 {
                     Id = p.Id,
-                    Name = p.Name,
+                    Name = p.Name.Length > 17 ? p.Name.Substring(0, 15) + "..." : p.Name,
                     Description = p.Description.Length > 35 ? p.Description.Substring(0, 35) + "..." : p.Description,
                     MainImage = string.IsNullOrEmpty(p.ImagePath1) ? AppConstant.DefaultProductImage : p.ImagePath1,
                     Quantity = p.Quantity.ToString(),
@@ -103,7 +103,7 @@ namespace DQueensFashion.Controllers
                     .Select(p => new ViewProductsViewModel()
                     {
                         Id = p.Id,
-                        Name = p.Name,
+                        Name = p.Name.Length > 17 ? p.Name.Substring(0, 15) + "..." : p.Name,
                         Description = p.Description.Length > 35 ? p.Description.Substring(0, 35) + "..." : p.Description,
                         MainImage = string.IsNullOrEmpty(p.ImagePath1) ? AppConstant.DefaultProductImage : p.ImagePath1,
                         Category = p.Category.Name,
@@ -199,7 +199,7 @@ namespace DQueensFashion.Controllers
                     .Select(p => new ViewProductsViewModel()
                     {
                         Id = p.Id,
-                        Name = p.Name,
+                        Name = p.Name.Length > 17 ? p.Name.Substring(0, 15) + "..." : p.Name,
                         Description = p.Description.Length > 35 ? p.Description.Substring(0, 35) + "..." : p.Description,
                         MainImage = string.IsNullOrEmpty(p.ImagePath1) ? AppConstant.DefaultProductImage : p.ImagePath1,
                         Category = p.Category.Name,
@@ -321,11 +321,11 @@ namespace DQueensFashion.Controllers
                     }).OrderByDescending(r=>r.DateOrder).ToList(),
             };
 
-            IEnumerable<ViewProductsViewModel> relatedProducts = _productService.GetRelatedProducts(product.Id,product.CategoryId)
+            IEnumerable<ViewProductsViewModel> relatedProducts = _productService.GetRelatedProducts(product.Id, product.CategoryId)
                 .Take(4).Select(p => new ViewProductsViewModel()
                 {
                     Id = p.Id,
-                    Name = p.Name,
+                    Name = p.Name.Length > 20 ? p.Name.Substring(0, 18) + "..." : p.Name,
                     Description = p.Description.Length > 35 ? p.Description.Substring(0, 35) + "..." : p.Description,
                     MainImage = string.IsNullOrEmpty(p.ImagePath1) ? AppConstant.DefaultProductImage : p.ImagePath1,
                     Quantity = p.Quantity.ToString(),
@@ -522,6 +522,13 @@ namespace DQueensFashion.Controllers
                 Category = product.Category.Name,
                 Price = product.Price.ToString(),
                 Quantity = product.Quantity.ToString(),
+                Rating = new RatingViewModel()
+                {
+                    AverageRating = product.AverageRating.ToString("0.0"),
+                    TotalReviewCount = _reviewService.GetReviewCountForProduct(product.Id).ToString(),
+                    IsDouble = (product.AverageRating % 1) == 0 ? false : true,
+                    FloorAverageRating = (int)Math.Floor(product.AverageRating)
+                },
             };
 
             return PartialView("_productQuickView", productModel);

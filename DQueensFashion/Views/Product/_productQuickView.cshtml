@@ -141,12 +141,7 @@
         </div>
         <div class="row" style="padding:3px">
             <div class="col-12">
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-                (53)
+                @Html.Partial("~/views/Product/_averageRating.cshtml", Model.Rating)
             </div>
             <div class="col-12">
                 <a href="#">Add a review</a>

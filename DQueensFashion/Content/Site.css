@@ -454,7 +454,7 @@ textarea {
     }
 
     .img-box {
-        height: 150px;
+        height: 100px;
     }
 
     .product-title {
@@ -473,7 +473,7 @@ textarea {
     }
 
     .star-rating {
-        font-size: 7px;
+        font-size: 10px;
     }
 
     .product-average-rating {
@@ -486,18 +486,18 @@ textarea {
     }
 
     .cart {
-        height: 25px;
+        height: 20px;
     }
 
     .product-time-label,
     .product-discount-label {
-        padding: 5px;
-        font-size: 10px;
+        padding: 3px;
+        font-size: 8px;
     }
 
     .product-quickview,
     .product-wishlist {
-        font-size: 12px;
+        font-size: 15px;
     }
 
     .product-quickview {
