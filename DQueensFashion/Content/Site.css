@@ -372,6 +372,22 @@ textarea {
     color: #B01A24;
 }
 
+.product-average-rating {
+    font-weight: 700;
+    font-size: 13px
+}
+
+.product-quickview,
+.product-wishlist{
+    color: #E97128;
+    font-size: 20px;
+    cursor:pointer;
+}
+
+.product-quickview {
+    margin-right: 10px;
+}
+
 .cart {
     height: 45px;
     background-color: #E97128;
@@ -406,12 +422,6 @@ textarea {
 
 
 
-.star-rating i {
-    color: #FB3535;
-    font-size: 12px;
-}
-
-
 .card-center {
     margin-left: auto;
     margin-right: auto;
@@ -421,8 +431,9 @@ textarea {
     height: 80vh;
 }
 
-.starcolor {
+.star-rating {
     color: #f4c150;
+    font-size: 15px;
 }
 /*smart phones*/
 @media screen and (max-width: 420px) and (min-width: 0px) {
@@ -431,14 +442,65 @@ textarea {
     }
 
     .background {
-        height: 70vh;
+        height: 80vh;
     }
 
     .navbar {
         padding: 10px 10px;
     }
+    
+    .product-box{
+        min-height:200px;
+    }
 
-    /*.product_img {
-        height: 110px;
-    }*/
+    .img-box {
+        height: 150px;
+    }
+
+    .product-title {
+        font-weight: 500;
+        font-size: 12px;
+        margin-bottom: 5px;
+    }
+
+    .product-initial-price {
+        font-size: 10px;
+    }
+
+    .product-price {
+        font-size: 15px;
+        font-weight: 700;
+    }
+
+    .star-rating {
+        font-size: 7px;
+    }
+
+    .product-average-rating {
+        font-weight: 700;
+        font-size: 10px
+    }
+
+    .product-total-review-count{
+        display:none;
+    }
+
+    .cart {
+        height: 25px;
+    }
+
+    .product-time-label,
+    .product-discount-label {
+        padding: 5px;
+        font-size: 10px;
+    }
+
+    .product-quickview,
+    .product-wishlist {
+        font-size: 12px;
+    }
+
+    .product-quickview {
+        margin-right: 5px;
+    }
 }

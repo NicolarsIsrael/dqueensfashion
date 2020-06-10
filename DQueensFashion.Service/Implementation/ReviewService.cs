@@ -26,6 +26,12 @@ namespace DQueensFashion.Service.Implementation
             uow.Save();
         }
 
+        public void AddRangeReveiew(IEnumerable<Review> reviews)
+        {
+            uow.ReviewRepo.AddRange(reviews);
+            uow.Save();
+        }
+
         public int GetAllReviewCount()
         {
             return uow.ReviewRepo.Count();

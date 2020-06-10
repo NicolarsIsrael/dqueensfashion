@@ -6,7 +6,7 @@
         <div class="product-time-label">New</div>
         @if (Model.Discount > 0)
         {
-            <div class="product-discount-label">@Model.Discount% off oo</div>
+            <div class="product-discount-label">@Model.Discount% off</div>
         }
         <div class="img-box">
             <img src="@Url.Content(Model.MainImage)">
@@ -22,11 +22,13 @@
             }
             <span class="product-price">$@Model.SubTotal</span>
         </div>
-        <div>
+        <div class="mb-1">
             @Html.Partial("~/views/Product/_averageRating.cshtml", Model.Rating)
-            <span class="float-right mb-1">
-                <img src="~/Content/Images/eye.svg" style="margin-right: 10px; cursor:pointer" onclick="productQuickView(@Model.Id)">
-                <img src="~/Content/Images/heart.svg" style=" cursor:pointer" onclick="AddToWishList(@Model.Id)">
+            <span class="float-right">
+                <i class="far fa-eye product-quickview" onclick="productQuickView(@Model.Id)"></i>
+                <i class="far fa-heart product-wishlist" onclick="AddToWishList(@Model.Id)"></i>
+                @*<img src="~/Content/Images/eye.svg" style="margin-right: 10px; cursor:pointer" onclick="productQuickView(@Model.Id)">*@
+                @*<img src="~/Content/Images/heart.svg" style=" cursor:pointer" onclick="AddToWishList(@Model.Id)">*@
             </span>
         </div>
 

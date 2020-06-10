@@ -10,7 +10,7 @@ namespace DQueensFashion.Utilities
     {
         public const string ApplicationName = "DqueensFashion";
 
-        public const string AdminEmail = "bakarenicolarsisrael@gmail.com";
+        public const string AdminEmail = "admin@gmail.com";
         public const string AdminPassword = "Abc123*";
         public const string AdminRole = "Admin";
         public const string EmployeeRole = "Employee";
