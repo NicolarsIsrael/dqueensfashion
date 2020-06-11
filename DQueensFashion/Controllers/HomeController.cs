@@ -40,7 +40,7 @@ namespace DQueensFashion.Controllers
                 .Select(p => new ViewProductsViewModel()
                 {
                     Id = p.Id,
-                    Name = p.Name,
+                    Name = p.Name.Length > 17 ? p.Name.Substring(0, 15) + "..." : p.Name,
                     Description = p.Description.Length > 35 ? p.Description.Substring(0, 35) + "..." : p.Description,
                     MainImage = string.IsNullOrEmpty(p.ImagePath1) ? AppConstant.DefaultProductImage : p.ImagePath1,
                     Quantity = p.Quantity.ToString(),
