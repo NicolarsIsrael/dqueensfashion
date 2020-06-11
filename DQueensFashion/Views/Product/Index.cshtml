@@ -127,6 +127,7 @@
             },
             error: function (xhr, status, error) {
                 alertify.error("Error");
+                document.getElementById("loading-effect").style.display = "none";
             }
         });
 
@@ -145,6 +146,7 @@
             },
             error: function (xhr, status, error) {
                 alertify.error("Error");
+                document.getElementById("loading-effect").style.display = "none";
             }
         });
     }

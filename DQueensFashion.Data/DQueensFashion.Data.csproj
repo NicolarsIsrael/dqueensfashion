@@ -127,6 +127,7 @@
     <Compile Include="Contract\ICategoryRepo.cs" />
     <Compile Include="Contract\ICoreRepo.cs" />
     <Compile Include="Contract\ICustomerRepo.cs" />
+    <Compile Include="Contract\IImageRepo.cs" />
     <Compile Include="Contract\ILineItemRepo.cs" />
     <Compile Include="Contract\IOrderRepo.cs" />
     <Compile Include="Contract\IProductRepo.cs" />
@@ -136,6 +137,7 @@
     <Compile Include="Implementation\CategoryRepo.cs" />
     <Compile Include="Implementation\CoreRepo.cs" />
     <Compile Include="Implementation\CustomerRepo.cs" />
+    <Compile Include="Implementation\ImageRepo.cs" />
     <Compile Include="Implementation\LineItemRepo.cs" />
     <Compile Include="Implementation\OrderRepo.cs" />
     <Compile Include="Implementation\ProductRepo.cs" />
@@ -206,6 +208,14 @@
     <Compile Include="Migrations\202006081740270_AverageRatingAddedToProduct.Designer.cs">
       <DependentUpon>202006081740270_AverageRatingAddedToProduct.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006110928477_imageFIleAddedToDb.cs" />
+    <Compile Include="Migrations\202006110928477_imageFIleAddedToDb.Designer.cs">
+      <DependentUpon>202006110928477_imageFIleAddedToDb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006110930276_imageFIleAddedToDb2.cs" />
+    <Compile Include="Migrations\202006110930276_imageFIleAddedToDb2.Designer.cs">
+      <DependentUpon>202006110930276_imageFIleAddedToDb2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -267,6 +277,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006081740270_AverageRatingAddedToProduct.resx">
       <DependentUpon>202006081740270_AverageRatingAddedToProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006110928477_imageFIleAddedToDb.resx">
+      <DependentUpon>202006110928477_imageFIleAddedToDb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006110930276_imageFIleAddedToDb2.resx">
+      <DependentUpon>202006110930276_imageFIleAddedToDb2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

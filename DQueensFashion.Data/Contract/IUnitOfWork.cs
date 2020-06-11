@@ -15,6 +15,7 @@ namespace DQueensFashion.Data.Contract
         ILineItemRepo LineItemRepo { get; set; }
         IOrderRepo OrderRepo { get; set; }
         IReviewRepo ReviewRepo { get; set; }
+        IImageRepo ImageRepo { get; set; }
         void Save();
     }
 }

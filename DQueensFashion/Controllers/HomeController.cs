@@ -21,9 +21,10 @@ namespace DQueensFashion.Controllers
         private readonly ILineItemService _lineItemService;
         private readonly IOrderService _orderService;
         private readonly IReviewService _reviewService;
+        private readonly IImageService _imageService;
 
         public HomeController(IProductService productService, ICategoryService categoryService,ICustomerService customerService, IWishListService wishListService,
-            ILineItemService lineItemService, IOrderService orderService, IReviewService reviewService)
+            ILineItemService lineItemService, IOrderService orderService, IReviewService reviewService, IImageService imageService)
         {
             _productService = productService;
             _categoryService = categoryService;
@@ -32,17 +33,20 @@ namespace DQueensFashion.Controllers
             _lineItemService = lineItemService;
             _orderService = orderService;
             _reviewService = reviewService;
+            _imageService = imageService;
         }
         public ActionResult Index()
         {
+            var allImages = _imageService.GetAllImageFiles().ToList();
 
             IEnumerable<ViewProductsViewModel> products = _productService.GetAllProducts()
                 .Select(p => new ViewProductsViewModel()
                 {
                     Id = p.Id,
                     Name = p.Name.Length > 17 ? p.Name.Substring(0, 15) + "..." : p.Name,
-                    Description = p.Description.Length > 35 ? p.Description.Substring(0, 35) + "..." : p.Description,
-                    MainImage = string.IsNullOrEmpty(p.ImagePath1) ? AppConstant.DefaultProductImage : p.ImagePath1,
+                    MainImage = allImages.Where(image=>image.ProductId==p.Id).Count()<1?
+                        AppConstant.DefaultProductImage :
+                        allImages.Where(image => image.ProductId == p.Id).FirstOrDefault().ImagePath,
                     Quantity = p.Quantity.ToString(),
                     Price=p.Price.ToString(),
                     Discount = p.Discount,
@@ -72,8 +76,6 @@ namespace DQueensFashion.Controllers
                 Categories = categories,
             };
 
-            ViewBag.LineItemCount = _lineItemService.GetLineItemsCount();
-            ViewBag.OrderCount = _orderService.GetOrderCount();
             return View(homeIndex);
         }
 

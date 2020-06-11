@@ -39,18 +39,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.DateCreatedString)
             </td>
-            @{
-                if (!string.IsNullOrEmpty(item.MainImage))
-                {
-                    <td>
-                        <img src="@Url.Content(item.MainImage)" style="height:50px;width:50px;" />
-                    </td>
-                }
-                else
-                {
-                    <td></td>
-                }
-            }
+            <td>
+                <img src="@Url.Content(item.MainImage)" style="height:50px;width:50px;" />
+            </td>
             <td>
                 @Html.ActionLink("Edit", "EditProduct", new { id = item.Id }) |
                 @Html.ActionLink("Details", "ProductDetails", new { id = item.Id })

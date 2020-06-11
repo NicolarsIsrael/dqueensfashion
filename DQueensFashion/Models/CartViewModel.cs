@@ -9,6 +9,7 @@ namespace DQueensFashion.Models
     public class Cart
     {
         public Product Product { get; set; }
+        public string MainImage { get; set; }
         public int Quantity { get; set; }
         public decimal Price { get; set; }
     }

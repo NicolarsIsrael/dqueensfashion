@@ -23,6 +23,7 @@ namespace DQueensFashion.Data
         public DbSet<LineItem> LineItem { get; set; }
         public DbSet<Order> Order { get; set; }
         public DbSet<Review> Review { get; set; }
+        public DbSet<ImageFile> Image { get; set; }
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

@@ -512,6 +512,9 @@
     <Content Include="Views\Product\_averageRating.cshtml" />
     <Content Include="Views\Product\_reviewListPagination.cshtml" />
     <Content Include="Views\Product\_productCard.cshtml" />
+    <Content Include="Views\Admin\AddProductImages.cshtml" />
+    <Content Include="Views\Admin\EditProductImages.cshtml" />
+    <Content Include="Views\Admin\_productImages.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,4 +1,5 @@
 ﻿using DQueensFashion.Core;
+using DQueensFashion.Core.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -31,18 +32,33 @@ namespace DQueensFashion.Models
         [Required]
         public int Quantity { get; set; }
 
-        public string ImagePath1 { get; set; }
-        public string ImagePath2 { get; set; }
-        public string ImagePath3 { get; set; }
-        public string ImagePath4 { get; set; }
         public List<string> Tags { get; set; }
-        public HttpPostedFileBase ImageFile1 { get; set; }
-        public HttpPostedFileBase ImageFile2 { get; set; }
-        public HttpPostedFileBase ImageFile3 { get; set; }
-        public HttpPostedFileBase ImageFile4 { get; set; }
+
         [Display(Name ="Category")]
         public int CategoryId { get; set; }
         public IEnumerable<CategoryNameAndId> Categories { get; set; }
+    }
+
+    public class AddProductImageViewModel
+    {
+        public int ProductId { get; set; }
+        public string ProductName { get; set; }
+        public string ProductCategory { get; set; }
+    }
+
+    public class EditProductImageViewModel
+    {
+        public int ProductId { get; set; }
+        public string ProductName { get; set; }
+        public string ProductCategory { get; set; }
+        public IEnumerable<ImageViewModel> ProductImages { get; set; }
+    }
+
+    public class ImageViewModel
+    {
+        public string ImagePath { get; set; }
+        public int Id { get; set; }
+        public int ProductId { get; set; }
     }
 
     public class ViewProductsViewModel

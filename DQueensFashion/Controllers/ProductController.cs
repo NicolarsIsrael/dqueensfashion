@@ -20,19 +20,23 @@ namespace DQueensFashion.Controllers
         private readonly IOrderService _orderService;
         private readonly ICategoryService _categoryService;
         private readonly IReviewService _reviewService;
+        private readonly IImageService _imageService;
 
         public ProductController(IProductService productService, ICustomerService customerService, IOrderService orderService, ICategoryService categoryService,
-            IReviewService reviewService)
+            IReviewService reviewService, IImageService imageService)
         {
             _productService = productService;
             _customerService = customerService;
             _orderService = orderService;
             _categoryService = categoryService;
             _reviewService = reviewService;
+            _imageService = imageService;
         }
         // GET: Product
         public ActionResult Index(int categoryId=0)
         {
+            var allImages = _imageService.GetAllImageFiles();
+
             IEnumerable<Product> _products = _productService.GetAllProducts().ToList();
            
             if (categoryId > 0)
@@ -44,7 +48,9 @@ namespace DQueensFashion.Controllers
                     Id = p.Id,
                     Name = p.Name.Length > 17 ? p.Name.Substring(0, 15) + "..." : p.Name,
                     Description = p.Description.Length > 35 ? p.Description.Substring(0, 35) + "..." : p.Description,
-                    MainImage = string.IsNullOrEmpty(p.ImagePath1) ? AppConstant.DefaultProductImage : p.ImagePath1,
+                    MainImage = allImages.Where(image => image.ProductId == p.Id).Count() < 1 ?
+                        AppConstant.DefaultProductImage :
+                        allImages.Where(image => image.ProductId == p.Id).FirstOrDefault().ImagePath,
                     Quantity = p.Quantity.ToString(),
                     Price = p.Price.ToString(),
                     Discount = p.Discount,
@@ -90,6 +96,8 @@ namespace DQueensFashion.Controllers
         {
             try
             {
+                var allImages = _imageService.GetAllImageFiles();
+
                 IEnumerable<Product> _products = _productService.GetAllProducts().ToList();
                 if (!string.IsNullOrEmpty(searchString))
                     _products = _products.Where(p => p.Name.ToLower().Contains(searchString.ToLower())
@@ -105,7 +113,9 @@ namespace DQueensFashion.Controllers
                         Id = p.Id,
                         Name = p.Name.Length > 17 ? p.Name.Substring(0, 15) + "..." : p.Name,
                         Description = p.Description.Length > 35 ? p.Description.Substring(0, 35) + "..." : p.Description,
-                        MainImage = string.IsNullOrEmpty(p.ImagePath1) ? AppConstant.DefaultProductImage : p.ImagePath1,
+                        MainImage = allImages.Where(image => image.ProductId == p.Id).Count() < 1 ?
+                            AppConstant.DefaultProductImage :
+                            allImages.Where(image => image.ProductId == p.Id).FirstOrDefault().ImagePath,
                         Category = p.Category.Name,
                         Quantity = p.Quantity.ToString(),
                         Price = p.Price.ToString(),
@@ -186,6 +196,8 @@ namespace DQueensFashion.Controllers
         {
             try
             {
+                var allImages = _imageService.GetAllImageFiles();
+
                 IEnumerable<Product> _products = _productService.GetAllProducts().ToList();
                 if (!string.IsNullOrEmpty(searchString))
                     _products = _products.Where(p => p.Name.ToLower().Contains(searchString.ToLower())
@@ -201,7 +213,9 @@ namespace DQueensFashion.Controllers
                         Id = p.Id,
                         Name = p.Name.Length > 17 ? p.Name.Substring(0, 15) + "..." : p.Name,
                         Description = p.Description.Length > 35 ? p.Description.Substring(0, 35) + "..." : p.Description,
-                        MainImage = string.IsNullOrEmpty(p.ImagePath1) ? AppConstant.DefaultProductImage : p.ImagePath1,
+                        MainImage = allImages.Where(image => image.ProductId == p.Id).Count() < 1 ?
+                            AppConstant.DefaultProductImage :
+                            allImages.Where(image => image.ProductId == p.Id).FirstOrDefault().ImagePath,
                         Category = p.Category.Name,
                         Quantity = p.Quantity.ToString(),
                         Price = p.Price.ToString(),
@@ -285,7 +299,8 @@ namespace DQueensFashion.Controllers
             if (product == null)
                 return HttpNotFound();
 
-            var productImages = SetProductImages(product.ImagePath2, product.ImagePath3, product.ImagePath4);
+            var allProductImages = _imageService.GetImageFilesForProduct(product.Id);
+            var productImages = SetProductImages(allProductImages);
         
             ViewProductsViewModel productDetails = new ViewProductsViewModel()
             {
@@ -299,7 +314,9 @@ namespace DQueensFashion.Controllers
                 Category = product.Category.Name,
                 Tags = product.Tags,
                 DateCreatedString = product.DateCreated.ToString("dd/MMM/yyyy : hh-mm-ss"),
-                MainImage = string.IsNullOrEmpty(product.ImagePath1) ? AppConstant.DefaultProductImage : product.ImagePath1,
+                MainImage = allProductImages.Count() < 1 ?
+                        AppConstant.DefaultProductImage :
+                        _imageService.GetMainImageForProduct(product.Id).ImagePath,
                 OtherImagePaths = productImages,
                 Rating = new RatingViewModel()
                 {
@@ -321,13 +338,17 @@ namespace DQueensFashion.Controllers
                     }).OrderByDescending(r=>r.DateOrder).ToList(),
             };
 
+            var allImages = _imageService.GetAllImageFiles();
+
             IEnumerable<ViewProductsViewModel> relatedProducts = _productService.GetRelatedProducts(product.Id, product.CategoryId)
                 .Take(4).Select(p => new ViewProductsViewModel()
                 {
                     Id = p.Id,
                     Name = p.Name.Length > 20 ? p.Name.Substring(0, 18) + "..." : p.Name,
                     Description = p.Description.Length > 35 ? p.Description.Substring(0, 35) + "..." : p.Description,
-                    MainImage = string.IsNullOrEmpty(p.ImagePath1) ? AppConstant.DefaultProductImage : p.ImagePath1,
+                    MainImage = allImages.Where(image => image.ProductId == p.Id).Count() < 1 ?
+                        AppConstant.DefaultProductImage :
+                        allImages.Where(image => image.ProductId == p.Id).FirstOrDefault().ImagePath,
                     Quantity = p.Quantity.ToString(),
                     Price = p.Price.ToString(),
                     Discount = p.Discount,
@@ -510,15 +531,15 @@ namespace DQueensFashion.Controllers
             if (product == null)
                 throw new Exception();
 
-            var productImages = SetProductImages(product.ImagePath2, product.ImagePath3, product.ImagePath4);
+            //var productImages = SetProductImages(product.ImagePath2, product.ImagePath3, product.ImagePath4);
 
             ViewProductsViewModel productModel = new ViewProductsViewModel()
             {
                 Id = product.Id,
                 Name = product.Name,
                 Description = product.Description,
-                MainImage = string.IsNullOrEmpty(product.ImagePath1) ? AppConstant.DefaultProductImage : product.ImagePath1,
-                OtherImagePaths = productImages,
+                //MainImage = string.IsNullOrEmpty(product.ImagePath1) ? AppConstant.DefaultProductImage : product.ImagePath1,
+                //OtherImagePaths = productImages,
                 Category = product.Category.Name,
                 Price = product.Price.ToString(),
                 Quantity = product.Quantity.ToString(),
@@ -546,7 +567,7 @@ namespace DQueensFashion.Controllers
             {
                 ProductId = product.Id,
                 ProductName = product.Name.Length>20? product.Name.Substring(0,20) + "...":product.Name,
-                ProductImage = product.ImagePath1,
+                //ProductImage = product.ImagePath1,
                 ProductPrice = product.Price.ToString(),
                 ProductSubTotal = product.Price.ToString(),
                 ProductCategory = product.Category.Name,
@@ -601,19 +622,17 @@ namespace DQueensFashion.Controllers
             return _customerService.GedCustomerByUserId(userId);
         }
 
-        private List<string> SetProductImages(string image2, string image3, string image4)
+        private List<string> SetProductImages(IEnumerable<ImageFile> imageFiles)
         {
             List<string> productImages = new List<string>();
-           
-            if (!string.IsNullOrEmpty(image2))
-                productImages.Add(image2);
 
-            if (!string.IsNullOrEmpty(image3))
-                productImages.Add(image3);
+            if (imageFiles.Count()>1)
+            {
+                foreach (var image in imageFiles)
+                    productImages.Add(image.ImagePath);
 
-
-            if (!string.IsNullOrEmpty(image4))
-                productImages.Add(image4);
+                productImages.RemoveAt(0);
+            }
 
             return productImages;
         }

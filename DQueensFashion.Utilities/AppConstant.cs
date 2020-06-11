@@ -20,6 +20,7 @@ namespace DQueensFashion.Utilities
         public const int ProductIndexPageSize = 20;
         public const int ReviewsPageSize = 10;
 
+        public const string ProductImageBasePath = "~/Content/Images/Products/";
         //orange #E97128
         //deep blue #212529
     }

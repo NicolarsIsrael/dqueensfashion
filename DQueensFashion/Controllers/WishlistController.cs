@@ -1,6 +1,7 @@
 ﻿using DQueensFashion.Core.Model;
 using DQueensFashion.Models;
 using DQueensFashion.Service.Contract;
+using DQueensFashion.Utilities;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
@@ -15,12 +16,14 @@ namespace DQueensFashion.Controllers
         private readonly ICustomerService _customerService;
         private readonly IWishListService _wishListService;
         private readonly IProductService _productService;
+        private readonly IImageService _imageService;
 
-        public WishlistController(ICustomerService customerService, IWishListService wishListService, IProductService productService)
+        public WishlistController(ICustomerService customerService, IWishListService wishListService, IProductService productService, IImageService imageService)
         {
             _customerService = customerService;
             _wishListService = wishListService;
             _productService = productService;
+            _imageService = imageService;
         }
         // GET: Wishlist
         public ActionResult Index()
@@ -46,7 +49,9 @@ namespace DQueensFashion.Controllers
                     CustomerId = customer.Id,
                     ProductId = product.Id,
                     ProductName = product.Name,
-                    ProductImagePath = product.ImagePath1,
+                    ProductImagePath = _imageService.GetImageFilesForProduct(product.Id).Count()<1?
+                        AppConstant.DefaultProductImage:
+                        _imageService.GetMainImageForProduct(product.Id).ImagePath,
                 };
                 _wishListService.AddWishList(wishList);
                 return Json("success", JsonRequestBehavior.AllowGet);

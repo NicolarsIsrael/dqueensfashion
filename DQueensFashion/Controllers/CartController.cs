@@ -2,6 +2,7 @@
 using DQueensFashion.CustomFilters;
 using DQueensFashion.Models;
 using DQueensFashion.Service.Contract;
+using DQueensFashion.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,10 +16,13 @@ namespace DQueensFashion.Controllers
     {
         private readonly IProductService _productService;
         private readonly ICategoryService _categoryService;
-        public CartController(IProductService productService, ICategoryService categoryService)
+        private readonly IImageService _imageService;
+
+        public CartController(IProductService productService, ICategoryService categoryService, IImageService imageService)
         {
             _productService = productService;
             _categoryService = categoryService;
+            _imageService = imageService;
         }
         // GET: Cart
         public ActionResult Index()
@@ -32,10 +36,20 @@ namespace DQueensFashion.Controllers
             if (product == null)
                 throw new Exception();
 
+            string mainImage = _imageService.GetImageFilesForProduct(product.Id).Count() < 1
+                ? AppConstant.DefaultProductImage
+                : _imageService.GetMainImageForProduct(product.Id).ImagePath;
+
             if (Session["cart"] == null)
             {
                 List<Cart> cart = new List<Cart>();
-                cart.Add(new Cart { Product = product, Quantity = quantity,Price = product.Price * quantity });
+                cart.Add(new Cart
+                {
+                    Product = product,
+                    Quantity = quantity,
+                    Price = product.Price * quantity,
+                    MainImage = mainImage,
+                });
                 Session["cart"] = cart;
             }
             else
@@ -49,7 +63,13 @@ namespace DQueensFashion.Controllers
                 }
                 else
                 {
-                    cart.Add(new Cart { Product = product, Quantity = quantity, Price = product.Price * quantity });
+                    cart.Add(new Cart
+                    {
+                        Product = product,
+                        Quantity = quantity,
+                        Price = product.Price * quantity,
+                        MainImage = mainImage,
+                    });
                 }
                 Session["cart"] = cart;
             }
@@ -68,24 +88,6 @@ namespace DQueensFashion.Controllers
             ViewBag.CartNumber = GetCartNumber();
             return PartialView("_navbarCartNumber");
         }
-
-        //public ActionResult RemoveFromCart(int id)
-        //{
-        //    List<Cart> cart = (List<Cart>)Session["cart"];
-        //    int index = isExist(id);
-        //    cart.RemoveAt(index);
-        //    Session["cart"] = cart;
-
-        //    ViewCartViewModel viewCart = new ViewCartViewModel()
-        //    {
-        //        Count = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.Quantity),
-        //        Carts = Session["cart"] == null ? new List<Cart>() : (List<Cart>)Session["cart"],
-        //        SubTotal = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.Price),
-        //    };
-
-        //    return PartialView("_navbarCart", viewCart);
-        //}
-
 
         public ActionResult ViewCart()
         {

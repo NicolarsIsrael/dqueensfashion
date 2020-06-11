@@ -9,6 +9,12 @@ namespace DQueensFashion.Core.Model
 {
     public class Product:Entity
     {
+        public Product()
+        {
+            Images = new List<ImageFile>();
+            Reviews = new List<Review>();
+        }
+
         public string Name { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }
@@ -17,12 +23,7 @@ namespace DQueensFashion.Core.Model
         public int Quantity { get; set; }
         public string Tags { get; set; }
         public double AverageRating { get; set; }
-
-        public string ImagePath1 { get; set; }
-        public string ImagePath2 { get; set; }
-        public string ImagePath3 { get; set; }
-        public string ImagePath4 { get; set; }
-
+        public IEnumerable<ImageFile> Images { get; set; }
 
         [ForeignKey("Category")]
         public int CategoryId { get; set; }

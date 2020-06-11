@@ -1,0 +1,12 @@
+﻿@model IEnumerable<DQueensFashion.Models.ImageViewModel>
+
+<div id="productImages" class="row">
+    @foreach (var image in Model)
+    {
+        <div class="col-md-2 col-4">
+            <img src="@Url.Content(image.ImagePath)" class="d-block mb-1" style="width:100%;height:100px" />
+            <button class="btn btn-danger btn-block" onclick="DeleteProductImage(@image.Id)">Delete</button>
+        </div>
+    }
+</div>
+

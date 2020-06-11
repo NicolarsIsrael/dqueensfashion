@@ -23,7 +23,7 @@
                 <h6 style="text-align:center">Add Product</h6>
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="row">
-                    <div class="col-md-8 col-12">
+                    <div class="col-12">
                         <div class="card">
                             <div class="card-body">
                                 <div class="row">
@@ -108,131 +108,6 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4 col-12">
-                        <div class="card card-outline card-primary collapsed-card" style="border-top: 3px solid #E97128;">
-                            <div class="card-header">
-                                <h3 class="card-title">Image 1</h3>
-
-                                <div class="card-tools">
-                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                        <i class="fas fa-plus"></i>
-                                    </button>
-                                </div>
-                                <!-- /.card-tools -->
-                            </div>
-                            <!-- /.card-header -->
-                            <div class="card-body">
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <div class="col-12">
-                                            <img class="img-responsive" id="targetImg1" style="height:162px;width:100%;margin-bottom:10px" src="@Url.Content(AppConstant.DefaultProductImage)" />
-                                            <div class="custom-file">
-                                                <input type="file" class="form-control custom-file-input" name="ImageFile1" id="image1_Browse" accept="image/x-png,image/jpg,image/jpeg" />
-                                                <label class="custom-file-label" for="exampleInputFile">Select picture</label>
-                                            </div>
-                                            <p class="mb-0 text-danger" id="image1_sizeError"></p>
-                                            <p class="mb-0 text-danger" id="image1_formatError"></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /.card-body -->
-                        </div>
-                        <!-- /.card -->
-
-                        <div class="card card-outline card-primary collapsed-card" style="border-top: 3px solid #E97128;">
-                            <div class="card-header">
-                                <h3 class="card-title">Image 2</h3>
-
-                                <div class="card-tools">
-                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                        <i class="fas fa-plus"></i>
-                                    </button>
-                                </div>
-                                <!-- /.card-tools -->
-                            </div>
-                            <!-- /.card-header -->
-                            <div class="card-body">
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <div class="col-12">
-                                            <img class="img-responsive" id="targetImg2" style="height:162px;width:250px;margin-bottom:10px" src="@Url.Content(AppConstant.DefaultProductImage)" />
-                                            <div class="custom-file">
-                                                <input type="file" class="form-control custom-file-input" name="ImageFile2" id="image2_Browse" accept="image/x-png,image/jpg,image/jpeg" />
-                                                <label class="custom-file-label" for="exampleInputFile">Select picture</label>
-                                            </div>
-                                            <p class="mb-0 text-danger" id="image2_sizeError"></p>
-                                            <p class="mb-0 text-danger" id="image2_formatError"></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /.card-body -->
-                        </div>
-                        <!-- /.card -->
-
-                        <div class="card card-outline card-primary collapsed-card" style="border-top: 3px solid #E97128;">
-                            <div class="card-header">
-                                <h3 class="card-title">Image 3</h3>
-
-                                <div class="card-tools">
-                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                        <i class="fas fa-plus"></i>
-                                    </button>
-                                </div>
-                                <!-- /.card-tools -->
-                            </div>
-                            <!-- /.card-header -->
-                            <div class="card-body">
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <div class="col-12">
-                                            <img class="img-responsive" id="targetImg3" style="height:162px;width:250px;margin-bottom:10px" src="@Url.Content(AppConstant.DefaultProductImage)" />
-                                            <div class="custom-file">
-                                                <input type="file" class="form-control custom-file-input" name="ImageFile3" id="image3_Browse" accept="image/x-png,image/jpg,image/jpeg" />
-                                                <label class="custom-file-label" for="exampleInputFile">Select picture</label>
-                                            </div>
-                                            <p class="mb-0 text-danger" id="image3_sizeError"></p>
-                                            <p class="mb-0 text-danger" id="image3_formatError"></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /.card-body -->
-                        </div>
-                        <!-- /.card -->
-
-                        <div class="card card-outline card-primary collapsed-card" style="border-top: 3px solid #E97128;">
-                            <div class="card-header">
-                                <h3 class="card-title">Image 4</h3>
-
-                                <div class="card-tools">
-                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                        <i class="fas fa-plus"></i>
-                                    </button>
-                                </div>
-                                <!-- /.card-tools -->
-                            </div>
-                            <!-- /.card-header -->
-                            <div class="card-body">
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <div class="col-12">
-                                            <img class="img-responsive" id="targetImg4" style="height:162px;width:250px;margin-bottom:10px" src="@Url.Content(AppConstant.DefaultProductImage)" />
-                                            <div class="custom-file">
-                                                <input type="file" class="form-control custom-file-input" name="ImageFile4" id="image4_Browse" accept="image/x-png,image/jpg,image/jpeg" />
-                                                <label class="custom-file-label" for="exampleInputFile">Select picture</label>
-                                            </div>
-                                            <p class="mb-0 text-danger" id="image4_sizeError"></p>
-                                            <p class="mb-0 text-danger" id="image4_formatError"></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /.card-body -->
-                        </div>
-                        <!-- /.card -->
-                    </div>
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn" style="background-color:#E97128;color:white">
@@ -256,247 +131,247 @@
         bsCustomFileInput.init();
     });
 
-    var img1_sizeError = document.getElementById("image1_sizeError");
-    var img1_formatError = document.getElementById("image1_formatError");
-    var img1_File = document.getElementById("image1_Browse");
+    //var img1_sizeError = document.getElementById("image1_sizeError");
+    //var img1_formatError = document.getElementById("image1_formatError");
+    //var img1_File = document.getElementById("image1_Browse");
 
-    var img2_sizeError = document.getElementById("image2_sizeError");
-    var img2_formatError = document.getElementById("image2_formatError");
-    var img2_File = document.getElementById("image2_Browse");
+    //var img2_sizeError = document.getElementById("image2_sizeError");
+    //var img2_formatError = document.getElementById("image2_formatError");
+    //var img2_File = document.getElementById("image2_Browse");
 
-    var img3_sizeError = document.getElementById("image3_sizeError");
-    var img3_formatError = document.getElementById("image3_formatError");
-    var img3_File = document.getElementById("image3_Browse");
+    //var img3_sizeError = document.getElementById("image3_sizeError");
+    //var img3_formatError = document.getElementById("image3_formatError");
+    //var img3_File = document.getElementById("image3_Browse");
 
-    var img4_sizeError = document.getElementById("image4_sizeError");
-    var img4_formatError = document.getElementById("image4_formatError");
-    var img4_File = document.getElementById("image4_Browse");
+    //var img4_sizeError = document.getElementById("image4_sizeError");
+    //var img4_formatError = document.getElementById("image4_formatError");
+    //var img4_File = document.getElementById("image4_Browse");
 
     var productPrice = document.getElementById("product-price");
     var productDiscount = document.getElementById("product-discount");
 
-    //image1 read
-    $(document).ready(function () {
-        $("#image1_Browse").change(function () {
-            var File = this.files;
-            if (File && File[0]) {
-                var file = File[0];
-                var reader = new FileReader;
-                var image = new Image;
+    ////image1 read
+    //$(document).ready(function () {
+    //    $("#image1_Browse").change(function () {
+    //        var File = this.files;
+    //        if (File && File[0]) {
+    //            var file = File[0];
+    //            var reader = new FileReader;
+    //            var image = new Image;
 
-                reader.readAsDataURL(file);
-                reader.onload = function (_file) {
-                    image.src = _file.target.result;
-                    image.onload = function () {
-                        var height = this.height;
-                        var width = this.width;
-                        var type = file.type;
-                        var size = ~~(file.size / 1024) + "KB";
-                        $("#targetImg1").attr('src', _file.target.result);
-                        $("#img1_Preview").show();
-                    }
-                }
-            }
-        })
-    })
+    //            reader.readAsDataURL(file);
+    //            reader.onload = function (_file) {
+    //                image.src = _file.target.result;
+    //                image.onload = function () {
+    //                    var height = this.height;
+    //                    var width = this.width;
+    //                    var type = file.type;
+    //                    var size = ~~(file.size / 1024) + "KB";
+    //                    $("#targetImg1").attr('src', _file.target.result);
+    //                    $("#img1_Preview").show();
+    //                }
+    //            }
+    //        }
+    //    })
+    //})
 
-    //image2 read
-    $(document).ready(function () {
-        $("#image2_Browse").change(function () {
-            var File = this.files;
-            if (File && File[0]) {
-                var file = File[0];
-                var reader = new FileReader;
-                var image = new Image;
+    ////image2 read
+    //$(document).ready(function () {
+    //    $("#image2_Browse").change(function () {
+    //        var File = this.files;
+    //        if (File && File[0]) {
+    //            var file = File[0];
+    //            var reader = new FileReader;
+    //            var image = new Image;
 
-                reader.readAsDataURL(file);
-                reader.onload = function (_file) {
-                    image.src = _file.target.result;
-                    image.onload = function () {
-                        var height = this.height;
-                        var width = this.width;
-                        var type = file.type;
-                        var size = ~~(file.size / 1024) + "KB";
-                        $("#targetImg2").attr('src', _file.target.result);
-                        $("#img2_Preview").show();
-                    }
-                }
-            }
-        })
-    })
+    //            reader.readAsDataURL(file);
+    //            reader.onload = function (_file) {
+    //                image.src = _file.target.result;
+    //                image.onload = function () {
+    //                    var height = this.height;
+    //                    var width = this.width;
+    //                    var type = file.type;
+    //                    var size = ~~(file.size / 1024) + "KB";
+    //                    $("#targetImg2").attr('src', _file.target.result);
+    //                    $("#img2_Preview").show();
+    //                }
+    //            }
+    //        }
+    //    })
+    //})
 
-    //image3 read
-    $(document).ready(function () {
-        $("#image3_Browse").change(function () {
-            var File = this.files;
-            if (File && File[0]) {
-                var file = File[0];
-                var reader = new FileReader;
-                var image = new Image;
+    ////image3 read
+    //$(document).ready(function () {
+    //    $("#image3_Browse").change(function () {
+    //        var File = this.files;
+    //        if (File && File[0]) {
+    //            var file = File[0];
+    //            var reader = new FileReader;
+    //            var image = new Image;
 
-                reader.readAsDataURL(file);
-                reader.onload = function (_file) {
-                    image.src = _file.target.result;
-                    image.onload = function () {
-                        var height = this.height;
-                        var width = this.width;
-                        var type = file.type;
-                        var size = ~~(file.size / 1024) + "KB";
-                        $("#targetImg3").attr('src', _file.target.result);
-                        $("#img3_Preview").show();
-                    }
-                }
-            }
-        })
-    })
+    //            reader.readAsDataURL(file);
+    //            reader.onload = function (_file) {
+    //                image.src = _file.target.result;
+    //                image.onload = function () {
+    //                    var height = this.height;
+    //                    var width = this.width;
+    //                    var type = file.type;
+    //                    var size = ~~(file.size / 1024) + "KB";
+    //                    $("#targetImg3").attr('src', _file.target.result);
+    //                    $("#img3_Preview").show();
+    //                }
+    //            }
+    //        }
+    //    })
+    //})
 
-    //image4 read
-    $(document).ready(function () {
-        $("#image4_Browse").change(function () {
-            var File = this.files;
-            if (File && File[0]) {
-                var file = File[0];
-                var reader = new FileReader;
-                var image = new Image;
+    ////image4 read
+    //$(document).ready(function () {
+    //    $("#image4_Browse").change(function () {
+    //        var File = this.files;
+    //        if (File && File[0]) {
+    //            var file = File[0];
+    //            var reader = new FileReader;
+    //            var image = new Image;
 
-                reader.readAsDataURL(file);
-                reader.onload = function (_file) {
-                    image.src = _file.target.result;
-                    image.onload = function () {
-                        var height = this.height;
-                        var width = this.width;
-                        var type = file.type;
-                        var size = ~~(file.size / 1024) + "KB";
-                        $("#targetImg4").attr('src', _file.target.result);
-                        $("#img4_Preview").show();
-                    }
-                }
-            }
-        })
-    })
+    //            reader.readAsDataURL(file);
+    //            reader.onload = function (_file) {
+    //                image.src = _file.target.result;
+    //                image.onload = function () {
+    //                    var height = this.height;
+    //                    var width = this.width;
+    //                    var type = file.type;
+    //                    var size = ~~(file.size / 1024) + "KB";
+    //                    $("#targetImg4").attr('src', _file.target.result);
+    //                    $("#img4_Preview").show();
+    //                }
+    //            }
+    //        }
+    //    })
+    //})
 
-    //image1 size and format check
-    $(document).ready(function () {
-        $('#image1_Browse').bind('change', function () {
-            var exten = img1_File.value.split('.').pop();
-            exten = exten.toLowerCase();
-            if (!(exten == "png" || exten == "jpg" || exten == "jpeg")) {
-                img1_sizeError.textContent = "Invalid format.";
+    ////image1 size and format check
+    //$(document).ready(function () {
+    //    $('#image1_Browse').bind('change', function () {
+    //        var exten = img1_File.value.split('.').pop();
+    //        exten = exten.toLowerCase();
+    //        if (!(exten == "png" || exten == "jpg" || exten == "jpeg")) {
+    //            img1_sizeError.textContent = "Invalid format.";
 
-            } else {
-                img1_sizeError.textContent = "";
-            }
+    //        } else {
+    //            img1_sizeError.textContent = "";
+    //        }
 
-            // check if the file is larger than 4mb
-            if (this.files[0].size > (4 * 1000 * 1024)) {
-                img1_formatError.textContent = "File too large. File should be less than 4mb";
-            }
-            else {
-                img1_formatError.textContent = "";
-            }
-        });
-    })
+    //        // check if the file is larger than 4mb
+    //        if (this.files[0].size > (4 * 1000 * 1024)) {
+    //            img1_formatError.textContent = "File too large. File should be less than 4mb";
+    //        }
+    //        else {
+    //            img1_formatError.textContent = "";
+    //        }
+    //    });
+    //})
 
-    //image2 size and format check
-    $(document).ready(function () {
-        $('#image2_Browse').bind('change', function () {
-            var exten = img2_File.value.split('.').pop();
-            exten = exten.toLowerCase();
-            if (!(exten == "png" || exten == "jpg" || exten == "jpeg")) {
-                img2_sizeError.textContent = "Invalid format.";
+    ////image2 size and format check
+    //$(document).ready(function () {
+    //    $('#image2_Browse').bind('change', function () {
+    //        var exten = img2_File.value.split('.').pop();
+    //        exten = exten.toLowerCase();
+    //        if (!(exten == "png" || exten == "jpg" || exten == "jpeg")) {
+    //            img2_sizeError.textContent = "Invalid format.";
 
-            } else {
-                img2_sizeError.textContent = "";
-            }
+    //        } else {
+    //            img2_sizeError.textContent = "";
+    //        }
 
-            // check if the file is larger than 4mb
-            if (this.files[0].size > (4 * 1000 * 1024)) {
-                img2_formatError.textContent = "File too large. File should be less than 4mb";
-            }
-            else {
-                img2_formatError.textContent = "";
-            }
-        });
-    })
+    //        // check if the file is larger than 4mb
+    //        if (this.files[0].size > (4 * 1000 * 1024)) {
+    //            img2_formatError.textContent = "File too large. File should be less than 4mb";
+    //        }
+    //        else {
+    //            img2_formatError.textContent = "";
+    //        }
+    //    });
+    //})
 
-    //image3 size and format check
-    $(document).ready(function () {
-        $('#image3_Browse').bind('change', function () {
-            var exten = img3_File.value.split('.').pop();
-            exten = exten.toLowerCase();
-            if (!(exten == "png" || exten == "jpg" || exten == "jpeg")) {
-                img3_sizeError.textContent = "Invalid format.";
+    ////image3 size and format check
+    //$(document).ready(function () {
+    //    $('#image3_Browse').bind('change', function () {
+    //        var exten = img3_File.value.split('.').pop();
+    //        exten = exten.toLowerCase();
+    //        if (!(exten == "png" || exten == "jpg" || exten == "jpeg")) {
+    //            img3_sizeError.textContent = "Invalid format.";
 
-            } else {
-                img3_sizeError.textContent = "";
-            }
+    //        } else {
+    //            img3_sizeError.textContent = "";
+    //        }
 
-            // check if the file is larger than 4mb
-            if (this.files[0].size > (4 * 1000 * 1024)) {
-                img3_formatError.textContent = "File too large. File should be less than 4mb";
-            }
-            else {
-                img3_formatError.textContent = "";
-            }
-        });
-    })
+    //        // check if the file is larger than 4mb
+    //        if (this.files[0].size > (4 * 1000 * 1024)) {
+    //            img3_formatError.textContent = "File too large. File should be less than 4mb";
+    //        }
+    //        else {
+    //            img3_formatError.textContent = "";
+    //        }
+    //    });
+    //})
 
-    //image4 size and format check
-    $(document).ready(function () {
-        $('#image4_Browse').bind('change', function () {
-            var exten = img4_File.value.split('.').pop();
-            exten = exten.toLowerCase();
-            if (!(exten == "png" || exten == "jpg" || exten == "jpeg")) {
-                img4_sizeError.textContent = "Invalid format.";
+    ////image4 size and format check
+    //$(document).ready(function () {
+    //    $('#image4_Browse').bind('change', function () {
+    //        var exten = img4_File.value.split('.').pop();
+    //        exten = exten.toLowerCase();
+    //        if (!(exten == "png" || exten == "jpg" || exten == "jpeg")) {
+    //            img4_sizeError.textContent = "Invalid format.";
 
-            } else {
-                img4_sizeError.textContent = "";
-            }
+    //        } else {
+    //            img4_sizeError.textContent = "";
+    //        }
 
-            // check if the file is larger than 4mb
-            if (this.files[0].size > (4 * 1000 * 1024)) {
-                img4_formatError.textContent = "File too large. File should be less than 4mb";
-            }
-            else {
-                img4_formatError.textContent = "";
-            }
-        });
-    })
+    //        // check if the file is larger than 4mb
+    //        if (this.files[0].size > (4 * 1000 * 1024)) {
+    //            img4_formatError.textContent = "File too large. File should be less than 4mb";
+    //        }
+    //        else {
+    //            img4_formatError.textContent = "";
+    //        }
+    //    });
+    //})
 
-    function validateImageFiles(imageFile) {
-        if (imageFile != null) {
-            if (imageFile.files[0].size > (4 * 1000 * 1024)) {
-                return false;
-            }
-            var exten = imageFile.value.split('.').pop();
-            exten = exten.toLowerCase();
-            if (!(exten == "png" || exten == "jpg" || exten == "jpeg")) {
-                return false;
-            }
-        }
-        return true;
-    }
+    //function validateImageFiles(imageFile) {
+    //    if (imageFile != null) {
+    //        if (imageFile.files[0].size > (4 * 1000 * 1024)) {
+    //            return false;
+    //        }
+    //        var exten = imageFile.value.split('.').pop();
+    //        exten = exten.toLowerCase();
+    //        if (!(exten == "png" || exten == "jpg" || exten == "jpeg")) {
+    //            return false;
+    //        }
+    //    }
+    //    return true;
+    //}
 
-    function validate() {
-        if (!validateImageFiles(img1_File)) {
-            alertify.error("Invalid image 1 file");
-            return false;
-        }
-        if (!validateImageFiles(img2_File)) {
-           alertify.error("Invalid image 2 file");
-            return false;
-        }
+    //function validate() {
+    //    if (!validateImageFiles(img1_File)) {
+    //        alertify.error("Invalid image 1 file");
+    //        return false;
+    //    }
+    //    if (!validateImageFiles(img2_File)) {
+    //       alertify.error("Invalid image 2 file");
+    //        return false;
+    //    }
 
-        if (!validateImageFiles(img3_File)) {
-            alertify.error("Invalid image 3 file");
-            return false;
-        }
+    //    if (!validateImageFiles(img3_File)) {
+    //        alertify.error("Invalid image 3 file");
+    //        return false;
+    //    }
 
-        if (!validateImageFiles(img4_File)) {
-          alertify.error("Invalid image 4 file");
-            return false;
-        }
-    }
+    //    if (!validateImageFiles(img4_File)) {
+    //      alertify.error("Invalid image 4 file");
+    //        return false;
+    //    }
+    //}
 
 
     $(".js-example-tokenizer").select2({

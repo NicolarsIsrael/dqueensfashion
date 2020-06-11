@@ -31,13 +31,6 @@ namespace DQueensFashion.Utilities
                 if (file == null)
                     throw new Exception();
 
-                string ext = Path.GetExtension(file.FileName);
-                if (!CheckIfFileIsAnImage(ext.ToLower()))
-                    throw new Exception();
-
-                if (!CheckFileSize(file))
-                    throw new Exception();
-
                 file.SaveAs(fileName);
 
             }
@@ -53,13 +46,6 @@ namespace DQueensFashion.Utilities
             try
             {
                 if (file == null)
-                    throw new Exception();
-
-                string ext = Path.GetExtension(file.FileName);
-                if (!CheckIfFileIsADoc(ext.ToLower()))
-                    throw new Exception();
-
-                if (!CheckFileSize(file))
                     throw new Exception();
 
                 file.SaveAs(fileName);
@@ -88,7 +74,26 @@ namespace DQueensFashion.Utilities
 
         }
 
-        private static bool CheckIfFileIsAnImage(string extension)
+        public static bool ValidateProductImages(HttpFileCollectionBase imageFiles)
+        {
+            
+            for (int i = 0; i < imageFiles.Count; i++)
+            {
+                if (imageFiles[i] != null && imageFiles[i].ContentLength > 0)
+                {
+                    string ext = Path.GetExtension(imageFiles[i].FileName);
+                    if (!FileService.CheckIfFileIsAnImage(ext.ToLower()))
+                        return false;
+
+                    if (!FileService.CheckFileSize(imageFiles[i]))
+                        return false;
+
+                }
+            }
+            return true;
+        }
+
+        public static bool CheckIfFileIsAnImage(string extension)
         {
             if (extension == ".jpeg" || extension == ".gif" || extension == ".png" || extension == ".jpg" || extension == ".ico")
                 return true;
@@ -96,7 +101,7 @@ namespace DQueensFashion.Utilities
             return false;
         }
 
-        private static bool CheckIfFileIsADoc(string extension)
+        public static bool CheckIfFileIsADoc(string extension)
         {
             if (extension == ".doc" || extension == ".pdf" || extension == ".docx" || extension == ".txt")
                 return true;
@@ -104,7 +109,7 @@ namespace DQueensFashion.Utilities
             return false;
         }
 
-        private static bool CheckFileSize(HttpPostedFileBase file)
+        public static bool CheckFileSize(HttpPostedFileBase file)
         {
             if (file.ContentLength > (4 * 1000 * 1024))
                 return false;
