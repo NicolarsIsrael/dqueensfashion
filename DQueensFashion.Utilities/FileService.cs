@@ -85,8 +85,8 @@ namespace DQueensFashion.Utilities
                     if (!FileService.CheckIfFileIsAnImage(ext.ToLower()))
                         return false;
 
-                    if (!FileService.CheckFileSize(imageFiles[i]))
-                        return false;
+                    //if (!FileService.CheckFileSize(imageFiles[i]))
+                    //    return false;
 
                 }
             }
@@ -111,7 +111,7 @@ namespace DQueensFashion.Utilities
 
         public static bool CheckFileSize(HttpPostedFileBase file)
         {
-            if (file.ContentLength > (4 * 1000 * 1024))
+            if (file.ContentLength > (10 * 1000 * 1024))
                 return false;
 
             return true;

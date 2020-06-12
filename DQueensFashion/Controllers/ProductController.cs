@@ -311,6 +311,7 @@ namespace DQueensFashion.Controllers
                 Discount = product.Discount,
                 SubTotal = product.SubTotal.ToString(),
                 Quantity = product.Quantity.ToString(),
+                CategoryId = product.Category.Id,
                 Category = product.Category.Name,
                 Tags = product.Tags,
                 DateCreatedString = product.DateCreated.ToString("dd/MMM/yyyy : hh-mm-ss"),
