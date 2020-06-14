@@ -1,0 +1,70 @@
+﻿@model DQueensFashion.Models.AddProductImageViewModel
+@using DQueensFashion.Utilities
+
+@{
+    ViewBag.Title = "AddProductImages";
+    Layout = "~/Views/Shared/_dashboardLayout.cshtml";
+}
+
+<script src="~/Content/js/jquery.js"></script>
+<div style="font-size:20px;font-weight:700">@Model.ProductName</div>
+<div style="font-size:15px;font-weight:500">@Model.ProductCategory</div>
+
+
+
+@using (Html.BeginForm("AddProductImages", "Admin", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.HiddenFor(model => model.ProductId)
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div>
+            <table id="images-table" class="table table-responsive">
+                <tbody></tbody>
+            </table>
+            <button id="addNewImage" type="button">Add New Image</button>
+            <p class="text-danger m-0">*Add only images that are not more than 10MB</p>
+            <br /><br />
+        </div>
+
+
+        <div class="form-group">
+            <div>
+                <input type="submit" value="Add images" class="btn" style="background-color:#E97128;color:white"/>
+            </div>
+        </div>
+    </div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script type="text/javascript">
+
+    var hidden = '@Html.Hidden("Images.Index", "{id}")';
+    var fileHtml = ' <input id="Images[{id}].File" name="Images[{id}].ImagePath" type="file" accept="image/x-png,image/gif,image/jpeg" required/>';
+
+    $("#addNewImage").on("click", function () {
+        
+            var time = Date.now();
+
+            var deleteHtml = "<button type='button' onclick='deleteImageRow(this)' style='color:red'>Delete</button>";
+               
+            $("#images-table").find("tbody")
+             .append($("<tr> <td>" + hidden.replace("{id}", time) + deleteHtml + "</td>" +
+                 "<td>" + "</td>" +
+                 "<td>" + fileHtml.replace("{id}", time) +
+                 "</td></tr>"));
+    });
+
+
+    function deleteImageRow(el) {
+        if (confirm('Are you sure you want to remove this image?')) {
+            $(el).closest("tr").remove();
+        }
+    }
+</script>

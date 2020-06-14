@@ -21,94 +21,134 @@
         <div>
             <div class="form-horizontal">
                 <h6 style="text-align:center">Add Product</h6>
+                @Html.HiddenFor(model=>model.CustomMadeCategory)
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-12 col-md-6">
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-12" })
-                                            <div class="col-12">
-                                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => model.CategoryId, htmlAttributes: new { @class = "control-label  col-12" })
-                                            <div class="col-12">
-                                                <select class="form-control" name="@Html.NameFor(m=>m.CategoryId)">
-                                                    @foreach (var item in Model.Categories)
-                                                    {
-                                                        <option value="@item.Id">@item.Name</option>
-                                                    }
-                                                </select>
-                                                @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-12" })
-                                    <div class="col-12">
-                                        @Html.TextAreaFor(model => model.Description, new { @class = "form-control", @rows = 5 })
-                                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12 col-md-3">
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-12" })
-                                            <div class="col-12">
-                                                @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
-                                                @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-md-3">
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-12" })
-                                            <div class="col-12">
-                                                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control", @id="product-price" } })
-                                                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-md-3">
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => model.Discount, htmlAttributes: new { @class = "control-label col-12" })
-                                            <div class="col-12">
-                                                @Html.EditorFor(model => model.Discount, new { htmlAttributes = new { @class = "form-control", @id="product-discount" } })
-                                                @Html.ValidationMessageFor(model => model.Discount, "", new { @class = "text-danger" })
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-md-3">
-                                        <div class="form-group">
-                                            @Html.Label("Total", htmlAttributes: new { @class = "control-label col-12" })
-                                            <div class="col-12">
-                                                <input type="text" value="@Model.Price" disabled class="form-control" id="product-total-price"/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12 col-md-6">
                                     <div class="form-group">
-                                        @Html.LabelFor(model => model.Tags, htmlAttributes: new { @class = "control-label col-12" })
+                                        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-12" })
                                         <div class="col-12">
-                                            <select class="form-control js-example-tokenizer" multiple="multiple" name="Tags" style="border:1px solid #ced4da"></select>
+                                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.CategoryId, htmlAttributes: new { @class = "control-label  col-12" })
+                                        <div class="col-12">
+                                            <select class="form-control" name="@Html.NameFor(m=>m.CategoryId)">
+                                                @foreach (var item in Model.Categories)
+                                                {
+                                                    <option value="@item.Id">@item.Name</option>
+                                                }
+                                            </select>
+                                            @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-12" })
+                                <div class="col-12">
+                                    @Html.TextAreaFor(model => model.Description, new { @class = "form-control", @rows = 5 })
+                                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-3">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-12" })
+                                        <div class="col-12">
+                                            @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-3">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-12" })
+                                        <div class="col-12">
+                                            @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control", @id = "product-price" } })
+                                            @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-3">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Discount, htmlAttributes: new { @class = "control-label col-12" })
+                                        <div class="col-12">
+                                            @Html.EditorFor(model => model.Discount, new { htmlAttributes = new { @class = "form-control", @id = "product-discount" } })
+                                            @Html.ValidationMessageFor(model => model.Discount, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-3">
+                                    <div class="form-group">
+                                        @Html.Label("Total", htmlAttributes: new { @class = "control-label col-12" })
+                                        <div class="col-12">
+                                            <input type="text" value="@Model.Price" disabled class="form-control" id="product-total-price" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Tags, htmlAttributes: new { @class = "control-label col-12" })
+                                    <div class="col-12">
+                                        <select class="form-control js-example-tokenizer" multiple="multiple" name="Tags" style="border:1px solid #ced4da"></select>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
+                @{
+                    if (Model.CustomMadeCategory)
+                    {
+                        <div class="col-12">
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <div class="col-12">
+                                        <div class="checkbox">
+                                            @Html.CheckBoxFor(m => m.WaistLength)
+                                            @Html.LabelFor(m => m.WaistLength)
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <div class="col-12">
+                                        <div class="checkbox">
+                                            @Html.CheckBoxFor(m => m.BurstSize)
+                                            @Html.LabelFor(m => m.BurstSize)
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <div class="col-12">
+                                        <div class="checkbox">
+                                            @Html.CheckBoxFor(m => m.ShoulderLength)
+                                            @Html.LabelFor(m => m.ShoulderLength)
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
                 <div class="form-group">
                     <button type="submit" class="btn" style="background-color:#E97128;color:white">
                         <img src="~/Content/Images/plus.svg" />
@@ -135,17 +175,6 @@
     //var img1_formatError = document.getElementById("image1_formatError");
     //var img1_File = document.getElementById("image1_Browse");
 
-    //var img2_sizeError = document.getElementById("image2_sizeError");
-    //var img2_formatError = document.getElementById("image2_formatError");
-    //var img2_File = document.getElementById("image2_Browse");
-
-    //var img3_sizeError = document.getElementById("image3_sizeError");
-    //var img3_formatError = document.getElementById("image3_formatError");
-    //var img3_File = document.getElementById("image3_Browse");
-
-    //var img4_sizeError = document.getElementById("image4_sizeError");
-    //var img4_formatError = document.getElementById("image4_formatError");
-    //var img4_File = document.getElementById("image4_Browse");
 
     var productPrice = document.getElementById("product-price");
     var productDiscount = document.getElementById("product-discount");
@@ -175,203 +204,6 @@
     //    })
     //})
 
-    ////image2 read
-    //$(document).ready(function () {
-    //    $("#image2_Browse").change(function () {
-    //        var File = this.files;
-    //        if (File && File[0]) {
-    //            var file = File[0];
-    //            var reader = new FileReader;
-    //            var image = new Image;
-
-    //            reader.readAsDataURL(file);
-    //            reader.onload = function (_file) {
-    //                image.src = _file.target.result;
-    //                image.onload = function () {
-    //                    var height = this.height;
-    //                    var width = this.width;
-    //                    var type = file.type;
-    //                    var size = ~~(file.size / 1024) + "KB";
-    //                    $("#targetImg2").attr('src', _file.target.result);
-    //                    $("#img2_Preview").show();
-    //                }
-    //            }
-    //        }
-    //    })
-    //})
-
-    ////image3 read
-    //$(document).ready(function () {
-    //    $("#image3_Browse").change(function () {
-    //        var File = this.files;
-    //        if (File && File[0]) {
-    //            var file = File[0];
-    //            var reader = new FileReader;
-    //            var image = new Image;
-
-    //            reader.readAsDataURL(file);
-    //            reader.onload = function (_file) {
-    //                image.src = _file.target.result;
-    //                image.onload = function () {
-    //                    var height = this.height;
-    //                    var width = this.width;
-    //                    var type = file.type;
-    //                    var size = ~~(file.size / 1024) + "KB";
-    //                    $("#targetImg3").attr('src', _file.target.result);
-    //                    $("#img3_Preview").show();
-    //                }
-    //            }
-    //        }
-    //    })
-    //})
-
-    ////image4 read
-    //$(document).ready(function () {
-    //    $("#image4_Browse").change(function () {
-    //        var File = this.files;
-    //        if (File && File[0]) {
-    //            var file = File[0];
-    //            var reader = new FileReader;
-    //            var image = new Image;
-
-    //            reader.readAsDataURL(file);
-    //            reader.onload = function (_file) {
-    //                image.src = _file.target.result;
-    //                image.onload = function () {
-    //                    var height = this.height;
-    //                    var width = this.width;
-    //                    var type = file.type;
-    //                    var size = ~~(file.size / 1024) + "KB";
-    //                    $("#targetImg4").attr('src', _file.target.result);
-    //                    $("#img4_Preview").show();
-    //                }
-    //            }
-    //        }
-    //    })
-    //})
-
-    ////image1 size and format check
-    //$(document).ready(function () {
-    //    $('#image1_Browse').bind('change', function () {
-    //        var exten = img1_File.value.split('.').pop();
-    //        exten = exten.toLowerCase();
-    //        if (!(exten == "png" || exten == "jpg" || exten == "jpeg")) {
-    //            img1_sizeError.textContent = "Invalid format.";
-
-    //        } else {
-    //            img1_sizeError.textContent = "";
-    //        }
-
-    //        // check if the file is larger than 4mb
-    //        if (this.files[0].size > (4 * 1000 * 1024)) {
-    //            img1_formatError.textContent = "File too large. File should be less than 4mb";
-    //        }
-    //        else {
-    //            img1_formatError.textContent = "";
-    //        }
-    //    });
-    //})
-
-    ////image2 size and format check
-    //$(document).ready(function () {
-    //    $('#image2_Browse').bind('change', function () {
-    //        var exten = img2_File.value.split('.').pop();
-    //        exten = exten.toLowerCase();
-    //        if (!(exten == "png" || exten == "jpg" || exten == "jpeg")) {
-    //            img2_sizeError.textContent = "Invalid format.";
-
-    //        } else {
-    //            img2_sizeError.textContent = "";
-    //        }
-
-    //        // check if the file is larger than 4mb
-    //        if (this.files[0].size > (4 * 1000 * 1024)) {
-    //            img2_formatError.textContent = "File too large. File should be less than 4mb";
-    //        }
-    //        else {
-    //            img2_formatError.textContent = "";
-    //        }
-    //    });
-    //})
-
-    ////image3 size and format check
-    //$(document).ready(function () {
-    //    $('#image3_Browse').bind('change', function () {
-    //        var exten = img3_File.value.split('.').pop();
-    //        exten = exten.toLowerCase();
-    //        if (!(exten == "png" || exten == "jpg" || exten == "jpeg")) {
-    //            img3_sizeError.textContent = "Invalid format.";
-
-    //        } else {
-    //            img3_sizeError.textContent = "";
-    //        }
-
-    //        // check if the file is larger than 4mb
-    //        if (this.files[0].size > (4 * 1000 * 1024)) {
-    //            img3_formatError.textContent = "File too large. File should be less than 4mb";
-    //        }
-    //        else {
-    //            img3_formatError.textContent = "";
-    //        }
-    //    });
-    //})
-
-    ////image4 size and format check
-    //$(document).ready(function () {
-    //    $('#image4_Browse').bind('change', function () {
-    //        var exten = img4_File.value.split('.').pop();
-    //        exten = exten.toLowerCase();
-    //        if (!(exten == "png" || exten == "jpg" || exten == "jpeg")) {
-    //            img4_sizeError.textContent = "Invalid format.";
-
-    //        } else {
-    //            img4_sizeError.textContent = "";
-    //        }
-
-    //        // check if the file is larger than 4mb
-    //        if (this.files[0].size > (4 * 1000 * 1024)) {
-    //            img4_formatError.textContent = "File too large. File should be less than 4mb";
-    //        }
-    //        else {
-    //            img4_formatError.textContent = "";
-    //        }
-    //    });
-    //})
-
-    //function validateImageFiles(imageFile) {
-    //    if (imageFile != null) {
-    //        if (imageFile.files[0].size > (4 * 1000 * 1024)) {
-    //            return false;
-    //        }
-    //        var exten = imageFile.value.split('.').pop();
-    //        exten = exten.toLowerCase();
-    //        if (!(exten == "png" || exten == "jpg" || exten == "jpeg")) {
-    //            return false;
-    //        }
-    //    }
-    //    return true;
-    //}
-
-    //function validate() {
-    //    if (!validateImageFiles(img1_File)) {
-    //        alertify.error("Invalid image 1 file");
-    //        return false;
-    //    }
-    //    if (!validateImageFiles(img2_File)) {
-    //       alertify.error("Invalid image 2 file");
-    //        return false;
-    //    }
-
-    //    if (!validateImageFiles(img3_File)) {
-    //        alertify.error("Invalid image 3 file");
-    //        return false;
-    //    }
-
-    //    if (!validateImageFiles(img4_File)) {
-    //      alertify.error("Invalid image 4 file");
-    //        return false;
-    //    }
-    //}
 
 
     $(".js-example-tokenizer").select2({

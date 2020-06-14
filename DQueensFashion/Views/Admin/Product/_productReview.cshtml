@@ -1,0 +1,51 @@
+﻿@model IEnumerable<DQueensFashion.Models.ViewReviewViewModel>
+<div id="reviewList">
+
+    @foreach (var review in Model)
+    {
+        <span class="review-name">
+            @review.Name
+        </span>
+        <span class="review-date">
+            @review.DateCreated
+        </span>
+        <div class="review-rating">
+            <div class="">
+                @for (int i = 1; i <= review.Rating; i++)
+                {
+                    <i class="fas fa-star starcolor"></i>
+                }
+                @for (int i = 1; i <= (5 - review.Rating); i++)
+                {
+                    <i class="far fa-star starcolor"></i>
+                }
+
+            </div>
+        </div>
+
+        <div class="review-comment">
+            @review.Comment
+        </div>
+        <hr />
+    }
+    @if (Model.Count() > 0)
+    {
+        @*@Html.Partial("_reviewListPagination")*@
+    }
+
+</div>
+<style>
+    .review-name {
+        font-weight: 500;
+    }
+
+    .review-date {
+        float: right;
+    }
+
+    .review-comment {
+        text-align: justify;
+        text-justify: inter-word;
+    }
+
+</style>

@@ -25,9 +25,8 @@
     <div>
         <div class="form-horizontal">
             <h6>Edit Product</h6>
-            @Html.ActionLink("Edit images", "EditProductImages", new { id = Model.Id }, htmlAttributes: new { @class = "btn btn-primary" })
+            @Html.ActionLink("Edit images","EditProductImages",new { id=Model.Id}, htmlAttributes: new { @class="btn btn-primary"})
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.CustomMadeCategory)
             <div class="row">
                 <div class="col-12">
                     <div class="card">
@@ -119,46 +118,6 @@
                         </div>
                     </div>
                 </div>
-                @{
-                    if (Model.CustomMadeCategory)
-                    {
-                        <div class="col-12">
-                            <div class="col-4">
-                                <div class="form-group">
-                                    <div class="col-12">
-                                        <div class="checkbox">
-                                            @Html.CheckBoxFor(m => m.WaistLength)
-                                            @Html.LabelFor(m => m.WaistLength)
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="form-group">
-                                    <div class="col-12">
-                                        <div class="checkbox">
-                                            @Html.CheckBoxFor(m => m.BurstSize)
-                                            @Html.LabelFor(m => m.BurstSize)
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="form-group">
-                                    <div class="col-12">
-                                        <div class="checkbox">
-                                            @Html.CheckBoxFor(m => m.ShoulderLength)
-                                            @Html.LabelFor(m => m.ShoulderLength)
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    }
-                }
 
             </div>
             <div class="form-group">

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<DQueensFashion.Models.ViewOrderViewModel>
+
+<table class="table table-head-fixed  table-striped" id="processingOrdersTable">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Items (Qty)</th>
+            <th>Customer</th>
+            <th>Total Qty</th>
+            <th>Total Amt</th>
+            <th>Date</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderId)
+                </td>
+                <td>
+                    @{
+                        foreach (var lineItem in item.LineItems)
+                        {
+                            <p class="m-0">@lineItem.Product (@lineItem.Quantity) </p>
+                        }
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalQuantity)
+                </td>
+                <td>
+                    $@Html.DisplayFor(modelItem => item.TotalAmount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateCreatedString)
+                </td>
+                <td>
+                    @Html.ActionLink("Deliver", "DeliverOrder", new { id = item.OrderId })
+                </td>
+            </tr>
+
+        }
+
+    </tbody>
+</table>
+

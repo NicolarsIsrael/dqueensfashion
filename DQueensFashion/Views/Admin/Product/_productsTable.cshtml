@@ -1,0 +1,54 @@
+﻿@model IEnumerable<DQueensFashion.Models.ViewProductsViewModel>
+
+<table class="table table-head-fixed  table-striped" id="productsTable">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Price($)</th>
+            <th>Discount(%)</th>
+            <th>Total($)</th>
+            <th>Qty</th>
+            <th>Date created</th>
+            <th>Image</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Discount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubTotal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateCreatedString)
+            </td>
+            <td>
+                <img src="@Url.Content(item.MainImage)" style="height:50px;width:50px;" />
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditProduct", new { id = item.Id }) |
+                @Html.ActionLink("Details", "ProductDetails", new { id = item.Id })
+            </td>
+        </tr>
+
+        }
+    </tbody>
+</table>
+

@@ -30,5 +30,10 @@ namespace DQueensFashion.Core.Model
         public Category Category { get; set; }
 
         public IEnumerable<Review> Reviews { get; set; }
+
+        //measurement
+        public bool? WaistLength { get; set; }
+        public bool? BurstSize { get; set; }
+        public bool? ShoulderLength { get; set; }
     }
 }

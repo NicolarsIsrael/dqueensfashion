@@ -37,6 +37,17 @@ namespace DQueensFashion.Models
         [Display(Name ="Category")]
         public int CategoryId { get; set; }
         public IEnumerable<CategoryNameAndId> Categories { get; set; }
+
+        public bool CustomMadeCategory { get; set; }
+
+        //measurement
+        [Display(Name ="Waist length")]
+        public bool WaistLength { get; set; }
+        [Display(Name="Burst size")]
+        public bool BurstSize { get; set; }
+        [Display(Name="Shoulder length")]
+        public bool ShoulderLength { get; set; }
+        public bool Length { get; set; }
     }
 
     public class AddProductImageViewModel
@@ -110,18 +121,21 @@ namespace DQueensFashion.Models
         [Required]
         public int Quantity { get; set; }
 
-        public string ImagePath1 { get; set; }
-        public string ImagePath2 { get; set; }
-        public string ImagePath3 { get; set; }
-        public string ImagePath4 { get; set; }
         public List<string> Tags { get; set; }
-        public HttpPostedFileBase ImageFile1 { get; set; }
-        public HttpPostedFileBase ImageFile2 { get; set; }
-        public HttpPostedFileBase ImageFile3 { get; set; }
-        public HttpPostedFileBase ImageFile4 { get; set; }
         [Display(Name = "Category")]
         public int CategoryId { get; set; }
         public IEnumerable<CategoryNameAndId> Categories { get; set; }
+
+        public bool CustomMadeCategory { get; set; }
+
+        //measurement
+        [Display(Name = "Waist length")]
+        public bool WaistLength { get; set; }
+        [Display(Name = "Burst size")]
+        public bool BurstSize { get; set; }
+        [Display(Name = "Shoulder length")]
+        public bool ShoulderLength { get; set; }
+        public bool Length { get; set; }
     }
 
     public class ProductDetailsViewModel

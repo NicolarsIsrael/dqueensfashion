@@ -184,6 +184,8 @@ namespace DQueensFashion.Controllers
 
         public ActionResult SearchProducts(string searchString)
         {
+            var allImages = _imageService.GetAllImageFiles().ToList();
+
             IEnumerable<ViewProductsViewModel> products = _productService.GetAllProducts()
               .Select(p => new ViewProductsViewModel()
               {
@@ -194,7 +196,9 @@ namespace DQueensFashion.Controllers
                   Discount = p.Discount,
                   SubTotal = p.SubTotal.ToString(),
                   Category = p.Category.Name,
-                  //MainImage = string.IsNullOrEmpty(p.ImagePath1) ? AppConstant.DefaultProductImage : p.ImagePath1,
+                  MainImage = allImages.Where(image => image.ProductId == p.Id).Count() < 1 ?
+                        AppConstant.DefaultProductImage :
+                        allImages.Where(image => image.ProductId == p.Id).FirstOrDefault().ImagePath,
                   DateCreated = p.DateCreated,
                   DateCreatedString = p.DateCreated.ToString("dd/MMM/yyyy"),
               }).OrderBy(p => p.Name).ToList();
@@ -209,7 +213,7 @@ namespace DQueensFashion.Controllers
             return PartialView("_productsTable",products);
         }
 
-        public ActionResult AddProduct()
+        public ActionResult AddProduct(int categoryId=0)
         {
             IEnumerable<CategoryNameAndId> categories = _categoryService.GetAllCategories()
                 .Select(c => new CategoryNameAndId()
@@ -221,7 +225,14 @@ namespace DQueensFashion.Controllers
             AddProductViewModel productModel = new AddProductViewModel()
             {
                 Categories = categories,
+                WaistLength = true,
+                BurstSize = true,
+                ShoulderLength = true,
+                Length = false,
             };
+
+            if (categoryId == AppConstant.CustomMadeCategoryId)
+                productModel.CustomMadeCategory = true;
 
             return View(productModel);
         }
@@ -259,6 +270,9 @@ namespace DQueensFashion.Controllers
                 SubTotal = _productService.CalculateProductPrice(productModel.Price, productModel.Discount),
                 Category = category,
                 Tags = productModel.Tags != null ? String.Join(",", productModel.Tags) : "",
+                ShoulderLength= productModel.ShoulderLength,
+                BurstSize = productModel.BurstSize,
+                WaistLength= productModel.WaistLength,
             };
             
             _productService.AddProduct(product);
@@ -334,6 +348,10 @@ namespace DQueensFashion.Controllers
                     Name = c.Name,
                 }).OrderBy(c => c.Name).ToList(),
                 Tags=string.IsNullOrEmpty(product.Tags)?new List<string>():product.Tags.Split(',').ToList(),
+                BurstSize=product.BurstSize.HasValue?product.BurstSize.Value:false,
+                WaistLength=product.WaistLength.HasValue?product.WaistLength.Value:false,
+                ShoulderLength=product.ShoulderLength.HasValue?product.ShoulderLength.Value:false,
+                CustomMadeCategory = product.Category.Id == AppConstant.CustomMadeCategoryId ? true : false,
             };
 
             foreach (var category in productModel.Categories)
@@ -365,10 +383,6 @@ namespace DQueensFashion.Controllers
                         Name = c.Name,
                     }).OrderBy(c => c.Name).ToList();
 
-                //productModel.ImagePath1 = string.IsNullOrEmpty(_product.ImagePath1) ? AppConstant.DefaultProductImage : _product.ImagePath1;
-                //productModel.ImagePath2 = string.IsNullOrEmpty(_product.ImagePath2) ? AppConstant.DefaultProductImage : _product.ImagePath2;
-                //productModel.ImagePath3 = string.IsNullOrEmpty(_product.ImagePath3) ? AppConstant.DefaultProductImage : _product.ImagePath3;
-                //productModel.ImagePath4 = string.IsNullOrEmpty(_product.ImagePath4) ? AppConstant.DefaultProductImage : _product.ImagePath4;
                 productModel.Tags = productModel.Tags == null ? new List<string>() : productModel.Tags;
 
                 foreach(var c in productModel.Categories)
@@ -388,40 +402,6 @@ namespace DQueensFashion.Controllers
             if (category == null)
                 throw new Exception();
 
-            string imgPath1 = string.Empty, imgPath2 = string.Empty, imgPath3 = string.Empty, imgPath4 = string.Empty;
-            //file 1
-            if (productModel.ImageFile1 != null)
-            {
-                string fileName1 = FileService.GetFileName(productModel.ImageFile1);
-                imgPath1 = "~/Content/Images/Products/" + fileName1;
-                fileName1 = Path.Combine(Server.MapPath("~/Content/Images/Products/"), fileName1);
-                FileService.SaveImage(productModel.ImageFile1, fileName1);
-            }
-            //file 2
-            if (productModel.ImageFile2 != null)
-            {
-                string fileName2 = FileService.GetFileName(productModel.ImageFile2);
-                imgPath2 = "~/Content/Images/Products/" + fileName2;
-                fileName2 = Path.Combine(Server.MapPath("~/Content/Images/Products/"), fileName2);
-                FileService.SaveImage(productModel.ImageFile2, fileName2);
-            }
-            //file 3
-            if (productModel.ImageFile3 != null)
-            {
-                string fileName3 = FileService.GetFileName(productModel.ImageFile3);
-                imgPath3 = "~/Content/Images/Products/" + fileName3;
-                fileName3 = Path.Combine(Server.MapPath("~/Content/Images/Products/"), fileName3);
-                FileService.SaveImage(productModel.ImageFile3, fileName3);
-            }
-            //file 4
-            if (productModel.ImageFile4 != null)
-            {
-                string fileName4 = FileService.GetFileName(productModel.ImageFile4);
-                imgPath4 = "~/Content/Images/Products/" + fileName4;
-                fileName4 = Path.Combine(Server.MapPath("~/Content/Images/Products/"), fileName4);
-                FileService.SaveImage(productModel.ImageFile4, fileName4);
-            }
-
             product.Name = productModel.Name;
             product.Description = productModel.Description;
             product.Quantity = productModel.Quantity;
@@ -430,10 +410,9 @@ namespace DQueensFashion.Controllers
             product.SubTotal = Math.Round(_productService.CalculateProductPrice(productModel.Price, productModel.Discount));
             product.Category = category;
             product.Tags = productModel.Tags != null ? String.Join(",", productModel.Tags) : "";
-            //product.ImagePath1 = string.IsNullOrEmpty(imgPath1) ? product.ImagePath1 : imgPath1;
-            //product.ImagePath2 = string.IsNullOrEmpty(imgPath2) ? product.ImagePath2 : imgPath2;
-            //product.ImagePath3 = string.IsNullOrEmpty(imgPath3) ? product.ImagePath3 : imgPath3;
-            //product.ImagePath4 = string.IsNullOrEmpty(imgPath4) ? product.ImagePath4 : imgPath4;
+            product.BurstSize = productModel.BurstSize;
+            product.WaistLength = productModel.WaistLength;
+            product.ShoulderLength = productModel.ShoulderLength;
 
             _productService.UpdateProduct(product);
             return RedirectToAction(nameof(Products));

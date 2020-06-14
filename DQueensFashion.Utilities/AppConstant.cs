@@ -21,6 +21,7 @@ namespace DQueensFashion.Utilities
         public const int ReviewsPageSize = 10;
 
         public const string ProductImageBasePath = "~/Content/Images/Products/";
+        public const int CustomMadeCategoryId = 4;
         //orange #E97128
         //deep blue #212529
     }
