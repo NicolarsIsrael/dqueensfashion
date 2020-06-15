@@ -80,7 +80,7 @@ namespace DQueensFashion.Models
         public string Price { get; set; }
         public string SubTotal { get; set; }
         public decimal Discount { get; set; }
-        public string Quantity { get; set; }
+        public int Quantity { get; set; }
         public DateTime DateCreated { get; set; }
         [Display(Name ="Date created")]
         public string DateCreatedString { get; set; }
@@ -91,6 +91,18 @@ namespace DQueensFashion.Models
         public string Tags { get; set; }
         public RatingViewModel Rating { get; set; }
         public IEnumerable<ViewReviewViewModel> Reviews { get; set; }
+
+        //measurement
+        [Display(Name = "Waist length")]
+        public bool WaistLength { get; set; }
+        [Display(Name = "Burst size")]
+        public bool BurstSize { get; set; }
+        [Display(Name = "Shoulder length")]
+        public bool ShoulderLength { get; set; }
+
+        public int BurstSizeValue { get; set; }
+        public int ShoulderLengthValue { get; set; }
+        public int WaistLengthValue { get; set; }
     }
 
     public class EditProductViewModel

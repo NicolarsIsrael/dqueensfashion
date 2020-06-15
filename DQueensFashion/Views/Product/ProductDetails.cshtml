@@ -1,6 +1,7 @@
 ﻿@model DQueensFashion.Models.ProductDetailsViewModel
+@using DQueensFashion.Utilities
 @{
-    ViewBag.Title = "ProductDetails";
+    ViewBag.Title =Model.Product.Name;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">*@
@@ -151,6 +152,27 @@
                 </div>
             </div>
 
+            <div class="mb-3">
+                <button type="button" class="btn" style="background-color:#0a0c13;color:white" onclick="AddToWishList(@Model.Product.Id)">Add to wishlist</button>
+
+            </div>
+            <h6 class="orButton"><span>OR</span></h6>
+          
+        </div>
+
+    </div>
+
+
+
+
+
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="section_header" style="margin-bottom:1px">
+                <div class="section_header_text">
+                    <h5 style="margin-top: 15px;">CART</h5>
+                </div>
+            </div>
             @using (Html.BeginForm("BuyProduct", "Product"))
             {
                 @Html.AntiForgeryToken()
@@ -158,25 +180,79 @@
                 <div class="form-horizontal">
                     @Html.Hidden("id")
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
                     <div class="input-group mb-1">
                         <div class="input-group-prepend">
                             <span class="input-group-text">Qty</span>
                         </div>
-                        <input type="number" name="quantity" class="form-control" value="1" min="1" id="quantity" onchange="checkQuantity()" oninput="checkQuantity()" style="max-width:120px;" />
+                        <select class="form-control" id="quantity" style="max-width:180px;">
+                            @for (int i = 1; i <= Model.Product.Quantity; i++)
+                            {
+                                <option value="@i">@i</option>
+                            }
+                        </select>
                     </div>
-                    <p class="mb-0 text-danger" id="quantityValidationError"></p>
-                    <div class="mb-3">
-                        <button type="button" class="btn" style="background-color:#0a0c13;color:white" onclick="AddToWishList(@Model.Product.Id)">Add to wishlist</button>
-                        <button type="button" class="btn" style="background-color:#0a0c13;color:white" onclick="addToCartFromProductDetails(@Model.Product.Id)">Add to cart</button>
-                    </div>
-                    <h6 class="orButton"><span>OR</span></h6>
-                    <input type="submit" value="BUY NOW" class="btn mt-0" onclick="return validateBuy()" style="max-width:150px;background-color:#E97128;color:white" />
+                    @if (Model.Product.CategoryId == AppConstant.CustomMadeCategoryId)
+                    {
+                        if (Model.Product.BurstSize)
+                        {
+                            <div class="form-group">
+                                <div class="col-form-label">Burstsize</div>
+                                <select class="form-control">
+                                    @foreach (var size in AppConstant.BurstSizeValues)
+                                    {
+                                        <option value="@size">@size</option>
+                                    }
+
+                                </select>
+                            </div>
+                        }
+
+                        if (Model.Product.ShoulderLength)
+                        {
+                            <div class="form-group">
+                                <div class="col-form-label">Shoulder length</div>
+                                <select class="form-control">
+                                    @foreach (var size in AppConstant.ShoulderLengthValues)
+                                    {
+                                        <option value="@size">@size</option>
+                                    }
+
+                                </select>
+                            </div>
+                        }
+
+                        if (Model.Product.WaistLength)
+                        {
+
+                            <div class="form-group">
+                                <div class="col-form-label">Waist length</div>
+                                <select class="form-control">
+                                    @foreach (var size in AppConstant.WaistLengthVallues)
+                                    {
+                                        <option value="@size">@size</option>
+                                    }
+
+                                </select>
+                            </div>
+                        }
+                    }
+                    <input type="submit" value="BUY NOW" class="btn mt-0" style="max-width:150px;background-color:#E97128;color:white" />
                 </div>
             }
 
+          
+            <button type="button" class="btn" style="background-color:#0a0c13;color:white" onclick="addToCartFromProductDetails(@Model.Product.Id)">Add to cart</button>
         </div>
-
     </div>
+
+
+
+
+
+
+
+
 
     <div id="review-scroll-to"></div>
     <div class="row mt-5">
@@ -189,7 +265,7 @@
             <div style="text-justify:inter-word;text-align:justify">
                 @Html.Raw(Model.Product.Description.Replace(Environment.NewLine, "<br/>"))
             </div>
-            
+
         </div>
     </div>
 
@@ -233,10 +309,10 @@
                 </div>
             }
         }
-    <div class="col-12 mb-1">
-        <button class="btn" style="color: white;background-color:#212529;" onclick="ShopByCategory(@Model.Product.CategoryId)">View more</button>
-    </div>
-        
+        <div class="col-12 mb-1">
+            <button class="btn" style="color: white;background-color:#212529;" onclick="ShopByCategory(@Model.Product.CategoryId)">View more</button>
+        </div>
+
     </div>
 </div>
 
@@ -247,28 +323,6 @@
     var quantityValidationError = document.getElementById("quantityValidationError");
     var productImage = document.getElementById("productDisplayImage");
     var _sortReview = document.getElementById("sort-review");
-
-
-    function checkQuantity() {
-        if (Number(productQuantity.value) < Number(quantity.value)) {
-            quantity.value = productQuantity.value;
-            quantityValidationError.innerHTML = "Not enough items available";
-        }
-        else {
-            quantityValidationError.innerHTML = '';
-        }
-    }
-
-    function validateBuy() {
-        if (Number(productQuantity.value) < Number(quantity.value)) {
-            quantity.focus();
-            return false;
-        }
-        else {
-            return true;
-        }
-    }
-
 
     function addToCartFromProductDetails(productId) {
         AddToCart(productId, quantity.value);

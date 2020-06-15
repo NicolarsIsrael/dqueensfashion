@@ -168,7 +168,7 @@ namespace DQueensFashion.Controllers
                 {
                     Id = p.Id,
                     Name = p.Name,
-                    Quantity = p.Quantity.ToString(),
+                    Quantity = p.Quantity,
                     Price = p.Price.ToString(),
                     Discount = p.Discount,
                     SubTotal = p.SubTotal.ToString(),
@@ -191,7 +191,7 @@ namespace DQueensFashion.Controllers
               {
                   Id = p.Id,
                   Name = p.Name,
-                  Quantity = p.Quantity.ToString(),
+                  Quantity = p.Quantity,
                   Price = p.Price.ToString(),
                   Discount = p.Discount,
                   SubTotal = p.SubTotal.ToString(),
@@ -206,7 +206,7 @@ namespace DQueensFashion.Controllers
             if (!string.IsNullOrEmpty(searchString))
                 products = products.Where(p => p.Name.ToLower().Contains(searchString.ToLower())
                 || p.Category.ToLower().Contains(searchString.ToLower())
-                || string.Compare(p.Quantity, searchString, true) == 0
+                || string.Compare(p.Quantity.ToString(), searchString, true) == 0
                 || string.Compare(p.Price, searchString, true) == 0
                 );
 
@@ -437,7 +437,7 @@ namespace DQueensFashion.Controllers
                 Price = product.Price.ToString(),
                 Discount = product.Discount,
                 SubTotal = product.SubTotal.ToString(),
-                Quantity = product.Quantity.ToString(),
+                Quantity = product.Quantity,
                 Category = product.Category.Name,
                 Tags = product.Tags,
                 DateCreatedString = product.DateCreated.ToString("dd/MMM/yyyy : hh-mm-ss"),

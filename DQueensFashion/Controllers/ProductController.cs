@@ -51,7 +51,7 @@ namespace DQueensFashion.Controllers
                     MainImage = allImages.Where(image => image.ProductId == p.Id).Count() < 1 ?
                         AppConstant.DefaultProductImage :
                         allImages.Where(image => image.ProductId == p.Id).FirstOrDefault().ImagePath,
-                    Quantity = p.Quantity.ToString(),
+                    Quantity = p.Quantity,
                     Price = p.Price.ToString(),
                     Discount = p.Discount,
                     SubTotal = p.SubTotal.ToString(),
@@ -117,7 +117,7 @@ namespace DQueensFashion.Controllers
                             AppConstant.DefaultProductImage :
                             allImages.Where(image => image.ProductId == p.Id).FirstOrDefault().ImagePath,
                         Category = p.Category.Name,
-                        Quantity = p.Quantity.ToString(),
+                        Quantity = p.Quantity,
                         Price = p.Price.ToString(),
                         Discount = p.Discount,
                         SubTotal = p.SubTotal.ToString(),
@@ -217,7 +217,7 @@ namespace DQueensFashion.Controllers
                             AppConstant.DefaultProductImage :
                             allImages.Where(image => image.ProductId == p.Id).FirstOrDefault().ImagePath,
                         Category = p.Category.Name,
-                        Quantity = p.Quantity.ToString(),
+                        Quantity = p.Quantity,
                         Price = p.Price.ToString(),
                         Discount = p.Discount,
                         SubTotal = p.SubTotal.ToString(),
@@ -310,7 +310,7 @@ namespace DQueensFashion.Controllers
                 Price = product.Price.ToString(),
                 Discount = product.Discount,
                 SubTotal = product.SubTotal.ToString(),
-                Quantity = product.Quantity.ToString(),
+                Quantity = product.Quantity,
                 CategoryId = product.Category.Id,
                 Category = product.Category.Name,
                 Tags = product.Tags,
@@ -337,6 +337,9 @@ namespace DQueensFashion.Controllers
                         DateCreated = r.DateCreated.ToString("dd/MMM/yyyy"),
                         DateOrder = r.DateCreated,
                     }).OrderByDescending(r=>r.DateOrder).ToList(),
+                WaistLength=product.WaistLength.HasValue?product.WaistLength.Value:false,
+                ShoulderLength = product.ShoulderLength.HasValue?product.ShoulderLength.Value:false,
+                BurstSize = product.BurstSize.HasValue?product.BurstSize.Value:false,
             };
 
             var allImages = _imageService.GetAllImageFiles();
@@ -350,7 +353,7 @@ namespace DQueensFashion.Controllers
                     MainImage = allImages.Where(image => image.ProductId == p.Id).Count() < 1 ?
                         AppConstant.DefaultProductImage :
                         allImages.Where(image => image.ProductId == p.Id).FirstOrDefault().ImagePath,
-                    Quantity = p.Quantity.ToString(),
+                    Quantity = p.Quantity,
                     Price = p.Price.ToString(),
                     Discount = p.Discount,
                     SubTotal = p.SubTotal.ToString(),
@@ -543,7 +546,7 @@ namespace DQueensFashion.Controllers
                 //OtherImagePaths = productImages,
                 Category = product.Category.Name,
                 Price = product.Price.ToString(),
-                Quantity = product.Quantity.ToString(),
+                Quantity = product.Quantity,
                 Rating = new RatingViewModel()
                 {
                     AverageRating = product.AverageRating.ToString("0.0"),

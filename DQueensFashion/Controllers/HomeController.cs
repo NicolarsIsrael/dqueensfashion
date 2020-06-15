@@ -47,7 +47,7 @@ namespace DQueensFashion.Controllers
                     MainImage = allImages.Where(image=>image.ProductId==p.Id).Count()<1?
                         AppConstant.DefaultProductImage :
                         allImages.Where(image => image.ProductId == p.Id).FirstOrDefault().ImagePath,
-                    Quantity = p.Quantity.ToString(),
+                    Quantity = p.Quantity,
                     Price=p.Price.ToString(),
                     Discount = p.Discount,
                     SubTotal = p.SubTotal.ToString(),
