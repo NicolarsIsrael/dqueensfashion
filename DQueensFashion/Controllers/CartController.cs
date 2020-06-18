@@ -184,8 +184,20 @@ namespace DQueensFashion.Controllers
             return PartialView("_cartTable", viewCart);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult CheckOut()
         {
+            List<Cart> cart = (List<Cart>)Session["cart"];
+            ViewCartViewModel viewCart = new ViewCartViewModel()
+            {
+                Count = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.Quantity),
+                
+            };
+
+            if (viewCart.Count < 1)
+                return RedirectToAction(nameof(ViewCart));
+
             return RedirectToAction("PaymentWithPaypal", "Payment");
         }
 

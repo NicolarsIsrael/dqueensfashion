@@ -116,7 +116,6 @@ namespace DQueensFashion.Controllers
             }
             catch (Exception ex)
             {
-                throw;
                    //
             }
             //on successful payment, show success page to user.
