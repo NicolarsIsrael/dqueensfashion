@@ -34,7 +34,7 @@ namespace DQueensFashion.Service.Implementation
 
         public IEnumerable<Order> GetAllOrdersForCustomer(int customerId)
         {
-            return uow.OrderRepo.GetAllOrdersWithRelationships().Where(order=>order.Customer.Id==customerId);
+            return uow.OrderRepo.GetAllOrdersWithRelationships().Where(order=>order.CustomerId==customerId);
         }
 
         public IEnumerable<Order> GetAllOrders()

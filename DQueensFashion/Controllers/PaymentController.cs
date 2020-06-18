@@ -1,4 +1,7 @@
-﻿using DQueensFashion.Utilities;
+﻿using DQueensFashion.Core.Model;
+using DQueensFashion.Models;
+using DQueensFashion.Service.Contract;
+using DQueensFashion.Utilities;
 using PayPal.Api;
 using System;
 using System.Collections.Generic;
@@ -10,6 +13,16 @@ namespace DQueensFashion.Controllers
 {
     public class PaymentController : Controller
     {
+        private readonly IOrderService _orderService;
+        private readonly IProductService _productService;
+        private readonly ICustomerService _customerService;
+
+        public PaymentController(IOrderService orderService,IProductService productService)
+        {
+            _orderService = orderService;
+            _productService = productService;
+        }
+
         // GET: Payment
         public ActionResult Index()
         {
@@ -63,17 +76,64 @@ namespace DQueensFashion.Controllers
                     //If executed payment failed then we will show payment failure message to user
                     if (executedPayment.state.ToLower() != "approved")
                     {
-                        return View("FailureView");
+                        return View(nameof(Failed));
                     }
                 }
+
             }
             catch (Exception ex)
             {
-                return View("FailureView");
+                return View(nameof(Failed));
+            }
+            try
+            {
+
+                var paymentIdGuid = Request.Params["guid"];
+                var _payment = PayPal.Api.Payment.Get(apiContext, Session[paymentIdGuid] as string);
+                List<LineItem> lineItems = new List<LineItem>();
+                lineItems = _payment.transactions.FirstOrDefault()
+                    .item_list.items.Select(item => new LineItem()
+                    {
+                        Product = _productService.GetProductById(Int32.Parse(item.sku)),
+                        DateCreated = DateTime.Now,
+                        DateModified = DateTime.Now,
+                        IsDeleted = false,
+                        Quantity = Int32.Parse(item.quantity),
+                        TotalAmount = Decimal.Parse(item.price) * Int32.Parse(item.quantity),
+                    }).ToList();
+
+                DQueensFashion.Core.Model.Order order = new DQueensFashion.Core.Model.Order()
+                {
+                    CustomerId =1,
+                    LineItems = lineItems,
+                    TotalAmount = lineItems.Sum(l => l.TotalAmount),
+                    TotalQuantity = lineItems.Sum(l => l.Quantity),
+                    OrderStatus = OrderStatus.Processing,
+                };
+
+                _orderService.CreateOrder(order);
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+                   //
             }
             //on successful payment, show success page to user.
-            return View("SuccessView");
+            return RedirectToAction(nameof(Success));
+
         }
+
+        public ActionResult Success()
+        {
+            return View();
+        }
+
+        public ActionResult Failed()
+        {
+            return View();
+        }
+
         private PayPal.Api.Payment payment;
         private Payment ExecutePayment(APIContext apiContext, string payerId, string paymentId)
         {
@@ -89,20 +149,30 @@ namespace DQueensFashion.Controllers
         }
         private Payment CreatePayment(APIContext apiContext, string redirectUrl)
         {
+            Random rand = new Random();
+            ViewCartViewModel carts = new ViewCartViewModel()
+            {
+                Count = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.Quantity),
+                Carts = Session["cart"] == null ? new List<Cart>() : (List<Cart>)Session["cart"],
+                SubTotal = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.TotalPrice),
+            };
+
             //create itemlist and add item objects to it
             var itemList = new ItemList()
             {
                 items = new List<Item>()
             };
-            //Adding Item Details like name, currency, price etc
-            itemList.items.Add(new Item()
-            {
-                name = "Item Name comes here",
-                currency = "USD",
-                price = "1",
-                quantity = "1",
-                sku = "sku"
-            });
+
+            itemList.items = carts.Carts
+                 .Select(item => new Item()
+                 {
+                     name=item.Product.Name,
+                     currency = "USD",
+                     price = item.UnitPrice.ToString(),
+                     quantity= item.Quantity.ToString(),
+                     sku = item.Product.Id.ToString(),
+                 }).ToList();
+
             var payer = new Payer()
             {
                 payment_method = "paypal"
@@ -116,15 +186,15 @@ namespace DQueensFashion.Controllers
             // Adding Tax, shipping and Subtotal details
             var details = new Details()
             {
-                tax = "1",
-                shipping = "1",
-                subtotal = "1"
+                tax = "0",
+                shipping = "0",
+                subtotal = carts.SubTotal.ToString(),
             };
             //Final amount with details
             var amount = new Amount()
             {
                 currency = "USD",
-                total = "3", // Total must be equal to sum of tax, shipping and subtotal.
+                total = carts.SubTotal.ToString(), // Total must be equal to sum of tax, shipping and subtotal.
                 details = details
             };
             var transactionList = new List<Transaction>();
@@ -132,7 +202,9 @@ namespace DQueensFashion.Controllers
             transactionList.Add(new Transaction()
             {
                 description = "Transaction description",
-                invoice_number = "your generated invoice number", //Generate an Invoice No
+                invoice_number = rand.Next(1, int.MaxValue).ToString()
+                                    +rand.Next(1,int.MaxValue).ToString()
+                                     +rand.Next(1, int.MaxValue).ToString(),//Generate an Invoice No
                 amount = amount,
                 item_list = itemList
             });
@@ -146,5 +218,6 @@ namespace DQueensFashion.Controllers
             // Create a payment using a APIContext
             return this.payment.Create(apiContext);
         }
+        
     }
 }

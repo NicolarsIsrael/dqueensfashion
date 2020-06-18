@@ -21,7 +21,6 @@ namespace DQueensFashion.Data.Implementation
         {
             return _dbContext.Set<Order>()
                 .Include(order => order.LineItems.Select(lineItem=>lineItem.Product))
-                .Include(order=> order.Customer)
                 .Where(order => !order.IsDeleted)
                 .ToList();
         }
@@ -30,7 +29,6 @@ namespace DQueensFashion.Data.Implementation
         {
             return _dbContext.Set<Order>()
                 .Include(order => order.LineItems.Select(lineItem => lineItem.Product))
-                .Include(order => order.Customer)
                 .Where(order => order.Id == orderId)
                 .Where(order => !order.IsDeleted)
                 .FirstOrDefault();

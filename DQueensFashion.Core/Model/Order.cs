@@ -12,7 +12,6 @@ namespace DQueensFashion.Core.Model
         public decimal TotalAmount { get; set; }
         public int TotalQuantity { get; set; }
         public int CustomerId { get; set; }
-        public Customer Customer { get; set; }
         public List<LineItem> LineItems { get; set; }
         public OrderStatus OrderStatus { get; set; }
 

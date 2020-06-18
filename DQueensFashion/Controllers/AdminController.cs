@@ -21,14 +21,16 @@ namespace DQueensFashion.Controllers
         private readonly IOrderService _orderService;
         private readonly IReviewService _reviewService;
         private readonly IImageService _imageService;
+        private readonly ICustomerService _customerService;
 
-        public AdminController(ICategoryService categoryService, IProductService productService, IOrderService orderService, IReviewService reviewService, IImageService imageService)
+        public AdminController(ICategoryService categoryService, IProductService productService, IOrderService orderService, IReviewService reviewService, IImageService imageService, ICustomerService customerService)
         {
             _categoryService = categoryService;
             _productService = productService;
             _orderService = orderService;
             _reviewService = reviewService;
             _imageService = imageService;
+            _customerService = customerService;
         }
         // GET: Admin
         public ActionResult Index()
@@ -553,8 +555,8 @@ namespace DQueensFashion.Controllers
                 .Select(order => new ViewOrderViewModel()
                 {
                     OrderId = order.Id,
-                    CustomerId = order.Customer.Id,
-                    CustomerName = order.Customer.Fullname,
+                    CustomerId = order.CustomerId,
+                    CustomerName = "Ade",//_customerService.GetCustomerById(order.CustomerId).Fullname,
                     TotalAmount = order.TotalAmount,
                     TotalQuantity = order.TotalQuantity,
                     LineItems = order.LineItems
@@ -566,8 +568,8 @@ namespace DQueensFashion.Controllers
                         }),
                     OrderStatus= order.OrderStatus.ToString(),
                     DateCreated = order.DateCreated,
-                    DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy : hh-mm-ss"),
-                }).OrderBy(order=>order.DateCreated).ToList();
+                    DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy - hh:mm:ss"),
+                }).OrderByDescending(order=>order.DateCreated).ToList();
 
             return View(orderModel);
         }
@@ -579,8 +581,8 @@ namespace DQueensFashion.Controllers
                 .Select(order => new ViewOrderViewModel()
                 {
                     OrderId = order.Id,
-                    CustomerId = order.Customer.Id,
-                    CustomerName = order.Customer.Fullname,
+                    CustomerId = order.CustomerId,
+                    CustomerName = _customerService.GetCustomerById(order.CustomerId).Fullname,
                     TotalAmount = order.TotalAmount,
                     TotalQuantity = order.TotalQuantity,
                     LineItems = order.LineItems
@@ -592,9 +594,9 @@ namespace DQueensFashion.Controllers
                         }),
                     OrderStatus = order.OrderStatus.ToString(),
                     DateCreated = order.DateCreated,
-                    DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy : hh-mm-ss"),
+                    DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy - hh:mm:ss"),
                     LineItemConcatenatedString = string.Join(",",order.LineItems.Select(x=>x.Product.Name)),
-                }).OrderBy(order => order.DateCreated).ToList();
+                }).OrderByDescending(order => order.DateCreated).ToList();
 
             if (!string.IsNullOrEmpty(searchString))
                 orderModel = orderModel.Where(order => order.CustomerName.ToLower().Contains(searchString.ToLower())
@@ -612,8 +614,8 @@ namespace DQueensFashion.Controllers
                 .Select(order => new ViewOrderViewModel()
                 {
                     OrderId = order.Id,
-                    CustomerId = order.Customer.Id,
-                    CustomerName = order.Customer.Fullname,
+                    CustomerId = order.CustomerId,
+                    CustomerName = _customerService.GetCustomerById(order.CustomerId).Fullname,
                     TotalAmount = order.TotalAmount,
                     TotalQuantity = order.TotalQuantity,
                     LineItems = order.LineItems
@@ -624,9 +626,9 @@ namespace DQueensFashion.Controllers
                             TotalAmount = lineItem.TotalAmount,
                         }),
                     DateCreated = order.DateCreated,
-                    DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy : hh-mm-ss"),
+                    DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy - hh:mm:ss"),
                     DateModified = order.DateModified,
-                }).OrderBy(order => order.DateModified).ToList();
+                }).OrderByDescending(order => order.DateModified).ToList();
 
             return View(orderModel);
         }
@@ -639,8 +641,8 @@ namespace DQueensFashion.Controllers
                        .Select(order => new ViewOrderViewModel()
                        {
                            OrderId = order.Id,
-                           CustomerId = order.Customer.Id,
-                           CustomerName = order.Customer.Fullname,
+                           CustomerId = order.CustomerId,
+                           CustomerName = _customerService.GetCustomerById(order.CustomerId).Fullname,
                            TotalAmount = order.TotalAmount,
                            TotalQuantity = order.TotalQuantity,
                            LineItems = order.LineItems
@@ -651,10 +653,10 @@ namespace DQueensFashion.Controllers
                                    TotalAmount = lineItem.TotalAmount,
                                }),
                            DateCreated = order.DateCreated,
-                           DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy : hh-mm-ss"),
+                           DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy - hh:mm:ss"),
                            LineItemConcatenatedString = string.Join(",", order.LineItems.Select(x => x.Product.Name)),
                            DateModified = order.DateModified,
-                       }).OrderBy(order => order.DateModified).ToList();
+                       }).OrderByDescending(order => order.DateModified).ToList();
 
                 if (!string.IsNullOrEmpty(searchString))
                     orderModel = orderModel.Where(order => order.CustomerName.ToLower().Contains(searchString.ToLower())
@@ -678,8 +680,8 @@ namespace DQueensFashion.Controllers
                 .Select(order => new ViewOrderViewModel()
                 {
                     OrderId = order.Id,
-                    CustomerId = order.Customer.Id,
-                    CustomerName = order.Customer.Fullname,
+                    CustomerId = order.CustomerId,
+                    CustomerName = _customerService.GetCustomerById(order.CustomerId).Fullname,
                     TotalAmount = order.TotalAmount,
                     TotalQuantity = order.TotalQuantity,
                     LineItems = order.LineItems
@@ -690,9 +692,9 @@ namespace DQueensFashion.Controllers
                             TotalAmount = lineItem.TotalAmount,
                         }),
                     DateCreated = order.DateCreated,
-                    DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy : hh-mm-ss"),
+                    DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy - hh:mm:ss"),
                     DateModified = order.DateModified,
-                }).OrderBy(order => order.DateModified).ToList();
+                }).OrderByDescending(order => order.DateModified).ToList();
 
             return View(orderModel);
         }
@@ -704,8 +706,8 @@ namespace DQueensFashion.Controllers
                  .Select(order => new ViewOrderViewModel()
                  {
                      OrderId = order.Id,
-                     CustomerId = order.Customer.Id,
-                     CustomerName = order.Customer.Fullname,
+                     CustomerId = order.CustomerId,
+                     CustomerName = _customerService.GetCustomerById(order.CustomerId).Fullname,
                      TotalAmount = order.TotalAmount,
                      TotalQuantity = order.TotalQuantity,
                      LineItems = order.LineItems
@@ -716,10 +718,10 @@ namespace DQueensFashion.Controllers
                              TotalAmount = lineItem.TotalAmount,
                          }),
                      DateCreated = order.DateCreated,
-                     DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy : hh-mm-ss"),
+                     DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy - hh:mm:ss"),
                      LineItemConcatenatedString = string.Join(",", order.LineItems.Select(x => x.Product.Name)),
                      DateModified = order.DateModified,
-                 }).OrderBy(order => order.DateModified).ToList();
+                 }).OrderByDescending(order => order.DateModified).ToList();
 
 
 
@@ -738,8 +740,8 @@ namespace DQueensFashion.Controllers
                 .Select(order => new ViewOrderViewModel()
                 {
                     OrderId = order.Id,
-                    CustomerId = order.Customer.Id,
-                    CustomerName = order.Customer.Fullname,
+                    CustomerId = order.CustomerId,
+                    CustomerName = _customerService.GetCustomerById(order.CustomerId).Fullname,
                     TotalAmount = order.TotalAmount,
                     TotalQuantity = order.TotalQuantity,
                     LineItems = order.LineItems
@@ -750,9 +752,9 @@ namespace DQueensFashion.Controllers
                             TotalAmount = lineItem.TotalAmount,
                         }),
                     DateCreated = order.DateCreated,
-                    DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy : hh-mm-ss"),
+                    DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy - hh:mm:ss"),
                     DateModified = order.DateModified,
-                }).OrderBy(order => order.DateModified).ToList();
+                }).OrderByDescending(order => order.DateModified).ToList();
 
             return View(orderModel);
         }
@@ -763,8 +765,8 @@ namespace DQueensFashion.Controllers
                 .Select(order => new ViewOrderViewModel()
                 {
                     OrderId = order.Id,
-                    CustomerId = order.Customer.Id,
-                    CustomerName = order.Customer.Fullname,
+                    CustomerId = order.CustomerId,
+                    CustomerName = _customerService.GetCustomerById(order.CustomerId).Fullname,
                     TotalAmount = order.TotalAmount,
                     TotalQuantity = order.TotalQuantity,
                     LineItems = order.LineItems
@@ -775,10 +777,10 @@ namespace DQueensFashion.Controllers
                             TotalAmount = lineItem.TotalAmount,
                         }),
                     DateCreated = order.DateCreated,
-                    DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy : hh-mm-ss"),
+                    DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy - hh:mm:ss"),
                     LineItemConcatenatedString = string.Join(",", order.LineItems.Select(x => x.Product.Name)),
                     DateModified = order.DateModified,
-                }).OrderBy(order => order.DateModified).ToList();
+                }).OrderByDescending(order => order.DateModified).ToList();
 
 
 
@@ -797,8 +799,8 @@ namespace DQueensFashion.Controllers
                .Select(order => new ViewOrderViewModel()
                {
                    OrderId = order.Id,
-                   CustomerId = order.Customer.Id,
-                   CustomerName = order.Customer.Fullname,
+                   CustomerId = order.CustomerId,
+                   CustomerName = _customerService.GetCustomerById(order.CustomerId).Fullname,
                    TotalAmount = order.TotalAmount,
                    TotalQuantity = order.TotalQuantity,
                    LineItems = order.LineItems
@@ -809,9 +811,9 @@ namespace DQueensFashion.Controllers
                            TotalAmount = lineItem.TotalAmount,
                        }),
                    DateCreated = order.DateCreated,
-                   DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy : hh-mm-ss"),
+                   DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy - hh:mm:ss"),
                    DateModified = order.DateModified,
-               }).OrderBy(order => order.DateModified).ToList();
+               }).OrderByDescending(order => order.DateModified).ToList();
 
             return View(orderModel);
         }
@@ -822,8 +824,8 @@ namespace DQueensFashion.Controllers
               .Select(order => new ViewOrderViewModel()
               {
                   OrderId = order.Id,
-                  CustomerId = order.Customer.Id,
-                  CustomerName = order.Customer.Fullname,
+                  CustomerId = order.CustomerId,
+                  CustomerName = _customerService.GetCustomerById(order.CustomerId).Fullname,
                   TotalAmount = order.TotalAmount,
                   TotalQuantity = order.TotalQuantity,
                   LineItems = order.LineItems
@@ -834,10 +836,10 @@ namespace DQueensFashion.Controllers
                           TotalAmount = lineItem.TotalAmount,
                       }),
                   DateCreated = order.DateCreated,
-                  DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy : hh-mm-ss"),
+                  DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy - hh:mm:ss"),
                   LineItemConcatenatedString = string.Join(",", order.LineItems.Select(x => x.Product.Name)),
                   DateModified = order.DateModified,
-              }).OrderBy(order => order.DateModified).ToList();
+              }).OrderByDescending(order => order.DateModified).ToList();
 
 
 
@@ -856,8 +858,8 @@ namespace DQueensFashion.Controllers
               .Select(order => new ViewOrderViewModel()
               {
                   OrderId = order.Id,
-                  CustomerId = order.Customer.Id,
-                  CustomerName = order.Customer.Fullname,
+                  CustomerId = order.CustomerId,
+                  CustomerName = _customerService.GetCustomerById(order.CustomerId).Fullname,
                   TotalAmount = order.TotalAmount,
                   TotalQuantity = order.TotalQuantity,
                   LineItems = order.LineItems
@@ -868,9 +870,9 @@ namespace DQueensFashion.Controllers
                           TotalAmount = lineItem.TotalAmount,
                       }),
                   DateCreated = order.DateCreated,
-                  DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy : hh-mm-ss"),
+                  DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy - hh:mm:ss"),
                   DateModified = order.DateModified,
-              }).OrderBy(order => order.DateModified).ToList();
+              }).OrderByDescending(order => order.DateModified).ToList();
 
             return View(orderModel);
         }
@@ -881,8 +883,8 @@ namespace DQueensFashion.Controllers
                .Select(order => new ViewOrderViewModel()
                {
                    OrderId = order.Id,
-                   CustomerId = order.Customer.Id,
-                   CustomerName = order.Customer.Fullname,
+                   CustomerId = order.CustomerId,
+                   CustomerName = _customerService.GetCustomerById(order.CustomerId).Fullname,
                    TotalAmount = order.TotalAmount,
                    TotalQuantity = order.TotalQuantity,
                    LineItems = order.LineItems
@@ -893,10 +895,10 @@ namespace DQueensFashion.Controllers
                            TotalAmount = lineItem.TotalAmount,
                        }),
                    DateCreated = order.DateCreated,
-                   DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy : hh-mm-ss"),
+                   DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy - hh:mm:ss"),
                    LineItemConcatenatedString = string.Join(",", order.LineItems.Select(x => x.Product.Name)),
                    DateModified = order.DateModified,
-               }).OrderBy(order => order.DateModified).ToList();
+               }).OrderByDescending(order => order.DateModified).ToList();
 
 
 

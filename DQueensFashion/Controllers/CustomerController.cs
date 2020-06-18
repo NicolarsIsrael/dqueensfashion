@@ -128,7 +128,7 @@ namespace DQueensFashion.Controllers
                 .Select(order => new ViewOrderViewModel()
                 {
                     OrderId = order.Id,
-                    CustomerId = order.Customer.Id,
+                    CustomerId = order.CustomerId,
                     TotalAmount = order.TotalAmount,
                     TotalQuantity = order.TotalQuantity,
                     LineItems = order.LineItems
@@ -156,7 +156,7 @@ namespace DQueensFashion.Controllers
                 .Select(order => new ViewOrderViewModel()
                 {
                     OrderId = order.Id,
-                    CustomerId = order.Customer.Id,
+                    CustomerId = order.CustomerId,
                     TotalAmount = order.TotalAmount,
                     TotalQuantity = order.TotalQuantity,
                     LineItems = order.LineItems

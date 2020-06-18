@@ -230,6 +230,10 @@
     <Compile Include="Migrations\202006141128094_Boolean2.Designer.cs">
       <DependentUpon>202006141128094_Boolean2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006181357306_unitPriceAddedToLineItem.cs" />
+    <Compile Include="Migrations\202006181357306_unitPriceAddedToLineItem.Designer.cs">
+      <DependentUpon>202006181357306_unitPriceAddedToLineItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -303,6 +307,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006141128094_Boolean2.resx">
       <DependentUpon>202006141128094_Boolean2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006181357306_unitPriceAddedToLineItem.resx">
+      <DependentUpon>202006181357306_unitPriceAddedToLineItem.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

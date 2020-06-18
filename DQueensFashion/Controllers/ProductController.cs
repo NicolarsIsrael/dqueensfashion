@@ -518,7 +518,7 @@ namespace DQueensFashion.Controllers
 
             Order order = new Order()
             {
-                Customer = customer,
+                CustomerId = customer.Id,
                 LineItems = lineItems,
                 TotalAmount = lineItems.Sum(l => l.TotalAmount),
                 TotalQuantity = lineItems.Sum(l => l.Quantity),

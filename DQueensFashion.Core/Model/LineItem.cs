@@ -8,6 +8,7 @@ namespace DQueensFashion.Core.Model
 {
     public class LineItem:Entity
     {
+        public decimal UnitPrice { get; set; }
         public decimal TotalAmount { get; set; }
         public int Quantity { get; set; }
         public Product Product { get; set; }

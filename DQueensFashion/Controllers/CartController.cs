@@ -47,7 +47,10 @@ namespace DQueensFashion.Controllers
                 {
                     Product = product,
                     Quantity = quantity,
-                    Price = product.Price * quantity,
+                    Discount = product.Discount,
+                    InitialPrice = product.Price,
+                    UnitPrice = product.SubTotal,
+                    TotalPrice = product.SubTotal * quantity,
                     MainImage = mainImage,
                 });
                 Session["cart"] = cart;
@@ -59,7 +62,8 @@ namespace DQueensFashion.Controllers
                 if (index != -1)
                 {
                     cart[index].Quantity+=quantity;
-                    cart[index].Price = cart[index].Product.Price * cart[index].Quantity;
+                    cart[index].UnitPrice = cart[index].Product.SubTotal;
+                    cart[index].TotalPrice = cart[index].Product.SubTotal * cart[index].Quantity;
                 }
                 else
                 {
@@ -67,7 +71,10 @@ namespace DQueensFashion.Controllers
                     {
                         Product = product,
                         Quantity = quantity,
-                        Price = product.Price * quantity,
+                        Discount = product.Discount,
+                        InitialPrice = product.Price,
+                        UnitPrice = product.SubTotal,
+                        TotalPrice = product.SubTotal * quantity,
                         MainImage = mainImage,
                     });
                 }
@@ -96,7 +103,7 @@ namespace DQueensFashion.Controllers
             {
                 Count = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.Quantity),
                 Carts = Session["cart"] == null ? new List<Cart>() : (List<Cart>)Session["cart"],
-                SubTotal= Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.Price),
+                SubTotal= Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.TotalPrice),
             };
             return View(viewCart);
         }
@@ -112,7 +119,8 @@ namespace DQueensFashion.Controllers
             if (index != -1)
             {
                 cart[index].Quantity++;
-                cart[index].Price = cart[index].Product.Price * cart[index].Quantity;
+                cart[index].UnitPrice = cart[index].Product.SubTotal;
+                cart[index].TotalPrice = cart[index].Product.SubTotal * cart[index].Quantity;
             }
             Session["cart"] = cart;
 
@@ -120,7 +128,7 @@ namespace DQueensFashion.Controllers
             {
                 Count = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.Quantity),
                 Carts = Session["cart"] == null ? new List<Cart>() : (List<Cart>)Session["cart"],
-                SubTotal = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.Price),
+                SubTotal = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.TotalPrice),
             };
 
             return PartialView("_cartTable",viewCart);
@@ -137,7 +145,8 @@ namespace DQueensFashion.Controllers
             if (index != -1)
             {
                 cart[index].Quantity--;
-                cart[index].Price = cart[index].Product.Price * cart[index].Quantity;
+                cart[index].UnitPrice = cart[index].Product.SubTotal;
+                cart[index].TotalPrice = cart[index].Product.SubTotal * cart[index].Quantity;
                 if(cart[index].Quantity==0)
                     cart.RemoveAt(index);
             }
@@ -147,7 +156,7 @@ namespace DQueensFashion.Controllers
             {
                 Count = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.Quantity),
                 Carts = Session["cart"] == null ? new List<Cart>() : (List<Cart>)Session["cart"],
-                SubTotal = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.Price),
+                SubTotal = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.TotalPrice),
             };
 
             return PartialView("_cartTable", viewCart);
@@ -169,11 +178,19 @@ namespace DQueensFashion.Controllers
             {
                 Count = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.Quantity),
                 Carts = Session["cart"] == null ? new List<Cart>() : (List<Cart>)Session["cart"],
-                SubTotal = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.Price),
+                SubTotal = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.TotalPrice),
             };
 
             return PartialView("_cartTable", viewCart);
         }
+
+        public ActionResult CheckOut()
+        {
+            return RedirectToAction("PaymentWithPaypal", "Payment");
+        }
+
+
+        #region private functions
 
         private int isExist(int id)
         {
@@ -203,6 +220,6 @@ namespace DQueensFashion.Controllers
 
             return categories;
         }
-
+        #endregion
     }
 }

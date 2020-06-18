@@ -31,6 +31,11 @@ namespace DQueensFashion.Service.Implementation
             uow.Save();
         }
 
+        public Customer GetCustomerById(int id)
+        {
+            return uow.CustomerRepo.Get(id);
+        }
+
         private bool ValidateCustomerDetails(Customer customer)
         {
             if (customer == null)

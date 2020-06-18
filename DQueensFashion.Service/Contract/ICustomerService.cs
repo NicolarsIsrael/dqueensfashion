@@ -12,5 +12,6 @@ namespace DQueensFashion.Service.Contract
         int GetAllCustomerCount();
         void AddCustomer(Customer customer);
         Customer GedCustomerByUserId(string userId);
+        Customer GetCustomerById(int id);
     }
 }
