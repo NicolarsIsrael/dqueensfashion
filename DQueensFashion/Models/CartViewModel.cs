@@ -15,6 +15,7 @@ namespace DQueensFashion.Models
         public decimal InitialPrice { get; set; }
         public decimal UnitPrice { get; set; }
         public decimal TotalPrice { get; set; }
+        public string Description { get; set; }
     }
 
     public class ViewCartViewModel

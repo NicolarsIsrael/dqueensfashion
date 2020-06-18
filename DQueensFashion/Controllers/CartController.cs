@@ -52,6 +52,7 @@ namespace DQueensFashion.Controllers
                     UnitPrice = product.SubTotal,
                     TotalPrice = product.SubTotal * quantity,
                     MainImage = mainImage,
+                    Description = quantity > 1 ? quantity.ToString() + " Pieces" : quantity.ToString() + " Piece",
                 });
                 Session["cart"] = cart;
             }
@@ -76,6 +77,7 @@ namespace DQueensFashion.Controllers
                         UnitPrice = product.SubTotal,
                         TotalPrice = product.SubTotal * quantity,
                         MainImage = mainImage,
+                        Description = quantity > 1 ? quantity.ToString() + " Pieces" : quantity.ToString() + " Piece",
                     });
                 }
                 Session["cart"] = cart;
@@ -89,6 +91,29 @@ namespace DQueensFashion.Controllers
             ViewBag.CartNumber = GetCartNumber();
             return PartialView("_navbarCartNumber");
         }
+
+        public ActionResult AddToCartCustomMade(int id)
+        {
+            Product product = _productService.GetProductById(id);
+            if (product == null)
+                throw new Exception();
+
+            if (product.CategoryId != AppConstant.CustomMadeCategoryId)
+                throw new Exception();
+
+            ViewProductsViewModel productModel = new ViewProductsViewModel()
+            {
+                Id=product.Id,
+                Name = product.Name,
+                Quantity=product.Quantity,
+                WaistLength = product.WaistLength.HasValue ? product.WaistLength.Value : false,
+                ShoulderLength = product.ShoulderLength.HasValue ? product.ShoulderLength.Value : false,
+                BurstSize = product.BurstSize.HasValue ? product.BurstSize.Value : false,
+            };
+
+            return PartialView("_AddToCartCustomMade", productModel);
+        }
+
 
         public ActionResult GetCart()
         {

@@ -1,5 +1,5 @@
 ﻿@model DQueensFashion.Models.ViewProductsViewModel
-
+@using DQueensFashion.Utilities
 
 <div class="product-box">
     <div onclick="NavigateToProductDetails(@Model.Id)" style="cursor:pointer">
@@ -27,14 +27,46 @@
             <span class="float-right">
                 @*<i class="far fa-eye product-quickview" onclick="productQuickView(@Model.Id)"></i>*@
                 <i class="far fa-heart product-wishlist" onclick="AddToWishList(@Model.Id)"></i>
-                @*<img src="~/Content/Images/eye.svg" style="margin-right: 10px; cursor:pointer" onclick="productQuickView(@Model.Id)">*@
-                @*<img src="~/Content/Images/heart.svg" style=" cursor:pointer" onclick="AddToWishList(@Model.Id)">*@
+
             </span>
         </div>
+        @{
+            if (Model.CategoryId != AppConstant.CustomMadeCategoryId)
+            {
+                <div class="cart" onclick="AddToCart(@Model.Id)">
+                    <div href="#">Add to cart</div>
+                </div>
+            }
+            else
+            {
+                <div class="cart" onclick="AddToCartCustomMade(@Model.Id)">
+                    <div href="#">Add to cart</div>
+                </div>
+            }
+        }
 
-        <div class="cart" onclick="AddToCart(@Model.Id)">
-            <div href="#">Add to cart</div>
+    </div>
+
+</div>
+
+
+
+<!--modals-->
+<!--add to cart custom made-->
+<div class="modal fade" id="addToCartCustomMade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="padding:5px 10px">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+            </div>
+            <div class="modal-body" id="addToCartCustomMadeBody">
+
+
+            </div>
+
+
         </div>
+
     </div>
 
 </div>

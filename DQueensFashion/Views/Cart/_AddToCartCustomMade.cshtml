@@ -1,0 +1,76 @@
+﻿@model DQueensFashion.Models.ViewProductsViewModel
+@using DQueensFashion.Utilities
+
+<h6>@Model.Name</h6>
+
+@using (Html.BeginForm("BuyProduct", "Product"))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.HiddenFor(model=>Model.Id)
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="input-group mb-1">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Qty</span>
+            </div>
+            <select class="form-control" id="quantity" style="max-width:180px;">
+                @for (int i = 1; i <= Model.Quantity; i++)
+                {
+                    <option value="@i">@i</option>
+                }
+            </select>
+        </div>
+
+
+        @{
+            if (Model.BurstSize)
+            {
+                <div class="form-group">
+                    <div class="col-form-label">Burstsize</div>
+                    <select class="form-control">
+                        @foreach (var size in AppConstant.BurstSizeValues)
+                        {
+                            <option value="@size">@size</option>
+                        }
+
+                    </select>
+                </div>
+            }
+
+            if (Model.ShoulderLength)
+            {
+                <div class="form-group">
+                    <div class="col-form-label">Shoulder length</div>
+                    <select class="form-control">
+                        @foreach (var size in AppConstant.ShoulderLengthValues)
+                        {
+                            <option value="@size">@size</option>
+                        }
+
+                    </select>
+                </div>
+            }
+
+            if (Model.WaistLength)
+            {
+
+                <div class="form-group">
+                    <div class="col-form-label">Waist length</div>
+                    <select class="form-control">
+                        @foreach (var size in AppConstant.WaistLengthVallues)
+                        {
+                            <option value="@size">@size</option>
+                        }
+
+                    </select>
+                </div>
+            }
+        }
+
+        <input type="submit" value="ADD TO CART" class="btn mt-0" style="max-width:150px;background-color:#E97128;color:white" />
+    </div>
+}
+
+

@@ -15,6 +15,17 @@ function AddToCart(productId, _quantity) {
     });
 }
 
+function AddToCartCustomMade(productId) {
+
+    var url = "/Cart/AddToCartCustomMade/" + productId;
+
+    $("#addToCartCustomMadeBody").load(url, function () {
+        $("#addToCartCustomMade").modal("show");
+
+    })
+
+}
+
 
 function UpdateCartNumber() {
 
@@ -51,6 +62,7 @@ function AddToWishList(productId) {
     });
 
 }
+
 
 function ShopByCategory(categoryId) {
     window.location.href = "/Product/Index?categoryId=" + categoryId;
