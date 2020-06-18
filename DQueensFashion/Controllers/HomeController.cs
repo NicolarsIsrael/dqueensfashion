@@ -83,13 +83,13 @@ namespace DQueensFashion.Controllers
         public ActionResult About()
         {
 
-            var products = _productService.GetAllProducts();
-            foreach(var product in products)
-            {
-                product.AverageRating = _reviewService.GetAverageRating(product.Id);
-                product.SubTotal = _productService.CalculateProductPrice(product.Price, product.Discount);
-                _productService.UpdateProduct(product);
-            }
+            //var products = _productService.GetAllProducts();
+            //foreach(var product in products)
+            //{
+            //    product.AverageRating = _reviewService.GetAverageRating(product.Id);
+            //    product.SubTotal = _productService.CalculateProductPrice(product.Price, product.Discount);
+            //    _productService.UpdateProduct(product);
+            //}
 
             ViewBag.Message = "Your application description page.";
 
