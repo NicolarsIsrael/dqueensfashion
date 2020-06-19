@@ -40,9 +40,22 @@ namespace DQueensFashion.Controllers
                 ? AppConstant.DefaultProductImage
                 : _imageService.GetMainImageForProduct(product.Id).ImagePath;
 
-            if (Session["cart"] == null)
+            List<Cart> cart = new List<Cart>();
+            int index = isExist(id);
+            if (index > -1)
             {
-                List<Cart> cart = new List<Cart>();
+                cart = (List<Cart>)Session["cart"];
+                cart[index].Quantity += quantity;
+                cart[index].UnitPrice = cart[index].Product.SubTotal;
+                cart[index].TotalPrice = cart[index].Product.SubTotal * cart[index].Quantity;
+                cart[index].Description = cart[index].Quantity > 1
+                    ? cart[index].Quantity.ToString() + " Pieces"
+                    : cart[index].Quantity.ToString() + " Piece";
+            }
+            else
+            {
+                if (index == -1)
+                    cart = (List<Cart>)Session["cart"];
                 cart.Add(new Cart
                 {
                     Product = product,
@@ -54,38 +67,8 @@ namespace DQueensFashion.Controllers
                     MainImage = mainImage,
                     Description = quantity > 1 ? quantity.ToString() + " Pieces" : quantity.ToString() + " Piece",
                 });
-                
-                Session["cart"] = cart;
             }
-            else
-            {
-                List<Cart> cart = (List<Cart>)Session["cart"];
-                int index = isExist(id);
-                if (index != -1)
-                {
-                    cart[index].Quantity+=quantity;
-                    cart[index].UnitPrice = cart[index].Product.SubTotal;
-                    cart[index].TotalPrice = cart[index].Product.SubTotal * cart[index].Quantity;
-                    cart[index].Description = cart[index].Quantity > 1
-                        ? cart[index].Quantity.ToString() + " Pieces"
-                        : cart[index].Quantity.ToString() + " Piece";
-                }
-                else
-                {
-                    cart.Add(new Cart
-                    {
-                        Product = product,
-                        Quantity = quantity,
-                        Discount = product.Discount,
-                        InitialPrice = product.Price,
-                        UnitPrice = product.SubTotal,
-                        TotalPrice = product.SubTotal * quantity,
-                        MainImage = mainImage,
-                        Description = quantity > 1 ? quantity.ToString() + " Pieces" : quantity.ToString() + " Piece",
-                    });
-                }
-                Session["cart"] = cart;
-            }
+            Session["cart"] = cart;
 
             ViewCartViewModel viewCart = new ViewCartViewModel()
             {
@@ -131,9 +114,20 @@ namespace DQueensFashion.Controllers
                 ? AppConstant.DefaultProductImage
                 : _imageService.GetMainImageForProduct(product.Id).ImagePath;
 
-            if (Session["cart"] == null)
+            List<Cart> cart = new List<Cart>();
+
+            int index = isExist(cartModel.ProductId);
+            if (index > -1)
             {
-                List<Cart> cart = new List<Cart>();
+                cart = (List<Cart>)Session["cart"];
+                cart[index].Quantity += cartModel.Quantity;
+                cart[index].UnitPrice = cart[index].Product.SubTotal;
+                cart[index].TotalPrice = cart[index].Product.SubTotal * cart[index].Quantity;
+            }
+            else
+            {
+                if (index == -1)
+                    cart = (List<Cart>)Session["cart"];
                 cart.Add(new Cart
                 {
                     Product = product,
@@ -145,34 +139,8 @@ namespace DQueensFashion.Controllers
                     MainImage = mainImage,
                     Description = GetCartDescription(cartModel),
                 });
-                Session["cart"] = cart;
             }
-            else
-            {
-                List<Cart> cart = (List<Cart>)Session["cart"];
-                int index = isExist(cartModel.ProductId);
-                if (index != -1)
-                {
-                    cart[index].Quantity += cartModel.Quantity;
-                    cart[index].UnitPrice = cart[index].Product.SubTotal;
-                    cart[index].TotalPrice = cart[index].Product.SubTotal * cart[index].Quantity;
-                }
-                else
-                {
-                    cart.Add(new Cart
-                    {
-                        Product = product,
-                        Quantity = cartModel.Quantity,
-                        Discount = product.Discount,
-                        InitialPrice = product.Price,
-                        UnitPrice = product.SubTotal,
-                        TotalPrice = product.SubTotal * cartModel.Quantity,
-                        MainImage = mainImage,
-                        Description = GetCartDescription(cartModel),
-                    });
-                }
-                Session["cart"] = cart;
-            }
+            Session["cart"] = cart;
 
             ViewCartViewModel viewCart = new ViewCartViewModel()
             {
@@ -313,11 +281,13 @@ namespace DQueensFashion.Controllers
 
         private int isExist(int id)
         {
+            if (Session["cart"] == null)
+                return -2; //no cart session yet
             List<Cart> cart = (List<Cart>)Session["cart"];
             for (int i = 0; i < cart.Count; i++)
                 if (cart[i].Product.Id.Equals(id))
-                    return i;
-            return -1;
+                    return i; //item already exist in cart
+            return -1; //cart session is available but item not in cart
         }
 
         public int GetCartNumber()
