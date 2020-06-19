@@ -1,5 +1,5 @@
 ﻿@model DQueensFashion.Models.ViewCartViewModel
-
+@using DQueensFashion.Utilities
 
     <div class="viewCartTable">
 
@@ -103,6 +103,11 @@
                 </td>
                 <td style="vertical-align:middle">
                     @Html.Raw(item.Description.Replace(Environment.NewLine, "<br/>"))
+                    @if (item.Product.CategoryId == AppConstant.CustomMadeCategoryId)
+                    {
+                        <div style="color:#007bff;cursor:pointer" onclick="EditCartCustomMade(@item.Product.Id)">Edit</div>
+                    }
+
                 </td>
                 <td style="vertical-align:middle">
                     @Html.DisplayFor(modelItem => item.UnitPrice)

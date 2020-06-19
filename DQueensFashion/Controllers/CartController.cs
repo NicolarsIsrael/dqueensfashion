@@ -30,7 +30,7 @@ namespace DQueensFashion.Controllers
             return RedirectToAction(nameof(ViewCart));
         }
 
-        public ActionResult AddToCart(int id,int quantity=1)
+        public ActionResult AddToCart(int id=0,int quantity=1)
         {
             Product product = _productService.GetProductById(id);
             if (product == null)
@@ -79,7 +79,7 @@ namespace DQueensFashion.Controllers
             return PartialView("_navbarCartNumber");
         }
 
-        public ActionResult AddToCartCustomMade(int id)
+        public ActionResult AddToCartCustomMade(int id=0)
         {
             Product product = _productService.GetProductById(id);
             if (product == null)
@@ -88,7 +88,7 @@ namespace DQueensFashion.Controllers
             if (product.CategoryId != AppConstant.CustomMadeCategoryId)
                 throw new Exception();
 
-            AddToCartCustomMade productModel = new AddToCartCustomMade()
+            AddToCartCustomMade cartModel = new AddToCartCustomMade()
             {
                 ProductId=product.Id,
                 ProductName = product.Name,
@@ -98,7 +98,7 @@ namespace DQueensFashion.Controllers
                 BurstSize = product.BurstSize.HasValue ? product.BurstSize.Value : false,
             };
 
-            return PartialView("_AddToCartCustomMade", productModel);
+            return PartialView("_AddToCartCustomMade", cartModel);
         }
 
         [HttpPost]
@@ -137,6 +137,9 @@ namespace DQueensFashion.Controllers
                     TotalPrice = product.SubTotal * cartModel.Quantity,
                     MainImage = mainImage,
                     Description = GetCartDescription(cartModel),
+                    BurstSizeValue=cartModel.BurstSizeValue,
+                    ShoulderLengthValue = cartModel.ShoulderLengthValue,
+                    WaistLengthValue = cartModel.WaistLengthValue,
                 });
             }
             Session["cart"] = cart;
@@ -150,6 +153,36 @@ namespace DQueensFashion.Controllers
             return PartialView("_navbarCartNumber");
         }
 
+        public ActionResult EditCartCustomMade(int id=0)
+        {
+            Product product = _productService.GetProductById(id);
+            if (product == null)
+                throw new Exception();
+
+            if (product.CategoryId != AppConstant.CustomMadeCategoryId)
+                throw new Exception();
+
+            List<Cart> cart = new List<Cart>();
+            int index = isExist(id);
+            if (index > -1)
+                cart = (List<Cart>)Session["cart"];
+            else throw new Exception();
+
+            EditToCartCustomMade cartModel = new EditToCartCustomMade()
+            {
+                ProductId = product.Id,
+                ProductName = product.Name,
+                Quantity = product.Quantity,
+                WaistLength = product.WaistLength.HasValue ? product.WaistLength.Value : false,
+                WaistLengthValue = cart[index].WaistLengthValue,
+                ShoulderLength = product.ShoulderLength.HasValue ? product.ShoulderLength.Value : false,
+                ShoulderLengthValue = cart[index].ShoulderLengthValue,
+                BurstSize = product.BurstSize.HasValue ? product.BurstSize.Value : false,
+                BurstSizeValue = cart[index].BurstSizeValue,
+            };
+
+            return PartialView("_EditCartCustomMade", cartModel);
+        }
 
         public ActionResult GetCart()
         {

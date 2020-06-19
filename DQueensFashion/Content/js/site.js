@@ -51,6 +51,14 @@ function AddToCartCustomMadePost() {
     });
 }
 
+function EditCartCustomMade(productId) {
+    var url = "/Cart/EditCartCustomMade/" + productId;
+
+    $("#addToCartCustomMadeBody").load(url, function () {
+        $("#addToCartCustomMade").modal("show");
+
+    })
+}
 
 function UpdateCartNumber() {
 

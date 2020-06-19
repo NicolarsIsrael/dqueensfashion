@@ -1,0 +1,100 @@
+﻿
+@model DQueensFashion.Models.EditToCartCustomMade
+@using DQueensFashion.Utilities
+
+<h6>@Model.ProductName</h6>
+
+@using (Html.BeginForm("AddToCartCustomMade", "Cart"))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <input type="hidden" id="ProductId" value="@Model.ProductId" />
+
+        <div class="form-group">
+            <div class="col-form-label">Quantity</div>
+            <select class="form-control" id="Quantity">
+                @for (int i = 1; i <= Model.Quantity; i++)
+                {
+                    <option value="@i">@i</option>
+                }
+            </select>
+        </div>
+
+        <div class="row">
+
+            @{
+                if (Model.BurstSize)
+                {
+
+                    <div class="form-group col-6">
+                        <div class="col-form-label">Burstsize</div>
+                        <select class="form-control" id="BurstSizeValue">
+                            @foreach (var size in AppConstant.BurstSizeValues)
+                            {
+                                if (size == Model.BurstSizeValue)
+                                {
+                                    <option value="@size" selected>@size</option>
+                                }
+                                else
+                                {
+                                    <option value="@size">@size</option>
+                                }
+                            }
+
+                        </select>
+                    </div>
+                }
+
+                if (Model.ShoulderLength)
+                {
+
+                    <div class="form-group col-6">
+                        <div class="col-form-label">Shoulder length</div>
+                        <select class="form-control" id="ShoulderLengthValue">
+                            @foreach (var size in AppConstant.ShoulderLengthValues)
+                            {
+                                if (size == Model.ShoulderLengthValue)
+                                {
+                                    <option value="@size" selected>@size</option>
+                                }
+                                else
+                                {
+                                    <option value="@size">@size</option>
+                                }
+                            }
+
+                        </select>
+                    </div>
+                }
+
+                if (Model.WaistLength)
+                {
+
+                    <div class="form-group col-6">
+                        <div class="col-form-label">Waist length</div>
+                        <select class="form-control" id="WaistLengthValue">
+                            @foreach (var size in AppConstant.WaistLengthVallues)
+                            {
+                                if (size == Model.WaistLengthValue)
+                                {
+                                    <option value="@size" selected>@size</option>
+                                }
+                                <option value="@size">@size</option>
+                            }
+
+                        </select>
+                    </div>
+                }
+            }
+
+        </div>
+
+        <input type="button" value="ADD TO CART" class="btn mt-0"
+               style="max-width:150px;background-color:#E97128;color:white"
+               onclick="AddToCartCustomMadePost()" />
+    </div>
+}
+
+

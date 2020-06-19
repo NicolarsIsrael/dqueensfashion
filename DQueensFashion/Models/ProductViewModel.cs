@@ -100,9 +100,6 @@ namespace DQueensFashion.Models
         [Display(Name = "Shoulder length")]
         public bool ShoulderLength { get; set; }
 
-        public int BurstSizeValue { get; set; }
-        public int ShoulderLengthValue { get; set; }
-        public int WaistLengthValue { get; set; }
     }
 
     public class EditProductViewModel

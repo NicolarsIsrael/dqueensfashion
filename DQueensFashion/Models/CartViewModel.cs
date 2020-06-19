@@ -17,6 +17,18 @@ namespace DQueensFashion.Models
         public decimal UnitPrice { get; set; }
         public decimal TotalPrice { get; set; }
         public string Description { get; set; }
+
+        //measurement
+        [Display(Name = "Waist length")]
+        public bool WaistLength { get; set; }
+        [Display(Name = "Burst size")]
+        public bool BurstSize { get; set; }
+        [Display(Name = "Shoulder length")]
+        public bool ShoulderLength { get; set; }
+
+        public int BurstSizeValue { get; set; }
+        public int ShoulderLengthValue { get; set; }
+        public int WaistLengthValue { get; set; }
     }
 
     public class ViewCartViewModel
@@ -27,6 +39,25 @@ namespace DQueensFashion.Models
     }
 
     public class AddToCartCustomMade
+    {
+        public int ProductId { get; set; }
+        public string ProductName { get; set; }
+        public int Quantity { get; set; }
+
+        //measurement
+        [Display(Name = "Waist length")]
+        public bool WaistLength { get; set; }
+        [Display(Name = "Burst size")]
+        public bool BurstSize { get; set; }
+        [Display(Name = "Shoulder length")]
+        public bool ShoulderLength { get; set; }
+
+        public int BurstSizeValue { get; set; }
+        public int ShoulderLengthValue { get; set; }
+        public int WaistLengthValue { get; set; }
+    }
+
+    public class EditToCartCustomMade
     {
         public int ProductId { get; set; }
         public string ProductName { get; set; }
