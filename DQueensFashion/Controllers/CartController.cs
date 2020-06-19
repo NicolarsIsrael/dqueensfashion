@@ -102,7 +102,6 @@ namespace DQueensFashion.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult AddToCartCustomMade(AddToCartCustomMade cartModel)
         {
 

@@ -8,12 +8,12 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        @Html.HiddenFor(model=>Model.ProductId)
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <input type="hidden" id="ProductId" value="@Model.ProductId"/>
 
         <div class="form-group">
             <div class="col-form-label">Quantity</div>
-            <select class="form-control" name="Quantity">
+            <select class="form-control" id="Quantity">
                 @for (int i = 1; i <= Model.Quantity; i++)
                 {
                     <option value="@i">@i</option>
@@ -29,7 +29,7 @@
 
                     <div class="form-group col-6">
                         <div class="col-form-label">Burstsize</div>
-                        <select class="form-control" name="BurstSizeValue">
+                        <select class="form-control" id="BurstSizeValue">
                             @foreach (var size in AppConstant.BurstSizeValues)
                             {
                                 <option value="@size">@size</option>
@@ -44,7 +44,7 @@
                  
                     <div class="form-group col-6">
                         <div class="col-form-label">Shoulder length</div>
-                        <select class="form-control" name="ShoulderLengthValue">
+                        <select class="form-control" id="ShoulderLengthValue">
                             @foreach (var size in AppConstant.ShoulderLengthValues)
                             {
                                 <option value="@size">@size</option>
@@ -59,7 +59,7 @@
 
                     <div class="form-group col-6">
                         <div class="col-form-label">Waist length</div>
-                        <select class="form-control" name="WaistLengthValue">
+                        <select class="form-control" id="WaistLengthValue">
                             @foreach (var size in AppConstant.WaistLengthVallues)
                             {
                                 <option value="@size">@size</option>
@@ -72,7 +72,9 @@
 
         </div>
 
-        <input type="submit" value="ADD TO CART" class="btn mt-0" style="max-width:150px;background-color:#E97128;color:white" />
+        <input type="button" value="ADD TO CART" class="btn mt-0" 
+               style="max-width:150px;background-color:#E97128;color:white"
+               onclick="AddToCartCustomMadePost()" />
     </div>
 }
 

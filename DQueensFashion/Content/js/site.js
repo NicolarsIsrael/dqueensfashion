@@ -26,6 +26,31 @@ function AddToCartCustomMade(productId) {
 
 }
 
+function AddToCartCustomMadePost() {
+    var cartModel = {
+        ProductId: $('#ProductId').val(),
+        Quantity: $('#Quantity').val(),
+        BurstSizeValue: $('#BurstSizeValue').val(),
+        ShoulderLengthValue: $('#ShoulderLengthValue').val(),
+        WaistLengthValue: $('#WaistLengthValue').val(),
+    }
+
+    $.ajax({
+        url: "/Cart/AddToCartCustomMade",
+        data: JSON.stringify(cartModel),
+        type: "POST",
+        contentType: "application/json;charset=utf-8",
+        dataType: "html",
+        success: function (result) {
+            $("#navbarCartNumber").html(result);
+            $('#addToCartCustomMade').modal('hide');
+        },
+        error: function (xhr, status, error) {
+            alertify.error("Error");
+        }
+    });
+}
+
 
 function UpdateCartNumber() {
 
