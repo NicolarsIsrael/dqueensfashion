@@ -54,6 +54,7 @@ namespace DQueensFashion.Controllers
                     MainImage = mainImage,
                     Description = quantity > 1 ? quantity.ToString() + " Pieces" : quantity.ToString() + " Piece",
                 });
+                
                 Session["cart"] = cart;
             }
             else
@@ -65,6 +66,9 @@ namespace DQueensFashion.Controllers
                     cart[index].Quantity+=quantity;
                     cart[index].UnitPrice = cart[index].Product.SubTotal;
                     cart[index].TotalPrice = cart[index].Product.SubTotal * cart[index].Quantity;
+                    cart[index].Description = cart[index].Quantity > 1
+                        ? cart[index].Quantity.ToString() + " Pieces"
+                        : cart[index].Quantity.ToString() + " Piece";
                 }
                 else
                 {
@@ -101,10 +105,10 @@ namespace DQueensFashion.Controllers
             if (product.CategoryId != AppConstant.CustomMadeCategoryId)
                 throw new Exception();
 
-            ViewProductsViewModel productModel = new ViewProductsViewModel()
+            AddToCartCustomMade productModel = new AddToCartCustomMade()
             {
-                Id=product.Id,
-                Name = product.Name,
+                ProductId=product.Id,
+                ProductName = product.Name,
                 Quantity=product.Quantity,
                 WaistLength = product.WaistLength.HasValue ? product.WaistLength.Value : false,
                 ShoulderLength = product.ShoulderLength.HasValue ? product.ShoulderLength.Value : false,
@@ -112,6 +116,71 @@ namespace DQueensFashion.Controllers
             };
 
             return PartialView("_AddToCartCustomMade", productModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddToCartCustomMade(AddToCartCustomMade cartModel)
+        {
+
+            Product product = _productService.GetProductById(cartModel.ProductId);
+            if (product == null)
+                throw new Exception();
+
+            string mainImage = _imageService.GetImageFilesForProduct(product.Id).Count() < 1
+                ? AppConstant.DefaultProductImage
+                : _imageService.GetMainImageForProduct(product.Id).ImagePath;
+
+            if (Session["cart"] == null)
+            {
+                List<Cart> cart = new List<Cart>();
+                cart.Add(new Cart
+                {
+                    Product = product,
+                    Quantity = cartModel.Quantity,
+                    Discount = product.Discount,
+                    InitialPrice = product.Price,
+                    UnitPrice = product.SubTotal,
+                    TotalPrice = product.SubTotal * cartModel.Quantity,
+                    MainImage = mainImage,
+                    Description = GetCartDescription(cartModel),
+                });
+                Session["cart"] = cart;
+            }
+            else
+            {
+                List<Cart> cart = (List<Cart>)Session["cart"];
+                int index = isExist(cartModel.ProductId);
+                if (index != -1)
+                {
+                    cart[index].Quantity += cartModel.Quantity;
+                    cart[index].UnitPrice = cart[index].Product.SubTotal;
+                    cart[index].TotalPrice = cart[index].Product.SubTotal * cart[index].Quantity;
+                }
+                else
+                {
+                    cart.Add(new Cart
+                    {
+                        Product = product,
+                        Quantity = cartModel.Quantity,
+                        Discount = product.Discount,
+                        InitialPrice = product.Price,
+                        UnitPrice = product.SubTotal,
+                        TotalPrice = product.SubTotal * cartModel.Quantity,
+                        MainImage = mainImage,
+                        Description = GetCartDescription(cartModel),
+                    });
+                }
+                Session["cart"] = cart;
+            }
+
+            ViewCartViewModel viewCart = new ViewCartViewModel()
+            {
+                Count = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.Quantity),
+                Carts = Session["cart"] == null ? new List<Cart>() : (List<Cart>)Session["cart"],
+            };
+            ViewBag.CartNumber = GetCartNumber();
+            return PartialView("_navbarCartNumber");
         }
 
 
@@ -146,6 +215,12 @@ namespace DQueensFashion.Controllers
                 cart[index].Quantity++;
                 cart[index].UnitPrice = cart[index].Product.SubTotal;
                 cart[index].TotalPrice = cart[index].Product.SubTotal * cart[index].Quantity;
+                if (product.CategoryId != AppConstant.CustomMadeCategoryId)
+                {
+                    cart[index].Description = cart[index].Quantity > 1
+                    ? cart[index].Quantity.ToString() + " Pieces"
+                    : cart[index].Quantity.ToString() + " Piece";
+                }
             }
             Session["cart"] = cart;
 
@@ -172,7 +247,14 @@ namespace DQueensFashion.Controllers
                 cart[index].Quantity--;
                 cart[index].UnitPrice = cart[index].Product.SubTotal;
                 cart[index].TotalPrice = cart[index].Product.SubTotal * cart[index].Quantity;
-                if(cart[index].Quantity==0)
+                if (product.CategoryId != AppConstant.CustomMadeCategoryId)
+                {
+                    cart[index].Description = cart[index].Quantity > 1
+                    ? cart[index].Quantity.ToString() + " Pieces"
+                    : cart[index].Quantity.ToString() + " Piece";
+                }
+
+                if (cart[index].Quantity==0)
                     cart.RemoveAt(index);
             }
             Session["cart"] = cart;
@@ -256,6 +338,21 @@ namespace DQueensFashion.Controllers
                 }).OrderBy(c => c.Name);
 
             return categories;
+        }
+
+        private string GetCartDescription(AddToCartCustomMade cartModel)
+        {
+            string description = "";
+            if (cartModel.ShoulderLengthValue > 0)
+                description += "Shoulder length : " + cartModel.ShoulderLengthValue + "\r\n";
+
+            if (cartModel.WaistLengthValue > 0)
+                description += "Waist length : " + cartModel.WaistLengthValue + "\r\n";
+
+            if (cartModel.BurstSizeValue > 0)
+                description += "Burst size : " + cartModel.BurstSizeValue + "\r\n";
+
+            return description;
         }
         #endregion
     }

@@ -71,6 +71,7 @@
                     <th></th>
                     <th></th>
                     <th></th>
+                    <th>Description</th>
                     <th>Price</th>
                     <th>Quantity</th>
                     <th>Total</th>
@@ -78,52 +79,55 @@
 
                 @foreach (var item in Model.Carts)
                 {
-                    <tr>
+            <tr>
 
-                        <td style="vertical-align:middle">
-                            <div onclick="RemoveCartItem(@item.Product.Id)" style="cursor:pointer">
-                                <img src="~/Content/Images/x-circle.svg" />
-                            </div>
+                <td style="vertical-align:middle">
+                    <div onclick="RemoveCartItem(@item.Product.Id)" style="cursor:pointer">
+                        <img src="~/Content/Images/x-circle.svg" />
+                    </div>
+                </td>
+                @{
+                    if (!string.IsNullOrEmpty(item.MainImage))
+                    {
+                        <td>
+                            <img src="@Url.Content(item.MainImage)" style="width:70px;height:70px" />
                         </td>
-                        @{
-                            if (!string.IsNullOrEmpty(item.MainImage))
-                            {
-                                <td>
-                                    <img src="@Url.Content(item.MainImage)" style="width:70px;height:70px" />
-                                </td>
-                            }
-                            else
-                            {
-                                <td></td>
-                            }
-                        }
-                        <td style="vertical-align:middle">
-                            @Html.DisplayFor(modelItem => item.Product.Name)
-                        </td>
-                        <td style="vertical-align:middle">
-                            @Html.DisplayFor(modelItem => item.UnitPrice)
-                        </td>
-                        <td style="vertical-align:middle">
+                    }
+                    else
+                    {
+                        <td></td>
+                    }
+                }
+                <td style="vertical-align:middle">
+                    @Html.DisplayFor(modelItem => item.Product.Name)
+                </td>
+                <td style="vertical-align:middle">
+                    @Html.Raw(item.Description.Replace(Environment.NewLine, "<br/>"))
+                </td>
+                <td style="vertical-align:middle">
+                    @Html.DisplayFor(modelItem => item.UnitPrice)
+                </td>
+                <td style="vertical-align:middle">
 
-                            <div class="input-group">
-                                <span class="input-group-btn">
-                                    <button type="button" class="btn quantity-button minus-button" onclick="DecreaseQuantity(@item.Product.Id)">
-                                        -
-                                    </button>
-                                </span>
-                                <input type="text" class="cart-quantity" value="@item.Quantity" disabled>
-                                <span class="input-group-btn">
-                                    <button type="button" class="btn quantity-button plus-button" onclick="IncreaseQuantity(@item.Product.Id)">
-                                        +
-                                    </button>
-                                </span>
-                            </div>
+                    <div class="input-group">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn quantity-button minus-button" onclick="DecreaseQuantity(@item.Product.Id)">
+                                -
+                            </button>
+                        </span>
+                        <input type="text" class="cart-quantity" value="@item.Quantity" disabled>
+                        <span class="input-group-btn">
+                            <button type="button" class="btn quantity-button plus-button" onclick="IncreaseQuantity(@item.Product.Id)">
+                                +
+                            </button>
+                        </span>
+                    </div>
 
-                        </td>
-                        <td style="vertical-align:middle">
-                            @Html.DisplayFor(modelItem => item.TotalPrice)
-                        </td>
-                    </tr>
+                </td>
+                <td style="vertical-align:middle">
+                    @Html.DisplayFor(modelItem => item.TotalPrice)
+                </td>
+            </tr>
                 }
 
             </table>

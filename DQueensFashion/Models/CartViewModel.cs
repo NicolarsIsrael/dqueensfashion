@@ -1,6 +1,7 @@
 ﻿using DQueensFashion.Core.Model;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -23,5 +24,24 @@ namespace DQueensFashion.Models
         public decimal SubTotal { get; set; }
         public int Count { get; set; }
         public IEnumerable<Cart> Carts { get; set; }
+    }
+
+    public class AddToCartCustomMade
+    {
+        public int ProductId { get; set; }
+        public string ProductName { get; set; }
+        public int Quantity { get; set; }
+
+        //measurement
+        [Display(Name = "Waist length")]
+        public bool WaistLength { get; set; }
+        [Display(Name = "Burst size")]
+        public bool BurstSize { get; set; }
+        [Display(Name = "Shoulder length")]
+        public bool ShoulderLength { get; set; }
+
+        public int BurstSizeValue { get; set; }
+        public int ShoulderLengthValue { get; set; }
+        public int WaistLengthValue { get; set; }
     }
 }
