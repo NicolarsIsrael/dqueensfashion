@@ -74,6 +74,7 @@ namespace DQueensFashion.Controllers
             {
                 Count = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.Quantity),
                 Carts = Session["cart"] == null ? new List<Cart>() : (List<Cart>)Session["cart"],
+                SubTotal = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.TotalPrice),
             };
             ViewBag.CartNumber = GetCartNumber();
             return PartialView("_navbarCartNumber");
@@ -88,7 +89,7 @@ namespace DQueensFashion.Controllers
             if (product.CategoryId != AppConstant.CustomMadeCategoryId)
                 throw new Exception();
 
-            AddToCartCustomMade cartModel = new AddToCartCustomMade()
+            CartCustomMadeViewModel cartModel = new CartCustomMadeViewModel()
             {
                 ProductId=product.Id,
                 ProductName = product.Name,
@@ -102,7 +103,7 @@ namespace DQueensFashion.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddToCartCustomMade(AddToCartCustomMade cartModel)
+        public ActionResult AddToCartCustomMade(CartCustomMadeViewModel cartModel)
         {
 
             Product product = _productService.GetProductById(cartModel.ProductId);
@@ -148,6 +149,7 @@ namespace DQueensFashion.Controllers
             {
                 Count = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.Quantity),
                 Carts = Session["cart"] == null ? new List<Cart>() : (List<Cart>)Session["cart"],
+                SubTotal = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.TotalPrice),
             };
             ViewBag.CartNumber = GetCartNumber();
             return PartialView("_navbarCartNumber");
@@ -168,11 +170,12 @@ namespace DQueensFashion.Controllers
                 cart = (List<Cart>)Session["cart"];
             else throw new Exception();
 
-            EditToCartCustomMade cartModel = new EditToCartCustomMade()
+            CartCustomMadeViewModel cartModel = new CartCustomMadeViewModel()
             {
                 ProductId = product.Id,
                 ProductName = product.Name,
                 Quantity = product.Quantity,
+                PrevQuantity = cart[index].Quantity,
                 WaistLength = product.WaistLength.HasValue ? product.WaistLength.Value : false,
                 WaistLengthValue = cart[index].WaistLengthValue,
                 ShoulderLength = product.ShoulderLength.HasValue ? product.ShoulderLength.Value : false,
@@ -184,6 +187,39 @@ namespace DQueensFashion.Controllers
             return PartialView("_EditCartCustomMade", cartModel);
         }
 
+        [HttpPost]
+        public ActionResult EditCartCustomMade(CartCustomMadeViewModel cartModel)
+        {
+            Product product = _productService.GetProductById(cartModel.ProductId);
+            if (product == null)
+                throw new Exception();
+
+            List<Cart> cart = new List<Cart>();
+            int index = isExist(cartModel.ProductId);
+            if (index > -1)
+            {
+                cart = (List<Cart>)Session["cart"];
+                cart[index].Quantity += cartModel.Quantity;
+                cart[index].UnitPrice = cart[index].Product.SubTotal;
+                cart[index].TotalPrice = cart[index].Product.SubTotal * cart[index].Quantity;
+                cart[index].Description = GetCartDescription(cartModel);
+                cart[index].BurstSizeValue = cartModel.BurstSizeValue;
+                cart[index].ShoulderLengthValue = cartModel.ShoulderLengthValue;
+                cart[index].WaistLengthValue = cartModel.WaistLengthValue;
+            }
+            else throw new Exception();
+
+            Session["cart"] = cart;
+
+            ViewCartViewModel viewCart = new ViewCartViewModel()
+            {
+                Count = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.Quantity),
+                Carts = Session["cart"] == null ? new List<Cart>() : (List<Cart>)Session["cart"],
+                SubTotal = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.TotalPrice),
+            };
+
+            return PartialView("_cartTable", viewCart);
+        }
         public ActionResult GetCart()
         {
             ViewBag.CartNumber = GetCartNumber();
@@ -342,7 +378,7 @@ namespace DQueensFashion.Controllers
             return categories;
         }
 
-        private string GetCartDescription(AddToCartCustomMade cartModel)
+        private string GetCartDescription(CartCustomMadeViewModel cartModel)
         {
             string description = "";
             if (cartModel.ShoulderLengthValue > 0)

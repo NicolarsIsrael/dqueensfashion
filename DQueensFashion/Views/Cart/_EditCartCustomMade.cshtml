@@ -1,5 +1,5 @@
 ﻿
-@model DQueensFashion.Models.EditToCartCustomMade
+@model DQueensFashion.Models.CartCustomMadeViewModel
 @using DQueensFashion.Utilities
 
 <h6>@Model.ProductName</h6>
@@ -17,7 +17,15 @@
             <select class="form-control" id="Quantity">
                 @for (int i = 1; i <= Model.Quantity; i++)
                 {
-                    <option value="@i">@i</option>
+                    if (i == Model.PrevQuantity)
+                    {
+                        <option value="@i" selected>@i</option>
+                    }
+                    else
+                    {
+                        <option value="@i">@i</option>
+                    }
+
                 }
             </select>
         </div>
@@ -91,9 +99,9 @@
 
         </div>
 
-        <input type="button" value="ADD TO CART" class="btn mt-0"
+        <input type="button" value="EDIT" class="btn mt-0"
                style="max-width:150px;background-color:#E97128;color:white"
-               onclick="AddToCartCustomMadePost()" />
+               onclick="EditCartCustomMadePost()" />
     </div>
 }
 

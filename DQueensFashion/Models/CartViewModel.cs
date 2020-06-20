@@ -38,11 +38,12 @@ namespace DQueensFashion.Models
         public IEnumerable<Cart> Carts { get; set; }
     }
 
-    public class AddToCartCustomMade
+    public class CartCustomMadeViewModel
     {
         public int ProductId { get; set; }
         public string ProductName { get; set; }
         public int Quantity { get; set; }
+        public int PrevQuantity { get; set; }
 
         //measurement
         [Display(Name = "Waist length")]
@@ -57,22 +58,4 @@ namespace DQueensFashion.Models
         public int WaistLengthValue { get; set; }
     }
 
-    public class EditToCartCustomMade
-    {
-        public int ProductId { get; set; }
-        public string ProductName { get; set; }
-        public int Quantity { get; set; }
-
-        //measurement
-        [Display(Name = "Waist length")]
-        public bool WaistLength { get; set; }
-        [Display(Name = "Burst size")]
-        public bool BurstSize { get; set; }
-        [Display(Name = "Shoulder length")]
-        public bool ShoulderLength { get; set; }
-
-        public int BurstSizeValue { get; set; }
-        public int ShoulderLengthValue { get; set; }
-        public int WaistLengthValue { get; set; }
-    }
 }
