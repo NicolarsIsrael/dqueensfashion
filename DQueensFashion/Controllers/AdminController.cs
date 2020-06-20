@@ -549,6 +549,42 @@ namespace DQueensFashion.Controllers
             return PartialView("_productImages",images);
         }
 
+        public ActionResult OrderDetails(int id=0,string returnUrl="")
+        {
+            Order order = _orderService.GetOrderById(id);
+            if (order == null)
+                return HttpNotFound();
+
+            var allImages = _imageService.GetAllImageFiles();
+
+            ViewOrderViewModel orderModel = new ViewOrderViewModel()
+            {
+                OrderId = order.Id,
+                CustomerId = order.CustomerId,
+                CustomerName = "Ade",// _customerService.GetCustomerById(order.CustomerId).Fullname,
+                TotalAmount = order.TotalAmount,
+                TotalQuantity = order.TotalQuantity,
+                LineItems = order.LineItems
+                        .Select(lineItem => new ViewLineItem()
+                        {
+                            ProductName = lineItem.Product.Name,
+                            Quantity = lineItem.Quantity,
+                            TotalAmount = lineItem.TotalAmount,
+                            ProductImage = allImages.Where(image => image.ProductId == lineItem.Product.Id).Count() < 1 ?
+                                AppConstant.DefaultProductImage :
+                                allImages.Where(image => image.ProductId == lineItem.Product.Id).FirstOrDefault().ImagePath,
+                        }),
+                OrderStatus = order.OrderStatus.ToString(),
+                DateCreated = order.DateCreated,
+                DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy/r/nhh:mm:ss"),
+                LineItemConcatenatedString = string.Join(",", order.LineItems.Select(x => x.Product.Name)),
+                
+            };
+
+
+            return View(orderModel);
+        }
+
         public ActionResult Orders()
         {
             IEnumerable<ViewOrderViewModel> orderModel = _orderService.GetAllOrders()
@@ -562,7 +598,7 @@ namespace DQueensFashion.Controllers
                     LineItems = order.LineItems
                         .Select(lineItem => new ViewLineItem()
                         {
-                            Product = lineItem.Product.Name,
+                            ProductName = lineItem.Product.Name,
                             Quantity = lineItem.Quantity,
                             TotalAmount = lineItem.TotalAmount,
                         }),
@@ -582,19 +618,19 @@ namespace DQueensFashion.Controllers
                 {
                     OrderId = order.Id,
                     CustomerId = order.CustomerId,
-                    CustomerName = _customerService.GetCustomerById(order.CustomerId).Fullname,
+                    CustomerName = "Ade",// _customerService.GetCustomerById(order.CustomerId).Fullname,
                     TotalAmount = order.TotalAmount,
                     TotalQuantity = order.TotalQuantity,
                     LineItems = order.LineItems
                         .Select(lineItem => new ViewLineItem()
                         {
-                            Product = lineItem.Product.Name,
+                            ProductName = lineItem.Product.Name,
                             Quantity = lineItem.Quantity,
                             TotalAmount = lineItem.TotalAmount,
                         }),
                     OrderStatus = order.OrderStatus.ToString(),
                     DateCreated = order.DateCreated,
-                    DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy - hh:mm:ss"),
+                    DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy/r/nhh:mm:ss"),
                     LineItemConcatenatedString = string.Join(",",order.LineItems.Select(x=>x.Product.Name)),
                 }).OrderByDescending(order => order.DateCreated).ToList();
 
@@ -621,7 +657,7 @@ namespace DQueensFashion.Controllers
                     LineItems = order.LineItems
                         .Select(lineItem => new ViewLineItem()
                         {
-                            Product = lineItem.Product.Name,
+                            ProductName = lineItem.Product.Name,
                             Quantity = lineItem.Quantity,
                             TotalAmount = lineItem.TotalAmount,
                         }),
@@ -648,7 +684,7 @@ namespace DQueensFashion.Controllers
                            LineItems = order.LineItems
                                .Select(lineItem => new ViewLineItem()
                                {
-                                   Product = lineItem.Product.Name,
+                                   ProductName = lineItem.Product.Name,
                                    Quantity = lineItem.Quantity,
                                    TotalAmount = lineItem.TotalAmount,
                                }),
@@ -687,7 +723,7 @@ namespace DQueensFashion.Controllers
                     LineItems = order.LineItems
                         .Select(lineItem => new ViewLineItem()
                         {
-                            Product = lineItem.Product.Name,
+                            ProductName = lineItem.Product.Name,
                             Quantity = lineItem.Quantity,
                             TotalAmount = lineItem.TotalAmount,
                         }),
@@ -713,7 +749,7 @@ namespace DQueensFashion.Controllers
                      LineItems = order.LineItems
                          .Select(lineItem => new ViewLineItem()
                          {
-                             Product = lineItem.Product.Name,
+                             ProductName = lineItem.Product.Name,
                              Quantity = lineItem.Quantity,
                              TotalAmount = lineItem.TotalAmount,
                          }),
@@ -747,7 +783,7 @@ namespace DQueensFashion.Controllers
                     LineItems = order.LineItems
                         .Select(lineItem => new ViewLineItem()
                         {
-                            Product = lineItem.Product.Name,
+                            ProductName = lineItem.Product.Name,
                             Quantity = lineItem.Quantity,
                             TotalAmount = lineItem.TotalAmount,
                         }),
@@ -772,7 +808,7 @@ namespace DQueensFashion.Controllers
                     LineItems = order.LineItems
                         .Select(lineItem => new ViewLineItem()
                         {
-                            Product = lineItem.Product.Name,
+                            ProductName = lineItem.Product.Name,
                             Quantity = lineItem.Quantity,
                             TotalAmount = lineItem.TotalAmount,
                         }),
@@ -806,7 +842,7 @@ namespace DQueensFashion.Controllers
                    LineItems = order.LineItems
                        .Select(lineItem => new ViewLineItem()
                        {
-                           Product = lineItem.Product.Name,
+                           ProductName = lineItem.Product.Name,
                            Quantity = lineItem.Quantity,
                            TotalAmount = lineItem.TotalAmount,
                        }),
@@ -831,7 +867,7 @@ namespace DQueensFashion.Controllers
                   LineItems = order.LineItems
                       .Select(lineItem => new ViewLineItem()
                       {
-                          Product = lineItem.Product.Name,
+                          ProductName = lineItem.Product.Name,
                           Quantity = lineItem.Quantity,
                           TotalAmount = lineItem.TotalAmount,
                       }),
@@ -865,7 +901,7 @@ namespace DQueensFashion.Controllers
                   LineItems = order.LineItems
                       .Select(lineItem => new ViewLineItem()
                       {
-                          Product = lineItem.Product.Name,
+                          ProductName = lineItem.Product.Name,
                           Quantity = lineItem.Quantity,
                           TotalAmount = lineItem.TotalAmount,
                       }),
@@ -890,7 +926,7 @@ namespace DQueensFashion.Controllers
                    LineItems = order.LineItems
                        .Select(lineItem => new ViewLineItem()
                        {
-                           Product = lineItem.Product.Name,
+                           ProductName = lineItem.Product.Name,
                            Quantity = lineItem.Quantity,
                            TotalAmount = lineItem.TotalAmount,
                        }),

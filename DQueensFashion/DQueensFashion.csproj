@@ -523,6 +523,7 @@
     <Content Include="Views\Payment\Failed.cshtml" />
     <Content Include="Views\Cart\_AddToCartCustomMade.cshtml" />
     <Content Include="Views\Cart\_EditCartCustomMade.cshtml" />
+    <Content Include="Views\Admin\OrderDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

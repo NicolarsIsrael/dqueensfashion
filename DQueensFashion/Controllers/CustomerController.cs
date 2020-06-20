@@ -134,7 +134,7 @@ namespace DQueensFashion.Controllers
                     LineItems = order.LineItems
                         .Select(lineItem => new ViewLineItem()
                         {
-                            Product = lineItem.Product.Name,
+                            ProductName = lineItem.Product.Name,
                             Quantity = lineItem.Quantity,
                             TotalAmount = lineItem.TotalAmount,
                         }),
@@ -162,7 +162,7 @@ namespace DQueensFashion.Controllers
                     LineItems = order.LineItems
                         .Select(lineItem => new ViewLineItem()
                         {
-                            Product = lineItem.Product.Name,
+                            ProductName = lineItem.Product.Name,
                             Quantity = lineItem.Quantity,
                             TotalAmount = lineItem.TotalAmount,
                         }),

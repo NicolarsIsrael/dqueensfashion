@@ -1,0 +1,52 @@
+﻿@model DQueensFashion.Models.ViewOrderViewModel
+@{
+    ViewBag.Title = "OrderDetails";
+    Layout = "~/Views/Shared/_dashboardLayout.cshtml";
+}
+
+<h2>Order Details</h2>
+<div>
+    @Model.OrderId
+</div>
+<div>
+    @Model.TotalQuantity item
+    @Model.DateCreatedString
+    @Model.TotalAmount
+</div>
+
+<div>
+    Items in your order
+</div>
+<div>
+    <div class="row">
+
+        @foreach (var lineItem in Model.LineItems)
+        {
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-4">
+                                <img src="@Url.Content(lineItem.ProductImage)" style="width:100%" class="d-block" />
+                            </div>
+                            <div class="col-8">
+                                <div>
+                                    @lineItem.ProductName
+                                </div>
+                                <div>
+                                    @lineItem.Quantity
+                                </div>
+                                <div>
+                                    @lineItem.UnitPrice
+                                </div>
+                                <div>
+                                    @lineItem.TotalAmount
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
