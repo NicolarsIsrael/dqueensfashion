@@ -573,10 +573,11 @@ namespace DQueensFashion.Controllers
                             ProductImage = allImages.Where(image => image.ProductId == lineItem.Product.Id).Count() < 1 ?
                                 AppConstant.DefaultProductImage :
                                 allImages.Where(image => image.ProductId == lineItem.Product.Id).FirstOrDefault().ImagePath,
+                            Description = lineItem.Description,
                         }),
                 OrderStatus = order.OrderStatus.ToString(),
                 DateCreated = order.DateCreated,
-                DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy/r/nhh:mm:ss"),
+                DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy - hh:mm:ss"),
                 LineItemConcatenatedString = string.Join(",", order.LineItems.Select(x => x.Product.Name)),
                 
             };

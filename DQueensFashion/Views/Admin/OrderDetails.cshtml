@@ -4,49 +4,45 @@
     Layout = "~/Views/Shared/_dashboardLayout.cshtml";
 }
 
-<h2>Order Details</h2>
 <div>
-    @Model.OrderId
+    ORDER ID: @Model.OrderId
 </div>
 <div>
-    @Model.TotalQuantity item
-    @Model.DateCreatedString
-    @Model.TotalAmount
+    <div>TOTAL QUANTITY: @Model.TotalQuantity</div>
+    <div> DATE: @Model.DateCreatedString</div>
+    <div>TOTAL AMOUNT: $@Model.TotalAmount</div>
+    <div>CUSTOMER: @Model.CustomerName</div>
 </div>
 
 <div>
     Items in your order
 </div>
+<hr />
 <div>
-    <div class="row">
-
-        @foreach (var lineItem in Model.LineItems)
-        {
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-4">
-                                <img src="@Url.Content(lineItem.ProductImage)" style="width:100%" class="d-block" />
-                            </div>
-                            <div class="col-8">
-                                <div>
-                                    @lineItem.ProductName
-                                </div>
-                                <div>
-                                    @lineItem.Quantity
-                                </div>
-                                <div>
-                                    @lineItem.UnitPrice
-                                </div>
-                                <div>
-                                    @lineItem.TotalAmount
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    @foreach (var lineItem in Model.LineItems)
+    {
+        <div class="row m-3">
+            <span>
+                <img src="@Url.Content(lineItem.ProductImage)" style="height:100px;width:100px" class="d-block" />
+            </span>
+            <div class="ml-3">
+                <div>
+                    @lineItem.ProductName
                 </div>
+                <div>
+                    @lineItem.Quantity
+                </div>
+                <div>
+                    @lineItem.UnitPrice
+                </div>
+                <div>
+                    @lineItem.TotalAmount
+                </div>
+                <div>@lineItem.Description</div>
             </div>
-        }
-    </div>
+        </div>
+
+        <hr />
+
+    }
 </div>
