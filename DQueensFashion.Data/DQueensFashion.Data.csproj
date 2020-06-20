@@ -234,6 +234,10 @@
     <Compile Include="Migrations\202006181357306_unitPriceAddedToLineItem.Designer.cs">
       <DependentUpon>202006181357306_unitPriceAddedToLineItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006201022132_descAddedToLineItem.cs" />
+    <Compile Include="Migrations\202006201022132_descAddedToLineItem.Designer.cs">
+      <DependentUpon>202006201022132_descAddedToLineItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -310,6 +314,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006181357306_unitPriceAddedToLineItem.resx">
       <DependentUpon>202006181357306_unitPriceAddedToLineItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006201022132_descAddedToLineItem.resx">
+      <DependentUpon>202006201022132_descAddedToLineItem.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

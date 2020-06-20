@@ -100,6 +100,7 @@ namespace DQueensFashion.Controllers
                         IsDeleted = false,
                         Quantity = Int32.Parse(item.quantity),
                         TotalAmount = Decimal.Parse(item.price) * Int32.Parse(item.quantity),
+                        Description= item.description,
                     }).ToList();
 
                 DQueensFashion.Core.Model.Order order = new DQueensFashion.Core.Model.Order()
@@ -170,6 +171,7 @@ namespace DQueensFashion.Controllers
                      price = item.UnitPrice.ToString(),
                      quantity= item.Quantity.ToString(),
                      sku = item.Product.Id.ToString(),
+                     description = item.Description,
                  }).ToList();
 
             var payer = new Payer()

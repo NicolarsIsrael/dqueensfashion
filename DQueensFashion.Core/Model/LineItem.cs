@@ -13,5 +13,6 @@ namespace DQueensFashion.Core.Model
         public int Quantity { get; set; }
         public Product Product { get; set; }
         public virtual Order Order { get; set; }
+        public string Description { get; set; }
     }
 }
