@@ -157,96 +157,30 @@
 
             </div>
             <h6 class="orButton"><span>OR</span></h6>
-          
-        </div>
-
-    </div>
-
-
-
-
-
-    <div class="row mt-5">
-        <div class="col-12">
-            <div class="section_header" style="margin-bottom:1px">
-                <div class="section_header_text">
-                    <h5 style="margin-top: 15px;">CART</h5>
-                </div>
-            </div>
-            @using (Html.BeginForm("BuyProduct", "Product"))
-            {
-                @Html.AntiForgeryToken()
-                <input type="hidden" value="@Model.Product.Quantity" id="productQuantity" />
-                <div class="form-horizontal">
-                    @Html.Hidden("id")
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-                    <div class="input-group mb-1">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">Qty</span>
-                        </div>
-                        <select class="form-control" id="quantity" style="max-width:180px;">
-                            @for (int i = 1; i <= Model.Product.Quantity; i++)
-                            {
-                                <option value="@i">@i</option>
-                            }
-                        </select>
+            @{
+                if (Model.Product.CategoryId == AppConstant.CustomMadeCategoryId)
+                {
+                    <div class="cart" onclick="AddToCartCustomMade(@Model.Product.Id)">
+                        <div href="#">Add to cart</div>
                     </div>
-                    @if (Model.Product.CategoryId == AppConstant.CustomMadeCategoryId)
-                    {
-                        if (Model.Product.BurstSize)
-                        {
-                            <div class="form-group">
-                                <div class="col-form-label">Burstsize</div>
-                                <select class="form-control">
-                                    @foreach (var size in AppConstant.BurstSizeValues)
-                                    {
-                                        <option value="@size">@size</option>
-                                    }
-
-                                </select>
-                            </div>
-                        }
-
-                        if (Model.Product.ShoulderLength)
-                        {
-                            <div class="form-group">
-                                <div class="col-form-label">Shoulder length</div>
-                                <select class="form-control">
-                                    @foreach (var size in AppConstant.ShoulderLengthValues)
-                                    {
-                                        <option value="@size">@size</option>
-                                    }
-
-                                </select>
-                            </div>
-                        }
-
-                        if (Model.Product.WaistLength)
-                        {
-
-                            <div class="form-group">
-                                <div class="col-form-label">Waist length</div>
-                                <select class="form-control">
-                                    @foreach (var size in AppConstant.WaistLengthVallues)
-                                    {
-                                        <option value="@size">@size</option>
-                                    }
-
-                                </select>
-                            </div>
-                        }
-                    }
-                    <input type="submit" value="BUY NOW" class="btn mt-0" style="max-width:150px;background-color:#E97128;color:white" />
-                </div>
+                }
+                else if (Model.Product.CategoryId == AppConstant.ReadyMadeCategoryId)
+                {
+                    <div class="cart" onclick="AddToCartReadyMade(@Model.Product.Id)">
+                        <div href="#">Add to cart</div>
+                    </div>
+                }
+                else
+                {
+                    <div class="cart" onclick="AddToCart(@Model.Product.Id)">
+                        <div href="#">Add to cart</div>
+                    </div>
+                }
             }
 
-          
-            <button type="button" class="btn" style="background-color:#0a0c13;color:white" onclick="addToCartFromProductDetails(@Model.Product.Id)">Add to cart</button>
         </div>
+
     </div>
-
-
 
 
 
