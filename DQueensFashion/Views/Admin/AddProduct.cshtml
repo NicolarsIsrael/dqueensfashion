@@ -22,6 +22,7 @@
             <div class="form-horizontal">
                 <h6 style="text-align:center">Add Product</h6>
                 @Html.HiddenFor(model => model.CustomMadeCategory)
+                @Html.HiddenFor(model=>model.ReadyMadeCategory)
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="row">
                 <div class="col-12">
@@ -63,11 +64,20 @@
                             <div class="row">
                                 <div class="col-12 col-md-3">
                                     <div class="form-group">
+
                                         @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-12" })
                                         <div class="col-12">
-                                            @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
+                                            @if (Model.ReadyMadeCategory)
+                                            {
+                                                @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @id="ProductQty" } })
+                                            }
+                                            else
+                                            {
+                                                @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
+                                            }
                                             @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
                                         </div>
+
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-3">
@@ -160,7 +170,7 @@
                                         <div class="form-group">
                                             @Html.LabelFor(model => model.ExtraSmallQuantity, htmlAttributes: new { @class = "control-label col-12" })
                                             <div class="col-12">
-                                                @Html.EditorFor(model => model.ExtraSmallQuantity, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.EditorFor(model => model.ExtraSmallQuantity, new { htmlAttributes = new { @class = "form-control", @id="xsQty" } })
                                                 @Html.ValidationMessageFor(model => model.ExtraSmallQuantity, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
@@ -169,7 +179,7 @@
                                         <div class="form-group">
                                             @Html.LabelFor(model => model.SmallQuantiy, htmlAttributes: new { @class = "control-label col-12" })
                                             <div class="col-12">
-                                                @Html.EditorFor(model => model.SmallQuantiy, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.EditorFor(model => model.SmallQuantiy, new { htmlAttributes = new { @class = "form-control", @id="smQty" } })
                                                 @Html.ValidationMessageFor(model => model.SmallQuantiy, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
@@ -178,7 +188,7 @@
                                         <div class="form-group">
                                             @Html.LabelFor(model => model.MediumQuantiy, htmlAttributes: new { @class = "control-label col-12" })
                                             <div class="col-12">
-                                                @Html.EditorFor(model => model.MediumQuantiy, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.EditorFor(model => model.MediumQuantiy, new { htmlAttributes = new { @class = "form-control", @id="mQty" } })
                                                 @Html.ValidationMessageFor(model => model.MediumQuantiy, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
@@ -187,7 +197,7 @@
                                         <div class="form-group">
                                             @Html.LabelFor(model => model.LargeQuantity, htmlAttributes: new { @class = "control-label col-12" })
                                             <div class="col-12">
-                                                @Html.EditorFor(model => model.LargeQuantity, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.EditorFor(model => model.LargeQuantity, new { htmlAttributes = new { @class = "form-control", @id="lQty" } })
                                                 @Html.ValidationMessageFor(model => model.LargeQuantity, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
@@ -196,7 +206,7 @@
                                         <div class="form-group">
                                             @Html.LabelFor(model => model.ExtraLargeQuantity, htmlAttributes: new { @class = "control-label col-12" })
                                             <div class="col-12">
-                                                @Html.EditorFor(model => model.ExtraLargeQuantity, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.EditorFor(model => model.ExtraLargeQuantity, new { htmlAttributes = new { @class = "form-control", @id="xlQty" } })
                                                 @Html.ValidationMessageFor(model => model.ExtraLargeQuantity, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
@@ -229,40 +239,16 @@
         bsCustomFileInput.init();
     });
 
-    //var img1_sizeError = document.getElementById("image1_sizeError");
-    //var img1_formatError = document.getElementById("image1_formatError");
-    //var img1_File = document.getElementById("image1_Browse");
-
 
     var productPrice = document.getElementById("product-price");
     var productDiscount = document.getElementById("product-discount");
 
-    ////image1 read
-    //$(document).ready(function () {
-    //    $("#image1_Browse").change(function () {
-    //        var File = this.files;
-    //        if (File && File[0]) {
-    //            var file = File[0];
-    //            var reader = new FileReader;
-    //            var image = new Image;
-
-    //            reader.readAsDataURL(file);
-    //            reader.onload = function (_file) {
-    //                image.src = _file.target.result;
-    //                image.onload = function () {
-    //                    var height = this.height;
-    //                    var width = this.width;
-    //                    var type = file.type;
-    //                    var size = ~~(file.size / 1024) + "KB";
-    //                    $("#targetImg1").attr('src', _file.target.result);
-    //                    $("#img1_Preview").show();
-    //                }
-    //            }
-    //        }
-    //    })
-    //})
-
-
+    var productQty = document.getElementById("ProductQty")
+    var xsQty = document.getElementById("xsQty");
+    var smQty = document.getElementById("smQty");
+    var mQty = document.getElementById("mQty");
+    var lQty = document.getElementById("lQty");
+    var xlQty = document.getElementById("xlQty");
 
     $(".js-example-tokenizer").select2({
         tags: true,
@@ -280,6 +266,28 @@
 
      $('#product-discount').bind('input', function () {
         GetProductTotalPrice();
+    });
+    
+    $('#xsQty').bind('input', function () {
+        productQty.value = CalculateTotalQuantity();
+    });
+
+    
+    $('#smQty').bind('input', function () {
+        productQty.value = CalculateTotalQuantity();
+    });
+    
+    $('#mQty').bind('input', function () {
+        productQty.value = CalculateTotalQuantity();
+    });
+
+    
+    $('#lQty').bind('input', function () {
+        productQty.value = CalculateTotalQuantity();
+    });
+    
+    $('#xlQty').bind('input', function () {
+        productQty.value = CalculateTotalQuantity();
     });
 
 </script>

@@ -153,3 +153,9 @@ function SetProductTotalPrice(price,discount) {
 
     document.getElementById("product-total-price").value = totalPrice;
 }
+
+function CalculateTotalQuantity() {
+    return Number(xsQty.value) + Number(smQty.value)
+                    + Number(mQty.value) + Number(lQty.value)
+                    + Number(xlQty.value);
+}

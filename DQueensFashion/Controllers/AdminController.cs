@@ -180,7 +180,7 @@ namespace DQueensFashion.Controllers
                         allImages.Where(image => image.ProductId == p.Id).FirstOrDefault().ImagePath,
                     DateCreated = p.DateCreated,
                     DateCreatedString = p.DateCreated.ToString("dd/MMM/yyyy"),
-                }).OrderBy(p=>p.Name).ToList();
+                }).OrderBy(p=>p.DateCreated).ToList();
             return View(products);
         }
 
@@ -203,7 +203,7 @@ namespace DQueensFashion.Controllers
                         allImages.Where(image => image.ProductId == p.Id).FirstOrDefault().ImagePath,
                   DateCreated = p.DateCreated,
                   DateCreatedString = p.DateCreated.ToString("dd/MMM/yyyy"),
-              }).OrderBy(p => p.Name).ToList();
+              }).OrderBy(p => p.DateCreated).ToList();
 
             if (!string.IsNullOrEmpty(searchString))
                 products = products.Where(p => p.Name.ToLower().Contains(searchString.ToLower())
@@ -344,6 +344,8 @@ namespace DQueensFashion.Controllers
         public ActionResult EditProduct(int id=0)
         {
             Product product = _productService.GetProductById(id);
+            if (product == null)
+                return HttpNotFound();
             var allCategories = _categoryService.GetAllCategories().ToList();
 
             EditProductViewModel productModel = new EditProductViewModel()
@@ -432,7 +434,15 @@ namespace DQueensFashion.Controllers
             product.BurstSize = productModel.BurstSize;
             product.WaistLength = productModel.WaistLength;
             product.ShoulderLength = productModel.ShoulderLength;
-
+            product.ExtraSmallQuantity = productModel.ExtraSmallQuantity;
+            product.SmallQuantiy = productModel.SmallQuantiy;
+            product.MediumQuantiy = productModel.MediumQuantiy;
+            product.LargeQuantity = productModel.LargeQuantity;
+            product.ExtraLargeQuantity = productModel.ExtraLargeQuantity;
+            if (productModel.CategoryId == AppConstant.ReadyMadeCategoryId)
+            {
+                product.Quantity = productModel.ExtraSmallQuantity + productModel.SmallQuantiy + productModel.MediumQuantiy + productModel.LargeQuantity + productModel.ExtraLargeQuantity;
+            }
             _productService.UpdateProduct(product);
             return RedirectToAction(nameof(Products));
         }
