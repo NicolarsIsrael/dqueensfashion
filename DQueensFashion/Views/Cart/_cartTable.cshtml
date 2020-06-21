@@ -29,6 +29,10 @@
                                     <div onclick="RemoveCartItem(@item.Product.Id)" style="cursor:pointer">
                                         <img src="~/Content/Images/x-circle.svg" />
                                     </div>
+                                    <div>
+                                        $@Html.DisplayFor(modelItem => item.UnitPrice)
+                                    </div>
+
                                 </div>
                                 <div class="col-5">
                                     Description
@@ -45,10 +49,7 @@
                             </div>
 
                             <div class="row mt-3">
-                                <div class="col-3 pt-1">
-                                    $@Html.DisplayFor(modelItem => item.UnitPrice)
-                                </div>
-                                <div class="col-6 p-0">
+                                <div class="col-9 p-0">
                                     <div class="input-group">
                                         <span class="input-group-btn">
                                             <button type="button" class="btn quantity-button minus-button" onclick="DecreaseQuantity(@item.Product.Id)">
@@ -117,6 +118,10 @@
                     @if (item.Product.CategoryId == AppConstant.CustomMadeCategoryId)
                     {
                         <div style="color:#007bff;cursor:pointer" onclick="EditCartCustomMade(@item.Product.Id)">Edit</div>
+                    }
+                    else if (item.Product.CategoryId == AppConstant.ReadyMadeCategoryId)
+                    {
+                        <div style="color:#007bff;cursor:pointer" onclick="EditCartReadyMade(@item.Product.Id)">Edit</div>
                     }
 
                 </td>

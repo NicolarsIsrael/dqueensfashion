@@ -18,6 +18,8 @@ namespace DQueensFashion.Models
         public decimal TotalPrice { get; set; }
         public string Description { get; set; }
 
+        public string ReadyMadeSize { get; set; }
+
         //measurement
         [Display(Name = "Waist length")]
         public bool WaistLength { get; set; }
@@ -38,12 +40,15 @@ namespace DQueensFashion.Models
         public IEnumerable<Cart> Carts { get; set; }
     }
 
-    public class CartCustomMadeViewModel
+    public class CartViewModel
     {
         public int ProductId { get; set; }
         public string ProductName { get; set; }
         public int Quantity { get; set; }
         public int PrevQuantity { get; set; }
+
+        //ready made
+        public string ReadyMadeSize { get; set; }
 
         //measurement
         [Display(Name = "Waist length")]

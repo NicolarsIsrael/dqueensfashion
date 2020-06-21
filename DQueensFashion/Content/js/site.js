@@ -15,15 +15,47 @@ function AddToCart(productId, _quantity) {
     });
 }
 
+function AddToCartReadyMade(productId) {
+    var url = "/Cart/AddToCartReadyMade/" + productId;
+
+    $("#addToCartBody").load(url, function () {
+        $("#addToCart").modal("show");
+
+    })
+}
+
 function AddToCartCustomMade(productId) {
 
     var url = "/Cart/AddToCartCustomMade/" + productId;
 
-    $("#addToCartCustomMadeBody").load(url, function () {
-        $("#addToCartCustomMade").modal("show");
+    $("#addToCartBody").load(url, function () {
+        $("#addToCart").modal("show");
 
     })
 
+}
+
+function AddToCartReadyMadePost() {
+    var cartModel = {
+        ProductId: $('#ProductId').val(),
+        Quantity: $('#Quantity').val(),
+        ReadyMadeSize: $('#ReadyMadeSize').val(),
+    }
+
+    $.ajax({
+        url: "/Cart/AddToCartReadyMade",
+        data: JSON.stringify(cartModel),
+        type: "POST",
+        contentType: "application/json;charset=utf-8",
+        dataType: "html",
+        success: function (result) {
+            $("#navbarCartNumber").html(result);
+            $('#addToCart').modal('hide');
+        },
+        error: function (xhr, status, error) {
+            alertify.error("Error");
+        }
+    });
 }
 
 function AddToCartCustomMadePost() {
@@ -43,7 +75,7 @@ function AddToCartCustomMadePost() {
         dataType: "html",
         success: function (result) {
             $("#navbarCartNumber").html(result);
-            $('#addToCartCustomMade').modal('hide');
+            $('#addToCart').modal('hide');
         },
         error: function (xhr, status, error) {
             alertify.error("Error");
@@ -51,13 +83,46 @@ function AddToCartCustomMadePost() {
     });
 }
 
+function EditCartReadyMade(productId) {
+    var url = "/Cart/EditCartReadyMade/" + productId;
+
+    $("#addToCartBody").load(url, function () {
+        $("#addToCart").modal("show");
+
+    })
+}
+
 function EditCartCustomMade(productId) {
     var url = "/Cart/EditCartCustomMade/" + productId;
 
-    $("#addToCartCustomMadeBody").load(url, function () {
-        $("#addToCartCustomMade").modal("show");
+    $("#addToCartBody").load(url, function () {
+        $("#addToCart").modal("show");
 
     })
+}
+
+function EditCartReadyMadePost() {
+    var cartModel = {
+        ProductId: $('#ProductId').val(),
+        Quantity: $('#Quantity').val(),
+        ReadyMadeSize: $('#ReadyMadeSize').val(),
+    }
+
+    $.ajax({
+        url: "/Cart/EditCartReadyMade",
+        data: JSON.stringify(cartModel),
+        type: "POST",
+        contentType: "application/json;charset=utf-8",
+        dataType: "html",
+        success: function (result) {
+            UpdateCartNumber();
+            $(".viewCartTable").html(result);
+            $('#addToCart').modal('hide');
+        },
+        error: function (xhr, status, error) {
+            alertify.error("Error");
+        }
+    });
 }
 
 function EditCartCustomMadePost() {
@@ -78,7 +143,7 @@ function EditCartCustomMadePost() {
         success: function (result) {
             UpdateCartNumber();
             $(".viewCartTable").html(result);
-            $('#addToCartCustomMade').modal('hide');
+            $('#addToCart').modal('hide');
         },
         error: function (xhr, status, error) {
             alertify.error("Error");

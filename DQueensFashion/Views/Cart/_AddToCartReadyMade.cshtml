@@ -1,0 +1,44 @@
+﻿@model DQueensFashion.Models.CartViewModel
+@using DQueensFashion.Utilities
+
+<h6>@Model.ProductName</h6>
+
+@using (Html.BeginForm("AddToCartCustomMade", "Cart"))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <input type="hidden" id="ProductId" value="@Model.ProductId" />
+
+        <div class="form-group">
+            <div class="col-form-label">Quantity</div>
+            <select class="form-control" id="Quantity">
+                @for (int i = 1; i <= Model.Quantity; i++)
+                {
+                    <option value="@i">@i</option>
+                }
+            </select>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <div class="col-form-label">Size</div>
+                    <select class="form-control" id="ReadyMadeSize">
+                        @foreach (var size in AppConstant.ReadyMadeSizes)
+                        {
+                            <option value="@size">@size</option>
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <input type="button" value="ADD TO CART" class="btn mt-0"
+               style="max-width:150px;background-color:#E97128;color:white"
+               onclick="AddToCartReadyMadePost()" />
+    </div>
+}
+
+

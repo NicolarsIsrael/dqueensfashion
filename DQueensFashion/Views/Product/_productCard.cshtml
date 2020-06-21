@@ -31,15 +31,21 @@
             </span>
         </div>
         @{
-            if (Model.CategoryId != AppConstant.CustomMadeCategoryId)
+            if (Model.CategoryId == AppConstant.CustomMadeCategoryId)
             {
-                <div class="cart" onclick="AddToCart(@Model.Id)">
+                <div class="cart" onclick="AddToCartCustomMade(@Model.Id)">
+                    <div href="#">Add to cart</div>
+                </div>
+            }
+            else if (Model.CategoryId == AppConstant.ReadyMadeCategoryId)
+            {
+                <div class="cart" onclick="AddToCartReadyMade(@Model.Id)">
                     <div href="#">Add to cart</div>
                 </div>
             }
             else
             {
-                <div class="cart" onclick="AddToCartCustomMade(@Model.Id)">
+                <div class="cart" onclick="AddToCart(@Model.Id)">
                     <div href="#">Add to cart</div>
                 </div>
             }
