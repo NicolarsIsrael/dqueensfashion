@@ -112,7 +112,7 @@ namespace DQueensFashion.Controllers
 
             List<Cart> cart = new List<Cart>();
 
-            int index = isExist(cartModel.ProductId);
+            int index = isExistReadyMade(cartModel.ProductId,cartModel);
             if (index > -1)
             {
                 cart = (List<Cart>)Session["cart"];
@@ -179,7 +179,7 @@ namespace DQueensFashion.Controllers
 
             List<Cart> cart = new List<Cart>();
 
-            int index = isExist(cartModel.ProductId);
+            int index = isExistCustomMade(cartModel.ProductId,cartModel);
             if (index > -1)
             {
                 cart = (List<Cart>)Session["cart"];
@@ -350,6 +350,33 @@ namespace DQueensFashion.Controllers
             for (int i = 0; i < cart.Count; i++)
                 if (cart[i].Product.Id.Equals(id))
                     return i; //item already exist in cart
+            return -1; //cart session is available but item not in cart
+        }
+
+        private int isExistReadyMade(int id,CartViewModel cartModel)
+        {
+            if (Session["cart"] == null)
+                return -2; //no cart session yet
+            List<Cart> cart = (List<Cart>)Session["cart"];
+            for (int i = 0; i < cart.Count; i++)
+                if (cart[i].Product.Id.Equals(id))
+                    if(string.Compare(cart[i].ReadyMadeSize, cartModel.ReadyMadeSize, true) == 0)
+                        return i; //item already exist in cart
+            return -1; //cart session is available but item not in cart
+        }
+
+        private int isExistCustomMade(int id, CartViewModel cartModel)
+        {
+            if (Session["cart"] == null)
+                return -2; //no cart session yet
+            List<Cart> cart = (List<Cart>)Session["cart"];
+            for (int i = 0; i < cart.Count; i++)
+                if (cart[i].Product.Id.Equals(id))
+                    if (cart[i].ShoulderLengthValue == cartModel.ShoulderLengthValue
+                        && cart[i].WaistLengthValue == cartModel.WaistLengthValue
+                        && cart[i].BurstSizeValue == cartModel.BurstSizeValue)
+                        return i; //item already exist in cart
+
             return -1; //cart session is available but item not in cart
         }
 
