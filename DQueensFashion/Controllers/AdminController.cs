@@ -235,6 +235,8 @@ namespace DQueensFashion.Controllers
 
             if (categoryId == AppConstant.CustomMadeCategoryId)
                 productModel.CustomMadeCategory = true;
+            else if (categoryId == AppConstant.ReadyMadeCategoryId)
+                productModel.ReadyMadeCategory = true;
 
             return View(productModel);
         }
@@ -275,8 +277,18 @@ namespace DQueensFashion.Controllers
                 ShoulderLength= productModel.ShoulderLength,
                 BurstSize = productModel.BurstSize,
                 WaistLength= productModel.WaistLength,
+                ExtraSmallQuantity= productModel.ExtraSmallQuantity,
+                SmallQuantiy = productModel.SmallQuantiy,
+                MediumQuantiy= productModel.MediumQuantiy,
+                LargeQuantity= productModel.LargeQuantity,
+                ExtraLargeQuantity= productModel.ExtraLargeQuantity,
             };
-            
+
+            if (productModel.CategoryId == AppConstant.ReadyMadeCategoryId)
+            {
+                product.Quantity = productModel.ExtraSmallQuantity + productModel.SmallQuantiy + productModel.MediumQuantiy + productModel.LargeQuantity + productModel.ExtraLargeQuantity;
+            }
+
             _productService.AddProduct(product);
             ViewBag.DefaultImage = AppConstant.DefaultProductImage;
             return RedirectToAction(nameof(AddProductImages),new { id=product.Id});
@@ -297,7 +309,6 @@ namespace DQueensFashion.Controllers
 
             return View(productImageModel);
         }
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -349,11 +360,17 @@ namespace DQueensFashion.Controllers
                     Id = c.Id,
                     Name = c.Name,
                 }).OrderBy(c => c.Name).ToList(),
-                Tags=string.IsNullOrEmpty(product.Tags)?new List<string>():product.Tags.Split(',').ToList(),
-                BurstSize=product.BurstSize.HasValue?product.BurstSize.Value:false,
-                WaistLength=product.WaistLength.HasValue?product.WaistLength.Value:false,
-                ShoulderLength=product.ShoulderLength.HasValue?product.ShoulderLength.Value:false,
-                CustomMadeCategory = product.Category.Id == AppConstant.CustomMadeCategoryId ? true : false,
+                Tags = string.IsNullOrEmpty(product.Tags) ? new List<string>() : product.Tags.Split(',').ToList(),
+                BurstSize = product.BurstSize.HasValue ? product.BurstSize.Value : false,
+                WaistLength = product.WaistLength.HasValue ? product.WaistLength.Value : false,
+                ShoulderLength = product.ShoulderLength.HasValue ? product.ShoulderLength.Value : false,
+                CustomMadeCategory = product.CategoryId == AppConstant.CustomMadeCategoryId ? true : false,
+                ExtraSmallQuantity = product.ExtraSmallQuantity,
+                SmallQuantiy= product.SmallQuantiy,
+                MediumQuantiy= product.MediumQuantiy,
+                LargeQuantity= product.LargeQuantity,
+                ExtraLargeQuantity = product.ExtraLargeQuantity,
+                ReadyMadeCategory = product.CategoryId == AppConstant.ReadyMadeCategoryId ? true : false,
             };
 
             foreach (var category in productModel.Categories)

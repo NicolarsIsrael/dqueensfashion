@@ -31,6 +31,14 @@ namespace DQueensFashion.Core.Model
 
         public IEnumerable<Review> Reviews { get; set; }
 
+        //Ready made sizes
+        public int ExtraSmallQuantity { get; set; }
+        public int SmallQuantiy { get; set; }
+        public int MediumQuantiy { get; set; }
+        public int LargeQuantity { get; set; }
+        public int ExtraLargeQuantity { get; set; }
+
+
         //measurement
         public bool? WaistLength { get; set; }
         public bool? BurstSize { get; set; }

@@ -22,6 +22,7 @@ namespace DQueensFashion.Utilities
 
         public const string ProductImageBasePath = "~/Content/Images/Products/";
         public const int CustomMadeCategoryId = 4;
+        public const int ReadyMadeCategoryId = 3;
 
         public static readonly int[] BurstSizeValues = { 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27 };
         public static readonly int[] ShoulderLengthValues = { 101, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117 };

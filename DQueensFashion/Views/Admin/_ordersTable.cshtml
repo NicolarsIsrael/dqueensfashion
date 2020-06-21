@@ -15,37 +15,38 @@
     <tbody>
         @foreach (var item in Model)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.OrderId)
-            </td>
-            <td>
-                @{
-                    foreach (var lineItem in item.LineItems)
-                    {
-                        <p class="m-0">@lineItem.ProductName (@lineItem.Quantity) </p>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderId)
+                </td>
+                <td>
+                    @{
+                        foreach (var lineItem in item.LineItems)
+                        {
+                            <p class="m-0">@lineItem.ProductName (@lineItem.Quantity) </p>
+                        }
                     }
-                }
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CustomerName)
-            </td>
-            <td>
-                $@Html.DisplayFor(modelItem => item.TotalAmount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateCreatedString)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OrderStatus)
-            </td>
-            <td>
-                <button class="btn" style="background-color:#E97128;color:white" onclick="UpdateStatus(@item.OrderId)">Update status</button>
-                <a href="@Url.Action("OrderDetails",new { id=item.OrderId, returnUrl="Orders"})">
-                    Order details
-                </a>
-            </td>
-        </tr>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerName)
+                </td>
+                <td>
+                    $@Html.DisplayFor(modelItem => item.TotalAmount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateCreatedString)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderStatus)
+                </td>
+                <td>
+                    <a href="@Url.Action("OrderDetails",new { id=item.OrderId, returnUrl="Orders"})">
+                        Order details
+                    </a>
+                    <button class="btn" style="background-color:#E97128;color:white" onclick="UpdateStatus(@item.OrderId)">Update status</button>
+
+                </td>
+            </tr>
 
         }
     </tbody>

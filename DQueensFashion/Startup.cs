@@ -58,9 +58,9 @@ namespace DQueensFashion
                 var categories = new List<Category>()
                  {
                     new Category{ Name="Ankara",IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now},
-                    new Category{ Name="Lace",IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now},
                     new Category{ Name="Baby-Wears",IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now},
-                    new Category{ Name="Custom-Made",IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now},
+                    new Category{Id=AppConstant.ReadyMadeCategoryId, Name="Ready-Made",IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now},
+                    new Category{ Id=AppConstant.CustomMadeCategoryId, Name="Custom-Made",IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now},
                 };
 
                 categories.ForEach(c => context.Category.Add(c));

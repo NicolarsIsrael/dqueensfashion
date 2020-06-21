@@ -16,6 +16,13 @@
 
             </div>
             <div style="text-align:right;margin-bottom:10px;">
+                <a href="@Url.Action("AddProduct","Admin",new { categoryId=3})" class="btn btn-sm" , style="background-color:darkgoldenrod;color:white">
+                    <img src="~/Content/Images/plus.svg" />
+                    Add ready made
+                </a>
+
+            </div>
+            <div style="text-align:right;margin-bottom:10px;">
                 <a href="@Url.Action("AddProduct","Admin",new { categoryId=4})" class="btn btn-sm" , style="background-color:blue;color:white">
                     <img src="~/Content/Images/plus.svg" />
                     Add custom made
@@ -45,7 +52,7 @@
 
             </div>
             <!-- /.card-header -->
-            <div class="card-body table-responsive p-0" style="height: 60vh">
+            <div class="card-body table-responsive p-0" style="height: 53vh">
 
                 @Html.Partial("_productsTable", Model)
             </div>

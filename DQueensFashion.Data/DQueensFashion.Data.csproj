@@ -150,93 +150,9 @@
     <Compile Include="Implementation\ReviewRepo.cs" />
     <Compile Include="Implementation\UnitOfWork.cs" />
     <Compile Include="Implementation\WishListRepo.cs" />
-    <Compile Include="Migrations\202005221738560_categoryAddedToDb.cs" />
-    <Compile Include="Migrations\202005221738560_categoryAddedToDb.Designer.cs">
-      <DependentUpon>202005221738560_categoryAddedToDb.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202005221812162_categoryNameDesc.cs" />
-    <Compile Include="Migrations\202005221812162_categoryNameDesc.Designer.cs">
-      <DependentUpon>202005221812162_categoryNameDesc.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202005221813535_categoryNameDesc2.cs" />
-    <Compile Include="Migrations\202005221813535_categoryNameDesc2.Designer.cs">
-      <DependentUpon>202005221813535_categoryNameDesc2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202005231000456_imageAddedToProduct.cs" />
-    <Compile Include="Migrations\202005231000456_imageAddedToProduct.Designer.cs">
-      <DependentUpon>202005231000456_imageAddedToProduct.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202005231110326_quantityAddedToProduct.cs" />
-    <Compile Include="Migrations\202005231110326_quantityAddedToProduct.Designer.cs">
-      <DependentUpon>202005231110326_quantityAddedToProduct.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202005231237210_productupdated.cs" />
-    <Compile Include="Migrations\202005231237210_productupdated.Designer.cs">
-      <DependentUpon>202005231237210_productupdated.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202005231325295_tagsAddedToproducts.cs" />
-    <Compile Include="Migrations\202005231325295_tagsAddedToproducts.Designer.cs">
-      <DependentUpon>202005231325295_tagsAddedToproducts.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202005240739291_customerAddedToDb.cs" />
-    <Compile Include="Migrations\202005240739291_customerAddedToDb.Designer.cs">
-      <DependentUpon>202005240739291_customerAddedToDb.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202005240810027_userIdChangedtoString.cs" />
-    <Compile Include="Migrations\202005240810027_userIdChangedtoString.Designer.cs">
-      <DependentUpon>202005240810027_userIdChangedtoString.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202005250754376_WishListAddedToDb.cs" />
-    <Compile Include="Migrations\202005250754376_WishListAddedToDb.Designer.cs">
-      <DependentUpon>202005250754376_WishListAddedToDb.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202005291036071_lineItemAndOrderAddedToDb.cs" />
-    <Compile Include="Migrations\202005291036071_lineItemAndOrderAddedToDb.Designer.cs">
-      <DependentUpon>202005291036071_lineItemAndOrderAddedToDb.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202005310734536_orderstatusAddedTodb.cs" />
-    <Compile Include="Migrations\202005310734536_orderstatusAddedTodb.Designer.cs">
-      <DependentUpon>202005310734536_orderstatusAddedTodb.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202006070116251_ReviewAddedToDb.cs" />
-    <Compile Include="Migrations\202006070116251_ReviewAddedToDb.Designer.cs">
-      <DependentUpon>202006070116251_ReviewAddedToDb.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202006070138063_NameAndEmailAddedToReview.cs" />
-    <Compile Include="Migrations\202006070138063_NameAndEmailAddedToReview.Designer.cs">
-      <DependentUpon>202006070138063_NameAndEmailAddedToReview.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202006070717440_SummaryChanegedToComment.cs" />
-    <Compile Include="Migrations\202006070717440_SummaryChanegedToComment.Designer.cs">
-      <DependentUpon>202006070717440_SummaryChanegedToComment.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202006081740270_AverageRatingAddedToProduct.cs" />
-    <Compile Include="Migrations\202006081740270_AverageRatingAddedToProduct.Designer.cs">
-      <DependentUpon>202006081740270_AverageRatingAddedToProduct.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202006110928477_imageFIleAddedToDb.cs" />
-    <Compile Include="Migrations\202006110928477_imageFIleAddedToDb.Designer.cs">
-      <DependentUpon>202006110928477_imageFIleAddedToDb.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202006110930276_imageFIleAddedToDb2.cs" />
-    <Compile Include="Migrations\202006110930276_imageFIleAddedToDb2.Designer.cs">
-      <DependentUpon>202006110930276_imageFIleAddedToDb2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202006141124506_Boolean1.cs" />
-    <Compile Include="Migrations\202006141124506_Boolean1.Designer.cs">
-      <DependentUpon>202006141124506_Boolean1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202006141128094_Boolean2.cs" />
-    <Compile Include="Migrations\202006141128094_Boolean2.Designer.cs">
-      <DependentUpon>202006141128094_Boolean2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202006181357306_unitPriceAddedToLineItem.cs" />
-    <Compile Include="Migrations\202006181357306_unitPriceAddedToLineItem.Designer.cs">
-      <DependentUpon>202006181357306_unitPriceAddedToLineItem.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202006201022132_descAddedToLineItem.cs" />
-    <Compile Include="Migrations\202006201022132_descAddedToLineItem.Designer.cs">
-      <DependentUpon>202006201022132_descAddedToLineItem.cs</DependentUpon>
+    <Compile Include="Migrations\202006211224274_initial.cs" />
+    <Compile Include="Migrations\202006211224274_initial.Designer.cs">
+      <DependentUpon>202006211224274_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -252,71 +168,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202005221738560_categoryAddedToDb.resx">
-      <DependentUpon>202005221738560_categoryAddedToDb.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202005221812162_categoryNameDesc.resx">
-      <DependentUpon>202005221812162_categoryNameDesc.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202005221813535_categoryNameDesc2.resx">
-      <DependentUpon>202005221813535_categoryNameDesc2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202005231000456_imageAddedToProduct.resx">
-      <DependentUpon>202005231000456_imageAddedToProduct.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202005231110326_quantityAddedToProduct.resx">
-      <DependentUpon>202005231110326_quantityAddedToProduct.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202005231237210_productupdated.resx">
-      <DependentUpon>202005231237210_productupdated.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202005231325295_tagsAddedToproducts.resx">
-      <DependentUpon>202005231325295_tagsAddedToproducts.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202005240739291_customerAddedToDb.resx">
-      <DependentUpon>202005240739291_customerAddedToDb.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202005240810027_userIdChangedtoString.resx">
-      <DependentUpon>202005240810027_userIdChangedtoString.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202005250754376_WishListAddedToDb.resx">
-      <DependentUpon>202005250754376_WishListAddedToDb.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202005291036071_lineItemAndOrderAddedToDb.resx">
-      <DependentUpon>202005291036071_lineItemAndOrderAddedToDb.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202005310734536_orderstatusAddedTodb.resx">
-      <DependentUpon>202005310734536_orderstatusAddedTodb.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006070116251_ReviewAddedToDb.resx">
-      <DependentUpon>202006070116251_ReviewAddedToDb.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006070138063_NameAndEmailAddedToReview.resx">
-      <DependentUpon>202006070138063_NameAndEmailAddedToReview.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006070717440_SummaryChanegedToComment.resx">
-      <DependentUpon>202006070717440_SummaryChanegedToComment.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006081740270_AverageRatingAddedToProduct.resx">
-      <DependentUpon>202006081740270_AverageRatingAddedToProduct.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006110928477_imageFIleAddedToDb.resx">
-      <DependentUpon>202006110928477_imageFIleAddedToDb.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006110930276_imageFIleAddedToDb2.resx">
-      <DependentUpon>202006110930276_imageFIleAddedToDb2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006141124506_Boolean1.resx">
-      <DependentUpon>202006141124506_Boolean1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006141128094_Boolean2.resx">
-      <DependentUpon>202006141128094_Boolean2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006181357306_unitPriceAddedToLineItem.resx">
-      <DependentUpon>202006181357306_unitPriceAddedToLineItem.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006201022132_descAddedToLineItem.resx">
-      <DependentUpon>202006201022132_descAddedToLineItem.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202006211224274_initial.resx">
+      <DependentUpon>202006211224274_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

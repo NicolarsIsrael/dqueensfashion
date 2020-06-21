@@ -39,6 +39,14 @@ namespace DQueensFashion.Models
         public IEnumerable<CategoryNameAndId> Categories { get; set; }
 
         public bool CustomMadeCategory { get; set; }
+        public bool ReadyMadeCategory { get; set; }
+
+        //Ready made sizes
+        public int ExtraSmallQuantity { get; set; }
+        public int SmallQuantiy { get; set; }
+        public int MediumQuantiy { get; set; }
+        public int LargeQuantity { get; set; }
+        public int ExtraLargeQuantity { get; set; }
 
         //measurement
         [Display(Name ="Waist length")]
@@ -136,6 +144,14 @@ namespace DQueensFashion.Models
         public IEnumerable<CategoryNameAndId> Categories { get; set; }
 
         public bool CustomMadeCategory { get; set; }
+        public bool ReadyMadeCategory { get; set; }
+
+        //Ready made sizes
+        public int ExtraSmallQuantity { get; set; }
+        public int SmallQuantiy { get; set; }
+        public int MediumQuantiy { get; set; }
+        public int LargeQuantity { get; set; }
+        public int ExtraLargeQuantity { get; set; }
 
         //measurement
         [Display(Name = "Waist length")]
@@ -144,7 +160,6 @@ namespace DQueensFashion.Models
         public bool BurstSize { get; set; }
         [Display(Name = "Shoulder length")]
         public bool ShoulderLength { get; set; }
-        public bool Length { get; set; }
     }
 
     public class ProductDetailsViewModel
