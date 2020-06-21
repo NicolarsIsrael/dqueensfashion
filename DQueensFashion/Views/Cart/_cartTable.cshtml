@@ -39,10 +39,6 @@
                                     <br />
                                     <div style="font-size:10px;word-break:break-word">
                                         @Html.Raw(item.Description.Replace(Environment.NewLine, "<br/>"))
-                                        @if (item.Product.CategoryId == AppConstant.CustomMadeCategoryId)
-                                        {
-                                            <div style="color:#007bff;cursor:pointer" onclick="EditCartCustomMade(@item.Product.Id)">Edit</div>
-                                        }
                                     </div>
                                     
                                 </div>
@@ -115,15 +111,6 @@
                 </td>
                 <td style="vertical-align:middle;word-break:break-word">
                     @Html.Raw(item.Description.Replace(Environment.NewLine, "<br/>"))
-                    @if (item.Product.CategoryId == AppConstant.CustomMadeCategoryId)
-                    {
-                        <div style="color:#007bff;cursor:pointer" onclick="EditCartCustomMade(@item.Product.Id)">Edit</div>
-                    }
-                    else if (item.Product.CategoryId == AppConstant.ReadyMadeCategoryId)
-                    {
-                        <div style="color:#007bff;cursor:pointer" onclick="EditCartReadyMade(@item.Product.Id)">Edit</div>
-                    }
-
                 </td>
                 <td style="vertical-align:middle">
                     $@Html.DisplayFor(modelItem => item.UnitPrice)
