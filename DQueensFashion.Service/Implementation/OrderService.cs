@@ -28,6 +28,32 @@ namespace DQueensFashion.Service.Implementation
             if (!ValidateOrderDetails(order))
                 throw new Exception();
 
+            foreach(var lineItem in order.LineItems)
+            {
+                Product p = uow.ProductRepo.Get(lineItem.Product.Id);
+                if (p.CategoryId == AppConstant.ReadyMadeCategoryId)
+                {
+                    if (string.Compare(lineItem.Description,AppConstant.ReadyMadeSizes[0],true)==0)
+                        p.ExtraSmallQuantity = p.ExtraSmallQuantity - lineItem.Quantity < 0 ? 0 : p.ExtraSmallQuantity - lineItem.Quantity;
+
+                    if (string.Compare(lineItem.Description, AppConstant.ReadyMadeSizes[1], true) == 0)
+                        p.SmallQuantiy = p.SmallQuantiy - lineItem.Quantity < 0 ? 0 : p.SmallQuantiy - lineItem.Quantity;
+
+                    if (string.Compare(lineItem.Description, AppConstant.ReadyMadeSizes[2], true) == 0)
+                        p.MediumQuantiy = p.MediumQuantiy - lineItem.Quantity < 0 ? 0 : p.MediumQuantiy - lineItem.Quantity;
+
+                    if (string.Compare(lineItem.Description, AppConstant.ReadyMadeSizes[3], true) == 0)
+                        p.LargeQuantity = p.LargeQuantity - lineItem.Quantity < 0 ? 0 : p.LargeQuantity - lineItem.Quantity;
+
+                    if (string.Compare(lineItem.Description, AppConstant.ReadyMadeSizes[4], true) == 0)
+                        p.ExtraLargeQuantity = p.ExtraLargeQuantity - lineItem.Quantity < 0 ? 0 : p.ExtraLargeQuantity - lineItem.Quantity;
+                }
+                else if(p.CategoryId != AppConstant.CustomMadeCategoryId)
+                {
+                    p.Quantity -= lineItem.Quantity;
+                }
+            }
+
             uow.OrderRepo.Add(order);
             uow.Save();
         }

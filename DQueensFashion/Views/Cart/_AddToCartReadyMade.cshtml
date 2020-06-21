@@ -10,22 +10,18 @@
     <div class="form-horizontal">
 
         <input type="hidden" id="ProductId" value="@Model.ProductId" />
+        <input type="hidden" id="xsQty" value="@Model.ExtraSmallQuantity" />
+        <input type="hidden" id="smQty" value="@Model.SmallQuantiy" />
+        <input type="hidden" id="mQty" value="@Model.MediumQuantiy" />
+        <input type="hidden" id="lQty" value="@Model.LargeQuantity" />
+        <input type="hidden" id="xlQty" value="@Model.ExtraLargeQuantity" />
 
-        <div class="form-group">
-            <div class="col-form-label">Quantity</div>
-            <select class="form-control" id="Quantity">
-                @for (int i = 1; i <= Model.Quantity; i++)
-                {
-                    <option value="@i">@i</option>
-                }
-            </select>
-        </div>
 
         <div class="row">
             <div class="col-12">
                 <div class="form-group">
                     <div class="col-form-label">Size</div>
-                    <select class="form-control" id="ReadyMadeSize">
+                    <select class="form-control" id="ReadyMadeSize" onchange="GetProductReadyMadeQuantity()">
                         @foreach (var size in AppConstant.ReadyMadeSizes)
                         {
                             <option value="@size">@size</option>
@@ -35,10 +31,101 @@
             </div>
         </div>
 
+
+        <div class="form-group">
+            <div class="col-form-label">Quantity</div>
+            <select class="form-control" id="Quantity">
+                @for (int i = 1; i <= Model.ExtraSmallQuantity; i++)
+                {
+                    <option value="@i">@i</option>
+                }
+            </select>
+        </div>
+        <p id="sizeValidation" class="text-danger mb-1"></p>
         <input type="button" value="ADD TO CART" class="btn mt-0"
                style="max-width:150px;background-color:#E97128;color:white"
-               onclick="AddToCartReadyMadePost()" />
+               id="submitCartButton" onclick="AddToCartReadyMadePost()" />
     </div>
 }
 
 
+<script>
+
+    var readyMadeSize = document.getElementById("ReadyMadeSize");
+    var xsQty = document.getElementById("xsQty").value;
+    var smQty = document.getElementById("smQty").value;
+    var mQty = document.getElementById("mQty").value;
+    var lQty = document.getElementById("lQty").value;
+    var xlQty = document.getElementById("xlQty").value;
+    var Qty = document.getElementById("Quantity");
+    var submitCartButton = document.getElementById("submitCartButton");
+    var sizevalidationtext = document.getElementById("sizeValidation");
+
+    if (xsQty < 1) {
+        submitCartButton.disabled = true;
+    }
+
+    function GetProductReadyMadeQuantity() {
+        var str = "";
+
+        if (readyMadeSize.value == "Extra small (XS)") {
+            if (xsQty < 1) {
+                sizevalidationtext.innerHTML = "Size not available for this item";
+                submitCartButton.disabled = true;
+            } else {
+                sizevalidationtext.innerHTML = "";
+                submitCartButton.disabled = false;
+            }
+            for (var i = 1; i <= xsQty; i++) {
+                str += "<option value=" + i + "\>" + i + "</option>"
+            }
+        } else if (readyMadeSize.value == "Small (S)") {
+            if (smQty < 1) {
+                sizevalidationtext.innerHTML = "Size not available for this item";
+                submitCartButton.disabled = true;
+            } else {
+                sizevalidationtext.innerHTML = "";
+                submitCartButton.disabled = false;
+            }
+            for (var i = 1; i <= smQty; i++) {
+                str += "<option value=" + i + "\>" + i + "</option>"
+            }
+        } else if (readyMadeSize.value == "Medium (M)") {
+            if (mQty < 1) {
+                sizevalidationtext.innerHTML = "Size not available for this item";
+                submitCartButton.disabled = true;
+            } else {
+                sizevalidationtext.innerHTML = "";
+                submitCartButton.disabled = false;
+            }
+            for (var i = 1; i <= mQty; i++) {
+                str += "<option value=" + i + "\>" + i + "</option>"
+            }
+        } else if (readyMadeSize.value == "Large (L)") {
+            if (lQty < 1) {
+                sizevalidationtext.innerHTML = "Size not available for this item";
+                submitCartButton.disabled = true;
+            } else {
+                sizevalidationtext.innerHTML = "";
+                submitCartButton.disabled = false;
+            }
+            for (var i = 1; i <= lQty; i++) {
+                str += "<option value=" + i + "\>" + i + "</option>"
+            }
+        } else if (readyMadeSize.value == "Extra large (XL)") {
+            if (xlQty < 1) {
+                sizevalidationtext.innerHTML = "Size not available for this item";
+                submitCartButton.disabled = true;
+            } else {
+                sizevalidationtext.innerHTML = "";
+                submitCartButton.disabled = false;
+            }
+            for (var i = 1; i <= xlQty; i++) {
+                str += "<option value=" + i + "\>" + i + "</option>"
+            }
+        }
+
+        Qty.innerHTML = str;
+
+    }
+</script>

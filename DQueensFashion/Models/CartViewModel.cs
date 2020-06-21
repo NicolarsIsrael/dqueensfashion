@@ -47,7 +47,12 @@ namespace DQueensFashion.Models
         public int Quantity { get; set; }
         public int PrevQuantity { get; set; }
 
-        //ready made
+        //Ready made sizes
+        public int ExtraSmallQuantity { get; set; }
+        public int SmallQuantiy { get; set; }
+        public int MediumQuantiy { get; set; }
+        public int LargeQuantity { get; set; }
+        public int ExtraLargeQuantity { get; set; }
         public string ReadyMadeSize { get; set; }
 
         //measurement

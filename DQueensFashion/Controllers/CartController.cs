@@ -70,12 +70,6 @@ namespace DQueensFashion.Controllers
             }
             Session["cart"] = cart;
 
-            ViewCartViewModel viewCart = new ViewCartViewModel()
-            {
-                Count = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.Quantity),
-                Carts = Session["cart"] == null ? new List<Cart>() : (List<Cart>)Session["cart"],
-                SubTotal = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.TotalPrice),
-            };
             ViewBag.CartNumber = GetCartNumber();
             return PartialView("_navbarCartNumber");
         }
@@ -94,6 +88,11 @@ namespace DQueensFashion.Controllers
                 ProductId = product.Id,
                 ProductName = product.Name,
                 Quantity = product.Quantity,
+                ExtraSmallQuantity = product.ExtraSmallQuantity,
+                SmallQuantiy = product.SmallQuantiy,
+                MediumQuantiy = product.MediumQuantiy,
+                LargeQuantity = product.LargeQuantity,
+                ExtraLargeQuantity = product.ExtraLargeQuantity,
             };
 
             return PartialView("_AddToCartReadyMade",cartModel);
