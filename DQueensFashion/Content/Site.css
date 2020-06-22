@@ -402,6 +402,20 @@ textarea {
         color: #ffffff;
     }
 
+.wishlist-button {
+    height: 45px;
+    background-color: #212529;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+    .wishlist-button div {
+        color: #ffffff;
+    }
+
 .product-box:hover {
     box-shadow: 2px 2px 12px rgba(47, 47, 47, 0.40);
 }
@@ -419,6 +433,12 @@ textarea {
         transition: all ease 0.3s;
     }
 
+.wishlist-button:hover {
+    transform: scale(1.01);
+    background-color: #353530;
+    box-shadow: 2px 2px 12px rgba(47, 47, 47, 0.40);
+    transition: all ease 0.3s;
+}
 
 
 
@@ -486,6 +506,9 @@ textarea {
     }
 
     .cart {
+        height: 20px;
+    }
+    .wishlist-button {
         height: 20px;
     }
 

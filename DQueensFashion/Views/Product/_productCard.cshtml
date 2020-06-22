@@ -6,7 +6,7 @@
         <div class="product-time-label">New</div>
         @if (Model.Discount > 0)
         {
-            <div class="product-discount-label">@Model.Discount% off</div>
+            <div class="product-discount-label">-@Model.Discount%</div>
         }
         <div class="img-box">
             <img src="@Url.Content(Model.MainImage)">

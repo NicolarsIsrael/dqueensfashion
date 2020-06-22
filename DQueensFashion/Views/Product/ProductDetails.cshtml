@@ -45,7 +45,7 @@
 
     .product-details-title {
         white-space: normal;
-        font-weight: 700;
+        font-weight: 400;
         font-size: 30px;
         color: #29303b;
         margin-bottom: 0px;
@@ -54,6 +54,7 @@
     .product-details-detail {
         white-space: normal;
         font-size: 15px;
+        font-weight:500;
         margin: 0;
         padding: 3px;
     }
@@ -61,14 +62,14 @@
         .product-details-detail > span {
             white-space: normal;
             font-size: 15px;
-            font-weight: 700;
+            font-weight: 400;
         }
 
 
     .product-details-initial-price {
         font-size: 20px;
         line-height: 15px;
-        color: #29303b;
+        color: #75757a;
         text-decoration: line-through;
         padding: 3px;
     }
@@ -83,106 +84,158 @@
 
 <div class="container body-content">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-8 mt-3">
+            <div class="row">
+                <div class="col-md-6">
 
-            <div id="productCarousel" class="carousel slide mb-3" data-ride="carousel" data-interval="false">
-                <ol class="carousel-indicators">
-                    <li data-target="#productCarousel" data-slide-to="0" class="active"></li>
-                    @{
-                        int productCount = 1;
-                        foreach (var productImage in Model.Product.OtherImagePaths)
-                        {
-                            <li data-target="#productCarousel" data-slide-to="@productCount"></li>
-                            productCount++;
-                        }
-                    }
+                    <div id="productCarousel" class="carousel slide mb-3" data-ride="carousel" data-interval="false">
+                        <ol class="carousel-indicators">
+                            <li data-target="#productCarousel" data-slide-to="0" class="active"></li>
+                            @{
+                                int productCount = 1;
+                                foreach (var productImage in Model.Product.OtherImagePaths)
+                                {
+                                    <li data-target="#productCarousel" data-slide-to="@productCount"></li>
+                                    productCount++;
+                                }
+                            }
 
-                </ol>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img class="" style="width:100%;height:500px" src="@Url.Content(Model.Product.MainImage)" alt="First slide">
-                    </div>
-                    @{
-                        foreach (var productImage in Model.Product.OtherImagePaths)
-                        {
-                            <div class="carousel-item">
-                                <img class="" style="width:100%;height:500px" src="@Url.Content(productImage)" alt="Second slide">
+                        </ol>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img class="" style="width:100%;height:500px" src="@Url.Content(Model.Product.MainImage)" alt="First slide">
                             </div>
+                            @{
+                                foreach (var productImage in Model.Product.OtherImagePaths)
+                                {
+                                    <div class="carousel-item">
+                                        <img class="" style="width:100%;height:500px" src="@Url.Content(productImage)" alt="Second slide">
+                                    </div>
+                                }
+                            }
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-12">
+                            <h1 class="product-details-title">@Model.Product.Name</h1>
+                            <div class="">
+                                @Html.Partial("_averageRating", Model.Product.Rating)
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="mt-1 mb-1" />
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="product-details-detail"><span>CATEGORY:</span> @Model.Product.Category</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="product-details-detail"><span>PRODUCT AVAILABILITY:</span>@Model.Product.Quantity</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 mb-1">
+                            <div class="product-details-price">$@Model.Product.SubTotal</div>
+                            @if (Model.Product.Discount > 0)
+                            {
+                                <span class="product-details-initial-price">$@Model.Product.Price</span>
+                                <span style="background-color:#212529;color:white;padding:5px">-@Model.Product.Discount%</span>
+                            }
+
+                        </div>
+                    </div>
+                    @*<h6 class="orButton"><span>OR</span></h6>*@
+                    <div class="mt-1 mb-1">
+                        <div class="wishlist-button" onclick="AddToWishList(@Model.Product.Id)">
+                            <div href="#">Add to wishlist</div>
+                        </div>
+                    </div>
+                    <div class="mt-1">
+                        @{
+                            if (Model.Product.CategoryId == AppConstant.CustomMadeCategoryId)
+                            {
+                                <div class="cart" onclick="AddToCartCustomMade(@Model.Product.Id)">
+                                    <div href="#">Add to cart</div>
+                                </div>
+                            }
+                            else if (Model.Product.CategoryId == AppConstant.ReadyMadeCategoryId)
+                            {
+                                <div class="cart" onclick="AddToCartReadyMade(@Model.Product.Id)">
+                                    <div href="#">Add to cart</div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="cart" onclick="AddToCart(@Model.Product.Id)">
+                                    <div href="#">Add to cart</div>
+                                </div>
+                            }
                         }
-                    }
-
-                </div>
-
-            </div>
-        </div>
-
-        <div class="col-md-6">
-            <div class="row">
-                <div class="col-12">
-                    <div class="product-details-title">@Model.Product.Name</div>
-                </div>
-            </div>
-            <hr class="m-0" />
-            <div class="row">
-                <div class="col-12">
-                    <div class="product-details-detail"><span>CATEGORY:</span> @Model.Product.Category</div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="product-details-detail"><span>PRODUCT AVAILABILITY:</span>@Model.Product.Quantity</div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    @if (Model.Product.Discount > 0)
-                    {
-                        <span class="product-details-initial-price">$@Model.Product.Price</span>
-                    }
-
-                    <span class="product-details-price">$@Model.Product.SubTotal</span>
-                </div>
-            </div>
-            <div class="row" style="padding:3px">
-                <div class="col-12">
-                    @Html.Partial("_averageRating", Model.Product.Rating)
-                </div>
-                <div class="col-12">
-                    @Html.ActionLink("Add a review", "AddReview", new { id = Model.Product.Id })
-                </div>
-            </div>
-
-            <div class="mb-3">
-                <button type="button" class="btn" style="background-color:#0a0c13;color:white" onclick="AddToWishList(@Model.Product.Id)">Add to wishlist</button>
-
-            </div>
-            <h6 class="orButton"><span>OR</span></h6>
-            @{
-                if (Model.Product.CategoryId == AppConstant.CustomMadeCategoryId)
-                {
-                    <div class="cart" onclick="AddToCartCustomMade(@Model.Product.Id)">
-                        <div href="#">Add to cart</div>
                     </div>
-                }
-                else if (Model.Product.CategoryId == AppConstant.ReadyMadeCategoryId)
-                {
-                    <div class="cart" onclick="AddToCartReadyMade(@Model.Product.Id)">
-                        <div href="#">Add to cart</div>
+                    <hr class="" />
+                    <div class="row">
+                        <div class="col-12">
+                            @Html.ActionLink("Add a review", "AddReview", new { id = Model.Product.Id })
+                        </div>
                     </div>
-                }
-                else
-                {
-                    <div class="cart" onclick="AddToCart(@Model.Product.Id)">
-                        <div href="#">Add to cart</div>
-                    </div>
-                }
-            }
+
+                </div>
+
+            </div>
 
         </div>
+        <div class="col-md-4 mt-3">
+            <div class="card">
+                <div class="card-header" style="background-color:white">
+                    <div style="font-weight:500;font-size:15px">DELIVERY AND RETURNS</div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-2">
+                            <img src="~/Content/Images/delivery-truck.svg" />
+                        </div>
+                        <div class="col-10 pl-0">
+                            <h6>Delivery information</h6>
+                            <div style="font-weight:300;font-size:15px">
+                                Normally delivered between 72 hours. Please check exact dates in the Checkout page. See more
+                            </div>
 
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-2">
+                            <img src="~/Content/Images/corner-down-left.svg" />
+                        </div>
+                        <div class="col-10 pl-0">
+                            <h6>Return policy</h6>
+                            <div style="font-weight:300;font-size:15px">
+                                Free return within 7 days for eligible items. See more
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-2">
+                            <img src="~/Content/Images/shield.svg" />
+                        </div>
+                        <div class="col-10 pl-0">
+                            <h6>Waranty</h6>
+                            <div style="font-weight:300;font-size:15px">
+                                6 months
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-
 
 
 
