@@ -175,48 +175,56 @@
                             </div>
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-4">
+                                    <div class="col-md-4 col-6">
                                         <div class="form-group">
                                             @Html.LabelFor(model => model.ExtraSmallQuantity, htmlAttributes: new { @class = "control-label col-12" })
                                             <div class="col-12">
-                                                @Html.EditorFor(model => model.ExtraSmallQuantity, new { htmlAttributes = new { @class = "form-control", @id="xsQty" } })
+                                                @Html.EditorFor(model => model.ExtraSmallQuantity, new { htmlAttributes = new { @class = "form-control", @id = "xsQty" } })
                                                 @Html.ValidationMessageFor(model => model.ExtraSmallQuantity, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-4">
+                                    <div class="col-md-4 col-6">
                                         <div class="form-group">
                                             @Html.LabelFor(model => model.SmallQuantiy, htmlAttributes: new { @class = "control-label col-12" })
                                             <div class="col-12">
-                                                @Html.EditorFor(model => model.SmallQuantiy, new { htmlAttributes = new { @class = "form-control", @id="smQty" } })
+                                                @Html.EditorFor(model => model.SmallQuantiy, new { htmlAttributes = new { @class = "form-control", @id = "smQty" } })
                                                 @Html.ValidationMessageFor(model => model.SmallQuantiy, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-4">
+                                    <div class="col-md-4 col-6">
                                         <div class="form-group">
                                             @Html.LabelFor(model => model.MediumQuantiy, htmlAttributes: new { @class = "control-label col-12" })
                                             <div class="col-12">
-                                                @Html.EditorFor(model => model.MediumQuantiy, new { htmlAttributes = new { @class = "form-control", @id="mQty" } })
+                                                @Html.EditorFor(model => model.MediumQuantiy, new { htmlAttributes = new { @class = "form-control", @id = "mQty" } })
                                                 @Html.ValidationMessageFor(model => model.MediumQuantiy, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-4">
+                                    <div class="col-md-4 col-6">
                                         <div class="form-group">
                                             @Html.LabelFor(model => model.LargeQuantity, htmlAttributes: new { @class = "control-label col-12" })
                                             <div class="col-12">
-                                                @Html.EditorFor(model => model.LargeQuantity, new { htmlAttributes = new { @class = "form-control", @id="lQty" } })
+                                                @Html.EditorFor(model => model.LargeQuantity, new { htmlAttributes = new { @class = "form-control", @id = "lQty" } })
                                                 @Html.ValidationMessageFor(model => model.LargeQuantity, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-4">
+                                    <div class="col-md-4 col-6">
                                         <div class="form-group">
                                             @Html.LabelFor(model => model.ExtraLargeQuantity, htmlAttributes: new { @class = "control-label col-12" })
                                             <div class="col-12">
-                                                @Html.EditorFor(model => model.ExtraLargeQuantity, new { htmlAttributes = new { @class = "form-control", @id="xlQty" } })
+                                                @Html.EditorFor(model => model.ExtraLargeQuantity, new { htmlAttributes = new { @class = "form-control", @id = "xlQty" } })
                                                 @Html.ValidationMessageFor(model => model.ExtraLargeQuantity, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-6">
+                                        <div class="form-group">
+                                            @Html.Label("Total Qty", htmlAttributes: new { @class = "control-label col-12" })
+                                            <div class="col-12">
+                                                <input type="text" readonly value="@Model.Quantity" id="qtyDisplay"  class="form-control"/>
                                             </div>
                                         </div>
                                     </div>
@@ -253,7 +261,8 @@
     var productPrice = document.getElementById("product-price");
     var productDiscount = document.getElementById("product-discount");
 
-    var productQty = document.getElementById("ProductQty")
+    var productQty = document.getElementById("ProductQty");
+    var qtyDisplay = document.getElementById("qtyDisplay");
     var xsQty = document.getElementById("xsQty");
     var smQty = document.getElementById("smQty");
     var mQty = document.getElementById("mQty");
@@ -280,24 +289,29 @@
     
     $('#xsQty').bind('input', function () {
         productQty.value = CalculateTotalQuantity();
+        qtyDisplay.value = CalculateTotalQuantity();
     });
 
     
     $('#smQty').bind('input', function () {
         productQty.value = CalculateTotalQuantity();
+        qtyDisplay.value = CalculateTotalQuantity();
     });
     
     $('#mQty').bind('input', function () {
         productQty.value = CalculateTotalQuantity();
+        qtyDisplay.value = CalculateTotalQuantity();
     });
 
     
     $('#lQty').bind('input', function () {
         productQty.value = CalculateTotalQuantity();
+        qtyDisplay.value = CalculateTotalQuantity();
     });
     
     $('#xlQty').bind('input', function () {
         productQty.value = CalculateTotalQuantity();
+        qtyDisplay.value = CalculateTotalQuantity();
     });
 
 </script>

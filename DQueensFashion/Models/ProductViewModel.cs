@@ -42,23 +42,23 @@ namespace DQueensFashion.Models
         public bool ReadyMadeCategory { get; set; }
 
         //Ready made sizes
-        [Range(0, int.MaxValue, ErrorMessage = "Value must be greater than 0")]
+        [Range(0, int.MaxValue, ErrorMessage = "Value must be equal or greater than 0")]
         [Display(Name = "XS quantity")]
         public int ExtraSmallQuantity { get; set; }
 
-        [Range(0, int.MaxValue, ErrorMessage = "Value must be greater than 0")]
+        [Range(0, int.MaxValue, ErrorMessage = "Value must be equal or greater than 0")]
         [Display(Name = "SM quantity")]
         public int SmallQuantiy { get; set; }
 
-        [Range(0, int.MaxValue, ErrorMessage = "Value must be greater than 0")]
+        [Range(0, int.MaxValue, ErrorMessage = "Value must be equal or greater than 0")]
         [Display(Name = "M quantity")]
         public int MediumQuantiy { get; set; }
 
-        [Range(0, int.MaxValue, ErrorMessage = "Value must be greater than 0")]
+        [Range(0, int.MaxValue, ErrorMessage = "Value must be equal or greater than 0")]
         [Display(Name = "L quantity")]
         public int LargeQuantity { get; set; }
 
-        [Range(0, int.MaxValue, ErrorMessage = "Value must be greater than 0")]
+        [Range(0, int.MaxValue, ErrorMessage = "Value must be equal or greater than 0")]
         [Display(Name = "XL quantity")]
         public int ExtraLargeQuantity { get; set; }
 
@@ -161,23 +161,23 @@ namespace DQueensFashion.Models
         public bool ReadyMadeCategory { get; set; }
 
         //Ready made sizes
-        [Range(0, int.MaxValue,ErrorMessage ="Value must be greater than 0")]
+        [Range(0, int.MaxValue, ErrorMessage = "Value must be equal or greater than 0")]
         [Display(Name = "XS quantity")]
         public int ExtraSmallQuantity { get; set; }
 
-        [Range(0, int.MaxValue, ErrorMessage = "Value must be greater than 0")]
+        [Range(0, int.MaxValue, ErrorMessage = "Value must be equal or greater than 0")]
         [Display(Name = "SM quantity")]
         public int SmallQuantiy { get; set; }
 
-        [Range(0, int.MaxValue, ErrorMessage = "Value must be greater than 0")]
+        [Range(0, int.MaxValue, ErrorMessage = "Value must be equal or greater than 0")]
         [Display(Name = "M quantity")]
         public int MediumQuantiy { get; set; }
 
-        [Range(0, int.MaxValue, ErrorMessage = "Value must be greater than 0")]
+        [Range(0, int.MaxValue, ErrorMessage = "Value must be equal or greater than 0")]
         [Display(Name = "L quantity")]
         public int LargeQuantity { get; set; }
 
-        [Range(0, int.MaxValue, ErrorMessage = "Value must be greater than 0")]
+        [Range(0, int.MaxValue, ErrorMessage = "Value must be equal or greater than 0")]
         [Display(Name = "XL quantity")]
         public int ExtraLargeQuantity { get; set; }
 
