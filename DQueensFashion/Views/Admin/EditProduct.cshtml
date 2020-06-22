@@ -145,39 +145,49 @@
                 </div>
             </div>
             @{
+
                 if (Model.CustomMadeCategory)
                 {
                     <div class="col-12">
-                        <div class="col-4">
-                            <div class="form-group">
-                                <div class="col-12">
-                                    <div class="checkbox">
-                                        @Html.CheckBoxFor(m => m.WaistLength)
-                                        @Html.LabelFor(m => m.WaistLength)
-                                    </div>
-
-                                </div>
+                        <div class="card">
+                            <div class="card-header">
+                                CUSTOM MADE BODY SPECIFICATIONS
                             </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="form-group">
-                                <div class="col-12">
-                                    <div class="checkbox">
-                                        @Html.CheckBoxFor(m => m.BurstSize)
-                                        @Html.LabelFor(m => m.BurstSize)
-                                    </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <div class="col-12">
+                                                <div class="checkbox">
+                                                    @Html.CheckBoxFor(m => m.WaistLength)
+                                                    @Html.LabelFor(m => m.WaistLength)
+                                                </div>
 
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="form-group">
-                                <div class="col-12">
-                                    <div class="checkbox">
-                                        @Html.CheckBoxFor(m => m.ShoulderLength)
-                                        @Html.LabelFor(m => m.ShoulderLength)
+                                            </div>
+                                        </div>
                                     </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <div class="col-12">
+                                                <div class="checkbox">
+                                                    @Html.CheckBoxFor(m => m.BurstSize)
+                                                    @Html.LabelFor(m => m.BurstSize)
+                                                </div>
 
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <div class="col-12">
+                                                <div class="checkbox">
+                                                    @Html.CheckBoxFor(m => m.ShoulderLength)
+                                                    @Html.LabelFor(m => m.ShoulderLength)
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

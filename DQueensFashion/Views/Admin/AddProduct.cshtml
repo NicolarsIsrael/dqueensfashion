@@ -20,7 +20,6 @@
 
         <div>
             <div class="form-horizontal">
-                <h6>ADD PRODUCT</h6>
                 @Html.HiddenFor(model => model.CustomMadeCategory)
                 @Html.HiddenFor(model=>model.ReadyMadeCategory)
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -131,36 +130,45 @@
                     if (Model.CustomMadeCategory)
                     {
                         <div class="col-12">
-                            <div class="col-4">
-                                <div class="form-group">
-                                    <div class="col-12">
-                                        <div class="checkbox">
-                                            @Html.CheckBoxFor(m => m.WaistLength)
-                                            @Html.LabelFor(m => m.WaistLength)
-                                        </div>
-
-                                    </div>
+                            <div class="card">
+                                <div class="card-header">
+                                    CUSTOM MADE BODY SPECIFICATIONS
                                 </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="form-group">
-                                    <div class="col-12">
-                                        <div class="checkbox">
-                                            @Html.CheckBoxFor(m => m.BurstSize)
-                                            @Html.LabelFor(m => m.BurstSize)
-                                        </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <div class="col-12">
+                                                    <div class="checkbox">
+                                                        @Html.CheckBoxFor(m => m.WaistLength)
+                                                        @Html.LabelFor(m => m.WaistLength)
+                                                    </div>
 
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="form-group">
-                                    <div class="col-12">
-                                        <div class="checkbox">
-                                            @Html.CheckBoxFor(m => m.ShoulderLength)
-                                            @Html.LabelFor(m => m.ShoulderLength)
+                                                </div>
+                                            </div>
                                         </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <div class="col-12">
+                                                    <div class="checkbox">
+                                                        @Html.CheckBoxFor(m => m.BurstSize)
+                                                        @Html.LabelFor(m => m.BurstSize)
+                                                    </div>
 
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <div class="col-12">
+                                                    <div class="checkbox">
+                                                        @Html.CheckBoxFor(m => m.ShoulderLength)
+                                                        @Html.LabelFor(m => m.ShoulderLength)
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -224,7 +232,7 @@
                                         <div class="form-group">
                                             @Html.Label("Total Qty", htmlAttributes: new { @class = "control-label col-12" })
                                             <div class="col-12">
-                                                <input type="text" readonly value="@Model.Quantity" id="qtyDisplay"  class="form-control"/>
+                                                <input type="text" readonly value="@Model.Quantity" id="qtyDisplay" class="form-control" />
                                             </div>
                                         </div>
                                     </div>
@@ -238,7 +246,7 @@
                 <div class="form-group">
                     <button type="submit" class="btn" style="background-color:#E97128;color:white">
                         <img src="~/Content/Images/plus.svg" />
-                        Add
+                        Add new product
                     </button>
                 </div>
             </div>
