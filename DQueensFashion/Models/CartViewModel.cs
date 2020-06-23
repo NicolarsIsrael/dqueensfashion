@@ -21,16 +21,36 @@ namespace DQueensFashion.Models
         public string ReadyMadeSize { get; set; }
 
         //measurement
-        [Display(Name = "Waist length")]
-        public bool WaistLength { get; set; }
-        [Display(Name = "Burst size")]
-        public bool BurstSize { get; set; }
-        [Display(Name = "Shoulder length")]
-        public bool ShoulderLength { get; set; }
+        public bool? Shoulder { get; set; }
+        [Display(Name = "Arm hole")]
+        public bool? ArmHole { get; set; }
+        public bool? Burst { get; set; }
+        public bool? Waist { get; set; }
+        public bool? Hips { get; set; }
+        public bool? Thigh { get; set; }
+        [Display(Name = "Full body length")]
+        public bool? FullBodyLength { get; set; }
+        [Display(Name = "Knee garment length")]
+        public bool? KneeGarmentLength { get; set; }
 
-        public int BurstSizeValue { get; set; }
-        public int ShoulderLengthValue { get; set; }
-        public int WaistLengthValue { get; set; }
+        [Display(Name = "Top length")]
+        public bool? TopLength { get; set; }
+
+        [Display(Name = "Trouser length")]
+        public bool? TrousersLength { get; set; }
+
+        [Display(Name = "Round neck")]
+        public bool? RoundNeck { get; set; }
+
+        [Display(Name = "Nip nip")]
+        public bool? NipNip { get; set; }
+
+        [Display(Name = "Sleeve length")]
+        public bool? SleeveLength { get; set; }
+
+        public int BurstValue { get; set; }
+        public int ShoulderValue { get; set; }
+        public int WaistValue { get; set; }
     }
 
     public class ViewCartViewModel
@@ -56,16 +76,38 @@ namespace DQueensFashion.Models
         public string ReadyMadeSize { get; set; }
 
         //measurement
-        [Display(Name = "Waist length")]
-        public bool WaistLength { get; set; }
-        [Display(Name = "Burst size")]
-        public bool BurstSize { get; set; }
-        [Display(Name = "Shoulder length")]
-        public bool ShoulderLength { get; set; }
 
-        public int BurstSizeValue { get; set; }
-        public int ShoulderLengthValue { get; set; }
-        public int WaistLengthValue { get; set; }
+        //measurement
+        public bool? Shoulder { get; set; }
+        [Display(Name = "Arm hole")]
+        public bool? ArmHole { get; set; }
+        public bool? Burst { get; set; }
+        public bool? Waist { get; set; }
+        public bool? Hips { get; set; }
+        public bool? Thigh { get; set; }
+        [Display(Name = "Full body length")]
+        public bool? FullBodyLength { get; set; }
+        [Display(Name = "Knee garment length")]
+        public bool? KneeGarmentLength { get; set; }
+
+        [Display(Name = "Top length")]
+        public bool? TopLength { get; set; }
+
+        [Display(Name = "Trouser length")]
+        public bool? TrousersLength { get; set; }
+
+        [Display(Name = "Round neck")]
+        public bool? RoundNeck { get; set; }
+
+        [Display(Name = "Nip nip")]
+        public bool? NipNip { get; set; }
+
+        [Display(Name = "Sleeve length")]
+        public bool? SleeveLength { get; set; }
+
+        public int BurstValue { get; set; }
+        public int ShoulderValue { get; set; }
+        public int WaistValue { get; set; }
     }
 
 }

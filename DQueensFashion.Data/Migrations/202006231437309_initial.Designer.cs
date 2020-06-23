@@ -13,7 +13,7 @@ namespace DQueensFashion.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202006221958393_initial"; }
+            get { return "202006231437309_initial"; }
         }
         
         string IMigrationMetadata.Source

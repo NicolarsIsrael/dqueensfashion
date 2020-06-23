@@ -23,225 +23,337 @@
                 @Html.HiddenFor(model => model.CustomMadeCategory)
                 @Html.HiddenFor(model=>model.ReadyMadeCategory)
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-12 col-md-6">
-                                    <div class="form-group">
-                                        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-12" })
-                                        <div class="col-12">
-                                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-12" })
+                                            <div class="col-12">
+                                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.CategoryId, htmlAttributes: new { @class = "control-label  col-12" })
+                                            <div class="col-12">
+                                                <select class="form-control" name="@Html.NameFor(m=>m.CategoryId)">
+                                                    @foreach (var item in Model.Categories)
+                                                    {
+                                                        <option value="@item.Id">@item.Name</option>
+                                                    }
+                                                </select>
+                                                @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-6">
-                                    <div class="form-group">
-                                        @Html.LabelFor(model => model.CategoryId, htmlAttributes: new { @class = "control-label  col-12" })
-                                        <div class="col-12">
-                                            <select class="form-control" name="@Html.NameFor(m=>m.CategoryId)">
-                                                @foreach (var item in Model.Categories)
-                                                {
-                                                    <option value="@item.Id">@item.Name</option>
-                                                }
-                                            </select>
-                                            @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-12" })
-                                <div class="col-12">
-                                    @Html.TextAreaFor(model => model.Description, new { @class = "form-control", @rows = 5 })
-                                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
-                            <div class="">
                                 <div class="form-group">
-                                    @Html.LabelFor(model => model.Tags, htmlAttributes: new { @class = "control-label col-12" })
+                                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-12" })
                                     <div class="col-12">
-                                        <select class="form-control js-example-tokenizer" multiple="multiple" name="Tags" style="border:1px solid #ced4da"></select>
+                                        @Html.TextAreaFor(model => model.Description, new { @class = "form-control", @rows = 5 })
+                                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body" style="padding-bottom:28px">
 
-                            <div class="row">
-                                <div class="col-12">
+                                <div class="">
                                     <div class="form-group">
-
-                                        @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-12" })
+                                        @Html.LabelFor(model => model.Tags, htmlAttributes: new { @class = "control-label col-12" })
                                         <div class="col-12">
-                                            @if (Model.ReadyMadeCategory)
-                                            {
-                                                @Html.EditorFor(model => model.Quantity,
-                                               new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @id = "ProductQty" } })
-                                            }
-                                            else
-                                            {
-                                                @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
-                                            }
-                                            @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-12" })
-                                        <div class="col-12">
-                                            @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control", @id = "product-price" } })
-                                            @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        @Html.LabelFor(model => model.Discount, htmlAttributes: new { @class = "control-label col-12" })
-                                        <div class="col-12">
-                                            @Html.EditorFor(model => model.Discount, new { htmlAttributes = new { @class = "form-control", @id = "product-discount" } })
-                                            @Html.ValidationMessageFor(model => model.Discount, "", new { @class = "text-danger" })
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        @Html.Label("Total", htmlAttributes: new { @class = "control-label col-12" })
-                                        <div class="col-12">
-                                            <input type="text" value="@Model.Price" disabled class="form-control" id="product-total-price" />
+                                            <select class="form-control js-example-tokenizer" multiple="multiple" name="Tags" style="border:1px solid #ced4da"></select>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                @{
-                    if (Model.CustomMadeCategory)
-                    {
-                        <div class="col-12">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body" style="padding-bottom:28px">
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+
+                                            @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-12" })
+                                            <div class="col-12">
+                                                @if (Model.ReadyMadeCategory)
+                                                {
+                                                    @Html.EditorFor(model => model.Quantity,
+                                                   new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @id = "ProductQty" } })
+                                                }
+                                                else
+                                                {
+                                                    @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
+                                                }
+                                                @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-12" })
+                                            <div class="col-12">
+                                                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control", @id = "product-price" } })
+                                                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.Discount, htmlAttributes: new { @class = "control-label col-12" })
+                                            <div class="col-12">
+                                                @Html.EditorFor(model => model.Discount, new { htmlAttributes = new { @class = "form-control", @id = "product-discount" } })
+                                                @Html.ValidationMessageFor(model => model.Discount, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            @Html.Label("Total", htmlAttributes: new { @class = "control-label col-12" })
+                                            <div class="col-12">
+                                                <input type="text" value="@Model.Price" disabled class="form-control" id="product-total-price" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    @{
+                        if (Model.CustomMadeCategory)
+                        {
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        CUSTOM MADE BODY SPECIFICATIONS
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <div class="col-12">
+                                                        <div class="checkbox">
+                                                            @Html.CheckBoxFor(m => m.Shoulder)
+                                                            @Html.LabelFor(m => m.Shoulder)
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <div class="col-12">
+                                                        <div class="checkbox">
+                                                            @Html.CheckBoxFor(m => m.ArmHole)
+                                                            @Html.LabelFor(m => m.ArmHole)
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <div class="col-12">
+                                                        <div class="checkbox">
+                                                            @Html.CheckBoxFor(m => m.Burst)
+                                                            @Html.LabelFor(m => m.Burst)
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <div class="col-12">
+                                                        <div class="checkbox">
+                                                            @Html.CheckBoxFor(m => m.Waist)
+                                                            @Html.LabelFor(m => m.Waist)
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <div class="col-12">
+                                                        <div class="checkbox">
+                                                            @Html.CheckBoxFor(m => m.Hips)
+                                                            @Html.LabelFor(m => m.Hips)
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <div class="col-12">
+                                                        <div class="checkbox">
+                                                            @Html.CheckBoxFor(m => m.Thigh)
+                                                            @Html.LabelFor(m => m.Thigh)
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <div class="col-12">
+                                                        <div class="checkbox">
+                                                            @Html.CheckBoxFor(m => m.FullBodyLength)
+                                                            @Html.LabelFor(m => m.FullBodyLength)
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <div class="col-12">
+                                                        <div class="checkbox">
+                                                            @Html.CheckBoxFor(m => m.KneeGarmentLength)
+                                                            @Html.LabelFor(m => m.KneeGarmentLength)
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <div class="col-12">
+                                                        <div class="checkbox">
+                                                            @Html.CheckBoxFor(m => m.TopLength)
+                                                            @Html.LabelFor(m => m.TopLength)
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <div class="col-12">
+                                                        <div class="checkbox">
+                                                            @Html.CheckBoxFor(m => m.TrousersLength)
+                                                            @Html.LabelFor(m => m.TrousersLength)
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <div class="col-12">
+                                                        <div class="checkbox">
+                                                            @Html.CheckBoxFor(m => m.RoundNeck)
+                                                            @Html.LabelFor(m => m.RoundNeck)
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <div class="col-12">
+                                                        <div class="checkbox">
+                                                            @Html.CheckBoxFor(m => m.NipNip)
+                                                            @Html.LabelFor(m => m.NipNip)
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <div class="col-12">
+                                                        <div class="checkbox">
+                                                            @Html.CheckBoxFor(m => m.SleeveLength)
+                                                            @Html.LabelFor(m => m.SleeveLength)
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                        if (Model.ReadyMadeCategory)
+                        {
                             <div class="card">
                                 <div class="card-header">
-                                    CUSTOM MADE BODY SPECIFICATIONS
+                                    READY MADE SIZES
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-md-3">
+                                        <div class="col-md-4 col-6">
                                             <div class="form-group">
+                                                @Html.LabelFor(model => model.ExtraSmallQuantity, htmlAttributes: new { @class = "control-label col-12" })
                                                 <div class="col-12">
-                                                    <div class="checkbox">
-                                                        @Html.CheckBoxFor(m => m.WaistLength)
-                                                        @Html.LabelFor(m => m.WaistLength)
-                                                    </div>
-
+                                                    @Html.EditorFor(model => model.ExtraSmallQuantity, new { htmlAttributes = new { @class = "form-control", @id = "xsQty" } })
+                                                    @Html.ValidationMessageFor(model => model.ExtraSmallQuantity, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-4 col-6">
                                             <div class="form-group">
+                                                @Html.LabelFor(model => model.SmallQuantiy, htmlAttributes: new { @class = "control-label col-12" })
                                                 <div class="col-12">
-                                                    <div class="checkbox">
-                                                        @Html.CheckBoxFor(m => m.BurstSize)
-                                                        @Html.LabelFor(m => m.BurstSize)
-                                                    </div>
-
+                                                    @Html.EditorFor(model => model.SmallQuantiy, new { htmlAttributes = new { @class = "form-control", @id = "smQty" } })
+                                                    @Html.ValidationMessageFor(model => model.SmallQuantiy, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-4 col-6">
                                             <div class="form-group">
+                                                @Html.LabelFor(model => model.MediumQuantiy, htmlAttributes: new { @class = "control-label col-12" })
                                                 <div class="col-12">
-                                                    <div class="checkbox">
-                                                        @Html.CheckBoxFor(m => m.ShoulderLength)
-                                                        @Html.LabelFor(m => m.ShoulderLength)
-                                                    </div>
-
+                                                    @Html.EditorFor(model => model.MediumQuantiy, new { htmlAttributes = new { @class = "form-control", @id = "mQty" } })
+                                                    @Html.ValidationMessageFor(model => model.MediumQuantiy, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-6">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.LargeQuantity, htmlAttributes: new { @class = "control-label col-12" })
+                                                <div class="col-12">
+                                                    @Html.EditorFor(model => model.LargeQuantity, new { htmlAttributes = new { @class = "form-control", @id = "lQty" } })
+                                                    @Html.ValidationMessageFor(model => model.LargeQuantity, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-6">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.ExtraLargeQuantity, htmlAttributes: new { @class = "control-label col-12" })
+                                                <div class="col-12">
+                                                    @Html.EditorFor(model => model.ExtraLargeQuantity, new { htmlAttributes = new { @class = "form-control", @id = "xlQty" } })
+                                                    @Html.ValidationMessageFor(model => model.ExtraLargeQuantity, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-6">
+                                            <div class="form-group">
+                                                @Html.Label("Total Qty", htmlAttributes: new { @class = "control-label col-12" })
+                                                <div class="col-12">
+                                                    <input type="text" readonly value="@Model.Quantity" id="qtyDisplay" class="form-control" />
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        }
                     }
-
-                    if (Model.ReadyMadeCategory)
-                    {
-                        <div class="card">
-                            <div class="card-header">
-                                READY MADE SIZES
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-4 col-6">
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => model.ExtraSmallQuantity, htmlAttributes: new { @class = "control-label col-12" })
-                                            <div class="col-12">
-                                                @Html.EditorFor(model => model.ExtraSmallQuantity, new { htmlAttributes = new { @class = "form-control", @id = "xsQty" } })
-                                                @Html.ValidationMessageFor(model => model.ExtraSmallQuantity, "", new { @class = "text-danger" })
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 col-6">
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => model.SmallQuantiy, htmlAttributes: new { @class = "control-label col-12" })
-                                            <div class="col-12">
-                                                @Html.EditorFor(model => model.SmallQuantiy, new { htmlAttributes = new { @class = "form-control", @id = "smQty" } })
-                                                @Html.ValidationMessageFor(model => model.SmallQuantiy, "", new { @class = "text-danger" })
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 col-6">
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => model.MediumQuantiy, htmlAttributes: new { @class = "control-label col-12" })
-                                            <div class="col-12">
-                                                @Html.EditorFor(model => model.MediumQuantiy, new { htmlAttributes = new { @class = "form-control", @id = "mQty" } })
-                                                @Html.ValidationMessageFor(model => model.MediumQuantiy, "", new { @class = "text-danger" })
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 col-6">
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => model.LargeQuantity, htmlAttributes: new { @class = "control-label col-12" })
-                                            <div class="col-12">
-                                                @Html.EditorFor(model => model.LargeQuantity, new { htmlAttributes = new { @class = "form-control", @id = "lQty" } })
-                                                @Html.ValidationMessageFor(model => model.LargeQuantity, "", new { @class = "text-danger" })
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 col-6">
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => model.ExtraLargeQuantity, htmlAttributes: new { @class = "control-label col-12" })
-                                            <div class="col-12">
-                                                @Html.EditorFor(model => model.ExtraLargeQuantity, new { htmlAttributes = new { @class = "form-control", @id = "xlQty" } })
-                                                @Html.ValidationMessageFor(model => model.ExtraLargeQuantity, "", new { @class = "text-danger" })
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 col-6">
-                                        <div class="form-group">
-                                            @Html.Label("Total Qty", htmlAttributes: new { @class = "control-label col-12" })
-                                            <div class="col-12">
-                                                <input type="text" readonly value="@Model.Quantity" id="qtyDisplay" class="form-control" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    }
-                }
-            </div>
+                </div>
 
                 <div class="form-group">
                     <button type="submit" class="btn" style="background-color:#E97128;color:white">

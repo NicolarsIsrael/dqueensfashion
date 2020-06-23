@@ -338,9 +338,9 @@ namespace DQueensFashion.Controllers
                         DateCreated = r.DateCreated.ToString("dd/MMM/yyyy"),
                         DateOrder = r.DateCreated,
                     }).OrderByDescending(r=>r.DateOrder).ToList(),
-                WaistLength=product.WaistLength.HasValue?product.WaistLength.Value:false,
-                ShoulderLength = product.ShoulderLength.HasValue?product.ShoulderLength.Value:false,
-                BurstSize = product.BurstSize.HasValue?product.BurstSize.Value:false,
+                Waist=product.Waist.HasValue?product.Waist.Value:false,
+                Shoulder = product.Shoulder.HasValue?product.Shoulder.Value:false,
+                Burst = product.Burst.HasValue?product.Burst.Value:false,
             };
 
             var allImages = _imageService.GetAllImageFiles();

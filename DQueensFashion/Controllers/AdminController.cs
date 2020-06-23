@@ -180,7 +180,7 @@ namespace DQueensFashion.Controllers
                         allImages.Where(image => image.ProductId == p.Id).FirstOrDefault().ImagePath,
                     DateCreated = p.DateCreated,
                     DateCreatedString = p.DateCreated.ToString("dd/MMM/yyyy"),
-                }).OrderBy(p=>p.DateCreated).ToList();
+                }).OrderByDescending(p=>p.DateCreated).ToList();
             return View(products);
         }
 
@@ -203,7 +203,7 @@ namespace DQueensFashion.Controllers
                         allImages.Where(image => image.ProductId == p.Id).FirstOrDefault().ImagePath,
                   DateCreated = p.DateCreated,
                   DateCreatedString = p.DateCreated.ToString("dd/MMM/yyyy"),
-              }).OrderBy(p => p.DateCreated).ToList();
+              }).OrderByDescending(p => p.DateCreated).ToList();
 
             if (!string.IsNullOrEmpty(searchString))
                 products = products.Where(p => p.Name.ToLower().Contains(searchString.ToLower())
@@ -227,10 +227,6 @@ namespace DQueensFashion.Controllers
             AddProductViewModel productModel = new AddProductViewModel()
             {
                 Categories = categories,
-                WaistLength = true,
-                BurstSize = true,
-                ShoulderLength = true,
-                Length = false,
             };
 
             if (categoryId == AppConstant.CustomMadeCategoryId)
@@ -274,9 +270,23 @@ namespace DQueensFashion.Controllers
                 SubTotal = _productService.CalculateProductPrice(productModel.Price, productModel.Discount),
                 Category = category,
                 Tags = productModel.Tags != null ? String.Join(",", productModel.Tags) : "",
-                ShoulderLength= productModel.ShoulderLength,
-                BurstSize = productModel.BurstSize,
-                WaistLength= productModel.WaistLength,
+
+                //measurement
+                Shoulder = productModel.Shoulder,
+                ArmHole = productModel.ArmHole,
+                Burst = productModel.Burst,
+                Waist= productModel.Waist,
+                Hips = productModel.Hips,
+                Thigh = productModel.Thigh,
+                FullBodyLength = productModel.FullBodyLength,
+                KneeGarmentLength = productModel.KneeGarmentLength,
+                TopLength = productModel.TopLength,
+                TrousersLength = productModel.TrousersLength,
+                RoundNeck = productModel.RoundNeck,
+                NipNip = productModel.NipNip,
+                SleeveLength = productModel.SleeveLength,
+
+                //ready made sizes
                 ExtraSmallQuantity= productModel.ExtraSmallQuantity,
                 SmallQuantiy = productModel.SmallQuantiy,
                 MediumQuantiy= productModel.MediumQuantiy,
@@ -363,16 +373,31 @@ namespace DQueensFashion.Controllers
                     Name = c.Name,
                 }).OrderBy(c => c.Name).ToList(),
                 Tags = string.IsNullOrEmpty(product.Tags) ? new List<string>() : product.Tags.Split(',').ToList(),
-                BurstSize = product.BurstSize.HasValue ? product.BurstSize.Value : false,
-                WaistLength = product.WaistLength.HasValue ? product.WaistLength.Value : false,
-                ShoulderLength = product.ShoulderLength.HasValue ? product.ShoulderLength.Value : false,
-                CustomMadeCategory = product.CategoryId == AppConstant.CustomMadeCategoryId ? true : false,
+
+                //measurement
+                Shoulder = product.Shoulder.HasValue ? product.Shoulder.Value : false,
+                ArmHole = product.ArmHole.HasValue ? product.ArmHole.Value : false,
+                Burst = product.Burst.HasValue ? product.Burst.Value : false,
+                Waist = product.Waist.HasValue ? product.Waist.Value : false,
+                Hips = product.Hips.HasValue ? product.Hips.Value : false,
+                Thigh = product.Thigh.HasValue ? product.Thigh.Value : false,
+                FullBodyLength = product.FullBodyLength.HasValue ? product.FullBodyLength.Value : false,
+                KneeGarmentLength = product.KneeGarmentLength.HasValue ? product.KneeGarmentLength.Value : false,
+                TopLength = product.TopLength.HasValue ? product.TopLength.Value : false,
+                TrousersLength = product.TrousersLength.HasValue ? product.TrousersLength.Value : false,
+                RoundNeck = product.RoundNeck.HasValue ? product.RoundNeck.Value : false,
+                NipNip = product.NipNip.HasValue ? product.NipNip.Value : false,
+                SleeveLength = product.SleeveLength.HasValue ? product.SleeveLength.Value : false,
+
+                //ready made
                 ExtraSmallQuantity = product.ExtraSmallQuantity,
                 SmallQuantiy= product.SmallQuantiy,
                 MediumQuantiy= product.MediumQuantiy,
                 LargeQuantity= product.LargeQuantity,
                 ExtraLargeQuantity = product.ExtraLargeQuantity,
+
                 ReadyMadeCategory = product.CategoryId == AppConstant.ReadyMadeCategoryId ? true : false,
+                CustomMadeCategory = product.CategoryId == AppConstant.CustomMadeCategoryId ? true : false,
             };
 
             foreach (var category in productModel.Categories)
@@ -431,9 +456,23 @@ namespace DQueensFashion.Controllers
             product.SubTotal = Math.Round(_productService.CalculateProductPrice(productModel.Price, productModel.Discount));
             product.Category = category;
             product.Tags = productModel.Tags != null ? String.Join(",", productModel.Tags) : "";
-            product.BurstSize = productModel.BurstSize;
-            product.WaistLength = productModel.WaistLength;
-            product.ShoulderLength = productModel.ShoulderLength;
+
+            //measurements
+            product.Shoulder = productModel.Shoulder;
+            product.ArmHole = productModel.ArmHole;
+            product.Burst = productModel.Burst;
+            product.Waist = productModel.Waist;
+            product.Hips = productModel.Hips;
+            product.Thigh = productModel.Thigh;
+            product.FullBodyLength = productModel.FullBodyLength;
+            product.KneeGarmentLength = productModel.KneeGarmentLength;
+            product.TopLength = productModel.TopLength;
+            product.TrousersLength = productModel.TrousersLength;
+            product.RoundNeck = productModel.RoundNeck;
+            product.NipNip = productModel.NipNip;
+            product.SleeveLength = productModel.SleeveLength;
+
+            //ready made
             product.ExtraSmallQuantity = productModel.ExtraSmallQuantity;
             product.SmallQuantiy = productModel.SmallQuantiy;
             product.MediumQuantiy = productModel.MediumQuantiy;

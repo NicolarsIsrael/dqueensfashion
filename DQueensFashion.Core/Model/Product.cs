@@ -40,8 +40,18 @@ namespace DQueensFashion.Core.Model
 
 
         //measurement
-        public bool? WaistLength { get; set; }
-        public bool? BurstSize { get; set; }
-        public bool? ShoulderLength { get; set; }
+        public bool? Shoulder { get; set; }
+        public bool? ArmHole { get; set; }
+        public bool? Burst { get; set; }
+        public bool? Waist { get; set; }
+        public bool? Hips { get; set; }
+        public bool? Thigh { get; set; }
+        public bool? FullBodyLength { get; set; }
+        public bool? KneeGarmentLength { get; set; }
+        public bool? TopLength { get; set; }
+        public bool? TrousersLength { get; set; }
+        public bool? RoundNeck { get; set; }
+        public bool? NipNip { get; set; }
+        public bool? SleeveLength { get; set; }
     }
 }

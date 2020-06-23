@@ -156,9 +156,9 @@ namespace DQueensFashion.Controllers
                 ProductId=product.Id,
                 ProductName = product.Name,
                 Quantity=product.Quantity,
-                WaistLength = product.WaistLength.HasValue ? product.WaistLength.Value : false,
-                ShoulderLength = product.ShoulderLength.HasValue ? product.ShoulderLength.Value : false,
-                BurstSize = product.BurstSize.HasValue ? product.BurstSize.Value : false,
+                Waist = product.Waist.HasValue ? product.Waist.Value : false,
+                Shoulder = product.Shoulder.HasValue ? product.Shoulder.Value : false,
+                Burst = product.Burst.HasValue ? product.Burst.Value : false,
             };
 
             return PartialView("_AddToCartCustomMade", cartModel);
@@ -200,9 +200,9 @@ namespace DQueensFashion.Controllers
                     TotalPrice = product.SubTotal * cartModel.Quantity,
                     MainImage = mainImage,
                     Description = GetCartDescription(cartModel,product.CategoryId),
-                    BurstSizeValue=cartModel.BurstSizeValue,
-                    ShoulderLengthValue = cartModel.ShoulderLengthValue,
-                    WaistLengthValue = cartModel.WaistLengthValue,
+                    BurstValue=cartModel.BurstValue,
+                    ShoulderValue = cartModel.ShoulderValue,
+                    WaistValue = cartModel.WaistValue,
                 });
             }
             Session["cart"] = cart;
@@ -371,9 +371,9 @@ namespace DQueensFashion.Controllers
             List<Cart> cart = (List<Cart>)Session["cart"];
             for (int i = 0; i < cart.Count; i++)
                 if (cart[i].Product.Id.Equals(id))
-                    if (cart[i].ShoulderLengthValue == cartModel.ShoulderLengthValue
-                        && cart[i].WaistLengthValue == cartModel.WaistLengthValue
-                        && cart[i].BurstSizeValue == cartModel.BurstSizeValue)
+                    if (cart[i].ShoulderValue == cartModel.ShoulderValue
+                        && cart[i].WaistValue == cartModel.WaistValue
+                        && cart[i].BurstValue == cartModel.BurstValue)
                         return i; //item already exist in cart
 
             return -1; //cart session is available but item not in cart
@@ -404,14 +404,14 @@ namespace DQueensFashion.Controllers
             string description = "";
             if (id == AppConstant.CustomMadeCategoryId)
             {
-                if (cartModel.ShoulderLengthValue > 0)
-                    description += "Shoulder length : " + cartModel.ShoulderLengthValue + "\r\n";
+                if (cartModel.ShoulderValue > 0)
+                    description += "Shoulder : " + cartModel.ShoulderValue + "\r\n";
 
-                if (cartModel.WaistLengthValue > 0)
-                    description += "Waist length : " + cartModel.WaistLengthValue + "\r\n";
+                if (cartModel.WaistValue > 0)
+                    description += "Waist : " + cartModel.WaistValue + "\r\n";
 
-                if (cartModel.BurstSizeValue > 0)
-                    description += "Burst size : " + cartModel.BurstSizeValue + "\r\n";
+                if (cartModel.BurstValue > 0)
+                    description += "Burst : " + cartModel.BurstValue + "\r\n";
 
             }else if (id == AppConstant.ReadyMadeCategoryId)
             {

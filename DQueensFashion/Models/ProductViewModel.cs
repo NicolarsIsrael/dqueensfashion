@@ -62,14 +62,34 @@ namespace DQueensFashion.Models
         [Display(Name = "XL quantity")]
         public int ExtraLargeQuantity { get; set; }
 
+
         //measurement
-        [Display(Name ="Waist length")]
-        public bool WaistLength { get; set; }
-        [Display(Name="Burst size")]
-        public bool BurstSize { get; set; }
-        [Display(Name="Shoulder length")]
-        public bool ShoulderLength { get; set; }
-        public bool Length { get; set; }
+        public bool Shoulder { get; set; }
+        [Display(Name = "Arm hole")]
+        public bool ArmHole { get; set; }
+        public bool Burst { get; set; }
+        public bool Waist { get; set; }
+        public bool Hips { get; set; }
+        public bool Thigh { get; set; }
+        [Display(Name = "Full body length")]
+        public bool FullBodyLength { get; set; }
+        [Display(Name = "Knee garment length")]
+        public bool KneeGarmentLength { get; set; }
+
+        [Display(Name = "Top length")]
+        public bool TopLength { get; set; }
+
+        [Display(Name = "Trouser length")]
+        public bool TrousersLength { get; set; }
+
+        [Display(Name = "Round neck")]
+        public bool RoundNeck { get; set; }
+
+        [Display(Name = "Nip nip")]
+        public bool NipNip { get; set; }
+
+        [Display(Name = "Sleeve length")]
+        public bool SleeveLength { get; set; }
     }
 
     public class AddProductImageViewModel
@@ -115,12 +135,32 @@ namespace DQueensFashion.Models
         public IEnumerable<ViewReviewViewModel> Reviews { get; set; }
 
         //measurement
-        [Display(Name = "Waist length")]
-        public bool WaistLength { get; set; }
-        [Display(Name = "Burst size")]
-        public bool BurstSize { get; set; }
-        [Display(Name = "Shoulder length")]
-        public bool ShoulderLength { get; set; }
+        public bool Shoulder { get; set; }
+        [Display(Name = "Arm hole")]
+        public bool ArmHole { get; set; }
+        public bool Burst { get; set; }
+        public bool Waist { get; set; }
+        public bool Hips { get; set; }
+        public bool Thigh { get; set; }
+        [Display(Name = "Full body length")]
+        public bool FullBodyLength { get; set; }
+        [Display(Name = "Knee garment length")]
+        public bool KneeGarmentLength { get; set; }
+
+        [Display(Name = "Top length")]
+        public bool TopLength { get; set; }
+
+        [Display(Name = "Trouser length")]
+        public bool TrousersLength { get; set; }
+
+        [Display(Name = "Round neck")]
+        public bool RoundNeck { get; set; }
+
+        [Display(Name = "Nip nip")]
+        public bool NipNip { get; set; }
+
+        [Display(Name = "Sleeve length")]
+        public bool SleeveLength { get; set; }
 
     }
 
@@ -181,13 +221,34 @@ namespace DQueensFashion.Models
         [Display(Name = "XL quantity")]
         public int ExtraLargeQuantity { get; set; }
 
+
         //measurement
-        [Display(Name = "Waist length")]
-        public bool WaistLength { get; set; }
-        [Display(Name = "Burst size")]
-        public bool BurstSize { get; set; }
-        [Display(Name = "Shoulder length")]
-        public bool ShoulderLength { get; set; }
+        public bool Shoulder { get; set; }
+        [Display(Name = "Arm hole")]
+        public bool ArmHole { get; set; }
+        public bool Burst { get; set; }
+        public bool Waist { get; set; }
+        public bool Hips { get; set; }
+        public bool Thigh { get; set; }
+        [Display(Name = "Full body length")]
+        public bool FullBodyLength { get; set; }
+        [Display(Name = "Knee garment length")]
+        public bool KneeGarmentLength { get; set; }
+
+        [Display(Name = "Top length")]
+        public bool TopLength { get; set; }
+
+        [Display(Name = "Trouser length")]
+        public bool TrousersLength { get; set; }
+
+        [Display(Name = "Round neck")]
+        public bool RoundNeck { get; set; }
+
+        [Display(Name = "Nip nip")]
+        public bool NipNip { get; set; }
+
+        [Display(Name = "Sleeve length")]
+        public bool SleeveLength { get; set; }
     }
 
     public class ProductDetailsViewModel
@@ -196,3 +257,17 @@ namespace DQueensFashion.Models
         public IEnumerable<ViewProductsViewModel> RelatedProducts { get; set; }
     }
 }
+
+// shoulder
+//arm hole
+//Bust
+//waist
+//hips
+//thigh
+//full body length
+//kneel garment length
+//top length
+//trousers length
+//round ankle
+//nip - nip
+//sleeves length
