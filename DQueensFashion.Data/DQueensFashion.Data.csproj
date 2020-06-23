@@ -154,6 +154,10 @@
     <Compile Include="Migrations\202006231437309_initial.Designer.cs">
       <DependentUpon>202006231437309_initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006231730431_ankle.cs" />
+    <Compile Include="Migrations\202006231730431_ankle.Designer.cs">
+      <DependentUpon>202006231730431_ankle.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -170,6 +174,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202006231437309_initial.resx">
       <DependentUpon>202006231437309_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006231730431_ankle.resx">
+      <DependentUpon>202006231730431_ankle.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

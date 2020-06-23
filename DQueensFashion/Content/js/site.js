@@ -59,12 +59,24 @@ function AddToCartReadyMadePost() {
 }
 
 function AddToCartCustomMadePost() {
+
     var cartModel = {
         ProductId: $('#ProductId').val(),
         Quantity: $('#Quantity').val(),
-        BurstSizeValue: $('#BurstSizeValue').val(),
-        ShoulderLengthValue: $('#ShoulderLengthValue').val(),
-        WaistLengthValue: $('#WaistLengthValue').val(),
+
+        ShoulderValue: $('#ShoulderValue').val(),
+        ArmHoleValue: $('#ArmHoleValue').val(),
+        BurstValue: $('#BurstValue').val(),
+        WaistValue: $('#WaistValue').val(),
+        HipsValue: $('#HipsValue').val(),
+        ThighValue: $('#ThighValue').val(),
+        FullBodyLengthValue: $('#FullBodyLengthValue').val(),
+        KneeGarmentLengthValue: $('#KneeGarmentLengthValue').val(),
+        TopLengthValue: $('#TopLengthValue').val(),
+        TrousersLengthValue: $('#TrousersLengthValue').val(),
+        RoundAnkleValue: $('#RoundAnkleValue').val(),
+        NipNipValue: $('#NipNipValue').val(),
+        SleeveLengthValue: $('#SleeveLengthValue').val(),
     }
 
     $.ajax({
@@ -82,6 +94,8 @@ function AddToCartCustomMadePost() {
         }
     });
 }
+
+
 
 function UpdateCartNumber() {
 

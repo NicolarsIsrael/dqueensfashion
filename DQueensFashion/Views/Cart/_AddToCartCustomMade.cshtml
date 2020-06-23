@@ -1,4 +1,4 @@
-﻿@model DQueensFashion.Models.CartViewModel
+﻿@model DQueensFashion.Models.Cart
 @using DQueensFashion.Utilities
 
 <h6>@Model.ProductName</h6>
@@ -7,75 +7,226 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
+<div class="form-horizontal">
 
-        <input type="hidden" id="ProductId" value="@Model.ProductId"/>
+    <input type="hidden" id="ProductId" value="@Model.ProductId" />
 
-        <div class="form-group">
-            <div class="col-form-label">Quantity</div>
-            <select class="form-control" id="Quantity">
-                @for (int i = 1; i <= 100; i++)
-                {
-                    <option value="@i">@i</option>
-                }
-            </select>
-        </div>
+    <div class="form-group">
+        <div class="col-form-label">Quantity</div>
+        <select class="form-control-sm col-12" id="Quantity">
+            @for (int i = 1; i <= 100; i++)
+            {
+                <option value="@i">@i</option>
+            }
+        </select>
+    </div>
 
-        <div class="row">
+    <p class="text-danger">***Measurements are in inches</p>
+    <hr />
 
-            @{
-                if (Model.BurstSize)
-                {
+    <div class="row">
 
-                    <div class="form-group col-6">
-                        <div class="col-form-label">Burstsize</div>
-                        <select class="form-control" id="BurstSizeValue">
-                            @foreach (var size in AppConstant.BurstSizeValues)
-                            {
-                                <option value="@size">@size</option>
-                            }
+        @{
 
-                        </select>
-                    </div>
-                }
+            if (Model.Shoulder)
+            {
+                <div class="form-group col-6">
+                    <div class="col-form-label">Shoulder</div>
+                    <select class="form-control-sm col-12" id="ShoulderValue">
+                        @foreach (var size in AppConstant.ShoulderValues)
+                        {
+                            <option value="@size">@size</option>
+                        }
 
-                if (Model.ShoulderLength)
-                {
-                 
-                    <div class="form-group col-6">
-                        <div class="col-form-label">Shoulder length</div>
-                        <select class="form-control" id="ShoulderLengthValue">
-                            @foreach (var size in AppConstant.ShoulderLengthValues)
-                            {
-                                <option value="@size">@size</option>
-                            }
-
-                        </select>
-                    </div>
-                }
-
-                if (Model.WaistLength)
-                {
-
-                    <div class="form-group col-6">
-                        <div class="col-form-label">Waist length</div>
-                        <select class="form-control" id="WaistLengthValue">
-                            @foreach (var size in AppConstant.WaistLengthVallues)
-                            {
-                                <option value="@size">@size</option>
-                            }
-
-                        </select>
-                    </div>
-                }
+                    </select>
+                </div>
             }
 
-        </div>
+            if (Model.ArmHole)
+            {
+                <div class="form-group col-6">
+                    <div class="col-form-label">Arm hole</div>
+                    <select class="form-control-sm col-12" id="ArmHoleValue">
+                        @foreach (var size in AppConstant.ArmHoleValues)
+                        {
+                            <option value="@size">@size</option>
+                        }
 
-        <input type="button" value="ADD TO CART" class="btn mt-0" 
-               style="max-width:150px;background-color:#E97128;color:white"
-               onclick="AddToCartCustomMadePost()" />
+                    </select>
+                </div>
+            }
+
+            if (Model.Burst)
+            {
+
+                <div class="form-group col-6">
+                    <div class="col-form-label">Burst</div>
+                    <select class="form-control-sm col-12" id="BurstValue">
+                        @foreach (var size in AppConstant.BurstValues)
+                        {
+                            <option value="@size">@size</option>
+                        }
+
+                    </select>
+                </div>
+            }
+
+            if (Model.Waist)
+            {
+                <div class="form-group col-6">
+                    <div class="col-form-label">Waist</div>
+                    <select class="form-control-sm col-12" id="WaistValue">
+                        @foreach (var size in AppConstant.WaistValues)
+                        {
+                            <option value="@size">@size</option>
+                        }
+
+                    </select>
+                </div>
+            }
+
+            if (Model.Hips)
+            {
+
+                <div class="form-group col-6">
+                    <div class="col-form-label">Hips</div>
+                    <select class="form-control-sm col-12" id="HipsValue">
+                        @foreach (var size in AppConstant.HipsValues)
+                        {
+                            <option value="@size">@size</option>
+                        }
+
+                    </select>
+                </div>
+            }
+
+            if (Model.Thigh)
+            {
+
+                <div class="form-group col-6">
+                    <div class="col-form-label">Thigh</div>
+                    <select class="form-control-sm col-12" id="ThighValue">
+                        @foreach (var size in AppConstant.ThighValues)
+                        {
+                            <option value="@size">@size</option>
+                        }
+
+                    </select>
+                </div>
+            }
+
+            if (Model.FullBodyLength)
+            {
+
+                <div class="form-group col-6">
+                    <div class="col-form-label">Full Body length</div>
+                    <select class="form-control-sm col-12" id="FullBodyLengthValue">
+                        @foreach (var size in AppConstant.FullBodyValues)
+                        {
+                            <option value="@size">@size</option>
+                        }
+
+                    </select>
+                </div>
+            }
+
+            if (Model.KneeGarmentLength)
+            {
+
+                <div class="form-group col-6">
+                    <div class="col-form-label">Knee garment len</div>
+                    <select class="form-control-sm col-12" id="KneeGarmentLengthValue">
+                        @foreach (var size in AppConstant.KneeGarmentLengthValues)
+                        {
+                            <option value="@size">@size</option>
+                        }
+
+                    </select>
+                </div>
+            }
+
+            if (Model.TopLength)
+            {
+
+                <div class="form-group col-6">
+                    <div class="col-form-label">Top length</div>
+                    <select class="form-control-sm col-12" id="TopLengthValue">
+                        @foreach (var size in AppConstant.TopLengthValues)
+                        {
+                            <option value="@size">@size</option>
+                        }
+
+                    </select>
+                </div>
+            }
+
+            if (Model.TrousersLength)
+            {
+
+                <div class="form-group col-6">
+                    <div class="col-form-label">Trouser length</div>
+                    <select class="form-control-sm col-12" id="TrousersLengthValue">
+                        @foreach (var size in AppConstant.TrousersLengthValues)
+                        {
+                            <option value="@size">@size</option>
+                        }
+
+                    </select>
+                </div>
+            }
+
+            if (Model.RoundAnkle)
+            {
+
+                <div class="form-group col-6">
+                    <div class="col-form-label">Round ankle</div>
+                    <select class="form-control-sm col-12" id="RoundAnkleValue">
+                        @foreach (var size in AppConstant.RoundAnkleValues)
+                        {
+                            <option value="@size">@size</option>
+                        }
+
+                    </select>
+                </div>
+            }
+
+            if (Model.NipNip)
+            {
+
+                <div class="form-group col-6">
+                    <div class="col-form-label">Nip-nip</div>
+                    <select class="form-control-sm col-12" id="NipNipValue">
+                        @foreach (var size in AppConstant.NipNipValues)
+                        {
+                            <option value="@size">@size</option>
+                        }
+
+                    </select>
+                </div>
+            }
+
+            if (Model.SleeveLength)
+            {
+
+                <div class="form-group col-6">
+                    <div class="col-form-label">Sleeve length</div>
+                    <select class="form-control-sm col-12" id="SleeveLengthValue">
+                        @foreach (var size in AppConstant.SleevesLengthValues)
+                        {
+                            <option value="@size">@size</option>
+                        }
+
+                    </select>
+                </div>
+            }
+        }
+
     </div>
+
+    <input type="button" value="ADD TO CART" class="btn mt-0"
+           style="max-width:150px;background-color:#E97128;color:white"
+           onclick="AddToCartCustomMadePost()" />
+</div>
 }
 
 

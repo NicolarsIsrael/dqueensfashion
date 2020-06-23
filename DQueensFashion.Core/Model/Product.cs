@@ -50,7 +50,7 @@ namespace DQueensFashion.Core.Model
         public bool? KneeGarmentLength { get; set; }
         public bool? TopLength { get; set; }
         public bool? TrousersLength { get; set; }
-        public bool? RoundNeck { get; set; }
+        public bool? RoundAnkle { get; set; }
         public bool? NipNip { get; set; }
         public bool? SleeveLength { get; set; }
     }

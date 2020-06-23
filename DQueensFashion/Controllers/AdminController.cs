@@ -282,7 +282,7 @@ namespace DQueensFashion.Controllers
                 KneeGarmentLength = productModel.KneeGarmentLength,
                 TopLength = productModel.TopLength,
                 TrousersLength = productModel.TrousersLength,
-                RoundNeck = productModel.RoundNeck,
+                RoundAnkle = productModel.RoundAnkle,
                 NipNip = productModel.NipNip,
                 SleeveLength = productModel.SleeveLength,
 
@@ -385,7 +385,7 @@ namespace DQueensFashion.Controllers
                 KneeGarmentLength = product.KneeGarmentLength.HasValue ? product.KneeGarmentLength.Value : false,
                 TopLength = product.TopLength.HasValue ? product.TopLength.Value : false,
                 TrousersLength = product.TrousersLength.HasValue ? product.TrousersLength.Value : false,
-                RoundNeck = product.RoundNeck.HasValue ? product.RoundNeck.Value : false,
+                RoundAnkle = product.RoundAnkle.HasValue ? product.RoundAnkle.Value : false,
                 NipNip = product.NipNip.HasValue ? product.NipNip.Value : false,
                 SleeveLength = product.SleeveLength.HasValue ? product.SleeveLength.Value : false,
 
@@ -468,7 +468,7 @@ namespace DQueensFashion.Controllers
             product.KneeGarmentLength = productModel.KneeGarmentLength;
             product.TopLength = productModel.TopLength;
             product.TrousersLength = productModel.TrousersLength;
-            product.RoundNeck = productModel.RoundNeck;
+            product.RoundAnkle = productModel.RoundAnkle;
             product.NipNip = productModel.NipNip;
             product.SleeveLength = productModel.SleeveLength;
 

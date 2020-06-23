@@ -83,7 +83,7 @@ namespace DQueensFashion.Controllers
             if (product.CategoryId != AppConstant.ReadyMadeCategoryId)
                 throw new Exception();
 
-            CartViewModel cartModel = new CartViewModel()
+            Cart cartModel = new Cart()
             {
                 ProductId = product.Id,
                 ProductName = product.Name,
@@ -99,7 +99,7 @@ namespace DQueensFashion.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddToCartReadyMade(CartViewModel cartModel)
+        public ActionResult AddToCartReadyMade(Cart cartModel)
         {
             Product product = _productService.GetProductById(cartModel.ProductId);
             if (product == null)
@@ -151,21 +151,33 @@ namespace DQueensFashion.Controllers
             if (product.CategoryId != AppConstant.CustomMadeCategoryId)
                 throw new Exception();
 
-            CartViewModel cartModel = new CartViewModel()
+            Cart cartModel = new Cart()
             {
                 ProductId=product.Id,
                 ProductName = product.Name,
                 Quantity=product.Quantity,
-                Waist = product.Waist.HasValue ? product.Waist.Value : false,
+
+                //measurement
                 Shoulder = product.Shoulder.HasValue ? product.Shoulder.Value : false,
+                ArmHole = product.ArmHole.HasValue ? product.ArmHole.Value : false,
                 Burst = product.Burst.HasValue ? product.Burst.Value : false,
+                Waist = product.Waist.HasValue ? product.Waist.Value : false,
+                Hips = product.Hips.HasValue ? product.Hips.Value : false,
+                Thigh = product.Thigh.HasValue ? product.Thigh.Value : false,
+                FullBodyLength = product.FullBodyLength.HasValue ? product.FullBodyLength.Value : false,
+                KneeGarmentLength = product.KneeGarmentLength.HasValue ? product.KneeGarmentLength.Value : false,
+                TopLength = product.TopLength.HasValue ? product.TopLength.Value : false,
+                TrousersLength = product.TrousersLength.HasValue ? product.TrousersLength.Value : false,
+                RoundAnkle = product.RoundAnkle.HasValue ? product.RoundAnkle.Value : false,
+                NipNip = product.NipNip.HasValue ? product.NipNip.Value : false,
+                SleeveLength = product.SleeveLength.HasValue ? product.SleeveLength.Value : false,
             };
 
             return PartialView("_AddToCartCustomMade", cartModel);
         }
 
         [HttpPost]
-        public ActionResult AddToCartCustomMade(CartViewModel cartModel)
+        public ActionResult AddToCartCustomMade(Cart cartModel)
         {
 
             Product product = _productService.GetProductById(cartModel.ProductId);
@@ -200,13 +212,24 @@ namespace DQueensFashion.Controllers
                     TotalPrice = product.SubTotal * cartModel.Quantity,
                     MainImage = mainImage,
                     Description = GetCartDescription(cartModel,product.CategoryId),
-                    BurstValue=cartModel.BurstValue,
+
+                    //measurement
                     ShoulderValue = cartModel.ShoulderValue,
+                    ArmHoleValue = cartModel.ArmHoleValue,
+                    BurstValue =cartModel.BurstValue,
                     WaistValue = cartModel.WaistValue,
+                    HipsValue = cartModel.HipsValue,
+                    ThighValue = cartModel.ThighValue,
+                    FullBodyLengthValue = cartModel.FullBodyLengthValue,
+                    KneeGarmentLengthValue = cartModel.KneeGarmentLengthValue,
+                    TopLengthValue = cartModel.TopLengthValue,
+                    TrousersLengthValue = cartModel.TrousersLengthValue,
+                    RoundAnkleValue = cartModel.RoundAnkleValue,
+                    NipNipValue = cartModel.NipNipValue,
+                    SleeveLengthValue = cartModel.SleeveLengthValue,
                 });
             }
             Session["cart"] = cart;
-
 
             ViewBag.CartNumber = GetCartNumber();
             return PartialView("_navbarCartNumber");
@@ -352,7 +375,7 @@ namespace DQueensFashion.Controllers
             return -1; //cart session is available but item not in cart
         }
 
-        private int isExistReadyMade(int id,CartViewModel cartModel)
+        private int isExistReadyMade(int id,Cart cartModel)
         {
             if (Session["cart"] == null)
                 return -2; //no cart session yet
@@ -364,7 +387,7 @@ namespace DQueensFashion.Controllers
             return -1; //cart session is available but item not in cart
         }
 
-        private int isExistCustomMade(int id, CartViewModel cartModel)
+        private int isExistCustomMade(int id, Cart cartModel)
         {
             if (Session["cart"] == null)
                 return -2; //no cart session yet
@@ -372,8 +395,18 @@ namespace DQueensFashion.Controllers
             for (int i = 0; i < cart.Count; i++)
                 if (cart[i].Product.Id.Equals(id))
                     if (cart[i].ShoulderValue == cartModel.ShoulderValue
+                        && cart[i].ArmHoleValue == cartModel.ArmHoleValue
+                        && cart[i].BurstValue == cartModel.BurstValue
                         && cart[i].WaistValue == cartModel.WaistValue
-                        && cart[i].BurstValue == cartModel.BurstValue)
+                        && cart[i].HipsValue == cartModel.HipsValue
+                        && cart[i].ThighValue == cartModel.ThighValue
+                        && cart[i].FullBodyLengthValue == cartModel.FullBodyLengthValue
+                        && cart[i].KneeGarmentLengthValue == cartModel.KneeGarmentLengthValue
+                        && cart[i].TopLengthValue == cartModel.TopLengthValue
+                        && cart[i].TrousersLengthValue == cartModel.TrousersLengthValue
+                        && cart[i].RoundAnkleValue == cartModel.RoundAnkleValue
+                        && cart[i].NipNipValue == cartModel.NipNipValue
+                        && cart[i].SleeveLengthValue == cartModel.SleeveLengthValue)
                         return i; //item already exist in cart
 
             return -1; //cart session is available but item not in cart
@@ -399,21 +432,52 @@ namespace DQueensFashion.Controllers
             return categories;
         }
 
-        private string GetCartDescription(CartViewModel cartModel,int id)
+        private string GetCartDescription(Cart cartModel,int id)
         {
             string description = "";
             if (id == AppConstant.CustomMadeCategoryId)
             {
                 if (cartModel.ShoulderValue > 0)
-                    description += "Shoulder : " + cartModel.ShoulderValue + "\r\n";
+                    description += "Shoulder : " + cartModel.ShoulderValue +"\"" + "\r\n";
 
-                if (cartModel.WaistValue > 0)
-                    description += "Waist : " + cartModel.WaistValue + "\r\n";
+                if (cartModel.ArmHoleValue > 0)
+                    description += "Arm hole : " + cartModel.ArmHoleValue + "\"" + "\r\n";
 
                 if (cartModel.BurstValue > 0)
-                    description += "Burst : " + cartModel.BurstValue + "\r\n";
+                    description += "Burst : " + cartModel.BurstValue + "\"" + "\r\n";
+              
+                if (cartModel.WaistValue > 0)
+                    description += "Waist : " + cartModel.WaistValue + "\"" + "\r\n";
 
-            }else if (id == AppConstant.ReadyMadeCategoryId)
+                if (cartModel.HipsValue > 0)
+                    description += "Hips : " + cartModel.HipsValue + "\"" + "\r\n";
+
+                if (cartModel.ThighValue > 0)
+                    description += "Thigh : " + cartModel.ThighValue + "\"" + "\r\n";
+
+                if (cartModel.FullBodyLengthValue > 0)
+                    description += "Full body : " + cartModel.FullBodyLengthValue + "\"" + "\r\n";
+
+                if (cartModel.KneeGarmentLengthValue > 0)
+                    description += "Knee garment : " + cartModel.KneeGarmentLengthValue + "\"" + "\r\n";
+
+                if (cartModel.TopLengthValue > 0)
+                    description += "Top length : " + cartModel.TopLengthValue + "\"" + "\r\n";
+
+                if (cartModel.TrousersLengthValue > 0)
+                    description += "Trousers length: " + cartModel.TrousersLengthValue + "\"" + "\r\n";
+
+                if (cartModel.RoundAnkleValue > 0)
+                    description += "Round neck : " + cartModel.RoundAnkleValue + "\"" + "\r\n";
+
+                if (cartModel.NipNipValue > 0)
+                    description += "Nip-Nip : " + cartModel.NipNipValue + "\"" + "\r\n";
+
+                if (cartModel.SleeveLengthValue > 0)
+                    description += "Sleeve : " + cartModel.SleeveLengthValue + "\"" + "\r\n";
+
+            }
+            else if (id == AppConstant.ReadyMadeCategoryId)
             {
                 description = cartModel.ReadyMadeSize;
             }
@@ -422,3 +486,4 @@ namespace DQueensFashion.Controllers
         #endregion
     }
 }
+

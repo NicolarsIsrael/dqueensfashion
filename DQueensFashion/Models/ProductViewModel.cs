@@ -82,8 +82,8 @@ namespace DQueensFashion.Models
         [Display(Name = "Trouser length")]
         public bool TrousersLength { get; set; }
 
-        [Display(Name = "Round neck")]
-        public bool RoundNeck { get; set; }
+        [Display(Name = "Round ankle")]
+        public bool RoundAnkle { get; set; }
 
         [Display(Name = "Nip nip")]
         public bool NipNip { get; set; }
@@ -153,8 +153,8 @@ namespace DQueensFashion.Models
         [Display(Name = "Trouser length")]
         public bool TrousersLength { get; set; }
 
-        [Display(Name = "Round neck")]
-        public bool RoundNeck { get; set; }
+        [Display(Name = "Round ankle")]
+        public bool RoundAnkle { get; set; }
 
         [Display(Name = "Nip nip")]
         public bool NipNip { get; set; }
@@ -241,8 +241,8 @@ namespace DQueensFashion.Models
         [Display(Name = "Trouser length")]
         public bool TrousersLength { get; set; }
 
-        [Display(Name = "Round neck")]
-        public bool RoundNeck { get; set; }
+        [Display(Name = "Round ankle")]
+        public bool RoundAnkle { get; set; }
 
         [Display(Name = "Nip nip")]
         public bool NipNip { get; set; }
