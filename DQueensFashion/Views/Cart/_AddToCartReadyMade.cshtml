@@ -21,7 +21,7 @@
             <div class="col-12">
                 <div class="form-group">
                     <div class="col-form-label">Size</div>
-                    <select class="form-control" id="ReadyMadeSize" onchange="GetProductReadyMadeQuantity()">
+                    <select class="form-control-sm col-12" id="ReadyMadeSize" onchange="GetProductReadyMadeQuantity()">
                         @foreach (var size in AppConstant.ReadyMadeSizes)
                         {
                             <option value="@size">@size</option>
@@ -34,7 +34,7 @@
 
         <div class="form-group">
             <div class="col-form-label">Quantity</div>
-            <select class="form-control" id="Quantity">
+            <select class="form-control-sm col-12" id="Quantity">
                 @for (int i = 1; i <= Model.ExtraSmallQuantity; i++)
                 {
                     <option value="@i">@i</option>

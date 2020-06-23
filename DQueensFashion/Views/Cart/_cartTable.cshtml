@@ -121,7 +121,7 @@
                         <td style="vertical-align:middle;width:120px;max-width:120px;word-wrap:break-word">
                             @Html.DisplayFor(modelItem => item.Product.Name)
                         </td>
-                        <td style="vertical-align:middle;word-break:break-word;max-width:100px">
+                        <td style="vertical-align:middle;word-break:break-word;max-width:120px">
                             @Html.Raw(item.Description.Replace(Environment.NewLine, "<br/>"))
                             @if (item.Product.CategoryId == AppConstant.CustomMadeCategoryId)
                             {
