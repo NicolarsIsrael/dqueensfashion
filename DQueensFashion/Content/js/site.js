@@ -32,7 +32,7 @@ function AddToCartCustomMade(productId) {
         data: {},
         success: function (result) {
             $("#sidebarbody").html(result);
-            document.getElementById("sidenav").style.width = "300px";
+            openNav();
         },
         error: function (xhr, status, error) {
             alertify.error("Error");
@@ -63,7 +63,8 @@ function AddToCartReadyMadePost() {
         dataType: "html",
         success: function (result) {
             $("#navbarCartNumber").html(result);
-            $('#addToCart').modal('hide');
+            closeNav();
+            //$('#addToCart').modal('hide');
         },
         error: function (xhr, status, error) {
             alertify.error("Error");
@@ -100,7 +101,8 @@ function AddToCartCustomMadePost() {
         dataType: "html",
         success: function (result) {
             $("#navbarCartNumber").html(result);
-            $('#addToCart').modal('hide');
+            closeNav();
+            //$('#addToCart').modal('hide');
         },
         error: function (xhr, status, error) {
             alertify.error("Error");
@@ -185,6 +187,7 @@ function CalculateTotalQuantity() {
 }
 
 function openNav() {
+    document.getElementById("sidenav").style.width = "300px";
 }
 
 function closeNav() {
