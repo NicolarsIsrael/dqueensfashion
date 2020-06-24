@@ -8,51 +8,54 @@
     @Html.AntiForgeryToken()
 
 <div class="form-horizontal">
+    <div style="min-height:70vh;max-height:70vh;overflow-y:scroll;overflow-x:hidden">
+        <input type="hidden" id="ProductId" value="@Model.ProductId" />
+        <input type="hidden" id="xsQty" value="@Model.ExtraSmallQuantity" />
+        <input type="hidden" id="smQty" value="@Model.SmallQuantiy" />
+        <input type="hidden" id="mQty" value="@Model.MediumQuantiy" />
+        <input type="hidden" id="lQty" value="@Model.LargeQuantity" />
+        <input type="hidden" id="xlQty" value="@Model.ExtraLargeQuantity" />
 
-    <input type="hidden" id="ProductId" value="@Model.ProductId" />
-    <input type="hidden" id="xsQty" value="@Model.ExtraSmallQuantity" />
-    <input type="hidden" id="smQty" value="@Model.SmallQuantiy" />
-    <input type="hidden" id="mQty" value="@Model.MediumQuantiy" />
-    <input type="hidden" id="lQty" value="@Model.LargeQuantity" />
-    <input type="hidden" id="xlQty" value="@Model.ExtraLargeQuantity" />
 
-
-    <div class="row">
-        <div class="col-12">
-            <div class="form-group">
-                <div class="col-form-label">Size</div>
-                <select class="form-control-sm col-12" id="ReadyMadeSize" onchange="GetProductReadyMadeQuantity()">
-                    @foreach (var size in AppConstant.ReadyMadeSizes)
-                    {
-                        <option value="@size">@size</option>
-                    }
-                </select>
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <div class="col-form-label">Size</div>
+                    <select class="form-control-sm col-12" id="ReadyMadeSize" onchange="GetProductReadyMadeQuantity()">
+                        @foreach (var size in AppConstant.ReadyMadeSizes)
+                        {
+                            <option value="@size">@size</option>
+                        }
+                    </select>
+                </div>
             </div>
         </div>
+
+
+        <div class="form-group">
+            <div class="col-form-label">Quantity</div>
+            <select class="form-control-sm col-12" id="Quantity">
+                @for (int i = 1; i <= Model.ExtraSmallQuantity; i++)
+                {
+                    <option value="@i">@i</option>
+                }
+            </select>
+        </div>
+        @if (Model.ExtraSmallQuantity < 1)
+        {
+            <p id="sizeValidation" class="text-danger mb-1">Size not available for this item</p>
+        }
+        else
+        {
+            <p id="sizeValidation" class="text-danger mb-1"></p>
+        }
+
+
     </div>
-
-
-    <div class="form-group">
-        <div class="col-form-label">Quantity</div>
-        <select class="form-control-sm col-12" id="Quantity">
-            @for (int i = 1; i <= Model.ExtraSmallQuantity; i++)
-            {
-                <option value="@i">@i</option>
-            }
-        </select>
-    </div>
-    @if (Model.ExtraSmallQuantity < 1)
-    {
-<p id="sizeValidation" class="text-danger mb-1">Size not available for this item</p>
-    }
-    else
-    {
-        <p id="sizeValidation" class="text-danger mb-1"></p>
-    }
-
-    <input type="button" value="ADD TO CART" class="btn mt-0"
-           style="max-width:150px;background-color:#E97128;color:white"
+    <input type="button" value="ADD TO CART" class="btn  btn-block mt-0"
+           style="background-color:#E97128;color:white;border-radius:0"
            id="submitCartButton" onclick="AddToCartReadyMadePost()" />
+   
 </div>
 }
 
