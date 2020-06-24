@@ -26,12 +26,25 @@ function AddToCartReadyMade(productId) {
 
 function AddToCartCustomMade(productId) {
 
-    var url = "/Cart/AddToCartCustomMade/" + productId;
+    $.ajax({
+        url: "/Cart/AddToCartCustomMade/" + productId,
+        dataType: "html",
+        data: {},
+        success: function (result) {
+            $("#sidebarbody").html(result);
+            document.getElementById("sidenav").style.width = "250px";
+        },
+        error: function (xhr, status, error) {
+            alertify.error("Error");
+        }
+    });
 
-    $("#addToCartBody").load(url, function () {
-        $("#addToCart").modal("show");
+    //var url = "/Cart/AddToCartCustomMade/" + productId;
 
-    })
+    //$("#addToCartBody").load(url, function () {
+    //    $("#addToCart").modal("show");
+
+    //})
 
 }
 
@@ -172,7 +185,6 @@ function CalculateTotalQuantity() {
 }
 
 function openNav() {
-    document.getElementById("sidenav").style.width = "250px";
 }
 
 function closeNav() {
