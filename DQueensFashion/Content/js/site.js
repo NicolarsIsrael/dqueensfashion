@@ -32,7 +32,7 @@ function AddToCartCustomMade(productId) {
         data: {},
         success: function (result) {
             $("#sidebarbody").html(result);
-            document.getElementById("sidenav").style.width = "250px";
+            document.getElementById("sidenav").style.width = "300px";
         },
         error: function (xhr, status, error) {
             alertify.error("Error");
