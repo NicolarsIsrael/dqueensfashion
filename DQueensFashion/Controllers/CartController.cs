@@ -83,11 +83,22 @@ namespace DQueensFashion.Controllers
             if (product.CategoryId != AppConstant.ReadyMadeCategoryId)
                 throw new Exception();
 
+            string mainImage = _imageService.GetImageFilesForProduct(product.Id).Count() < 1
+                ? AppConstant.DefaultProductImage
+                : _imageService.GetMainImageForProduct(product.Id).ImagePath;
+
             Cart cartModel = new Cart()
             {
                 ProductId = product.Id,
-                ProductName = product.Name,
+                ProductName = product.Name.Length > 20 ? product.Name.Substring(0, 18) + "..." : product.Name,
+                CategoryName = product.Category.Name.Length > 20
+                            ? product.Category.Name.Substring(0, 18) + "..." : product.Category.Name,
+                MainImage = mainImage,
                 Quantity = product.Quantity,
+                InitialPrice = product.Price,
+                Discount = product.Discount,
+                UnitPrice = product.SubTotal,
+
                 ExtraSmallQuantity = product.ExtraSmallQuantity,
                 SmallQuantiy = product.SmallQuantiy,
                 MediumQuantiy = product.MediumQuantiy,
@@ -151,11 +162,21 @@ namespace DQueensFashion.Controllers
             if (product.CategoryId != AppConstant.CustomMadeCategoryId)
                 throw new Exception();
 
+            string mainImage = _imageService.GetImageFilesForProduct(product.Id).Count() < 1
+                ? AppConstant.DefaultProductImage
+                : _imageService.GetMainImageForProduct(product.Id).ImagePath;
+
             Cart cartModel = new Cart()
             {
                 ProductId = product.Id,
                 ProductName = product.Name.Length > 20 ? product.Name.Substring(0, 18) + "..." : product.Name,
+                CategoryName = product.Category.Name.Length > 20 
+                            ? product.Category.Name.Substring(0,18) + "..." : product.Category.Name,
+                MainImage = mainImage,
                 Quantity = product.Quantity,
+                InitialPrice = product.Price,
+                Discount = product.Discount,
+                UnitPrice = product.SubTotal,
 
                 //measurement
                 Shoulder = product.Shoulder.HasValue ? product.Shoulder.Value : false,

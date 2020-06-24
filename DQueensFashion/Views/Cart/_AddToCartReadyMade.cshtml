@@ -1,14 +1,30 @@
 ﻿@model DQueensFashion.Models.Cart
 @using DQueensFashion.Utilities
 
-<h6>@Model.ProductName</h6>
-
 @using (Html.BeginForm("AddToCartCustomMade", "Cart"))
 {
     @Html.AntiForgeryToken()
 
 <div class="form-horizontal">
     <div style="min-height:70vh;max-height:70vh;overflow-y:scroll;overflow-x:hidden">
+
+        <div class="row">
+            <div class="col-5 p-1">
+                <img src="@Model.MainImage" style="width:100px;height:100px" />
+            </div>
+            <div class="col-7 p-1">
+                <div style="font-size:15px;font-weight:500">
+                    @Model.ProductName
+                </div>
+                <div style="font-size:15px;font-weight:400">@Model.CategoryName</div>
+                <span class="product-initial-price" style="font-size:12px">$@Model.InitialPrice</span>
+                <span class="pl-1" style="font-size:12px">-@Model.Discount%</span>
+                <div style="font-weight:500;color:#B01A24">$@Model.UnitPrice</div>
+            </div>
+
+        </div>
+
+
         <input type="hidden" id="ProductId" value="@Model.ProductId" />
         <input type="hidden" id="xsQty" value="@Model.ExtraSmallQuantity" />
         <input type="hidden" id="smQty" value="@Model.SmallQuantiy" />
