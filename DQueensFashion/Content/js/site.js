@@ -170,3 +170,11 @@ function CalculateTotalQuantity() {
                     + Number(mQty.value) + Number(lQty.value)
                     + Number(xlQty.value);
 }
+
+function openNav() {
+    document.getElementById("sidenav").style.width = "250px";
+}
+
+function closeNav() {
+    document.getElementById("sidenav").style.width = "0";
+}
