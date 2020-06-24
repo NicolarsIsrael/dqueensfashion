@@ -153,9 +153,9 @@ namespace DQueensFashion.Controllers
 
             Cart cartModel = new Cart()
             {
-                ProductId=product.Id,
-                ProductName = product.Name,
-                Quantity=product.Quantity,
+                ProductId = product.Id,
+                ProductName = product.Name.Length > 20 ? product.Name.Substring(0, 18) + "..." : product.Name,
+                Quantity = product.Quantity,
 
                 //measurement
                 Shoulder = product.Shoulder.HasValue ? product.Shoulder.Value : false,
