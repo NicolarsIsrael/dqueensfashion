@@ -290,6 +290,7 @@
     <Content Include="Content\alertifyjs\themes\semantic.min.css" />
     <Content Include="Content\alertifyjs\themes\semantic.rtl.css" />
     <Content Include="Content\alertifyjs\themes\semantic.rtl.min.css" />
+    <Content Include="Content\Images\Body-measurement.jpg" />
     <Content Include="Content\dashboard-custom.css" />
     <Content Include="Content\Dashboard\css\main.css" />
     <Content Include="Content\Dashboard\jquery.js" />
@@ -348,6 +349,7 @@
     <Content Include="Content\bootstrap-grid.css.map" />
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings1.pubxml" />
+    <None Include="Properties\PublishProfiles\Default Settings2.pubxml" />
     <None Include="Properties\PublishProfiles\dqueens - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\dqueens - FTP1.pubxml" />
     <None Include="Properties\PublishProfiles\dqueens - FTP2.pubxml" />

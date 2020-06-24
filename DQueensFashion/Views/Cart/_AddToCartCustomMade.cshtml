@@ -6,7 +6,7 @@
     @Html.AntiForgeryToken()
 
 <div class="form-horizontal">
-    <div style="min-height:70vh;max-height:70vh;overflow-y:scroll;overflow-x:hidden">
+    <div style="min-height:78vh;max-height:78vh;overflow-y:auto;overflow-x:hidden">
         <input type="hidden" id="ProductId" value="@Model.ProductId" />
         
         <div class="row">
@@ -36,8 +36,8 @@
                 </select>
             </div>
 
-            <p class="text-danger">***Measurements are in inches</p>
-            <hr class="m-0" />
+            <p class="text-danger m-0">Measurements are in inches*</p>
+            <a href="@Url.Content("~/Content/Images/Body-measurement.jpg")" target="_blank">How to measure your body ?</a>
 
             <div class="row">
 
