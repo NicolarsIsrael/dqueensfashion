@@ -311,6 +311,7 @@
     <Content Include="Content\Images\iconfinder_Streamline-70_185090.png" />
     <Content Include="Content\Images\shield.svg" />
     <Content Include="Content\Images\shopping-cart %28orange%29.svg" />
+    <Content Include="Content\Images\shopping-cart-big.svg" />
     <Content Include="Content\Images\shopping-cart.svg" />
     <Content Include="Content\Images\trash-2.svg" />
     <Content Include="Content\Images\user.svg" />

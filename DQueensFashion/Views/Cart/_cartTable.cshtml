@@ -3,75 +3,99 @@
 
 
     <div class="viewCartTable">
-        <h4 class="mt-3">
-            Cart : @Model.Count
-            @{
-                if (Model.Count > 1)
-                { <span>items</span>}
-                else
-                {<span>item</span> }
-            }
-        </h4>
-        <div class="row">
-            <div class="col-md-8">
-                <div class="d-xs-block d-sm-block d-md-none d-lg-none d-xl-none">
-                    @Html.Partial("_cartTableMobile", Model)
-                </div>
-            </div>
-            <div class="col-md-8">
-                <div class="d-none d-md-block">
-                    @Html.Partial("_cartTableDesktop", Model)
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card" style="border-bottom-left-radius:0;border-bottom-right-radius:0">
-                    <div class="card-header" style="background-color:white">
-                        <div style="text-align:center;font-weight:700;font-size:18px">CART TOTAL</div>
+        @if (Model.Count > 0)
+        {
+            <h4 class="mt-3">
+                Cart : @Model.Count
+                @{
+                    if (Model.Count > 1)
+                    { <span>items</span>}
+                    else
+                    {<span>item</span> }
+                }
+            </h4>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="d-xs-block d-sm-block d-md-none d-lg-none d-xl-none">
+                        @Html.Partial("_cartTableMobile", Model)
                     </div>
-                    <div class="card-body">
-                        <div>
-                            <div class="subtotal">
-                                <span>SUBTOTAL: $@Model.SubTotal</span>
-                            </div>
-                            <hr class="m-0" />
-                            <div style=" font-size:20px;font-weight:400;">
-                                <span>Shipping & taxes calculated at checkout</span>
-                            </div>
-                            <hr class="m-0" />
-                            <div style="font-size:25px;font-weight:500">
-                                <span>TOTAL: $@Model.SubTotal</span>
-                            </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="d-none d-md-block">
+                        @Html.Partial("_cartTableDesktop", Model)
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card" style="border-bottom-left-radius:0;border-bottom-right-radius:0">
+                        <div class="card-header" style="background-color:white">
+                            <div style="text-align:center;font-weight:700;font-size:18px">CART TOTAL</div>
+                        </div>
+                        <div class="card-body">
+                            <div>
+                                <div class="subtotal">
+                                    <span>SUBTOTAL: $@Model.SubTotal</span>
+                                </div>
+                                <hr class="m-0" />
+                                <div style=" font-size:20px;font-weight:400;">
+                                    <span>Shipping & taxes calculated at checkout</span>
+                                </div>
+                                <hr class="m-0" />
+                                <div style="font-size:25px;font-weight:500">
+                                    <span>TOTAL: $@Model.SubTotal</span>
+                                </div>
 
-                            @{
-                                if (Model.Count < 1)
-                                {
-                                    <input type="submit" class="btn" style="background-color:#E97128;color:white;width:300px;height:50px;"
-                                           value="CHECK OUT" disabled />
+                                @{
+                                    if (Model.Count < 1)
+                                    {
+                                        <input type="submit" class="btn" style="background-color:#E97128;color:white;width:300px;height:50px;"
+                                               value="CHECK OUT" disabled />
+                                    }
+                                    else
+                                    {
+                                        <input type="button" class="btn checkout-btn"
+                                               value="CHECK OUT" onclick="CheckOut()" />
+
+                                    }
                                 }
-                                else
-                                {
-                                    <input type="button" class="btn checkout-btn"
-                                           value="CHECK OUT" onclick="CheckOut()" />
 
-                                }
-                            }
-
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-12">
-                        <a href="@Url.Action("Index","Product")" class="btn btn-block"
-                           style="background-color:#212529;color:white; border-radius:0;">Continue shopping</a>
+                    <div class="row">
+                        <div class="col-12">
+                            <a href="@Url.Action("Index", "Product")" class="btn btn-block"
+                               style="background-color:#212529;color:white; border-radius:0;">Continue shopping</a>
+                        </div>
+
                     </div>
-                 
+
                 </div>
 
             </div>
+        }
+        else
+        {
+            <div style="margin-top:80px;">
 
-        </div>
-      
+                <div style="background-color:white;border-radius:50%;display:flex;width:200px;height:200px;margin:auto">
+                    <img src="~/Content/Images/shopping-cart-big.svg" style="margin:auto" />
+                </div>
+                <div style="text-align:center;font-size:30px;font-weight:400">
+                    YOUR CART IS EMPTY
+                </div>
+                <div style="text-align:center;font-size:18px;font-weight:300">
+                    Add products to cart.
+                    You will find a lot of interesting products on our "Shop" page.
+                </div>
+            </div>
+            <div style="text-align:center;margin-top:10px">
+                <a href="@Url.Action("Index","Product")" class="btn"
+                   style="background-color:#212529;color:white;width:200px; border-radius:0;">Continue shopping</a>
+            </div>
+        }
+
+
     </div>
    
     <style>

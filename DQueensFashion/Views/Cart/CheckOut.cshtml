@@ -39,13 +39,22 @@
                 @foreach (var item in Model.Carts)
                 {
                     <tr>
-                        <td style="width:110px">
-                            <img src="@Url.Content(item.MainImage)" style="width:100px;height:100px" />
+                        <td style="width:85px">
+                            <img src="@Url.Content(item.MainImage)" style="width:85px;height:100px" />
                         </td>
 
-                        <td style="word-wrap:break-word">
+                        <td style="word-wrap:break-word;width:150px;padding-left:0;padding-right:0">
                             <div style="font-size:15px;font-weight:500">
-                                @item.Product.Name
+                                @{
+                                    if (item.Product.Name.Length > 18)
+                                    {
+                                        <div>@item.Product.Name.Substring(0, 18)...</div>
+                                    }
+                                    else
+                                    {
+                                        <div>@item.Product.Name</div>
+                                    }
+                                }
                             </div>
                             <div style="font-size:15px;font-weight:400;color:#818181">@item.Product.Category.Name</div>
                             <div>$@item.UnitPrice X @item.Quantity</div>
@@ -56,7 +65,7 @@
 
                         </td>
 
-                        <td>
+                        <td style="padding-left:1px;padding-right:0">
                             <div style="font-weight:500">Desc:</div>
                             <div style="font-size:14px;word-break:break-word">
                                 @Html.Raw(item.Description.Replace(Environment.NewLine, "<br />"))
