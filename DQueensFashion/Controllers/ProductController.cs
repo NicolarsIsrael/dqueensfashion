@@ -35,10 +35,15 @@ namespace DQueensFashion.Controllers
         // GET: Product
         public ActionResult Index(int categoryId=0)
         {
+            return RedirectToAction(nameof(Shop), new { categoryId = categoryId });
+        }
+
+        public ActionResult Shop(int categoryId = 0)
+        {
             var allImages = _imageService.GetAllImageFiles();
 
             IEnumerable<Product> _products = _productService.GetAllProducts().ToList();
-           
+
             if (categoryId > 0)
                 _products = _products.Where(p => p.Category.Id == categoryId);
 
@@ -80,10 +85,10 @@ namespace DQueensFashion.Controllers
                     {
                         Id = c.Id,
                         Name = c.Name,
-                    }).OrderBy(c=>c.Name).ToList(),
+                    }).OrderBy(c => c.Name).ToList(),
             };
 
-            foreach(var category in productIndex.Categories)
+            foreach (var category in productIndex.Categories)
             {
                 if (category.Id == categoryId)
                     category.Selected = "selected";

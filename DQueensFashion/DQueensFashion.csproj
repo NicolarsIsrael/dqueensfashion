@@ -494,7 +494,7 @@
     <Content Include="Views\Cart\_navbarCartNumber.cshtml" />
     <Content Include="Views\Customer\Dashboard.cshtml" />
     <Content Include="Views\Customer\Wishlist.cshtml" />
-    <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Product\Shop.cshtml" />
     <Content Include="Views\Product\_productsList.cshtml" />
     <Content Include="Views\Product\ProductDetails.cshtml" />
     <Content Include="Views\Cart\ViewCart.cshtml" />
