@@ -274,7 +274,7 @@ namespace DQueensFashion.Controllers
             return View(viewCart);
         }
 
-        public ActionResult IncreaseQuantity(int id)
+        public ActionResult ChangeCartItemQuantity(int id,int quantity)
         {
             Product product = _productService.GetProductById(id);
             if (product == null)
@@ -284,42 +284,9 @@ namespace DQueensFashion.Controllers
             int index = isExist(id);
             if (index != -1)
             {
-                cart[index].Quantity++;
+                cart[index].Quantity = quantity;
                 cart[index].UnitPrice = cart[index].Product.SubTotal;
-                cart[index].TotalPrice = cart[index].Product.SubTotal * cart[index].Quantity;
-                if (product.CategoryId != AppConstant.CustomMadeCategoryId 
-                    && product.CategoryId != AppConstant.ReadyMadeCategoryId)
-                {
-                    cart[index].Description = cart[index].Quantity > 1
-                    ? cart[index].Quantity.ToString() + " Pieces"
-                    : cart[index].Quantity.ToString() + " Piece";
-                }
-            }
-            Session["cart"] = cart;
-
-            ViewCartViewModel viewCart = new ViewCartViewModel()
-            {
-                Count = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.Quantity),
-                Carts = Session["cart"] == null ? new List<Cart>() : (List<Cart>)Session["cart"],
-                SubTotal = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.TotalPrice),
-            };
-
-            return PartialView("_cartTable",viewCart);
-        }
-
-        public ActionResult DecreaseQuantity(int id)
-        {
-            Product product = _productService.GetProductById(id);
-            if (product == null)
-                throw new Exception();
-
-            List<Cart> cart = (List<Cart>)Session["cart"];
-            int index = isExist(id);
-            if (index != -1)
-            {
-                cart[index].Quantity--;
-                cart[index].UnitPrice = cart[index].Product.SubTotal;
-                cart[index].TotalPrice = cart[index].Product.SubTotal * cart[index].Quantity;
+                cart[index].TotalPrice = cart[index].Product.SubTotal * quantity;
                 if (product.CategoryId != AppConstant.CustomMadeCategoryId
                     && product.CategoryId != AppConstant.ReadyMadeCategoryId)
                 {
@@ -328,7 +295,7 @@ namespace DQueensFashion.Controllers
                     : cart[index].Quantity.ToString() + " Piece";
                 }
 
-                if (cart[index].Quantity==0)
+                if (cart[index].Quantity == 0)
                     cart.RemoveAt(index);
             }
             Session["cart"] = cart;

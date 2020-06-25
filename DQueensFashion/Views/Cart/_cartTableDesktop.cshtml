@@ -40,22 +40,23 @@
                     <p class="text-danger">*Measurements are in inches</p>
                 }
             </td>
-            <td style="min-width:130px;">
-
-                <div class="input-group">
-                    <span class="input-group-btn">
-                        <button type="button" class="btn quantity-button minus-button" onclick="DecreaseQuantity(@item.Product.Id)">
-                            -
-                        </button>
-                    </span>
-                    <input type="text" class="cart-quantity" value="@item.Quantity" disabled>
-                    <span class="input-group-btn">
-                        <button type="button" class="btn quantity-button plus-button" onclick="IncreaseQuantity(@item.Product.Id)">
-                            +
-                        </button>
-                    </span>
-                </div>
-
+            <td style="width:50px;">
+                <select class="form-group-sm" style="width:100%" onchange="ChangeCartItemQuantity(@item.Product.Id,this.value)">
+                    @{
+                        for (int i = 1; i < 10; i++)
+                        {
+                            if (i == item.Quantity)
+                            {
+                                <option value="@i" selected>@i</option>
+                            }
+                            else
+                            {
+                                <option value="@i">@i</option>
+                            }
+                        }
+                    }
+                </select>
+               
             </td>
             <td>
                 $@Html.DisplayFor(modelItem => item.TotalPrice)

@@ -33,7 +33,7 @@
                     <div class="col-5">
                         Description
                         <br />
-                        <div style="font-size:10px;word-break:break-word">
+                        <div style="font-size:12px;word-break:break-word">
                             @Html.Raw(item.Description.Replace(Environment.NewLine, "<br/>"))
                         </div>
                         @if (item.Product.CategoryId == AppConstant.CustomMadeCategoryId)
@@ -42,24 +42,27 @@
                         }
                     </div>
                 </div>
-
+                
                 <div class="row mt-3">
-                    <div class="col-9 p-0">
-                        <div class="input-group">
-                            <span class="input-group-btn">
-                                <button type="button" class="btn quantity-button minus-button" onclick="DecreaseQuantity(@item.Product.Id)">
-                                    -
-                                </button>
-                            </span>
-                            <input type="text" class="cart-quantity" value="@item.Quantity" disabled>
-                            <span class="input-group-btn">
-                                <button type="button" class="btn quantity-button plus-button" onclick="IncreaseQuantity(@item.Product.Id)">
-                                    +
-                                </button>
-                            </span>
-                        </div>
+                    <div class="col-4 p-1">
+                        <select class="form-group-sm" style="width:100%" onchange="ChangeCartItemQuantity(@item.Product.Id,this.value)">
+                            @{
+                                for (int i = 1; i < 10; i++)
+                                {
+                                    if (i == item.Quantity)
+                                    {
+                                        <option value="@i" selected>@i</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@i">@i</option>
+                                    }
+                                }
+                            }
+                        </select>
                     </div>
-                    <div class="col-3 pt-1">
+                   
+                    <div class="col-3 pt-1" style="text-align:left">
                         $@Html.DisplayFor(modelItem => item.TotalPrice)
                     </div>
                 </div>

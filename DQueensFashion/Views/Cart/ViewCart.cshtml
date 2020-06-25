@@ -11,40 +11,40 @@
 
 </div>
 <script>
-    function IncreaseQuantity(productId) {
+    //function IncreaseQuantity(productId) {
        
-        $.ajax({
-            url: '/Cart/increasequantity/' + productId,
-            dataType: "html",
-            data: { id: productId },
-            success: function (result) {
-                UpdateCartNumber();
-                $(".viewCartTable").html(result);
-            },
-            error: function (xhr, status, error) {
+    //    $.ajax({
+    //        url: '/Cart/increasequantity/' + productId,
+    //        dataType: "html",
+    //        data: { id: productId },
+    //        success: function (result) {
+    //            UpdateCartNumber();
+    //            $(".viewCartTable").html(result);
+    //        },
+    //        error: function (xhr, status, error) {
 
-            }
-        });
-    }
+    //        }
+    //    });
+    //}
 
 
 
-    function DecreaseQuantity(productId) {
+    //function DecreaseQuantity(productId) {
 
-        $.ajax({
-            url: '/Cart/decreasequantity/' + productId,
-            dataType: "html",
-            data: { id: productId },
-            success: function (result) {
-                UpdateCartNumber();
-                $(".viewCartTable").html(result);
-            },
-            error: function (xhr, status, error) {
+    //    $.ajax({
+    //        url: '/Cart/decreasequantity/' + productId,
+    //        dataType: "html",
+    //        data: { id: productId },
+    //        success: function (result) {
+    //            UpdateCartNumber();
+    //            $(".viewCartTable").html(result);
+    //        },
+    //        error: function (xhr, status, error) {
 
-            }
-        });
+    //        }
+    //    });
 
-    }
+    //}
 
     function RemoveCartItem(productId) {
 
@@ -61,5 +61,21 @@
             }
         });
 
+    }
+
+    function ChangeCartItemQuantity(productId,quantity) {
+       
+        $.ajax({
+            url: '/Cart/ChangeCartItemQuantity',
+            dataType: "html",
+            data: { id: productId, quantity: quantity },
+            success: function (result) {
+                UpdateCartNumber();
+                $(".viewCartTable").html(result);
+            },
+            error: function (xhr, status, error) {
+
+            }
+        });
     }
 </script>
