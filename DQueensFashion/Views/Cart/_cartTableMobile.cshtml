@@ -1,0 +1,71 @@
+﻿@model DQueensFashion.Models.ViewCartViewModel
+@using DQueensFashion.Utilities
+
+<table class="table">
+    <tr>
+        <th>
+            Items
+        </th>
+    </tr>
+
+    @foreach (var item in Model.Carts)
+    {
+        <tr>
+
+            <td style="vertical-align:middle">
+                <div class="row">
+                    <div class="col-3">
+                        @if (!string.IsNullOrEmpty(item.MainImage))
+                        {
+                            <img src="@Url.Content(item.MainImage)" style="width:70px;height:70px" />
+                        }
+                    </div>
+                    <div class="col-4" style="word-break:break-word">
+                        @Html.DisplayFor(modelItem => item.Product.Name)
+                        <div onclick="RemoveCartItem(@item.Product.Id)" style="cursor:pointer">
+                            <img src="~/Content/Images/x-circle.svg" />
+                        </div>
+                        <div>
+                            $@Html.DisplayFor(modelItem => item.UnitPrice)
+                        </div>
+
+                    </div>
+                    <div class="col-5">
+                        Description
+                        <br />
+                        <div style="font-size:10px;word-break:break-word">
+                            @Html.Raw(item.Description.Replace(Environment.NewLine, "<br/>"))
+                        </div>
+                        @if (item.Product.CategoryId == AppConstant.CustomMadeCategoryId)
+                        {
+                            <p class="text-danger">***Measurements are in inches</p>
+                        }
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-9 p-0">
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn quantity-button minus-button" onclick="DecreaseQuantity(@item.Product.Id)">
+                                    -
+                                </button>
+                            </span>
+                            <input type="text" class="cart-quantity" value="@item.Quantity" disabled>
+                            <span class="input-group-btn">
+                                <button type="button" class="btn quantity-button plus-button" onclick="IncreaseQuantity(@item.Product.Id)">
+                                    +
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-3 pt-1">
+                        $@Html.DisplayFor(modelItem => item.TotalPrice)
+                    </div>
+                </div>
+            </td>
+
+        </tr>
+    }
+
+</table>
