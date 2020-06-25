@@ -1,7 +1,7 @@
 ﻿@model DQueensFashion.Models.ViewCartViewModel
 
 @{
-    ViewBag.Title = "ViewCart";
+    ViewBag.Title = "Cart";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -11,41 +11,7 @@
 
 </div>
 <script>
-    //function IncreaseQuantity(productId) {
-       
-    //    $.ajax({
-    //        url: '/Cart/increasequantity/' + productId,
-    //        dataType: "html",
-    //        data: { id: productId },
-    //        success: function (result) {
-    //            UpdateCartNumber();
-    //            $(".viewCartTable").html(result);
-    //        },
-    //        error: function (xhr, status, error) {
-
-    //        }
-    //    });
-    //}
-
-
-
-    //function DecreaseQuantity(productId) {
-
-    //    $.ajax({
-    //        url: '/Cart/decreasequantity/' + productId,
-    //        dataType: "html",
-    //        data: { id: productId },
-    //        success: function (result) {
-    //            UpdateCartNumber();
-    //            $(".viewCartTable").html(result);
-    //        },
-    //        error: function (xhr, status, error) {
-
-    //        }
-    //    });
-
-    //}
-
+  
     function RemoveCartItem(productId) {
 
         $.ajax({
