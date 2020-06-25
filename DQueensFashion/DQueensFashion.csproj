@@ -538,6 +538,7 @@
     <Content Include="Views\Admin\_inTransitOrderTable.cshtml" />
     <Content Include="Views\Cart\_cartTableDesktop.cshtml" />
     <Content Include="Views\Cart\_cartTableMobile.cshtml" />
+    <Content Include="Views\Cart\CheckOut.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

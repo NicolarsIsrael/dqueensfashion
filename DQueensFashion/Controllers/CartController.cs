@@ -335,15 +335,27 @@ namespace DQueensFashion.Controllers
             return PartialView("_cartTable", viewCart);
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpGet]
         public ActionResult CheckOut()
         {
             List<Cart> cart = (List<Cart>)Session["cart"];
             ViewCartViewModel viewCart = new ViewCartViewModel()
             {
                 Count = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.Quantity),
-                
+                Carts = Session["cart"] == null ? new List<Cart>() : (List<Cart>)Session["cart"],
+                SubTotal = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.TotalPrice),
+            };
+            return View(viewCart);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CheckOutWithPayPal()
+        {
+            List<Cart> cart = (List<Cart>)Session["cart"];
+            ViewCartViewModel viewCart = new ViewCartViewModel()
+            {
+                Count = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.Quantity),
             };
 
             if (viewCart.Count < 1)
@@ -422,6 +434,7 @@ namespace DQueensFashion.Controllers
 
             return categories;
         }
+
 
         private string GetCartDescription(Cart cartModel,int id)
         {

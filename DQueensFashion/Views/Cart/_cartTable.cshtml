@@ -24,7 +24,7 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="card">
+                <div class="card" style="border-bottom-left-radius:0;border-bottom-right-radius:0">
                     <div class="card-header" style="background-color:white">
                         <div style="text-align:center;font-weight:700;font-size:18px">CART TOTAL</div>
                     </div>
@@ -45,30 +45,29 @@
                             @{
                                 if (Model.Count < 1)
                                 {
-                                    using (Html.BeginForm("CheckOut", "Cart"))
-                                    {
-                                        @Html.AntiForgeryToken()
-                                        <input type="submit" class="btn" style="background-color:#E97128;color:white;width:300px;height:50px;"
-                                               value="CHECK OUT" disabled />
-                                    }
+                                    <input type="submit" class="btn" style="background-color:#E97128;color:white;width:300px;height:50px;"
+                                           value="CHECK OUT" disabled />
                                 }
                                 else
                                 {
-                                    using (Html.BeginForm("CheckOut", "Cart"))
-                                    {
-                                        @Html.AntiForgeryToken()
-                                        <input type="submit" class="btn checkout-btn"
-                                               value="CHECK OUT" />
-                                    }
+                                    <input type="button" class="btn checkout-btn"
+                                           value="CHECK OUT" onclick="CheckOut()" />
 
                                 }
                             }
 
                         </div>
                     </div>
-                
-                    <div class="mb-5"></div>
                 </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <a href="@Url.Action("Index","Product")" class="btn btn-block"
+                           style="background-color:#212529;color:white; border-radius:0;">Continue shopping</a>
+                    </div>
+                 
+                </div>
+
             </div>
 
         </div>
@@ -146,3 +145,10 @@
 
 
     </style>
+
+
+<script>
+    function CheckOut() {
+        window.location.href = "@Url.Action("CheckOut","Cart")";
+    }
+</script>
