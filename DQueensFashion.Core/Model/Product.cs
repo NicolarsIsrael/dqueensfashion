@@ -24,6 +24,8 @@ namespace DQueensFashion.Core.Model
         public string Tags { get; set; }
         public double AverageRating { get; set; }
         public IEnumerable<ImageFile> Images { get; set; }
+        public int SizeChartImageId { get; set; }
+        public int DeliveryDaysDuration { get; set; }
 
         [ForeignKey("Category")]
         public int CategoryId { get; set; }

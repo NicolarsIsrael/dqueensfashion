@@ -74,6 +74,12 @@ namespace DQueensFashion.Service.Implementation
                 .Where(order => order.OrderStatus == OrderStatus.Processing);
         }
 
+        public IEnumerable<Order> GetInTransitOrders()
+        {
+            return uow.OrderRepo.GetAllOrdersWithRelationships()
+                .Where(order => order.OrderStatus == OrderStatus.InTransit);
+        }
+
         public IEnumerable<Order> GetDeliveredOrders()
         {
             return uow.OrderRepo.GetAllOrdersWithRelationships()

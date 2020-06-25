@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<DQueensFashion.Models.ViewOrderViewModel>
 
-<table class="table table-head-fixed  table-striped" id="deletedOrdersTable">
+
+<table class="table table-head-fixed  table-striped" id="inTransitOrdersTable">
     <thead>
         <tr>
             <th>ID</th>
@@ -8,6 +9,7 @@
             <th>Customer</th>
             <th>Total Amt</th>
             <th>Date</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -34,10 +36,11 @@
                 <td>
                     @Html.Raw(item.DateCreatedString.Replace(Environment.NewLine, "<br/>"))
                 </td>
+                <td>
+                    @Html.ActionLink("Delivered", "DeliverOrder", new { id = item.OrderId }) 
+                </td>
             </tr>
 
         }
-
     </tbody>
 </table>
-

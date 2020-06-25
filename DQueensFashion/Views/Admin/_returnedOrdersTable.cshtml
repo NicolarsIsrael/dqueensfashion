@@ -22,7 +22,7 @@
                     @{
                         foreach (var lineItem in item.LineItems)
                         {
-                            <p class="m-0">@lineItem.Product (@lineItem.Quantity) </p>
+                            <p class="m-0">@lineItem.ProductName (@lineItem.Quantity) </p>
                         }
                     }
                 </td>
@@ -36,7 +36,7 @@
                     $@Html.DisplayFor(modelItem => item.TotalAmount)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.DateCreatedString)
+                    @Html.Raw(item.DateCreatedString.Replace(Environment.NewLine, "<br/>"))
                 </td>
             </tr>
 

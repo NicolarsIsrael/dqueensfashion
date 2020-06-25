@@ -1,22 +1,23 @@
 ﻿@model IEnumerable<DQueensFashion.Models.ViewOrderViewModel>
 
 @{
-    ViewBag.Title = "Delivered Orders";
+    ViewBag.Title = "In Transit Orders";
     Layout = "~/Views/Shared/_dashboardLayout.cshtml";
 }
+
 
 <div class="row">
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Delivered</h3>
+                <h3 class="card-title">In transit</h3>
 
                 <div class="card-tools">
                     <div class="input-group input-group-sm" style="width: 150px;">
                         <input type="text" name="table_search" class="form-control float-right" id="search" placeholder="Search">
 
                         <div class="input-group-append">
-                            <button type="submit" class="btn btn-default" style="width:50px" onclick="SearchDeliveredOrderTable()">
+                            <button type="submit" class="btn btn-default" style="width:50px" onclick="SearchInTransitOrderTable()">
                                 <i class="fas fa-search"></i>
                             </button>
                         </div>
@@ -26,7 +27,7 @@
             <!-- /.card-header -->
             <div class="card-body table-responsive p-0" style="height: 65vh">
 
-                @Html.Partial("_deliveredOrdersTable", Model)
+                @Html.Partial("_inTransitOrderTable", Model)
             </div>
             <!-- /.card-body -->
         </div>
@@ -35,17 +36,18 @@
 </div>
 
 
+
 <script>
 
     var search = document.getElementById("search");
 
-    function SearchDeliveredOrderTable() {
+    function SearchInTransitOrderTable() {
         $.ajax({
-            url: '/Admin/SearchDeliveredOrders',
+            url: '/Admin/SearchInTransitOrders',
             dataType: "html",
             data: { searchString: search.value },
             success: function (result) {
-                $("#deliveredOrdersTable").html(result);
+                $("#inTransitOrdersTable").html(result);
             },
             error: function (xhr, status, error) {
                 alertify.error("Error");

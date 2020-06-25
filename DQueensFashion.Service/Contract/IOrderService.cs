@@ -20,5 +20,6 @@ namespace DQueensFashion.Service.Contract
         IEnumerable<Order> GetAllOrdersForCustomer(int customerId);
         Order GetOrderById(int id);
         void UpdateOrder(Order order);
+        IEnumerable<Order> GetInTransitOrders();
     }
 }

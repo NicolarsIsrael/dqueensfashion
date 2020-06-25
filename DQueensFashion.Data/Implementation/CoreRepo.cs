@@ -86,10 +86,7 @@ namespace DQueensFashion.Data.Implementation
 
         public void Update(TEntity entity)
         {
-            if (typeof(TEntity) == typeof(Entity))
-            {
-                (entity as Entity).DateModified = DateTime.Now;
-            }
+            (entity as Entity).DateModified = DateTime.Now;
             _dbContext.Entry(entity).State = System.Data.Entity.EntityState.Modified;
         }
 

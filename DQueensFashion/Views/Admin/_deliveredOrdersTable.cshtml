@@ -7,7 +7,6 @@
             <th>ID</th>
             <th>Items (Qty)</th>
             <th>Customer</th>
-            <th>Total Qty</th>
             <th>Total Amt</th>
             <th>Date</th>
             <th></th>
@@ -24,7 +23,7 @@
                     @{
                         foreach (var lineItem in item.LineItems)
                         {
-                            <p class="m-0">@lineItem.Product (@lineItem.Quantity) </p>
+                            <p class="m-0">@lineItem.ProductName (@lineItem.Quantity) </p>
                         }
                     }
                 </td>
@@ -32,13 +31,10 @@
                     @Html.DisplayFor(modelItem => item.CustomerName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.TotalQuantity)
-                </td>
-                <td>
                     $@Html.DisplayFor(modelItem => item.TotalAmount)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.DateCreatedString)
+                    @Html.Raw(item.DateCreatedString.Replace(Environment.NewLine, "<br/>"))
                 </td>
                 <td>
                     @Html.ActionLink("Returned", "ReturnOrder", new { id = item.OrderId }) | 

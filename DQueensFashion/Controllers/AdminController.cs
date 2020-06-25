@@ -671,7 +671,7 @@ namespace DQueensFashion.Controllers
                         }),
                     OrderStatus= order.OrderStatus.ToString(),
                     DateCreated = order.DateCreated,
-                    DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy - hh:mm:ss"),
+                    DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy\r\nhh:mm:ss"),
                 }).OrderByDescending(order=>order.DateCreated).ToList();
 
             return View(orderModel);
@@ -697,7 +697,7 @@ namespace DQueensFashion.Controllers
                         }),
                     OrderStatus = order.OrderStatus.ToString(),
                     DateCreated = order.DateCreated,
-                    DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy/r/nhh:mm:ss"),
+                    DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy\r\nhh:mm:ss"),
                     LineItemConcatenatedString = string.Join(",",order.LineItems.Select(x=>x.Product.Name)),
                 }).OrderByDescending(order => order.DateCreated).ToList();
 
@@ -718,7 +718,7 @@ namespace DQueensFashion.Controllers
                 {
                     OrderId = order.Id,
                     CustomerId = order.CustomerId,
-                    CustomerName = _customerService.GetCustomerById(order.CustomerId).Fullname,
+                    CustomerName = "Ade", //_customerService.GetCustomerById(order.CustomerId).Fullname,
                     TotalAmount = order.TotalAmount,
                     TotalQuantity = order.TotalQuantity,
                     LineItems = order.LineItems
@@ -729,7 +729,7 @@ namespace DQueensFashion.Controllers
                             TotalAmount = lineItem.TotalAmount,
                         }),
                     DateCreated = order.DateCreated,
-                    DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy - hh:mm:ss"),
+                    DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy\r\nhh:mm:ss"),
                     DateModified = order.DateModified,
                 }).OrderByDescending(order => order.DateModified).ToList();
 
@@ -745,7 +745,7 @@ namespace DQueensFashion.Controllers
                        {
                            OrderId = order.Id,
                            CustomerId = order.CustomerId,
-                           CustomerName = _customerService.GetCustomerById(order.CustomerId).Fullname,
+                           CustomerName = "Ade", // _customerService.GetCustomerById(order.CustomerId).Fullname,
                            TotalAmount = order.TotalAmount,
                            TotalQuantity = order.TotalQuantity,
                            LineItems = order.LineItems
@@ -756,7 +756,7 @@ namespace DQueensFashion.Controllers
                                    TotalAmount = lineItem.TotalAmount,
                                }),
                            DateCreated = order.DateCreated,
-                           DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy - hh:mm:ss"),
+                           DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy\r\nhh:mm:ss"),
                            LineItemConcatenatedString = string.Join(",", order.LineItems.Select(x => x.Product.Name)),
                            DateModified = order.DateModified,
                        }).OrderByDescending(order => order.DateModified).ToList();
@@ -777,6 +777,65 @@ namespace DQueensFashion.Controllers
             }
         }
         
+        public ActionResult InTransitOrders()
+        {
+            IEnumerable<ViewOrderViewModel> orderModel = _orderService.GetInTransitOrders()
+               .Select(order => new ViewOrderViewModel()
+               {
+                   OrderId = order.Id,
+                   CustomerId = order.CustomerId,
+                   CustomerName = "Ade", // _customerService.GetCustomerById(order.CustomerId).Fullname,
+                   TotalAmount = order.TotalAmount,
+                   TotalQuantity = order.TotalQuantity,
+                   LineItems = order.LineItems
+                       .Select(lineItem => new ViewLineItem()
+                       {
+                           ProductName = lineItem.Product.Name,
+                           Quantity = lineItem.Quantity,
+                           TotalAmount = lineItem.TotalAmount,
+                       }),
+                   DateCreated = order.DateCreated,
+                   DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy\r\nhh:mm:ss"),
+                   DateModified = order.DateModified,
+               }).OrderByDescending(order => order.DateModified).ToList();
+
+            return View(orderModel);
+        }
+
+        public ActionResult SearchInTransitOrders(string searchString)
+        {
+            IEnumerable<ViewOrderViewModel> orderModel = _orderService.GetInTransitOrders()
+               .Select(order => new ViewOrderViewModel()
+               {
+                   OrderId = order.Id,
+                   CustomerId = order.CustomerId,
+                   CustomerName = "Ade", // _customerService.GetCustomerById(order.CustomerId).Fullname,
+                   TotalAmount = order.TotalAmount,
+                   TotalQuantity = order.TotalQuantity,
+                   LineItems = order.LineItems
+                       .Select(lineItem => new ViewLineItem()
+                       {
+                           ProductName = lineItem.Product.Name,
+                           Quantity = lineItem.Quantity,
+                           TotalAmount = lineItem.TotalAmount,
+                       }),
+                   DateCreated = order.DateCreated,
+                   DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy\r\nhh:mm:ss"),
+                   LineItemConcatenatedString = string.Join(",", order.LineItems.Select(x => x.Product.Name)),
+                   DateModified = order.DateModified,
+               }).OrderByDescending(order => order.DateModified).ToList();
+
+
+
+            if (!string.IsNullOrEmpty(searchString))
+                orderModel = orderModel.Where(order => order.CustomerName.ToLower().Contains(searchString.ToLower())
+                || order.LineItemConcatenatedString.ToLower().Contains(searchString.ToLower())
+                || (string.Compare(order.OrderId.ToString(), searchString, true) == 0)
+                ).ToList();
+
+            return PartialView("_inTransitOrderTable", orderModel);
+        }
+
         public ActionResult DeliveredOrders()
         {
             IEnumerable<ViewOrderViewModel> orderModel = _orderService.GetDeliveredOrders()
@@ -784,7 +843,7 @@ namespace DQueensFashion.Controllers
                 {
                     OrderId = order.Id,
                     CustomerId = order.CustomerId,
-                    CustomerName = _customerService.GetCustomerById(order.CustomerId).Fullname,
+                    CustomerName = "Ade",// _customerService.GetCustomerById(order.CustomerId).Fullname,
                     TotalAmount = order.TotalAmount,
                     TotalQuantity = order.TotalQuantity,
                     LineItems = order.LineItems
@@ -795,7 +854,7 @@ namespace DQueensFashion.Controllers
                             TotalAmount = lineItem.TotalAmount,
                         }),
                     DateCreated = order.DateCreated,
-                    DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy - hh:mm:ss"),
+                    DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy\r\nhh:mm:ss"),
                     DateModified = order.DateModified,
                 }).OrderByDescending(order => order.DateModified).ToList();
 
@@ -810,7 +869,7 @@ namespace DQueensFashion.Controllers
                  {
                      OrderId = order.Id,
                      CustomerId = order.CustomerId,
-                     CustomerName = _customerService.GetCustomerById(order.CustomerId).Fullname,
+                     CustomerName = "Ade", // _customerService.GetCustomerById(order.CustomerId).Fullname,
                      TotalAmount = order.TotalAmount,
                      TotalQuantity = order.TotalQuantity,
                      LineItems = order.LineItems
@@ -821,7 +880,7 @@ namespace DQueensFashion.Controllers
                              TotalAmount = lineItem.TotalAmount,
                          }),
                      DateCreated = order.DateCreated,
-                     DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy - hh:mm:ss"),
+                     DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy\r\nhh:mm:ss"),
                      LineItemConcatenatedString = string.Join(",", order.LineItems.Select(x => x.Product.Name)),
                      DateModified = order.DateModified,
                  }).OrderByDescending(order => order.DateModified).ToList();
@@ -844,7 +903,7 @@ namespace DQueensFashion.Controllers
                 {
                     OrderId = order.Id,
                     CustomerId = order.CustomerId,
-                    CustomerName = _customerService.GetCustomerById(order.CustomerId).Fullname,
+                    CustomerName = "Ade", //_customerService.GetCustomerById(order.CustomerId).Fullname,
                     TotalAmount = order.TotalAmount,
                     TotalQuantity = order.TotalQuantity,
                     LineItems = order.LineItems
@@ -855,7 +914,7 @@ namespace DQueensFashion.Controllers
                             TotalAmount = lineItem.TotalAmount,
                         }),
                     DateCreated = order.DateCreated,
-                    DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy - hh:mm:ss"),
+                    DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy\r\nhh:mm:ss"),
                     DateModified = order.DateModified,
                 }).OrderByDescending(order => order.DateModified).ToList();
 
@@ -869,7 +928,7 @@ namespace DQueensFashion.Controllers
                 {
                     OrderId = order.Id,
                     CustomerId = order.CustomerId,
-                    CustomerName = _customerService.GetCustomerById(order.CustomerId).Fullname,
+                    CustomerName = "Ade", // _customerService.GetCustomerById(order.CustomerId).Fullname,
                     TotalAmount = order.TotalAmount,
                     TotalQuantity = order.TotalQuantity,
                     LineItems = order.LineItems
@@ -880,7 +939,7 @@ namespace DQueensFashion.Controllers
                             TotalAmount = lineItem.TotalAmount,
                         }),
                     DateCreated = order.DateCreated,
-                    DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy - hh:mm:ss"),
+                    DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy\r\nhh:mm:ss"),
                     LineItemConcatenatedString = string.Join(",", order.LineItems.Select(x => x.Product.Name)),
                     DateModified = order.DateModified,
                 }).OrderByDescending(order => order.DateModified).ToList();
@@ -903,7 +962,7 @@ namespace DQueensFashion.Controllers
                {
                    OrderId = order.Id,
                    CustomerId = order.CustomerId,
-                   CustomerName = _customerService.GetCustomerById(order.CustomerId).Fullname,
+                   CustomerName = "Ade", // _customerService.GetCustomerById(order.CustomerId).Fullname,
                    TotalAmount = order.TotalAmount,
                    TotalQuantity = order.TotalQuantity,
                    LineItems = order.LineItems
@@ -914,7 +973,7 @@ namespace DQueensFashion.Controllers
                            TotalAmount = lineItem.TotalAmount,
                        }),
                    DateCreated = order.DateCreated,
-                   DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy - hh:mm:ss"),
+                   DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy\r\nhh:mm:ss"),
                    DateModified = order.DateModified,
                }).OrderByDescending(order => order.DateModified).ToList();
 
@@ -928,7 +987,7 @@ namespace DQueensFashion.Controllers
               {
                   OrderId = order.Id,
                   CustomerId = order.CustomerId,
-                  CustomerName = _customerService.GetCustomerById(order.CustomerId).Fullname,
+                  CustomerName = "Ade", // _customerService.GetCustomerById(order.CustomerId).Fullname,
                   TotalAmount = order.TotalAmount,
                   TotalQuantity = order.TotalQuantity,
                   LineItems = order.LineItems
@@ -939,7 +998,7 @@ namespace DQueensFashion.Controllers
                           TotalAmount = lineItem.TotalAmount,
                       }),
                   DateCreated = order.DateCreated,
-                  DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy - hh:mm:ss"),
+                  DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy\r\nhh:mm:ss"),
                   LineItemConcatenatedString = string.Join(",", order.LineItems.Select(x => x.Product.Name)),
                   DateModified = order.DateModified,
               }).OrderByDescending(order => order.DateModified).ToList();
@@ -962,7 +1021,7 @@ namespace DQueensFashion.Controllers
               {
                   OrderId = order.Id,
                   CustomerId = order.CustomerId,
-                  CustomerName = _customerService.GetCustomerById(order.CustomerId).Fullname,
+                  CustomerName = "Ade", // _customerService.GetCustomerById(order.CustomerId).Fullname,
                   TotalAmount = order.TotalAmount,
                   TotalQuantity = order.TotalQuantity,
                   LineItems = order.LineItems
@@ -973,7 +1032,7 @@ namespace DQueensFashion.Controllers
                           TotalAmount = lineItem.TotalAmount,
                       }),
                   DateCreated = order.DateCreated,
-                  DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy - hh:mm:ss"),
+                  DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy\r\nhh:mm:ss"),
                   DateModified = order.DateModified,
               }).OrderByDescending(order => order.DateModified).ToList();
 
@@ -987,7 +1046,7 @@ namespace DQueensFashion.Controllers
                {
                    OrderId = order.Id,
                    CustomerId = order.CustomerId,
-                   CustomerName = _customerService.GetCustomerById(order.CustomerId).Fullname,
+                   CustomerName = "Ade", // _customerService.GetCustomerById(order.CustomerId).Fullname,
                    TotalAmount = order.TotalAmount,
                    TotalQuantity = order.TotalQuantity,
                    LineItems = order.LineItems
@@ -998,7 +1057,7 @@ namespace DQueensFashion.Controllers
                            TotalAmount = lineItem.TotalAmount,
                        }),
                    DateCreated = order.DateCreated,
-                   DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy - hh:mm:ss"),
+                   DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy\r\nhh:mm:ss"),
                    LineItemConcatenatedString = string.Join(",", order.LineItems.Select(x => x.Product.Name)),
                    DateModified = order.DateModified,
                }).OrderByDescending(order => order.DateModified).ToList();
@@ -1012,6 +1071,18 @@ namespace DQueensFashion.Controllers
                 ).ToList();
 
             return PartialView("_completedOrdersTable", orderModel);
+        }
+
+        public ActionResult TransitOrder(int id)
+        {
+            Order order = _orderService.GetOrderById(id);
+            if (order == null)
+                throw new Exception();
+
+            order.OrderStatus = OrderStatus.InTransit;
+            _orderService.UpdateOrder(order);
+
+            return RedirectToAction(nameof(InTransitOrders));
         }
 
         public ActionResult DeliverOrder(int id)
