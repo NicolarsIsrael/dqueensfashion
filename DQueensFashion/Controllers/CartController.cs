@@ -66,6 +66,7 @@ namespace DQueensFashion.Controllers
                     TotalPrice = product.SubTotal * quantity,
                     MainImage = mainImage,
                     Description = quantity > 1 ? quantity.ToString() + " Pieces" : quantity.ToString() + " Piece",
+                    MaxQuantity = product.Quantity,
                 });
             }
             Session["cart"] = cart;
@@ -138,6 +139,7 @@ namespace DQueensFashion.Controllers
                 {
                     Product = product,
                     Quantity = cartModel.Quantity,
+                    MaxQuantity = GetReadyMadeMax(cartModel),
                     Discount = product.Discount,
                     InitialPrice = product.Price,
                     UnitPrice = product.SubTotal,
@@ -227,6 +229,7 @@ namespace DQueensFashion.Controllers
                 {
                     Product = product,
                     Quantity = cartModel.Quantity,
+                    MaxQuantity = AppConstant.MaxCustomMadeAddToCart,
                     Discount = product.Discount,
                     InitialPrice = product.Price,
                     UnitPrice = product.SubTotal,
@@ -470,6 +473,26 @@ namespace DQueensFashion.Controllers
                 description = cartModel.ReadyMadeSize;
             }
             return description;
+        }
+
+        private int GetReadyMadeMax(Cart cartModel)
+        {
+            Product product = _productService.GetProductById(cartModel.ProductId);
+            if (product == null)
+                throw new Exception();
+
+            if (cartModel.ReadyMadeSize == AppConstant.ReadyMadeSizes[0])
+                return product.ExtraSmallQuantity;
+            else if (cartModel.ReadyMadeSize == AppConstant.ReadyMadeSizes[1])
+                return product.SmallQuantiy;
+            else if (cartModel.ReadyMadeSize == AppConstant.ReadyMadeSizes[2])
+                return product.MediumQuantiy;
+            else if (cartModel.ReadyMadeSize == AppConstant.ReadyMadeSizes[3])
+                return product.LargeQuantity;
+            else if (cartModel.ReadyMadeSize == AppConstant.ReadyMadeSizes[4])
+                return product.ExtraLargeQuantity;
+
+            return 0;
         }
         #endregion
     }

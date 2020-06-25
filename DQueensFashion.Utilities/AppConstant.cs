@@ -26,6 +26,7 @@ namespace DQueensFashion.Utilities
         public const int ReadyMadeCategoryId = 3;
 
         public static readonly string[] ReadyMadeSizes = { "Extra small (XS)", "Small (S)", "Medium (M)", "Large (L)", "Extra large (XL)" };
+        public static int MaxCustomMadeAddToCart = 50;
 
         public static readonly double[] ShoulderValues = { 10, 10.5, 11, 11.5, 12, 12.5, 13, 13.5, 14,
                                                         14.5, 15, 15.5, 16, 16.5, 17, 17.5, 18, 18.5, 19, 19.5, 20 };

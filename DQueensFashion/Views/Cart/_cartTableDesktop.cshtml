@@ -43,7 +43,7 @@
             <td style="width:50px;">
                 <select class="form-group-sm" style="width:100%" onchange="ChangeCartItemQuantity(@item.Product.Id,this.value)">
                     @{
-                        for (int i = 1; i < 10; i++)
+                        for (int i = 1; i <= item.MaxQuantity; i++)
                         {
                             if (i == item.Quantity)
                             {

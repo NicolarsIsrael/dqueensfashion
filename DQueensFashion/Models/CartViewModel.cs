@@ -15,6 +15,7 @@ namespace DQueensFashion.Models
         public string CategoryName { get; set; }
         public string MainImage { get; set; }
         public int Quantity { get; set; }
+        public int MaxQuantity { get; set; }
         public decimal Discount { get; set; }
         public decimal InitialPrice { get; set; }
         public decimal UnitPrice { get; set; }
