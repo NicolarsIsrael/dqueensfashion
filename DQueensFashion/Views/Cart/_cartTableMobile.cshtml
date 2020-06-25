@@ -3,70 +3,62 @@
 
 <table class="table">
     <tr>
+        <th></th>
         <th>
             Items
         </th>
+        <th></th>
     </tr>
 
     @foreach (var item in Model.Carts)
     {
         <tr>
-
-            <td style="vertical-align:middle">
-                <div class="row">
-                    <div class="col-3">
-                        @if (!string.IsNullOrEmpty(item.MainImage))
-                        {
-                            <img src="@Url.Content(item.MainImage)" style="width:70px;height:70px" />
-                        }
-                    </div>
-                    <div class="col-4" style="word-break:break-word">
-                        @Html.DisplayFor(modelItem => item.Product.Name)
-                        <div onclick="RemoveCartItem(@item.Product.Id)" style="cursor:pointer">
-                            <img src="~/Content/Images/x-circle.svg" />
-                        </div>
-                        <div>
-                            $@Html.DisplayFor(modelItem => item.UnitPrice)
-                        </div>
-
-                    </div>
-                    <div class="col-5">
-                        Description
-                        <br />
-                        <div style="font-size:12px;word-break:break-word">
-                            @Html.Raw(item.Description.Replace(Environment.NewLine, "<br/>"))
-                        </div>
-                        @if (item.Product.CategoryId == AppConstant.CustomMadeCategoryId)
-                        {
-                            <p class="text-danger">***Measurements are in inches</p>
-                        }
-                    </div>
-                </div>
-                
-                <div class="row mt-3">
-                    <div class="col-4 p-1">
-                        <select class="form-group-sm" style="width:100%" onchange="ChangeCartItemQuantity(@item.Product.Id,this.value)">
-                            @{
-                                for (int i = 1; i < 10; i++)
-                                {
-                                    if (i == item.Quantity)
-                                    {
-                                        <option value="@i" selected>@i</option>
-                                    }
-                                    else
-                                    {
-                                        <option value="@i">@i</option>
-                                    }
-                                }
-                            }
-                        </select>
-                    </div>
-                   
-                    <div class="col-3 pt-1" style="text-align:left">
-                        $@Html.DisplayFor(modelItem => item.TotalPrice)
-                    </div>
+            <td>
+                <div onclick="RemoveCartItem(@item.Product.Id)" style="cursor:pointer">
+                    <img src="~/Content/Images/x-circle.svg" />
                 </div>
             </td>
+
+            <td style="width:80px">
+                <img src="@Url.Content(item.MainImage)" style="width:70px;height:70px" />
+            </td>
+
+            <td style="word-wrap:break-word">
+                <div style="font-size:15px;font-weight:500">
+                    @item.Product.Name
+                </div>
+                <div style="font-size:15px;font-weight:400;color:#818181">@item.Product.Category.Name</div>
+                <div>$@item.UnitPrice</div>
+
+                <div style="font-weight:500">Desc:</div>
+                <div style="font-size:14px;word-break:break-word">
+                    @Html.Raw(item.Description.Replace(Environment.NewLine, "<br />"))
+                </div>
+                @if (item.Product.CategoryId == AppConstant.CustomMadeCategoryId)
+                {
+                    <p class="text-danger mb-0">*Measurements are in inches</p>
+                }
+                <select class="form-group-sm mb-1" style="width:100px;margin-top:5px;" onchange="ChangeCartItemQuantity(@item.Product.Id,this.value)">
+                    @{
+                        for (int i = 1; i < 10; i++)
+                        {
+                            if (i == item.Quantity)
+                            {
+                                <option value="@i" selected>@i</option>
+                            }
+                            else
+                            {
+                                <option value="@i">@i</option>
+                            }
+                        }
+                    }
+                </select>
+                <div style="font-weight:500">
+                    $@Html.DisplayFor(modelItem => item.TotalPrice)
+                </div>
+
+            </td>
+
 
         </tr>
     }
