@@ -24,9 +24,12 @@
             </td>
 
             <td style="word-wrap:break-word">
-                <div style="font-size:15px;font-weight:500">
-                    @item.Product.Name
-                </div>
+                <a href="@Url.Action("ProductDetails","Product",new { id = item.Product.Id })" class="cartitemname">
+                    <div style="font-size:15px;font-weight:500">
+                        @item.Product.Name
+                    </div>
+                </a>
+
                 <div style="font-size:15px;font-weight:400;color:#818181">@item.Product.Category.Name</div>
                 <div>$@item.UnitPrice</div>
 

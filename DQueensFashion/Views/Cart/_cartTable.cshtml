@@ -24,35 +24,49 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <div>
-
-                    <div style="text-align:right">
-                        <div class="subtotal" style="text-align:right">
-                            <span>SUBTOTAL: $@Model.SubTotal</span>
-                        </div>
-
-                        @{
-                            if (Model.Count < 1)
-                            {
-                                using (Html.BeginForm("CheckOut", "Cart"))
-                                {
-                                    @Html.AntiForgeryToken()
-                                    <input type="submit" class="btn" style="background-color:#E97128;color:white;width:300px;height:50px;"
-                                           value="CHECK OUT" disabled />
-                                }
-                            }
-                            else
-                            {
-                                using (Html.BeginForm("CheckOut", "Cart"))
-                                {
-                                    @Html.AntiForgeryToken()
-                                    <input type="submit" class="btn" style="background-color:#E97128;color:white;width:300px;height:50px;"
-                                           value="CHECK OUT" />
-                                }
-                            }
-                        }
-
+                <div class="card">
+                    <div class="card-header" style="background-color:white">
+                        <div style="text-align:center;font-weight:700;font-size:18px">CART TOTAL</div>
                     </div>
+                    <div class="card-body">
+                        <div>
+                            <div class="subtotal">
+                                <span>SUBTOTAL: $@Model.SubTotal</span>
+                            </div>
+                            <hr class="m-0" />
+                            <div style=" font-size:20px;font-weight:400;">
+                                <span>Shipping & taxes calculated at checkout</span>
+                            </div>
+                            <hr class="m-0" />
+                            <div style="font-size:25px;font-weight:500">
+                                <span>TOTAL: $@Model.SubTotal</span>
+                            </div>
+
+                            @{
+                                if (Model.Count < 1)
+                                {
+                                    using (Html.BeginForm("CheckOut", "Cart"))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <input type="submit" class="btn" style="background-color:#E97128;color:white;width:300px;height:50px;"
+                                               value="CHECK OUT" disabled />
+                                    }
+                                }
+                                else
+                                {
+                                    using (Html.BeginForm("CheckOut", "Cart"))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <input type="submit" class="btn checkout-btn"
+                                               value="CHECK OUT" />
+                                    }
+
+                                }
+                            }
+
+                        </div>
+                    </div>
+                
                     <div class="mb-5"></div>
                 </div>
             </div>
@@ -89,9 +103,35 @@
         }
 
         .subtotal{
-            font-size:30px;
+            font-size:20px;
             font-weight:300;
         }
+
+        .checkout-btn{
+            background-color:#E97128;color:white;width:100%;height:50px;border-radius:0
+        }
+
+            .checkout-btn:hover {
+                transform: scale(1.01);
+                background-color: rgb(255, 101, 5);
+                box-shadow: 2px 2px 12px rgba(47, 47, 47, 0.40);
+                transition: all ease 0.3s;
+                color: white;
+            }
+
+            .checkout-btn:focus{
+                outline:none;
+                box-shadow:none;
+            }
+
+    .cartitemname{
+        color:black !important;
+        text-decoration:none;
+    }
+
+    .cartitemname:hover{
+        text-decoration:none;
+    }
 
         /*smart phones*/
         @@media screen and (max-width: 991px) and (min-width: 768px) {

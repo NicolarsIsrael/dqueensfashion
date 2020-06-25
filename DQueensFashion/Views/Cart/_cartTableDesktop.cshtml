@@ -26,9 +26,12 @@
                 <img src="@Url.Content(item.MainImage)" style="width:70px;height:70px" />
             </td>
             <td style="word-wrap:break-word;width:200px;max-width:200px">
-                <div style="font-size:15px;font-weight:500">
-                    @item.Product.Name
-                </div>
+               
+                <a href="@Url.Action("ProductDetails","Product",new { id = item.Product.Id })" class="cartitemname">
+                    <div style="font-size:15px;font-weight:500">
+                        @item.Product.Name
+                    </div>
+                </a>
                 <div style="font-size:15px;font-weight:400;color:#818181">@item.Product.Category.Name</div>
                 <div>$@item.UnitPrice</div>
             </td>
