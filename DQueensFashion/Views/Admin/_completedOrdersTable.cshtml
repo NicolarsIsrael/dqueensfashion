@@ -8,33 +8,41 @@
             <th>Customer</th>
             <th>Total Amt</th>
             <th>Date</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.OrderId)
-                </td>
-                <td>
-                    @{
-                        foreach (var lineItem in item.LineItems)
-                        {
-                            <p class="m-0">@lineItem.ProductName (@lineItem.Quantity) </p>
-                        }
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderId)
+            </td>
+            <td>
+                @{
+                    foreach (var lineItem in item.LineItems)
+                    {
+                        <p class="m-0">@lineItem.ProductName (@lineItem.Quantity) </p>
                     }
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CustomerName)
-                </td>
-                <td>
-                    $@Html.DisplayFor(modelItem => item.TotalAmount)
-                </td>
-                <td>
-                    @Html.Raw(item.DateCreatedString.Replace(Environment.NewLine, "<br/>"))
-                </td>
-            </tr>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerName)
+            </td>
+            <td>
+                $@Html.DisplayFor(modelItem => item.TotalAmount)
+            </td>
+            <td>
+                @Html.Raw(item.DateCreatedString.Replace(Environment.NewLine, "<br/>"))
+            </td>
+            <td>
+            <td>
+                <a href="@Url.Action("OrderDetails",new {id = item.OrderId})" class="secondary-table-button">
+                    <img src="~/Content/Images/info.svg" />
+                </a>
+
+            </td>
+        </tr>
 
         }
 
