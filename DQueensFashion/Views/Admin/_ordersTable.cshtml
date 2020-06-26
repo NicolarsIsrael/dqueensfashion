@@ -40,11 +40,13 @@
                     @Html.DisplayFor(modelItem => item.OrderStatus)
                 </td>
                 <td>
-                    <a href="@Url.Action("OrderDetails",new { id=item.OrderId, returnUrl="Orders"})">
-                        Order details
-                    </a>
-                    <button class="btn" style="background-color:#E97128;color:white" onclick="UpdateStatus(@item.OrderId)">Update status</button>
 
+                    <div onclick="UpdateStatus(@item.OrderId)" class="primary-table-button">
+                        <img src="~/Content/Images/edit.svg" />
+                    </div>
+                    <a href="@Url.Action("OrderDetails",new {id = item.OrderId})" class="secondary-table-button">
+                        <img src="~/Content/Images/info.svg" />
+                    </a>
                 </td>
             </tr>
 
