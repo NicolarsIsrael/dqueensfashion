@@ -3,14 +3,13 @@
 <table class="table table-head-fixed  table-striped" id="productsTable">
     <thead>
         <tr>
+            <th></th>
             <th>Name</th>
-            <th>Category</th>
             <th>Price($)</th>
             <th>Discount(%)</th>
             <th>Total($)</th>
             <th>Qty</th>
             <th>Date created</th>
-            <th>Image</th>
             <th></th>
         </tr>
     </thead>
@@ -18,12 +17,20 @@
         @foreach (var item in Model)
         {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
+            <td style="width:80px">
+                <img src="@Url.Content(item.MainImage)" style="width:70px;height:70px" />
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category)
+            <td class="product-name-desc" style="word-wrap:break-word;">
+
+                <a href="@Url.Action("ProductDetails","Product",new { id = item.Id})" >
+                    <div style="font-size:15px;font-weight:600;color:black">
+                        @item.Name
+                    </div>
+                </a>
+                <div style="font-size:15px;font-weight:400;color:#818181">@item.Category</div>
+                <div>@item.Price</div>
             </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
@@ -37,14 +44,16 @@
                 @Html.DisplayFor(modelItem => item.Quantity)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DateCreatedString)
+                @Html.Raw(item.DateCreatedString.Replace(Environment.NewLine, "<br/>"))
             </td>
             <td>
-                <img src="@Url.Content(item.MainImage)" style="height:30px;width:30px;" />
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "EditProduct", new { id = item.Id }) |
-                @Html.ActionLink("Details", "ProductDetails", new { id = item.Id })
+                <a href="@Url.Action("EditProduct",new {id=item.Id})" class="primary-table-button">
+                    <img src="~/Content/Images/edit.svg" />
+                </a>
+                <a href="@Url.Action("ProductDetails",new {id = item.Id})" class="secondary-table-button">
+                    <img src="~/Content/Images/info.svg" />
+                </a>
+
             </td>
         </tr>
 
@@ -52,3 +61,19 @@
     </tbody>
 </table>
 
+
+<style>
+      .product-name-desc{
+        max-width:300px;
+    }
+
+
+    
+/*smart phones*/
+@@media screen and (max-width: 420px) and (min-width: 0px) {
+     .product-name-desc{
+        max-width:200px;
+    }
+}
+
+</style>

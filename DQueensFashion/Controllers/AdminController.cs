@@ -179,7 +179,7 @@ namespace DQueensFashion.Controllers
                         AppConstant.DefaultProductImage :
                         allImages.Where(image => image.ProductId == p.Id).FirstOrDefault().ImagePath,
                     DateCreated = p.DateCreated,
-                    DateCreatedString = p.DateCreated.ToString("dd/MMM/yyyy"),
+                    DateCreatedString = p.DateCreated.ToString("dd/MMM/yyyy\r\nhh:mm:ss"),
                 }).OrderByDescending(p=>p.DateCreated).ToList();
             return View(products);
         }
@@ -202,7 +202,7 @@ namespace DQueensFashion.Controllers
                         AppConstant.DefaultProductImage :
                         allImages.Where(image => image.ProductId == p.Id).FirstOrDefault().ImagePath,
                   DateCreated = p.DateCreated,
-                  DateCreatedString = p.DateCreated.ToString("dd/MMM/yyyy"),
+                  DateCreatedString = p.DateCreated.ToString("dd/MMM/yyyy\r\nhh:mm:ss"),
               }).OrderByDescending(p => p.DateCreated).ToList();
 
             if (!string.IsNullOrEmpty(searchString))
