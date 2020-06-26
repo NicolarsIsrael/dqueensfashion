@@ -292,6 +292,7 @@
     <Content Include="Content\alertifyjs\themes\semantic.rtl.css" />
     <Content Include="Content\alertifyjs\themes\semantic.rtl.min.css" />
     <Content Include="Content\Images\delete.svg" />
+    <Content Include="Content\Images\edit.svg" />
     <Content Include="Content\Images\edit-orange.svg" />
     <Content Include="Content\Images\Body-measurement.jpg" />
     <Content Include="Content\dashboard-custom.css" />
@@ -307,7 +308,6 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\corner-down-left.svg" />
     <Content Include="Content\Images\delivery-truck.svg" />
-    <Content Include="Content\Images\edit.svg" />
     <Content Include="Content\Images\eye.svg" />
     <Content Include="Content\Images\filter.svg" />
     <Content Include="Content\Images\heart.svg" />

@@ -60,7 +60,8 @@ namespace DQueensFashion.Service.Implementation
 
         public IEnumerable<Order> GetAllOrdersForCustomer(int customerId)
         {
-            return uow.OrderRepo.GetAllOrdersWithRelationships().Where(order=>order.CustomerId==customerId);
+            var orders = uow.OrderRepo.GetAllOrdersWithRelationships().Where(order=>order.CustomerId==customerId);
+            return orders;
         }
 
         public IEnumerable<Order> GetAllOrders()
