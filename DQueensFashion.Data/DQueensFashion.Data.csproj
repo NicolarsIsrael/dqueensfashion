@@ -154,6 +154,10 @@
     <Compile Include="Migrations\202006250453005_initial.Designer.cs">
       <DependentUpon>202006250453005_initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006260725164_categoryAddedToDb.cs" />
+    <Compile Include="Migrations\202006260725164_categoryAddedToDb.Designer.cs">
+      <DependentUpon>202006260725164_categoryAddedToDb.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -170,6 +174,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202006250453005_initial.resx">
       <DependentUpon>202006250453005_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006260725164_categoryAddedToDb.resx">
+      <DependentUpon>202006260725164_categoryAddedToDb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

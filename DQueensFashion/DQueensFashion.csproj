@@ -291,6 +291,7 @@
     <Content Include="Content\alertifyjs\themes\semantic.min.css" />
     <Content Include="Content\alertifyjs\themes\semantic.rtl.css" />
     <Content Include="Content\alertifyjs\themes\semantic.rtl.min.css" />
+    <Content Include="Content\Images\delete.svg" />
     <Content Include="Content\Images\edit-orange.svg" />
     <Content Include="Content\Images\Body-measurement.jpg" />
     <Content Include="Content\dashboard-custom.css" />

@@ -52,6 +52,8 @@ namespace DQueensFashion.Controllers
                     ProductImagePath = _imageService.GetImageFilesForProduct(product.Id).Count()<1?
                         AppConstant.DefaultProductImage:
                         _imageService.GetMainImageForProduct(product.Id).ImagePath,
+                    CategoryName = product.Category.Name,
+                    CategoryId = product.Category.Id,
                 };
                 _wishListService.AddWishList(wishList);
                 return Json("success", JsonRequestBehavior.AllowGet);

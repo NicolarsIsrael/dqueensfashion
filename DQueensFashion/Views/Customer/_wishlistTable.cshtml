@@ -1,38 +1,116 @@
 ﻿@model IEnumerable<DQueensFashion.Models.ViewWishListViewModel>
-<table class="table table-head-fixed  table-striped" id="wishlistTable">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th></th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+@using DQueensFashion.Utilities
+
+    <table class="table table-head-fixed table-striped" id="wishlistTable">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ProductName)
+                <th>Name</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+
+                <td style="width:80px">
+                    <img src="@Url.Content(item.ProductImagePath)" style="width:70px;height:70px" />
                 </td>
-                @{
-                    if (!string.IsNullOrEmpty(item.ProductImagePath))
-                    {
-                        <td>
-                            <img src="@Url.Content(item.ProductImagePath)" style="height:50px;width:100px;" />
-                        </td>
-                    }
-                    else
-                    {
-                        <td></td>
-                    }
-                }
+                <td class="product-name-desc" style="word-wrap:break-word;">
+
+                    <a href="@Url.Action("ProductDetails","Product",new { id = item.ProductId})" class="cartitemname">
+                        <div style="font-size:15px;font-weight:600;color:black">
+                            @item.ProductName
+                        </div>
+                    </a>
+                    <div style="font-size:15px;font-weight:400;color:#818181">@item.CategoryName</div>
+                    <div>$50</div>
+                </td>
+
                 <td>
-                    <button class="btn btn-primary" onclick="RemoveFromWishList(@item.WishListId)">Remove</button>
+                    @{
+                        if (item.CategoryId == AppConstant.CustomMadeCategoryId)
+                        {
+                            <div class="primary-table-button" onclick="AddToCartCustomMade(@item.ProductId)">
+                                <div href="#">
+                                    <img src="~/Content/Images/shopping-cart.svg" />
+                                </div>
+                            </div>
+                        }
+                        else if (item.CategoryId == AppConstant.ReadyMadeCategoryId)
+                        {
+                            <div class="primary-table-button" onclick="AddToCartReadyMade(@item.ProductId)">
+                                <div href="#">
+                                    <img src="~/Content/Images/shopping-cart.svg" />
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="primary-table-button" onclick="AddToCart(@item.ProductId)">
+                                <div href="#">
+                                    <img src="~/Content/Images/shopping-cart.svg" />
+                                </div>
+                            </div>
+                        }
+                    }
+                <div class="secondary-table-button" onclick="RemoveFromWishList(@item.WishListId)">
+                    <img src="~/Content/Images/delete.svg" />
+                </div>
                 </td>
             </tr>
 
-        }
-    </tbody>
-</table>
+            }
+        </tbody>
+    </table>
 
     
+<style>
+    .primary-table-button{
+         display: inline-block;
+        padding: 5px;
+        color: white;
+        background-color: #E97128;
+        cursor: pointer;
+        margin:0 10px 5px 10px;
+    }
+
+    .secondary-table-button{
+           display: inline-block;
+        padding: 5px;
+        color: white;
+        background-color: #212529;
+        cursor: pointer;
+        margin:0 10px;
+    }
+
+    .primary-table-button:hover{
+         transform: scale(1.01);
+        background-color: rgb(255, 101, 5);
+        box-shadow: 2px 2px 12px rgba(47, 47, 47, 0.40);
+        transition: all ease 0.3s;
+    }
+
+    .secondary-table-button:hover
+    {
+         transform: scale(1.01);
+        background-color:#394047;
+        box-shadow: 2px 2px 12px rgba(47, 47, 47, 0.40);
+        transition: all ease 0.3s;
+    }
+
+    .product-name-desc{
+        width:500px;
+    }
+
+
+    
+/*smart phones*/
+@@media screen and (max-width: 420px) and (min-width: 0px) {
+     .product-name-desc{
+        width:200px;
+    }
+}
+
+</style>

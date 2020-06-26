@@ -15,6 +15,43 @@
     .email-button, .password-button {
         max-width: 100%;
     }
+    
+/*sidenav*/
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 2000;
+    top: 0;
+    right: 0;
+    background-color: white;
+    overflow-x: hidden;
+    transition: 0.3s;
+    padding-top: 60px;
+}
+
+.closebtn {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+    .closebtn:hover {
+        color: black;
+    }
+
+    .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+    }
+
+
 </style>
 <html lang="en">
 
@@ -231,6 +268,10 @@
             <div class="content">
                 <div class="container-fluid" style="padding-top:20px;">
                     @RenderBody()
+                    <div id="sidenav" class="sidenav">
+                        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                        <div id="sidebarbody" style="padding:10px 20px;"></div>
+                    </div>
                 </div>
                 <!-- /.container-fluid -->
             </div>

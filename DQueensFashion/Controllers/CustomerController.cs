@@ -70,6 +70,8 @@ namespace DQueensFashion.Controllers
                     ProductImagePath = w.ProductImagePath,
                     ProductName = w.ProductName,
                     WishListId=w.Id,
+                    CategoryId = w.CategoryId,
+                    CategoryName = w.CategoryName,
                 }).ToList();
 
             return View(wishLists);
@@ -86,8 +88,10 @@ namespace DQueensFashion.Controllers
                 {
                     ProductId = w.ProductId,
                     ProductImagePath = w.ProductImagePath,
-                    ProductName = w.ProductName,
+                    ProductName = w.ProductName.Length > 50 ? w.ProductName.Substring(0, 47) + "..." : w.ProductName,
                     WishListId = w.Id,
+                    CategoryName = w.CategoryName,
+                    CategoryId = w.CategoryId,
                 }).ToList();
 
             if (!string.IsNullOrEmpty(searchString))
