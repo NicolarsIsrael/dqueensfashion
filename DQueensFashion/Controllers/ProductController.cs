@@ -364,6 +364,7 @@ namespace DQueensFashion.Controllers
                     Discount = p.Discount,
                     SubTotal = p.SubTotal.ToString(),
                     Category = p.Category.Name,
+                    CategoryId = product.Category.Id,
                     Rating = new RatingViewModel()
                     {
                         AverageRating = p.AverageRating.ToString("0.0"),

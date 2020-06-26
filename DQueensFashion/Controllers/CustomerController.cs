@@ -32,12 +32,29 @@ namespace DQueensFashion.Controllers
         // GET: Customer
         public ActionResult Index()
         {
-            return RedirectToAction(nameof(Dashboard));
+            return RedirectToAction(nameof(Account));
         }
 
         public ActionResult Dashboard()
         {
-            return View();
+            return RedirectToAction(nameof(Account));
+        }
+
+        public ActionResult Account()
+        {
+            Customer customer = GetLoggedInCustomer();
+            if (customer == null)
+                throw new Exception();
+
+            CustomerViewModel customerModel = new CustomerViewModel()
+            {
+                CustommerId = customer.Id,
+                CustomerEmail = customer.Email,
+                CustomerFullName = customer.Fullname,
+                TotalCustomerOrders = _orderService.GetAllOrdersForCustomer(customer.Id).Count(),
+                TotalCustomerWishList = _wishListService.GetAllCustomerWishList(customer.Id).Count(),
+            };
+            return View(customerModel);
         }
 
         public ActionResult Wishlist()

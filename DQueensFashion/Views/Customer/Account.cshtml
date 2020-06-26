@@ -1,0 +1,111 @@
+﻿@model DQueensFashion.Models.CustomerViewModel
+
+@{
+    ViewBag.Title = "Account";
+    Layout = "~/Views/Shared/_dashboardLayout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header" style="font-size:20px;font-weight:400">
+        ACCOUNT OVERVIEW
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="account-card-header" style="font-size:18px;font-weight:300">
+                    ACCOUNT DETAILS
+                    <a href="@Url.Action("EditProfile")" style="float:right">
+                        <img src="~/Content/Images/edit-orange.svg" />
+                    </a>
+                </div>
+                <div class="account-card-body">
+                    <div style="font-size:15px;font-weight:600;margin-bottom:10px">
+                        @Model.CustomerFullName
+                    </div>
+                    <div style="color:#75757A;margin-bottom:20px">
+                        @Model.CustomerEmail
+                    </div>
+                    <div>
+                        <a href="@Url.Action("ChangePassword","Account")" class="action-link">CHANGE PASSWORD</a>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-6">
+                <div class="account-card-header" style="font-size:18px;font-weight:300">
+                    ORDERS
+                </div>
+                <div class="account-card-body">
+                    <div style="font-size:15px;font-weight:600;margin-bottom:10px">
+                        @Model.CustomerFullName
+                    </div>
+                    <div style="color:#75757A;margin-bottom:20px">
+                        Total: @Model.TotalCustomerOrders
+                    </div>
+                    <div>
+                        <a href="@Url.Action("Orders")" class="action-link">VIEW ORDERS</a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-6">
+                <div class="account-card-header" style="font-size:18px;font-weight:300">
+                    NEWS LETTER
+                </div>
+                <div class="account-card-body">
+
+                    <div style="color:#75757A;margin-bottom:20px">
+                        You are currently not subscribed to any of our newsletters.
+                    </div>
+                    <div>
+                        <a href="@Url.Action("Subscription")" class="action-link">VIEW SUBSCRIPTION</a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-6">
+                <div class="account-card-header" style="font-size:18px;font-weight:300">
+                    WISHLIST
+                </div>
+                <div class="account-card-body">
+
+                    <div style="color:#75757A;margin-bottom:20px">
+                        Total: @Model.TotalCustomerWishList
+                    </div>
+                    <div>
+                        <a href="@Url.Action("wishlist")" class="action-link">VIEW WISHLIST</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<style>
+    .account-card-header{
+        border:1px solid #ededed;
+        padding:10px 20px;
+        margin-top:10px;
+    }
+    .account-card-body{
+        border:1px solid #ededed;padding:20px
+    }
+
+    .action-link{
+        font-weight:bold;
+        color:#E97128;
+        background-color:white;
+        padding:10px;
+        transition: all ease 0.3s;
+    }
+
+    .action-link:hover{
+        background-color:#E97128;
+        color:white;
+    }
+
+</style>

@@ -265,6 +265,7 @@
     <Compile Include="Models\CartViewModel.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Models\ControllerActionViewModel.cs" />
+    <Compile Include="Models\CustomerViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\OrderViewModel.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
@@ -290,6 +291,7 @@
     <Content Include="Content\alertifyjs\themes\semantic.min.css" />
     <Content Include="Content\alertifyjs\themes\semantic.rtl.css" />
     <Content Include="Content\alertifyjs\themes\semantic.rtl.min.css" />
+    <Content Include="Content\Images\edit-orange.svg" />
     <Content Include="Content\Images\Body-measurement.jpg" />
     <Content Include="Content\dashboard-custom.css" />
     <Content Include="Content\Dashboard\css\main.css" />
@@ -492,7 +494,7 @@
     <Content Include="Views\Admin\EditProduct.cshtml" />
     <Content Include="Views\Admin\ProductDetails.cshtml" />
     <Content Include="Views\Cart\_navbarCartNumber.cshtml" />
-    <Content Include="Views\Customer\Dashboard.cshtml" />
+    <Content Include="Views\Customer\Account.cshtml" />
     <Content Include="Views\Customer\Wishlist.cshtml" />
     <Content Include="Views\Product\Shop.cshtml" />
     <Content Include="Views\Product\_productsList.cshtml" />
