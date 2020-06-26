@@ -36,7 +36,13 @@
                     @Html.Raw(item.DateCreatedString.Replace(Environment.NewLine, "<br/>"))
                 </td>
                 <td>
-                    @Html.ActionLink("In-Transit", "TransitOrder", new { id = item.OrderId })
+
+                    <a href="@Url.Action("TransitOrder",new {id=item.OrderId})" class="primary-table-button">Transit</a>
+                    
+                    <a href="@Url.Action("OrderDetails",new {id = item.OrderId})" class="secondary-table-button">
+                        <img src="~/Content/Images/info.svg" />
+                    </a>
+
                 </td>
             </tr>
 

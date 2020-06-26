@@ -33055,6 +33055,7 @@ a.text-muted:hover {
     background-color: #E97128;
     cursor: pointer;
     margin: 0 10px 5px 10px;
+    cursor:pointer;
 }
 
 .secondary-table-button {
@@ -33071,6 +33072,7 @@ a.text-muted:hover {
     background-color: rgb(255, 101, 5);
     box-shadow: 2px 2px 12px rgba(47, 47, 47, 0.40);
     transition: all ease 0.3s;
+    color:white;
 }
 
 .secondary-table-button:hover {
