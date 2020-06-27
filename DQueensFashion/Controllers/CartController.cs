@@ -30,6 +30,24 @@ namespace DQueensFashion.Controllers
             return RedirectToAction(nameof(ViewCart));
         }
 
+        public ActionResult ViewCart()
+        {
+            List<Cart> cart = (List<Cart>)Session["cart"];
+            ViewCartViewModel viewCart = new ViewCartViewModel()
+            {
+                Count = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.Quantity),
+                Carts = Session["cart"] == null ? new List<Cart>() : (List<Cart>)Session["cart"],
+                SubTotal = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.TotalPrice),
+            };
+            return View(viewCart);
+        }
+
+        public ActionResult GetCart()
+        {
+            ViewBag.CartNumber = GetCartNumber();
+            return PartialView("_navbarCartNumber");
+        }
+
         public ActionResult AddToCart(int id=0,int quantity=1)
         {
             Product product = _productService.GetProductById(id);
@@ -179,24 +197,6 @@ namespace DQueensFashion.Controllers
             return PartialView("_navbarCartNumber");
         }
 
-        public ActionResult GetCart()
-        {
-            ViewBag.CartNumber = GetCartNumber();
-            return PartialView("_navbarCartNumber");
-        }
-
-        public ActionResult ViewCart()
-        {
-            List<Cart> cart = (List<Cart>)Session["cart"];
-            ViewCartViewModel viewCart = new ViewCartViewModel()
-            {
-                Count = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.Quantity),
-                Carts = Session["cart"] == null ? new List<Cart>() : (List<Cart>)Session["cart"],
-                SubTotal= Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.TotalPrice),
-            };
-            return View(viewCart);
-        }
-
         public ActionResult ChangeCartItemQuantity(int id,int quantity)
         {
             Product product = _productService.GetProductById(id);
@@ -270,6 +270,7 @@ namespace DQueensFashion.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles =AppConstant.CustomerRole)]
         public ActionResult CheckOutWithPayPal()
         {
             List<Cart> cart = (List<Cart>)Session["cart"];

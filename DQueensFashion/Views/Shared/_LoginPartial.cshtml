@@ -15,7 +15,7 @@
             else if (User.IsInRole(AppConstant.CustomerRole))
             {
                 <li class="nav-item">
-                    @Html.ActionLink("Dashboard", "Dashboard", "Customer", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "nav-link navbar-link" })
+                    @Html.ActionLink("Account", "Account", "Customer", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "nav-link navbar-link" })
                 </li>
             }
             else if (User.IsInRole(AppConstant.EmployeeRole))

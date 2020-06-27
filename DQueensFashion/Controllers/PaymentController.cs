@@ -2,6 +2,7 @@
 using DQueensFashion.Models;
 using DQueensFashion.Service.Contract;
 using DQueensFashion.Utilities;
+using Microsoft.AspNet.Identity;
 using PayPal.Api;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,6 @@ namespace DQueensFashion.Controllers
     {
         private readonly IOrderService _orderService;
         private readonly IProductService _productService;
-        private readonly ICustomerService _customerService;
 
         public PaymentController(IOrderService orderService,IProductService productService)
         {
@@ -32,6 +32,10 @@ namespace DQueensFashion.Controllers
 
         public ActionResult PaymentWithPaypal(string Cancel = null)
         {
+            Customer customer = GetLoggedInCustomer();
+            if (customer == null)
+                throw new Exception();
+
             //getting the apiContext
             APIContext apiContext = PaypalConfiguration.GetAPIContext();
             try
@@ -87,7 +91,7 @@ namespace DQueensFashion.Controllers
             }
             try
             {
-
+                Session["cart"] = null;
                 var paymentIdGuid = Request.Params["guid"];
                 var _payment = PayPal.Api.Payment.Get(apiContext, Session[paymentIdGuid] as string);
                 List<LineItem> lineItems = new List<LineItem>();
@@ -105,7 +109,7 @@ namespace DQueensFashion.Controllers
 
                 DQueensFashion.Core.Model.Order order = new DQueensFashion.Core.Model.Order()
                 {
-                    CustomerId =1,
+                    CustomerId =customer.Id,
                     LineItems = lineItems,
                     TotalAmount = lineItems.Sum(l => l.TotalAmount),
                     TotalQuantity = lineItems.Sum(l => l.Quantity),
@@ -203,9 +207,7 @@ namespace DQueensFashion.Controllers
             transactionList.Add(new Transaction()
             {
                 description = "Transaction description",
-                invoice_number = rand.Next(1, int.MaxValue).ToString()
-                                    +rand.Next(1,int.MaxValue).ToString()
-                                     +rand.Next(1, int.MaxValue).ToString(),//Generate an Invoice No
+                invoice_number = GenerateInvoiceNumber(),//Generate an Invoice No
                 amount = amount,
                 item_list = itemList
             });
@@ -220,5 +222,21 @@ namespace DQueensFashion.Controllers
             return this.payment.Create(apiContext);
         }
         
+        private string GenerateInvoiceNumber()
+        {
+            return _orderService.GetOrderCount().ToString()
+                    + "-" + DateTime.Now.ToString("yyyymmddhhmmssfff");
+        }
+        private string GetLoggedInUserId()
+        {
+            return User.Identity.GetUserId();
+        }
+
+        private Customer GetLoggedInCustomer()
+        {
+            var userId = GetLoggedInUserId();
+            return _customerService.GedCustomerByUserId(userId);
+        }
+
     }
 }

@@ -3,7 +3,21 @@
     ViewBag.Title = "Failure";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-    <div class="container body-content">
-        <h2>Failure</h2>
+<div class="container body-content">
+    <div style="margin-top:80px;">
 
+        <div style="background-color:white;border-radius:50%;display:flex;width:200px;height:200px;margin:auto">
+            <img src="~/Content/Images/x.svg" style="margin:auto"/>
+        </div>
+        <div style="text-align:center;font-size:30px;font-weight:400">
+            PAYMENT NOT SUCCESSFUL
+        </div>
+        <div style="text-align:center;font-size:18px;font-weight:300">
+            Payment was not successful, @Html.ActionLink("View cart","ViewCart","Cart") to re-process your order
+        </div>
     </div>
+    <div style="text-align:center;margin-top:10px">
+        <a href="@Url.Action("Index","Product")" class="btn"
+           style="background-color:#212529;color:white;width:200px; border-radius:0;">Continue shopping</a>
+    </div>
+</div>

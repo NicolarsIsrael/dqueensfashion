@@ -292,6 +292,7 @@
     <Content Include="Content\alertifyjs\themes\semantic.min.css" />
     <Content Include="Content\alertifyjs\themes\semantic.rtl.css" />
     <Content Include="Content\alertifyjs\themes\semantic.rtl.min.css" />
+    <Content Include="Content\Images\check.svg" />
     <Content Include="Content\Images\delete.svg" />
     <Content Include="Content\Images\edit.svg" />
     <Content Include="Content\Images\edit-orange.svg" />
@@ -321,6 +322,7 @@
     <Content Include="Content\Images\shopping-cart.svg" />
     <Content Include="Content\Images\trash-2.svg" />
     <Content Include="Content\Images\user.svg" />
+    <Content Include="Content\Images\x.svg" />
     <Content Include="Content\js\content-file-input.js" />
     <Content Include="Content\js\jquery.js" />
     <Content Include="Content\js\site.js" />
