@@ -75,93 +75,14 @@ namespace DQueensFashion.Controllers
             return PartialView("_navbarCartNumber");
         }
 
-        public ActionResult AddToCartReadyMade(int id= 0)
+        public ActionResult AddToCartCustomReadyMade(int id=0)
         {
             Product product = _productService.GetProductById(id);
             if (product == null)
                 throw new Exception();
 
-            if (product.CategoryId != AppConstant.ReadyMadeCategoryId)
-                throw new Exception();
-
-            string mainImage = _imageService.GetImageFilesForProduct(product.Id).Count() < 1
-                ? AppConstant.DefaultProductImage
-                : _imageService.GetMainImageForProduct(product.Id).ImagePath;
-
-            Cart cartModel = new Cart()
-            {
-                ProductId = product.Id,
-                ProductName = product.Name.Length > 20 ? product.Name.Substring(0, 18) + "..." : product.Name,
-                CategoryName = product.Category.Name.Length > 20
-                            ? product.Category.Name.Substring(0, 18) + "..." : product.Category.Name,
-                MainImage = mainImage,
-                Quantity = product.Quantity,
-                InitialPrice = product.Price,
-                Discount = product.Discount,
-                UnitPrice = product.SubTotal,
-
-                ExtraSmallQuantity = product.ExtraSmallQuantity,
-                SmallQuantiy = product.SmallQuantiy,
-                MediumQuantiy = product.MediumQuantiy,
-                LargeQuantity = product.LargeQuantity,
-                ExtraLargeQuantity = product.ExtraLargeQuantity,
-            };
-
-            return PartialView("_AddToCartReadyMade",cartModel);
-        }
-
-        [HttpPost]
-        public ActionResult AddToCartReadyMade(Cart cartModel)
-        {
-            Product product = _productService.GetProductById(cartModel.ProductId);
-            if (product == null)
-                throw new Exception();
-
-            string mainImage = _imageService.GetImageFilesForProduct(product.Id).Count() < 1
-                ? AppConstant.DefaultProductImage
-                : _imageService.GetMainImageForProduct(product.Id).ImagePath;
-
-            List<Cart> cart = new List<Cart>();
-
-            int index = isExistReadyMade(cartModel.ProductId,cartModel);
-            if (index > -1)
-            {
-                cart = (List<Cart>)Session["cart"];
-                cart[index].Quantity += cartModel.Quantity;
-                cart[index].UnitPrice = cart[index].Product.SubTotal;
-                cart[index].TotalPrice = cart[index].Product.SubTotal * cart[index].Quantity;
-            }
-            else
-            {
-                if (index == -1)
-                    cart = (List<Cart>)Session["cart"];
-                cart.Add(new Cart
-                {
-                    Product = product,
-                    Quantity = cartModel.Quantity,
-                    MaxQuantity = GetReadyMadeMax(cartModel),
-                    Discount = product.Discount,
-                    InitialPrice = product.Price,
-                    UnitPrice = product.SubTotal,
-                    TotalPrice = product.SubTotal * cartModel.Quantity,
-                    MainImage = mainImage,
-                    ReadyMadeSize = cartModel.ReadyMadeSize,
-                    Description = GetCartDescription(cartModel,product.CategoryId),
-                });
-            }
-            Session["cart"] = cart;
-
-            ViewBag.CartNumber = GetCartNumber();
-            return PartialView("_navbarCartNumber");
-        }
-
-        public ActionResult AddToCartCustomMade(int id=0)
-        {
-            Product product = _productService.GetProductById(id);
-            if (product == null)
-                throw new Exception();
-
-            if (product.CategoryId != AppConstant.CustomMadeCategoryId)
+            if (!(product.CategoryId == AppConstant.CustomMadeCategoryId 
+                || product.CategoryId == AppConstant.ReadyMadeCategoryId))
                 throw new Exception();
 
             string mainImage = _imageService.GetImageFilesForProduct(product.Id).Count() < 1
@@ -196,13 +117,12 @@ namespace DQueensFashion.Controllers
                 SleeveLength = product.SleeveLength.HasValue ? product.SleeveLength.Value : false,
             };
 
-            return PartialView("_AddToCartCustomMade", cartModel);
+            return PartialView("_AddToCartCustomReadyMade", cartModel);
         }
 
         [HttpPost]
-        public ActionResult AddToCartCustomMade(Cart cartModel)
+        public ActionResult AddToCartCustomReadyMade(Cart cartModel)
         {
-
             Product product = _productService.GetProductById(cartModel.ProductId);
             if (product == null)
                 throw new Exception();
@@ -213,7 +133,7 @@ namespace DQueensFashion.Controllers
 
             List<Cart> cart = new List<Cart>();
 
-            int index = isExistCustomMade(cartModel.ProductId,cartModel);
+            int index = isExistCustomReadyMade(cartModel.ProductId,cartModel);
             if (index > -1)
             {
                 cart = (List<Cart>)Session["cart"];
@@ -378,19 +298,7 @@ namespace DQueensFashion.Controllers
             return -1; //cart session is available but item not in cart
         }
 
-        private int isExistReadyMade(int id,Cart cartModel)
-        {
-            if (Session["cart"] == null)
-                return -2; //no cart session yet
-            List<Cart> cart = (List<Cart>)Session["cart"];
-            for (int i = 0; i < cart.Count; i++)
-                if (cart[i].Product.Id.Equals(id))
-                    if(string.Compare(cart[i].ReadyMadeSize, cartModel.ReadyMadeSize, true) == 0)
-                        return i; //item already exist in cart
-            return -1; //cart session is available but item not in cart
-        }
-
-        private int isExistCustomMade(int id, Cart cartModel)
+        private int isExistCustomReadyMade(int id, Cart cartModel)
         {
             if (Session["cart"] == null)
                 return -2; //no cart session yet
@@ -439,7 +347,7 @@ namespace DQueensFashion.Controllers
         private string GetCartDescription(Cart cartModel,int id)
         {
             string description = "";
-            if (id == AppConstant.CustomMadeCategoryId)
+            if (id == AppConstant.CustomMadeCategoryId || id==AppConstant.ReadyMadeCategoryId)
             {
                 if (cartModel.ShoulderValue > 0)
                     description += "Shoulder : " + cartModel.ShoulderValue +"\"" + "\r\n";
@@ -481,32 +389,9 @@ namespace DQueensFashion.Controllers
                     description += "Sleeve : " + cartModel.SleeveLengthValue + "\"" + "\r\n";
 
             }
-            else if (id == AppConstant.ReadyMadeCategoryId)
-            {
-                description = cartModel.ReadyMadeSize;
-            }
             return description;
         }
 
-        private int GetReadyMadeMax(Cart cartModel)
-        {
-            Product product = _productService.GetProductById(cartModel.ProductId);
-            if (product == null)
-                throw new Exception();
-
-            if (cartModel.ReadyMadeSize == AppConstant.ReadyMadeSizes[0])
-                return product.ExtraSmallQuantity;
-            else if (cartModel.ReadyMadeSize == AppConstant.ReadyMadeSizes[1])
-                return product.SmallQuantiy;
-            else if (cartModel.ReadyMadeSize == AppConstant.ReadyMadeSizes[2])
-                return product.MediumQuantiy;
-            else if (cartModel.ReadyMadeSize == AppConstant.ReadyMadeSizes[3])
-                return product.LargeQuantity;
-            else if (cartModel.ReadyMadeSize == AppConstant.ReadyMadeSizes[4])
-                return product.ExtraLargeQuantity;
-
-            return 0;
-        }
         #endregion
     }
 }

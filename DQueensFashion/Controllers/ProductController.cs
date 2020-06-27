@@ -123,6 +123,7 @@ namespace DQueensFashion.Controllers
                             AppConstant.DefaultProductImage :
                             allImages.Where(image => image.ProductId == p.Id).FirstOrDefault().ImagePath,
                         Category = p.Category.Name,
+                        CategoryId = p.CategoryId,
                         Quantity = p.Quantity,
                         Price = p.Price.ToString(),
                         Discount = p.Discount,
@@ -223,6 +224,7 @@ namespace DQueensFashion.Controllers
                             AppConstant.DefaultProductImage :
                             allImages.Where(image => image.ProductId == p.Id).FirstOrDefault().ImagePath,
                         Category = p.Category.Name,
+                        CategoryId = p.CategoryId,
                         Quantity = p.Quantity,
                         Price = p.Price.ToString(),
                         Discount = p.Discount,

@@ -65,7 +65,8 @@ namespace DQueensFashion.Service.Implementation
         public decimal CalculateProductPrice(decimal price, decimal discount)
         {
             decimal p = price * (1 - (discount / (decimal)100));
-            return Math.Round(p, 2);
+            p= Math.Round(p, 2,MidpointRounding.AwayFromZero);
+            return p;
         }
 
         private bool ValidateProductDetails(Product product)

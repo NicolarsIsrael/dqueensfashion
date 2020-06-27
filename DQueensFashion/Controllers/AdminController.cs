@@ -224,21 +224,22 @@ namespace DQueensFashion.Controllers
                     Name = c.Name,
                 }).OrderBy(c=>c.Name).ToList();
 
-            AddProductViewModel productModel = new AddProductViewModel()
+            ProductViewModel productModel = new ProductViewModel()
             {
                 Categories = categories,
+                Quantity = 1,
             };
 
             if (categoryId == AppConstant.CustomMadeCategoryId)
                 productModel.CustomMadeCategory = true;
             else if (categoryId == AppConstant.ReadyMadeCategoryId)
                 productModel.ReadyMadeCategory = true;
-
+           
             return View(productModel);
         }
 
         [HttpPost]
-        public ActionResult AddProduct(AddProductViewModel productModel)
+        public ActionResult AddProduct(ProductViewModel productModel)
         {
             if (!ModelState.IsValid)
             {
@@ -265,8 +266,8 @@ namespace DQueensFashion.Controllers
                 Name = productModel.Name,
                 Description = productModel.Description,
                 Quantity = productModel.Quantity,
-                Price = Math.Round(productModel.Price, 2),
-                Discount = Math.Round(productModel.Discount, 2),
+                Price = Math.Round(productModel.Price, 2,MidpointRounding.AwayFromZero),
+                Discount = Math.Round(productModel.Discount, 2,MidpointRounding.AwayFromZero),
                 SubTotal = _productService.CalculateProductPrice(productModel.Price, productModel.Discount),
                 Category = category,
                 Tags = productModel.Tags != null ? String.Join(",", productModel.Tags) : "",
@@ -286,18 +287,7 @@ namespace DQueensFashion.Controllers
                 NipNip = productModel.NipNip,
                 SleeveLength = productModel.SleeveLength,
 
-                //ready made sizes
-                ExtraSmallQuantity= productModel.ExtraSmallQuantity,
-                SmallQuantiy = productModel.SmallQuantiy,
-                MediumQuantiy= productModel.MediumQuantiy,
-                LargeQuantity= productModel.LargeQuantity,
-                ExtraLargeQuantity= productModel.ExtraLargeQuantity,
             };
-
-            if (productModel.CategoryId == AppConstant.ReadyMadeCategoryId)
-            {
-                product.Quantity = productModel.ExtraSmallQuantity + productModel.SmallQuantiy + productModel.MediumQuantiy + productModel.LargeQuantity + productModel.ExtraLargeQuantity;
-            }
 
             _productService.AddProduct(product);
             ViewBag.DefaultImage = AppConstant.DefaultProductImage;
@@ -358,7 +348,7 @@ namespace DQueensFashion.Controllers
                 return HttpNotFound();
             var allCategories = _categoryService.GetAllCategories().ToList();
 
-            EditProductViewModel productModel = new EditProductViewModel()
+            ProductViewModel productModel = new ProductViewModel()
             {
                 Id = product.Id,
                 Name = product.Name,
@@ -389,13 +379,6 @@ namespace DQueensFashion.Controllers
                 NipNip = product.NipNip.HasValue ? product.NipNip.Value : false,
                 SleeveLength = product.SleeveLength.HasValue ? product.SleeveLength.Value : false,
 
-                //ready made
-                ExtraSmallQuantity = product.ExtraSmallQuantity,
-                SmallQuantiy= product.SmallQuantiy,
-                MediumQuantiy= product.MediumQuantiy,
-                LargeQuantity= product.LargeQuantity,
-                ExtraLargeQuantity = product.ExtraLargeQuantity,
-
                 ReadyMadeCategory = product.CategoryId == AppConstant.ReadyMadeCategoryId ? true : false,
                 CustomMadeCategory = product.CategoryId == AppConstant.CustomMadeCategoryId ? true : false,
             };
@@ -410,7 +393,7 @@ namespace DQueensFashion.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditProduct(EditProductViewModel productModel)
+        public ActionResult EditProduct(ProductViewModel productModel)
         {
             if (!ModelState.IsValid)
             {
@@ -451,9 +434,9 @@ namespace DQueensFashion.Controllers
             product.Name = productModel.Name;
             product.Description = productModel.Description;
             product.Quantity = productModel.Quantity;
-            product.Price = Math.Round(productModel.Price,2);
-            product.Discount = Math.Round(productModel.Discount, 2);
-            product.SubTotal = Math.Round(_productService.CalculateProductPrice(productModel.Price, productModel.Discount));
+            product.Price = Math.Round(productModel.Price,2,MidpointRounding.AwayFromZero);
+            product.Discount = Math.Round(productModel.Discount, 2,MidpointRounding.AwayFromZero);
+            product.SubTotal = _productService.CalculateProductPrice(productModel.Price, productModel.Discount);
             product.Category = category;
             product.Tags = productModel.Tags != null ? String.Join(",", productModel.Tags) : "";
 
@@ -472,16 +455,6 @@ namespace DQueensFashion.Controllers
             product.NipNip = productModel.NipNip;
             product.SleeveLength = productModel.SleeveLength;
 
-            //ready made
-            product.ExtraSmallQuantity = productModel.ExtraSmallQuantity;
-            product.SmallQuantiy = productModel.SmallQuantiy;
-            product.MediumQuantiy = productModel.MediumQuantiy;
-            product.LargeQuantity = productModel.LargeQuantity;
-            product.ExtraLargeQuantity = productModel.ExtraLargeQuantity;
-            if (productModel.CategoryId == AppConstant.ReadyMadeCategoryId)
-            {
-                product.Quantity = productModel.ExtraSmallQuantity + productModel.SmallQuantiy + productModel.MediumQuantiy + productModel.LargeQuantity + productModel.ExtraLargeQuantity;
-            }
             _productService.UpdateProduct(product);
             return RedirectToAction(nameof(Products));
         }

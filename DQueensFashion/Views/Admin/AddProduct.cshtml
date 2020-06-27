@@ -1,4 +1,4 @@
-﻿@model DQueensFashion.Models.AddProductViewModel
+﻿@model DQueensFashion.Models.ProductViewModel
 @using DQueensFashion.Utilities
 
 @{
@@ -42,9 +42,20 @@
                                             @Html.LabelFor(model => model.CategoryId, htmlAttributes: new { @class = "control-label  col-12" })
                                             <div class="col-12">
                                                 <select class="form-control" name="@Html.NameFor(m=>m.CategoryId)">
-                                                    @foreach (var item in Model.Categories)
+                                                    @if (Model.CustomMadeCategory)
                                                     {
-                                                        <option value="@item.Id">@item.Name</option>
+                                                        <option value="@AppConstant.CustomMadeCategoryId">@AppConstant.CustomMadeName</option>
+                                                    }
+                                                    else if (Model.ReadyMadeCategory)
+                                                    {
+                                                        <option value="@AppConstant.ReadyMadeCategoryId">@AppConstant.ReadyMadeName</option>
+                                                    }
+                                                    else
+                                                    {
+                                                        foreach (var item in Model.Categories)
+                                                        {
+                                                            <option value="@item.Id">@item.Name</option>
+                                                        }
                                                     }
                                                 </select>
                                                 @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
@@ -82,7 +93,7 @@
 
                                             @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-12" })
                                             <div class="col-12">
-                                                @if (Model.ReadyMadeCategory)
+                                                @if (Model.ReadyMadeCategory || Model.CustomMadeCategory)
                                                 {
                                                     @Html.EditorFor(model => model.Quantity,
                                                    new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @id = "ProductQty" } })
@@ -129,12 +140,12 @@
 
 
                     @{
-                        if (Model.CustomMadeCategory)
+                        if (Model.CustomMadeCategory || Model.ReadyMadeCategory)
                         {
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        CUSTOM MADE BODY SPECIFICATIONS
+                                         BODY SPECIFICATIONS
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
@@ -287,71 +298,6 @@
                             </div>
                         }
 
-                        if (Model.ReadyMadeCategory)
-                        {
-                            <div class="card">
-                                <div class="card-header">
-                                    READY MADE SIZES
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-4 col-6">
-                                            <div class="form-group">
-                                                @Html.LabelFor(model => model.ExtraSmallQuantity, htmlAttributes: new { @class = "control-label col-12" })
-                                                <div class="col-12">
-                                                    @Html.EditorFor(model => model.ExtraSmallQuantity, new { htmlAttributes = new { @class = "form-control", @id = "xsQty" } })
-                                                    @Html.ValidationMessageFor(model => model.ExtraSmallQuantity, "", new { @class = "text-danger" })
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4 col-6">
-                                            <div class="form-group">
-                                                @Html.LabelFor(model => model.SmallQuantiy, htmlAttributes: new { @class = "control-label col-12" })
-                                                <div class="col-12">
-                                                    @Html.EditorFor(model => model.SmallQuantiy, new { htmlAttributes = new { @class = "form-control", @id = "smQty" } })
-                                                    @Html.ValidationMessageFor(model => model.SmallQuantiy, "", new { @class = "text-danger" })
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4 col-6">
-                                            <div class="form-group">
-                                                @Html.LabelFor(model => model.MediumQuantiy, htmlAttributes: new { @class = "control-label col-12" })
-                                                <div class="col-12">
-                                                    @Html.EditorFor(model => model.MediumQuantiy, new { htmlAttributes = new { @class = "form-control", @id = "mQty" } })
-                                                    @Html.ValidationMessageFor(model => model.MediumQuantiy, "", new { @class = "text-danger" })
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4 col-6">
-                                            <div class="form-group">
-                                                @Html.LabelFor(model => model.LargeQuantity, htmlAttributes: new { @class = "control-label col-12" })
-                                                <div class="col-12">
-                                                    @Html.EditorFor(model => model.LargeQuantity, new { htmlAttributes = new { @class = "form-control", @id = "lQty" } })
-                                                    @Html.ValidationMessageFor(model => model.LargeQuantity, "", new { @class = "text-danger" })
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4 col-6">
-                                            <div class="form-group">
-                                                @Html.LabelFor(model => model.ExtraLargeQuantity, htmlAttributes: new { @class = "control-label col-12" })
-                                                <div class="col-12">
-                                                    @Html.EditorFor(model => model.ExtraLargeQuantity, new { htmlAttributes = new { @class = "form-control", @id = "xlQty" } })
-                                                    @Html.ValidationMessageFor(model => model.ExtraLargeQuantity, "", new { @class = "text-danger" })
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4 col-6">
-                                            <div class="form-group">
-                                                @Html.Label("Total Qty", htmlAttributes: new { @class = "control-label col-12" })
-                                                <div class="col-12">
-                                                    <input type="text" readonly value="@Model.Quantity" id="qtyDisplay" class="form-control" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        }
                     }
                 </div>
 
@@ -381,13 +327,6 @@
     var productPrice = document.getElementById("product-price");
     var productDiscount = document.getElementById("product-discount");
 
-    var productQty = document.getElementById("ProductQty");
-    var qtyDisplay = document.getElementById("qtyDisplay");
-    var xsQty = document.getElementById("xsQty");
-    var smQty = document.getElementById("smQty");
-    var mQty = document.getElementById("mQty");
-    var lQty = document.getElementById("lQty");
-    var xlQty = document.getElementById("xlQty");
 
     $(".js-example-tokenizer").select2({
         tags: true,
@@ -406,34 +345,7 @@
      $('#product-discount').bind('input', function () {
         GetProductTotalPrice();
     });
-    
-    $('#xsQty').bind('input', function () {
-        productQty.value = CalculateTotalQuantity();
-        qtyDisplay.value = CalculateTotalQuantity();
-    });
-
-    
-    $('#smQty').bind('input', function () {
-        productQty.value = CalculateTotalQuantity();
-        qtyDisplay.value = CalculateTotalQuantity();
-    });
-    
-    $('#mQty').bind('input', function () {
-        productQty.value = CalculateTotalQuantity();
-        qtyDisplay.value = CalculateTotalQuantity();
-    });
-
-    
-    $('#lQty').bind('input', function () {
-        productQty.value = CalculateTotalQuantity();
-        qtyDisplay.value = CalculateTotalQuantity();
-    });
-    
-    $('#xlQty').bind('input', function () {
-        productQty.value = CalculateTotalQuantity();
-        qtyDisplay.value = CalculateTotalQuantity();
-    });
-
+  
 </script>
 
 

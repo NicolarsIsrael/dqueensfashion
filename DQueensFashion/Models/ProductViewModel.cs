@@ -8,8 +8,11 @@ using System.Web;
 
 namespace DQueensFashion.Models
 {
-    public class AddProductViewModel
+
+    public class ProductViewModel
     {
+        public int Id { get; set; }
+
         [Required]
         [BeginWIthAlphaNumeric(ErrorMessage = "Product name must begin with an alphabeth")]
         [StringLength(50, MinimumLength = 2, ErrorMessage = "Product name must at least be 2 characters long and not more than 50")]
@@ -20,47 +23,27 @@ namespace DQueensFashion.Models
         [StringLength(10000, MinimumLength = 2, ErrorMessage = "Description must at least be 2 characters long and not more than 10000")]
         public string Description { get; set; }
 
-        [Range(0,double.MaxValue,ErrorMessage ="Price must be greater than 0")]
+        [Range(0.01, double.MaxValue, ErrorMessage = "Price must be greater than 0.01")]
         [Required]
         public decimal Price { get; set; }
 
-        [Range(0,100,ErrorMessage ="Discount must be between 0 and 100")]
-        [Display(Name="Discount(%)")]
+        [Range(0, 100, ErrorMessage = "Discount must be between 0 and 100")]
+        [Display(Name = "Discount(%)")]
         public decimal Discount { get; set; }
 
-        [Range(1,int.MaxValue,ErrorMessage ="Quantity must be greater than 0")]
+        public decimal SubTotal { get; set; }
+
+        [Range(1, int.MaxValue, ErrorMessage = "Quantity must be greater than 1")]
         [Required]
         public int Quantity { get; set; }
 
         public List<string> Tags { get; set; }
-
-        [Display(Name ="Category")]
+        [Display(Name = "Category")]
         public int CategoryId { get; set; }
         public IEnumerable<CategoryNameAndId> Categories { get; set; }
 
         public bool CustomMadeCategory { get; set; }
         public bool ReadyMadeCategory { get; set; }
-
-        //Ready made sizes
-        [Range(0, int.MaxValue, ErrorMessage = "Value must be equal or greater than 0")]
-        [Display(Name = "XS quantity")]
-        public int ExtraSmallQuantity { get; set; }
-
-        [Range(0, int.MaxValue, ErrorMessage = "Value must be equal or greater than 0")]
-        [Display(Name = "SM quantity")]
-        public int SmallQuantiy { get; set; }
-
-        [Range(0, int.MaxValue, ErrorMessage = "Value must be equal or greater than 0")]
-        [Display(Name = "M quantity")]
-        public int MediumQuantiy { get; set; }
-
-        [Range(0, int.MaxValue, ErrorMessage = "Value must be equal or greater than 0")]
-        [Display(Name = "L quantity")]
-        public int LargeQuantity { get; set; }
-
-        [Range(0, int.MaxValue, ErrorMessage = "Value must be equal or greater than 0")]
-        [Display(Name = "XL quantity")]
-        public int ExtraLargeQuantity { get; set; }
 
 
         //measurement
@@ -91,6 +74,7 @@ namespace DQueensFashion.Models
         [Display(Name = "Sleeve length")]
         public bool SleeveLength { get; set; }
     }
+
 
     public class AddProductImageViewModel
     {
@@ -162,93 +146,6 @@ namespace DQueensFashion.Models
         [Display(Name = "Sleeve length")]
         public bool SleeveLength { get; set; }
 
-    }
-
-    public class EditProductViewModel
-    {
-        public int Id { get; set; }
-
-        [Required]
-        [BeginWIthAlphaNumeric(ErrorMessage = "Product name must begin with an alphabeth")]
-        [StringLength(50, MinimumLength = 2, ErrorMessage = "Product name must at least be 2 characters long and not more than 50")]
-        public string Name { get; set; }
-
-        [Required]
-        [BeginWIthAlphaNumeric(ErrorMessage = "Description must begin with an alphabeth")]
-        [StringLength(10000, MinimumLength = 2, ErrorMessage = "Description must at least be 2 characters long and not more than 10000")]
-        public string Description { get; set; }
-
-        [Range(0, double.MaxValue, ErrorMessage = "Price must be greater than 0")]
-        [Required]
-        public decimal Price { get; set; }
-
-        [Range(0, 100, ErrorMessage = "Discount must be between 0 and 100")]
-        [Display(Name = "Discount(%)")]
-        public decimal Discount { get; set; }
-
-        public decimal SubTotal { get; set; }
-
-        [Range(1, int.MaxValue, ErrorMessage = "Quantity must be greater than 1")]
-        [Required]
-        public int Quantity { get; set; }
-
-        public List<string> Tags { get; set; }
-        [Display(Name = "Category")]
-        public int CategoryId { get; set; }
-        public IEnumerable<CategoryNameAndId> Categories { get; set; }
-
-        public bool CustomMadeCategory { get; set; }
-        public bool ReadyMadeCategory { get; set; }
-
-        //Ready made sizes
-        [Range(0, int.MaxValue, ErrorMessage = "Value must be equal or greater than 0")]
-        [Display(Name = "XS quantity")]
-        public int ExtraSmallQuantity { get; set; }
-
-        [Range(0, int.MaxValue, ErrorMessage = "Value must be equal or greater than 0")]
-        [Display(Name = "SM quantity")]
-        public int SmallQuantiy { get; set; }
-
-        [Range(0, int.MaxValue, ErrorMessage = "Value must be equal or greater than 0")]
-        [Display(Name = "M quantity")]
-        public int MediumQuantiy { get; set; }
-
-        [Range(0, int.MaxValue, ErrorMessage = "Value must be equal or greater than 0")]
-        [Display(Name = "L quantity")]
-        public int LargeQuantity { get; set; }
-
-        [Range(0, int.MaxValue, ErrorMessage = "Value must be equal or greater than 0")]
-        [Display(Name = "XL quantity")]
-        public int ExtraLargeQuantity { get; set; }
-
-
-        //measurement
-        public bool Shoulder { get; set; }
-        [Display(Name = "Arm hole")]
-        public bool ArmHole { get; set; }
-        public bool Burst { get; set; }
-        public bool Waist { get; set; }
-        public bool Hips { get; set; }
-        public bool Thigh { get; set; }
-        [Display(Name = "Full body length")]
-        public bool FullBodyLength { get; set; }
-        [Display(Name = "Knee garment length")]
-        public bool KneeGarmentLength { get; set; }
-
-        [Display(Name = "Top length")]
-        public bool TopLength { get; set; }
-
-        [Display(Name = "Trouser length")]
-        public bool TrousersLength { get; set; }
-
-        [Display(Name = "Round ankle")]
-        public bool RoundAnkle { get; set; }
-
-        [Display(Name = "Nip nip")]
-        public bool NipNip { get; set; }
-
-        [Display(Name = "Sleeve length")]
-        public bool SleeveLength { get; set; }
     }
 
     public class ProductDetailsViewModel

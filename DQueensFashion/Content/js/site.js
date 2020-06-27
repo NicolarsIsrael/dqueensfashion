@@ -15,10 +15,10 @@ function AddToCart(productId, _quantity) {
     });
 }
 
-function AddToCartReadyMade(productId) {
+function AddToCartCustomReadyMade(productId) {
 
     $.ajax({
-        url: "/Cart/AddToCartReadyMade/" + productId,
+        url: "/Cart/AddToCartCustomReadyMade/" + productId,
         dataType: "html",
         data: {},
         success: function (result) {
@@ -32,47 +32,7 @@ function AddToCartReadyMade(productId) {
 
 }
 
-function AddToCartCustomMade(productId) {
-
-    $.ajax({
-        url: "/Cart/AddToCartCustomMade/" + productId,
-        dataType: "html",
-        data: {},
-        success: function (result) {
-            $("#sidebarbody").html(result);
-            openNav();
-        },
-        error: function (xhr, status, error) {
-            alertify.error("Error");
-        }
-    });
-
-}
-
-function AddToCartReadyMadePost() {
-    var cartModel = {
-        ProductId: $('#ProductId').val(),
-        Quantity: $('#Quantity').val(),
-        ReadyMadeSize: $('#ReadyMadeSize').val(),
-    }
-
-    $.ajax({
-        url: "/Cart/AddToCartReadyMade",
-        data: JSON.stringify(cartModel),
-        type: "POST",
-        contentType: "application/json;charset=utf-8",
-        dataType: "html",
-        success: function (result) {
-            $("#navbarCartNumber").html(result);
-            closeNav();
-        },
-        error: function (xhr, status, error) {
-            alertify.error("Error");
-        }
-    });
-}
-
-function AddToCartCustomMadePost() {
+function AddToCartCustomReadyMadePost() {
 
     var cartModel = {
         ProductId: $('#ProductId').val(),
@@ -94,7 +54,7 @@ function AddToCartCustomMadePost() {
     }
 
     $.ajax({
-        url: "/Cart/AddToCartCustomMade",
+        url: "/Cart/AddToCartCustomReadyMade",
         data: JSON.stringify(cartModel),
         type: "POST",
         contentType: "application/json;charset=utf-8",
@@ -177,12 +137,6 @@ function SetProductTotalPrice(price,discount) {
         totalPrice = 0;
 
     document.getElementById("product-total-price").value = totalPrice;
-}
-
-function CalculateTotalQuantity() {
-    return Number(xsQty.value) + Number(smQty.value)
-                    + Number(mQty.value) + Number(lQty.value)
-                    + Number(xlQty.value);
 }
 
 function openNav() {

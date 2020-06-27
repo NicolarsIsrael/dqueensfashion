@@ -23,7 +23,9 @@ namespace DQueensFashion.Utilities
 
         public const string ProductImageBasePath = "~/Content/Images/Products/";
         public const int CustomMadeCategoryId = 4;
+        public const string CustomMadeName = "Custom-Made";
         public const int ReadyMadeCategoryId = 3;
+        public const string ReadyMadeName = "Ready-Made";
 
         public static readonly string[] ReadyMadeSizes = { "Extra small (XS)", "Small (S)", "Medium (M)", "Large (L)", "Extra large (XL)" };
         public static int MaxCustomMadeAddToCart = 50;

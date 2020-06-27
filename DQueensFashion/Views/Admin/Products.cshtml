@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<DQueensFashion.Models.ViewProductsViewModel>
+@using DQueensFashion.Utilities
 
 @{
     ViewBag.Title = "Products";
@@ -11,23 +12,24 @@
             <div style="text-align:right;margin-bottom:10px;">
                 <a href="@Url.Action("AddProduct")" class="btn btn-sm" , style="background-color:#E97128;color:white">
                     <img src="~/Content/Images/plus.svg" />
-                    Add new
+                    Add
+                </a>
+                <a href="@Url.Action("AddProduct","Admin",new { categoryId=AppConstant.ReadyMadeCategoryId})" class="btn btn-sm" , style="background-color:darkgoldenrod;color:white">
+                    <img src="~/Content/Images/plus.svg" />
+                    @AppConstant.ReadyMadeName
+                </a>
+                <a href="@Url.Action("AddProduct","Admin",new { categoryId=AppConstant.CustomMadeCategoryId})" class="btn btn-sm" , style="background-color:blue;color:white">
+                    <img src="~/Content/Images/plus.svg" />
+                     @AppConstant.CustomMadeName
                 </a>
 
             </div>
             <div style="text-align:right;margin-bottom:10px;">
-                <a href="@Url.Action("AddProduct","Admin",new { categoryId=3})" class="btn btn-sm" , style="background-color:darkgoldenrod;color:white">
-                    <img src="~/Content/Images/plus.svg" />
-                    Add ready made
-                </a>
+              
 
             </div>
             <div style="text-align:right;margin-bottom:10px;">
-                <a href="@Url.Action("AddProduct","Admin",new { categoryId=4})" class="btn btn-sm" , style="background-color:blue;color:white">
-                    <img src="~/Content/Images/plus.svg" />
-                    Add custom made
-                </a>
-
+               
             </div>
         </div>
 
@@ -52,7 +54,7 @@
 
             </div>
             <!-- /.card-header -->
-            <div class="card-body table-responsive p-0" style="height: 53vh">
+            <div class="card-body table-responsive p-0" style="height: 65vh">
 
                 @Html.Partial("_productsTable", Model)
             </div>

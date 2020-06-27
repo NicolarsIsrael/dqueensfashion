@@ -535,9 +535,8 @@
     <Content Include="Views\Admin\_productImages.cshtml" />
     <Content Include="Views\Payment\Success.cshtml" />
     <Content Include="Views\Payment\Failed.cshtml" />
-    <Content Include="Views\Cart\_AddToCartCustomMade.cshtml" />
+    <Content Include="Views\Cart\_AddToCartCustomReadyMade.cshtml" />
     <Content Include="Views\Admin\OrderDetails.cshtml" />
-    <Content Include="Views\Cart\_AddToCartReadyMade.cshtml" />
     <Content Include="Views\Admin\InTransitOrders.cshtml" />
     <Content Include="Views\Admin\_inTransitOrderTable.cshtml" />
     <Content Include="Views\Cart\_cartTableDesktop.cshtml" />

@@ -157,15 +157,10 @@
                     </div>
                     <div class="mt-1">
                         @{
-                            if (Model.Product.CategoryId == AppConstant.CustomMadeCategoryId)
+                            if (Model.Product.CategoryId == AppConstant.CustomMadeCategoryId 
+                                || Model.Product.CategoryId==AppConstant.ReadyMadeCategoryId)
                             {
-                                <div class="cart" onclick="AddToCartCustomMade(@Model.Product.Id)">
-                                    <div href="#">Add to cart</div>
-                                </div>
-                            }
-                            else if (Model.Product.CategoryId == AppConstant.ReadyMadeCategoryId)
-                            {
-                                <div class="cart" onclick="AddToCartReadyMade(@Model.Product.Id)">
+                                <div class="cart" onclick="AddToCartCustomReadyMade(@Model.Product.Id)">
                                     <div href="#">Add to cart</div>
                                 </div>
                             }
