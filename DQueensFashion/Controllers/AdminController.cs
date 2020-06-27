@@ -40,7 +40,14 @@ namespace DQueensFashion.Controllers
 
         public ActionResult Dashboard()
         {
-            return View();
+            AdminViewModel adminModel = new AdminViewModel()
+            {
+                NumberOfCustomers = _customerService.GetAllCustomerCount(),
+                NumberOfOrders = _orderService.GetAllOrders().Count(),
+                NumberOfCategories = _categoryService.GetAllCategoriesCount(),
+                NumberOfProducts = _productService.GetAllProductsCount(),
+            };
+            return View(adminModel);
         }
 
         public ActionResult Categories()

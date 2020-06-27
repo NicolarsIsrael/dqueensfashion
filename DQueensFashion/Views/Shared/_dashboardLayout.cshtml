@@ -119,13 +119,23 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
-                        with font-awesome or any other icon font library -->
+    with font-awesome or any other icon font library -->
 
                         @if (Request.IsAuthenticated)
                         {
 
                             if (User.IsInRole(AppConstant.AdminRole))
                             {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" href="@Url.Action("dashboard","Admin")">
+                                        <i class="fas fa-th"></i>
+                                        <p>
+                                            DASHBOARD
+                                        </p>
+                                    </a>
+
+                                </li>
+
                                 <li class="nav-item">
                                     <a class="nav-link" asp-area="" href="@Url.Action("categories","Admin")">
                                         <i class="fas fa-th"></i>
@@ -226,6 +236,17 @@
                             }
                             else if (User.IsInRole(AppConstant.CustomerRole))
                             {
+
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" href="@Url.Action("account", "customer")">
+                                        <i class="fas fa-th"></i>
+                                        <p>
+                                            ACCOUNT
+                                        </p>
+                                    </a>
+
+                                </li>
+
                                 <li class="nav-item">
                                     <a class="nav-link" asp-area="" href="@Url.Action("wishlist", "customer")">
                                         <i class="fas fa-th"></i>
