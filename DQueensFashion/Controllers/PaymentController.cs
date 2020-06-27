@@ -16,11 +16,13 @@ namespace DQueensFashion.Controllers
     {
         private readonly IOrderService _orderService;
         private readonly IProductService _productService;
+        private readonly ICustomerService _customerService;
 
-        public PaymentController(IOrderService orderService,IProductService productService)
+        public PaymentController(IOrderService orderService,IProductService productService, ICustomerService customerService)
         {
             _orderService = orderService;
             _productService = productService;
+            _customerService = customerService;
         }
 
         // GET: Payment
