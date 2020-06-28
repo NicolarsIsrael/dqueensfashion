@@ -1138,6 +1138,39 @@ namespace DQueensFashion.Controllers
             return RedirectToAction(nameof(Orders));
         }
 
+        public ActionResult Customers()
+        {
+            IEnumerable<CustomerViewModel> allCustomers = _customerService.GetAllCustomers()
+                .Select(c => new CustomerViewModel
+                {
+                    CustommerId = c.Id,
+                    CustomerEmail = c.Email,
+                    CustomerFullName = c.Fullname,
+                    TotalCustomerOrders = _orderService.GetAllOrdersForCustomer(c.Id).Count()
+                }).ToList();
+
+            return View(allCustomers);
+        }
+
+        public ActionResult SearchCustomers(string searchString)
+        {
+            IEnumerable<CustomerViewModel> allCustomers = _customerService.GetAllCustomers()
+               .Select(c => new CustomerViewModel
+               {
+                   CustommerId = c.Id,
+                   CustomerEmail = c.Email,
+                   CustomerFullName = c.Fullname,
+                   TotalCustomerOrders = _orderService.GetAllOrdersForCustomer(c.Id).Count()
+               }).ToList();
+
+            if (!string.IsNullOrEmpty(searchString))
+                allCustomers = allCustomers.Where(c => c.CustomerEmail.ToLower().Contains(searchString.ToLower()) ||
+                c.CustomerFullName.ToLower().Contains(searchString.ToLower()));
+
+            return PartialView("_customersTable", allCustomers);
+
+        }
+
         public int GetCartNumber()
         {
             if (Session["cart"] != null)

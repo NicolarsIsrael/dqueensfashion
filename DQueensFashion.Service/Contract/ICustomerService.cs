@@ -13,5 +13,6 @@ namespace DQueensFashion.Service.Contract
         void AddCustomer(Customer customer);
         Customer GedCustomerByUserId(string userId);
         Customer GetCustomerById(int id);
+        IEnumerable<Customer> GetAllCustomers();
     }
 }

@@ -22,6 +22,11 @@ namespace DQueensFashion.Service.Implementation
             return uow.CustomerRepo.Count();
         }
 
+        public IEnumerable<Customer> GetAllCustomers()
+        {
+            return uow.CustomerRepo.GetAll();
+        }
+
         public void AddCustomer(Customer customer)
         {
             if (!ValidateCustomerDetails(customer))

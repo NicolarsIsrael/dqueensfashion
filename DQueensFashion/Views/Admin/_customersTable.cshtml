@@ -1,0 +1,39 @@
+﻿@model IEnumerable<DQueensFashion.Models.CustomerViewModel>
+
+<table class="table table-head-fixed  table-striped" id="customersTable">
+    <thead>
+        <tr>
+            <th>Email</th>
+            <th>Fullname</th>
+            <th>Total orders</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerEmail)
+                </td>
+               
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerFullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalCustomerOrders)
+                </td>
+                <td>
+
+                    @*<div onclick="UpdateStatus(@item.OrderId)" class="primary-table-button">
+                        <img src="~/Content/Images/edit.svg" />
+                    </div>
+                    <a href="@Url.Action("OrderDetails",new {id = item.OrderId})" class="secondary-table-button">
+                        <img src="~/Content/Images/info.svg" />
+                    </a>*@
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>
