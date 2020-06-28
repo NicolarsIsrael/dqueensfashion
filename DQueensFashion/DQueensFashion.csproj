@@ -547,6 +547,7 @@
     <Content Include="Views\Cart\_cartTableDesktop.cshtml" />
     <Content Include="Views\Cart\_cartTableMobile.cshtml" />
     <Content Include="Views\Cart\CheckOut.cshtml" />
+    <Content Include="Views\Home\Test.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

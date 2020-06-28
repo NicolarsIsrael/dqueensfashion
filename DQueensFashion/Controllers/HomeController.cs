@@ -35,6 +35,12 @@ namespace DQueensFashion.Controllers
             _reviewService = reviewService;
             _imageService = imageService;
         }
+
+        public ActionResult Test()
+        {
+            return View();
+        }
+
         public ActionResult Index()
         {
             var allImages = _imageService.GetAllImageFiles().ToList();
