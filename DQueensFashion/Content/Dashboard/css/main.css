@@ -33080,4 +33080,5 @@ a.text-muted:hover {
     background-color: #394047;
     box-shadow: 2px 2px 12px rgba(47, 47, 47, 0.40);
     transition: all ease 0.3s;
+    color:white;
 }

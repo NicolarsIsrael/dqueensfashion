@@ -7,7 +7,7 @@ namespace DQueensFashion.Models
 {
     public class CustomerViewModel
     {
-        public int CustommerId { get; set; }
+        public int CustomerId { get; set; }
         public string CustomerEmail { get; set; }
         public string CustomerFullName { get; set; }
         public int TotalCustomerOrders { get; set; }

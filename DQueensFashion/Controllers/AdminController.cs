@@ -1143,7 +1143,7 @@ namespace DQueensFashion.Controllers
             IEnumerable<CustomerViewModel> allCustomers = _customerService.GetAllCustomers()
                 .Select(c => new CustomerViewModel
                 {
-                    CustommerId = c.Id,
+                    CustomerId = c.Id,
                     CustomerEmail = c.Email,
                     CustomerFullName = c.Fullname,
                     TotalCustomerOrders = _orderService.GetAllOrdersForCustomer(c.Id).Count()
@@ -1157,7 +1157,7 @@ namespace DQueensFashion.Controllers
             IEnumerable<CustomerViewModel> allCustomers = _customerService.GetAllCustomers()
                .Select(c => new CustomerViewModel
                {
-                   CustommerId = c.Id,
+                   CustomerId = c.Id,
                    CustomerEmail = c.Email,
                    CustomerFullName = c.Fullname,
                    TotalCustomerOrders = _orderService.GetAllOrdersForCustomer(c.Id).Count()
@@ -1169,6 +1169,34 @@ namespace DQueensFashion.Controllers
 
             return PartialView("_customersTable", allCustomers);
 
+        }
+
+        public ActionResult CustomerOrders(int id)
+        {
+            Customer customer = _customerService.GetCustomerById(id);
+            if (customer == null)
+                return HttpNotFound();
+
+            IEnumerable<ViewOrderViewModel> orderModel = _orderService.GetAllOrdersForCustomer(customer.Id)
+                 .Select(order => new ViewOrderViewModel()
+                 {
+                     OrderId = order.Id,
+                     CustomerId = order.CustomerId,
+                     TotalAmount = order.TotalAmount,
+                     TotalQuantity = order.TotalQuantity,
+                     LineItems = order.LineItems
+                         .Select(lineItem => new ViewLineItem()
+                         {
+                             ProductName = lineItem.Product.Name,
+                             Quantity = lineItem.Quantity,
+                             TotalAmount = lineItem.TotalAmount,
+                         }),
+                     OrderStatus = order.OrderStatus.ToString(),
+                     DateCreated = order.DateCreated,
+                     DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy\r\nhh:mm:ss"),
+                 }).OrderByDescending(order => order.DateCreated).ToList();
+
+            return View(orderModel);
         }
 
         public int GetCartNumber()

@@ -48,7 +48,7 @@ namespace DQueensFashion.Controllers
 
             CustomerViewModel customerModel = new CustomerViewModel()
             {
-                CustommerId = customer.Id,
+                CustomerId = customer.Id,
                 CustomerEmail = customer.Email,
                 CustomerFullName = customer.Fullname,
                 TotalCustomerOrders = _orderService.GetAllOrdersForCustomer(customer.Id).Count(),

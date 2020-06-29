@@ -1,0 +1,75 @@
+﻿@model IEnumerable<DQueensFashion.Models.ViewOrderViewModel>
+
+@{
+    ViewBag.Title = "CustomerOrders";
+    Layout = "~/Views/Shared/_dashboardLayout.cshtml";
+}
+
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">@ViewBag.Customer orders</h3>
+
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body table-responsive p-0" style="height: 65vh">
+
+                <table class="table table-head-fixed  table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Items (Qty)</th>
+                            <th>Total Amt</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.OrderId)
+                                </td>
+                                <td>
+                                    @{
+                                        foreach (var lineItem in item.LineItems)
+                                        {
+                                            <p class="m-0">@lineItem.ProductName (@lineItem.Quantity) </p>
+                                        }
+                                    }
+                                </td>
+                                <td>
+                                    $@Html.DisplayFor(modelItem => item.TotalAmount)
+                                </td>
+                                <td>
+                                    @Html.Raw(item.DateCreatedString.Replace(Environment.NewLine, "<br/>"))
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.OrderStatus)
+                                </td>
+                                <td>
+
+                                    <div onclick="UpdateStatus(@item.OrderId)" class="primary-table-button">
+                                        <img src="~/Content/Images/edit.svg" />
+                                    </div>
+                                    <a href="@Url.Action("OrderDetails",new {id = item.OrderId})" class="secondary-table-button">
+                                        <img src="~/Content/Images/info.svg" />
+                                    </a>
+                                </td>
+                            </tr>
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+</div>
+

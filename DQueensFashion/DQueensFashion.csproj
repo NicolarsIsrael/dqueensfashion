@@ -550,6 +550,7 @@
     <Content Include="Views\Home\Test.cshtml" />
     <Content Include="Views\Admin\Customers.cshtml" />
     <Content Include="Views\Admin\_customersTable.cshtml" />
+    <Content Include="Views\Admin\CustomerOrders.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
