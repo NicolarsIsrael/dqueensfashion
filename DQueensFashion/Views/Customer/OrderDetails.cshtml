@@ -1,0 +1,69 @@
+﻿@model DQueensFashion.Models.ViewOrderViewModel
+@{
+    ViewBag.Title = "Order Details";
+    Layout = "~/Views/Shared/_dashboardLayout.cshtml";
+}
+<div class="card">
+    <div class="card-body">
+        <div class="order-header" style="font-size:18px;font-weight:300">
+            ORDER DETAILS
+        </div>
+        <div class="order-body">
+            <div style="margin-bottom:10px">
+                <div style="font-size:13px;font-weight:400">TOTAL QUANTITY : @Model.TotalQuantity</div>
+                <div style="font-size:13px;font-weight:400"> DATE : @Model.DateCreatedString</div>
+                <div style="font-size:13px;font-weight:400">ORDER STATUS : @Model.OrderStatus</div>
+                <div style="font-size:16px;font-weight:600">TOTAL AMOUNT : $@Model.TotalAmount</div>
+            </div>
+            <hr />
+            <div style="font-size:14px;font-weight:400;margin-bottom:10px">
+                ITEMS IN ORDER
+                <hr class="m-1" />
+            </div>
+
+            @foreach (var item in Model.LineItems)
+            {
+                <div class="row">
+                    <div class="col-3 col-md-2">
+                        <img src="@Url.Content(item.ProductImage)" style="display:inline-block;width:100%;height:80px" />
+                    </div>
+                    <div class="col-9 col-md-10">
+                        @item.ProductName
+                        <div style="font-size:15px;font-weight:400;color:#818181">$@item.UnitPrice * @item.Quantity</div>
+                        <div style="font-size:18px;font-weight:600;">$@item.TotalAmount</div>
+                    </div>
+                </div>
+
+
+                <hr class="m-1" />
+            }
+
+
+
+        </div>
+
+
+    </div>
+</div>
+
+<style>
+    .product-name-desc {
+        max-width: 50vw;
+    }
+</style>
+
+
+
+
+<style>
+    .order-header {
+        border: 1px solid #ededed;
+        padding: 10px 20px;
+        margin-top: 10px;
+    }
+
+    .order-body {
+        border: 1px solid #ededed;
+        padding: 15px
+    }
+</style>

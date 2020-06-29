@@ -595,7 +595,7 @@ namespace DQueensFashion.Controllers
             return PartialView("_productImages",images);
         }
 
-        public ActionResult OrderDetails(int id=0,string returnUrl="")
+        public ActionResult OrderDetails(int id=0)
         {
             Order order = _orderService.GetOrderById(id);
             if (order == null)

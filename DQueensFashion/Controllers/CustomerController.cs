@@ -20,13 +20,15 @@ namespace DQueensFashion.Controllers
         private readonly IWishListService _wishListService;
         private readonly IOrderService _orderService;
         private readonly ICategoryService _categoryService;
+        private readonly IImageService _imageService;
 
-        public CustomerController(ICustomerService customerService, IWishListService wishListService, IOrderService orderService, ICategoryService categoryService)
+        public CustomerController(ICustomerService customerService, IWishListService wishListService, IOrderService orderService, ICategoryService categoryService,IImageService imageService)
         {
             _customerService = customerService;
             _wishListService = wishListService;
             _orderService = orderService;
             _categoryService = categoryService;
+            _imageService = imageService;
         }
 
         // GET: Customer
@@ -202,6 +204,51 @@ namespace DQueensFashion.Controllers
 
             return PartialView("_ordersTable", orderModel);
         }
+
+        public ActionResult OrderDetails(int id = 0)
+        {
+            Order order = _orderService.GetOrderById(id);
+            if (order == null)
+                return HttpNotFound();
+
+            Customer customer = GetLoggedInCustomer();
+            if (customer == null)
+                throw new Exception();
+
+            if (order.CustomerId != customer.Id)
+                throw new Exception();
+
+            var allImages = _imageService.GetAllImageFiles();
+
+            ViewOrderViewModel orderModel = new ViewOrderViewModel()
+            {
+                OrderId = order.Id,
+                CustomerId = order.CustomerId,
+                TotalAmount = order.TotalAmount,
+                TotalQuantity = order.TotalQuantity,
+                LineItems = order.LineItems
+                        .Select(lineItem => new ViewLineItem()
+                        {
+                            ProductName = lineItem.Product.Name,
+                            Quantity = lineItem.Quantity,
+                            UnitPrice = lineItem.UnitPrice,
+                            TotalAmount = lineItem.TotalAmount,
+                            ProductImage = allImages.Where(image => image.ProductId == lineItem.Product.Id).Count() < 1 ?
+                                AppConstant.DefaultProductImage :
+                                allImages.Where(image => image.ProductId == lineItem.Product.Id).FirstOrDefault().ImagePath,
+                            Description = lineItem.Description,
+                        }),
+                OrderStatus = order.OrderStatus.ToString(),
+                DateCreated = order.DateCreated,
+                DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy - hh:mm:ss"),
+                LineItemConcatenatedString = string.Join(",", order.LineItems.Select(x => x.Product.Name)),
+
+            };
+
+
+            return View(orderModel);
+        }
+
 
         public int GetCartNumber()
         {

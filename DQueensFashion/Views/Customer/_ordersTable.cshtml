@@ -8,6 +8,7 @@
             <th>Total Amt</th>
             <th>Date</th>
             <th>Status</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -33,6 +34,11 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.OrderStatus)
+                </td>
+                <td>
+                    <a href="@Url.Action("OrderDetails",new {id = item.OrderId})" class="secondary-table-button">
+                        <img src="~/Content/Images/info.svg" />
+                    </a>
                 </td>
             </tr>
 

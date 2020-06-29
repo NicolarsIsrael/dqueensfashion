@@ -551,6 +551,7 @@
     <Content Include="Views\Admin\Customers.cshtml" />
     <Content Include="Views\Admin\_customersTable.cshtml" />
     <Content Include="Views\Admin\CustomerOrders.cshtml" />
+    <Content Include="Views\Customer\OrderDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
