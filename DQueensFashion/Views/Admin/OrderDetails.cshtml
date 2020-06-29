@@ -1,6 +1,6 @@
 ﻿@model DQueensFashion.Models.ViewOrderViewModel
 @{
-    ViewBag.Title = "OrderDetails";
+    ViewBag.Title = "Order Details";
     Layout = "~/Views/Shared/_dashboardLayout.cshtml";
 }
 <div class="card">
@@ -10,34 +10,35 @@
         </div>
         <div class="order-body">
             <div style="margin-bottom:10px">
-                <div  style="font-size:15px;font-weight:600">CUSTOMER: @Model.CustomerName</div>
-                <div  style="font-size:13px;font-weight:400">TOTAL QUANTITY: @Model.TotalQuantity</div>
-                <div style="font-size:13px;font-weight:400"> DATE: @Model.DateCreatedString</div>
-                <div style="font-size:16px;font-weight:600">TOTAL AMOUNT: $@Model.TotalAmount</div>
+                <div style="font-size:15px;font-weight:600">CUSTOMER : @Model.CustomerName</div>
+                <div style="font-size:13px;font-weight:400">TOTAL QUANTITY : @Model.TotalQuantity</div>
+                <div style="font-size:13px;font-weight:400"> DATE : @Model.DateCreatedString</div>
+                <div style="font-size:13px;font-weight:400">ORDER STATUS : @Model.OrderStatus</div>
+                <div style="font-size:16px;font-weight:600">TOTAL AMOUNT : $@Model.TotalAmount</div>
             </div>
             <hr />
             <div style="font-size:14px;font-weight:400;margin-bottom:10px">
-                ITEMS IN YOUR ORDER
+                ITEMS IN ORDER
+                <hr class="m-1" />
             </div>
+
             @foreach (var item in Model.LineItems)
             {
-                <div class="row mb-2">
-                    <div class="col-2">
-                        <img src="@Url.Content(item.ProductImage)" style="width:80%;height:100px;margin-left:10%" />
+                <div class="row">
+                    <div class="col-3 col-md-2">
+                        <img src="@Url.Content(item.ProductImage)" style="display:inline-block;width:100%;height:80px" />
                     </div>
-                    <div class="col-7">
-                        <div style="font-size:20px;font-weight:500">
-                            @item.ProductName
-                        </div>
-                        <div>
-                            QTY: @item.Quantity
-                        </div>
-                        <div>
-                            Total: @item.TotalAmount
-                        </div>
+                    <div class="col-9 col-md-10">
+                        @item.ProductName 
+                        <div style="font-size:15px;font-weight:400;color:#818181">$@item.UnitPrice * @item.Quantity</div>
+                        <div style="font-size:18px;font-weight:600;">$@item.TotalAmount</div>
                     </div>
                 </div>
+
+              
+                <hr class="m-1" />
             }
+
 
 
         </div>
@@ -45,6 +46,12 @@
 
     </div>
 </div>
+
+<style>
+       .product-name-desc{
+        max-width:50vw;
+    }
+</style>
 
 
 

@@ -105,6 +105,7 @@ namespace DQueensFashion.Controllers
                         DateModified = DateTime.Now,
                         IsDeleted = false,
                         Quantity = Int32.Parse(item.quantity),
+                        UnitPrice = Int32.Parse(item.price),
                         TotalAmount = Decimal.Parse(item.price) * Int32.Parse(item.quantity),
                         Description= item.description,
                     }).ToList();

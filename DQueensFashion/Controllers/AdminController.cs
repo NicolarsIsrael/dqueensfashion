@@ -615,6 +615,7 @@ namespace DQueensFashion.Controllers
                         {
                             ProductName = lineItem.Product.Name,
                             Quantity = lineItem.Quantity,
+                            UnitPrice = lineItem.UnitPrice,
                             TotalAmount = lineItem.TotalAmount,
                             ProductImage = allImages.Where(image => image.ProductId == lineItem.Product.Id).Count() < 1 ?
                                 AppConstant.DefaultProductImage :
