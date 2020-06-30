@@ -253,6 +253,7 @@
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MailingListController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -553,10 +554,12 @@
     <Content Include="Views\Customer\OrderDetails.cshtml" />
     <Content Include="Views\Customer\AddReview.cshtml" />
     <Content Include="Views\Customer\PendingReviews.cshtml" />
+    <Content Include="Views\Shared\_footer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Images\Products\" />
+    <Folder Include="Views\MailingList\" />
     <Folder Include="Views\Wishlist\" />
   </ItemGroup>
   <ItemGroup>

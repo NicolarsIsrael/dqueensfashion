@@ -1,0 +1,37 @@
+﻿<div class="form-group">
+
+    <div class="col-12">
+        <input type="email" class="form-control" required id="subscribeEmail" />
+
+    </div>
+</div>
+<input type="button" class="btn btn-outline-primary" value="subscribe" onclick="SubscribeToMailingList()"/>
+
+<script>
+    function SubscribeToMailingList() {
+        var subscribeEmail = document.getElementById("subscribeEmail");
+        if (subscribeEmail.value != "" && subscribeEmail.value != null) {
+            $.ajax({
+                url: "/MailingList/Subscribe?email=" + subscribeEmail.value,
+                type: "POST",
+                contentType: "application/json;charset=utf-8",
+                success: function (result) {
+                    if (result == "Success") {
+                        subscribeEmail.value = "";
+                        alertify.success("Thank you for subscribing");
+                    }
+                    else if (result == "Invalid") {
+                        alertify.error("Invalid email address");
+                    }
+                    else {
+                        alertify.error("Error");
+                    }
+                },
+                error: function (xhr, status, error) {
+                    alertify.error("Error");
+                }
+            });
+        }
+
+    }
+</script>

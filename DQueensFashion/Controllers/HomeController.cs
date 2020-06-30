@@ -40,7 +40,6 @@ namespace DQueensFashion.Controllers
 
         public ActionResult Test()
         {
-            ViewBag.MailList = _mailingListService.MailingListCount();
             return View();
         }
 

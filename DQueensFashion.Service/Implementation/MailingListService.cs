@@ -1,4 +1,5 @@
-﻿using DQueensFashion.Data.Contract;
+﻿using DQueensFashion.Core.Model;
+using DQueensFashion.Data.Contract;
 using DQueensFashion.Service.Contract;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,17 @@ namespace DQueensFashion.Service.Implementation
         public int MailingListCount()
         {
             return uow.MailingListRepo.Count();
+        }
+
+        public void AddToMailingList(MailingList mailingList)
+        {
+            var m = uow.MailingListRepo.GetAll().Where(_m => _m.EmailAddress == mailingList.EmailAddress).FirstOrDefault();
+            if (m == null)
+            {
+                uow.MailingListRepo.Add(mailingList);
+                uow.Save();
+            }
+
         }
     }
 }
