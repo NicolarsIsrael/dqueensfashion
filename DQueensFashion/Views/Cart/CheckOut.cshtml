@@ -8,6 +8,48 @@
 <div class="container body-content">
     <div class="row">
         <div class="col-md-6">
+
+            <div style="font-size:20px;font-weight:300">SHIPPING DETAILS</div>
+            <hr class="m-0 mb-2"/>
+            @using (Html.BeginForm("CheckOutWithPayPal", "Cart"))
+            {
+                <div class="row">
+                    <div class="col-6 pr-0">
+                        <div class="form-group">
+                            <div class="col-12">
+                                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", @id = "product-price", @placeholder="First name" } })
+                                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 pl-0">
+                        <div class="form-group">
+                            <div class="col-12">
+                                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", @id = "product-price", @placeholder="Last name" } })
+                                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <div class="col-12">
+                                @Html.EditorFor(model => model.EmailAddress, new { htmlAttributes = new { @class = "form-control", @id = "product-price", @placeholder="Email" } })
+                                @Html.ValidationMessageFor(model => model.EmailAddress, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <div class="col-12">
+                                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", @id = "product-price", @placeholder="Address" } })
+                                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            }
+
             <div class="card">
                 <div class="card-header" style="background-color:white">
                     <div style="text-align:center;font-weight:700;font-size:18px">PAYMENT OPTIONS</div>
@@ -29,7 +71,7 @@
                     <div style="text-align:right;font-weight:700;font-size:18px"> TOTAL: $@Model.SubTotal</div>
                 </div>
             </div>
-            
+
         </div>
         <div class="col-md-6">
 

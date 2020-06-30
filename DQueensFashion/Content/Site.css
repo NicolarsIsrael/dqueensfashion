@@ -1,4 +1,5 @@
-﻿body {
+﻿
+body {
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -312,7 +313,8 @@ textarea {
 
 .product-time-label {
     color: #fff;
-    background-color: #E97128;
+    background-color: #df7204;
+    /*background-color: #96157a;*/
     font-size: 12px;
     text-transform: uppercase;
     padding: 2px 7px;
@@ -394,7 +396,8 @@ textarea {
 
 .cart {
     height: 45px;
-    background-color: #E97128;
+    /*background-color: #96157a;*/
+    background-color: #df7204;
     width: 100%;
     display: flex;
     justify-content: center;

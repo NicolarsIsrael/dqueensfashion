@@ -181,9 +181,15 @@ namespace DQueensFashion.Controllers
                      description = item.Description,
                  }).ToList();
 
+            //payer info
+            var payerInfo = new PayerInfo()
+            {
+
+            };
+
             var payer = new Payer()
             {
-                payment_method = "paypal"
+                payment_method = "paypal",
             };
             // Configure Redirect Urls here with RedirectUrls object
             var redirUrls = new RedirectUrls()
@@ -212,14 +218,16 @@ namespace DQueensFashion.Controllers
                 description = "Transaction description",
                 invoice_number = GenerateInvoiceNumber(),//Generate an Invoice No
                 amount = amount,
-                item_list = itemList
+                item_list = itemList,
+                
             });
             this.payment = new Payment()
             {
                 intent = "sale",
                 payer = payer,
                 transactions = transactionList,
-                redirect_urls = redirUrls
+                redirect_urls = redirUrls,
+                
             };
             // Create a payment using a APIContext
             return this.payment.Create(apiContext);

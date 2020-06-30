@@ -265,6 +265,9 @@ namespace DQueensFashion.Controllers
                 Carts = Session["cart"] == null ? new List<Cart>() : (List<Cart>)Session["cart"],
                 SubTotal = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.TotalPrice),
             };
+            if (viewCart.Count < 1)
+                return RedirectToAction(nameof(ViewCart));
+
             return View(viewCart);
         }
 

@@ -76,6 +76,23 @@ namespace DQueensFashion.Models
         public decimal SubTotal { get; set; }
         public int Count { get; set; }
         public IEnumerable<Cart> Carts { get; set; }
+
+
+        //shipping details
+        [Required]
+        [Display(Name ="First name")]
+        public string FirstName { get; set; }
+
+        [Display(Name ="Last name")]
+        public string LastName { get; set; }
+
+        [EmailAddress]
+        [Display(Name = "Email Address")]
+        [Required]
+        public string EmailAddress { get; set; }
+
+        [Required]
+        public string Address { get; set; }
     }
 
     //public class CartViewModel
