@@ -62,6 +62,7 @@ function AddToCartCustomReadyMadePost() {
         success: function (result) {
             $("#navbarCartNumber").html(result);
             closeNav();
+            alertify.success("Product added to cart");
         },
         error: function (xhr, status, error) {
             alertify.error("Error");
