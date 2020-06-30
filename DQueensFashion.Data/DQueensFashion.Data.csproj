@@ -135,6 +135,7 @@
     <Compile Include="Contract\ICustomerRepo.cs" />
     <Compile Include="Contract\IImageRepo.cs" />
     <Compile Include="Contract\ILineItemRepo.cs" />
+    <Compile Include="Contract\IMailingListRepo.cs" />
     <Compile Include="Contract\IOrderRepo.cs" />
     <Compile Include="Contract\IProductRepo.cs" />
     <Compile Include="Contract\IReviewRepo.cs" />
@@ -145,6 +146,7 @@
     <Compile Include="Implementation\CustomerRepo.cs" />
     <Compile Include="Implementation\ImageRepo.cs" />
     <Compile Include="Implementation\LineItemRepo.cs" />
+    <Compile Include="Implementation\MailingListRepo.cs" />
     <Compile Include="Implementation\OrderRepo.cs" />
     <Compile Include="Implementation\ProductRepo.cs" />
     <Compile Include="Implementation\ReviewRepo.cs" />
@@ -169,6 +171,10 @@
     <Compile Include="Migrations\202006300919555_priceAddedToWishlist.cs" />
     <Compile Include="Migrations\202006300919555_priceAddedToWishlist.Designer.cs">
       <DependentUpon>202006300919555_priceAddedToWishlist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006301158470_mailinglistaddedtodb.cs" />
+    <Compile Include="Migrations\202006301158470_mailinglistaddedtodb.Designer.cs">
+      <DependentUpon>202006301158470_mailinglistaddedtodb.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -198,6 +204,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006300919555_priceAddedToWishlist.resx">
       <DependentUpon>202006300919555_priceAddedToWishlist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006301158470_mailinglistaddedtodb.resx">
+      <DependentUpon>202006301158470_mailinglistaddedtodb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

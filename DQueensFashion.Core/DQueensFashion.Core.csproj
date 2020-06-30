@@ -134,6 +134,7 @@
     <Compile Include="Model\Entity.cs" />
     <Compile Include="Model\ImageFile.cs" />
     <Compile Include="Model\LineItem.cs" />
+    <Compile Include="Model\MailingList.cs" />
     <Compile Include="Model\Order.cs" />
     <Compile Include="Model\Product.cs" />
     <Compile Include="Model\Review.cs" />
