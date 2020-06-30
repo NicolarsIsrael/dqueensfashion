@@ -79,7 +79,7 @@ namespace DQueensFashion.Models
 
 
         //shipping details
-        [Required]
+        [Required(ErrorMessage ="First name is requied")]
         [Display(Name ="First name")]
         public string FirstName { get; set; }
 
@@ -87,79 +87,12 @@ namespace DQueensFashion.Models
         public string LastName { get; set; }
 
         [EmailAddress]
-        [Display(Name = "Email Address")]
-        [Required]
-        public string EmailAddress { get; set; }
+        [Display(Name = "Phone number")]
+        [Required(ErrorMessage ="Phone number is required")]
+        public string Phone { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Address is required")]
         public string Address { get; set; }
     }
-
-    //public class CartViewModel
-    //{
-    //    public int ProductId { get; set; }
-    //    public string ProductName { get; set; }
-    //    public int Quantity { get; set; }
-    //    public int PrevQuantity { get; set; }
-
-    //    //Ready made sizes
-    //    public int ExtraSmallQuantity { get; set; }
-    //    public int SmallQuantiy { get; set; }
-    //    public int MediumQuantiy { get; set; }
-    //    public int LargeQuantity { get; set; }
-    //    public int ExtraLargeQuantity { get; set; }
-    //    public string ReadyMadeSize { get; set; }
-
-    //    //measurement
-
-    //    //measurement
-    //    public bool? Shoulder { get; set; }
-    //    public string ShoulderValue { get; set; }
-
-    //    [Display(Name = "Arm hole")]
-    //    public bool? ArmHole { get; set; }
-    //    public string ArmHoleValue { get; set; }
-
-    //    public bool? Burst { get; set; }
-    //    public string BurstValue { get; set; }
-
-    //    public bool? Waist { get; set; }
-    //    public string WaistValue { get; set; }
-
-    //    public bool? Hips { get; set; }
-    //    public string HipsValue { get; set; }
-
-    //    public bool? Thigh { get; set; }
-    //    public string ThighValue { get; set; }
-
-    //    [Display(Name = "Full body length")]
-    //    public bool? FullBodyLength { get; set; }
-    //    public string FullBodyLengthValue { get; set; }
-
-    //    [Display(Name = "Knee garment length")]
-    //    public bool? KneeGarmentLength { get; set; }
-    //    public string KneeGarmentLengthValue { get; set; }
-
-    //    [Display(Name = "Top length")]
-    //    public bool? TopLength { get; set; }
-    //    public string TopLengthValue { get; set; }
-
-    //    [Display(Name = "Trouser length")]
-    //    public bool? TrousersLength { get; set; }
-    //    public string TrousersLengthValue { get; set; }
-
-    //    [Display(Name = "Round neck")]
-    //    public bool? RoundNeck { get; set; }
-    //    public string RoundNeckValue { get; set; }
-
-    //    [Display(Name = "Nip nip")]
-    //    public bool? NipNip { get; set; }
-    //    public string NipNipValue { get; set; }
-
-    //    [Display(Name = "Sleeve length")]
-    //    public bool? SleeveLength { get; set; }
-    //    public string SleeveLengthValue { get; set; }
-
-    //}
 
 }
