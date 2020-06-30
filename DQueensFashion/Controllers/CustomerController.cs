@@ -22,9 +22,10 @@ namespace DQueensFashion.Controllers
         private readonly ICategoryService _categoryService;
         private readonly IImageService _imageService;
         private readonly IReviewService _reviewService;
+        private readonly ILineItemService _lineItemService;
 
         public CustomerController(ICustomerService customerService, IWishListService wishListService, IOrderService orderService, ICategoryService categoryService,IImageService imageService,
-            IReviewService reviewService)
+            IReviewService reviewService,ILineItemService lineItemService)
         {
             _customerService = customerService;
             _wishListService = wishListService;
@@ -32,6 +33,7 @@ namespace DQueensFashion.Controllers
             _categoryService = categoryService;
             _imageService = imageService;
             _reviewService = reviewService;
+            _lineItemService = lineItemService;
         }
 
         // GET: Customer
@@ -254,6 +256,83 @@ namespace DQueensFashion.Controllers
 
             return View(orderModel);
         }
+
+        [Authorize(Roles = AppConstant.CustomerRole)]
+        public ActionResult AddReview(int id = 0)
+        {
+            if (!_reviewService.CanReview(id))
+                return HttpNotFound();
+
+            LineItem lineItem = _lineItemService.GetLineItemById(id);
+            if (lineItem == null)
+                return HttpNotFound();
+
+            Product product = lineItem.Product;
+            if (product == null)
+                throw new Exception();
+
+            Customer customer = GetLoggedInCustomer();
+            if (customer == null)
+                throw new Exception();
+
+            double averageRating = _reviewService.GetAverageRating(product.Id);
+            var allProductImages = _imageService.GetImageFilesForProduct(product.Id);
+
+            AddReviewViewModel reviewModel = new AddReviewViewModel()
+            {
+                LineItemId = lineItem.Id,
+                ProductId = product.Id,
+                ProductName = product.Name.Length > 20 ? product.Name.Substring(0, 20) + "..." : product.Name,
+                ProductImage = allProductImages.Count() < 1 ?
+                        AppConstant.DefaultProductImage :
+                        _imageService.GetMainImageForProduct(product.Id).ImagePath,
+                ProductCategory = product.Category.Name,
+                Name = customer.Fullname,
+            };
+
+            return View(reviewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddReview(AddReviewViewModel reviewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "One or more validation errors");
+                return View(reviewModel);
+            }
+
+            if (!_reviewService.CanReview(reviewModel.LineItemId))
+                return HttpNotFound();
+
+            LineItem lineItem = _lineItemService.GetLineItemById(reviewModel.LineItemId);
+            if (lineItem == null)
+                throw new Exception();
+
+            Product product = lineItem.Product;
+            if (product == null)
+                throw new Exception();
+
+            Customer customer = GetLoggedInCustomer();
+            if (customer == null)
+                throw new Exception();
+
+            Review review = new Review()
+            {
+                Name = reviewModel.Name,
+                Email = customer.Email,
+                Comment = reviewModel.Comment,
+                Rating = reviewModel.Rating,
+                Product = product,
+                CustomerId = customer.Id,
+                LineItemId = reviewModel.LineItemId,
+            };
+
+            _reviewService.AddReview(review);
+            return RedirectToAction(nameof(OrderDetails), new { id = lineItem.Order.Id });
+        }
+
 
 
         public int GetCartNumber()
