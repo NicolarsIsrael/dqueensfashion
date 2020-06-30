@@ -562,6 +562,7 @@
     <Content Include="Views\Customer\AddReview.cshtml" />
     <Content Include="Views\Customer\PendingReviews.cshtml" />
     <Content Include="Views\Shared\_footer.cshtml" />
+    <Content Include="Views\Customer\Subscription.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

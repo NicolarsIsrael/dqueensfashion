@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "Subscription";
+    Layout = "~/Views/Shared/_dashboardLayout.cshtml";
+}
+
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="card" style="margin-top:25vh">
+                <div class="card-header">
+                    SUBSCRIPTION
+                </div>
+                <div class="card-body">
+                    @if (!ViewBag.Subscription)
+                    {
+                        <div class="row ml-1 mr-1">
+                            <div class="col-8 p-0">
+                                <input type="email" style="border-radius:0" class="form-control" required id="subscribeEmail" readonly value="@ViewBag.Email" />
+                            </div>
+                            <div class="col-4 p-0">
+                                <input type="button" class="btn primary-table-button" style="width:100%;border-radius:0" value="Subscribe" onclick="SubscribeToMailingList()" />
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <input type="text" hidden value="@ViewBag.Email" id="unsubscribeEmail" />
+                        <input type="button" class="btn primary-table-button" style="width:100%;border-radius:0;margin:0" 
+                               value="Unsubscribe" onclick="Unsubscribe()" />
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>

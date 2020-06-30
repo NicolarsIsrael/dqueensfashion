@@ -29,6 +29,12 @@ namespace DQueensFashion.Controllers
             return Content("Success");
         }
 
+        public ActionResult Unsubscribe(string email)
+        {
+            _mailingListService.RemoveFromMailingList(email);
+            return Content("Success");
+        }
+
         private bool IsValidEmail(string email)
         {
             try

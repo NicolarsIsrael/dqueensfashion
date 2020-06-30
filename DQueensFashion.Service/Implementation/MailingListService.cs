@@ -32,5 +32,28 @@ namespace DQueensFashion.Service.Implementation
             }
 
         }
+
+        public void RemoveFromMailingList(string email)
+        {
+            var m = uow.MailingListRepo.GetAll().Where(_m => _m.EmailAddress == email).FirstOrDefault();
+            if (m != null)
+                uow.MailingListRepo.DeleteFromDb(m);
+            uow.Save();
+        }
+
+        public bool CheckIfSubscribed(int customerId)
+        {
+            Customer customer = uow.CustomerRepo.Get(customerId);
+            if (customer == null)
+                throw new Exception();
+
+            MailingList mailingList = uow.MailingListRepo.GetAll()
+                .Where(m => m.EmailAddress == customer.Email).FirstOrDefault();
+
+            if (mailingList == null)
+                return false;
+
+            return true;
+        }
     }
 }

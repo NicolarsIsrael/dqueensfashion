@@ -57,7 +57,7 @@ namespace DQueensFashion.Data.Contract
         void Remove(TEntity entity);
 
         //totally delete item from db
-        void DeeleFromDb(TEntity entity);
+        void DeleteFromDb(TEntity entity);
 
 
         /// <summary>

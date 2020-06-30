@@ -147,3 +147,57 @@ function openNav() {
 function closeNav() {
     document.getElementById("sidenav").style.width = "0";
 }
+
+
+
+function SubscribeToMailingList() {
+    var subscribeEmail = document.getElementById("subscribeEmail");
+
+    if (subscribeEmail.value != "" && subscribeEmail.value != null) {
+        $.ajax({
+            url: "/MailingList/Subscribe?email=" + subscribeEmail.value,
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            success: function (result) {
+                if (result == "Success") {
+                    subscribeEmail.value = "";
+                    alertify.success("Thank you for subscribing");
+                }
+                else if (result == "Invalid") {
+                    alertify.error("Invalid email address");
+                }
+                else {
+                    alertify.error("Error");
+                }
+            },
+            error: function (xhr, status, error) {
+                alertify.error("Error");
+            }
+        });
+    } else {
+        alertify.error("Enter email address");
+    }
+
+}
+
+function Unsubscribe() {
+
+    var unsubscribeEmail = document.getElementById("unsubscribeEmail");
+    $.ajax({
+        url: "/MailingList/Unsubscribe?email=" + unsubscribeEmail.value,
+        type: "POST",
+        contentType: "application/json;charset=utf-8",
+        success: function (result) {
+            if (result == "Success") {
+                location.reload();
+                alertify.success("You have successfully unsubscribe");
+            }
+            else {
+                alertify.error("Error");
+            }
+        },
+        error: function (xhr, status, error) {
+            alertify.error("Error");
+        }
+    });
+}

@@ -35,7 +35,7 @@ namespace DQueensFashion.Service.Implementation
         {
             if (wishList != null)
             {
-                uow.WishListRepo.DeeleFromDb(wishList);
+                uow.WishListRepo.DeleteFromDb(wishList);
                 uow.Save();
             }
                 

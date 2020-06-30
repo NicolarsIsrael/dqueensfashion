@@ -24,9 +24,10 @@ namespace DQueensFashion.Controllers
         private readonly IReviewService _reviewService;
         private readonly ILineItemService _lineItemService;
         private readonly IProductService _productService;
+        private readonly IMailingListService _mailingListService;
 
-        public CustomerController(ICustomerService customerService, IWishListService wishListService, IOrderService orderService, ICategoryService categoryService,IImageService imageService,
-            IReviewService reviewService,ILineItemService lineItemService,IProductService productService)
+        public CustomerController(ICustomerService customerService, IWishListService wishListService, IOrderService orderService, ICategoryService categoryService,IImageService imageService,IReviewService reviewService,ILineItemService lineItemService,IProductService productService,
+            IMailingListService mailingListService)
         {
             _customerService = customerService;
             _wishListService = wishListService;
@@ -36,6 +37,7 @@ namespace DQueensFashion.Controllers
             _reviewService = reviewService;
             _lineItemService = lineItemService;
             _productService = productService;
+            _mailingListService = mailingListService;
         }
 
         // GET: Customer
@@ -63,6 +65,7 @@ namespace DQueensFashion.Controllers
                 TotalCustomerOrders = _orderService.GetAllOrdersForCustomer(customer.Id).Count(),
                 TotalCustomerWishList = _wishListService.GetAllCustomerWishList(customer.Id).Count(),
                 TotalCustomerPendingReviews = _reviewService.GetPendingReviews(customer.Id).Count(),
+                IsSubscribed = _mailingListService.CheckIfSubscribed(customer.Id),
             };
             return View(customerModel);
         }
@@ -362,6 +365,16 @@ namespace DQueensFashion.Controllers
                 });
 
             return View(lineItems);
+        }
+
+        public ActionResult Subscription()
+        {
+            Customer customer = GetLoggedInCustomer();
+            if (customer == null)
+                throw new Exception();
+            ViewBag.Email = customer.Email;
+            ViewBag.Subscription = _mailingListService.CheckIfSubscribed(customer.Id);
+            return View();
         }
 
         public int GetCartNumber()

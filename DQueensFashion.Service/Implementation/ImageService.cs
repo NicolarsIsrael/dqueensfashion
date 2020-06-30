@@ -44,7 +44,7 @@ namespace DQueensFashion.Service.Implementation
         {
             if (image!=null)
             {
-                uow.ImageRepo.DeeleFromDb(image);
+                uow.ImageRepo.DeleteFromDb(image);
                 uow.Save(); 
             }
         }

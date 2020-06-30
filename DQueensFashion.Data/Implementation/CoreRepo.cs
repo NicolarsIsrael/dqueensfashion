@@ -104,7 +104,7 @@ namespace DQueensFashion.Data.Implementation
             _dbContext.Set<TEntity>().Include(entityName);
         }
 
-        public void DeeleFromDb(TEntity entity)
+        public void DeleteFromDb(TEntity entity)
         {
             _dbContext.Set<TEntity>().Remove(entity);
         }

@@ -55,10 +55,14 @@
                     NEWS LETTER
                 </div>
                 <div class="account-card-body">
-
-                    <div style="color:#75757A;margin-bottom:20px">
-                        You are currently not subscribed to any of our newsletters.
-                    </div>
+                    @if (Model.IsSubscribed)
+                    {
+                        <div style="color:#75757A;margin-bottom:20px">You are currently subscribed to our newsletter.</div>
+                    }
+                    else
+                    {
+                        <div style="color:#75757A;margin-bottom:20px">You are currently not subscribed to our newsletter</div>
+                    }
                     <div>
                         <a href="@Url.Action("Subscription")" class="action-link">VIEW SUBSCRIPTION</a>
                     </div>

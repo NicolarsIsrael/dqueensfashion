@@ -13,5 +13,6 @@ namespace DQueensFashion.Models
         public int TotalCustomerOrders { get; set; }
         public int TotalCustomerPendingReviews { get; set; }
         public int TotalCustomerWishList { get; set; }
+        public bool IsSubscribed { get; set; }
     }
 }

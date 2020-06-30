@@ -11,5 +11,7 @@ namespace DQueensFashion.Service.Contract
     {
         int MailingListCount();
         void AddToMailingList(MailingList mailingList);
+        bool CheckIfSubscribed(int customerId);
+        void RemoveFromMailingList(string email);
     }
 }
