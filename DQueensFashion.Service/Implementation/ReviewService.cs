@@ -60,6 +60,22 @@ namespace DQueensFashion.Service.Implementation
             return uow.ReviewRepo.GetAllReviewsWithRelationships().Where(r => r.ProductId == productId).Count();
         }
 
+
+        public bool CanReview(int lineItemId)
+        {
+            LineItem lineItem = uow.LineItemRepo.Get(lineItemId);
+            if (lineItem == null)
+                return false;
+
+            var review = uow.ReviewRepo.GetAllReviewsWithRelationships()
+                .Where(r => r.LineItemId == lineItemId).FirstOrDefault();
+
+            if (review == null && (lineItem.Order.OrderStatus == Utilities.OrderStatus.Delivered || lineItem.Order.OrderStatus == Utilities.OrderStatus.Completed))
+                return true;
+
+            return false;
+        }
+
         private bool ValidateReviewDetails(Review review)
         {
             if (review == null)

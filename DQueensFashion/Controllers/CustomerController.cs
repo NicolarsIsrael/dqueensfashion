@@ -21,14 +21,17 @@ namespace DQueensFashion.Controllers
         private readonly IOrderService _orderService;
         private readonly ICategoryService _categoryService;
         private readonly IImageService _imageService;
+        private readonly IReviewService _reviewService;
 
-        public CustomerController(ICustomerService customerService, IWishListService wishListService, IOrderService orderService, ICategoryService categoryService,IImageService imageService)
+        public CustomerController(ICustomerService customerService, IWishListService wishListService, IOrderService orderService, ICategoryService categoryService,IImageService imageService,
+            IReviewService reviewService)
         {
             _customerService = customerService;
             _wishListService = wishListService;
             _orderService = orderService;
             _categoryService = categoryService;
             _imageService = imageService;
+            _reviewService = reviewService;
         }
 
         // GET: Customer
@@ -229,7 +232,9 @@ namespace DQueensFashion.Controllers
                 LineItems = order.LineItems
                         .Select(lineItem => new ViewLineItem()
                         {
+                            LineItemId = lineItem.Id,
                             ProductName = lineItem.Product.Name,
+                            ProductId = lineItem.Product.Id,
                             Quantity = lineItem.Quantity,
                             UnitPrice = lineItem.UnitPrice,
                             TotalAmount = lineItem.TotalAmount,
@@ -237,6 +242,7 @@ namespace DQueensFashion.Controllers
                                 AppConstant.DefaultProductImage :
                                 allImages.Where(image => image.ProductId == lineItem.Product.Id).FirstOrDefault().ImagePath,
                             Description = lineItem.Description,
+                            CanReview = _reviewService.CanReview(lineItem.Id),
                         }),
                 OrderStatus = order.OrderStatus.ToString(),
                 DateCreated = order.DateCreated,

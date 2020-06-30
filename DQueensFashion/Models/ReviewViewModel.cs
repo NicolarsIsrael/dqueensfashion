@@ -10,6 +10,7 @@ namespace DQueensFashion.Models
     public class AddReviewViewModel
     {
         public int ProductId { get; set; }
+        public int LineItemId { get; set; }
         public string ProductName { get; set; }
         public string ProductCategory { get; set; }
         public string ProductImage { get; set; }
@@ -27,8 +28,6 @@ namespace DQueensFashion.Models
         [BeginWIthAlphaNumeric(ErrorMessage ="Name should begin with letter or number")]
         public string Name { get; set; }
 
-        [EmailAddress]
-        public string Email { get; set; }
     }
 
     public class ViewReviewViewModel

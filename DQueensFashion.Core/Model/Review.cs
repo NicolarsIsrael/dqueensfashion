@@ -14,6 +14,7 @@ namespace DQueensFashion.Core.Model
         
         [EmailAddress]
         public string Email { get; set; }
+        public int CustomerId { get; set; }
         public int Rating { get; set; }
 
         [Required]
@@ -21,6 +22,6 @@ namespace DQueensFashion.Core.Model
 
         public int ProductId { get; set; }
         public Product Product { get; set; }
-        
+        public int LineItemId { get; set; }
     }
 }

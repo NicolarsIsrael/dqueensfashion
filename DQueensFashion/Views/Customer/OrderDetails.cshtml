@@ -30,7 +30,14 @@
                     <div class="col-9 col-md-10">
                         @item.ProductName
                         <div style="font-size:15px;font-weight:400;color:#818181">$@item.UnitPrice * @item.Quantity</div>
-                        <div style="font-size:18px;font-weight:600;">$@item.TotalAmount</div>
+                        <span style="font-size:18px;font-weight:600;">$@item.TotalAmount</span>
+                        @if (item.CanReview)
+                        {
+                            <span style="float:right">
+                                <a class="btn btn-sm secondary-table-button" style="text-align:right;color:white;border-radius:0" href="@Url.Action("AddReview","Product",new { id=item.LineItemId})">ADD REVIEW</a>
+                            </span>
+                        }
+
                     </div>
                 </div>
 

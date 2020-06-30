@@ -162,6 +162,10 @@
     <Compile Include="Migrations\202006270840036_ReadyMadeRemoved.Designer.cs">
       <DependentUpon>202006270840036_ReadyMadeRemoved.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006300746499_lineitemaddedtoreview.cs" />
+    <Compile Include="Migrations\202006300746499_lineitemaddedtoreview.Designer.cs">
+      <DependentUpon>202006300746499_lineitemaddedtoreview.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -184,6 +188,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006270840036_ReadyMadeRemoved.resx">
       <DependentUpon>202006270840036_ReadyMadeRemoved.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006300746499_lineitemaddedtoreview.resx">
+      <DependentUpon>202006300746499_lineitemaddedtoreview.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

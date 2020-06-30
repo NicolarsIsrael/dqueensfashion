@@ -1,4 +1,5 @@
-﻿using DQueensFashion.Data.Contract;
+﻿using DQueensFashion.Core.Model;
+using DQueensFashion.Data.Contract;
 using DQueensFashion.Service.Contract;
 using System;
 using System.Collections.Generic;
@@ -20,5 +21,11 @@ namespace DQueensFashion.Service.Implementation
         {
             return uow.LineItemRepo.Count();
         }
+
+        public LineItem GetLineItemById(int id)
+        {
+            return uow.LineItemRepo.GetLineItemWithRelationships(id);
+        }
+
     }
 }

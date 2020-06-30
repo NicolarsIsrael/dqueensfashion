@@ -21,9 +21,10 @@ namespace DQueensFashion.Controllers
         private readonly ICategoryService _categoryService;
         private readonly IReviewService _reviewService;
         private readonly IImageService _imageService;
+        private readonly ILineItemService _lineItemService;
 
         public ProductController(IProductService productService, ICustomerService customerService, IOrderService orderService, ICategoryService categoryService,
-            IReviewService reviewService, IImageService imageService)
+            IReviewService reviewService, IImageService imageService,ILineItemService lineItemService)
         {
             _productService = productService;
             _customerService = customerService;
@@ -31,6 +32,7 @@ namespace DQueensFashion.Controllers
             _categoryService = categoryService;
             _reviewService = reviewService;
             _imageService = imageService;
+            _lineItemService = lineItemService;
         }
         // GET: Product
         public ActionResult Index(int categoryId=0)
@@ -568,29 +570,37 @@ namespace DQueensFashion.Controllers
             return PartialView("_productQuickView", productModel);
         }
 
+        [Authorize(Roles =AppConstant.CustomerRole)]
         public ActionResult AddReview(int id=0)
         {
-            Product product = _productService.GetProductById(id);
-            if (product == null)
+            if (!_reviewService.CanReview(id))
                 return HttpNotFound();
 
+            LineItem lineItem = _lineItemService.GetLineItemById(id);
+            if (lineItem == null)
+                return HttpNotFound();
+
+            Product product = lineItem.Product;
+            if (product == null)    
+                throw new Exception();
+
+            Customer customer = GetLoggedInCustomer();
+            if (customer == null)
+                throw new Exception();
+
             double averageRating = _reviewService.GetAverageRating(product.Id);
+            var allProductImages = _imageService.GetImageFilesForProduct(product.Id);
 
             AddReviewViewModel reviewModel = new AddReviewViewModel()
             {
+                LineItemId = lineItem.Id,
                 ProductId = product.Id,
                 ProductName = product.Name.Length>20? product.Name.Substring(0,20) + "...":product.Name,
-                //ProductImage = product.ImagePath1,
-                ProductPrice = product.Price.ToString(),
-                ProductSubTotal = product.Price.ToString(),
+                ProductImage = allProductImages.Count() < 1 ?
+                        AppConstant.DefaultProductImage :
+                        _imageService.GetMainImageForProduct(product.Id).ImagePath,
                 ProductCategory = product.Category.Name,
-                ProductAverageRating = new RatingViewModel()
-                {
-                    AverageRating = averageRating.ToString("0.0"),
-                    TotalReviewCount = _reviewService.GetReviewCountForProduct(product.Id).ToString(),
-                    IsDouble = (averageRating % 1) == 0 ? false : true,
-                    FloorAverageRating = (int)Math.Floor(averageRating)
-                },
+                Name = customer.Fullname,
             };
 
             return View(reviewModel);
@@ -606,17 +616,30 @@ namespace DQueensFashion.Controllers
                 return View(reviewModel);
             }
 
-            Product product = _productService.GetProductById(reviewModel.ProductId);
+            if (!_reviewService.CanReview(reviewModel.LineItemId))
+                return HttpNotFound();
+
+            LineItem lineItem = _lineItemService.GetLineItemById(reviewModel.LineItemId);
+            if (lineItem == null)
+                throw new Exception();
+
+            Product product = lineItem.Product;
             if (product == null)
+                throw new Exception();
+
+            Customer customer = GetLoggedInCustomer();
+            if (customer == null)
                 throw new Exception();
 
             Review review = new Review()
             {
                 Name = reviewModel.Name,
-                Email = reviewModel.Email,
+                Email = customer.Email,
                 Comment = reviewModel.Comment,
                 Rating = reviewModel.Rating,
                 Product = product,
+                CustomerId = customer.Id,
+                LineItemId = reviewModel.LineItemId,
             };
 
             _reviewService.AddReview(review);
