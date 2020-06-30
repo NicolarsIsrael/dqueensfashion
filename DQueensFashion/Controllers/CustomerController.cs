@@ -62,6 +62,7 @@ namespace DQueensFashion.Controllers
                 CustomerFullName = customer.Fullname,
                 TotalCustomerOrders = _orderService.GetAllOrdersForCustomer(customer.Id).Count(),
                 TotalCustomerWishList = _wishListService.GetAllCustomerWishList(customer.Id).Count(),
+                TotalCustomerPendingReviews = _reviewService.GetPendingReviews(customer.Id).Count(),
             };
             return View(customerModel);
         }

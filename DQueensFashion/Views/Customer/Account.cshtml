@@ -37,12 +37,13 @@
                     ORDERS
                 </div>
                 <div class="account-card-body">
-                    <div style="font-size:15px;font-weight:600;margin-bottom:10px">
-                        @Model.CustomerFullName
-                    </div>
-                    <div style="color:#75757A;margin-bottom:20px">
+                    <div style="color:#75757A;margin-bottom:15px">
                         Total: @Model.TotalCustomerOrders
                     </div>
+                    <div style="font-size:15px;font-weight:600;margin-bottom:15px;">
+                        <a href="@Url.Action("PendingReviews")" style="color:black">Pending reviews (@Model.TotalCustomerPendingReviews)</a>
+                    </div>
+
                     <div>
                         <a href="@Url.Action("Orders")" class="action-link">VIEW ORDERS</a>
                     </div>
