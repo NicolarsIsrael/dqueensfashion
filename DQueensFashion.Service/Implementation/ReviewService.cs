@@ -61,6 +61,21 @@ namespace DQueensFashion.Service.Implementation
         }
 
 
+        public IEnumerable<LineItem> GetPendingReviews(int customerId)
+        {
+            var _lineItems = uow.LineItemRepo.GetAllLineItemWithRelationships()
+                .Where(l => l.Order.CustomerId == customerId).ToList();
+
+            List<LineItem> lineItems = new List<LineItem>();
+            foreach(var lineItem in _lineItems)
+            {
+                if (CanReview(lineItem.Id))
+                    lineItems.Add(lineItem);
+            }
+
+            return lineItems;
+        }
+
         public bool CanReview(int lineItemId)
         {
             LineItem lineItem = uow.LineItemRepo.Get(lineItemId);

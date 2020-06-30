@@ -16,5 +16,6 @@ namespace DQueensFashion.Service.Contract
         int GetReviewCountForProduct(int productId);
         void AddRangeReveiew(IEnumerable<Review> reviews);
         bool CanReview(int lineItemId);
+        IEnumerable<LineItem> GetPendingReviews(int customerId);
     }
 }

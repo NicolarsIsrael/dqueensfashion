@@ -49,6 +49,7 @@ namespace DQueensFashion.Controllers
                     CustomerId = customer.Id,
                     ProductId = product.Id,
                     ProductName = product.Name,
+                    ProductPrice = product.Price,
                     ProductImagePath = _imageService.GetImageFilesForProduct(product.Id).Count()<1?
                         AppConstant.DefaultProductImage:
                         _imageService.GetMainImageForProduct(product.Id).ImagePath,

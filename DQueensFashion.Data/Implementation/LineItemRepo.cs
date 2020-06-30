@@ -27,6 +27,15 @@ namespace DQueensFashion.Data.Implementation
                 .FirstOrDefault();
         }
 
+        public IEnumerable<LineItem> GetAllLineItemWithRelationships()
+        {
+            return _dbContext.Set<LineItem>()
+                .Include(lineItem => lineItem.Product)
+                .Include(lineItem => lineItem.Order)
+                .Where(lineItem => !lineItem.IsDeleted)
+                .ToList();
+        }
+
     }
 
 }

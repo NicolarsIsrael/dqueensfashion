@@ -10,6 +10,7 @@ namespace DQueensFashion.Data.Contract
     public interface ILineItemRepo : ICoreRepo<LineItem>
     {
         LineItem GetLineItemWithRelationships(int lineItemId);
+        IEnumerable<LineItem> GetAllLineItemWithRelationships();
     }
 
 }

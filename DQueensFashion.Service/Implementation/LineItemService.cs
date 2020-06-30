@@ -22,6 +22,7 @@ namespace DQueensFashion.Service.Implementation
             return uow.LineItemRepo.Count();
         }
 
+
         public LineItem GetLineItemById(int id)
         {
             return uow.LineItemRepo.GetLineItemWithRelationships(id);

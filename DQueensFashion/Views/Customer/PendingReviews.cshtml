@@ -1,0 +1,30 @@
+﻿@model IEnumerable<DQueensFashion.Models.ViewLineItem>
+
+@{
+    ViewBag.Title = "Pending Reviews";
+    Layout = "~/Views/Shared/_dashboardLayout.cshtml";
+}
+
+<h4>Pending Reviews (@Model.Count())</h4>
+<hr />
+
+@foreach (var item in Model)
+{
+    <div class="row">
+        <div class="col-3 col-md-2">
+            <img src="@Url.Content(item.ProductImage)" style="display:inline-block;width:100%;height:80px" />
+        </div>
+        <div class="col-9 col-md-10">
+            @item.ProductName
+            <div style="font-size:15px;font-weight:400;color:#818181">$@item.UnitPrice * @item.Quantity</div>
+            <span style="font-size:18px;font-weight:600;">$@item.TotalAmount</span>
+            <span style="float:right">
+                <a class="btn btn-sm secondary-table-button" style="text-align:right;color:white;border-radius:0" href="@Url.Action("AddReview","Customer",new { id=item.LineItemId})">ADD REVIEW</a>
+            </span>
+
+        </div>
+    </div>
+
+
+    <hr class="m-1" />
+}

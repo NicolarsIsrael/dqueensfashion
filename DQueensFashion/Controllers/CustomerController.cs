@@ -23,9 +23,10 @@ namespace DQueensFashion.Controllers
         private readonly IImageService _imageService;
         private readonly IReviewService _reviewService;
         private readonly ILineItemService _lineItemService;
+        private readonly IProductService _productService;
 
         public CustomerController(ICustomerService customerService, IWishListService wishListService, IOrderService orderService, ICategoryService categoryService,IImageService imageService,
-            IReviewService reviewService,ILineItemService lineItemService)
+            IReviewService reviewService,ILineItemService lineItemService,IProductService productService)
         {
             _customerService = customerService;
             _wishListService = wishListService;
@@ -34,6 +35,7 @@ namespace DQueensFashion.Controllers
             _imageService = imageService;
             _reviewService = reviewService;
             _lineItemService = lineItemService;
+            _productService = productService;
         }
 
         // GET: Customer
@@ -79,6 +81,7 @@ namespace DQueensFashion.Controllers
                     WishListId=w.Id,
                     CategoryId = w.CategoryId,
                     CategoryName = w.CategoryName,
+                    ProductPrice = w.ProductPrice,
                 }).ToList();
 
             return View(wishLists);
@@ -99,6 +102,7 @@ namespace DQueensFashion.Controllers
                     WishListId = w.Id,
                     CategoryName = w.CategoryName,
                     CategoryId = w.CategoryId,
+                    ProductPrice = w.ProductPrice,
                 }).ToList();
 
             if (!string.IsNullOrEmpty(searchString))
@@ -333,7 +337,31 @@ namespace DQueensFashion.Controllers
             return RedirectToAction(nameof(OrderDetails), new { id = lineItem.Order.Id });
         }
 
+        public ActionResult PendingReviews()
+        {
+            Customer customer = GetLoggedInCustomer();
+            if (customer == null)
+                throw new Exception();
 
+            var allImages = _imageService.GetAllImageFiles();
+
+            IEnumerable<ViewLineItem> lineItems = _reviewService.GetPendingReviews(customer.Id)
+                .Select(l => new ViewLineItem()
+                {
+                    LineItemId = l.Id,
+                    ProductName = l.Product.Name,
+                    ProductId = l.Product.Id,
+                    Quantity = l.Quantity,
+                    UnitPrice = l.UnitPrice,
+                    TotalAmount = l.TotalAmount,
+                    ProductImage = allImages.Where(image => image.ProductId == l.Product.Id).Count() < 1 ?
+                                AppConstant.DefaultProductImage :
+                                allImages.Where(image => image.ProductId == l.Product.Id).FirstOrDefault().ImagePath,
+                    Description = l.Description,
+                });
+
+            return View(lineItems);
+        }
 
         public int GetCartNumber()
         {
