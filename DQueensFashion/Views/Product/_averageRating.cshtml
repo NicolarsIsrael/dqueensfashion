@@ -22,13 +22,8 @@
         }
     }
 
-    if (Model.FloorAverageRating < 1)
-    {
-        <span class="product-average-rating">(0)</span>
-    }
-    else
+    if (Model.FloorAverageRating >= 1)
     {
         <span class="product-average-rating">@Model.AverageRating</span>
-        @*<span  class="product-total-review-count">(@Model.TotalReviewCount)</span>*@
     }
 }
