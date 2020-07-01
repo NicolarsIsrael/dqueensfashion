@@ -7,10 +7,10 @@ function AddToCart(productId, _quantity) {
         data: { id: productId, quantity:_quantity },
         success: function (result) {
             $("#navbarCartNumber").html(result);
-            alertify.success("Product added to cart");
+            ShowSnackbarSuccess("Item added to cart successfully");
         },
         error: function (xhr, status, error) {
-            alertify.error("Error");
+            ShowSnackbarError("Oops, sorry! Error");
         }
     });
 }
@@ -26,7 +26,7 @@ function AddToCartCustomReadyMade(productId) {
             openNav();
         },
         error: function (xhr, status, error) {
-            alertify.error("Error");
+            ShowSnackbarError("Oops, sorry! Error");
         }
     });
 
@@ -62,10 +62,10 @@ function AddToCartCustomReadyMadePost() {
         success: function (result) {
             $("#navbarCartNumber").html(result);
             closeNav();
-            alertify.success("Product added to cart");
+            ShowSnackbarSuccess("Item added to cart successfully");
         },
         error: function (xhr, status, error) {
-            alertify.error("Error");
+            ShowSnackbarError("Oops, sorry! Error");
         }
     });
 }
@@ -82,7 +82,7 @@ function UpdateCartNumber() {
             $("#navbarCartNumber").html(result);
         },
         error: function (xhr, status, error) {
-            alertify.error("Error");
+            ShowSnackbarError("Oops, sorry! Error");
         }
     });
 }
@@ -96,13 +96,13 @@ function AddToWishList(productId) {
         success: function (result) {
             console.log(result);
             if (result == "success") {
-                alertify.success("Item successfully added");
+                ShowSnackbarSuccess("Item added to wishlist successfully");
             } else if (result == "login") {
-                alertify.success("Login or register to add item to wish list");
+                ShowSnackbarMessage("Login or register to add item to wish list");
             }
         },
         error: function (xhr, status, error) {
-            alertify.error("An error occured");
+            ShowSnackbarError("Oops, sorry! Error");
         }
     });
 
@@ -161,21 +161,21 @@ function SubscribeToMailingList() {
             success: function (result) {
                 if (result == "Success") {
                     subscribeEmail.value = "";
-                    alertify.success("Thank you for subscribing");
+                    ShowSnackbarSuccess("Thank you for subscribing");
                 }
                 else if (result == "Invalid") {
-                    alertify.error("Invalid email address");
+                    ShowSnackbarError("Invalid email address");
                 }
                 else {
-                    alertify.error("Error");
+                    ShowSnackbarError("Oops, sorry! Error");
                 }
             },
             error: function (xhr, status, error) {
-                alertify.error("Error");
+                ShowSnackbarError("Oops, sorry! Error");
             }
         });
     } else {
-        alertify.error("Enter email address");
+        ShowSnackbarMessage("Enter email address");
     }
 
 }
@@ -190,14 +190,49 @@ function Unsubscribe() {
         success: function (result) {
             if (result == "Success") {
                 location.reload();
-                alertify.success("You have successfully unsubscribe");
+                ShowSnackbarSuccess("You have successfully unsubscribe");
             }
             else {
-                alertify.error("Error");
+                ShowSnackbarError("Oops, sorry! Error");
             }
         },
         error: function (xhr, status, error) {
-            alertify.error("Error");
+            ShowSnackbarError("Oops, sorry! Error");
         }
     });
+}
+
+function ShowSnackbarSuccess(message) {
+    RemoveAllSnack();
+    var x = document.getElementById("snackbar-success");
+    x.innerHTML = message;
+    x.className = "show";
+    setTimeout(function () { x.className = x.className.replace("show", ""); }, 5000);
+    console.log(message);
+}
+
+function ShowSnackbarError(message) {
+    RemoveAllSnack();
+    var x = document.getElementById("snackbar-error");
+    x.innerHTML = message;
+    x.className = "show";
+    setTimeout(function () { x.className = x.className.replace("show", ""); }, 5000);
+}
+
+function ShowSnackbarMessage(message) {
+    RemoveAllSnack();
+    var x = document.getElementById("snackbar-message");
+    x.innerHTML = message;
+    x.className = "show";
+    setTimeout(function () { x.className = x.className.replace("show", ""); }, 5000);
+}
+
+function RemoveAllSnack() {
+    var snackbarSuccess = document.getElementById("snackbar-success");
+    var snackbarError = document.getElementById("snackbar-error");
+    var snackbarMessage = document.getElementById("snackbar-message");
+
+    snackbarSuccess.className = snackbarSuccess.className.replace("show", "");
+    snackbarError.className = snackbarError.className.replace("show", "");
+    snackbarMessage.className = snackbarMessage.className.replace("show", "");
 }
