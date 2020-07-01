@@ -30,8 +30,8 @@ namespace DQueensFashion.Models
         public bool ArmHole { get; set; }
         public double ArmHoleValue { get; set; }
 
-        public bool Burst { get; set; }
-        public double BurstValue { get; set; }
+        public bool Bust { get; set; }
+        public double BustValue { get; set; }
 
         public bool Waist { get; set; }
         public double WaistValue { get; set; }

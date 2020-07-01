@@ -40,7 +40,7 @@ function AddToCartCustomReadyMadePost() {
 
         ShoulderValue: $('#ShoulderValue').val(),
         ArmHoleValue: $('#ArmHoleValue').val(),
-        BurstValue: $('#BurstValue').val(),
+        BustValue: $('#BustValue').val(),
         WaistValue: $('#WaistValue').val(),
         HipsValue: $('#HipsValue').val(),
         ThighValue: $('#ThighValue').val(),

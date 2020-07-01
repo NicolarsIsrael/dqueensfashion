@@ -282,7 +282,7 @@ namespace DQueensFashion.Controllers
                 //measurement
                 Shoulder = productModel.Shoulder,
                 ArmHole = productModel.ArmHole,
-                Burst = productModel.Burst,
+                Bust = productModel.Bust,
                 Waist= productModel.Waist,
                 Hips = productModel.Hips,
                 Thigh = productModel.Thigh,
@@ -374,7 +374,7 @@ namespace DQueensFashion.Controllers
                 //measurement
                 Shoulder = product.Shoulder.HasValue ? product.Shoulder.Value : false,
                 ArmHole = product.ArmHole.HasValue ? product.ArmHole.Value : false,
-                Burst = product.Burst.HasValue ? product.Burst.Value : false,
+                Bust = product.Bust.HasValue ? product.Bust.Value : false,
                 Waist = product.Waist.HasValue ? product.Waist.Value : false,
                 Hips = product.Hips.HasValue ? product.Hips.Value : false,
                 Thigh = product.Thigh.HasValue ? product.Thigh.Value : false,
@@ -450,7 +450,7 @@ namespace DQueensFashion.Controllers
             //measurements
             product.Shoulder = productModel.Shoulder;
             product.ArmHole = productModel.ArmHole;
-            product.Burst = productModel.Burst;
+            product.Bust = productModel.Bust;
             product.Waist = productModel.Waist;
             product.Hips = productModel.Hips;
             product.Thigh = productModel.Thigh;

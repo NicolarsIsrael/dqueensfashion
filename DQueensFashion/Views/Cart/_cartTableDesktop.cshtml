@@ -38,9 +38,10 @@
 
             <td style="word-break:break-word;max-width:120px">
                 @Html.Raw(item.Description.Replace(Environment.NewLine, "<br/>"))
-                @if (item.Product.CategoryId == AppConstant.CustomMadeCategoryId)
+                @if (item.Product.CategoryId == AppConstant.CustomMadeCategoryId ||
+                    item.Product.CategoryId ==AppConstant.ReadyMadeCategoryId)
                 {
-                    <p class="text-danger">*Measurements are in inches</p>
+                    <p class="text-danger">Measurements are in inches*</p>
                 }
             </td>
             <td style="width:50px;">

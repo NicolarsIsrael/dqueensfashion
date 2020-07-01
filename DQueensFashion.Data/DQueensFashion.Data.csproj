@@ -180,6 +180,10 @@
     <Compile Include="Migrations\202007010742584_userInforAddedToOrder.Designer.cs">
       <DependentUpon>202007010742584_userInforAddedToOrder.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007012139429_BurstChangedToBust.cs" />
+    <Compile Include="Migrations\202007012139429_BurstChangedToBust.Designer.cs">
+      <DependentUpon>202007012139429_BurstChangedToBust.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -214,6 +218,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007010742584_userInforAddedToOrder.resx">
       <DependentUpon>202007010742584_userInforAddedToOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007012139429_BurstChangedToBust.resx">
+      <DependentUpon>202007012139429_BurstChangedToBust.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

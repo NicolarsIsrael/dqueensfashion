@@ -36,7 +36,7 @@ namespace DQueensFashion.Core.Model
         //measurement
         public bool? Shoulder { get; set; }
         public bool? ArmHole { get; set; }
-        public bool? Burst { get; set; }
+        public bool? Bust { get; set; }
         public bool? Waist { get; set; }
         public bool? Hips { get; set; }
         public bool? Thigh { get; set; }

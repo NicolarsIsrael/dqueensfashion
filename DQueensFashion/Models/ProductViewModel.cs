@@ -50,7 +50,7 @@ namespace DQueensFashion.Models
         public bool Shoulder { get; set; }
         [Display(Name = "Arm hole")]
         public bool ArmHole { get; set; }
-        public bool Burst { get; set; }
+        public bool Bust { get; set; }
         public bool Waist { get; set; }
         public bool Hips { get; set; }
         public bool Thigh { get; set; }
@@ -122,7 +122,7 @@ namespace DQueensFashion.Models
         public bool Shoulder { get; set; }
         [Display(Name = "Arm hole")]
         public bool ArmHole { get; set; }
-        public bool Burst { get; set; }
+        public bool Bust { get; set; }
         public bool Waist { get; set; }
         public bool Hips { get; set; }
         public bool Thigh { get; set; }

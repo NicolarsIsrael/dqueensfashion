@@ -37,9 +37,10 @@
                 <div style="font-size:14px;word-break:break-word">
                     @Html.Raw(item.Description.Replace(Environment.NewLine, "<br />"))
                 </div>
-                @if (item.Product.CategoryId == AppConstant.CustomMadeCategoryId)
+                @if (item.Product.CategoryId == AppConstant.CustomMadeCategoryId || 
+                    item.Product.CategoryId ==AppConstant.ReadyMadeCategoryId)
                 {
-                    <p class="text-danger mb-0">*Measurements are in inches</p>
+                    <p class="text-danger mb-0">Measurements are in inches*</p>
                 }
                 <select class="form-group-sm mb-1" style="width:100px;margin-top:5px;" onchange="ChangeCartItemQuantity(@item.Product.Id,this.value)">
                     @{

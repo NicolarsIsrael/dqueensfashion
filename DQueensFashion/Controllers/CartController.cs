@@ -122,7 +122,7 @@ namespace DQueensFashion.Controllers
                 //measurement
                 Shoulder = product.Shoulder.HasValue ? product.Shoulder.Value : false,
                 ArmHole = product.ArmHole.HasValue ? product.ArmHole.Value : false,
-                Burst = product.Burst.HasValue ? product.Burst.Value : false,
+                Bust = product.Bust.HasValue ? product.Bust.Value : false,
                 Waist = product.Waist.HasValue ? product.Waist.Value : false,
                 Hips = product.Hips.HasValue ? product.Hips.Value : false,
                 Thigh = product.Thigh.HasValue ? product.Thigh.Value : false,
@@ -178,7 +178,7 @@ namespace DQueensFashion.Controllers
                     //measurement
                     ShoulderValue = cartModel.ShoulderValue,
                     ArmHoleValue = cartModel.ArmHoleValue,
-                    BurstValue =cartModel.BurstValue,
+                    BustValue =cartModel.BustValue,
                     WaistValue = cartModel.WaistValue,
                     HipsValue = cartModel.HipsValue,
                     ThighValue = cartModel.ThighValue,
@@ -330,7 +330,7 @@ namespace DQueensFashion.Controllers
                 if (cart[i].Product.Id.Equals(id))
                     if (cart[i].ShoulderValue == cartModel.ShoulderValue
                         && cart[i].ArmHoleValue == cartModel.ArmHoleValue
-                        && cart[i].BurstValue == cartModel.BurstValue
+                        && cart[i].BustValue == cartModel.BustValue
                         && cart[i].WaistValue == cartModel.WaistValue
                         && cart[i].HipsValue == cartModel.HipsValue
                         && cart[i].ThighValue == cartModel.ThighValue
@@ -378,8 +378,8 @@ namespace DQueensFashion.Controllers
                 if (cartModel.ArmHoleValue > 0)
                     description += "Arm hole : " + cartModel.ArmHoleValue + "\"" + "\r\n";
 
-                if (cartModel.BurstValue > 0)
-                    description += "Burst : " + cartModel.BurstValue + "\"" + "\r\n";
+                if (cartModel.BustValue > 0)
+                    description += "Bust : " + cartModel.BustValue + "\"" + "\r\n";
               
                 if (cartModel.WaistValue > 0)
                     description += "Waist : " + cartModel.WaistValue + "\"" + "\r\n";

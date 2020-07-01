@@ -349,7 +349,7 @@ namespace DQueensFashion.Controllers
                     }).OrderByDescending(r=>r.DateOrder).ToList(),
                 Waist=product.Waist.HasValue?product.Waist.Value:false,
                 Shoulder = product.Shoulder.HasValue?product.Shoulder.Value:false,
-                Burst = product.Burst.HasValue?product.Burst.Value:false,
+                Bust = product.Bust.HasValue?product.Bust.Value:false,
             };
 
             var allImages = _imageService.GetAllImageFiles();
