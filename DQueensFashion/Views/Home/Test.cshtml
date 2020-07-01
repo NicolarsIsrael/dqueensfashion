@@ -4,6 +4,100 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container body-content">
-    
-</div>
+    <div class="container body-content">
+
+        <h2>Snackbar / Toast</h2>
+        <p>Snackbars are often used as a tooltips/popups to show a message at the bottom of the screen.</p>
+        <p>Click on the button to show the snackbar. It will disappear after 3 seconds.</p>
+
+        <button onclick="ShowSnackbarSuccess()">Show Snackbar success</button>
+        <button onclick="ShowSnackbarError()">Show Snackbar failure</button>
+        <button onclick="ShowSnackbarMessage()">Show Snackbar message</button>
+
+
+        <div id="snackbar-success">
+            Some text some message.. some text some textSome text some message.. some text some textSome text some message.. some text some text
+        </div>
+        <div id="snackbar-error">
+            Some text some message.. some text some textSome text some message.. some text some textSome text some message.. some text some text
+        </div>
+        <div id="snackbar-message">
+            Some text some message.. some text some textSome text some message.. some text some textSome text some message.. some text some text
+        </div>
+    </div>
+
+
+<style>
+
+    #snackbar-success,
+    #snackbar-error,
+    #snackbar-message {
+        visibility: hidden;
+        width: 100%;
+        margin-left: 0;
+        text-align: center;
+        padding: 10px;
+        position: fixed;
+        z-index: 2500;
+        left: 0;
+        top: 20vh;
+        font-size: 17px;
+    }
+
+    #snackbar-success {
+        background-color: #6dbd28;
+        color: #fff;
+    }
+
+    #snackbar-error{
+        background-color:#ff0000;
+        color: #fff;
+    }
+
+    #snackbar-message{
+        background-color:#AFB20C;
+        color: #fff;
+    }
+
+    #snackbar-success.show,
+    #snackbar-error.show,
+    #snackbar-message.show{
+        visibility: visible;
+    }
+</style>
+
+
+<script>
+    function ShowSnackbarSuccess() {
+        RemoveAllSnack();
+        var x = document.getElementById("snackbar-success");
+        x.className = "show";
+        setTimeout(function () { x.className = x.className.replace("show", ""); }, 8000);
+    }
+
+    function ShowSnackbarError() {
+        RemoveAllSnack();
+        var x = document.getElementById("snackbar-error");
+        x.className = "show";
+        setTimeout(function () { x.className = x.className.replace("show", ""); }, 8000);
+    }
+
+    function ShowSnackbarMessage() {
+        RemoveAllSnack();
+        var x = document.getElementById("snackbar-message");
+        x.className = "show";
+        setTimeout(function () { x.className = x.className.replace("show", ""); }, 8000);
+    }
+
+    function RemoveAllSnack() {
+        var snackbarSuccess = document.getElementById("snackbar-success");
+        var snackbarError = document.getElementById("snackbar-error");
+        var snackbarMessage = document.getElementById("snackbar-message");
+
+        snackbarSuccess.className = snackbarSuccess.className.replace("show", "");
+        snackbarError.className = snackbarError.className.replace("show", "");
+        snackbarMessage.className = snackbarMessage.className.replace("show", "");
+
+    }
+
+</script>
