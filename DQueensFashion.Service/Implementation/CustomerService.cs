@@ -46,10 +46,6 @@ namespace DQueensFashion.Service.Implementation
             if (customer == null)
                 throw new Exception();
 
-            if (string.IsNullOrEmpty(customer.Fullname) || string.IsNullOrWhiteSpace(customer.Fullname)
-               || customer.Fullname.Length > 100 || customer.Fullname.Length < 2 || !char.IsLetter(customer.Fullname[0]))
-                return false;
-
             if (string.IsNullOrEmpty(customer.UserId) || string.IsNullOrWhiteSpace(customer.UserId))
                 return false;
 

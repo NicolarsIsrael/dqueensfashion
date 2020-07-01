@@ -61,7 +61,6 @@ namespace DQueensFashion.Controllers
             {
                 CustomerId = customer.Id,
                 CustomerEmail = customer.Email,
-                CustomerFullName = customer.Fullname,
                 TotalCustomerOrders = _orderService.GetAllOrdersForCustomer(customer.Id).Count(),
                 TotalCustomerWishList = _wishListService.GetAllCustomerWishList(customer.Id).Count(),
                 TotalCustomerPendingReviews = _reviewService.GetPendingReviews(customer.Id).Count(),
@@ -177,7 +176,7 @@ namespace DQueensFashion.Controllers
                     OrderStatus = order.OrderStatus.ToString(),
                     DateCreated = order.DateCreated,
                     DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy : hh-mm-ss"),
-                }).OrderBy(order => order.DateCreated).ToList();
+                }).OrderByDescending(order => order.DateCreated).ToList();
 
             return View(orderModel);
         }
@@ -206,7 +205,7 @@ namespace DQueensFashion.Controllers
                     DateCreated = order.DateCreated,
                     DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy : hh-mm-ss"),
                     LineItemConcatenatedString = string.Join(",", order.LineItems.Select(x => x.Product.Name)),
-                }).OrderBy(order => order.DateCreated).ToList();
+                }).OrderByDescending(order => order.DateCreated).ToList();
 
             if (!string.IsNullOrEmpty(searchString))
                 orderModel = orderModel.Where(order => order.LineItemConcatenatedString.ToLower().Contains(searchString.ToLower())
@@ -265,7 +264,7 @@ namespace DQueensFashion.Controllers
             return View(orderModel);
         }
 
-        [Authorize(Roles = AppConstant.CustomerRole)]
+
         public ActionResult AddReview(int id = 0)
         {
             if (!_reviewService.CanReview(id))
@@ -295,7 +294,7 @@ namespace DQueensFashion.Controllers
                         AppConstant.DefaultProductImage :
                         _imageService.GetMainImageForProduct(product.Id).ImagePath,
                 ProductCategory = product.Category.Name,
-                Name = customer.Fullname,
+                Name = lineItem.Order.FirstName + " " + lineItem.Order.LastName,
             };
 
             return View(reviewModel);

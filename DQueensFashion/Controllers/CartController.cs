@@ -274,16 +274,27 @@ namespace DQueensFashion.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles =AppConstant.CustomerRole)]
-        public ActionResult CheckOutWithPayPal()
+        public ActionResult CheckOutWithPayPal(ViewCartViewModel cartModel)
         {
-            List<Cart> cart = (List<Cart>)Session["cart"];
-            ViewCartViewModel viewCart = new ViewCartViewModel()
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "One or more validation errors");
+                return RedirectToAction(nameof(CheckOut));
+            }
+
+            List<Cart> _cart = (List<Cart>)Session["cart"];
+            ViewCartViewModel _viewCart = new ViewCartViewModel()
             {
                 Count = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.Quantity),
             };
 
-            if (viewCart.Count < 1)
+            if (_viewCart.Count < 1)
                 return RedirectToAction(nameof(ViewCart));
+
+            Session["Firstname"] = cartModel.FirstName;
+            Session["Lastname"] = cartModel.LastName;
+            Session["PhoneNumber"] = cartModel.Phone;
+            Session["Address"] = cartModel.Address;
 
             return RedirectToAction("PaymentWithPaypal", "Payment");
         }

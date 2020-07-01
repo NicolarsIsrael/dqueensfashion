@@ -100,4 +100,16 @@ namespace DQueensFashion.CustomFilters
         }
 
     }
+
+    public class PaymentSetGlobalVariable : ActionFilterAttribute, IActionFilter
+    {
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            var controllersUsingThisAttribute = ((PaymentController)filterContext.Controller);
+            filterContext.Controller.ViewBag.CartNumber = controllersUsingThisAttribute.GetCartNumber();
+            filterContext.Controller.ViewBag.Categories = controllersUsingThisAttribute.GetCategories();
+
+            base.OnActionExecuting(filterContext);
+        }
+    }
 }

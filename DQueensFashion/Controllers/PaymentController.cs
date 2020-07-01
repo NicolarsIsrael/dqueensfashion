@@ -1,4 +1,5 @@
 ﻿using DQueensFashion.Core.Model;
+using DQueensFashion.CustomFilters;
 using DQueensFashion.Models;
 using DQueensFashion.Service.Contract;
 using DQueensFashion.Utilities;
@@ -12,17 +13,20 @@ using System.Web.Mvc;
 
 namespace DQueensFashion.Controllers
 {
+    [PaymentSetGlobalVariable]
     public class PaymentController : Controller
     {
         private readonly IOrderService _orderService;
         private readonly IProductService _productService;
         private readonly ICustomerService _customerService;
+        private readonly ICategoryService _categoryService;
 
-        public PaymentController(IOrderService orderService,IProductService productService, ICustomerService customerService)
+        public PaymentController(IOrderService orderService,IProductService productService, ICustomerService customerService,ICategoryService categoryService)
         {
             _orderService = orderService;
             _productService = productService;
             _customerService = customerService;
+            _categoryService = categoryService;
         }
 
         // GET: Payment
@@ -94,6 +98,11 @@ namespace DQueensFashion.Controllers
             try
             {
                 Session["cart"] = null;
+                Session["Firstname"] = null;
+                Session["Lastname"] = null;
+                Session["PhoneNumber"] = null;
+                Session["Address"] = null;
+            
                 var paymentIdGuid = Request.Params["guid"];
                 var _payment = PayPal.Api.Payment.Get(apiContext, Session[paymentIdGuid] as string);
                 List<LineItem> lineItems = new List<LineItem>();
@@ -105,7 +114,7 @@ namespace DQueensFashion.Controllers
                         DateModified = DateTime.Now,
                         IsDeleted = false,
                         Quantity = Int32.Parse(item.quantity),
-                        UnitPrice = Int32.Parse(item.price),
+                        UnitPrice = Decimal.Parse(item.price),
                         TotalAmount = Decimal.Parse(item.price) * Int32.Parse(item.quantity),
                         Description= item.description,
                     }).ToList();
@@ -113,6 +122,10 @@ namespace DQueensFashion.Controllers
                 DQueensFashion.Core.Model.Order order = new DQueensFashion.Core.Model.Order()
                 {
                     CustomerId =customer.Id,
+                    FirstName = _payment.payer.payer_info.first_name,
+                    LastName = _payment.payer.payer_info.last_name,
+                    Phone = _payment.payer.payer_info.shipping_address.phone,
+                    Address = _payment.payer.payer_info.shipping_address.city,
                     LineItems = lineItems,
                     TotalAmount = lineItems.Sum(l => l.TotalAmount),
                     TotalQuantity = lineItems.Sum(l => l.Quantity),
@@ -181,15 +194,30 @@ namespace DQueensFashion.Controllers
                      description = item.Description,
                  }).ToList();
 
+
+            //Session["Firstname"] = cartModel.FirstName;
+            //Session["Lastname"] = cartModel.LastName;
+            //Session["PhoneNumber"] = cartModel.Phone;
+            //Session["Address"] = cartModel.Address;
+
+            ShippingAddress shippingAddress = new ShippingAddress()
+            {
+                city = Session["Address"].ToString(),
+                phone = Session["PhoneNumber"].ToString(),
+            };
+
             //payer info
             var payerInfo = new PayerInfo()
             {
-
+                first_name = Session["Firstname"].ToString(),
+                last_name = Session["Lastname"].ToString(),
+                shipping_address = shippingAddress,
             };
 
             var payer = new Payer()
             {
                 payment_method = "paypal",
+                payer_info = payerInfo,
             };
             // Configure Redirect Urls here with RedirectUrls object
             var redirUrls = new RedirectUrls()
@@ -247,6 +275,26 @@ namespace DQueensFashion.Controllers
         {
             var userId = GetLoggedInUserId();
             return _customerService.GedCustomerByUserId(userId);
+        }
+
+        public int GetCartNumber()
+        {
+            if (Session["cart"] != null)
+                return ((List<Cart>)Session["cart"]).Sum(c => c.Quantity);
+            else
+                return 0;
+        }
+
+        public IEnumerable<CategoryNameAndId> GetCategories()
+        {
+            IEnumerable<CategoryNameAndId> categories = _categoryService.GetAllCategories()
+                .Select(c => new CategoryNameAndId()
+                {
+                    Id = c.Id,
+                    Name = c.Name,
+                }).OrderBy(c => c.Name);
+
+            return categories;
         }
 
     }

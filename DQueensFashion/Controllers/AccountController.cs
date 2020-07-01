@@ -191,7 +191,6 @@ namespace DQueensFashion.Controllers
                         Customer customer = new Customer()
                         {
                             Email = model.Email,
-                            Fullname = model.Fullname,
                             UserId = user.Id,
                         };
                         _customerService.AddCustomer(customer);

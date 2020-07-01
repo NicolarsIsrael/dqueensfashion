@@ -41,14 +41,19 @@
             <div class="col-md-3">
                 <div class="footer-header">CATEGORIES</div>
                 <div class="footer-detail">
-                    <a class="footer-link" href="@Url.Action("Shop","Product")">All</a>  
+                    <a class="footer-link" href="@Url.Action("Shop","Product")">All</a>
                 </div>
-                @foreach (var category in ViewBag.Categories)
+                @if (ViewBag.Categories != null)
                 {
-                    <div class="footer-detail">
-                        <a href="@Url.Action("Shop","Product",new { categoryId=category.Id})" class="footer-link">@category.Name</a>
-                    </div>
+                    foreach (var category in ViewBag.Categories)
+                    {
+                        <div class="footer-detail">
+                            <a href="@Url.Action("Shop","Product",new { categoryId=category.Id})" class="footer-link">@category.Name</a>
+                        </div>
+                    }
                 }
+
+
             </div>
             <div class="col-md-5">
                 <div class="footer-header">HDQ CONTACT INFO</div>

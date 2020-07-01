@@ -176,6 +176,10 @@
     <Compile Include="Migrations\202006301158470_mailinglistaddedtodb.Designer.cs">
       <DependentUpon>202006301158470_mailinglistaddedtodb.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007010742584_userInforAddedToOrder.cs" />
+    <Compile Include="Migrations\202007010742584_userInforAddedToOrder.Designer.cs">
+      <DependentUpon>202007010742584_userInforAddedToOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -207,6 +211,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006301158470_mailinglistaddedtodb.resx">
       <DependentUpon>202006301158470_mailinglistaddedtodb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007010742584_userInforAddedToOrder.resx">
+      <DependentUpon>202007010742584_userInforAddedToOrder.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1146,7 +1146,6 @@ namespace DQueensFashion.Controllers
                 {
                     CustomerId = c.Id,
                     CustomerEmail = c.Email,
-                    CustomerFullName = c.Fullname,
                     TotalCustomerOrders = _orderService.GetAllOrdersForCustomer(c.Id).Count()
                 }).ToList();
 
@@ -1160,13 +1159,11 @@ namespace DQueensFashion.Controllers
                {
                    CustomerId = c.Id,
                    CustomerEmail = c.Email,
-                   CustomerFullName = c.Fullname,
                    TotalCustomerOrders = _orderService.GetAllOrdersForCustomer(c.Id).Count()
                }).ToList();
 
             if (!string.IsNullOrEmpty(searchString))
-                allCustomers = allCustomers.Where(c => c.CustomerEmail.ToLower().Contains(searchString.ToLower()) ||
-                c.CustomerFullName.ToLower().Contains(searchString.ToLower()));
+                allCustomers = allCustomers.Where(c => c.CustomerEmail.ToLower().Contains(searchString.ToLower()));
 
             return PartialView("_customersTable", allCustomers);
 
