@@ -448,6 +448,10 @@ textarea {
 }
 
 
+.star-rating {
+    color: #f4c150;
+    font-size: 15px;
+}
 
 .card-center {
     margin-left: auto;
@@ -536,6 +540,7 @@ textarea {
     .star-rating {
         font-size: 10px;
     }
+
 
     .product-average-rating {
         font-weight: 700;
