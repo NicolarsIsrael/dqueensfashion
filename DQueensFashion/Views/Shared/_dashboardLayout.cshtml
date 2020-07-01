@@ -315,9 +315,16 @@
                         <div id="sidebarbody" style="padding:10px 20px;"></div>
                     </div>
                 </div>
+
+
+
+
                 <!-- /.container-fluid -->
             </div>
             <!-- /.content -->
+            <footer style="max-width:100vw;overflow-x:hidden">
+                @Html.Partial("_footer")
+            </footer>
         </div>
         <!-- /.content-wrapper -->
         <!-- Control Sidebar -->
@@ -326,11 +333,11 @@
         </aside>
         <!-- /.control-sidebar -->
         <!-- Main Footer -->
-        <footer class="main-footer">
+        @*<footer class="main-footer">
             <div class="container text-center">
-                &copy; @DateTime.Now.Year - House of the queens
+                @Html.Partial("_dashboardFooter")
             </div>
-        </footer>
+        </footer>*@
         <style>
             .main-footer {
                 background-color: #212529 !important;
