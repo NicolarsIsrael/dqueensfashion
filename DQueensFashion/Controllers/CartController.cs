@@ -256,6 +256,7 @@ namespace DQueensFashion.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = AppConstant.CustomerRole)]
         public ActionResult CheckOut()
         {
             List<Cart> cart = (List<Cart>)Session["cart"];

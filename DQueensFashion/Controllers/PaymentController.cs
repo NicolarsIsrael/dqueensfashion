@@ -97,11 +97,6 @@ namespace DQueensFashion.Controllers
             }
             try
             {
-                Session["cart"] = null;
-                Session["Firstname"] = null;
-                Session["Lastname"] = null;
-                Session["PhoneNumber"] = null;
-                Session["Address"] = null;
             
                 var paymentIdGuid = Request.Params["guid"];
                 var _payment = PayPal.Api.Payment.Get(apiContext, Session[paymentIdGuid] as string);
@@ -124,20 +119,25 @@ namespace DQueensFashion.Controllers
                     CustomerId =customer.Id,
                     FirstName = _payment.payer.payer_info.first_name,
                     LastName = _payment.payer.payer_info.last_name,
-                    Phone = _payment.payer.payer_info.shipping_address.phone,
-                    Address = _payment.payer.payer_info.shipping_address.city,
+                    Phone = Session["PhoneNumber"].ToString(),
+                    Address = Session["Address"].ToString(),
                     LineItems = lineItems,
                     TotalAmount = lineItems.Sum(l => l.TotalAmount),
                     TotalQuantity = lineItems.Sum(l => l.Quantity),
                     OrderStatus = OrderStatus.Processing,
                 };
 
+                Session["cart"] = null;
+                Session["Firstname"] = null;
+                Session["Lastname"] = null;
+                Session["PhoneNumber"] = null;
+                Session["Address"] = null;
                 _orderService.CreateOrder(order);
 
             }
             catch (Exception ex)
             {
-                   //
+                   //save raw info here
             }
             //on successful payment, show success page to user.
             return RedirectToAction(nameof(Success));
@@ -194,17 +194,12 @@ namespace DQueensFashion.Controllers
                      description = item.Description,
                  }).ToList();
 
-
-            //Session["Firstname"] = cartModel.FirstName;
-            //Session["Lastname"] = cartModel.LastName;
-            //Session["PhoneNumber"] = cartModel.Phone;
-            //Session["Address"] = cartModel.Address;
-
             ShippingAddress shippingAddress = new ShippingAddress()
             {
                 city = Session["Address"].ToString(),
                 phone = Session["PhoneNumber"].ToString(),
             };
+            //address and phone not yet saving
 
             //payer info
             var payerInfo = new PayerInfo()

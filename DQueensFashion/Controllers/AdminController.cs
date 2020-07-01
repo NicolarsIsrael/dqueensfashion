@@ -607,7 +607,9 @@ namespace DQueensFashion.Controllers
             {
                 OrderId = order.Id,
                 CustomerId = order.CustomerId,
-                CustomerName = "Ade",// _customerService.GetCustomerById(order.CustomerId).Fullname,
+                CustomerName = order.FirstName + " " + order.LastName,
+                CustomerPhone = order.Phone,
+                CustomerAddress = order.Address,
                 TotalAmount = order.TotalAmount,
                 TotalQuantity = order.TotalQuantity,
                 LineItems = order.LineItems

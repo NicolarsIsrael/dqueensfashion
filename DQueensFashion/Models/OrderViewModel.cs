@@ -14,6 +14,8 @@ namespace DQueensFashion.Models
         public string DateCreatedString { get; set; }
         public string CustomerName { get; set; }
         public int CustomerId { get; set; }
+        public string CustomerPhone { get; set; }
+        public string CustomerAddress { get; set; }
         public decimal TotalAmount { get; set; }
         public int TotalQuantity { get; set; }
         public string OrderStatus { get; set; }
