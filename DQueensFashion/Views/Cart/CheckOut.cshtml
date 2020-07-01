@@ -11,7 +11,7 @@
 
             <div style="font-size:20px;font-weight:300">SHIPPING DETAILS</div>
             <hr class="m-0 mb-2" />
-            @using (Html.BeginForm("CheckOutWithPayPal", "Cart"))
+            @using (Html.BeginForm("CheckOut", "Cart"))
             {
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })

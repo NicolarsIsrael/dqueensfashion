@@ -88,6 +88,7 @@ namespace DQueensFashion.Models
 
         [Display(Name = "Phone number")]
         [Required(ErrorMessage ="Phone number is required")]
+        [Phone]
         public string Phone { get; set; }
 
         [Required(ErrorMessage ="Address is required")]
