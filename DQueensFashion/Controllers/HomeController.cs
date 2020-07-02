@@ -56,9 +56,9 @@ namespace DQueensFashion.Controllers
                         AppConstant.DefaultProductImage :
                         allImages.Where(image => image.ProductId == p.Id).FirstOrDefault().ImagePath,
                     Quantity = p.Quantity,
-                    Price=p.Price.ToString(),
+                    Price=p.Price,
                     Discount = p.Discount,
-                    SubTotal = p.SubTotal.ToString(),
+                    SubTotal = p.SubTotal,
                     Category = p.Category.Name,
                     CategoryId = p.Category.Id,
                     Rating = new RatingViewModel()

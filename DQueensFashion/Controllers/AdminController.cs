@@ -178,9 +178,9 @@ namespace DQueensFashion.Controllers
                     Id = p.Id,
                     Name = p.Name,
                     Quantity = p.Quantity,
-                    Price = p.Price.ToString(),
+                    Price = p.Price,
                     Discount = p.Discount,
-                    SubTotal = p.SubTotal.ToString(),
+                    SubTotal = p.SubTotal,
                     Category = p.Category.Name,
                     MainImage = allImages.Where(image => image.ProductId == p.Id).Count() < 1 ?
                         AppConstant.DefaultProductImage :
@@ -201,9 +201,9 @@ namespace DQueensFashion.Controllers
                   Id = p.Id,
                   Name = p.Name,
                   Quantity = p.Quantity,
-                  Price = p.Price.ToString(),
+                  Price = p.Price,
                   Discount = p.Discount,
-                  SubTotal = p.SubTotal.ToString(),
+                  SubTotal = p.SubTotal,
                   Category = p.Category.Name,
                   MainImage = allImages.Where(image => image.ProductId == p.Id).Count() < 1 ?
                         AppConstant.DefaultProductImage :
@@ -216,7 +216,7 @@ namespace DQueensFashion.Controllers
                 products = products.Where(p => p.Name.ToLower().Contains(searchString.ToLower())
                 || p.Category.ToLower().Contains(searchString.ToLower())
                 || string.Compare(p.Quantity.ToString(), searchString, true) == 0
-                || string.Compare(p.Price, searchString, true) == 0
+                || p.Price.ToString().Contains(searchString)
                 );
 
             return PartialView("_productsTable",products);
@@ -482,9 +482,9 @@ namespace DQueensFashion.Controllers
                 Id = product.Id,
                 Name = product.Name,
                 Description = product.Description,
-                Price = product.Price.ToString(),
+                Price = product.Price,
                 Discount = product.Discount,
-                SubTotal = product.SubTotal.ToString(),
+                SubTotal = product.SubTotal,
                 Quantity = product.Quantity,
                 Category = product.Category.Name,
                 Tags = product.Tags,

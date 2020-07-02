@@ -80,7 +80,14 @@
                     <div class="col-md-3 col-6 p-1">
                         <select class="form-control-sm col-12" id="sortString">
                             <option value="0">Sort by</option>
-                            <option value="1">Best selling</option>
+                            @if (ViewBag.BestSellingSelected!=null)
+                            {
+                                <option value="1" selected>Best selling</option>
+                            }
+                            else
+                            {
+                                <option value="1">Best selling</option>
+                            }
                             <option value="2">Alphabetically, A - Z</option>
                             <option value="3">Alphabetically, Z - A</option>
                             <option value="4">Price, low to high</option>
@@ -121,7 +128,7 @@
         $.ajax({
             url: '/product/searchproduct',
             dataType: "html",
-            data: { searchString: _searchString.value, sortString: _sortString.value, categoryId: _categoryId.value },
+            data: { searchString: _searchString.value, sort: _sortString.value, categoryId: _categoryId.value },
             success: function (result) {
                 $("#productsList").html(result);
             },
@@ -139,7 +146,7 @@
         $.ajax({
             url: '/product/ProductPagination',
             dataType: "html",
-            data: { searchString: _searchString.value, sortString: _sortString.value, categoryId: _categoryId.value, pageNumber: pageNumber },
+            data: { searchString: _searchString.value, sort: _sortString.value, categoryId: _categoryId.value, pageNumber: pageNumber },
             success: function (result) {
                 $("#productsList").html(result);
                 $(window).scrollTop(0);

@@ -110,7 +110,11 @@ function AddToWishList(productId) {
 
 
 function ShopByCategory(categoryId) {
-    window.location.href = "/Product/Index?categoryId=" + categoryId;
+    window.location.href = "/Product/Shop?categoryId=" + categoryId;
+}
+
+function ShopByBestSelling() {
+    window.location.href = "/Product/Shop?sort=" + 1;
 }
 
 function NavigateToProductDetails(productId){

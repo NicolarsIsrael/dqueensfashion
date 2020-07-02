@@ -40,7 +40,7 @@ namespace DQueensFashion.Controllers
             return RedirectToAction(nameof(Shop), new { categoryId = categoryId });
         }
 
-        public ActionResult Shop(int categoryId = 0)
+        public ActionResult Shop(int categoryId = 0,int sort=0)
         {
             var allImages = _imageService.GetAllImageFiles();
 
@@ -59,9 +59,9 @@ namespace DQueensFashion.Controllers
                         AppConstant.DefaultProductImage :
                         allImages.Where(image => image.ProductId == p.Id).FirstOrDefault().ImagePath,
                     Quantity = p.Quantity,
-                    Price = p.Price.ToString(),
+                    Price = p.Price,
                     Discount = p.Discount,
-                    SubTotal = p.SubTotal.ToString(),
+                    SubTotal = p.SubTotal,
                     Category = p.Category.Name,
                     CategoryId = p.CategoryId,
                     Rating = new RatingViewModel()
@@ -71,7 +71,17 @@ namespace DQueensFashion.Controllers
                         IsDouble = (p.AverageRating % 1) == 0 ? false : true,
                         FloorAverageRating = (int)Math.Floor(p.AverageRating)
                     },
+                    NumberOfOrders = _lineItemService.NumberOfTimesPurchased(p.Id),
                 }).ToList();
+
+
+            if (sort == 1)
+            {
+                products = products.OrderByDescending(p => p.NumberOfOrders);
+                ViewBag.BestSellingSelected = true;
+            }
+
+
 
             //pagination
             ViewBag.NumberOfPages = Convert.ToInt32(Math.Ceiling((double)products.Count() / AppConstant.ProductIndexPageSize));
@@ -100,7 +110,7 @@ namespace DQueensFashion.Controllers
             return View(productIndex);
         }
 
-        public ActionResult SearchProduct(string searchString, int sortString, int categoryId=0)
+        public ActionResult SearchProduct(string searchString, int sort, int categoryId=0)
         {
             try
             {
@@ -127,9 +137,9 @@ namespace DQueensFashion.Controllers
                         Category = p.Category.Name,
                         CategoryId = p.CategoryId,
                         Quantity = p.Quantity,
-                        Price = p.Price.ToString(),
+                        Price = p.Price,
                         Discount = p.Discount,
-                        SubTotal = p.SubTotal.ToString(),
+                        SubTotal = p.SubTotal,
                         DateCreated = p.DateCreated,
                         Rating = new RatingViewModel()
                         {
@@ -138,14 +148,15 @@ namespace DQueensFashion.Controllers
                             IsDouble = (p.AverageRating % 1) == 0 ? false : true,
                             FloorAverageRating = (int)Math.Floor(p.AverageRating)
                         },
-                        
+                        NumberOfOrders = _lineItemService.NumberOfTimesPurchased(p.Id),
                     }).ToList();
 
                 //sort
-                switch (sortString)
+                switch (sort)
                 {
                     //sort by best selling
                     case 1:
+                        products = products.OrderByDescending(p => p.NumberOfOrders);
                         break;
 
                     //alphabetically a-z
@@ -160,12 +171,12 @@ namespace DQueensFashion.Controllers
 
                     //price low to high
                     case 4:
-                        products = products.OrderBy(p => p.Price);
+                        products = products.OrderBy(p => p.SubTotal);
                         break;
 
                     //price high to low
                     case 5:
-                        products = products.OrderByDescending(p => p.Price);
+                        products = products.OrderByDescending(p => p.SubTotal);
                         break;
 
                     //date new to old
@@ -201,7 +212,7 @@ namespace DQueensFashion.Controllers
             }
         }
 
-        public ActionResult ProductPagination(string searchString, int sortString, int categoryId = 0, int pageNumber = 1)
+        public ActionResult ProductPagination(string searchString, int sort, int categoryId = 0, int pageNumber = 1)
         {
             try
             {
@@ -228,9 +239,9 @@ namespace DQueensFashion.Controllers
                         Category = p.Category.Name,
                         CategoryId = p.CategoryId,
                         Quantity = p.Quantity,
-                        Price = p.Price.ToString(),
+                        Price = p.Price,
                         Discount = p.Discount,
-                        SubTotal = p.SubTotal.ToString(),
+                        SubTotal = p.SubTotal,
                         DateCreated = p.DateCreated,
                         Rating = new RatingViewModel()
                         {
@@ -239,10 +250,11 @@ namespace DQueensFashion.Controllers
                             IsDouble = (p.AverageRating % 1) == 0 ? false : true,
                             FloorAverageRating = (int)Math.Floor(p.AverageRating)
                         },
+                        NumberOfOrders = _lineItemService.NumberOfTimesPurchased(p.Id),
                     }).ToList();
 
                 //sort
-                switch (sortString)
+                switch (sort)
                 {
                     //sort by best selling
                     case 1:
@@ -260,12 +272,12 @@ namespace DQueensFashion.Controllers
 
                     //price low to high
                     case 4:
-                        products = products.OrderBy(p => p.Price);
+                        products = products.OrderBy(p => p.SubTotal);
                         break;
 
                     //price high to low
                     case 5:
-                        products = products.OrderByDescending(p => p.Price);
+                        products = products.OrderByDescending(p => p.SubTotal);
                         break;
 
                     //date new to old
@@ -317,9 +329,9 @@ namespace DQueensFashion.Controllers
                 Id = product.Id,
                 Name = product.Name,
                 Description = product.Description,
-                Price = product.Price.ToString(),
+                Price = product.Price,
                 Discount = product.Discount,
-                SubTotal = product.SubTotal.ToString(),
+                SubTotal = product.SubTotal,
                 Quantity = product.Quantity,
                 CategoryId = product.Category.Id,
                 Category = product.Category.Name,
@@ -364,9 +376,9 @@ namespace DQueensFashion.Controllers
                         AppConstant.DefaultProductImage :
                         allImages.Where(image => image.ProductId == p.Id).FirstOrDefault().ImagePath,
                     Quantity = p.Quantity,
-                    Price = p.Price.ToString(),
+                    Price = p.Price,
                     Discount = p.Discount,
-                    SubTotal = p.SubTotal.ToString(),
+                    SubTotal = p.SubTotal,
                     Category = p.Category.Name,
                     CategoryId = product.Category.Id,
                     Rating = new RatingViewModel()
@@ -556,7 +568,7 @@ namespace DQueensFashion.Controllers
                 //MainImage = string.IsNullOrEmpty(product.ImagePath1) ? AppConstant.DefaultProductImage : product.ImagePath1,
                 //OtherImagePaths = productImages,
                 Category = product.Category.Name,
-                Price = product.Price.ToString(),
+                Price = product.Price,
                 Quantity = product.Quantity,
                 Rating = new RatingViewModel()
                 {
