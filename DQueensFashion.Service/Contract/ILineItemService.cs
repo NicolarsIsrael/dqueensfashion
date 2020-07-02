@@ -11,5 +11,6 @@ namespace DQueensFashion.Service.Contract
     {
         int GetLineItemsCount();
         LineItem GetLineItemById(int id);
+        int NumberOfTimesPurchased(int productId);
     }
 }

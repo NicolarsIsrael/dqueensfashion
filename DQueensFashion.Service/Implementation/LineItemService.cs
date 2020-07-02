@@ -28,5 +28,11 @@ namespace DQueensFashion.Service.Implementation
             return uow.LineItemRepo.GetLineItemWithRelationships(id);
         }
 
+        public int NumberOfTimesPurchased(int productId)
+        {
+            return uow.LineItemRepo.GetAllLineItemWithRelationships()
+                .Where(l => l.Product.Id == productId).Sum(l => l.Quantity);
+        }
+
     }
 }

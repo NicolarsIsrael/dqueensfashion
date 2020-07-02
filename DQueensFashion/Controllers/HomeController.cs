@@ -68,7 +68,7 @@ namespace DQueensFashion.Controllers
                         IsDouble = (p.AverageRating % 1) == 0 ? false : true,
                         FloorAverageRating = (int)Math.Floor(p.AverageRating)
                     },
-                    
+                    NumberOfOrders = _lineItemService.NumberOfTimesPurchased(p.Id),
                 }).ToList();
 
             IEnumerable<CategoryNameAndId> categories = _categoryService.GetAllCategories()
@@ -82,6 +82,8 @@ namespace DQueensFashion.Controllers
             {
                 Products = products,
                 Categories = categories,
+                BestSellingProducts = products.OrderByDescending(p => p.NumberOfOrders)
+                                    .Where(p => p.Quantity > 0).Take(4),
             };
 
             return View(homeIndex);

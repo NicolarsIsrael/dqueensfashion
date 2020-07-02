@@ -115,6 +115,7 @@ namespace DQueensFashion.Models
         public string Category { get; set; }
         public int CategoryId { get; set; }
         public string Tags { get; set; }
+        public int NumberOfOrders { get; set; }
         public RatingViewModel Rating { get; set; }
         public IEnumerable<ViewReviewViewModel> Reviews { get; set; }
 
