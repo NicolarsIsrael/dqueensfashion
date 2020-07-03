@@ -1,4 +1,5 @@
 ﻿@model DQueensFashion.Models.ProductIndexViewModel
+@using DQueensFashion.Utilities
 
 @{
     ViewBag.Title = "Shop";
@@ -80,22 +81,32 @@
                     <div class="col-md-3 col-6 p-1">
                         <select class="form-control-sm col-12" id="sortString">
                             <option value="0">Sort by</option>
-                            @if (ViewBag.BestSellingSelected!=null)
+
+                            @if (ViewBag.BestDealsSelected != null)
                             {
-                                <option value="1" selected>Best selling</option>
+                                <option value="@AppConstant.BestDeals" selected>Best deals</option>
                             }
                             else
                             {
-                                <option value="1">Best selling</option>
+                                <option value="@AppConstant.BestDeals">Best deals</option>
                             }
-                            <option value="2">Alphabetically, A - Z</option>
-                            <option value="3">Alphabetically, Z - A</option>
-                            <option value="4">Price, low to high</option>
-                            <option value="5">Price, high to low</option>
-                            <option value="6">Most recent</option>
-                            <option value="7">Least recent</option>
-                            <option value="8">Highest rating</option>
-                            <option value="9">Lowest rating</option>
+                            @if (ViewBag.BestSellingSelected != null)
+                            {
+                                <option value="@AppConstant.BestSelling" selected>Best selling</option>
+                            }
+                            else
+                            {
+                                <option value="@AppConstant.BestSelling">Best selling</option>
+                            }
+
+                            <option value="@AppConstant.AlphabeticallyAZ">Alphabetically, A - Z</option>
+                            <option value="@AppConstant.AlphabeticallyZA">Alphabetically, Z - A</option>
+                            <option value="@AppConstant.PriceLowToHigh">Price, low to high</option>
+                            <option value="@AppConstant.PriceHighToLow">Price, high to low</option>
+                            <option value="@AppConstant.MostRecent">Most recent</option>
+                            <option value="@AppConstant.LeastRecent">Least recent</option>
+                            <option value="@AppConstant.HighestRating">Highest rating</option>
+                            <option value="@AppConstant.LowestRating">Lowest rating</option>
                         </select>
                     </div>
                     <div class="col-md-2 p-1">

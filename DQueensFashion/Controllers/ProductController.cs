@@ -75,13 +75,15 @@ namespace DQueensFashion.Controllers
                 }).ToList();
 
 
-            if (sort == 1)
+            if (sort == AppConstant.BestSelling)
             {
                 products = products.OrderByDescending(p => p.NumberOfOrders);
                 ViewBag.BestSellingSelected = true;
+            }else if (sort == AppConstant.BestDeals)
+            {
+                products = products.OrderByDescending(p => p.Discount);
+                ViewBag.BestDealsSelected = true;
             }
-
-
 
             //pagination
             ViewBag.NumberOfPages = Convert.ToInt32(Math.Ceiling((double)products.Count() / AppConstant.ProductIndexPageSize));
@@ -154,49 +156,54 @@ namespace DQueensFashion.Controllers
                 //sort
                 switch (sort)
                 {
+
+                    //sort by best deals
+                    case AppConstant.BestDeals:
+                        products = products.OrderByDescending(p => p.Discount);
+                        break;
+
                     //sort by best selling
-                    case 1:
+                    case AppConstant.BestSelling:
                         products = products.OrderByDescending(p => p.NumberOfOrders);
                         break;
 
                     //alphabetically a-z
-                    case 2:
+                    case AppConstant.AlphabeticallyAZ:
                         products = products.OrderBy(p => p.Name);
                         break;
 
                     //alphabetically z-a
-                    case 3:
+                    case AppConstant.AlphabeticallyZA:
                         products = products.OrderByDescending(p => p.Name);
                         break;
 
                     //price low to high
-                    case 4:
+                    case AppConstant.PriceLowToHigh:
                         products = products.OrderBy(p => p.SubTotal);
                         break;
 
                     //price high to low
-                    case 5:
+                    case AppConstant.PriceHighToLow:
                         products = products.OrderByDescending(p => p.SubTotal);
                         break;
 
                     //date new to old
-                    case 6:
+                    case AppConstant.MostRecent:
                         products = products.OrderByDescending(p => p.DateCreated);
                         break;
 
                     //date old to new
-                    case 7:
+                    case AppConstant.LeastRecent:
                         products = products.OrderBy(p => p.DateCreated);
                         break;
 
-                    case 8:
+                    case AppConstant.HighestRating:
                         products = products.OrderByDescending(p => p.Rating.AverageRating);
                         break;
 
-                    case 9:
+                    case AppConstant.LowestRating:
                         products = products.OrderBy(p => p.Rating.AverageRating);
                         break;
-
                 }
 
                 //pagination
@@ -256,48 +263,54 @@ namespace DQueensFashion.Controllers
                 //sort
                 switch (sort)
                 {
+
+                    //sort by best deals
+                    case AppConstant.BestDeals:
+                        products = products.OrderByDescending(p => p.Discount);
+                        break;
+
                     //sort by best selling
-                    case 1:
+                    case AppConstant.BestSelling:
+                        products = products.OrderByDescending(p => p.NumberOfOrders);
                         break;
 
                     //alphabetically a-z
-                    case 2:
+                    case AppConstant.AlphabeticallyAZ:
                         products = products.OrderBy(p => p.Name);
                         break;
 
                     //alphabetically z-a
-                    case 3:
+                    case AppConstant.AlphabeticallyZA:
                         products = products.OrderByDescending(p => p.Name);
                         break;
 
                     //price low to high
-                    case 4:
+                    case AppConstant.PriceLowToHigh:
                         products = products.OrderBy(p => p.SubTotal);
                         break;
 
                     //price high to low
-                    case 5:
+                    case AppConstant.PriceHighToLow:
                         products = products.OrderByDescending(p => p.SubTotal);
                         break;
 
                     //date new to old
-                    case 6:
+                    case AppConstant.MostRecent:
                         products = products.OrderByDescending(p => p.DateCreated);
                         break;
 
                     //date old to new
-                    case 7:
+                    case AppConstant.LeastRecent:
                         products = products.OrderBy(p => p.DateCreated);
                         break;
 
-                    case 8:
+                    case AppConstant.HighestRating:
                         products = products.OrderByDescending(p => p.Rating.AverageRating);
                         break;
 
-                    case 9:
+                    case AppConstant.LowestRating:
                         products = products.OrderBy(p => p.Rating.AverageRating);
                         break;
-
                 }
 
                 //pagination

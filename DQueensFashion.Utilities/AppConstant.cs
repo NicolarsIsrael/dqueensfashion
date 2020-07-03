@@ -27,6 +27,18 @@ namespace DQueensFashion.Utilities
         public const int ReadyMadeCategoryId = 3;
         public const string ReadyMadeName = "Ready-Made";
 
+        //sort options
+        public const int BestDeals = 1;
+        public const int BestSelling = 2;
+        public const int AlphabeticallyAZ = 3;
+        public const int AlphabeticallyZA = 4;
+        public const int PriceLowToHigh = 5;
+        public const int PriceHighToLow = 6;
+        public const int MostRecent = 7;
+        public const int LeastRecent = 8;
+        public const int HighestRating = 9;
+        public const int LowestRating = 10;
+
         public static readonly string[] ReadyMadeSizes = { "Extra small (XS)", "Small (S)", "Medium (M)", "Large (L)", "Extra large (XL)" };
         public static int MaxCustomMadeAddToCart = 50;
 
@@ -57,6 +69,10 @@ namespace DQueensFashion.Utilities
                                                         4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13, 13.5, 14, };
         public static readonly double[] SleevesLengthValues = {20, 20.5, 21, 21.5, 22, 22.5, 23, 23.5, 24, 24.5, 25, 25.5, 26, 26.5,
                                                         27, 27.5, 28, 28.5, 29, };
+
+
+
+
 
         //orange #E97128
         //deep blue #212529
