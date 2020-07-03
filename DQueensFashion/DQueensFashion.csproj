@@ -327,6 +327,7 @@
     <Content Include="Content\Images\shopping-cart-big.svg" />
     <Content Include="Content\Images\shopping-cart.svg" />
     <Content Include="Content\Images\trash-2.svg" />
+    <Content Include="Content\Images\trash.svg" />
     <Content Include="Content\Images\twitter.svg" />
     <Content Include="Content\Images\user.svg" />
     <Content Include="Content\Images\x.svg" />

@@ -347,7 +347,7 @@ namespace DQueensFashion.Controllers
             }
 
             _imageService.AddRangeImages(ImageModel);
-            return RedirectToAction(nameof(Products));
+            return RedirectToAction(nameof(ProductDetails),new { id = product.Id });
         }
 
         public ActionResult EditProduct(int id=0)
