@@ -77,7 +77,9 @@ namespace DQueensFashion.Utilities
         //orange #E97128
         //deep blue #212529
         //gold #df7204
+        //gold hover: #ff8d19
         //purple #96157a
+        //purple hover #9c3b8d
 
         //dark #262626 //might use later
     }

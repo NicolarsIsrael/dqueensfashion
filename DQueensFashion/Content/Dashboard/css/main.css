@@ -33023,7 +33023,7 @@ a.text-muted:hover {
 .accent-gray-dark a {
     color: #343a40
 }
-
+    
     .accent-gray-dark a:hover {
         color: #121416
     }
@@ -33069,16 +33069,16 @@ a.text-muted:hover {
 
 .primary-table-button:hover {
     transform: scale(1.01);
-    background-color: rgb(255, 101, 5);
+    background-color: #9c3b8d;
     box-shadow: 2px 2px 12px rgba(47, 47, 47, 0.40);
     transition: all ease 0.3s;
-    color:white;
+    color: white;
 }
 
 .secondary-table-button:hover {
     transform: scale(1.01);
-    background-color: #394047;
+    background-color: #ff8d19;
     box-shadow: 2px 2px 12px rgba(47, 47, 47, 0.40);
     transition: all ease 0.3s;
-    color:white;
+    color: white;
 }

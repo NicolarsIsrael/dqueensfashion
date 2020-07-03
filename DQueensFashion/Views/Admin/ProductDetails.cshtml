@@ -28,7 +28,7 @@
     }
 
     .carousel-item {
-        height: 350px;
+        height: 250px;
     }
 
     .carousel-indicators li {
@@ -149,18 +149,19 @@
                             }
 
                         </div>
-                        <a href="@Url.Action("EditProduct",new { id = Model.Product.Id })" class="btn primary-table-button">EDIT</a>
+                        <a href="@Url.Action("EditProduct",new { id = Model.Product.Id })" class="btn btn-block primary-table-button"
+                           style="padding:10px;border-radius:0">EDIT</a>
                     </div>
-                   
-                    
-                  
+
+
+
                 </div>
 
             </div>
 
         </div>
         <div class="col-md-4 mt-3">
-            <div class="card">
+            <div class="card" style="min-height:300px">
                 <div class="card-header" style="background-color:white">
                     <div style="font-weight:500;font-size:15px">DELIVERY AND RETURNS</div>
                 </div>

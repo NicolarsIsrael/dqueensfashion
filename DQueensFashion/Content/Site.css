@@ -441,7 +441,7 @@ textarea {
 
 .wishlist-button:hover {
     transform: scale(1.01);
-    background-color: #353530;
+    background-color: #ff8d19;
     box-shadow: 2px 2px 12px rgba(47, 47, 47, 0.40);
     transition: all ease 0.3s;
 }
