@@ -93,7 +93,7 @@
             </div>
             <div class="col-md-6">
                 <div class="card">
-                    <div class="card-body" style="padding-bottom:28px">
+                    <div class="card-body" style="padding-bottom:20px">
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-group">
@@ -113,7 +113,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12">
+                            <div class="col-6">
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-12" })
                                     <div class="col-12">
@@ -122,7 +122,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12">
+                            <div class="col-6">
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.Discount, htmlAttributes: new { @class = "control-label col-12" })
                                     <div class="col-12">
@@ -131,11 +131,21 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="col-12">
                                 <div class="form-group">
                                     @Html.Label("Total", htmlAttributes: new { @class = "control-label col-12" })
                                     <div class="col-12">
                                         <input type="text" value="@Model.SubTotal" disabled class="form-control" id="product-total-price" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 mt-2">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.DeliveryDaysDuration, htmlAttributes: new { @class = "control-label col-12" })
+                                    <div class="col-12">
+                                        @Html.EditorFor(model => model.DeliveryDaysDuration, new { htmlAttributes = new { @class = "form-control", @id = "product-price" } })
+                                        @Html.ValidationMessageFor(model => model.DeliveryDaysDuration, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
                             </div>

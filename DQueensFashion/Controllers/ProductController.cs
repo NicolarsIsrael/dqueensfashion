@@ -348,6 +348,7 @@ namespace DQueensFashion.Controllers
                 Quantity = product.Quantity,
                 CategoryId = product.Category.Id,
                 Category = product.Category.Name,
+                DeliveryDaysDuration = product.DeliveryDaysDuration,
                 Tags = product.Tags,
                 DateCreatedString = product.DateCreated.ToString("dd/MMM/yyyy : hh-mm-ss"),
                 MainImage = allProductImages.Count() < 1 ?

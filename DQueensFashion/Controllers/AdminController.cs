@@ -235,6 +235,7 @@ namespace DQueensFashion.Controllers
             {
                 Categories = categories,
                 Quantity = 1,
+                DeliveryDaysDuration = 1,
             };
 
             if (categoryId == AppConstant.CustomMadeCategoryId)
@@ -278,6 +279,7 @@ namespace DQueensFashion.Controllers
                 SubTotal = _productService.CalculateProductPrice(productModel.Price, productModel.Discount),
                 Category = category,
                 Tags = productModel.Tags != null ? String.Join(",", productModel.Tags) : "",
+                DeliveryDaysDuration = productModel.DeliveryDaysDuration,
 
                 //measurement
                 Shoulder = productModel.Shoulder,
@@ -370,6 +372,7 @@ namespace DQueensFashion.Controllers
                     Name = c.Name,
                 }).OrderBy(c => c.Name).ToList(),
                 Tags = string.IsNullOrEmpty(product.Tags) ? new List<string>() : product.Tags.Split(',').ToList(),
+                DeliveryDaysDuration = product.DeliveryDaysDuration,
 
                 //measurement
                 Shoulder = product.Shoulder.HasValue ? product.Shoulder.Value : false,
@@ -446,6 +449,7 @@ namespace DQueensFashion.Controllers
             product.SubTotal = _productService.CalculateProductPrice(productModel.Price, productModel.Discount);
             product.Category = category;
             product.Tags = productModel.Tags != null ? String.Join(",", productModel.Tags) : "";
+            product.DeliveryDaysDuration = productModel.DeliveryDaysDuration;
 
             //measurements
             product.Shoulder = productModel.Shoulder;
@@ -487,6 +491,7 @@ namespace DQueensFashion.Controllers
                 SubTotal = product.SubTotal,
                 Quantity = product.Quantity,
                 Category = product.Category.Name,
+                DeliveryDaysDuration = product.DeliveryDaysDuration,
                 Tags = product.Tags,
                 DateCreatedString = product.DateCreated.ToString("dd/MMM/yyyy : hh-mm-ss"),
                 MainImage = allProductImages.Count() < 1 ?

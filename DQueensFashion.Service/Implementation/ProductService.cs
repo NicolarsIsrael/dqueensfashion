@@ -100,6 +100,9 @@ namespace DQueensFashion.Service.Implementation
             if (product.Tags == null)
                 return false;
 
+            if (product.DeliveryDaysDuration < 1)
+                return false;
+
             return true;
         }
 

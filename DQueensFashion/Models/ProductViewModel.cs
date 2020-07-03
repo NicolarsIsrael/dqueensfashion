@@ -28,7 +28,7 @@ namespace DQueensFashion.Models
         public decimal Price { get; set; }
 
         [Range(0, 100, ErrorMessage = "Discount must be between 0 and 100")]
-        [Display(Name = "Discount(%)")]
+        [Display(Name = "Discount (%)")]
         public decimal Discount { get; set; }
 
         public decimal SubTotal { get; set; }
@@ -36,6 +36,10 @@ namespace DQueensFashion.Models
         [Range(1, int.MaxValue, ErrorMessage = "Quantity must be greater than 1")]
         [Required]
         public int Quantity { get; set; }
+
+        [Display(Name="Days to deliver")]
+        [Range(1,int.MaxValue, ErrorMessage ="Days to deliver must be greater than 1")]
+        public int DeliveryDaysDuration { get; set; }
 
         public List<string> Tags { get; set; }
         [Display(Name = "Category")]
@@ -115,6 +119,7 @@ namespace DQueensFashion.Models
         public string Category { get; set; }
         public int CategoryId { get; set; }
         public string Tags { get; set; }
+        public int DeliveryDaysDuration { get; set; }
         public int NumberOfOrders { get; set; }
         public RatingViewModel Rating { get; set; }
         public IEnumerable<ViewReviewViewModel> Reviews { get; set; }

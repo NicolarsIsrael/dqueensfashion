@@ -193,7 +193,17 @@
                                 <td>
                                     <h6>Delivery information</h6>
                                     <div style="font-weight:300;font-size:15px">
-                                        Normally delivered between 72 hours. Please check exact dates in the Checkout page. See more
+                                        Normally delivered between @Model.Product.DeliveryDaysDuration@{ 
+                                            if (Model.Product.DeliveryDaysDuration < 2)
+                                            {
+                                                <span> Day.</span>
+                                            }
+                                            else
+                                            {
+                                                <span> Days.</span>
+                                            }
+                                        }
+                                        Please check exact dates in the Checkout page.
                                     </div>
                                 </td>
                             </tr>
