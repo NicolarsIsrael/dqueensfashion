@@ -24,11 +24,10 @@
         </div>
         <div class="mb-1">
             @Html.Partial("~/views/Product/_averageRating.cshtml", Model.Rating)
-            <span class="float-right">
-                @*<i class="far fa-eye product-quickview" onclick="productQuickView(@Model.Id)"></i>*@
+            @*<span class="float-right">
                 <i class="far fa-heart product-wishlist" onclick="AddToWishList(@Model.Id)"></i>
 
-            </span>
+            </span>*@
         </div>
         @{
             if (Model.CategoryId == AppConstant.CustomMadeCategoryId ||

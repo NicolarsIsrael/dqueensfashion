@@ -103,7 +103,7 @@ textarea {
 }
 
 .nav-link:hover, .nav-link:active {
-    color: #E97128;
+    color: #df7204;
 }
 
 .nav-item {
@@ -128,12 +128,12 @@ textarea {
 
 .btn-white {
     color: white !important;
-    background-color: #E97128;
+    background-color: #df7204;
 }
 
 .btn-outline-white {
     color: white !important;
-    border: 2px solid #E97128;
+    border: 2px solid #df7204;
 }
 
 .header {
@@ -230,7 +230,7 @@ textarea {
 }
 
     .categories_tab .nav-tabs li.nav-item a.active, .categories_tab .nav-tabs li.nav-item a.active:hover {
-        color: #E97128;
+        color: #96157a;
     }
 
     .categories_tab .nav-tabs li.nav-item a {
@@ -327,7 +327,7 @@ textarea {
 
 .product-discount-label {
     color: #fff;
-    background-color: #212529;
+    background-color: #df7204;
     font-size: 12px;
     text-transform: uppercase;
     padding: 2px 7px;
@@ -384,10 +384,10 @@ textarea {
 }
 
 .product-quickview,
-.product-wishlist{
-    color: #E97128;
+.product-wishlist {
+    color: #96157a;
     font-size: 20px;
-    cursor:pointer;
+    cursor: pointer;
 }
 
 .product-quickview {
@@ -396,8 +396,7 @@ textarea {
 
 .cart {
     height: 45px;
-    /*background-color: #96157a;*/
-    background-color: #df7204;
+    background-color: #96157a;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -411,7 +410,7 @@ textarea {
 
 .wishlist-button {
     height: 45px;
-    background-color: #212529;
+    background-color: #df7204;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -433,12 +432,12 @@ textarea {
     }
 
 
-    .cart:hover {
-        transform: scale(1.01);
-        background-color: rgb(255, 101, 5);
-        box-shadow: 2px 2px 12px rgba(47, 47, 47, 0.40);
-        transition: all ease 0.3s;
-    }
+.cart:hover {
+    transform: scale(1.01);
+    background-color: #9c3b8d;
+    box-shadow: 2px 2px 12px rgba(47, 47, 47, 0.40);
+    transition: all ease 0.3s;
+}
 
 .wishlist-button:hover {
     transform: scale(1.01);

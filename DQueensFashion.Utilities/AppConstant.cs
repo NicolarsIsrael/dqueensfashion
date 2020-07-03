@@ -60,7 +60,8 @@ namespace DQueensFashion.Utilities
 
         //orange #E97128
         //deep blue #212529
-
+        //gold #df7204
+        //purple #96157a
 
         //dark #262626 //might use later
     }

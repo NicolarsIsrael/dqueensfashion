@@ -152,37 +152,9 @@
     <Compile Include="Implementation\ReviewRepo.cs" />
     <Compile Include="Implementation\UnitOfWork.cs" />
     <Compile Include="Implementation\WishListRepo.cs" />
-    <Compile Include="Migrations\202006250453005_initial.cs" />
-    <Compile Include="Migrations\202006250453005_initial.Designer.cs">
-      <DependentUpon>202006250453005_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202006260725164_categoryAddedToDb.cs" />
-    <Compile Include="Migrations\202006260725164_categoryAddedToDb.Designer.cs">
-      <DependentUpon>202006260725164_categoryAddedToDb.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202006270840036_ReadyMadeRemoved.cs" />
-    <Compile Include="Migrations\202006270840036_ReadyMadeRemoved.Designer.cs">
-      <DependentUpon>202006270840036_ReadyMadeRemoved.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202006300746499_lineitemaddedtoreview.cs" />
-    <Compile Include="Migrations\202006300746499_lineitemaddedtoreview.Designer.cs">
-      <DependentUpon>202006300746499_lineitemaddedtoreview.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202006300919555_priceAddedToWishlist.cs" />
-    <Compile Include="Migrations\202006300919555_priceAddedToWishlist.Designer.cs">
-      <DependentUpon>202006300919555_priceAddedToWishlist.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202006301158470_mailinglistaddedtodb.cs" />
-    <Compile Include="Migrations\202006301158470_mailinglistaddedtodb.Designer.cs">
-      <DependentUpon>202006301158470_mailinglistaddedtodb.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202007010742584_userInforAddedToOrder.cs" />
-    <Compile Include="Migrations\202007010742584_userInforAddedToOrder.Designer.cs">
-      <DependentUpon>202007010742584_userInforAddedToOrder.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202007012139429_BurstChangedToBust.cs" />
-    <Compile Include="Migrations\202007012139429_BurstChangedToBust.Designer.cs">
-      <DependentUpon>202007012139429_BurstChangedToBust.cs</DependentUpon>
+    <Compile Include="Migrations\202007021740229_new.cs" />
+    <Compile Include="Migrations\202007021740229_new.Designer.cs">
+      <DependentUpon>202007021740229_new.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -198,29 +170,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202006250453005_initial.resx">
-      <DependentUpon>202006250453005_initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006260725164_categoryAddedToDb.resx">
-      <DependentUpon>202006260725164_categoryAddedToDb.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006270840036_ReadyMadeRemoved.resx">
-      <DependentUpon>202006270840036_ReadyMadeRemoved.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006300746499_lineitemaddedtoreview.resx">
-      <DependentUpon>202006300746499_lineitemaddedtoreview.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006300919555_priceAddedToWishlist.resx">
-      <DependentUpon>202006300919555_priceAddedToWishlist.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006301158470_mailinglistaddedtodb.resx">
-      <DependentUpon>202006301158470_mailinglistaddedtodb.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007010742584_userInforAddedToOrder.resx">
-      <DependentUpon>202007010742584_userInforAddedToOrder.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007012139429_BurstChangedToBust.resx">
-      <DependentUpon>202007012139429_BurstChangedToBust.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202007021740229_new.resx">
+      <DependentUpon>202007021740229_new.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
