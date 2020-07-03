@@ -580,7 +580,7 @@ namespace DQueensFashion.Controllers
             }
 
             _imageService.AddRangeImages(ImageModel);
-            return RedirectToAction(nameof(Products));
+            return RedirectToAction(nameof(ProductDetails),new { id=product.Id});
         }
 
         public PartialViewResult DeleteProductImage(int id)
@@ -588,8 +588,21 @@ namespace DQueensFashion.Controllers
             ImageFile imageFile = _imageService.GetImageById(id);
             if (imageFile == null)
                 throw new Exception();
-
+          
             _imageService.DeleteImage(imageFile);
+
+            try
+            {
+                string fullPath = Request.MapPath(imageFile.ImagePath);
+                if (System.IO.File.Exists(fullPath))
+                {
+                    System.IO.File.Delete(fullPath);
+                }
+            }
+            catch (Exception)
+            {
+
+            }
 
             IEnumerable<ImageViewModel> images = _imageService.GetImageFilesForProduct(imageFile.ProductId)
                 .Select(image => new ImageViewModel()
