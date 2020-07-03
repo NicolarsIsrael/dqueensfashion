@@ -125,319 +125,319 @@ namespace DQueensFashion
                     Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
                 },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(1),
-                //    Name="Kamdi dress",Price = 12,Discount=10M,Quantity=5,Tags="female,dress",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(1),
+                    Name="Kamdi dress",Price = 12,Discount=10M,Quantity=5,Tags="female,dress",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(2),
-                //    Name="dummy text of the printing",Price = 13,Discount=3M,Quantity=5,Tags="shoes,african,male",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(2),
+                    Name="dummy text of the printing",Price = 13,Discount=3M,Quantity=5,Tags="shoes,african,male",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(3),
-                //    Name="five centuries",Price = 10,Discount=0,Quantity=20,Tags="kids,european,male",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(3),
+                    Name="five centuries",Price = 10,Discount=0,Quantity=20,Tags="kids,european,male",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(4),
-                //    Name="long trousers",Price = 17,Discount=8,Quantity=23,Tags="ankara,african,male",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(4),
+                    Name="long trousers",Price = 17,Discount=8,Quantity=23,Tags="ankara,african,male",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(1),
-                //    Name="Jean trousers",Price = 13,Discount=6.1M,Quantity=14,Tags="ankara,african,male",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                   
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(1),
+                    Name="Jean trousers",Price = 13,Discount=6.1M,Quantity=14,Tags="ankara,african,male",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(2),
-                //    Name="desktop publishing",Price = 30,Discount=4.13M,Quantity=10,Tags="ankara,african,male",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(3),
-                //    Name="Baby shoes",Price = 15,Discount=14.3M,Quantity=10,Tags="baby,shoes,male,female",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(2),
+                    Name="desktop publishing",Price = 30,Discount=4.13M,Quantity=10,Tags="ankara,african,male",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(4),
-                //    Name="Fancy lace",Price = 26,Discount=0,Quantity=12,Tags="ankara,african,male",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",                },
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(3),
+                    Name="Baby shoes",Price = 15,Discount=14.3M,Quantity=10,Tags="baby,shoes,male,female",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(1),
-                //    Name="2 layer cotton",Price = 13,Discount=0,Quantity=5,Tags="ankara,african,male",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(4),
+                    Name="Fancy lace",Price = 26,Discount=0,Quantity=12,Tags="ankara,african,male",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(2),
-                //    Name="5 yard lace",Price = 20,Discount=5.3M,Quantity=10,Tags="lace,female,african,male",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(1),
+                    Name="2 layer cotton",Price = 13,Discount=0,Quantity=5,Tags="ankara,african,male",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(2),
-                //    Name="Beautiful yellow lace",Price = 10,Discount=10,Quantity=14,Tags="lace,african,male",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(2),
+                    Name="5 yard lace",Price = 20,Discount=5.3M,Quantity=10,Tags="lace,female,african,male",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(2),
-                //    Name="Green authentic lace",Price = 40,Discount=11M,Quantity=7,Tags="ankara,african,male",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(2),
+                    Name="Beautiful yellow lace",Price = 10,Discount=10,Quantity=14,Tags="lace,african,male",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(2),
-                //    Name="Original lace wear",Price = 20,Discount=4.5M,Quantity=11,Tags="ankara,african,male",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(2),
+                    Name="Green authentic lace",Price = 40,Discount=11M,Quantity=7,Tags="ankara,african,male",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(2),
-                //    Name="Blue ordinary lace",Price = 9,Discount=0,Quantity=13,Tags="ankara,african,male",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(2),
+                    Name="Original lace wear",Price = 20,Discount=4.5M,Quantity=11,Tags="ankara,african,male",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(2),
-                //    Name="Fancy brown lace",Price = 23,Discount=9.2M,Quantity=5,Tags="ankara,african,male",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(2),
+                    Name="Blue ordinary lace",Price = 9,Discount=0,Quantity=13,Tags="ankara,african,male",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(2),
-                //    Name="2 yards lacy suit",Price = 30,Discount=6.33M,Quantity=10,Tags="lace,african,female",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(2),
+                    Name="Fancy brown lace",Price = 23,Discount=9.2M,Quantity=5,Tags="ankara,african,male",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(2),
-                //    Name="Cotton lace",Price = 23,Discount=7.3M,Quantity=4,Tags="ankara,african,male",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(2),
+                    Name="2 yards lacy suit",Price = 30,Discount=6.33M,Quantity=10,Tags="lace,african,female",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(3),
-                //    Name="baby cap",Price = 10,Discount=8.5M,Quantity=15,Tags="baby,cap,male",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(2),
+                    Name="Cotton lace",Price = 23,Discount=7.3M,Quantity=4,Tags="ankara,african,male",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(3),
-                //    Name="Baby shoes",Price = 10,Discount=6.43M,Quantity=15,Tags="baby,female,male",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(3),
+                    Name="baby cap",Price = 10,Discount=8.5M,Quantity=15,Tags="baby,cap,male",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(3),
-                //    Name="Baby overall",Price = 14,Discount=14.3M,Quantity=7,Tags="baby,female,male",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(3),
+                    Name="Baby shoes",Price = 10,Discount=6.43M,Quantity=15,Tags="baby,female,male",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(3),
-                //    Name="Baby feeder",Price = 6,Discount=30,Quantity=10,Tags="baby",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(3),
+                    Name="Baby overall",Price = 14,Discount=14.3M,Quantity=7,Tags="baby,female,male",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(3),
-                //    Name="Green baby shoes",Price = 8,Discount=6.55M,Quantity=16,Tags="babywears,male",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(3),
+                    Name="Baby feeder",Price = 6,Discount=30,Quantity=10,Tags="baby",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(3),
-                //    Name="Red baby shorts",Price = 10,Discount=0.25M,Quantity=6,Tags="baby,babywears,male,female",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",                },
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(3),
+                    Name="Green baby shoes",Price = 8,Discount=6.55M,Quantity=16,Tags="babywears,male",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(3),
-                //    Name="Baby red top",Price = 7,Discount=0,Quantity=13,Tags="baby,babywears,male,female",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(3),
+                    Name="Red baby shorts",Price = 10,Discount=0.25M,Quantity=6,Tags="baby,babywears,male,female",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(3),
-                //    Name="Baby blue cap",Price = 34,Discount=0,Quantity=14,Tags="baby,babywears,male,female",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(3),
+                    Name="Baby red top",Price = 7,Discount=0,Quantity=13,Tags="baby,babywears,male,female",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(3),
-                //    Name="Baby layerd shoes",Price = 13,Discount=0,Quantity=14,Tags="ankara,african,male",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(3),
+                    Name="Baby blue cap",Price = 34,Discount=0,Quantity=14,Tags="baby,babywears,male,female",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(4),
-                //    Name="Custom made red dress",Price = 12,Discount=4.45M,Quantity=6,Tags="custommade",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(3),
+                    Name="Baby layerd shoes",Price = 13,Discount=0,Quantity=14,Tags="ankara,african,male",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(4),
-                //    Name="Custom made shoe",Price = 20,Discount=8.3M,Quantity=13,Tags="custommade",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(4),
+                    Name="Custom made red dress",Price = 12,Discount=4.45M,Quantity=6,Tags="custommade",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(4),
-                //    Name="Custom made blue attire",Price = 23,Discount=14.5M,Quantity=14,Tags="custommade",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(4),
+                    Name="Custom made shoe",Price = 20,Discount=8.3M,Quantity=13,Tags="custommade",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(1),
-                //    Name="Custom made berret",Price = 20,Discount=7.5M,Quantity=10,Tags="custommade",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(4),
+                    Name="Custom made blue attire",Price = 23,Discount=14.5M,Quantity=14,Tags="custommade",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(4),
-                //    Name="Custom made blue silk berret",Price = 20,Discount=4.5M,Quantity=10,Tags="custommade",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(1),
+                    Name="Custom made berret",Price = 20,Discount=7.5M,Quantity=10,Tags="custommade",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(4),
-                //    Name="Custom blue joggers",Price = 14,Discount=0,Quantity=7,Tags="custommade",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(4),
+                    Name="Custom made blue silk berret",Price = 20,Discount=4.5M,Quantity=10,Tags="custommade",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(4),
-                //    Name="Custom made red skirt",Price = 13,Discount=12.35M,Quantity=8,Tags="custommade",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(4),
+                    Name="Custom blue joggers",Price = 14,Discount=0,Quantity=7,Tags="custommade",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(4),
-                //    Name="Custom shoes",Price = 16,Discount=1.5M,Quantity=8,Tags="custommade",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(4),
+                    Name="Custom made red skirt",Price = 13,Discount=12.35M,Quantity=8,Tags="custommade",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(1),
-                //    Name="10 yards ankara",Price = 40,Discount=10.5M,Quantity=15,Tags="ankara,african,male",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(4),
+                    Name="Custom shoes",Price = 16,Discount=1.5M,Quantity=8,Tags="custommade",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(1),
-                //    Name="5 yards green ankara",Price = 24,Discount=3.9M,Quantity=13,Tags="ankara,african,male",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(1),
+                    Name="10 yards ankara",Price = 40,Discount=10.5M,Quantity=15,Tags="ankara,african,male",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(1),
-                //    Name="7 yards orange ankara",Price = 14,Discount=10,Quantity=9,Tags="ankara,african,male",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(1),
+                    Name="5 yards green ankara",Price = 24,Discount=3.9M,Quantity=13,Tags="ankara,african,male",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(2),
-                //    Name="Affordable jump suits",Price = 23,Discount=9.55M,Quantity=10,Tags="Lace",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(1),
+                    Name="7 yards orange ankara",Price = 14,Discount=10,Quantity=9,Tags="ankara,african,male",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(1),
-                //    Name="Baby velvet shoes",Price = 17,Discount=0,Quantity=8,Tags="Baby",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(2),
+                    Name="Affordable jump suits",Price = 23,Discount=9.55M,Quantity=10,Tags="Lace",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(1),
-                //    Name="5 yards ankara",Price = 26,Discount=0,Quantity=10,Tags="ankara,african,female",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(1),
+                    Name="Baby velvet shoes",Price = 17,Discount=0,Quantity=8,Tags="Baby",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(1),
-                //    Name="3 yards green ankara",Price = 22,Discount=0,Quantity=11,Tags="ankara,african,male",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(1),
+                    Name="5 yards ankara",Price = 26,Discount=0,Quantity=10,Tags="ankara,african,female",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(3),
-                //    Name="Baby blue and red overall",Price = 25,Discount=15.5M,Quantity=19,Tags="baby,babywears",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(1),
+                    Name="3 yards green ankara",Price = 22,Discount=0,Quantity=11,Tags="ankara,african,male",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(3),
-                //    Name="Baby feeder",Price = 5,Discount=7.3M,Quantity=10,Tags="baby",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(3),
+                    Name="Baby blue and red overall",Price = 25,Discount=15.5M,Quantity=19,Tags="baby,babywears",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(1),
-                //    Name="2 yards blue lace",Price = 20,Discount=7.75M,Quantity=10,Tags="lace,african",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(3),
+                    Name="Baby feeder",Price = 5,Discount=7.3M,Quantity=10,Tags="baby",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(1),
-                //    Name="2 yards red lace",Price = 19,Discount=12.5M,Quantity=13,Tags="lace,african",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(1),
+                    Name="2 yards blue lace",Price = 20,Discount=7.75M,Quantity=10,Tags="lace,african",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
+
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(1),
+                    Name="2 yards red lace",Price = 19,Discount=12.5M,Quantity=13,Tags="lace,african",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
             };
 
@@ -745,7 +745,7 @@ namespace DQueensFashion
                 //    context.SaveChanges();
                 //}
 
-                int productCount = 7;
+                int productCount = 52;
                 for (int i = 0; i < 5; i++)
                 {
 
@@ -769,83 +769,83 @@ namespace DQueensFashion
                     new ImageFile{ IsDeleted=false, DateCreated=DateTime.Now, DateModified=DateTime.Now,
                         ImagePath ="https://cdn.pixabay.com/photo/2018/01/11/09/39/woman-3075704_960_720.jpg",ProductId=rand.Next(1,productCount)},
 
-                    //new ImageFile{ IsDeleted=false, DateCreated=DateTime.Now, DateModified=DateTime.Now,
-                    //    ImagePath ="https://cdn.pixabay.com/photo/2018/01/13/19/39/fashion-3080644_960_720.jpg",ProductId=rand.Next(1,productCount)},
+                    new ImageFile{ IsDeleted=false, DateCreated=DateTime.Now, DateModified=DateTime.Now,
+                        ImagePath ="https://cdn.pixabay.com/photo/2018/01/13/19/39/fashion-3080644_960_720.jpg",ProductId=rand.Next(1,productCount)},
 
-                    //new ImageFile{ IsDeleted=false, DateCreated=DateTime.Now, DateModified=DateTime.Now,
-                    //    ImagePath ="https://cdn.pixabay.com/photo/2018/02/24/20/40/fashion-3179178__340.jpg",ProductId=rand.Next(1,productCount)},
+                    new ImageFile{ IsDeleted=false, DateCreated=DateTime.Now, DateModified=DateTime.Now,
+                        ImagePath ="https://cdn.pixabay.com/photo/2018/02/24/20/40/fashion-3179178__340.jpg",ProductId=rand.Next(1,productCount)},
 
-                    //new ImageFile{ IsDeleted=false, DateCreated=DateTime.Now, DateModified=DateTime.Now,
-                    //    ImagePath ="https://cdn.pixabay.com/photo/2014/08/08/20/55/worried-girl-413690__340.jpg",ProductId=rand.Next(1,productCount)},
+                    new ImageFile{ IsDeleted=false, DateCreated=DateTime.Now, DateModified=DateTime.Now,
+                        ImagePath ="https://cdn.pixabay.com/photo/2014/08/08/20/55/worried-girl-413690__340.jpg",ProductId=rand.Next(1,productCount)},
 
-                    //new ImageFile{ IsDeleted=false, DateCreated=DateTime.Now, DateModified=DateTime.Now,
-                    //    ImagePath ="https://cdn.pixabay.com/photo/2016/06/29/04/17/wedding-dresses-1485984__340.jpg",ProductId=rand.Next(1,productCount)},
+                    new ImageFile{ IsDeleted=false, DateCreated=DateTime.Now, DateModified=DateTime.Now,
+                        ImagePath ="https://cdn.pixabay.com/photo/2016/06/29/04/17/wedding-dresses-1485984__340.jpg",ProductId=rand.Next(1,productCount)},
 
-                    //new ImageFile{ IsDeleted=false, DateCreated=DateTime.Now, DateModified=DateTime.Now,
-                    //    ImagePath ="https://cdn.pixabay.com/photo/2016/06/29/08/41/wedding-dresses-1486256__340.jpg",ProductId=rand.Next(1,productCount)},
+                    new ImageFile{ IsDeleted=false, DateCreated=DateTime.Now, DateModified=DateTime.Now,
+                        ImagePath ="https://cdn.pixabay.com/photo/2016/06/29/08/41/wedding-dresses-1486256__340.jpg",ProductId=rand.Next(1,productCount)},
 
-                    //new ImageFile{ IsDeleted=false, DateCreated=DateTime.Now, DateModified=DateTime.Now,
-                    //    ImagePath ="https://cdn.pixabay.com/photo/2016/01/07/04/25/girl-1125318__340.jpg",ProductId=rand.Next(1,productCount)},
+                    new ImageFile{ IsDeleted=false, DateCreated=DateTime.Now, DateModified=DateTime.Now,
+                        ImagePath ="https://cdn.pixabay.com/photo/2016/01/07/04/25/girl-1125318__340.jpg",ProductId=rand.Next(1,productCount)},
 
-                    //new ImageFile{ IsDeleted=false, DateCreated=DateTime.Now, DateModified=DateTime.Now,
-                    //    ImagePath ="https://cdn.pixabay.com/photo/2016/11/14/04/57/young-1822656__340.jpg",ProductId=rand.Next(1,productCount)},
+                    new ImageFile{ IsDeleted=false, DateCreated=DateTime.Now, DateModified=DateTime.Now,
+                        ImagePath ="https://cdn.pixabay.com/photo/2016/11/14/04/57/young-1822656__340.jpg",ProductId=rand.Next(1,productCount)},
 
-                    //new ImageFile{ IsDeleted=false, DateCreated=DateTime.Now, DateModified=DateTime.Now,
-                    //    ImagePath ="https://media.istockphoto.com/photos/buckle-up-youre-about-to-get-married-picture-id1173486515?b=1&k=6&m=1173486515&s=170667a&w=0&h=LsjHYcxJ3dMtWMGes4ygxeROKZsXMxE-Dm_CW23yOdA=",ProductId=rand.Next(1,productCount)},
+                    new ImageFile{ IsDeleted=false, DateCreated=DateTime.Now, DateModified=DateTime.Now,
+                        ImagePath ="https://media.istockphoto.com/photos/buckle-up-youre-about-to-get-married-picture-id1173486515?b=1&k=6&m=1173486515&s=170667a&w=0&h=LsjHYcxJ3dMtWMGes4ygxeROKZsXMxE-Dm_CW23yOdA=",ProductId=rand.Next(1,productCount)},
 
-                    //new ImageFile{ IsDeleted=false, DateCreated=DateTime.Now, DateModified=DateTime.Now,
-                    //    ImagePath ="https://cdn.pixabay.com/photo/2016/06/29/08/42/wedding-dresses-1486260__340.jpg",ProductId=rand.Next(1,productCount)},
+                    new ImageFile{ IsDeleted=false, DateCreated=DateTime.Now, DateModified=DateTime.Now,
+                        ImagePath ="https://cdn.pixabay.com/photo/2016/06/29/08/42/wedding-dresses-1486260__340.jpg",ProductId=rand.Next(1,productCount)},
 
-                    //new ImageFile{ IsDeleted=false, DateCreated=DateTime.Now, DateModified=DateTime.Now,
-                    //    ImagePath ="https://cdn.pixabay.com/photo/2018/01/11/09/52/three-3075752__340.jpg",ProductId=rand.Next(1,productCount)},
+                    new ImageFile{ IsDeleted=false, DateCreated=DateTime.Now, DateModified=DateTime.Now,
+                        ImagePath ="https://cdn.pixabay.com/photo/2018/01/11/09/52/three-3075752__340.jpg",ProductId=rand.Next(1,productCount)},
 
-                    //new ImageFile{ IsDeleted=false, DateCreated=DateTime.Now, DateModified=DateTime.Now,
-                    //    ImagePath ="https://cdn.pixabay.com/photo/2018/01/11/09/52/three-3075752__340.jpg",ProductId=rand.Next(1,productCount)},
+                    new ImageFile{ IsDeleted=false, DateCreated=DateTime.Now, DateModified=DateTime.Now,
+                        ImagePath ="https://cdn.pixabay.com/photo/2018/01/11/09/52/three-3075752__340.jpg",ProductId=rand.Next(1,productCount)},
 
-                    //new ImageFile{ IsDeleted=false, DateCreated=DateTime.Now, DateModified=DateTime.Now,
-                    //    ImagePath ="https://cdn.pixabay.com/photo/2018/02/24/20/41/beautiful-3179182__340.jpg",ProductId=rand.Next(1,productCount)},
+                    new ImageFile{ IsDeleted=false, DateCreated=DateTime.Now, DateModified=DateTime.Now,
+                        ImagePath ="https://cdn.pixabay.com/photo/2018/02/24/20/41/beautiful-3179182__340.jpg",ProductId=rand.Next(1,productCount)},
 
-                    //new ImageFile{ IsDeleted=false, DateCreated=DateTime.Now, DateModified=DateTime.Now,
-                    //    ImagePath ="https://cdn.pixabay.com/photo/2015/11/07/11/46/fashion-1031469__340.jpg",ProductId=rand.Next(1,productCount)},
+                    new ImageFile{ IsDeleted=false, DateCreated=DateTime.Now, DateModified=DateTime.Now,
+                        ImagePath ="https://cdn.pixabay.com/photo/2015/11/07/11/46/fashion-1031469__340.jpg",ProductId=rand.Next(1,productCount)},
 
-                    //new ImageFile{ IsDeleted=false, DateCreated=DateTime.Now, DateModified=DateTime.Now,
-                    //    ImagePath ="https://cdn.pixabay.com/photo/2016/11/12/20/00/under-water-1819586__340.jpg",ProductId=rand.Next(1,productCount)},
+                    new ImageFile{ IsDeleted=false, DateCreated=DateTime.Now, DateModified=DateTime.Now,
+                        ImagePath ="https://cdn.pixabay.com/photo/2016/11/12/20/00/under-water-1819586__340.jpg",ProductId=rand.Next(1,productCount)},
 
-                    //new ImageFile{ IsDeleted=false, DateCreated=DateTime.Now, DateModified=DateTime.Now,
-                    //    ImagePath ="https://cdn.pixabay.com/photo/2015/01/12/10/44/portrait-597173__340.jpg",ProductId=rand.Next(1,productCount)},
+                    new ImageFile{ IsDeleted=false, DateCreated=DateTime.Now, DateModified=DateTime.Now,
+                        ImagePath ="https://cdn.pixabay.com/photo/2015/01/12/10/44/portrait-597173__340.jpg",ProductId=rand.Next(1,productCount)},
 
-                    //new ImageFile{ IsDeleted=false, DateCreated=DateTime.Now, DateModified=DateTime.Now,
-                    //    ImagePath ="https://cdn.pixabay.com/photo/2016/11/19/20/17/catwalk-1840941__340.jpg",ProductId=rand.Next(1,productCount)},
+                    new ImageFile{ IsDeleted=false, DateCreated=DateTime.Now, DateModified=DateTime.Now,
+                        ImagePath ="https://cdn.pixabay.com/photo/2016/11/19/20/17/catwalk-1840941__340.jpg",ProductId=rand.Next(1,productCount)},
 
-                    //new ImageFile{ IsDeleted=false, DateCreated=DateTime.Now, DateModified=DateTime.Now,
-                    //    ImagePath ="https://cdn.pixabay.com/photo/2016/11/14/03/30/bride-1822488__340.jpg",ProductId=rand.Next(1,productCount)},
+                    new ImageFile{ IsDeleted=false, DateCreated=DateTime.Now, DateModified=DateTime.Now,
+                        ImagePath ="https://cdn.pixabay.com/photo/2016/11/14/03/30/bride-1822488__340.jpg",ProductId=rand.Next(1,productCount)},
 
-                    //new ImageFile{ IsDeleted=false, DateCreated=DateTime.Now, DateModified=DateTime.Now,
-                    //    ImagePath ="https://cdn.pixabay.com/photo/2016/06/29/08/38/wedding-dresses-1486242__340.jpg",ProductId=rand.Next(1,productCount)},
+                    new ImageFile{ IsDeleted=false, DateCreated=DateTime.Now, DateModified=DateTime.Now,
+                        ImagePath ="https://cdn.pixabay.com/photo/2016/06/29/08/38/wedding-dresses-1486242__340.jpg",ProductId=rand.Next(1,productCount)},
 
-                    //new ImageFile{ IsDeleted=false, DateCreated=DateTime.Now, DateModified=DateTime.Now,
-                    //    ImagePath ="https://cdn.pixabay.com/photo/2015/09/02/12/28/fashion-918446__340.jpg",ProductId=rand.Next(1,productCount)},
+                    new ImageFile{ IsDeleted=false, DateCreated=DateTime.Now, DateModified=DateTime.Now,
+                        ImagePath ="https://cdn.pixabay.com/photo/2015/09/02/12/28/fashion-918446__340.jpg",ProductId=rand.Next(1,productCount)},
 
-                    //new ImageFile{ IsDeleted=false, DateCreated=DateTime.Now, DateModified=DateTime.Now,
-                    //    ImagePath ="https://cdn.pixabay.com/photo/2020/02/05/11/06/portrait-4820889__340.jpg",ProductId=rand.Next(1,productCount)},
+                    new ImageFile{ IsDeleted=false, DateCreated=DateTime.Now, DateModified=DateTime.Now,
+                        ImagePath ="https://cdn.pixabay.com/photo/2020/02/05/11/06/portrait-4820889__340.jpg",ProductId=rand.Next(1,productCount)},
 
-                    //new ImageFile{ IsDeleted=false, DateCreated=DateTime.Now, DateModified=DateTime.Now,
-                    //    ImagePath ="https://cdn.pixabay.com/photo/2017/03/01/05/43/pink-shoes-2107618__340.jpg",ProductId=rand.Next(1,productCount)},
+                    new ImageFile{ IsDeleted=false, DateCreated=DateTime.Now, DateModified=DateTime.Now,
+                        ImagePath ="https://cdn.pixabay.com/photo/2017/03/01/05/43/pink-shoes-2107618__340.jpg",ProductId=rand.Next(1,productCount)},
 
-                    //new ImageFile{ IsDeleted=false, DateCreated=DateTime.Now, DateModified=DateTime.Now,
-                    //    ImagePath ="https://cdn.pixabay.com/photo/2017/01/10/20/34/dress-1970144__340.jpg",ProductId=rand.Next(1,productCount)},
+                    new ImageFile{ IsDeleted=false, DateCreated=DateTime.Now, DateModified=DateTime.Now,
+                        ImagePath ="https://cdn.pixabay.com/photo/2017/01/10/20/34/dress-1970144__340.jpg",ProductId=rand.Next(1,productCount)},
 
-                    //new ImageFile{ IsDeleted=false, DateCreated=DateTime.Now, DateModified=DateTime.Now,
-                    //    ImagePath ="https://cdn.pixabay.com/photo/2015/03/26/09/52/dress-690496__340.jpg",ProductId=rand.Next(1,productCount)},
+                    new ImageFile{ IsDeleted=false, DateCreated=DateTime.Now, DateModified=DateTime.Now,
+                        ImagePath ="https://cdn.pixabay.com/photo/2015/03/26/09/52/dress-690496__340.jpg",ProductId=rand.Next(1,productCount)},
 
-                    //new ImageFile{ IsDeleted=false, DateCreated=DateTime.Now, DateModified=DateTime.Now,
-                    //    ImagePath ="https://cdn.pixabay.com/photo/2017/06/15/11/31/leg-2405061__340.jpg",ProductId=rand.Next(1,productCount)},
+                    new ImageFile{ IsDeleted=false, DateCreated=DateTime.Now, DateModified=DateTime.Now,
+                        ImagePath ="https://cdn.pixabay.com/photo/2017/06/15/11/31/leg-2405061__340.jpg",ProductId=rand.Next(1,productCount)},
 
-                    //new ImageFile{ IsDeleted=false, DateCreated=DateTime.Now, DateModified=DateTime.Now,
-                    //    ImagePath ="https://cdn.pixabay.com/photo/2017/06/15/11/31/leg-2405061__340.jpg",ProductId=rand.Next(1,productCount)},
+                    new ImageFile{ IsDeleted=false, DateCreated=DateTime.Now, DateModified=DateTime.Now,
+                        ImagePath ="https://cdn.pixabay.com/photo/2017/06/15/11/31/leg-2405061__340.jpg",ProductId=rand.Next(1,productCount)},
 
-                    //new ImageFile{ IsDeleted=false, DateCreated=DateTime.Now, DateModified=DateTime.Now,
-                    //    ImagePath ="https://cdn.pixabay.com/photo/2017/08/07/13/13/black-and-white-2603717__340.jpg",ProductId=rand.Next(1,productCount)},
+                    new ImageFile{ IsDeleted=false, DateCreated=DateTime.Now, DateModified=DateTime.Now,
+                        ImagePath ="https://cdn.pixabay.com/photo/2017/08/07/13/13/black-and-white-2603717__340.jpg",ProductId=rand.Next(1,productCount)},
                 };
                     images.ForEach(image => context.Image.Add(image));
 

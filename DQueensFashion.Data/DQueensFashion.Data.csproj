@@ -153,8 +153,9 @@
     <Compile Include="Implementation\UnitOfWork.cs" />
     <Compile Include="Implementation\WishListRepo.cs" />
     <Compile Include="Migrations\202007021740229_new.cs" />
-    <Compile Include="Migrations\202007021740229_new.Designer.cs">
-      <DependentUpon>202007021740229_new.cs</DependentUpon>
+    <Compile Include="Migrations\202007030721022_inital.cs" />
+    <Compile Include="Migrations\202007030721022_inital.Designer.cs">
+      <DependentUpon>202007030721022_inital.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -172,6 +173,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202007021740229_new.resx">
       <DependentUpon>202007021740229_new.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007030721022_inital.resx">
+      <DependentUpon>202007030721022_inital.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

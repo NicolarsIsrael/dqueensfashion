@@ -84,6 +84,8 @@ namespace DQueensFashion.Controllers
                 Categories = categories,
                 BestSellingProducts = products.OrderByDescending(p => p.NumberOfOrders)
                                     .Where(p => p.Quantity > 0).Take(4),
+                BestDealsProducts = products.OrderByDescending(p=>p.Discount)
+                                    .Where(p=>p.Quantity>0).Take(8),
             };
 
             return View(homeIndex);
