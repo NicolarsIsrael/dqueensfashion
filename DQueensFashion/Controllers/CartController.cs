@@ -259,7 +259,7 @@ namespace DQueensFashion.Controllers
         [Authorize(Roles = AppConstant.CustomerRole)]
         public ActionResult CheckOut()
         {
-            //List<Cart> cart = (List<Cart>)Session["cart"];
+            List<Cart> cart = (List<Cart>)Session["cart"];
             ViewCartViewModel viewCart = new ViewCartViewModel()
             {
                 Count = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.Quantity),
@@ -267,16 +267,18 @@ namespace DQueensFashion.Controllers
                 SubTotal = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.TotalPrice),
             };
 
-            foreach(var cart in viewCart.Carts)
+            foreach(var c in cart)
             {
-                var product = _productService.GetProductById(cart.Product.Id);
-                cart.InitialPrice = product.Price;
-                cart.Discount = product.Discount;
-                cart.UnitPrice = product.SubTotal;
-                cart.TotalPrice = product.SubTotal * cart.Quantity;
+                var product = _productService.GetProductById(c.Product.Id);
+                c.InitialPrice = product.Price;
+                c.Discount = product.Discount;
+                c.UnitPrice = product.SubTotal;
+                c.TotalPrice = product.SubTotal * c.Quantity;
+                c.Product = product;
             }
 
             viewCart.SubTotal = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.TotalPrice);
+            Session["cart"] = cart;
 
             if (viewCart.Count < 1)
                 return RedirectToAction(nameof(ViewCart));
