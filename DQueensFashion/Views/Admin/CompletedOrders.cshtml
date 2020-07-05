@@ -42,7 +42,7 @@
         $.ajax({
             url: '/Admin/SearchCompletedOrders',
             dataType: "html",
-            data: { searchString: search.value },
+            data: { query: search.value },
             success: function (result) {
 
                 $("#completedOrdersTable").html(result);

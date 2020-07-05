@@ -61,7 +61,7 @@ namespace DQueensFashion.Controllers
             return View(categories);
         }
         
-        public ActionResult SearchCategories(string searchString)
+        public ActionResult SearchCategories(string query)
         {
             IEnumerable<ViewCategoryViewModel> categories = _categoryService.GetAllCategories()
                .Select(c => new ViewCategoryViewModel()
@@ -70,9 +70,9 @@ namespace DQueensFashion.Controllers
                    Name = c.Name,
                }).OrderBy(c => c.Name);
 
-            if (!string.IsNullOrEmpty(searchString))
-                categories = categories.Where(c => c.Name.ToLower().Contains(searchString.ToLower())
-                || string.Compare(c.Id.ToString(),searchString,true)==0
+            if (!string.IsNullOrEmpty(query))
+                categories = categories.Where(c => c.Name.ToLower().Contains(query.ToLower())
+                || string.Compare(c.Id.ToString(), query, true)==0
                 );
 
             return PartialView("_categoriesTable",categories);
@@ -191,7 +191,7 @@ namespace DQueensFashion.Controllers
             return View(products);
         }
 
-        public ActionResult SearchProducts(string searchString)
+        public ActionResult SearchProducts(string query)
         {
             var allImages = _imageService.GetAllImageFiles().ToList();
 
@@ -212,11 +212,11 @@ namespace DQueensFashion.Controllers
                   DateCreatedString = p.DateCreated.ToString("dd/MMM/yyyy\r\nhh:mm:ss"),
               }).OrderByDescending(p => p.DateCreated).ToList();
 
-            if (!string.IsNullOrEmpty(searchString))
-                products = products.Where(p => p.Name.ToLower().Contains(searchString.ToLower())
-                || p.Category.ToLower().Contains(searchString.ToLower())
-                || string.Compare(p.Quantity.ToString(), searchString, true) == 0
-                || p.Price.ToString().Contains(searchString)
+            if (!string.IsNullOrEmpty(query))
+                products = products.Where(p => p.Name.ToLower().Contains(query.ToLower())
+                || p.Category.ToLower().Contains(query.ToLower())
+                || string.Compare(p.Quantity.ToString(), query, true) == 0
+                || p.Price.ToString().Contains(query)
                 );
 
             return PartialView("_productsTable",products);
@@ -678,7 +678,7 @@ namespace DQueensFashion.Controllers
             return View(orderModel);
         }
 
-        public ActionResult SearchOrders(string searchString)
+        public ActionResult SearchOrders(string query)
         {
             
             IEnumerable<ViewOrderViewModel> orderModel = _orderService.GetAllOrders()
@@ -702,11 +702,11 @@ namespace DQueensFashion.Controllers
                     LineItemConcatenatedString = string.Join(",",order.LineItems.Select(x=>x.Product.Name)),
                 }).OrderByDescending(order => order.DateCreated).ToList();
 
-            if (!string.IsNullOrEmpty(searchString))
-                orderModel = orderModel.Where(order => order.CustomerName.ToLower().Contains(searchString.ToLower())
-                || order.LineItemConcatenatedString.ToLower().Contains(searchString.ToLower())
-                || order.OrderStatus.ToString().ToLower().Contains(searchString.ToLower())
-                || (string.Compare(order.OrderId.ToString(),searchString,true)==0)
+            if (!string.IsNullOrEmpty(query))
+                orderModel = orderModel.Where(order => order.CustomerName.ToLower().Contains(query.ToLower())
+                || order.LineItemConcatenatedString.ToLower().Contains(query.ToLower())
+                || order.OrderStatus.ToString().ToLower().Contains(query.ToLower())
+                || (string.Compare(order.OrderId.ToString(), query, true)==0)
                 ).ToList();
 
             return PartialView("_ordersTable",orderModel);
@@ -737,7 +737,7 @@ namespace DQueensFashion.Controllers
             return View(orderModel);
         }
 
-        public ActionResult SearchProcessingOrders(string searchString)
+        public ActionResult SearchProcessingOrders(string query)
         {
             try
             {
@@ -762,10 +762,10 @@ namespace DQueensFashion.Controllers
                            DateModified = order.DateModified,
                        }).OrderByDescending(order => order.DateModified).ToList();
 
-                if (!string.IsNullOrEmpty(searchString))
-                    orderModel = orderModel.Where(order => order.CustomerName.ToLower().Contains(searchString.ToLower())
-                    || order.LineItemConcatenatedString.ToLower().Contains(searchString.ToLower())
-                    || (string.Compare(order.OrderId.ToString(), searchString, true) == 0)
+                if (!string.IsNullOrEmpty(query))
+                    orderModel = orderModel.Where(order => order.CustomerName.ToLower().Contains(query.ToLower())
+                    || order.LineItemConcatenatedString.ToLower().Contains(query.ToLower())
+                    || (string.Compare(order.OrderId.ToString(), query, true) == 0)
                     ).ToList();
 
                 
@@ -803,7 +803,7 @@ namespace DQueensFashion.Controllers
             return View(orderModel);
         }
 
-        public ActionResult SearchInTransitOrders(string searchString)
+        public ActionResult SearchInTransitOrders(string query)
         {
             IEnumerable<ViewOrderViewModel> orderModel = _orderService.GetInTransitOrders()
                .Select(order => new ViewOrderViewModel()
@@ -828,10 +828,10 @@ namespace DQueensFashion.Controllers
 
 
 
-            if (!string.IsNullOrEmpty(searchString))
-                orderModel = orderModel.Where(order => order.CustomerName.ToLower().Contains(searchString.ToLower())
-                || order.LineItemConcatenatedString.ToLower().Contains(searchString.ToLower())
-                || (string.Compare(order.OrderId.ToString(), searchString, true) == 0)
+            if (!string.IsNullOrEmpty(query))
+                orderModel = orderModel.Where(order => order.CustomerName.ToLower().Contains(query.ToLower())
+                || order.LineItemConcatenatedString.ToLower().Contains(query.ToLower())
+                || (string.Compare(order.OrderId.ToString(), query, true) == 0)
                 ).ToList();
 
             return PartialView("_inTransitOrderTable", orderModel);
@@ -862,7 +862,7 @@ namespace DQueensFashion.Controllers
             return View(orderModel);
         }
 
-        public ActionResult SearchDeliveredOrders(string searchString)
+        public ActionResult SearchDeliveredOrders(string query)
         {
 
             IEnumerable<ViewOrderViewModel> orderModel = _orderService.GetDeliveredOrders()
@@ -888,10 +888,10 @@ namespace DQueensFashion.Controllers
 
 
 
-            if (!string.IsNullOrEmpty(searchString))
-                orderModel = orderModel.Where(order => order.CustomerName.ToLower().Contains(searchString.ToLower())
-                || order.LineItemConcatenatedString.ToLower().Contains(searchString.ToLower())
-                || (string.Compare(order.OrderId.ToString(), searchString, true) == 0)
+            if (!string.IsNullOrEmpty(query))
+                orderModel = orderModel.Where(order => order.CustomerName.ToLower().Contains(query.ToLower())
+                || order.LineItemConcatenatedString.ToLower().Contains(query.ToLower())
+                || (string.Compare(order.OrderId.ToString(), query, true) == 0)
                 ).ToList();
 
             return PartialView("_deliveredOrdersTable", orderModel);
@@ -922,7 +922,7 @@ namespace DQueensFashion.Controllers
             return View(orderModel);
         }
 
-        public ActionResult SearchReturnedOrders(string searchString)
+        public ActionResult SearchReturnedOrders(string query)
         {
             IEnumerable<ViewOrderViewModel> orderModel = _orderService.GetReturnedOrders()
                 .Select(order => new ViewOrderViewModel()
@@ -947,10 +947,10 @@ namespace DQueensFashion.Controllers
 
 
 
-            if (!string.IsNullOrEmpty(searchString))
-                orderModel = orderModel.Where(order => order.CustomerName.ToLower().Contains(searchString.ToLower())
-                || order.LineItemConcatenatedString.ToLower().Contains(searchString.ToLower())
-                || (string.Compare(order.OrderId.ToString(), searchString, true) == 0)
+            if (!string.IsNullOrEmpty(query))
+                orderModel = orderModel.Where(order => order.CustomerName.ToLower().Contains(query.ToLower())
+                || order.LineItemConcatenatedString.ToLower().Contains(query.ToLower())
+                || (string.Compare(order.OrderId.ToString(), query, true) == 0)
                 ).ToList();
 
             return PartialView("_returnedOrdersTable", orderModel);
@@ -981,7 +981,7 @@ namespace DQueensFashion.Controllers
             return View(orderModel);
         }
 
-        public ActionResult SearchDeletedOrders(string searchString)
+        public ActionResult SearchDeletedOrders(string query)
         {
             IEnumerable<ViewOrderViewModel> orderModel = _orderService.GetDeletedOrders()
               .Select(order => new ViewOrderViewModel()
@@ -1006,10 +1006,10 @@ namespace DQueensFashion.Controllers
 
 
 
-            if (!string.IsNullOrEmpty(searchString))
-                orderModel = orderModel.Where(order => order.CustomerName.ToLower().Contains(searchString.ToLower())
-                || order.LineItemConcatenatedString.ToLower().Contains(searchString.ToLower())
-                || (string.Compare(order.OrderId.ToString(), searchString, true) == 0)
+            if (!string.IsNullOrEmpty(query))
+                orderModel = orderModel.Where(order => order.CustomerName.ToLower().Contains(query.ToLower())
+                || order.LineItemConcatenatedString.ToLower().Contains(query.ToLower())
+                || (string.Compare(order.OrderId.ToString(), query, true) == 0)
                 ).ToList();
 
             return PartialView("_deletedOrdersTable", orderModel);
@@ -1040,7 +1040,7 @@ namespace DQueensFashion.Controllers
             return View(orderModel);
         }
 
-        public ActionResult SearchCompletedOrders(string searchString)
+        public ActionResult SearchCompletedOrders(string query)
         {
             IEnumerable<ViewOrderViewModel> orderModel = _orderService.GetCompletedOrders()
                .Select(order => new ViewOrderViewModel()
@@ -1065,10 +1065,10 @@ namespace DQueensFashion.Controllers
 
 
 
-            if (!string.IsNullOrEmpty(searchString))
-                orderModel = orderModel.Where(order => order.CustomerName.ToLower().Contains(searchString.ToLower())
-                || order.LineItemConcatenatedString.ToLower().Contains(searchString.ToLower())
-                || (string.Compare(order.OrderId.ToString(), searchString, true) == 0)
+            if (!string.IsNullOrEmpty(query))
+                orderModel = orderModel.Where(order => order.CustomerName.ToLower().Contains(query.ToLower())
+                || order.LineItemConcatenatedString.ToLower().Contains(query.ToLower())
+                || (string.Compare(order.OrderId.ToString(), query, true) == 0)
                 ).ToList();
 
             return PartialView("_completedOrdersTable", orderModel);
@@ -1172,7 +1172,7 @@ namespace DQueensFashion.Controllers
             return View(allCustomers);
         }
 
-        public ActionResult SearchCustomers(string searchString)
+        public ActionResult SearchCustomers(string query)
         {
             IEnumerable<CustomerViewModel> allCustomers = _customerService.GetAllCustomers()
                .Select(c => new CustomerViewModel
@@ -1182,8 +1182,8 @@ namespace DQueensFashion.Controllers
                    TotalCustomerOrders = _orderService.GetAllOrdersForCustomer(c.Id).Count()
                }).ToList();
 
-            if (!string.IsNullOrEmpty(searchString))
-                allCustomers = allCustomers.Where(c => c.CustomerEmail.ToLower().Contains(searchString.ToLower()));
+            if (!string.IsNullOrEmpty(query))
+                allCustomers = allCustomers.Where(c => c.CustomerEmail.ToLower().Contains(query.ToLower()));
 
             return PartialView("_customersTable", allCustomers);
 

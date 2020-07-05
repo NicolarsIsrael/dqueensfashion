@@ -43,7 +43,7 @@
         $.ajax({
             url: '/Customer/SearchWishList',
             dataType: "html",
-            data: { searchString: wishListSearch.value },
+            data: { query: wishListSearch.value },
             success: function (result) {
 
                 $("#wishlistTable").html(result);
@@ -61,7 +61,7 @@
             $.ajax({
                 url: '/Customer/removefromwishlist/',
                 dataType: "html",
-                data: { id: wishlistId, searchString: wishListSearch.value },
+                data: { id: wishlistId, query: wishListSearch.value },
                 success: function (result) {
                     $("#wishlistTable").html(result);
                 },

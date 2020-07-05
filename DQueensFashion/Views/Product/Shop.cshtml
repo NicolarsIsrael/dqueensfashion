@@ -48,6 +48,7 @@
 
     .filter-btn {
         border: none;
+        border-radius:0;
     }
 
         .filter-btn:active,
@@ -61,15 +62,16 @@
 
 <div class="container-fluid body-content">
     <div class="row">
-
         <div class="col-12">
             <div class="container">
-                <div class="row">
+                <div class="row" style="border:1px solid #a6adad;padding:15px;margin-bottom:15px">
+
                     <div class="col-md-4 p-1">
-                        <input type="text" class="form-control-sm" value="@ViewBag.Query" id="searchString" placeholder="search by name, category, tags" style="width:100%"/>
+                        <input type="text" class="form-control-sm filter-input" value="@ViewBag.Query" id="query"
+                               placeholder="search by name, category, tags" style="width:100%;" />
                     </div>
                     <div class="col-md-3 col-6 p-1">
-                        <select class="form-control-sm col-12" id="categoryId">
+                        <select class="form-control-sm col-12 filter-input" id="categoryId">
                             <option value="0">Category</option>
                             <option value="0">All</option>
                             @foreach (var category in Model.Categories)
@@ -79,7 +81,7 @@
                         </select>
                     </div>
                     <div class="col-md-3 col-6 p-1">
-                        <select class="form-control-sm col-12" id="sortString">
+                        <select class="form-control-sm col-12 filter-input" id="sortString">
                             <option value="0">Sort by</option>
 
                             @if (ViewBag.BestDealsSelected != null)
@@ -113,7 +115,6 @@
                         <button class="btn btn-sm btn-block filter-btn" onclick="SearchProduct()" id="btnFilter" style="background-color:#96157a;color:white;width:100%">FILTER <img src="~/Content/Images/filter.svg" /></button>
                     </div>
                 </div>
-                <hr />
             </div>
         </div>
         <div class="col-12">
@@ -129,7 +130,7 @@
 
 <script>
 
-    var _searchString = document.getElementById("searchString");
+    var _query = document.getElementById("query");
     var _sortString = document.getElementById("sortString");
     var _categoryId = document.getElementById("categoryId");
 
@@ -139,7 +140,7 @@
         $.ajax({
             url: '/product/searchproduct',
             dataType: "html",
-            data: { searchString: _searchString.value, sort: _sortString.value, categoryId: _categoryId.value },
+            data: { query: _query.value, sort: _sortString.value, categoryId: _categoryId.value },
             success: function (result) {
                 $("#productsList").html(result);
             },
@@ -157,7 +158,7 @@
         $.ajax({
             url: '/product/ProductPagination',
             dataType: "html",
-            data: { searchString: _searchString.value, sort: _sortString.value, categoryId: _categoryId.value, pageNumber: pageNumber },
+            data: { query: _query.value, sort: _sortString.value, categoryId: _categoryId.value, pageNumber: pageNumber },
             success: function (result) {
                 $("#productsList").html(result);
                 $(window).scrollTop(0);
@@ -171,3 +172,13 @@
 
 </script>
 
+<style>
+    .filter-input{
+        border:0;border-bottom:1px solid #a6adad;border-radius:0;
+    }
+
+    .filter-input:focus{
+        border:0 !important;border-bottom:1px solid #a6adad;border-radius:0 !important;
+        outline:none;
+    }
+</style>

@@ -90,7 +90,7 @@ namespace DQueensFashion.Controllers
             return View(wishLists);
         }
 
-        public ActionResult SearchWishList(string searchString)
+        public ActionResult SearchWishList(string query)
         {
             Customer customer = GetLoggedInCustomer();
             if (customer == null)
@@ -108,13 +108,13 @@ namespace DQueensFashion.Controllers
                     ProductPrice = w.ProductPrice,
                 }).ToList();
 
-            if (!string.IsNullOrEmpty(searchString))
-                wishLists = wishLists.Where(w => w.ProductName.ToLower().Contains(searchString.ToLower()));
+            if (!string.IsNullOrEmpty(query))
+                wishLists = wishLists.Where(w => w.ProductName.ToLower().Contains(query.ToLower()));
 
             return PartialView("_wishlistTable",wishLists);
         }
 
-        public ActionResult RemoveFromWishList(int id, string searchString)
+        public ActionResult RemoveFromWishList(int id, string query)
         {
             try
             {
@@ -140,8 +140,8 @@ namespace DQueensFashion.Controllers
                         WishListId = w.Id,
                     }).ToList();
 
-                if (!string.IsNullOrEmpty(searchString))
-                    wishLists = wishLists.Where(w => w.ProductName.ToLower().Contains(searchString.ToLower()));
+                if (!string.IsNullOrEmpty(query))
+                    wishLists = wishLists.Where(w => w.ProductName.ToLower().Contains(query.ToLower()));
 
                 return PartialView("_wishlistTable", wishLists);
             }
@@ -181,7 +181,7 @@ namespace DQueensFashion.Controllers
             return View(orderModel);
         }
 
-        public ActionResult SearchOrders(string searchString)
+        public ActionResult SearchOrders(string query)
         {
             Customer customer = GetLoggedInCustomer();
             if (customer == null)
@@ -207,10 +207,10 @@ namespace DQueensFashion.Controllers
                     LineItemConcatenatedString = string.Join(",", order.LineItems.Select(x => x.Product.Name)),
                 }).OrderByDescending(order => order.DateCreated).ToList();
 
-            if (!string.IsNullOrEmpty(searchString))
-                orderModel = orderModel.Where(order => order.LineItemConcatenatedString.ToLower().Contains(searchString.ToLower())
-                || order.OrderStatus.ToString().ToLower().Contains(searchString.ToLower())
-                || (string.Compare(order.OrderId.ToString(), searchString, true) == 0)
+            if (!string.IsNullOrEmpty(query))
+                orderModel = orderModel.Where(order => order.LineItemConcatenatedString.ToLower().Contains(query.ToLower())
+                || order.OrderStatus.ToString().ToLower().Contains(query.ToLower())
+                || (string.Compare(order.OrderId.ToString(), query, true) == 0)
                 ).ToList();
 
 

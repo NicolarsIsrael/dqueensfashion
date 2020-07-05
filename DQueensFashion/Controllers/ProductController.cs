@@ -128,18 +128,18 @@ namespace DQueensFashion.Controllers
             return View(productIndex);
         }
 
-        public ActionResult SearchProduct(string searchString, int sort, int categoryId=0)
+        public ActionResult SearchProduct(string query, int sort, int categoryId=0)
         {
             try
             {
                 var allImages = _imageService.GetAllImageFiles();
 
                 IEnumerable<Product> _products = _productService.GetAllProducts().ToList();
-                if (!string.IsNullOrEmpty(searchString))
-                    _products = _products.Where(p => p.Name.ToLower().Contains(searchString.ToLower())
-                    || p.Tags.ToLower().Contains(searchString.ToLower())
-                    || p.Tags.ToLower().Contains(searchString.ToLower())
-                    || p.Description.ToLower().Contains(searchString.ToLower())).ToList();
+                if (!string.IsNullOrEmpty(query))
+                    _products = _products.Where(p => p.Name.ToLower().Contains(query.ToLower())
+                    || p.Tags.ToLower().Contains(query.ToLower())
+                    || p.Tags.ToLower().Contains(query.ToLower())
+                    || p.Description.ToLower().Contains(query.ToLower())).ToList();
 
                 if (categoryId > 0)
                     _products = _products.Where(p => p.Category.Id == categoryId);
@@ -236,18 +236,18 @@ namespace DQueensFashion.Controllers
             }
         }
 
-        public ActionResult ProductPagination(string searchString, int sort, int categoryId = 0, int pageNumber = 1)
+        public ActionResult ProductPagination(string query, int sort, int categoryId = 0, int pageNumber = 1)
         {
             try
             {
                 var allImages = _imageService.GetAllImageFiles();
 
                 IEnumerable<Product> _products = _productService.GetAllProducts().ToList();
-                if (!string.IsNullOrEmpty(searchString))
-                    _products = _products.Where(p => p.Name.ToLower().Contains(searchString.ToLower())
-                    || p.Tags.ToLower().Contains(searchString.ToLower())
-                    || p.Tags.ToLower().Contains(searchString.ToLower())
-                    || p.Description.ToLower().Contains(searchString.ToLower())).ToList();
+                if (!string.IsNullOrEmpty(query))
+                    _products = _products.Where(p => p.Name.ToLower().Contains(query.ToLower())
+                    || p.Tags.ToLower().Contains(query.ToLower())
+                    || p.Tags.ToLower().Contains(query.ToLower())
+                    || p.Description.ToLower().Contains(query.ToLower())).ToList();
 
                 if (categoryId > 0)
                     _products = _products.Where(p => p.Category.Id == categoryId);
