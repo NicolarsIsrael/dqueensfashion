@@ -1,2 +1,8 @@
-﻿
-<span style="color:black" id="navbarCartNumber">@ViewBag.CartNumber</span>
+﻿@if (ViewBag.CartNumber > 0)
+{
+    <span style="color:black" id="navbarCartNumber">@ViewBag.CartNumber</span>
+}
+else
+{
+    <span style="color:black" id="navbarCartNumber"></span>
+}

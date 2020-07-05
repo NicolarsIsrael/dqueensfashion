@@ -208,7 +208,6 @@ function ShowSnackbarSuccess(message) {
     x.innerHTML = message;
     x.className = "show";
     setTimeout(function () { x.className = x.className.replace("show", ""); }, 5000);
-    console.log(message);
 }
 
 function ShowSnackbarError(message) {

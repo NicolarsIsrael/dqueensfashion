@@ -37,11 +37,23 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control form-control-lg mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <form class="card card-sm ml-auto search-form">
+                <div class="row no-gutters align-items-center navbar-search-div">
+                    <!--end of col-->
+                    <div class="col">
+                        <input class="form-control form-control-sm form-control-borderless" type="search" placeholder="Search here" style="width:300px">
+                    </div>
+                    <!--end of col-->
+                    <div class="col-auto">
+                        <button class="btn btn-sm navbar-search-button" type="submit">
+                            @*<i class="fas fa-search h4 text-body"></i>*@
+                            <img src="~/Content/Images/search.svg" />
+                        </button>
+                    </div>
+                    <!--end of col-->
+                </div>
             </form>
-            <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav">
                 <li class="nav-item">
                     @Html.ActionLink("Shop", "Index", "Product", new { area = "" }, new { @class = "nav-link navbar-link" })
                 </li>
@@ -55,6 +67,7 @@
 
                 </li>
             </ul>
+
             @Html.Partial("_LoginPartial")
         </div>
     </nav>
@@ -107,6 +120,39 @@
 
 
 <style>
-  
+  .form-control-borderless {
+    border: none;
+}
 
+.form-control-borderless:hover, .form-control-borderless:active, .form-control-borderless:focus {
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
+    .navbar-search-div {
+        padding: 1px;
+        border: 1px solid #a6adad;
+    }
+
+    .navbar-search-button {
+        color: white;
+        border-radius: 0;
+        transition: all ease 0.3s;
+        background-color: #df7204;
+    }
+
+     .navbar-search-button:hover{
+        background-color:#9c3b8d;
+        color:white;
+    }
+
+   
+    /*screens less than md*/
+@@media screen and (min-width:991px) {
+    .search-form{
+         width:50%;
+         margin-right:10px;
+     }
+}
 </style>

@@ -98,6 +98,11 @@ textarea {
     padding: 10px 10px;
 }
 
+.nav-item{
+    margin-right:5px;
+    margin-left:5px;
+    font-weight:500;
+}
 .navbar-link {
     color: black;
 }
@@ -106,11 +111,6 @@ textarea {
     navbar-link:focus {
         color: #df7204;
     }
-
-.navbar-category {
-    border-right: 1px solid #a6adad;
-}
-
 /* background */
 
 .background {
