@@ -19,12 +19,12 @@
             <li class="nav-item">
 
                 <a class="nav-link navbar-link" href="@Url.Action("Dashboard","Customer")">
-                    <img src="~/Content/Images/user.svg">
+                    <img src="~/Content/Images/user-black.svg" />
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link navbar-link" href="@Url.Action("ViewCart","Cart")">
-                    <img src="~/Content/Images/shopping-cart.svg">
+                    <img src="~/Content/Images/shopping-black.svg" />
                     @Html.Partial("~/Views/Cart/_navbarCartNumber.cshtml")
                 </a>
             </li>
@@ -37,12 +37,16 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control form-control-lg mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     @Html.ActionLink("Shop", "Index", "Product", new { area = "" }, new { @class = "nav-link navbar-link" })
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link navbar-link dropdown-toggle mr-md-2" id="navbarCategoriesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border-right: 1px solid #a6adad">
+                <li class="nav-item dropdown mr-md-2 navbar-category">
+                    <a class="nav-link navbar-link dropdown-toggle" id="navbarCategoriesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Categories
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarCategoriesDropdown">

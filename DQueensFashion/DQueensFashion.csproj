@@ -323,12 +323,14 @@
     <Content Include="Content\Images\mail.svg" />
     <Content Include="Content\Images\phone.svg" />
     <Content Include="Content\Images\shield.svg" />
+    <Content Include="Content\Images\shopping-black.svg" />
     <Content Include="Content\Images\shopping-cart %28orange%29.svg" />
     <Content Include="Content\Images\shopping-cart-big.svg" />
     <Content Include="Content\Images\shopping-cart.svg" />
     <Content Include="Content\Images\trash-2.svg" />
     <Content Include="Content\Images\trash.svg" />
     <Content Include="Content\Images\twitter.svg" />
+    <Content Include="Content\Images\user-black.svg" />
     <Content Include="Content\Images\user.svg" />
     <Content Include="Content\Images\x.svg" />
     <Content Include="Content\Images\youtube.svg" />

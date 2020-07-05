@@ -107,9 +107,8 @@ textarea {
         color: #df7204;
     }
 
-
-.nav-item {
-   
+.navbar-category {
+    border-right: 1px solid #a6adad;
 }
 
 /* background */
@@ -500,7 +499,12 @@ textarea {
     }
 
 
-
+    /*screens less than md*/
+@media screen and (min-width:421px) and (max-width: 991px){
+    .navbar-category{
+        border-right:0;
+    }
+}
 
 
 /*smart phones*/
@@ -520,7 +524,9 @@ textarea {
     .nav-item{
         margin-right:0;
     }
-
+    .navbar-category {
+        border-right: 0;
+    }
     .product-box{
         min-height:200px;
     }
