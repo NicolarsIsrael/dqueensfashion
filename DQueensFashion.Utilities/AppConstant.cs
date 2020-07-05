@@ -82,5 +82,8 @@ namespace DQueensFashion.Utilities
         //purple hover #9c3b8d
 
         //dark #262626 //might use later
+
+
+        //nav bar former color:#0a0c13
     }
 }
