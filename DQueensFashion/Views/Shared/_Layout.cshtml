@@ -40,11 +40,12 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <form class="card card-sm ml-auto search-form">
+            @using (Html.BeginForm("SearchShop", "Product", FormMethod.Post, new { @class = "card card-sm ml-auto search-form" }))
+            {
                 <div class="row no-gutters align-items-center navbar-search-div">
                     <!--end of col-->
                     <div class="col">
-                        <input class="form-control form-control-sm form-control-borderless" type="search" placeholder="Search here" style="width:100%">
+                        <input class="form-control form-control-sm form-control-borderless" type="search" placeholder="Search here" style="width:100%" name="query">
                     </div>
                     <!--end of col-->
                     <div class="col-auto">
@@ -54,7 +55,8 @@
                     </div>
                     <!--end of col-->
                 </div>
-            </form>
+            }
+
             <ul class="navbar-nav">
                 <li class="nav-item">
                     @Html.ActionLink("Shop", "Index", "Product", new { area = "" }, new { @class = "nav-link navbar-link" })

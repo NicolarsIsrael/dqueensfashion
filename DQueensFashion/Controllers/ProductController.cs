@@ -40,12 +40,27 @@ namespace DQueensFashion.Controllers
             return RedirectToAction(nameof(Shop), new { categoryId = categoryId });
         }
 
-        public ActionResult Shop(int categoryId = 0,int sort=0)
+        [HttpPost]
+        public ActionResult SearchShop(string query)
+        {
+            return RedirectToAction(nameof(Shop), new { query = query });
+        }
+
+        public ActionResult Shop(int categoryId = 0,int sort=0,string query="")
         {
             var allImages = _imageService.GetAllImageFiles();
 
             IEnumerable<Product> _products = _productService.GetAllProducts().ToList();
 
+            if (!string.IsNullOrEmpty(query))
+            {
+                _products = _products.Where(p => p.Name.ToLower().Contains(query.ToLower())
+                    || p.Tags.ToLower().Contains(query.ToLower())
+                    || p.Category.Name.ToLower().Contains(query.ToLower())
+                    || p.Description.ToLower().Contains(query.ToLower())).ToList();
+                ViewBag.Query = query;
+            }
+                
             if (categoryId > 0)
                 _products = _products.Where(p => p.Category.Id == categoryId);
 
@@ -79,7 +94,8 @@ namespace DQueensFashion.Controllers
             {
                 products = products.OrderByDescending(p => p.NumberOfOrders);
                 ViewBag.BestSellingSelected = true;
-            }else if (sort == AppConstant.BestDeals)
+            }
+            else if (sort == AppConstant.BestDeals)
             {
                 products = products.OrderByDescending(p => p.Discount);
                 ViewBag.BestDealsSelected = true;
@@ -121,6 +137,7 @@ namespace DQueensFashion.Controllers
                 IEnumerable<Product> _products = _productService.GetAllProducts().ToList();
                 if (!string.IsNullOrEmpty(searchString))
                     _products = _products.Where(p => p.Name.ToLower().Contains(searchString.ToLower())
+                    || p.Tags.ToLower().Contains(searchString.ToLower())
                     || p.Tags.ToLower().Contains(searchString.ToLower())
                     || p.Description.ToLower().Contains(searchString.ToLower())).ToList();
 
@@ -228,6 +245,7 @@ namespace DQueensFashion.Controllers
                 IEnumerable<Product> _products = _productService.GetAllProducts().ToList();
                 if (!string.IsNullOrEmpty(searchString))
                     _products = _products.Where(p => p.Name.ToLower().Contains(searchString.ToLower())
+                    || p.Tags.ToLower().Contains(searchString.ToLower())
                     || p.Tags.ToLower().Contains(searchString.ToLower())
                     || p.Description.ToLower().Contains(searchString.ToLower())).ToList();
 
