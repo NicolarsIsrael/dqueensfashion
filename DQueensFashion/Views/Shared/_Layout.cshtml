@@ -14,7 +14,10 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg fixed-top" style="background-color: white;">
-        @Html.ActionLink("HDQ", "Index", "Home", new { area = "" }, new { @class = "navbar-brand", @style = "color:#df7204" })
+        <a href="@Url.Action("Index","Home")">
+            <img src="~/Content/Images/HDQ LOGO FINAL.png" style="height:30px;max-width:50px" />
+        </a>
+        
         <ul class="navbar-nav flex-row ml-auto">
             <li class="nav-item">
 
@@ -41,12 +44,11 @@
                 <div class="row no-gutters align-items-center navbar-search-div">
                     <!--end of col-->
                     <div class="col">
-                        <input class="form-control form-control-sm form-control-borderless" type="search" placeholder="Search here" style="width:300px">
+                        <input class="form-control form-control-sm form-control-borderless" type="search" placeholder="Search here" style="width:100%">
                     </div>
                     <!--end of col-->
                     <div class="col-auto">
                         <button class="btn btn-sm navbar-search-button" type="submit">
-                            @*<i class="fas fa-search h4 text-body"></i>*@
                             <img src="~/Content/Images/search.svg" />
                         </button>
                     </div>
