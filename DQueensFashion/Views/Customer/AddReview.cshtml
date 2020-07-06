@@ -6,17 +6,19 @@
     Layout = "~/Views/Shared/_dashboardLayout.cshtml";
 }
 <div class="container body-content">
-
-    <div class="row">
-        <div class="col-3 col-md-2">
-            <img src="@Url.Content(Model.ProductImage)" style="display:inline-block;width:100%;height:80px" />
-        </div>
-        <div class="col-9 col-md-10" style="word-break:break-word">
-            <div class="product-title">@Model.ProductName</div>
-            <div class="product-category">@Model.ProductCategory</div>
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-3 col-md-2">
+                    <img src="@Url.Content(Model.ProductImage)" style="display:inline-block;width:100%;height:80px" />
+                </div>
+                <div class="col-9 col-md-10" style="word-break:break-word">
+                    <div class="product-title">@Model.ProductName</div>
+                    <div class="product-category">@Model.ProductCategory</div>
+                </div>
+            </div>
         </div>
     </div>
-
     <div class="card mb-3 mt-2">
         <div class="card-header" style="background-color:white">
             <div style="text-align:right">
@@ -73,7 +75,7 @@
 
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <button type="submit" class="btn" style="background-color:#96157a;color:white">
+                            <button type="submit" class="btn" style="background-color:#df7204;color:white">
                                 <img src="~/Content/Images/plus.svg" />
                                 Add
                             </button>
