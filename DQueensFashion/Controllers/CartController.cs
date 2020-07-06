@@ -27,11 +27,6 @@ namespace DQueensFashion.Controllers
         // GET: Cart
         public ActionResult Index()
         {
-            return RedirectToAction(nameof(ViewCart));
-        }
-
-        public ActionResult ViewCart()
-        {
             List<Cart> cart = (List<Cart>)Session["cart"];
             ViewCartViewModel viewCart = new ViewCartViewModel()
             {
@@ -40,6 +35,11 @@ namespace DQueensFashion.Controllers
                 SubTotal = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.TotalPrice),
             };
             return View(viewCart);
+        }
+
+        public ActionResult ViewCart()
+        {
+            return RedirectToAction(nameof(ViewCart));
         }
 
         public ActionResult GetCart()

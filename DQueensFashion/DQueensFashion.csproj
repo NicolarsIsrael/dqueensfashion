@@ -524,7 +524,7 @@
     <Content Include="Views\Product\Shop.cshtml" />
     <Content Include="Views\Product\_productsList.cshtml" />
     <Content Include="Views\Product\ProductDetails.cshtml" />
-    <Content Include="Views\Cart\ViewCart.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Cart\_cartTable.cshtml" />
     <Content Include="Views\Home\_navbarCategories.cshtml" />
     <Content Include="Views\Product\_productQuickView.cshtml" />
