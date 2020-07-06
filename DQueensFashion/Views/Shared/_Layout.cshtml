@@ -63,7 +63,7 @@
                 </li>
                 <li class="nav-item dropdown mr-md-2 navbar-category">
                     <a class="nav-link navbar-link dropdown-toggle" id="navbarCategoriesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Categories
+                        <span class="navbar-category-name">Categories</span>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarCategoriesDropdown">
                         @Html.Partial("~/Views/Home/_navbarCategories.cshtml")
@@ -75,7 +75,7 @@
             @Html.Partial("_LoginPartial")
         </div>
     </nav>
-    <div @*style="background-color:#F4F6F6"*@ style="background-color:white">
+    <div style="background-color:white">
         @RenderBody()
         <div id="sidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -151,6 +151,9 @@
         color:white;
     }
 
+     .navbar-category-name:hover{
+         color:#df7204;
+     }
    
     /*screens less than md*/
 @@media screen and (min-width:991px) {
