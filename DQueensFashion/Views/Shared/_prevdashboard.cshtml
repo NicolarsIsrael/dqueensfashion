@@ -1,6 +1,5 @@
 ﻿@using Microsoft.AspNet.Identity
 @using DQueensFashion.Utilities
-
 <!DOCTYPE html>
 <style>
 
@@ -16,19 +15,21 @@
     .email-button, .password-button {
         max-width: 100%;
     }
+   
 </style>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <title>@ViewBag.Title - HDQ</title>
+    <title>@ViewBag.Title | DQueens</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <link href="~/Content/Dashboard/css/dashboard.css" rel="stylesheet" />
+    <link href="~/Content/alertifyjs/alertify.min.css" rel="stylesheet" />
+    <link href="~/Content/alertifyjs/themes/default.min.css" rel="stylesheet" />
+    <link href="~/Content/Dashboard/css/dashboard-css.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+    <link href="~/Content/dashboard-custom.css" rel="stylesheet" />
     <link href="~/Content/general.css" rel="stylesheet" />
-    <link href="~/Content/Dashboard/css/dashboard-custom.css" rel="stylesheet" />
-    <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
-
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -53,7 +54,9 @@
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars" style="padding-top: 0.5rem"></i></a>
                 </li>
-
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Index","Home")">Home</a>
+                </li>
             </ul>
             @Html.Partial("_LoginPartial")
 
@@ -66,7 +69,7 @@
             <!-- Sidebar -->
             <div class="sidebar">
                 <a class="nav-link" href="@Url.Action("")">
-                    <div class="user-panel d-flex">
+                    <div class="user-panel mt-3 pb-3 mb-2 d-flex">
                         <div class="info m-auto">
                             <p class="d-block">@User.Identity.Name</p>
                         </div>
@@ -80,7 +83,7 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
-                    with font-awesome or any other icon font library -->
+    with font-awesome or any other icon font library -->
 
                         @if (Request.IsAuthenticated)
                         {
@@ -280,6 +283,10 @@
                     <div id="snackbar-error"></div>
                     <div id="snackbar-message"></div>
                 </div>
+
+
+
+
                 <!-- /.container-fluid -->
             </div>
             <!-- /.content -->
@@ -287,7 +294,6 @@
                 @Html.Partial("_footer")
             </footer>
         </div>
-       
         <!-- /.content-wrapper -->
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
@@ -295,11 +301,16 @@
         </aside>
         <!-- /.control-sidebar -->
         <!-- Main Footer -->
-
+        @*<footer class="main-footer">
+            <div class="container text-center">
+                @Html.Partial("_dashboardFooter")
+            </div>
+        </footer>*@
         <style>
             .main-footer {
-                background-color: #343a40 !important;
+                background-color: #212529 !important;
                 color: white !important;
+                width: 100%;
             }
 
             @@media screen and (max-width: 2000px) and (min-width: 520px) {
@@ -315,8 +326,9 @@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
     <!-- REQUIRED SCRIPTS -->
+    <script src="~/Scripts/alertify.min.js"></script>
+    <script src="~/Content/Dashboard/js/main.js"></script>
     <script src="~/Content/js/site.js"></script>
-
 
 </body>
 

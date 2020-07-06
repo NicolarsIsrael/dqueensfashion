@@ -293,6 +293,7 @@
     <Content Include="Content\alertifyjs\themes\semantic.min.css" />
     <Content Include="Content\alertifyjs\themes\semantic.rtl.css" />
     <Content Include="Content\alertifyjs\themes\semantic.rtl.min.css" />
+    <Content Include="Content\Dashboard\css\dashboard.css" />
     <Content Include="Content\general.css" />
     <Content Include="Content\Images\facebook.svg" />
     <Content Include="Content\Images\check.svg" />
@@ -300,8 +301,8 @@
     <Content Include="Content\Images\edit.svg" />
     <Content Include="Content\Images\edit-orange.svg" />
     <Content Include="Content\Images\Body-measurement.jpg" />
-    <Content Include="Content\dashboard-custom.css" />
-    <Content Include="Content\Dashboard\css\main.css" />
+    <Content Include="Content\Dashboard\css\dashboard-custom.css" />
+    <Content Include="Content\Dashboard\css\prevdashboard.css" />
     <Content Include="Content\Dashboard\jquery.js" />
     <Content Include="Content\Dashboard\js\main.js" />
     <Content Include="Content\Images\background-image.jpg" />
@@ -536,7 +537,7 @@
     <Content Include="Views\Admin\_updateOrderStatus.cshtml" />
     <Content Include="Views\Customer\Orders.cshtml" />
     <Content Include="Views\Product\_productListPagination.cshtml" />
-    <Content Include="Views\Shared\_dashboardLayout.cshtml" />
+    <Content Include="Views\Shared\_prevdashboard.cshtml" />
     <Content Include="Views\Admin\_ordersTable.cshtml" />
     <Content Include="Views\Admin\_processingOrdersTable.cshtml" />
     <Content Include="Views\Admin\_deliveredOrdersTable.cshtml" />
@@ -573,6 +574,7 @@
     <Content Include="Views\Customer\PendingReviews.cshtml" />
     <Content Include="Views\Shared\_footer.cshtml" />
     <Content Include="Views\Customer\Subscription.cshtml" />
+    <Content Include="Views\Shared\_dashboardLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
