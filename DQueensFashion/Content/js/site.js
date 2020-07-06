@@ -242,3 +242,17 @@ function ShowPassword() {
         passwordShowText.innerHTML = "Show";
     }
 }
+
+
+//account/register
+function ShowConfirmPassword() {
+    var ConfirmPasswordInput = document.getElementById("ConfirmPasswordInput");
+    var ConfirmPasswordShowText = document.getElementById("confirm-password-show-text")
+    if (ConfirmPasswordInput.type === "password") {
+        ConfirmPasswordInput.type = "text";
+        ConfirmPasswordShowText.innerHTML = "Hide";
+    } else {
+        ConfirmPasswordInput.type = "password";
+        ConfirmPasswordShowText.innerHTML = "Show";
+    } 
+}

@@ -3,56 +3,54 @@
     ViewBag.Title = "Register";
 }
     <div class="container body-content">
+        <div class="card login-card mx-auto mt-3">
+            <div class="card-body">
 
-        <div class="row mt-3 mb-3">
-            <div class="col-md-4"></div>
-            <div class="col-md-4">
-
-                <div class="card" style="width:100%">
-                    <div class="card-body">
-
-                        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                        {
-                            @Html.AntiForgeryToken()
-                            <h4 style="text-align:center">REGISTER</h4>
-                            <hr />
-                            @Html.ValidationSummary("", new { @class = "text-danger" })
-                            <div class="form-group">
-                                @Html.LabelFor(m => m.Email, new { @class = "col-12 control-label" })
-                                <div class="col-12">
-                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                                </div>
-                            </div>
-                           
-                            <div class="form-group">
-                                @Html.LabelFor(m => m.Password, new { @class = "col-12 control-label" })
-                                <div class="col-12">
-                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-12 control-label" })
-                                <div class="col-12">
-                                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-offset-2 col-12">
-                                    <input type="submit" value="Register" class="btn" style="color:white;background-color:#df7204;border-radius:0" />
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <p class="m-0">
-                                    @Html.ActionLink("Already a user? Log in", "Login")
-                                </p>
-                            </div>
-                        }
-
+                @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <h4 style="text-align:center">REGISTER</h4>
+                    <hr />
+                    @Html.ValidationSummary("", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Email, new { @class = "col-12 control-label" })
+                        <div class="col-12">
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                        </div>
                     </div>
-                </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Password, new { @class = "col-12 control-label" })
+                        <div class="col-12">
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", @id = "passwordInput" })
+                        </div>
+                        <div class="col-12 showpassword" onclick="ShowPassword()">
+                            <div id="password-show-text" class="password-show-text">show</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-12 control-label" })
+                        <div class="col-12">
+                            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", id = "ConfirmPasswordInput" })
+                        </div>
+                        <div class="col-12 showconfirmpassword" onclick="ShowConfirmPassword()">
+                            <div id="confirm-password-show-text" class="confirm-password-show-text">show</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-12">
+                            <input type="submit" value="Register" class="btn" style="color:white;background-color:#df7204;border-radius:0" />
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <p class="m-0">
+                            @Html.ActionLink("Already a user? Log in", "Login")
+                        </p>
+                    </div>
+                }
+
             </div>
         </div>
-
     </div>
 
 @section Scripts {
