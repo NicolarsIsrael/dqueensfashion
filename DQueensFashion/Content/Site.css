@@ -502,9 +502,16 @@ textarea {
     box-shadow: 2px 2px 12px rgba(47, 47, 47, 0.40);
 }
 
+.showpassword {
+    text-align: right;
+    cursor:pointer;
+}
 
-    /*screens less than md*/
-@media screen and (min-width:421px) and (max-width: 991px){
+.password-show-text{
+    font-weight:600;
+}
+/*screens less than md*/
+@media screen and (min-width:421px) and (max-width: 991px) {
     .navbar-category{
         border-right:0;
     }
@@ -586,4 +593,6 @@ textarea {
     .login-card{
         width:100%;
     }
+
+  
 }

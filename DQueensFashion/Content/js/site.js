@@ -70,8 +70,6 @@ function AddToCartCustomReadyMadePost() {
     });
 }
 
-
-
 function UpdateCartNumber() {
 
     $.ajax({
@@ -86,7 +84,6 @@ function UpdateCartNumber() {
         }
     });
 }
-
 
 function AddToWishList(productId) {
 
@@ -107,7 +104,6 @@ function AddToWishList(productId) {
     });
 
 }
-
 
 function ShopByCategory(categoryId) {
     window.location.href = "/Product/Shop?categoryId=" + categoryId;
@@ -147,8 +143,6 @@ function openNav() {
 function closeNav() {
     document.getElementById("sidenav").style.width = "0";
 }
-
-
 
 function SubscribeToMailingList() {
     var subscribeEmail = document.getElementById("subscribeEmail");
@@ -234,4 +228,17 @@ function RemoveAllSnack() {
     snackbarSuccess.className = snackbarSuccess.className.replace("show", "");
     snackbarError.className = snackbarError.className.replace("show", "");
     snackbarMessage.className = snackbarMessage.className.replace("show", "");
+}
+
+//account/login
+function ShowPassword() {
+    var passwordInput = document.getElementById("passwordInput");
+    var passwordShowText = document.getElementById("password-show-text")
+    if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        passwordShowText.innerHTML = "Hide";
+    } else {
+        passwordInput.type = "password";
+        passwordShowText.innerHTML = "Show";
+    }
 }
