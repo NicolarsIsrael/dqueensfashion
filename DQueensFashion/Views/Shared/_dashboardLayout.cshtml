@@ -55,6 +55,15 @@
                 </li>
 
             </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link navbar-link" href="@Url.Action("ViewCart","Cart")">
+                        <img src="~/Content/Images/shopping-black.svg" />
+                        @Html.Partial("~/Views/Cart/_navbarCartNumber.cshtml")
+                    </a>
+                </li>
+            </ul>
+          
             @Html.Partial("_LoginPartial")
 
 
@@ -65,14 +74,16 @@
 
             <!-- Sidebar -->
             <div class="sidebar">
-                <a class="nav-link" href="@Url.Action("")">
-                    <div class="user-panel d-flex">
-                        <div class="info m-auto">
-                            <p class="d-block">@User.Identity.Name</p>
-                        </div>
-
+                <div style="margin:auto;font-weight:400;color:white"></div>
+                <div class="user-panel d-flex">
+                    <div class="info m-auto">
+                        <p class="d-block mt-1" style="color:white;font-weight:500">@User.Identity.Name</p>
                     </div>
-                </a>
+
+                </div>
+                @*<a class="nav-link" href="@Url.Action("")">
+
+        </a>*@
 
                 <!-- Sidebar -->
                 <!-- Sidebar Menu -->
@@ -80,7 +91,7 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
-                        with font-awesome or any other icon font library -->
+            with font-awesome or any other icon font library -->
 
                         @if (Request.IsAuthenticated)
                         {

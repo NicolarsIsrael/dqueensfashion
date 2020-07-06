@@ -114,3 +114,7 @@
     transition: all ease 0.3s;
     color: white;
 }
+
+.nav-link{
+    font-weight:600;
+}
