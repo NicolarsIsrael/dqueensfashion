@@ -575,6 +575,7 @@
     <Content Include="Views\Shared\_footer.cshtml" />
     <Content Include="Views\Customer\Subscription.cshtml" />
     <Content Include="Views\Shared\_dashboardLayout.cshtml" />
+    <Content Include="Views\Admin\GeneralDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

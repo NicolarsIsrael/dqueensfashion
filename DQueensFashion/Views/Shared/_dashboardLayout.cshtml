@@ -93,7 +93,7 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
-                  
+
                         @if (Request.IsAuthenticated)
                         {
 
@@ -216,6 +216,16 @@
 
                                         </li>
                                     </ul>
+
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" href="@Url.Action("generaldetails","Admin")">
+                                        <img src="~/Content/Images/list.svg" />
+                                        <p>
+                                            GENERAL VALUES
+                                        </p>
+                                    </a>
+
                                 </li>
                             }
                             else if (User.IsInRole(AppConstant.CustomerRole))

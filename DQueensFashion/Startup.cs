@@ -69,7 +69,7 @@ namespace DQueensFashion
                     Id = AppConstant.GeneralValId,
                     Address = AppConstant.GeneralValAddress,
                     Email = AppConstant.GeneralValEmail,
-                    NewsChannelSubscriptionDiscount = AppConstant.GeneralValSubscriptionDiscount,
+                    NewsLetterSubscriptionDiscount = AppConstant.GeneralValSubscriptionDiscount,
                     PhoneNumber = AppConstant.GeneralValPhoneNumber,
                     DateCreated = DateTime.Now,
                     DateModified = DateTime.Now,

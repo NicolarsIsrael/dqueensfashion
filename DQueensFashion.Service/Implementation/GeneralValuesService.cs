@@ -1,5 +1,7 @@
-﻿using DQueensFashion.Data.Contract;
+﻿using DQueensFashion.Core.Model;
+using DQueensFashion.Data.Contract;
 using DQueensFashion.Service.Contract;
+using DQueensFashion.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +21,40 @@ namespace DQueensFashion.Service.Implementation
         public int GetTotalGeneralValuesCount()
         {
             return uow.GeneralValuesRepo.Count();
+        }
+
+        public void UpdateGeneralValues(GeneralValues generalValues)
+        {
+            if (!ValidateGeneralValues(generalValues))
+                throw new Exception();
+
+            uow.GeneralValuesRepo.Update(generalValues);
+            uow.Save();
+        }
+
+        public GeneralValues GetGeneralValues()
+        {
+            return uow.GeneralValuesRepo.Get(AppConstant.GeneralValId);
+        }
+
+        private bool ValidateGeneralValues(GeneralValues generalValues)
+        {
+            if (generalValues == null)
+                return false;
+
+            if (string.IsNullOrEmpty(generalValues.Email) || string.IsNullOrWhiteSpace(generalValues.Email))
+                return false;
+
+            if (string.IsNullOrEmpty(generalValues.Address) || string.IsNullOrWhiteSpace(generalValues.Address))
+                return false;
+
+            if (string.IsNullOrEmpty(generalValues.PhoneNumber) || string.IsNullOrWhiteSpace(generalValues.PhoneNumber))
+                return false;
+
+            if (generalValues.NewsLetterSubscriptionDiscount < 0 || generalValues.NewsLetterSubscriptionDiscount > 100)
+                return false;
+
+            return true;
         }
     }
 }

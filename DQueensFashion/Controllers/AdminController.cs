@@ -22,8 +22,9 @@ namespace DQueensFashion.Controllers
         private readonly IReviewService _reviewService;
         private readonly IImageService _imageService;
         private readonly ICustomerService _customerService;
+        private readonly IGeneralValuesService _generalValuesService;
 
-        public AdminController(ICategoryService categoryService, IProductService productService, IOrderService orderService, IReviewService reviewService, IImageService imageService, ICustomerService customerService)
+        public AdminController(ICategoryService categoryService, IProductService productService, IOrderService orderService, IReviewService reviewService, IImageService imageService, ICustomerService customerService, IGeneralValuesService generalValuesService)
         {
             _categoryService = categoryService;
             _productService = productService;
@@ -31,6 +32,7 @@ namespace DQueensFashion.Controllers
             _reviewService = reviewService;
             _imageService = imageService;
             _customerService = customerService;
+            _generalValuesService = generalValuesService;
         }
         // GET: Admin
         public ActionResult Index()
@@ -1236,6 +1238,46 @@ namespace DQueensFashion.Controllers
 
             return categories;
         }
+
+        public ActionResult GeneralDetails(string success="")
+        {
+            GeneralValues generalValues = _generalValuesService.GetGeneralValues();
+            GeneralValuesViewModel generalValuesModel = new GeneralValuesViewModel()
+            {
+                GeneralValId = generalValues.Id,
+                Email = generalValues.Email,
+                Address = generalValues.Address,
+                NewsLetterSubscriptionDiscount = generalValues.NewsLetterSubscriptionDiscount,
+                PhoneNumber = generalValues.PhoneNumber,
+            };
+
+            ViewBag.Success = success;
+            return View(generalValuesModel);
+                
+        }
+
+        [HttpPost]
+        public ActionResult GeneralDetails(GeneralValuesViewModel generalValuesModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "One or more validation errors");
+                return View(generalValuesModel);
+            }
+
+            if (generalValuesModel.GeneralValId != AppConstant.GeneralValId)
+                throw new Exception();
+
+            GeneralValues generalValues = _generalValuesService.GetGeneralValues();
+            generalValues.Email = generalValuesModel.Email;
+            generalValues.PhoneNumber = generalValuesModel.PhoneNumber;
+            generalValues.Address = generalValuesModel.Address;
+            generalValues.NewsLetterSubscriptionDiscount = generalValuesModel.NewsLetterSubscriptionDiscount;
+
+            _generalValuesService.UpdateGeneralValues(generalValues);
+            return RedirectToAction(nameof(GeneralDetails), new { success = "success" });
+        }
+
 
         #region private functions
         public JsonResult CheckUniqueCategoryName(string name)

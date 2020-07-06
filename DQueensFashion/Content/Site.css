@@ -261,12 +261,17 @@ textarea {
     color: black;
 }
 
+.tab-link:hover {
+    color: #df7204 !important;
+}
+
 .categories_tab .nav-tabs {
     border-bottom: 0;
 }
 
-    .categories_tab .nav-tabs li.nav-item a.active, .categories_tab .nav-tabs li.nav-item a.active:hover {
-        color: #96157a;
+    .categories_tab .nav-tabs li.nav-item a.active, 
+    .categories_tab .nav-tabs li.nav-item a.active :hover {
+        color: #df7204 !important;
     }
 
     .categories_tab .nav-tabs li.nav-item a {
