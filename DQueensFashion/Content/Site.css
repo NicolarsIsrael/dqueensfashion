@@ -27,6 +27,41 @@ textarea {
     box-shadow:none;
 }
 
+.primary-custom-button {
+    display: inline-block;
+    padding: 5px 10px;
+    color: white;
+    background-color: #df7204;
+    cursor: pointer;
+    border-radius:0;
+}
+
+    .primary-custom-button:hover {
+        transform: scale(1.01);
+        background-color: #ff8d19;
+        box-shadow: 2px 2px 12px rgba(47, 47, 47, 0.40);
+        transition: all ease 0.3s;
+        color: white;
+    }
+
+.secondary-custom-button {
+    display: inline-block;
+    padding: 5px 10px;
+    color: white;
+    background-color: #96157a;
+    cursor: pointer;
+    border-radius: 0;
+}
+
+    .secondary-custom-button:hover {
+        transform: scale(1.01);
+        background-color: #9c3b8d;
+        box-shadow: 2px 2px 12px rgba(47, 47, 47, 0.40);
+        transition: all ease 0.3s;
+        color: white;
+    }
+
+
 /* navbar */
 .navbar-toggler {
     width: 47px;
@@ -101,7 +136,7 @@ textarea {
 .nav-item{
     margin-right:5px;
     margin-left:5px;
-    font-weight:500;
+    font-weight:400;
 }
 .navbar-link {
     color: black;
@@ -460,6 +495,13 @@ textarea {
     height: 80vh;
 }
 
+/*Account/Login*/
+.login-card {
+    min-width: 300px;
+    max-width: 400px;
+    box-shadow: 2px 2px 12px rgba(47, 47, 47, 0.40);
+}
+
 
     /*screens less than md*/
 @media screen and (min-width:421px) and (max-width: 991px){
@@ -538,5 +580,10 @@ textarea {
 
     .product-quickview {
         margin-right: 5px;
+    }
+
+    /*Home/Login*/
+    .login-card{
+        width:100%;
     }
 }
