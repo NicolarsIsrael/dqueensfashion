@@ -71,7 +71,12 @@ namespace DQueensFashion.Utilities
                                                         27, 27.5, 28, 28.5, 29, };
 
 
-
+        //general values
+        public const string GeneralValAddress = "123 Street, Old Trafford, New South London , UK";
+        public const string GeneralValEmail = "Hdq@gmail.com";
+        public const string GeneralValPhoneNumber = "+45 637 872";
+        public const decimal GeneralValSubscriptionDiscount = 10;
+        public const int GeneralValId = 1;
 
 
         //orange #E97128

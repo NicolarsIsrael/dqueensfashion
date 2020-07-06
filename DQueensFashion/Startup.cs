@@ -53,8 +53,6 @@ namespace DQueensFashion
 
                 }
 
-
-
                 var categories = new List<Category>()
                  {
                     new Category{ Name="Ankara",IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now},
@@ -65,6 +63,22 @@ namespace DQueensFashion
 
                 categories.ForEach(c => context.Category.Add(c));
                 context.SaveChanges();
+
+                var genralValues = new GeneralValues()
+                {
+                    Id = AppConstant.GeneralValId,
+                    Address = AppConstant.GeneralValAddress,
+                    Email = AppConstant.GeneralValEmail,
+                    NewsChannelSubscriptionDiscount = AppConstant.GeneralValSubscriptionDiscount,
+                    PhoneNumber = AppConstant.GeneralValPhoneNumber,
+                    DateCreated = DateTime.Now,
+                    DateModified = DateTime.Now,
+                    IsDeleted = false,
+                };
+
+                context.GeneralValues.Add(genralValues);
+                context.SaveChanges();
+
 
                 var products = new List<Product>()
             {
