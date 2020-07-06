@@ -80,7 +80,7 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
-                    with font-awesome or any other icon font library -->
+                        with font-awesome or any other icon font library -->
 
                         @if (Request.IsAuthenticated)
                         {
@@ -283,18 +283,15 @@
                 <!-- /.container-fluid -->
             </div>
             <!-- /.content -->
-            <footer style="max-width:100vw;overflow-x:hidden">
-                @Html.Partial("_footer")
-            </footer>
+
         </div>
-       
+
         <!-- /.content-wrapper -->
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
             <!-- Control sidebar content goes here -->
         </aside>
         <!-- /.control-sidebar -->
-        <!-- Main Footer -->
 
         <style>
             .main-footer {
@@ -309,6 +306,10 @@
             }
         </style>
     </div>
+    <!-- Main Footer -->
+    <footer style="max-width:100vw;overflow-x:hidden">
+        @Html.Partial("_footer")
+    </footer>
 
     <!-- ./wrapper -->
     @Scripts.Render("~/bundles/jquery")
@@ -316,6 +317,7 @@
     @RenderSection("scripts", required: false)
     <!-- REQUIRED SCRIPTS -->
     <script src="~/Content/js/site.js"></script>
+    <script src="~/Content/Dashboard/js/main.js"></script>
 
 
 </body>
