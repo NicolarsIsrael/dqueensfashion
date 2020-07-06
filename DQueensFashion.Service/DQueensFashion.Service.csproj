@@ -130,6 +130,7 @@
   <ItemGroup>
     <Compile Include="Contract\ICategoryService.cs" />
     <Compile Include="Contract\ICustomerService.cs" />
+    <Compile Include="Contract\IGeneralValuesService.cs" />
     <Compile Include="Contract\IImageService.cs" />
     <Compile Include="Contract\ILineItemService.cs" />
     <Compile Include="Contract\IMailingListService.cs" />
@@ -139,6 +140,7 @@
     <Compile Include="Contract\IWishListService.cs" />
     <Compile Include="Implementation\CategoryService.cs" />
     <Compile Include="Implementation\CustomerService.cs" />
+    <Compile Include="Implementation\GeneralValuesService.cs" />
     <Compile Include="Implementation\ImageService.cs" />
     <Compile Include="Implementation\LineItemService.cs" />
     <Compile Include="Implementation\MailingListService.cs" />

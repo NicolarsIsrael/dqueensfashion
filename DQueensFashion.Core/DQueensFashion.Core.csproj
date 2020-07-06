@@ -132,6 +132,7 @@
     <Compile Include="Model\Category.cs" />
     <Compile Include="Model\Customer.cs" />
     <Compile Include="Model\Entity.cs" />
+    <Compile Include="Model\GeneralValues.cs" />
     <Compile Include="Model\ImageFile.cs" />
     <Compile Include="Model\LineItem.cs" />
     <Compile Include="Model\MailingList.cs" />

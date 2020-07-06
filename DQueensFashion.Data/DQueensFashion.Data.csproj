@@ -133,6 +133,7 @@
     <Compile Include="Contract\ICategoryRepo.cs" />
     <Compile Include="Contract\ICoreRepo.cs" />
     <Compile Include="Contract\ICustomerRepo.cs" />
+    <Compile Include="Contract\IGeneralValuesRepo.cs" />
     <Compile Include="Contract\IImageRepo.cs" />
     <Compile Include="Contract\ILineItemRepo.cs" />
     <Compile Include="Contract\IMailingListRepo.cs" />
@@ -144,6 +145,7 @@
     <Compile Include="Implementation\CategoryRepo.cs" />
     <Compile Include="Implementation\CoreRepo.cs" />
     <Compile Include="Implementation\CustomerRepo.cs" />
+    <Compile Include="Implementation\GeneralValuesRepo.cs" />
     <Compile Include="Implementation\ImageRepo.cs" />
     <Compile Include="Implementation\LineItemRepo.cs" />
     <Compile Include="Implementation\MailingListRepo.cs" />
@@ -159,6 +161,10 @@
     <Compile Include="Migrations\202007031718002_daystodeliverAddedToDb2.cs" />
     <Compile Include="Migrations\202007031718002_daystodeliverAddedToDb2.Designer.cs">
       <DependentUpon>202007031718002_daystodeliverAddedToDb2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007061558329_generalvaluesaddedtodb.cs" />
+    <Compile Include="Migrations\202007061558329_generalvaluesaddedtodb.Designer.cs">
+      <DependentUpon>202007061558329_generalvaluesaddedtodb.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -179,6 +185,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007031718002_daystodeliverAddedToDb2.resx">
       <DependentUpon>202007031718002_daystodeliverAddedToDb2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007061558329_generalvaluesaddedtodb.resx">
+      <DependentUpon>202007061558329_generalvaluesaddedtodb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

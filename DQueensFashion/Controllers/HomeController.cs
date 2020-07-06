@@ -23,9 +23,11 @@ namespace DQueensFashion.Controllers
         private readonly IReviewService _reviewService;
         private readonly IImageService _imageService;
         private readonly IMailingListService _mailingListService;
+        private readonly IGeneralValuesService _generalValuesService;
 
         public HomeController(IProductService productService, ICategoryService categoryService,ICustomerService customerService, IWishListService wishListService,
-            ILineItemService lineItemService, IOrderService orderService, IReviewService reviewService, IImageService imageService, IMailingListService mailingListService)
+            ILineItemService lineItemService, IOrderService orderService, IReviewService reviewService, IImageService imageService, IMailingListService mailingListService,
+            IGeneralValuesService generalValuesService)
         {
             _productService = productService;
             _categoryService = categoryService;
@@ -36,10 +38,12 @@ namespace DQueensFashion.Controllers
             _reviewService = reviewService;
             _imageService = imageService;
             _mailingListService = mailingListService;
+            _generalValuesService = generalValuesService;
         }
 
         public ActionResult Test()
         {
+            ViewBag.GN = _generalValuesService.GetTotalGeneralValuesCount();
             return View();
         }
 

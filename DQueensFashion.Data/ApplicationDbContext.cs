@@ -25,6 +25,7 @@ namespace DQueensFashion.Data
         public DbSet<Review> Review { get; set; }
         public DbSet<ImageFile> Image { get; set; }
         public DbSet<MailingList> MailingList { get; set; }
+        public DbSet<GeneralValues> GeneralValues { get; set; }
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

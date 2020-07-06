@@ -20,10 +20,11 @@ namespace DQueensFashion.Data.Implementation
         public IReviewRepo ReviewRepo { get; set; }
         public IImageRepo ImageRepo { get; set; }
         public IMailingListRepo MailingListRepo { get; set; }
+        public IGeneralValuesRepo GeneralValuesRepo { get; set; }
 
         public UnitOfWork(System.Data.Entity.DbContext _context,IProductRepo _productRepo, ICategoryRepo _categoryRepo,ICustomerRepo _customerRepo,
             IWishListRepo _wishListRepo, ILineItemRepo _lineItemRepo, IOrderRepo _orderRepo, IReviewRepo _reviewRepo, IImageRepo _imageRepo,
-            IMailingListRepo _mailingListRepo)
+            IMailingListRepo _mailingListRepo, IGeneralValuesRepo _generalValuesRepo)
         {
             context = _context;
             ProductRepo = _productRepo;
@@ -35,6 +36,7 @@ namespace DQueensFashion.Data.Implementation
             ReviewRepo = _reviewRepo;
             ImageRepo = _imageRepo;
             MailingListRepo = _mailingListRepo;
+            GeneralValuesRepo = _generalValuesRepo;
         }
 
         public void Save()
