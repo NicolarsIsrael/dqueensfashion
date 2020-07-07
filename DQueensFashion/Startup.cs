@@ -26,6 +26,17 @@ namespace DQueensFashion
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
             var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
 
+            var genralValues = new GeneralValues()
+            {
+                Id = AppConstant.GeneralValId,
+                NewsLetterSubscriptionDiscount = AppConstant.HDQSubscriptionDiscount,
+                DateCreated = DateTime.Now,
+                DateModified = DateTime.Now,
+                IsDeleted = false,
+            };
+
+            context.GeneralValues.Add(genralValues);
+            context.SaveChanges();
 
             // In Startup i am creating first Admin Role and creating a default Admin User    
             if (!roleManager.RoleExists(AppConstant.AdminRole))
@@ -62,21 +73,6 @@ namespace DQueensFashion
                 };
 
                 categories.ForEach(c => context.Category.Add(c));
-                context.SaveChanges();
-
-                var genralValues = new GeneralValues()
-                {
-                    Id = AppConstant.GeneralValId,
-                    Address = AppConstant.GeneralValAddress,
-                    Email = AppConstant.GeneralValEmail,
-                    NewsLetterSubscriptionDiscount = AppConstant.GeneralValSubscriptionDiscount,
-                    PhoneNumber = AppConstant.GeneralValPhoneNumber,
-                    DateCreated = DateTime.Now,
-                    DateModified = DateTime.Now,
-                    IsDeleted = false,
-                };
-
-                context.GeneralValues.Add(genralValues);
                 context.SaveChanges();
 
 

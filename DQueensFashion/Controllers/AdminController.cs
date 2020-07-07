@@ -1245,10 +1245,7 @@ namespace DQueensFashion.Controllers
             GeneralValuesViewModel generalValuesModel = new GeneralValuesViewModel()
             {
                 GeneralValId = generalValues.Id,
-                Email = generalValues.Email,
-                Address = generalValues.Address,
                 NewsLetterSubscriptionDiscount = generalValues.NewsLetterSubscriptionDiscount,
-                PhoneNumber = generalValues.PhoneNumber,
             };
 
             ViewBag.Success = success;
@@ -1269,9 +1266,6 @@ namespace DQueensFashion.Controllers
                 throw new Exception();
 
             GeneralValues generalValues = _generalValuesService.GetGeneralValues();
-            generalValues.Email = generalValuesModel.Email;
-            generalValues.PhoneNumber = generalValuesModel.PhoneNumber;
-            generalValues.Address = generalValuesModel.Address;
             generalValues.NewsLetterSubscriptionDiscount = generalValuesModel.NewsLetterSubscriptionDiscount;
 
             _generalValuesService.UpdateGeneralValues(generalValues);

@@ -42,15 +42,6 @@ namespace DQueensFashion.Service.Implementation
             if (generalValues == null)
                 return false;
 
-            if (string.IsNullOrEmpty(generalValues.Email) || string.IsNullOrWhiteSpace(generalValues.Email))
-                return false;
-
-            if (string.IsNullOrEmpty(generalValues.Address) || string.IsNullOrWhiteSpace(generalValues.Address))
-                return false;
-
-            if (string.IsNullOrEmpty(generalValues.PhoneNumber) || string.IsNullOrWhiteSpace(generalValues.PhoneNumber))
-                return false;
-
             if (generalValues.NewsLetterSubscriptionDiscount < 0 || generalValues.NewsLetterSubscriptionDiscount > 100)
                 return false;
 

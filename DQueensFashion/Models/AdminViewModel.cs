@@ -19,19 +19,6 @@ namespace DQueensFashion.Models
     {
         public int GeneralValId { get; set; }
 
-        [Required(ErrorMessage ="Address is required")]
-        [BeginWIthAlphaNumeric(ErrorMessage = "Address must begin with an alphabeth")]
-        public string Address { get; set; }
-
-        [Required(ErrorMessage ="Email is required")]
-        [BeginWIthAlphaNumeric(ErrorMessage = "Email must begin with an alphabeth")]
-        public string Email { get; set; }
-
-        [Required(ErrorMessage ="Phone number is requiered")]
-        [Phone]
-        [Display(Name ="Phone number")]
-        public string PhoneNumber { get; set; }
-
         [Required(ErrorMessage ="Subscription discount is required")]
         [Range(0,100)]
         [Display(Name ="Subscription discount (%)")]

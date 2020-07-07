@@ -72,10 +72,10 @@ namespace DQueensFashion.Utilities
 
 
         //general values
-        public const string GeneralValAddress = "123 Street, Old Trafford, New South London , UK";
-        public const string GeneralValEmail = "Hdq@gmail.com";
-        public const string GeneralValPhoneNumber = "+45 637 872";
-        public const decimal GeneralValSubscriptionDiscount = 10;
+        public const string HDQAddress = "123 Street, Old Trafford, New South London , UK";
+        public const string HDQEmail = "Hdq@gmail.com";
+        public const string HDQPhoneNumber = "+45 637 872";
+        public const decimal HDQSubscriptionDiscount = 10;
         public const int GeneralValId = 1;
 
 
