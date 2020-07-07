@@ -27,6 +27,10 @@ namespace DQueensFashion.Service.Implementation
             var m = uow.MailingListRepo.GetAll().Where(_m => _m.EmailAddress == mailingList.EmailAddress).FirstOrDefault();
             if (m == null)
             {
+                var customer = uow.CustomerRepo.GetAll().Where(c => c.Email == mailingList.EmailAddress).FirstOrDefault();
+                if (customer != null)
+                    customer.AvailableSubcriptionDiscount = true;
+
                 uow.MailingListRepo.Add(mailingList);
                 uow.Save();
             }

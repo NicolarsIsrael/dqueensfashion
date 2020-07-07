@@ -20,13 +20,16 @@ namespace DQueensFashion.Controllers
         private readonly IProductService _productService;
         private readonly ICustomerService _customerService;
         private readonly ICategoryService _categoryService;
+        private readonly IGeneralValuesService _generalValService;
 
-        public PaymentController(IOrderService orderService,IProductService productService, ICustomerService customerService,ICategoryService categoryService)
+        public PaymentController(IOrderService orderService,IProductService productService, ICustomerService customerService,ICategoryService categoryService,
+            IGeneralValuesService generalValService)
         {
             _orderService = orderService;
             _productService = productService;
             _customerService = customerService;
             _categoryService = categoryService;
+            _generalValService = generalValService;
         }
 
         // GET: Payment
@@ -97,9 +100,13 @@ namespace DQueensFashion.Controllers
             }
             try
             {
-            
+                if(customer.AvailableSubcriptionDiscount.Value)
+                    customer.UsedSubscriptionDiscount = true;
+                _customerService.UpdateCustomer(customer);
+
                 var paymentIdGuid = Request.Params["guid"];
                 var _payment = PayPal.Api.Payment.Get(apiContext, Session[paymentIdGuid] as string);
+
                 List<LineItem> lineItems = new List<LineItem>();
                 lineItems = _payment.transactions.FirstOrDefault()
                     .item_list.items.Select(item => new LineItem()
@@ -169,13 +176,30 @@ namespace DQueensFashion.Controllers
         }
         private Payment CreatePayment(APIContext apiContext, string redirectUrl)
         {
-            Random rand = new Random();
+            Customer customer = GetLoggedInCustomer();
+            if (customer == null)
+                throw new Exception();
+
+            GeneralValues generalVal = _generalValService.GetGeneralValues();
+
             ViewCartViewModel carts = new ViewCartViewModel()
             {
                 Count = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.Quantity),
                 Carts = Session["cart"] == null ? new List<Cart>() : (List<Cart>)Session["cart"],
                 SubTotal = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.TotalPrice),
             };
+
+            if(customer.AvailableSubcriptionDiscount.Value 
+                && !customer.UsedSubscriptionDiscount.Value)
+            {
+                foreach(var cartItem in carts.Carts)
+                {
+                    cartItem.UnitPrice = _productService.CalculateProductPrice(cartItem.UnitPrice, generalVal.NewsLetterSubscriptionDiscount);
+                    cartItem.TotalPrice = cartItem.UnitPrice * cartItem.Quantity;
+                }
+                carts.SubTotal = carts.Carts.Sum(c => c.TotalPrice);
+            }
+
 
             //create itemlist and add item objects to it
             var itemList = new ItemList()
@@ -226,13 +250,14 @@ namespace DQueensFashion.Controllers
                 tax = "0",
                 shipping = "0",
                 subtotal = carts.SubTotal.ToString(),
+                
             };
             //Final amount with details
             var amount = new Amount()
             {
                 currency = "USD",
                 total = carts.SubTotal.ToString(), // Total must be equal to sum of tax, shipping and subtotal.
-                details = details
+                details = details,
             };
             var transactionList = new List<Transaction>();
             // Adding description about the transaction
@@ -250,7 +275,6 @@ namespace DQueensFashion.Controllers
                 payer = payer,
                 transactions = transactionList,
                 redirect_urls = redirUrls,
-                
             };
             // Create a payment using a APIContext
             return this.payment.Create(apiContext);

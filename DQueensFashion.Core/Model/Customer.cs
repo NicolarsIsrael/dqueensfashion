@@ -10,5 +10,7 @@ namespace DQueensFashion.Core.Model
     {
         public string Email { get; set; }
         public string UserId { get; set; }
+        public bool? AvailableSubcriptionDiscount { get; set; }
+        public bool? UsedSubscriptionDiscount { get; set; }
     }
 }

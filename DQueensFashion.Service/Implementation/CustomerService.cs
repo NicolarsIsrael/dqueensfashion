@@ -36,6 +36,15 @@ namespace DQueensFashion.Service.Implementation
             uow.Save();
         }
 
+        public void UpdateCustomer(Customer customer)
+        {
+            if (!ValidateCustomerDetails(customer))
+                throw new Exception();
+
+            uow.CustomerRepo.Update(customer);
+            uow.Save();
+        }
+
         public Customer GetCustomerById(int id)
         {
             return uow.CustomerRepo.Get(id);

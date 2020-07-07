@@ -3,6 +3,7 @@ using DQueensFashion.CustomFilters;
 using DQueensFashion.Models;
 using DQueensFashion.Service.Contract;
 using DQueensFashion.Utilities;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,12 +18,17 @@ namespace DQueensFashion.Controllers
         private readonly IProductService _productService;
         private readonly ICategoryService _categoryService;
         private readonly IImageService _imageService;
+        private readonly IGeneralValuesService _generalValuesService;
+        private readonly ICustomerService _customerService;
 
-        public CartController(IProductService productService, ICategoryService categoryService, IImageService imageService)
+        public CartController(IProductService productService, ICategoryService categoryService, IImageService imageService,
+            IGeneralValuesService generalValuesService,ICustomerService customerService)
         {
             _productService = productService;
             _categoryService = categoryService;
             _imageService = imageService;
+            _generalValuesService = generalValuesService;
+            _customerService = customerService;
         }
         // GET: Cart
         public ActionResult Index()
@@ -34,6 +40,17 @@ namespace DQueensFashion.Controllers
                 Carts = Session["cart"] == null ? new List<Cart>() : (List<Cart>)Session["cart"],
                 SubTotal = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.TotalPrice),
             };
+
+            Customer customer = GetLoggedInCustomer();
+            if (customer != null)
+            {
+                if (customer.AvailableSubcriptionDiscount.Value
+                  && !customer.UsedSubscriptionDiscount.Value)
+                {
+                    viewCart.CustomerSubscriptionDiscount = true;
+                }
+
+            }
             return View(viewCart);
         }
 
@@ -229,7 +246,16 @@ namespace DQueensFashion.Controllers
                 Carts = Session["cart"] == null ? new List<Cart>() : (List<Cart>)Session["cart"],
                 SubTotal = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.TotalPrice),
             };
+            Customer customer = GetLoggedInCustomer();
+            if (customer != null)
+            {
+                if (customer.AvailableSubcriptionDiscount.Value
+                  && !customer.UsedSubscriptionDiscount.Value)
+                {
+                    viewCart.CustomerSubscriptionDiscount = true;
+                }
 
+            }
             return PartialView("_cartTable", viewCart);
         }
 
@@ -267,7 +293,10 @@ namespace DQueensFashion.Controllers
                 SubTotal = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.TotalPrice),
             };
 
-            foreach(var c in cart)
+            if (viewCart.Count < 1)
+                return RedirectToAction(nameof(Index));
+
+            foreach (var c in cart)
             {
                 var product = _productService.GetProductById(c.Product.Id);
                 c.InitialPrice = product.Price;
@@ -280,8 +309,20 @@ namespace DQueensFashion.Controllers
             viewCart.SubTotal = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.TotalPrice);
             Session["cart"] = cart;
 
-            if (viewCart.Count < 1)
-                return RedirectToAction(nameof(ViewCart));
+
+            Customer customer = GetLoggedInCustomer();
+            if (customer != null)
+            {
+                if (customer.AvailableSubcriptionDiscount.Value
+                  && !customer.UsedSubscriptionDiscount.Value)
+                {
+                    viewCart.SubDiscountPrice = _productService.
+                        CalculateProductPrice(viewCart.SubTotal, _generalValuesService.GetGeneralValues().NewsLetterSubscriptionDiscount);
+                    viewCart.CustomerSubscriptionDiscount = true;
+                }
+
+            }
+
 
             return View(viewCart);
         }
@@ -301,6 +342,23 @@ namespace DQueensFashion.Controllers
                     SubTotal = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.TotalPrice),
                 };
                 ModelState.AddModelError("", "One or more validation errors");
+
+                if (viewCart.Count < 1)
+                    return RedirectToAction(nameof(Index));
+
+                Customer customer = GetLoggedInCustomer();
+                if (customer != null)
+                {
+                    if (customer.AvailableSubcriptionDiscount.Value
+                      && !customer.UsedSubscriptionDiscount.Value)
+                    {
+                        viewCart.SubDiscountPrice = _productService.
+                            CalculateProductPrice(viewCart.SubTotal, _generalValuesService.GetGeneralValues().NewsLetterSubscriptionDiscount);
+                        viewCart.CustomerSubscriptionDiscount = true;
+                    }
+
+                }
+
                 return View(viewCart);
             }
 
@@ -427,6 +485,17 @@ namespace DQueensFashion.Controllers
 
             }
             return description;
+        }
+
+        private string GetLoggedInUserId()
+        {
+            return User.Identity.GetUserId();
+        }
+
+        private Customer GetLoggedInCustomer()
+        {
+            var userId = GetLoggedInUserId();
+            return _customerService.GedCustomerByUserId(userId);
         }
 
         #endregion

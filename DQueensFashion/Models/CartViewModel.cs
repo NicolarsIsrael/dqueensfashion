@@ -76,7 +76,8 @@ namespace DQueensFashion.Models
         public decimal SubTotal { get; set; }
         public int Count { get; set; }
         public IEnumerable<Cart> Carts { get; set; }
-
+        public bool CustomerSubscriptionDiscount { get; set; }
+        public decimal SubDiscountPrice { get; set; }
 
         //shipping details
         [Required(ErrorMessage ="First name is requied")]

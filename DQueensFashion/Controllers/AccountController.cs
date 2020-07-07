@@ -192,6 +192,8 @@ namespace DQueensFashion.Controllers
                         {
                             Email = model.Email,
                             UserId = user.Id,
+                            AvailableSubcriptionDiscount = false,
+                            UsedSubscriptionDiscount = false,
                         };
                         _customerService.AddCustomer(customer);
                     }

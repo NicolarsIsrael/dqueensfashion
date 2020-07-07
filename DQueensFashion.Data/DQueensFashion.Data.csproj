@@ -170,6 +170,10 @@
     <Compile Include="Migrations\202007071332277_generalValueschanged.Designer.cs">
       <DependentUpon>202007071332277_generalValueschanged.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007071559094_generalVa32.cs" />
+    <Compile Include="Migrations\202007071559094_generalVa32.Designer.cs">
+      <DependentUpon>202007071559094_generalVa32.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -195,6 +199,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007071332277_generalValueschanged.resx">
       <DependentUpon>202007071332277_generalValueschanged.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007071559094_generalVa32.resx">
+      <DependentUpon>202007071559094_generalVa32.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

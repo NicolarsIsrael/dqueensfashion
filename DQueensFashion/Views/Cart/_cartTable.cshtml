@@ -42,6 +42,13 @@
                                 <hr class="m-0" />
                                 <div>Prices are updated at check out</div>
                                 <hr class="m-0" />
+
+                                @if (Model.CustomerSubscriptionDiscount)
+                                {
+                                    <div  class="text-danger">Your subscription discount will be added at checkout</div>
+                                    <hr class="m-0" />
+                                }
+
                                 <div style="font-size:25px;font-weight:500">
                                     <span>TOTAL: $@Model.SubTotal</span>
                                 </div>
