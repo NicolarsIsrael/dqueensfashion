@@ -576,6 +576,7 @@
     <Content Include="Views\Customer\Subscription.cshtml" />
     <Content Include="Views\Shared\_dashboardLayout.cshtml" />
     <Content Include="Views\Admin\GeneralDetails.cshtml" />
+    <Content Include="Views\Customer\ChangePassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

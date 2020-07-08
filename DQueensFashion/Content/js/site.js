@@ -256,3 +256,16 @@ function ShowConfirmPassword() {
         ConfirmPasswordShowText.innerHTML = "Show";
     } 
 }
+
+//customer/changepassword
+function ShowOldPassword() {
+    var OldPasswordInput = document.getElementById("OldPasswordInput");
+    var OldPasswordShowText = document.getElementById("old-password-show-text")
+    if (OldPasswordInput.type === "password") {
+        OldPasswordInput.type = "text";
+        OldPasswordShowText.innerHTML = "Hide";
+    } else {
+        OldPasswordInput.type = "password";
+        OldPasswordShowText.innerHTML = "Show";
+    } 
+}

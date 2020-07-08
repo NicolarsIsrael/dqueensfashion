@@ -507,16 +507,6 @@ textarea {
     box-shadow: 2px 2px 12px rgba(47, 47, 47, 0.40);
 }
 
-.showpassword,
-.showconfirmpassword {
-    text-align: right;
-    cursor: pointer;
-}
-
-.password-show-text,
-.confirm-password-show-text {
-    font-weight: 600;
-}
 /*screens less than md*/
 @media screen and (min-width:421px) and (max-width: 991px) {
     .navbar-category{

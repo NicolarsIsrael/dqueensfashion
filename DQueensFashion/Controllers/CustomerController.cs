@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -25,9 +26,10 @@ namespace DQueensFashion.Controllers
         private readonly ILineItemService _lineItemService;
         private readonly IProductService _productService;
         private readonly IMailingListService _mailingListService;
+        private ApplicationUserManager _userManager;
 
         public CustomerController(ICustomerService customerService, IWishListService wishListService, IOrderService orderService, ICategoryService categoryService,IImageService imageService,IReviewService reviewService,ILineItemService lineItemService,IProductService productService,
-            IMailingListService mailingListService)
+            IMailingListService mailingListService, ApplicationUserManager userManager)
         {
             _customerService = customerService;
             _wishListService = wishListService;
@@ -38,7 +40,22 @@ namespace DQueensFashion.Controllers
             _lineItemService = lineItemService;
             _productService = productService;
             _mailingListService = mailingListService;
+            _userManager = userManager;
         }
+
+
+        //public ApplicationUserManager UserManager
+        //{
+        //    get
+        //    {
+        //        return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+        //    }
+        //    private set
+        //    {
+        //        _userManager = value;
+        //    }
+        //}
+
 
         // GET: Customer
         public ActionResult Index()
@@ -374,6 +391,35 @@ namespace DQueensFashion.Controllers
             ViewBag.Email = customer.Email;
             ViewBag.Subscription = _mailingListService.CheckIfSubscribed(customer.Id);
             return View();
+        }
+
+        public ActionResult ChangePassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ChangePassword(ChangePasswordViewModel passwordModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "One or more validation errors");
+                return View(passwordModel);
+            }
+            //var customer = GetLoggedInCustomer();
+            var userId = GetLoggedInUserId();
+            //var user = await UserManager.FindByNameAsync(customer.Email);
+
+            var result = await _userManager.ChangePasswordAsync(userId, passwordModel.OldPassword, passwordModel.NewPassword);
+            if (result.Succeeded)
+            {
+                return RedirectToAction(nameof(Account));
+            }
+            else
+            {
+                throw new Exception();
+            }
         }
 
         public int GetCartNumber()

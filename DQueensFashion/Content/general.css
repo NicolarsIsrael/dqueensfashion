@@ -74,3 +74,22 @@
     font-size: 36px;
     margin-left: 50px;
 }
+
+
+/*password*/
+
+.showpasswordcontainer{
+    text-align:right;
+}
+
+.showpassword,
+.showconfirmpassword,
+.showoldpassword{
+    cursor: pointer;
+}
+
+.password-show-text,
+.confirm-password-show-text,
+.old-password-show-text{
+    font-weight: 500;
+}
