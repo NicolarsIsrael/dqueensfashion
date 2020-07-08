@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,6 +17,14 @@ namespace DQueensFashion.Utilities
         public const string AdminRole = "Admin";
         public const string EmployeeRole = "Employee";
         public const string CustomerRole = "Customer";
+
+        public const string HDQ_EMAIL_ACCOUNT = "bakarenicolarsisrael@gmail.com";
+        public const string HDQ_EMAIL_TITLE = "E-COURSE-EXAM";
+
+        public static readonly NetworkCredential MAIL_CREDENTIALS = new NetworkCredential(
+                                      ConfigurationManager.AppSettings["mailAccount"],
+                                      ConfigurationManager.AppSettings["mailPassword"]
+                                      );
 
         public const string DefaultProductImage = "https://image.freepik.com/free-vector/farmer-peasant-illustration-man-with-beard-spade-farmland_33099-575.jpg";
         public const int ProductIndexPageSize = 20;
