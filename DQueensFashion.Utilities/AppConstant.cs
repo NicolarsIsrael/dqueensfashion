@@ -19,7 +19,7 @@ namespace DQueensFashion.Utilities
         public const string CustomerRole = "Customer";
 
         public const string HDQ_EMAIL_ACCOUNT = "bakarenicolarsisrael@gmail.com";
-        public const string HDQ_EMAIL_TITLE = "E-COURSE-EXAM";
+        public const string HDQ_EMAIL_TITLE = "HDQ";
 
         public static readonly NetworkCredential MAIL_CREDENTIALS = new NetworkCredential(
                                       ConfigurationManager.AppSettings["mailAccount"],

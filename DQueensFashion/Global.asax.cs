@@ -4,6 +4,7 @@ using DQueensFashion.Data.Contract;
 using DQueensFashion.Data.Implementation;
 using DQueensFashion.Service.Contract;
 using DQueensFashion.Service.Implementation;
+using DQueensFashion.Utilities;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
@@ -71,9 +72,9 @@ namespace DQueensFashion
             container.Register<IImageRepo, ImageRepo>(Lifestyle.Scoped);
             container.Register<IMailingListRepo, MailingListRepo>(Lifestyle.Scoped);
             container.Register<IGeneralValuesRepo, GeneralValuesRepo>(Lifestyle.Scoped);
-
+            
             //registering Logic
-            //container.Register<IMailer, Mailer>(Lifestyle.Scoped);
+            container.Register<IMailService, MailService>(Lifestyle.Scoped);
 
             //Register the MVC controllers to the container.
             container.RegisterMvcControllers(Assembly.GetExecutingAssembly());

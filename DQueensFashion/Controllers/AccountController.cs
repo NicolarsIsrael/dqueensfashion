@@ -16,6 +16,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
 using System.Collections.Generic;
 using DQueensFashion.CustomFilters;
+using Microsoft.Owin.Security.DataProtection;
 
 namespace DQueensFashion.Controllers
 {
@@ -28,6 +29,7 @@ namespace DQueensFashion.Controllers
         private readonly ICustomerService _customerService;
         private readonly ICategoryService _categoryService;
         private DbContext _ctx;
+        DpapiDataProtectionProvider provider = new DpapiDataProtectionProvider("HouseOfDQueens");
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager,ICustomerService customerService, 
             ICategoryService categoryService, DbContext ctx)
@@ -37,6 +39,7 @@ namespace DQueensFashion.Controllers
             _customerService = customerService;
             _categoryService = categoryService;
             _ctx = ctx;
+            UserManager.UserTokenProvider = new DataProtectorTokenProvider<ApplicationUser>(provider.Create("SampleTokenName"));
         }
 
         public ApplicationSignInManager SignInManager
@@ -246,22 +249,35 @@ namespace DQueensFashion.Controllers
             if (ModelState.IsValid)
             {
                 var user = await UserManager.FindByNameAsync(model.Email);
-                if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
+                if (user == null /*|| !(await UserManager.IsEmailConfirmedAsync(user.Id))*/)
                 {
                     // Don't reveal that the user does not exist or is not confirmed
                     return View("ForgotPasswordConfirmation");
                 }
-
+                
                 // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                 // Send an email with this link
-                // string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
-                // await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                // return RedirectToAction("ForgotPasswordConfirmation", "Account");
+
+                string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+
+                string subject = "Change password";
+                string to = model.Email;
+                var credentials = AppConstant.MAIL_CREDENTIALS;
+
+                string body = $"Hi, you requested to change your password. Kindly ignore this message if you did not make the request" +
+                    Environment.NewLine + $"Please reset your password by cliking <a href=\"" + callbackUrl + "\">here</a>";
+
+                MailService mail = new MailService();
+                await mail.SendMail(to, subject, body, credentials);
+
+                //await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
 
             // If we got this far, something failed, redisplay form
             return View(model);
+
         }
 
         //
