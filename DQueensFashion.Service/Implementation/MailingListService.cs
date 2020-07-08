@@ -17,6 +17,11 @@ namespace DQueensFashion.Service.Implementation
             uow = _uow;
         }
 
+        public IEnumerable<MailingList> GetAllMailingList()
+        {
+            return uow.MailingListRepo.GetAll();
+        }
+
         public int MailingListCount()
         {
             return uow.MailingListRepo.Count();

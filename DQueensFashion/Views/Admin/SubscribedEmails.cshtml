@@ -1,0 +1,35 @@
+﻿@model IEnumerable<DQueensFashion.Core.Model.MailingList>
+@{
+    ViewBag.Title = "SubscribedEmails";
+    Layout = "~/Views/Shared/_dashboardLayout.cshtml";
+}
+
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Subscribed emails</h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body table-responsive p-0" style="height: 80vh">
+        <table class="table table-head-fixed  table-striped">
+            <thead>
+                <tr>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="category-name" style="word-wrap:break-word;">
+                            @Html.DisplayFor(modelItem => item.EmailAddress)
+                        </td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>
+<!-- /.card -->

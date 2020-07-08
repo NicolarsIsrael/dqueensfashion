@@ -23,8 +23,9 @@ namespace DQueensFashion.Controllers
         private readonly IImageService _imageService;
         private readonly ICustomerService _customerService;
         private readonly IGeneralValuesService _generalValuesService;
+        private readonly IMailingListService _mailingListService;
 
-        public AdminController(ICategoryService categoryService, IProductService productService, IOrderService orderService, IReviewService reviewService, IImageService imageService, ICustomerService customerService, IGeneralValuesService generalValuesService)
+        public AdminController(ICategoryService categoryService, IProductService productService, IOrderService orderService, IReviewService reviewService, IImageService imageService, ICustomerService customerService, IGeneralValuesService generalValuesService, IMailingListService mailingListService)
         {
             _categoryService = categoryService;
             _productService = productService;
@@ -33,6 +34,7 @@ namespace DQueensFashion.Controllers
             _imageService = imageService;
             _customerService = customerService;
             _generalValuesService = generalValuesService;
+            _mailingListService = mailingListService;
         }
         // GET: Admin
         public ActionResult Index()
@@ -1272,6 +1274,13 @@ namespace DQueensFashion.Controllers
             return RedirectToAction(nameof(GeneralDetails), new { success = "success" });
         }
 
+        public ActionResult SubscribedEmails()
+        {
+            var mailingList = _mailingListService.GetAllMailingList()
+                .OrderBy(m=>m.EmailAddress);
+
+            return View(mailingList);
+        }
 
         #region private functions
         public JsonResult CheckUniqueCategoryName(string name)
