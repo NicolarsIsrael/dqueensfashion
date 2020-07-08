@@ -1,10 +1,13 @@
-﻿<div style="background-color:#df7204;" class="footer-background">
+﻿@using DQueensFashion.Utilities
+
+<div style="background-color:#df7204;" class="footer-background">
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <h2 style="color:white">Subscribe to our newsletter</h2>
+                <h4 style="color:white">NEW TO HDQ?</h4>
+                <div style="color:white">Subscribe to our newsletter and get 10% off on your first buy.</div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 mt-auto">
                 <div class="card card-sm subscribe-form" style="width:100%">
                     <div class="row no-gutters align-items-center subscribe-form-div">
                         <!--end of col-->
@@ -68,15 +71,15 @@
                 <div class="footer-header">HDQ CONTACT INFO</div>
                 <div class="footer-detail">
                     <img class="footer-detail-img" src="~/Content/Images/map-pin.svg" />
-                    123 Street, Old Trafford, New South London , UK
+                    @AppConstant.HDQAddress
                 </div>
                 <div class="footer-detail">
                     <img class="footer-detail-img" src="~/Content/Images/mail.svg" />
-                    HDQ@hdq.com
+                    @AppConstant.HDQEmail
                 </div>
                 <div class="footer-detail">
                     <img class="footer-detail-img" src="~/Content/Images/phone.svg" />
-                    +45 637 872
+                    @AppConstant.HDQPhoneNumber
                 </div>
                 <div class="footer-detail">
                     <img class="footer-detail-img" src="~/Content/Images/facebook.svg" style="margin-left:0"/>
