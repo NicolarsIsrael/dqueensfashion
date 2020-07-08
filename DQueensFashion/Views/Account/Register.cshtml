@@ -24,8 +24,10 @@
                         <div class="col-12">
                             @Html.PasswordFor(m => m.Password, new { @class = "form-control", @id = "passwordInput" })
                         </div>
-                        <div class="col-12 showpassword" onclick="ShowPassword()">
-                            <div id="password-show-text" class="password-show-text">show</div>
+                        <div class="showpasswordcontainer">
+                            <span class="col-12 showpassword" onclick="ShowPassword()">
+                                <span id="password-show-text" class="password-show-text">show</span>
+                            </span>
                         </div>
                     </div>
                     <div class="form-group">
@@ -33,8 +35,10 @@
                         <div class="col-12">
                             @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", id = "ConfirmPasswordInput" })
                         </div>
-                        <div class="col-12 showconfirmpassword" onclick="ShowConfirmPassword()">
-                            <div id="confirm-password-show-text" class="confirm-password-show-text">show</div>
+                        <div class="showpasswordcontainer">
+                            <span class="col-12 showconfirmpassword" onclick="ShowConfirmPassword()">
+                                <span id="confirm-password-show-text" class="confirm-password-show-text">show</span>
+                            </span>
                         </div>
                     </div>
                     <div class="form-group">

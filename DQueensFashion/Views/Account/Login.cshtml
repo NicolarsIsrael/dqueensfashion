@@ -27,8 +27,10 @@
                                 @Html.PasswordFor(m => m.Password, new { @class = "form-control", @id = "passwordInput" })
                                 @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                             </div>
-                            <div class="col-12 showpassword" onclick="ShowPassword()">
-                                <div id="password-show-text" class="password-show-text">show</div>
+                            <div class="showpasswordcontainer">
+                                <span class="col-12 showpassword" onclick="ShowPassword()">
+                                    <span id="password-show-text" class="password-show-text">show</span>
+                                </span>
                             </div>
                         </div>
 
