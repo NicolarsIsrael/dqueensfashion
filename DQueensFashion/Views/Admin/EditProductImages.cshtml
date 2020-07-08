@@ -8,8 +8,9 @@
 }
 
 <script src="~/Content/js/jquery.js"></script>
-<div style="font-size:20px;font-weight:700">@Model.ProductName</div>
-<div style="font-size:15px;font-weight:500">@Model.ProductCategory</div>
+
+<div class="edit-product-image-product-name">@Model.ProductName</div>
+<div class="edit-product-image-product-category">@Model.ProductCategory</div>
 
 @using (Html.BeginForm("EditProductImages", "Admin", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
@@ -30,7 +31,7 @@
         <hr />
         <div class="form-group">
             <div class="">
-                <input type="submit" value="SAVE IMAGES" class="btn secondary-table-button"  style="color:white" />
+                <input type="submit" value="SAVE IMAGES" class="btn secondary-table-button"/>
             </div>
         </div>
     </div>

@@ -4,11 +4,10 @@
     @foreach (var image in Model)
     {
         <div class="col-md-2 col-4">
-            <img src="@Url.Content(image.ImagePath)" class="d-block mb-1" style="width:100%;height:100px" />
+            <img src="@Url.Content(image.ImagePath)" class="d-block mb-1 edit-product-product-images">
             <button class="btn btn-sm btn-danger" onclick="DeleteProductImage(@image.Id)">
                 <img src="~/Content/Images/trash.svg" />
             </button>
         </div>
     }
 </div>
-

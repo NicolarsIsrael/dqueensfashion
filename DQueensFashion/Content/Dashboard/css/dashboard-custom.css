@@ -121,10 +121,21 @@
 }
 
 
+/*Admin/editproductimages*/
+.edit-product-product-images {
+    width: 100%;
+    height: 100px
+}
 
+.edit-product-image-product-name {
+    font-size: 20px;
+    font-weight: 700
+}
 
-
-
+.edit-product-image-product-category {
+    font-size: 15px;
+    font-weight: 500
+}
 
 /*smart phones*/
 @media screen and (max-width: 420px) and (min-width: 0px) {
