@@ -302,7 +302,6 @@
     <Content Include="Content\Images\edit-orange.svg" />
     <Content Include="Content\Images\Body-measurement.jpg" />
     <Content Include="Content\Dashboard\css\dashboard-custom.css" />
-    <Content Include="Content\Dashboard\css\prevdashboard.css" />
     <Content Include="Content\Dashboard\jquery.js" />
     <Content Include="Content\Dashboard\js\main.js" />
     <Content Include="Content\Images\background-image.jpg" />

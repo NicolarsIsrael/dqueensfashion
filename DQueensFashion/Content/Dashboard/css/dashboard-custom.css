@@ -83,3 +83,56 @@
 .nav-link{
     font-weight:600;
 }
+
+/*table design*/
+
+.card-tools > div {
+    width: 150px;
+}
+
+.table-search-btn {
+    width: 50px;
+}
+
+.custom-table {
+    height: 70vh;
+}
+
+
+/*Admin/category*/
+.category-table-add-category-btn {
+    text-align: right;
+    margin-bottom: 10px;
+}
+
+    .category-table-add-category-btn > a {
+        background-color: #96157a;
+        color: white;
+    }
+
+.category-table-category-name {
+    width: 500px;
+    max-width: 500px;
+    word-wrap: break-word;
+}
+
+.category-table-edit-category-button {
+    float: right;
+}
+
+
+
+
+
+
+
+/*smart phones*/
+@media screen and (max-width: 420px) and (min-width: 0px) {
+
+
+    /*Admin/Category*/
+    .category-table-category-name {
+        width: 200px;
+        max-width: 200px;
+    }
+}

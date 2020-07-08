@@ -12,11 +12,11 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td class="category-name" style="word-wrap:break-word;">
+                <td class="category-table-category-name">
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 <td>
-                    <a href="@Url.Action("EditCategory", new {id=item.Id})", class="primary-table-button" style="float:right">
+                    <a href="@Url.Action("EditCategory", new {id=item.Id})", class="primary-table-button category-table-edit-category-button">
                         <img src="~/Content/Images/edit.svg" />
                     </a>
                 </td>
@@ -25,20 +25,3 @@
         }
     </tbody>
 </table>
-
-<style>
-    .category-name {
-        width: 500px;
-        max-width:500px;
-    }
-
-    
-
-/*smart phones*/
-    @@media screen and (max-width: 420px) and (min-width: 0px) {
-        .category-name{
-            width:200px;
-            max-width:200px;
-        }
-    }
-</style>
