@@ -236,6 +236,16 @@
                                     </a>
 
                                 </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" href="@Url.Action("changepassword", "Admin")">
+                                        <i class="fas fa-th"></i>
+                                        <p>
+                                            CHANGE PASSWORD
+                                        </p>
+                                    </a>
+
+                                </li>
                             }
                             else if (User.IsInRole(AppConstant.CustomerRole))
                             {

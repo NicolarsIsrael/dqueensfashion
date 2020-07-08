@@ -3,10 +3,12 @@ using DQueensFashion.CustomFilters;
 using DQueensFashion.Models;
 using DQueensFashion.Service.Contract;
 using DQueensFashion.Utilities;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -24,8 +26,10 @@ namespace DQueensFashion.Controllers
         private readonly ICustomerService _customerService;
         private readonly IGeneralValuesService _generalValuesService;
         private readonly IMailingListService _mailingListService;
+        private ApplicationUserManager _userManager;
 
-        public AdminController(ICategoryService categoryService, IProductService productService, IOrderService orderService, IReviewService reviewService, IImageService imageService, ICustomerService customerService, IGeneralValuesService generalValuesService, IMailingListService mailingListService)
+        public AdminController(ICategoryService categoryService, IProductService productService, IOrderService orderService, IReviewService reviewService, IImageService imageService, ICustomerService customerService, IGeneralValuesService generalValuesService, IMailingListService mailingListService
+            , ApplicationUserManager userManager)
         {
             _categoryService = categoryService;
             _productService = productService;
@@ -35,6 +39,7 @@ namespace DQueensFashion.Controllers
             _customerService = customerService;
             _generalValuesService = generalValuesService;
             _mailingListService = mailingListService;
+            _userManager = userManager;
         }
         // GET: Admin
         public ActionResult Index()
@@ -1282,6 +1287,35 @@ namespace DQueensFashion.Controllers
             return View(mailingList);
         }
 
+
+        public ActionResult ChangePassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ChangePassword(ChangePasswordViewModel passwordModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "One or more validation errors");
+                return View(passwordModel);
+            }
+
+            var userId = GetLoggedInUserId();
+            var result = await _userManager.ChangePasswordAsync(userId, passwordModel.OldPassword, passwordModel.NewPassword);
+            if (result.Succeeded)
+            {
+                return RedirectToAction(nameof(Dashboard));
+            }
+            else
+            {
+                throw new Exception();
+            }
+        }
+
+
         #region private functions
         public JsonResult CheckUniqueCategoryName(string name)
         {
@@ -1315,6 +1349,10 @@ namespace DQueensFashion.Controllers
             }
 
             return productImages;
+        }
+        private string GetLoggedInUserId()
+        {
+            return User.Identity.GetUserId();
         }
 
         #endregion

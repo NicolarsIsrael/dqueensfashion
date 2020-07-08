@@ -43,20 +43,6 @@ namespace DQueensFashion.Controllers
             _userManager = userManager;
         }
 
-
-        //public ApplicationUserManager UserManager
-        //{
-        //    get
-        //    {
-        //        return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-        //    }
-        //    private set
-        //    {
-        //        _userManager = value;
-        //    }
-        //}
-
-
         // GET: Customer
         public ActionResult Index()
         {
@@ -407,10 +393,8 @@ namespace DQueensFashion.Controllers
                 ModelState.AddModelError("", "One or more validation errors");
                 return View(passwordModel);
             }
-            //var customer = GetLoggedInCustomer();
-            var userId = GetLoggedInUserId();
-            //var user = await UserManager.FindByNameAsync(customer.Email);
 
+            var userId = GetLoggedInUserId();
             var result = await _userManager.ChangePasswordAsync(userId, passwordModel.OldPassword, passwordModel.NewPassword);
             if (result.Succeeded)
             {
