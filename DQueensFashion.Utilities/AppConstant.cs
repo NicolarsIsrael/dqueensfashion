@@ -11,7 +11,7 @@ namespace DQueensFashion.Utilities
     public class AppConstant
     {
         public const string ApplicationName = "DqueensFashion";
-
+        public const string logoUrl = "https://houseofdqueens.com/Content/Images/HdqLogo.png";
         public const string AdminEmail = "admin@gmail.com";
         public const string AdminPassword = "Abc123*";
         public const string AdminRole = "Admin";

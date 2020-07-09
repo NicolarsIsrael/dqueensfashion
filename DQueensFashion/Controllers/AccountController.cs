@@ -17,6 +17,7 @@ using System.Data.Entity;
 using System.Collections.Generic;
 using DQueensFashion.CustomFilters;
 using Microsoft.Owin.Security.DataProtection;
+using System.IO;
 
 namespace DQueensFashion.Controllers
 {
@@ -261,13 +262,16 @@ namespace DQueensFashion.Controllers
                 string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
                 var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
 
-                string subject = "Change password";
+                string subject = "Reset Password";
                 string to = model.Email;
                 var credentials = AppConstant.MAIL_CREDENTIALS;
 
-                string body = $"Hi, you requested to change your password. Kindly ignore this message if you did not make the request" +
-                    Environment.NewLine + $"Please reset your password by cliking <a href=\"" + callbackUrl + "\">here</a>";
+                string body = CreateHtmlBody("~/Content/HtmlPages/ForgotPasswordMessage.html");
+                body = body.Replace("{redirectUrl}", callbackUrl);
+                body = body.Replace("{logoUrl}", AppConstant.logoUrl);
 
+                //string body = $"Hi, you requested to change your password. Kindly ignore this message if you did not make the request" +
+                //    Environment.NewLine + $"Please reset your password by cliking <a href=\"" + callbackUrl + "\">here</a>"
                 MailService mail = new MailService();
                 await mail.SendMail(to, subject, body, credentials);
 
@@ -559,6 +563,18 @@ namespace DQueensFashion.Controllers
                 context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
             }
         }
+
+        private string CreateHtmlBody(string htmlPath)
+        {
+            string body = string.Empty;
+            using(StreamReader reader = new StreamReader(Server.MapPath(htmlPath)))
+            {
+                body = reader.ReadToEnd();
+            }
+
+            return body;
+        }
+
         #endregion
     }
 }

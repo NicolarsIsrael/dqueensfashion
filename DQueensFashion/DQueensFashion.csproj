@@ -295,6 +295,7 @@
     <Content Include="Content\alertifyjs\themes\semantic.rtl.min.css" />
     <Content Include="Content\Dashboard\css\dashboard.css" />
     <Content Include="Content\general.css" />
+    <Content Include="Content\HtmlPages\ForgotPasswordMessage.html" />
     <Content Include="Content\Images\facebook.svg" />
     <Content Include="Content\Images\check.svg" />
     <Content Include="Content\Images\delete.svg" />
@@ -315,6 +316,7 @@
     <Content Include="Content\Images\delivery-truck.svg" />
     <Content Include="Content\Images\eye.svg" />
     <Content Include="Content\Images\filter.svg" />
+    <Content Include="Content\Images\HdqLogo.png" />
     <Content Include="Content\Images\HDQ LOGO FINAL.png" />
     <Content Include="Content\Images\heart.svg" />
     <Content Include="Content\Images\info.svg" />

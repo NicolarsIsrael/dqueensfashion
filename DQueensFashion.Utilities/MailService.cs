@@ -25,7 +25,7 @@ namespace DQueensFashion.Utilities
             message.From = new MailAddress(AppConstant.HDQ_EMAIL_ACCOUNT, AppConstant.HDQ_EMAIL_TITLE);
             message.Subject = subject;
             message.Body = body;
-            message.IsBodyHtml = false;
+            message.IsBodyHtml = true;
             try
             {
                 using (var smtp = new SmtpClient())
