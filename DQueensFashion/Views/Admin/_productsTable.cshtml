@@ -17,17 +17,16 @@
         @foreach (var item in Model)
         {
         <tr>
-            <td style="width:80px">
-                <img src="@Url.Content(item.MainImage)" style="width:50px;height:50px" />
+            <td class="products-table-image">
+                <img src="@Url.Content(item.MainImage)"/>
             </td>
-            <td class="product-name-desc" style="word-wrap:break-word;">
-
+            <td class="product-name-desc">
                 <a href="@Url.Action("ProductDetails","Product",new { id = item.Id})" >
-                    <div style="font-size:15px;font-weight:600;color:black">
+                    <div>
                         @item.Name
                     </div>
                 </a>
-                <div style="font-size:15px;font-weight:400;color:#818181">@item.Category</div>
+                <div>@item.Category</div>
             </td>
 
             <td>
@@ -59,20 +58,3 @@
         }
     </tbody>
 </table>
-
-
-<style>
-      .product-name-desc{
-        max-width:300px;
-    }
-
-
-    
-/*smart phones*/
-@@media screen and (max-width: 420px) and (min-width: 0px) {
-     .product-name-desc{
-        max-width:200px;
-    }
-}
-
-</style>
