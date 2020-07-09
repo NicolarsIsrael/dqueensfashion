@@ -296,6 +296,7 @@
     <Content Include="Content\Dashboard\css\dashboard.css" />
     <Content Include="Content\general.css" />
     <Content Include="Content\HtmlPages\ForgotPasswordMessage.html" />
+    <Content Include="Content\HtmlPages\OrderConfirmationMessage.html" />
     <Content Include="Content\Images\facebook.svg" />
     <Content Include="Content\Images\check.svg" />
     <Content Include="Content\Images\delete.svg" />

@@ -7,9 +7,12 @@ using Microsoft.AspNet.Identity;
 using PayPal.Api;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Order = DQueensFashion.Core.Model.Order;
 
 namespace DQueensFashion.Controllers
 {
@@ -39,7 +42,7 @@ namespace DQueensFashion.Controllers
         }
 
 
-        public ActionResult PaymentWithPaypal(string Cancel = null)
+        public async Task<ActionResult> PaymentWithPaypal(string Cancel = null)
         {
             Customer customer = GetLoggedInCustomer();
             if (customer == null)
@@ -141,9 +144,42 @@ namespace DQueensFashion.Controllers
                 Session["Address"] = null;
                 _orderService.CreateOrder(order);
 
+                try
+                {
+                    //mail user
+                    string subject = "Order confirmation";
+                    string to = customer.Email;
+                    var credentials = AppConstant.MAIL_CREDENTIALS;
+                    string body = CreateHtmlBody("~/Content/HtmlPages/OrderConfirmationMessage.html");
+
+                    string orderDetails = string.Empty;
+                    foreach (var lineItem in order.LineItems)
+                    {
+                        orderDetails += "<div style='break-word;color:black'> Item: " + lineItem.Product.Name + "</div>"
+                            + "<div style='break-word;color:black'> Desc: " + lineItem.Description + "</div>"
+                            + "<div style='break-word;color:black'> Qty: " + lineItem.Quantity + "</div>"
+                            + "<div style='break-word;color:black'> Unit: $" + lineItem.UnitPrice + "</div>"
+                            + "<div style='break-word;color:black'> Price: $" + lineItem.TotalAmount + "</div>"
+                            + "<hr style ='margin:5px 0;'/>";
+                    }
+                    string orderTotal = "<div style='break-word;font-size:20px;color:black'> Total: $" + order.TotalAmount.ToString() + "</div>";
+
+                    body = body.Replace("{orderDetails}", orderDetails);
+                    body = body.Replace("{orderTotal}", orderTotal);
+                    body = body.Replace("{logoUrl}", AppConstant.logoUrl);
+
+                    MailService mail = new MailService();
+                    await mail.SendMail(to, subject, body, credentials);
+                }
+                catch (Exception)
+                {
+
+                }
+
             }
             catch (Exception ex)
             {
+
                    //save raw info here
             }
             //on successful payment, show success page to user.
@@ -280,6 +316,16 @@ namespace DQueensFashion.Controllers
             return this.payment.Create(apiContext);
         }
         
+        private string CreateHtmlBody(string htmlPath)
+        {
+            string body = string.Empty;
+            using (StreamReader reader = new StreamReader(Server.MapPath(htmlPath)))
+            {
+                body = reader.ReadToEnd();
+            }
+
+            return body;
+        }
         private string GenerateInvoiceNumber()
         {
             return _orderService.GetOrderCount().ToString()
@@ -315,6 +361,8 @@ namespace DQueensFashion.Controllers
 
             return categories;
         }
+
+
 
     }
 }
