@@ -137,6 +137,120 @@
     font-weight: 500
 }
 
+/*Admin/ProducctDetails*/
+
+.product-details {
+    margin: 0px;
+}
+
+.carousel-item {
+    height: 250px;
+}
+
+.carousel-indicators li {
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    background-color: #df7204;
+}
+
+.carousel-indicators {
+    bottom: -50px;
+}
+
+
+.product-details-title {
+    white-space: normal;
+    font-weight: 400;
+    font-size: 30px;
+    color: #29303b;
+    margin-bottom: 0px;
+}
+
+.product-details-detail {
+    white-space: normal;
+    font-size: 15px;
+    font-weight: 500;
+    margin: 0;
+    padding: 3px;
+}
+
+    .product-details-detail > span {
+        white-space: normal;
+        font-size: 15px;
+        font-weight: 400;
+    }
+
+
+.product-details-initial-price {
+    font-size: 20px;
+    line-height: 15px;
+    color: #75757a;
+    text-decoration: line-through;
+    padding: 3px;
+}
+
+.product-details-price {
+    font-size: 30px;
+    font-weight: 700;
+    padding: 3px;
+    color: red;
+}
+
+.product-details-image {
+    width: 100%;
+    height: 400px;
+}
+
+.product-details-discount-price {
+    background-color: #df7204;
+    color: white;
+    padding: 5px;
+}
+
+.delivery-returns-card {
+    min-height: 250px
+}
+
+    .delivery-returns-card > div {
+        background-color: white;
+    }
+
+.delivery-returns-header-text {
+    font-weight: 500;
+    font-size: 15px
+}
+
+.delivery-returns-icon {
+    width: 50px;
+    vertical-align: top
+}
+
+.delivery-returns-body-text {
+    font-weight: 300;
+    font-size: 13px
+}
+
+.description-body {
+    text-justify: inter-word;
+    text-align: justify
+}
+
+.review-name {
+    font-weight: 500;
+}
+
+.review-date {
+    float: right;
+}
+
+.review-comment {
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+
+
 /*smart phones*/
 @media screen and (max-width: 420px) and (min-width: 0px) {
 
