@@ -106,6 +106,14 @@
     border-radius: 0;
 }
 
+    .primary-table-button:hover {
+        transform: scale(1.01);
+        background-color: #ff8d19;
+        box-shadow: 2px 2px 12px rgba(47, 47, 47, 0.40);
+        transition: all ease 0.3s;
+        color: white;
+    }
+
 .secondary-table-button {
     display: inline-block;
     padding: 5px 10px;
@@ -116,21 +124,13 @@
     border-radius: 0;
 }
 
-.primary-table-button:hover {
-    transform: scale(1.01);
-    background-color: #ff8d19;
-    box-shadow: 2px 2px 12px rgba(47, 47, 47, 0.40);
-    transition: all ease 0.3s;
-    color: white;
-}
-
-.secondary-table-button:hover {
-    transform: scale(1.01);
-    background-color: #9c3b8d;
-    box-shadow: 2px 2px 12px rgba(47, 47, 47, 0.40);
-    transition: all ease 0.3s;
-    color: white;
-}
+    .secondary-table-button:hover {
+        transform: scale(1.01);
+        background-color: #9c3b8d;
+        box-shadow: 2px 2px 12px rgba(47, 47, 47, 0.40);
+        transition: all ease 0.3s;
+        color: white;
+    }
 
 
 .card-header{

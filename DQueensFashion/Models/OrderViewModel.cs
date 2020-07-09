@@ -1,6 +1,7 @@
 ﻿using DQueensFashion.Utilities;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -39,6 +40,7 @@ namespace DQueensFashion.Models
     public class UpdateOrderStatusViewModel
     {
         public int Id { get; set; }
+        [Display(Name ="Order status")]
         public OrderStatus OrderStatus { get; set; }
     }
 }
