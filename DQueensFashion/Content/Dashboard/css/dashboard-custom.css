@@ -347,7 +347,10 @@
     text-justify: inter-word;
 }
 
-
+/*Admin/GeneralDetails*/
+.admin-generaldetails-card{
+    width:400px;
+}
 
 /*smart phones*/
 @media screen and (max-width: 420px) and (min-width: 0px) {
