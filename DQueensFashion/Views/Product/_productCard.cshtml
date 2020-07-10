@@ -2,7 +2,7 @@
 @using DQueensFashion.Utilities
 
 <div class="product-box">
-    <div onclick="NavigateToProductDetails(@Model.Id)" style="cursor:pointer">
+    <div onclick="NavigateToProductDetails(@Model.Id)">
         <div class="product-time-label">New</div>
         @if (Model.Discount > 0)
         {
@@ -13,7 +13,7 @@
         </div>
     </div>
     <div class="product-details">
-        <div onclick="NavigateToProductDetails(@Model.Id)" style="cursor:pointer">
+        <div onclick="NavigateToProductDetails(@Model.Id)">
             <div class="product-title">@Model.Name</div>
             <div class="product-category">@Model.Category</div>
             @if (Model.Discount > 0)
@@ -24,10 +24,6 @@
         </div>
         <div class="mb-1">
             @Html.Partial("~/views/Product/_averageRating.cshtml", Model.Rating)
-            @*<span class="float-right">
-                <i class="far fa-heart product-wishlist" onclick="AddToWishList(@Model.Id)"></i>
-
-            </span>*@
         </div>
         @{
             if (Model.CategoryId == AppConstant.CustomMadeCategoryId ||
