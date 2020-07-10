@@ -239,6 +239,8 @@ namespace DQueensFashion.Controllers
             {
                 OrderId = order.Id,
                 CustomerId = order.CustomerId,
+                SubTotal = order.SubTotal,
+                ShippingPrice = order.ShippingPrice,
                 TotalAmount = order.TotalAmount,
                 TotalQuantity = order.TotalQuantity,
                 LineItems = order.LineItems

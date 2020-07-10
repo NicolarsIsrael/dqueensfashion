@@ -48,7 +48,7 @@ namespace DQueensFashion.Controllers
             if (customer == null)
                 throw new Exception();
 
-            //GeneralValues generalValues = _generalValService.GetGeneralValues();
+            GeneralValues generalValues = _generalValService.GetGeneralValues();
 
             //getting the apiContext
             APIContext apiContext = PaypalConfiguration.GetAPIContext();
@@ -134,7 +134,9 @@ namespace DQueensFashion.Controllers
                     Phone = Session["PhoneNumber"].ToString(),
                     Address = Session["Address"].ToString(),
                     LineItems = lineItems,
-                    TotalAmount = lineItems.Sum(l => l.TotalAmount),
+                    SubTotal = lineItems.Sum(l => l.TotalAmount),
+                    ShippingPrice = generalValues.ShippingPrice,
+                    TotalAmount = lineItems.Sum(l => l.TotalAmount) + generalValues.ShippingPrice,
                     TotalQuantity = lineItems.Sum(l => l.Quantity),
                     OrderStatus = OrderStatus.Processing,
                 };

@@ -637,6 +637,8 @@ namespace DQueensFashion.Controllers
                 CustomerName = order.FirstName + " " + order.LastName,
                 CustomerPhone = order.Phone,
                 CustomerAddress = order.Address,
+                SubTotal = order.SubTotal,
+                ShippingPrice = order.ShippingPrice,
                 TotalAmount = order.TotalAmount,
                 TotalQuantity = order.TotalQuantity,
                 LineItems = order.LineItems

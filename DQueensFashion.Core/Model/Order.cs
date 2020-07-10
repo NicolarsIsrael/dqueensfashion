@@ -13,6 +13,8 @@ namespace DQueensFashion.Core.Model
         public string LastName { get; set; }
         public string Phone { get; set; }
         public string Address { get; set; }
+        public decimal SubTotal { get; set; }
+        public decimal ShippingPrice { get; set; }
         public decimal TotalAmount { get; set; }
         public int TotalQuantity { get; set; }
         public int CustomerId { get; set; }
