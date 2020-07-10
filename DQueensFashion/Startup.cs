@@ -30,6 +30,7 @@ namespace DQueensFashion
             {
                 Id = AppConstant.GeneralValId,
                 NewsLetterSubscriptionDiscount = AppConstant.HDQSubscriptionDiscount,
+                ShippingPrice = AppConstant.ShippingPrice,
                 DateCreated = DateTime.Now,
                 DateModified = DateTime.Now,
                 IsDeleted = false,

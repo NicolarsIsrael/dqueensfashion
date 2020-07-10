@@ -86,6 +86,7 @@ namespace DQueensFashion.Utilities
         public const string HDQEmail = "Hdq@gmail.com";
         public const string HDQPhoneNumber = "+45 637 872";
         public const decimal HDQSubscriptionDiscount = 10;
+        public const decimal ShippingPrice = 4.99M;
         public const int GeneralValId = 1;
 
 
