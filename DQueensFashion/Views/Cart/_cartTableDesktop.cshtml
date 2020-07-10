@@ -1,6 +1,25 @@
 ﻿@model DQueensFashion.Models.ViewCartViewModel
 @using DQueensFashion.Utilities
 
+<style>
+    .cart-remove-btn{
+        cursor:pointer
+    }
+
+    .cart-item-image{
+        width:80px;
+    }
+
+    .cart-item-image>div{
+        width:70px;height:70px;
+    }
+
+    .desk-cart-itemname {
+        word-wrap: break-word;
+        width: 200px;
+        max-width: 200px;
+    }
+</style>
 
 
 <table class="table carttable">
@@ -18,17 +37,17 @@
         <tr>
 
             <td>
-                <div onclick="RemoveCartItem(@item.Product.Id)" style="cursor:pointer">
+                <div onclick="RemoveCartItem(@item.Product.Id)" class="cart-remove-btn">
                     <img src="~/Content/Images/x-circle.svg" />
                 </div>
             </td>
-            <td style="width:80px">
-                <img src="@Url.Content(item.MainImage)" style="width:70px;height:70px" />
+            <td class="cart-item-image">
+                <img src="@Url.Content(item.MainImage)" />
             </td>
-            <td style="word-wrap:break-word;width:200px;max-width:200px">
+            <td class="desk-cart-itemname">
                
                 <a href="@Url.Action("ProductDetails","Product",new { id = item.Product.Id })" class="cartitemname">
-                    <div style="font-size:15px;font-weight:500">
+                    <div>
                         @item.Product.Name
                     </div>
                 </a>
