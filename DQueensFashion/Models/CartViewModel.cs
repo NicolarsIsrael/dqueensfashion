@@ -78,6 +78,8 @@ namespace DQueensFashion.Models
         public IEnumerable<Cart> Carts { get; set; }
         public bool CustomerSubscriptionDiscount { get; set; }
         public decimal SubDiscountPrice { get; set; }
+        public decimal ShippingPrice { get; set; }
+        public decimal TotalAfterShipping { get; set; }
 
         //shipping details
         [Required(ErrorMessage ="First name is requied")]

@@ -38,8 +38,10 @@ namespace DQueensFashion.Controllers
             {
                 Count = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.Quantity),
                 Carts = Session["cart"] == null ? new List<Cart>() : (List<Cart>)Session["cart"],
-                SubTotal = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.TotalPrice),
+                SubTotal = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.TotalPrice) ,
+                ShippingPrice = _generalValuesService.GetGeneralValues().ShippingPrice,
             };
+            viewCart.TotalAfterShipping =viewCart.SubTotal + viewCart.ShippingPrice;
 
             Customer customer = GetLoggedInCustomer();
             if (customer != null)
@@ -56,7 +58,7 @@ namespace DQueensFashion.Controllers
 
         public ActionResult ViewCart()
         {
-            return RedirectToAction(nameof(ViewCart));
+            return RedirectToAction(nameof(Index));
         }
 
         public ActionResult GetCart()
@@ -245,7 +247,10 @@ namespace DQueensFashion.Controllers
                 Count = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.Quantity),
                 Carts = Session["cart"] == null ? new List<Cart>() : (List<Cart>)Session["cart"],
                 SubTotal = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.TotalPrice),
+                ShippingPrice = _generalValuesService.GetGeneralValues().ShippingPrice,
             };
+            viewCart.TotalAfterShipping = viewCart.SubTotal + viewCart.ShippingPrice;
+
             Customer customer = GetLoggedInCustomer();
             if (customer != null)
             {
