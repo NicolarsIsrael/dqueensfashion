@@ -4,19 +4,18 @@
     Layout = "~/Views/Shared/_dashboardLayout.cshtml";
 }
 
-
-<div class="card">
-    <div class="card-header" style="font-size:20px;font-weight:400">
+<div class="card mt-lg-3">
+    <div class="card-header admin-dashboard-acct-overview">
         ACCOUNT OVERVIEW
     </div>
     <div class="card-body">
         <div class="row">
-            <div class="col-md-6">
-                <div class="account-card-header" style="font-size:18px;font-weight:300">
+            <div class="col-md-6 mb-3">
+                <div class="account-card-header">
                     CATEGORIES
                 </div>
                 <div class="account-card-body">
-                    <div style="color:#75757A;margin-bottom:20px">
+                    <div class="admin-dashboard-total">
                        Total: @Model.NumberOfCategories
                     </div>
                     <div>
@@ -26,12 +25,12 @@
                 </div>
 
             </div>
-            <div class="col-md-6">
-                <div class="account-card-header" style="font-size:18px;font-weight:300">
+            <div class="col-md-6 mb-3"">
+                <div class="account-card-header">
                     PRODUCTS
                 </div>
                 <div class="account-card-body">
-                    <div style="color:#75757A;margin-bottom:20px">
+                    <div class="admin-dashboard-total">
                         Total: @Model.NumberOfProducts
                     </div>
                     <div>
@@ -40,12 +39,12 @@
                 </div>
 
             </div>
-            <div class="col-md-6">
-                <div class="account-card-header" style="font-size:18px;font-weight:300">
+            <div class="col-md-6 mb-3"">
+                <div class="account-card-header">
                     ORDERS
                 </div>
                 <div class="account-card-body">
-                    <div style="color:#75757A;margin-bottom:20px">
+                    <div class="admin-dashboard-total">
                         Total: @Model.NumberOfOrders
                     </div>
                     <div>
@@ -54,13 +53,12 @@
                 </div>
 
             </div>
-            <div class="col-md-6">
-                <div class="account-card-header" style="font-size:18px;font-weight:300">
+            <div class="col-md-6 mb-3"">
+                <div class="account-card-header">
                     CUSTOMERS
                 </div>
                 <div class="account-card-body">
-
-                    <div style="color:#75757A;margin-bottom:20px">
+                    <div class="admin-dashboard-total">
                         Total: @Model.NumberOfCustomers
                     </div>
                     <div>
@@ -72,30 +70,3 @@
         </div>
     </div>
 </div>
-
-
-<style>
-    .account-card-header {
-        border: 1px solid #ededed;
-        padding: 10px 20px;
-        margin-top: 10px;
-    }
-
-    .account-card-body {
-        border: 1px solid #ededed;
-        padding: 20px
-    }
-
-    .action-link {
-        font-weight: bold;
-        color: #df7204;
-        background-color: white;
-        padding: 10px;
-        transition: all ease 0.3s;
-    }
-
-        .action-link:hover {
-            background-color: #ff8d19;
-            color: white;
-        }
-</style>

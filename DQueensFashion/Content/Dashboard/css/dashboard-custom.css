@@ -98,6 +98,42 @@
     height: 70vh;
 }
 
+/*Admin/Dashboard, customer/account*/
+.account-card-header {
+    border: 1px solid #ededed;
+    padding: 10px 20px;
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: 300
+}
+
+.account-card-body {
+    border: 1px solid #ededed;
+    padding: 20px
+}
+
+.action-link {
+    font-weight: bold;
+    color: #df7204;
+    background-color: white;
+    padding: 10px;
+    transition: all ease 0.3s;
+}
+
+    .action-link:hover {
+        background-color: #df7204;
+        color: white;
+    }
+
+.admin-dashboard-acct-overview {
+    font-size: 20px;
+    font-weight: 400
+}
+
+.admin-dashboard-total {
+    color: #75757A;
+    margin-bottom: 20px
+}
 
 /*Admin/category*/
 .category-table-add-category-btn {
