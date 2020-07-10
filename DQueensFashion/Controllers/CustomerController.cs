@@ -231,7 +231,7 @@ namespace DQueensFashion.Controllers
                 throw new Exception();
 
             if (order.CustomerId != customer.Id)
-                throw new Exception();
+                return HttpNotFound();
 
             var allImages = _imageService.GetAllImageFiles();
 

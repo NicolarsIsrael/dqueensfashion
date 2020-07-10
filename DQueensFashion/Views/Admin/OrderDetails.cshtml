@@ -3,23 +3,24 @@
     ViewBag.Title = "Order Details";
     Layout = "~/Views/Shared/_dashboardLayout.cshtml";
 }
+
 <div class="card">
     <div class="card-body">
-        <div class="order-header" style="font-size:18px;font-weight:300">
+        <div class="orderdetails-card-header">
             ORDER DETAILS
         </div>
-        <div class="order-body">
-            <div style="margin-bottom:10px">
-                <div style="font-size:15px;font-weight:600">CUSTOMER : @Model.CustomerName</div>
-                <div style="font-size:13px;font-weight:400">PHONE : @Model.CustomerPhone</div>
-                <div style="font-size:13px;font-weight:400">ADDRESS : @Model.CustomerAddress</div>
-                <div style="font-size:13px;font-weight:400">QUANTITY : @Model.TotalQuantity</div>
-                <div style="font-size:13px;font-weight:400"> DATE : @Model.DateCreatedString</div>
-                <div style="font-size:13px;font-weight:400">STATUS : @Model.OrderStatus</div>
-                <div style="font-size:16px;font-weight:600">TOTAL : $@Model.TotalAmount</div>
+        <div class="orderdetails-card-body">
+            <div class="mb-3">
+                <div class="orderdetails-customer-main-info">CUSTOMER : @Model.CustomerName</div>
+                <div class="orderdetails-customer-info">PHONE : @Model.CustomerPhone</div>
+                <div class="orderdetails-customer-info">ADDRESS : @Model.CustomerAddress</div>
+                <div class="orderdetails-customer-info">QUANTITY : @Model.TotalQuantity</div>
+                <div class="orderdetails-customer-info"> DATE : @Model.DateCreatedString</div>
+                <div class="orderdetails-customer-info">STATUS : @Model.OrderStatus</div>
+                <div class="orderdetails-customer-main-info">TOTAL : $@Model.TotalAmount</div>
             </div>
             <hr />
-            <div style="font-size:14px;font-weight:400;margin-bottom:10px">
+            <div class="orderdetails-items-in-order">
                 ITEMS IN ORDER
                 <hr class="m-1" />
             </div>
@@ -28,12 +29,12 @@
             {
                 <div class="row">
                     <div class="col-3 col-md-2">
-                        <img src="@Url.Content(item.ProductImage)" style="display:inline-block;width:100%;height:80px" />
+                        <img src="@Url.Content(item.ProductImage)" class="orderdetails-product-image"/>
                     </div>
                     <div class="col-9 col-md-10">
                         @item.ProductName 
-                        <div style="font-size:15px;font-weight:400;color:#818181">$@item.UnitPrice * @item.Quantity</div>
-                        <div style="font-size:18px;font-weight:600;">$@item.TotalAmount</div>
+                        <div class="orderdetails-unitprice">$@item.UnitPrice * @item.Quantity</div>
+                        <div class="orderdetails-totalamouont">$@item.TotalAmount</div>
                     </div>
                 </div>
 
@@ -48,25 +49,3 @@
 
     </div>
 </div>
-
-<style>
-       .product-name-desc{
-        max-width:50vw;
-    }
-</style>
-
-
-
-
-<style>
-    .order-header {
-        border: 1px solid #ededed;
-        padding: 10px 20px;
-        margin-top: 10px;
-    }
-
-    .order-body {
-        border: 1px solid #ededed;
-        padding: 15px
-    }
-</style>
