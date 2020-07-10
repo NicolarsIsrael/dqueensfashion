@@ -26,17 +26,17 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="card" style="border-bottom-left-radius:0;border-bottom-right-radius:0">
-                        <div class="card-header" style="background-color:white">
-                            <div style="text-align:center;font-weight:700;font-size:18px">CART TOTAL</div>
+                    <div class="card cart-total-card">
+                        <div class="card-header">
+                            <div>CART TOTAL</div>
                         </div>
                         <div class="card-body">
                             <div>
-                                <div class="subtotal">
+                                <div class="cart-subtotal">
                                     <span>SUBTOTAL: $@Model.SubTotal</span>
                                 </div>
                                 <hr class="m-0" />
-                                <div style=" font-size:20px;font-weight:400;">
+                                <div class="cart-shipping-details">
                                     <span>Shipping & taxes calculated at checkout</span>
                                 </div>
                                 <hr class="m-0" />
@@ -49,19 +49,19 @@
                                     <hr class="m-0" />
                                 }
 
-                                <div style="font-size:25px;font-weight:500">
+                                <div class="cart-total">
                                     <span>TOTAL: $@Model.SubTotal</span>
                                 </div>
 
                                 @{
                                     if (Model.Count < 1)
                                     {
-                                        <input type="submit" class="btn" style="background-color:#96157a;color:white;width:300px;height:50px;"
+                                        <input type="submit" class="btn"
                                                value="CHECK OUT" disabled />
                                     }
                                     else
                                     {
-                                        <input type="button" class="btn checkout-btn"
+                                        <input type="button" class="btn cart-checkout-btn"
                                                value="CHECK OUT" onclick="CheckOut()" />
 
                                     }
@@ -73,8 +73,7 @@
 
                     <div class="row mb-5">
                         <div class="col-12">
-                            <a href="@Url.Action("Index", "Product")" class="btn btn-block"
-                               style="background-color:#df7204;color:white; border-radius:0;">Continue shopping</a>
+                            <a href="@Url.Action("Index", "Product")" class="btn btn-block cart-continue-shipping-btn">Continue shopping</a>
                         </div>
 
                     </div>
@@ -85,100 +84,26 @@
         }
         else
         {
-            <div style="margin-top:80px;">
-
-                <div style="background-color:white;border-radius:50%;display:flex;width:200px;height:200px;margin:auto">
+            <div class="empty-cart-div">
+                <div class="empty-cart-image">
                     <img src="~/Content/Images/shopping-cart-big.svg" style="margin:auto" />
                 </div>
-                <div style="text-align:center;font-size:30px;font-weight:400">
+                <div class="empty-cart-head">
                     YOUR CART IS EMPTY
                 </div>
-                <div style="text-align:center;font-size:18px;font-weight:300">
+                <div class="empty-cart-body">
                     Add products to cart.
                     You will find a lot of interesting products on our "Shop" page.
                 </div>
             </div>
-            <div style="text-align:center;margin-top:10px">
-                <a href="@Url.Action("Index","Product")" class="btn"
-                   style="background-color:#df7204;color:white;width:200px; border-radius:0;">Continue shopping</a>
+            <div class="empty-cart-continue-shopping-div">
+                <a href="@Url.Action("Index","Product")" class="btn">Continue shopping</a>
             </div>
         }
 
 
     </div>
    
-    <style>
-        .quantity-button {
-            border-radius: 0;
-            border-top: 1px solid black;
-            border-bottom: 1px solid black;
-            
-        }
-
-        .minus-button {
-            border-left: 1px solid black;
-            padding:1px  6px;
-        }
-
-        .plus-button {
-            border-right: 1px solid black;
-            padding:1px  6px;
-        }
-
-        .cart-quantity {
-            width: 50px;
-            border: none;
-            text-align: center;
-            border-radius: 0;
-            border-top: 1px solid black;
-            border-bottom: 1px solid black;
-        }
-
-        .subtotal{
-            font-size:20px;
-            font-weight:300;
-        }
-
-        .checkout-btn{
-            background-color:#96157a;color:white;width:100%;height:50px;border-radius:0
-        }
-
-            .checkout-btn:hover {
-                transform: scale(1.01);
-                background-color: #9c3b8d;
-                box-shadow: 2px 2px 12px rgba(47, 47, 47, 0.40);
-                transition: all ease 0.3s;
-                color: white;
-            }
-
-            .checkout-btn:focus{
-                outline:none;
-                box-shadow:none;
-            }
-
-    .cartitemname{
-        color:black !important;
-        text-decoration:none;
-    }
-
-    .cartitemname:hover{
-        text-decoration:none;
-    }
-
-    .carttable{
-        border-left:1px solid #dee2e6;
-        border-right:1px solid #dee2e6;
-        border-bottom:1px solid #dee2e6;
-    }
-
-        /*smart phones*/
-        @@media screen and (max-width: 991px) and (min-width: 768px) {
-            
-        }
-
-
-    </style>
-
 
 <script>
     function CheckOut() {
