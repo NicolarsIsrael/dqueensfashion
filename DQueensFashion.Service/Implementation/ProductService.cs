@@ -43,17 +43,20 @@ namespace DQueensFashion.Service.Implementation
 
         public IEnumerable<Product> GetAllProducts()
         {
-            return uow.ProductRepo.GetAllProductsWithRelationships();
+            return uow.ProductRepo.GetAllProductsWithRelationships()
+                .Where(p => p.Quantity > 0);
         }
 
         public IEnumerable<Product> GetAllProductsForCategory(int categoryId)
         {
-            return GetAllProducts().Where(p => p.CategoryId == categoryId);
+            return GetAllProducts().Where(p => p.CategoryId == categoryId)
+                .Where(p => p.Quantity > 0);
         }
 
         public IEnumerable<Product> GetRelatedProducts(int productId,int categoryId)
         {
-            return GetAllProducts().Where(p => p.Id!=productId && p.CategoryId == categoryId);
+            return GetAllProducts().Where(p => p.Id!=productId && p.CategoryId == categoryId)
+                .Where(p => p.Quantity > 0);
         }
 
 

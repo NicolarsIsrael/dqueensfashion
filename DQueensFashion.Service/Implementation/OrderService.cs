@@ -34,6 +34,8 @@ namespace DQueensFashion.Service.Implementation
                 if (p.CategoryId != AppConstant.CustomMadeCategoryId || p.CategoryId != AppConstant.ReadyMadeCategoryId)
                 {
                     p.Quantity -= lineItem.Quantity;
+                    if (p.Quantity < 0)
+                        p.Quantity = 0;
                 }
             }
 
