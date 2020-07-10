@@ -8,11 +8,7 @@
 <script src="~/Content/js/jquery.js"></script>
 
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
-<style>
-    .select2-container--default .select2-selection--multiple .select2-selection__choice {
-        background-color: #df7204;
-    }
-</style>
+
 
 
 
@@ -24,8 +20,8 @@
 
     <div>
         <div class="form-horizontal">
-            <div style="text-align:right;margin-bottom:10px;">
-                <a href="@Url.Action("EditProductImages",new { id = Model.Id })" class="btn btn-sm" , style="background-color:#96157a;color:white">
+            <div class="admin-editproduct-editimage-btn">
+                <a href="@Url.Action("EditProductImages",new { id = Model.Id })" class="btn btn-sm secondary-table-button m-0">
                     <img src="~/Content/Images/edit.svg" />
                     Edit product images
                 </a>
@@ -78,7 +74,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.Tags, htmlAttributes: new { @class = "control-label col-12" })
                                 <div class="col-12">
-                                    <select class="form-control js-example-tokenizer" multiple="multiple" name="Tags" style="border:1px solid #ced4da">
+                                    <select class="form-control js-example-tokenizer admin-products-tag" multiple="multiple" name="Tags">
                                         @foreach (var tags in Model.Tags)
                                         {
                                             <option selected="selected">@tags</option>
@@ -93,7 +89,7 @@
             </div>
             <div class="col-md-6">
                 <div class="card">
-                    <div class="card-body" style="padding-bottom:20px">
+                    <div class="card-body pb-2">
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-group">
@@ -318,7 +314,7 @@
 
         </div>
             <div class="form-group">
-                <button type="submit" class="btn" style="background-color:#96157a;color:white">
+                <button type="submit" class="btn primary-table-button m-0">
                     <img src="~/Content/Images/edit.svg" />
                     Edit
                 </button>

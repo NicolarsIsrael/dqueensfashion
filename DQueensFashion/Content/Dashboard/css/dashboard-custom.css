@@ -205,6 +205,19 @@
         color: #818181
     }
 
+    /*Admin/EdittProduct*/
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background-color: #df7204 !important;
+}
+
+.admin-products-tag {
+    border: 1px solid #ced4da;
+}
+
+.admin-editproduct-editimage-btn {
+    text-align: right;
+    margin-bottom: 10px;
+}
 
 /*Admin/editproductimages*/
 .edit-product-product-images {
