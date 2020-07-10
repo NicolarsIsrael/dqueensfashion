@@ -150,6 +150,10 @@ textarea {
     navbar-link:focus {
         color: #df7204;
     }
+
+
+    /*home/index*/
+
 /* background */
 
 .background {
@@ -166,15 +170,46 @@ textarea {
     margin-top: 120px;
 }
 
-.btn-white {
-    color: white !important;
+    .background-text > h1 {
+        color: #df7204;
+    }
+    .background-text > h6 {
+        color: white;
+    }
+
+.hr-light {
     background-color: #df7204;
 }
 
-.btn-outline-white {
+.home-shop-now {
+    color: white !important;
+    background-color: #df7204;
+    margin-top: 5px;
+    border-radius:0;
+}
+
+    .home-shop-now:hover {
+        transform: scale(1.01);
+        background-color: #ff8d19;
+        box-shadow: 2px 2px 12px rgba(47, 47, 47, 0.40);
+        transition: all ease 0.3s;
+        color: white;
+    }
+
+.home-background-learnmore {
     color: white !important;
     border: 2px solid #df7204;
+    margin-top: 5px;
+    border-radius: 0;
 }
+
+    .home-background-learnmore:hover {
+        transform: scale(1.01);
+        background-color: #ff8d19;
+        box-shadow: 2px 2px 12px rgba(47, 47, 47, 0.40);
+        transition: all ease 0.5s;
+        color: white;
+    }
 
 .header {
     text-align: center;
@@ -189,9 +224,6 @@ textarea {
 }
 
 
-
-
-/*shopwise*/
 .section_header {
     padding-bottom: 15px;
     border-bottom: 1px solid #ddd;
@@ -260,6 +292,29 @@ textarea {
         -webkit-text-fill-color: transparent;
         -webkit-background-clip: text;
     }
+
+.home-custommade-container,
+.home-readymade-container{
+    margin-top: 100px;
+    margin-bottom: 100px
+}
+
+.home-custommade-img,
+.home-readymade-img {
+    width: 100%;
+    height: 400px
+}
+
+.home-custommade-bodytext,
+.home-readymade-bodytext {
+    text-align: justify;
+    text-justify: inter-word
+}
+
+.home-bestdeals-header,
+.home-bestselling-header {
+    margin-top: 15px;
+}
 
 .tab-link {
     color: black;
