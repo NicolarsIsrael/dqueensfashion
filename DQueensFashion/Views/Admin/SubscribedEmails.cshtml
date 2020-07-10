@@ -10,7 +10,7 @@
         <h3 class="card-title">Subscribed emails</h3>
     </div>
     <!-- /.card-header -->
-    <div class="card-body table-responsive p-0" style="height: 80vh">
+    <div class="card-body table-responsive p-0 custom-table">
         <table class="table table-head-fixed  table-striped">
             <thead>
                 <tr>
@@ -21,7 +21,7 @@
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td class="category-name" style="word-wrap:break-word;">
+                        <td class="admin-subscribed-email">
                             @Html.DisplayFor(modelItem => item.EmailAddress)
                         </td>
                     </tr>
