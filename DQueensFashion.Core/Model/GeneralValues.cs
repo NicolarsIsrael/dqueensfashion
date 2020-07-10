@@ -9,5 +9,6 @@ namespace DQueensFashion.Core.Model
     public class GeneralValues:Entity
     {
         public decimal NewsLetterSubscriptionDiscount { get; set; }
+        public decimal ShippingPrice { get; set; }
     }
 }

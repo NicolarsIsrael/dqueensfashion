@@ -20,8 +20,13 @@ namespace DQueensFashion.Models
         public int GeneralValId { get; set; }
 
         [Required(ErrorMessage ="Subscription discount is required")]
-        [Range(0,100)]
+        [Range(0,100,ErrorMessage ="Subscription discount must be between 0 and 100")]
         [Display(Name ="Subscription discount (%)")]
         public decimal NewsLetterSubscriptionDiscount { get; set; }
+
+        [Required(ErrorMessage ="Shipping price is requirsd")]
+        [Range(0,int.MaxValue,ErrorMessage ="Shipping price must be equal to or greater than 0")]
+        [Display(Name ="Shipping price")]
+        public decimal ShippingPrice { get; set; }
     }
 }
