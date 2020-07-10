@@ -22,9 +22,17 @@ textarea {
     /*max-width: 280px;*/
 }
 
-.btn:focus{
-    outline:none;
-    box-shadow:none;
+.pagebackground {
+    background-color: white
+}
+
+.sidebarbody {
+    padding: 10px 20px;
+}
+
+.btn:focus {
+    outline: none;
+    box-shadow: none;
 }
 
 .card-header{
@@ -67,6 +75,16 @@ textarea {
 
 
 /* navbar */
+.navbar {
+    background-color: white;
+    box-shadow: 2px 2px 12px rgba(47, 47, 47, 0.40);
+}
+
+.navbar-logo {
+    height: 30px;
+    max-width: 50px
+}
+
 .navbar-toggler {
     width: 47px;
     height: 34px;
@@ -74,10 +92,12 @@ textarea {
     border: none;
 }
 
-
-    .navbar-toggler:focus {
-        outline: none !important;
-    }
+.navbar-search-input{
+    width:100%;
+}
+.navbar-toggler:focus {
+    outline: none !important;
+}
 
     .navbar-toggler span {
         display: block;
@@ -150,6 +170,48 @@ textarea {
     navbar-link:focus {
         color: #df7204;
     }
+
+.form-control-borderless {
+    border: none;
+}
+
+    .form-control-borderless:hover, .form-control-borderless:active, .form-control-borderless:focus {
+        border: none;
+        outline: none;
+        box-shadow: none;
+    }
+
+.navbar-search-div {
+    padding: 1px;
+    border: 1px solid #a6adad;
+}
+
+.navbar-search-button {
+    color: white;
+    border-radius: 0;
+    transition: all ease 0.3s;
+    background-color: #df7204;
+}
+
+    .navbar-search-button:hover {
+        background-color: #9c3b8d;
+        color: white;
+    }
+
+.navbar-category-name:hover {
+    color: #df7204;
+}
+
+.dropdown-item:active {
+    background-color: transparent;
+}
+
+@media screen and (min-width:991px) {
+    .search-form {
+        width: 50%;
+        margin-right: 10px;
+    }
+}
 
 
     /*home/index*/
@@ -767,6 +829,13 @@ textarea {
         transition: all ease 0.3s;
         color: white;
     }
+    
+    /*footer*/
+footer {
+    max-width: 100vw;
+    overflow-x: hidden
+}
+
 
 /*screens less than md*/
 @media screen and (min-width:421px) and (max-width: 991px) {
