@@ -57,12 +57,12 @@
                             @{
                                 if (Model.CustomerSubscriptionDiscount)
                                 {
-                                    <div style="font-weight:400;font-size:15px"> TOTAL (Before discount): $@Model.SubTotal</div>
-                                    <div style="font-weight:400;font-size:18px"> TOTAL: $@Model.SubDiscountPrice</div>
+                                    <div style="font-weight:400;font-size:15px"> SUBTOTAL: (Before discount): $@Model.SubTotal</div>
+                                    <div style="font-weight:400;font-size:18px"> SUBTOTAL: $@Model.SubDiscountPrice</div>
                                 }
                                 else
                                 {
-                                    <div style="font-weight:400;font-size:18px"> TOTAL: $@Model.SubTotal</div>
+                                    <div style="font-weight:400;font-size:18px"> SUBTOTAL: $@Model.SubTotal</div>
                                 }
                             }
                             <div style="font-weight:500;font-size:18px">TOTAL WITH SHIPPING: $@Model.TotalAfterShipping</div>

@@ -48,6 +48,8 @@ namespace DQueensFashion.Controllers
             if (customer == null)
                 throw new Exception();
 
+            //GeneralValues generalValues = _generalValService.GetGeneralValues();
+
             //getting the apiContext
             APIContext apiContext = PaypalConfiguration.GetAPIContext();
             try
@@ -284,7 +286,7 @@ namespace DQueensFashion.Controllers
             var details = new Details()
             {
                 tax = "0",
-                shipping = "0",
+                shipping = generalVal.ShippingPrice.ToString(),
                 subtotal = carts.SubTotal.ToString(),
                 
             };
@@ -292,7 +294,7 @@ namespace DQueensFashion.Controllers
             var amount = new Amount()
             {
                 currency = "USD",
-                total = carts.SubTotal.ToString(), // Total must be equal to sum of tax, shipping and subtotal.
+                total = (carts.SubTotal + generalVal.ShippingPrice).ToString(), // Total must be equal to sum of tax, shipping and subtotal.
                 details = details,
             };
             var transactionList = new List<Transaction>();
