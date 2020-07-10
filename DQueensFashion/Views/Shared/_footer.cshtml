@@ -1,19 +1,19 @@
 ﻿@using DQueensFashion.Utilities
 
-<div style="background-color:#df7204;" class="footer-background">
+<div class="footer-top footer-background">
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <h4 style="color:white">NEW TO HDQ?</h4>
-                <div style="color:white">Subscribe to our newsletter and get 10% off on your first buy.</div>
+                <h4 class="footer-subscribe-header">NEW TO HDQ?</h4>
+                <div class="footer-subscribe-body">Subscribe to our newsletter and get 10% off on your first buy.</div>
             </div>
             <div class="col-md-6 mt-auto">
-                <div class="card card-sm subscribe-form" style="width:100%">
+                <div class="card card-sm subscribe-form w-100">
                     <div class="row no-gutters align-items-center subscribe-form-div">
                         <!--end of col-->
                         <div class="col">
-                            <input class="form-control form-control-sm form-control-borderless" type="email" 
-                                   placeholder="Enter email" style="width:100%" required id="subscribeEmail">
+                            <input class="form-control form-control-sm form-control-borderless w-100" type="email" 
+                                   placeholder="Enter email" required id="subscribeEmail">
                         </div>
                         <!--end of col-->
                         <div class="col-auto">
@@ -31,7 +31,7 @@
     </div>
 
 </div>
-<div style="background-color:#212529;" class="footer-background">
+<div class="footer-bottom footer-background">
     <div class="container">
         <div class="row">
 
@@ -82,7 +82,7 @@
                     @AppConstant.HDQPhoneNumber
                 </div>
                 <div class="footer-detail">
-                    <img class="footer-detail-img" src="~/Content/Images/facebook.svg" style="margin-left:0"/>
+                    <img class="footer-detail-img ml-0" src="~/Content/Images/facebook.svg"/>
                     <img class="footer-detail-img" src="~/Content/Images/instagram.svg" />
                     <img class="footer-detail-img" src="~/Content/Images/twitter.svg" />
                     <img class="footer-detail-img" src="~/Content/Images/youtube.svg" />
@@ -91,122 +91,7 @@
         </div>
 
 
-        <p style="color:white;margin:0;text-align:center">&copy; @DateTime.Now.Year - HDQ</p>
+        <p  class="footer-bottom-date">&copy; @DateTime.Now.Year - HDQ</p>
 
     </div>
 </div>
-
-<style>
-    
-    .footer-background{
-        padding:30px 50px;
-    }
-
-/*.subscrcibe-button {
-    border-radius:0;
-    display: inline-block;
-    padding: 5px 10px;
-    color: white;
-    background-color: #96157a;
-    cursor: pointer;
-    margin: 0 10px;
-    width:100%;
-}
-
-
-.subscrcibe-button:hover {
-    transform: scale(1.01);
-    background-color: #ff8d19;
-    box-shadow: 2px 2px 12px rgba(47, 47, 47, 0.40);
-    transition: all ease 0.3s;
-    color:white;
-}*/
-
-.footer-header{
-    font-size:18px;
-    font-weight:500;
-    color:white;
-    margin-bottom:20px;
-    margin-top:20px;
-}
-
-.footer-detail{
-    margin-bottom:10px;
-    color:white;
-    font-weight:500;
-    word-wrap:break-word;
-}
-
-.footer-link{
-    color:white !important;
-    font-weight:500;
-}
-
-.footer-detail-img{
-     margin-right:10px;
-}
-
-
-
-/*smart phones*/
-@@media screen and (max-width: 420px) and (min-width: 0px) {
-
-     .footer-background{
-        padding:50px 10px;
-    }
-}
-
-
-
-  .form-control-borderless {
-    border: none;
-}
-
-.form-control-borderless:hover, .form-control-borderless:active, .form-control-borderless:focus {
-    border: none;
-    outline: none;
-    box-shadow: none;
-}
-
-    .subscribe-form-div {
-        padding: 1px;
-        border: 1px solid #a6adad;
-    }
-
-    .subscrcibe-button {
-        color: white;
-        border-radius: 0;
-        transition: all ease 0.3s;
-        background-color: #96157a;
-    }
-
-     .subscrcibe-button:hover{
-        background-color:#9c3b8d;
-        color:white;
-    }
-
-   
-    /*screens less than md*/
-@@media screen and (min-width:991px) {
-    .subscribe-form{
-         width:50%;
-         margin-right:10px;
-     }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</style>

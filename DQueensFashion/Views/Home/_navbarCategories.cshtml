@@ -4,8 +4,8 @@
 
         foreach (var category in ViewBag.Categories)
         {
-            <div class="dropdown-item" style="padding:0">
-                <div class="dropdown-item-text" onclick="ShopByCategory(@category.Id)" style="cursor:pointer">
+            <div class="dropdown-item p-0">
+                <div class="dropdown-item-text" onclick="ShopByCategory(@category.Id)">
                     @category.Name
                 </div>
             </div>
