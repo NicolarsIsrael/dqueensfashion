@@ -152,6 +152,11 @@
     float: right;
 }
 
+/*Admin/editcategory*/
+.admin-editcategory-card {
+    width: 400px;
+}
+
 
 /*Admin/Products*/
 .add-product-btn-div {
