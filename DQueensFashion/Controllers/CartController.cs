@@ -296,7 +296,9 @@ namespace DQueensFashion.Controllers
                 Count = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.Quantity),
                 Carts = Session["cart"] == null ? new List<Cart>() : (List<Cart>)Session["cart"],
                 SubTotal = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.TotalPrice),
+                ShippingPrice = _generalValuesService.GetGeneralValues().ShippingPrice,
             };
+            viewCart.TotalAfterShipping = viewCart.SubTotal + viewCart.ShippingPrice;
 
             if (viewCart.Count < 1)
                 return RedirectToAction(nameof(Index));
@@ -323,6 +325,8 @@ namespace DQueensFashion.Controllers
                 {
                     viewCart.SubDiscountPrice = _productService.
                         CalculateProductPrice(viewCart.SubTotal, _generalValuesService.GetGeneralValues().NewsLetterSubscriptionDiscount);
+
+                    viewCart.TotalAfterShipping = viewCart.SubDiscountPrice + viewCart.ShippingPrice;
                     viewCart.CustomerSubscriptionDiscount = true;
                 }
 
@@ -345,7 +349,10 @@ namespace DQueensFashion.Controllers
                     Count = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.Quantity),
                     Carts = Session["cart"] == null ? new List<Cart>() : (List<Cart>)Session["cart"],
                     SubTotal = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.TotalPrice),
+                    ShippingPrice = _generalValuesService.GetGeneralValues().ShippingPrice,
                 };
+                viewCart.TotalAfterShipping = viewCart.SubTotal + viewCart.ShippingPrice;
+
                 ModelState.AddModelError("", "One or more validation errors");
 
                 if (viewCart.Count < 1)
@@ -359,6 +366,8 @@ namespace DQueensFashion.Controllers
                     {
                         viewCart.SubDiscountPrice = _productService.
                             CalculateProductPrice(viewCart.SubTotal, _generalValuesService.GetGeneralValues().NewsLetterSubscriptionDiscount);
+
+                        viewCart.TotalAfterShipping = viewCart.SubDiscountPrice + viewCart.ShippingPrice;
                         viewCart.CustomerSubscriptionDiscount = true;
                     }
 
