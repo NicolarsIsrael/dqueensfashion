@@ -6,57 +6,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
 <style>
-    .collapsible {
-        background-color: #0a0c13;
-        color: white;
-        cursor: pointer;
-        padding: 18px;
-        width: 100%;
-        border: none;
-        text-align: left;
-        outline: none;
-        font-size: 15px;
-        border-top: 4px solid #96157a;
-    }
-
-        .collapsible:focus {
-            outline: none;
-        }
-
-        .collapsible:after {
-            content: '\002B';
-            color: white;
-            font-weight: bold;
-            float: right;
-            margin-left: 5px;
-        }
-
-    .active:after {
-        content: "\2212";
-    }
-
-    .content {
-        padding: 0 18px;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.5s ease-out;
-        background-color: #f1f1f1;
-    }
-
-    .filter-btn {
-        border: none;
-        border-radius:0;
-    }
-
-        .filter-btn:active,
-        .filter-btn:focus {
-            outline: none !important;
-            border: none !important;
-            box-shadow: none !important;
-        }
+ 
 </style>
 
 
@@ -64,14 +16,14 @@
     <div class="row">
         <div class="col-12">
             <div class="container">
-                <div class="row" style="border:1px solid #a6adad;padding:15px;margin-bottom:15px">
+                <div class="row shop-filter-container">
 
                     <div class="col-md-4 p-1">
-                        <input type="text" class="form-control-sm filter-input" value="@ViewBag.Query" id="query"
-                               placeholder="search by name, category, tags" style="width:100%;" />
+                        <input type="text" class="form-control-sm shop-filter-input" value="@ViewBag.Query" id="query"
+                               placeholder="search by name, category, tags" />
                     </div>
                     <div class="col-md-3 col-6 p-1">
-                        <select class="form-control-sm col-12 filter-input" id="categoryId">
+                        <select class="form-control-sm col-12 shop-filter-input" id="categoryId">
                             <option value="0">Category</option>
                             <option value="0">All</option>
                             @foreach (var category in Model.Categories)
@@ -81,7 +33,7 @@
                         </select>
                     </div>
                     <div class="col-md-3 col-6 p-1">
-                        <select class="form-control-sm col-12 filter-input" id="sortString">
+                        <select class="form-control-sm col-12 shop-filter-input" id="sortString">
                             <option value="0">Sort by</option>
 
                             @if (ViewBag.BestDealsSelected != null)
@@ -112,7 +64,7 @@
                         </select>
                     </div>
                     <div class="col-md-2 p-1">
-                        <button class="btn btn-sm btn-block filter-btn" onclick="SearchProduct()" id="btnFilter" style="background-color:#96157a;color:white;width:100%">FILTER <img src="~/Content/Images/filter.svg" /></button>
+                        <button class="btn btn-sm btn-block shop-filter-btn" onclick="SearchProduct()" id="btnFilter">FILTER <img src="~/Content/Images/filter.svg" /></button>
                     </div>
                 </div>
             </div>
@@ -171,14 +123,3 @@
     }
 
 </script>
-
-<style>
-    .filter-input{
-        border:0;border-bottom:1px solid #a6adad;border-radius:0;
-    }
-
-    .filter-input:focus{
-        border:0 !important;border-bottom:1px solid #a6adad;border-radius:0 !important;
-        outline:none;
-    }
-</style>

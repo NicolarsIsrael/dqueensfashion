@@ -704,6 +704,44 @@ textarea {
     height: 80vh;
 }
 
+/*Product/Index*/
+
+.shop-filter-btn {
+    border: none;
+    background-color: #96157a;
+    color: red;
+    width: 100%;
+    border-radius: 0;
+}
+
+    .shop-filter-btn:active,
+    .shop-filter-btn:focus {
+        outline: none !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+.shop-filter-container {
+    border: 1px solid #a6adad;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.shop-filter-input {
+    border: 0;
+    border-bottom: 1px solid #a6adad;
+    border-radius: 0;
+    width: 100%;
+}
+
+    .shop-filter-input:focus,
+    .shop-filter-input:active{
+        border: 0 !important;
+        border-bottom: 1px solid #a6adad;
+        border-radius: 0 !important;
+        outline: none;
+    }
+
 /*Account/Login*/
 .login-card {
     min-width: 300px;
