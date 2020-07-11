@@ -1,4 +1,5 @@
 ﻿
+
 <nav aria-label="Page navigation" class="mt-3">
     <ul class="pagination justify-content-center">
         @{
@@ -14,8 +15,8 @@
             else
             {
                 <li class="page-item">
-                    <div style="cursor:pointer" class="page-link" aria-label="Previous" onclick="ProductPagination(@ViewBag.CurrentPage-1)">
-                        <span aria-hidden="true" style="color:#0a0c13">&laquo;</span>
+                    <div style="cursor:pointer" class="page-link product-pagi-prev-page" aria-label="Previous" onclick="ProductPagination(@ViewBag.CurrentPage-1)">
+                        <span aria-hidden="true" class="product-pagi-color">&laquo;</span>
                         <span class="sr-only">Previous</span>
                     </div>
                 </li>
@@ -30,13 +31,13 @@
                     if (pageNo == ViewBag.CurrentPage)
                     {
                         <li class="page-item">
-                            <div style="background-color:#0a0c13;color:white" class="page-link">@pageNo</div>
+                            <div class="page-link product-pagi-n-page-active">@pageNo</div>
                         </li>
                     }
                     else
                     {
                         <li class="page-item">
-                            <div style="cursor:pointer;color:#0a0c13" class="page-link" href="#" onclick="ProductPagination(@pageNo)">@pageNo</div>
+                            <div class="page-link product-pagi-n-page" href="#" onclick="ProductPagination(@pageNo)">@pageNo</div>
                         </li>
                     }
                 }
@@ -49,33 +50,33 @@
                     if (pageNo == ViewBag.CurrentPage)
                     {
                         <li class="page-item">
-                            <div style="background-color:#0a0c13;color:white" class="page-link">@pageNo</div>
+                            <div class="page-link product-pagi-n-page-active">@pageNo</div>
                         </li>
                         pageAssigned = true;
                     }
                     else
                     {
                         <li class="page-item">
-                            <div style="cursor:pointer;color:#0a0c13" class="page-link" href="#" onclick="ProductPagination(@pageNo)">@pageNo</div>
+                            <div class="page-link product-pagi-n-page" href="#" onclick="ProductPagination(@pageNo)">@pageNo</div>
                         </li>
                     }
                 }
                 if ((ViewBag.CurrentPage-2) > 1)
                 {
                     <li class="page-item">
-                        <div style="color:#0a0c13" class="page-link">...</div>
+                        <div class="page-link product-pagi-color">...</div>
                     </li>
                 }
                 if (!pageAssigned && ((ViewBag.NumberOfPages - ViewBag.CurrentPage) > 0))
                 {
                     <li class="page-item">
-                        <div style="background-color:#0a0c13;color:white" class="page-link">@ViewBag.CurrentPage</div>
+                        <div class="page-link product-pagi-n-page-active">@ViewBag.CurrentPage</div>
                     </li>
                 }
                 if ((ViewBag.NumberOfPages - ViewBag.CurrentPage) > 1)
                 {
                     <li class="page-item">
-                        <div style="color:#0a0c13" class="page-link">...</div>
+                        <div class="product-pagi-color page-link">...</div>
                     </li>
                 }
 
@@ -83,13 +84,13 @@
                 if (ViewBag.NumberOfPages == ViewBag.CurrentPage)
                 {
                     <li class="page-item">
-                        <div style="background-color:#0a0c13;color:white" class="page-link">@ViewBag.NumberOfPages</div>
+                        <div class="page-link product-pagi-n-page-active">@ViewBag.NumberOfPages</div>
                     </li>
                 }
                 else
                 {
                     <li class="page-item">
-                        <div style="cursor:pointer;color:#0a0c13" class="page-link" href="#" onclick="ProductPagination(@ViewBag.NumberOfPages)">
+                        <div class="page-link product-pagi-n-page" href="#" onclick="ProductPagination(@ViewBag.NumberOfPages)">
                             @ViewBag.NumberOfPages
                         </div>
                     </li>
@@ -110,8 +111,8 @@
             else
             {
                 <li class="page-item">
-                    <div class="page-link" href="#" aria-label="Next" style="cursor:pointer" onclick="ProductPagination(@ViewBag.CurrentPage+1)">
-                        <span aria-hidden="true" style="color:#0a0c13">&raquo;</span>
+                    <div class="page-link product-pagi-next-page" href="#" aria-label="Next" onclick="ProductPagination(@ViewBag.CurrentPage+1)">
+                        <span aria-hidden="true" class="product-pagi-color">&raquo;</span>
                         <span class="sr-only">Next</span>
                     </div>
                 </li>
