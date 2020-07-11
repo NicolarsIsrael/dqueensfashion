@@ -7,13 +7,13 @@ namespace DQueensFashion.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class shippingPriceAdded : IMigrationMetadata
+    public sealed partial class entityUtc : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(shippingPriceAdded));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(entityUtc));
         
         string IMigrationMetadata.Id
         {
-            get { return "202007101718337_shippingPriceAdded"; }
+            get { return "202007111904078_entityUtc"; }
         }
         
         string IMigrationMetadata.Source

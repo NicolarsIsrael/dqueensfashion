@@ -43,6 +43,21 @@ namespace DQueensFashion.Controllers
 
         public ActionResult Test()
         {
+            //var products = _productService.GetAllProductsWithDelete().ToList();
+            //foreach (var roduct in products)
+            //{
+            //    roduct.DateCreatedUtc = DateTime.UtcNow;
+            //    roduct.DateModifiedUtc = DateTime.UtcNow;
+            //    _productService.UpdateProduct(roduct);
+            //}
+            //products = products.Where(p => p.DateCreatedUtc.Value == null || p.DateModifiedUtc.Value == null).ToList();
+            //foreach (var roduct in products)
+            //{
+            //    roduct.DateCreatedUtc = DateTime.UtcNow;
+            //    roduct.DateModifiedUtc = DateTime.UtcNow;
+            //    _productService.UpdateProduct(roduct);
+            //} 
+
             ViewBag.GN = _generalValuesService.GetTotalGeneralValuesCount();
             return View();
         }

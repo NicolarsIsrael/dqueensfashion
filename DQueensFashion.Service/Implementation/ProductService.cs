@@ -41,10 +41,15 @@ namespace DQueensFashion.Service.Implementation
             return uow.ProductRepo.GetAll().Count();
         }
 
+        public IEnumerable<Product> GetAllProductsWithDelete()
+        {
+            return uow.ProductRepo.GetAllWithDelete();
+        }
+
         public IEnumerable<Product> GetAllProducts()
         {
-            return uow.ProductRepo.GetAllProductsWithRelationships()
-                .Where(p => p.Quantity > 0);
+            return uow.ProductRepo.GetAllProductsWithRelationships();
+                //.Where(p => p.Quantity > 0);
         }
 
         public IEnumerable<Product> GetAllProductsForCategory(int categoryId)

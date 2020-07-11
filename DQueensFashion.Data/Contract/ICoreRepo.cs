@@ -35,6 +35,8 @@ namespace DQueensFashion.Data.Contract
         /// <returns></returns>
         IEnumerable<TEntity> GetAll();
 
+        IEnumerable<TEntity> GetAllWithDelete();
+
         /// <summary>
         /// Counts the total entities found in store
         /// </summary>

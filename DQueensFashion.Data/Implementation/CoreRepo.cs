@@ -23,8 +23,10 @@ namespace DQueensFashion.Data.Implementation
         {
             if (entity is Entity)
             {
-                (entity as Entity).DateCreated = DateTime.UtcNow;
-                (entity as Entity).DateModified = DateTime.UtcNow;
+                (entity as Entity).DateCreated = DateTime.Now;
+                (entity as Entity).DateCreatedUtc = DateTime.UtcNow;
+                (entity as Entity).DateModified = DateTime.Now;
+                (entity as Entity).DateModifiedUtc = DateTime.UtcNow;
                 (entity as Entity).IsDeleted = false;
             }
 
@@ -34,7 +36,9 @@ namespace DQueensFashion.Data.Implementation
         public void AddRange(IEnumerable<TEntity> entities)
         {
             entities.ToList().ForEach(e => e.DateCreated = DateTime.Now);
+            entities.ToList().ForEach(e => e.DateCreatedUtc = DateTime.Now);
             entities.ToList().ForEach(e => e.DateModified = DateTime.Now);
+            entities.ToList().ForEach(e => e.DateModifiedUtc = DateTime.UtcNow);
             entities.ToList().ForEach(e => e.IsDeleted = false);
             _dbContext.Set<TEntity>().AddRange(entities);
         }
@@ -51,6 +55,11 @@ namespace DQueensFashion.Data.Implementation
         public IEnumerable<TEntity> GetAll()
         {
             return _dbContext.Set<TEntity>().Where(t=>t.IsDeleted ==false).ToList();
+        }
+
+        public IEnumerable<TEntity> GetAllWithDelete()
+        {
+            return _dbContext.Set<TEntity>();
         }
 
         public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)

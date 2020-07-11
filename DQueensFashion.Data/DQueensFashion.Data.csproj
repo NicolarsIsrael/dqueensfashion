@@ -154,33 +154,9 @@
     <Compile Include="Implementation\ReviewRepo.cs" />
     <Compile Include="Implementation\UnitOfWork.cs" />
     <Compile Include="Implementation\WishListRepo.cs" />
-    <Compile Include="Migrations\202007061626187_new.cs" />
-    <Compile Include="Migrations\202007061626187_new.Designer.cs">
-      <DependentUpon>202007061626187_new.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202007061852464_new1.cs" />
-    <Compile Include="Migrations\202007061852464_new1.Designer.cs">
-      <DependentUpon>202007061852464_new1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202007071322521_generalValuesRemoved1.cs" />
-    <Compile Include="Migrations\202007071322521_generalValuesRemoved1.Designer.cs">
-      <DependentUpon>202007071322521_generalValuesRemoved1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202007071332277_generalValueschanged.cs" />
-    <Compile Include="Migrations\202007071332277_generalValueschanged.Designer.cs">
-      <DependentUpon>202007071332277_generalValueschanged.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202007071559094_generalVa32.cs" />
-    <Compile Include="Migrations\202007071559094_generalVa32.Designer.cs">
-      <DependentUpon>202007071559094_generalVa32.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202007101146384_shippingPriceaddedtodb.cs" />
-    <Compile Include="Migrations\202007101146384_shippingPriceaddedtodb.Designer.cs">
-      <DependentUpon>202007101146384_shippingPriceaddedtodb.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202007101718337_shippingPriceAdded.cs" />
-    <Compile Include="Migrations\202007101718337_shippingPriceAdded.Designer.cs">
-      <DependentUpon>202007101718337_shippingPriceAdded.cs</DependentUpon>
+    <Compile Include="Migrations\202007111904078_entityUtc.cs" />
+    <Compile Include="Migrations\202007111904078_entityUtc.Designer.cs">
+      <DependentUpon>202007111904078_entityUtc.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -196,26 +172,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202007061626187_new.resx">
-      <DependentUpon>202007061626187_new.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007061852464_new1.resx">
-      <DependentUpon>202007061852464_new1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007071322521_generalValuesRemoved1.resx">
-      <DependentUpon>202007071322521_generalValuesRemoved1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007071332277_generalValueschanged.resx">
-      <DependentUpon>202007071332277_generalValueschanged.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007071559094_generalVa32.resx">
-      <DependentUpon>202007071559094_generalVa32.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007101146384_shippingPriceaddedtodb.resx">
-      <DependentUpon>202007101146384_shippingPriceaddedtodb.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007101718337_shippingPriceAdded.resx">
-      <DependentUpon>202007101718337_shippingPriceAdded.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202007111904078_entityUtc.resx">
+      <DependentUpon>202007111904078_entityUtc.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
