@@ -177,7 +177,7 @@ namespace DQueensFashion.Controllers
                             TotalAmount = lineItem.TotalAmount,
                         }),
                     OrderStatus = order.OrderStatus.ToString(),
-                    DateCreated = order.DateCreated,
+                    DateCreated = order.DateCreatedUtc,
                     DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy : hh-mm-ss"),
                 }).OrderByDescending(order => order.DateCreated).ToList();
 
@@ -205,7 +205,7 @@ namespace DQueensFashion.Controllers
                             TotalAmount = lineItem.TotalAmount,
                         }),
                     OrderStatus = order.OrderStatus.ToString(),
-                    DateCreated = order.DateCreated,
+                    DateCreated = order.DateCreatedUtc,
                     DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy : hh-mm-ss"),
                     LineItemConcatenatedString = string.Join(",", order.LineItems.Select(x => x.Product.Name)),
                 }).OrderByDescending(order => order.DateCreated).ToList();
@@ -259,10 +259,9 @@ namespace DQueensFashion.Controllers
                             CanReview = _reviewService.CanReview(lineItem.Id),
                         }),
                 OrderStatus = order.OrderStatus.ToString(),
-                DateCreated = order.DateCreated,
+                DateCreated = order.DateCreatedUtc,
                 DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy - hh:mm:ss"),
                 LineItemConcatenatedString = string.Join(",", order.LineItems.Select(x => x.Product.Name)),
-
             };
 
 

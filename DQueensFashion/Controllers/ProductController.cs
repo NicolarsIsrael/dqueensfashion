@@ -79,6 +79,7 @@ namespace DQueensFashion.Controllers
                     SubTotal = p.SubTotal,
                     Category = p.Category.Name,
                     CategoryId = p.CategoryId,
+                    DateCreated = p.DateCreatedUtc,
                     Rating = new RatingViewModel()
                     {
                         AverageRating = p.AverageRating.ToString("0.0"),
@@ -87,7 +88,7 @@ namespace DQueensFashion.Controllers
                         FloorAverageRating = (int)Math.Floor(p.AverageRating)
                     },
                     NumberOfOrders = _lineItemService.NumberOfTimesPurchased(p.Id),
-                }).ToList();
+                }).OrderByDescending(p=>p.DateCreated).ToList();
 
 
             if (sort == AppConstant.BestSelling)
@@ -159,7 +160,7 @@ namespace DQueensFashion.Controllers
                         Price = p.Price,
                         Discount = p.Discount,
                         SubTotal = p.SubTotal,
-                        DateCreated = p.DateCreated,
+                        DateCreated = p.DateCreatedUtc,
                         Rating = new RatingViewModel()
                         {
                             AverageRating = p.AverageRating.ToString("0.0"),
@@ -454,7 +455,7 @@ namespace DQueensFashion.Controllers
                        Comment = r.Comment,
                        Rating = r.Rating,
                        DateCreated = r.DateCreated.ToString("dd/MMM/yyyy"),
-                       DateOrder = r.DateCreated,
+                       DateOrder = r.DateCreatedUtc,
                    }).OrderByDescending(r => r.DateOrder).ToList();
 
             switch (sortId)

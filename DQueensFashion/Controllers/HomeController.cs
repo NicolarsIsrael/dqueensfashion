@@ -88,7 +88,8 @@ namespace DQueensFashion.Controllers
                         FloorAverageRating = (int)Math.Floor(p.AverageRating)
                     },
                     NumberOfOrders = _lineItemService.NumberOfTimesPurchased(p.Id),
-                }).ToList();
+                    DateCreated = p.DateCreatedUtc,
+                }).OrderByDescending(p=>p.DateCreated).ToList();
 
             IEnumerable<CategoryNameAndId> categories = _categoryService.GetAllCategories()
                 .Select(category => new CategoryNameAndId()
