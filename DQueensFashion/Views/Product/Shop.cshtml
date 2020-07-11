@@ -93,7 +93,7 @@
                 $("#productsList").html(result);
             },
             error: function (xhr, status, error) {
-                alertify.error("Error");
+                ShowSnackbarError("Error");
                 document.getElementById("loading-effect").style.display = "none";
             }
         });
@@ -112,7 +112,7 @@
                 $(window).scrollTop(0);
             },
             error: function (xhr, status, error) {
-                alertify.error("Error");
+                ShowSnackbarError("Error");
                 document.getElementById("loading-effect").style.display = "none";
             }
         });

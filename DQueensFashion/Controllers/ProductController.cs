@@ -41,9 +41,18 @@ namespace DQueensFashion.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult SearchShop(string query)
         {
-            return RedirectToAction(nameof(Shop), new { query = query });
+            try
+            {
+                return RedirectToAction(nameof(Shop), new { query = query });
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
 
         public ActionResult Shop(int categoryId = 0,int sort=0,string query="")
@@ -231,7 +240,7 @@ namespace DQueensFashion.Controllers
 
                 return PartialView("_productsList", products);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw;
             }

@@ -154,9 +154,9 @@
     <Compile Include="Implementation\ReviewRepo.cs" />
     <Compile Include="Implementation\UnitOfWork.cs" />
     <Compile Include="Implementation\WishListRepo.cs" />
-    <Compile Include="Migrations\202007111904078_entityUtc.cs" />
-    <Compile Include="Migrations\202007111904078_entityUtc.Designer.cs">
-      <DependentUpon>202007111904078_entityUtc.cs</DependentUpon>
+    <Compile Include="Migrations\202007111932557_entityUtc2.cs" />
+    <Compile Include="Migrations\202007111932557_entityUtc2.Designer.cs">
+      <DependentUpon>202007111932557_entityUtc2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -172,8 +172,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202007111904078_entityUtc.resx">
-      <DependentUpon>202007111904078_entityUtc.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202007111932557_entityUtc2.resx">
+      <DependentUpon>202007111932557_entityUtc2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

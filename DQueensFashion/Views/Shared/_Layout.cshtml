@@ -41,6 +41,9 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             @using (Html.BeginForm("SearchShop", "Product", FormMethod.Post, new { @class = "card card-sm ml-auto search-form" }))
             {
+
+                @Html.AntiForgeryToken()
+
                 <div class="row no-gutters align-items-center navbar-search-div">
                     <!--end of col-->
                     <div class="col">

@@ -7,13 +7,13 @@ namespace DQueensFashion.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class entityUtc : IMigrationMetadata
+    public sealed partial class entityUtc2 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(entityUtc));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(entityUtc2));
         
         string IMigrationMetadata.Id
         {
-            get { return "202007111904078_entityUtc"; }
+            get { return "202007111932557_entityUtc2"; }
         }
         
         string IMigrationMetadata.Source

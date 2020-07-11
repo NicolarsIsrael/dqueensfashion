@@ -36,7 +36,7 @@ namespace DQueensFashion.Data.Implementation
         public void AddRange(IEnumerable<TEntity> entities)
         {
             entities.ToList().ForEach(e => e.DateCreated = DateTime.Now);
-            entities.ToList().ForEach(e => e.DateCreatedUtc = DateTime.Now);
+            entities.ToList().ForEach(e => e.DateCreatedUtc = DateTime.UtcNow);
             entities.ToList().ForEach(e => e.DateModified = DateTime.Now);
             entities.ToList().ForEach(e => e.DateModifiedUtc = DateTime.UtcNow);
             entities.ToList().ForEach(e => e.IsDeleted = false);
