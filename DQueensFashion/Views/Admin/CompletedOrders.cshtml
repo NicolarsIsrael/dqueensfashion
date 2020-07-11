@@ -48,7 +48,7 @@
                 $("#completedOrdersTable").html(result);
             },
             error: function (xhr, status, error) {
-                alertify.error("Error");
+                ShowSnackbarError("Error");
             }
         });
     }

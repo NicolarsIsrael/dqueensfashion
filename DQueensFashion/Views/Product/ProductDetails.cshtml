@@ -320,7 +320,7 @@
                 document.getElementById("review-scroll-to").scrollIntoView();
             },
             error: function (xhr, status, error) {
-                alertify.error("Error");
+                ShowSnackbarError("Error");
                 document.getElementById("loading-effect").style.display = "none";
             }
         });
@@ -338,7 +338,7 @@
                     $("#reviewList").html(result);
                 },
                 error: function (xhr, status, error) {
-                    alertify.error("Error");
+                    ShowSnackbarError("Error");
                 document.getElementById("loading-effect").style.display = "none";
                 }
             });
