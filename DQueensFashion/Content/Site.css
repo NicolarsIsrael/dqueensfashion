@@ -403,7 +403,8 @@ textarea {
 }
 
 .home-custommade-bodytext,
-.home-readymade-bodytext {
+.home-readymade-bodytext,
+.home-about-us-bodytext{
     text-align: justify;
     text-justify: inter-word
 }
