@@ -708,7 +708,7 @@ textarea {
 
 .shop-filter-btn {
     border: none;
-    background-color: #96157a;
+    background-color: #df7204;
     color: white;
     width: 100%;
     border-radius: 0;
@@ -716,7 +716,7 @@ textarea {
 
     .shop-filter-btn:hover {
         transform: scale(1.01);
-        background-color: #9c3b8d;
+        background-color: #ff8d19;
         box-shadow: 2px 2px 12px rgba(47, 47, 47, 0.40);
         transition: all ease 0.3s;
         color: white;
@@ -1061,10 +1061,15 @@ footer {
 }
 
 
-/*screens less than md*/
+/*screens less than md and greater than mobile*/
 @media screen and (min-width:421px) and (max-width: 991px) {
     .navbar-category{
         border-right:0;
+    }
+
+    .nav-item{
+        margin-right:10px;
+        margin-left:10px;
     }
 }
 
@@ -1082,9 +1087,10 @@ footer {
     .navbar {
         padding: 10px 10px;
     }
-    
-    .nav-item{
-        margin-right:0;
+
+    .nav-item {
+        margin-right: 10px;
+        margin-left: 10px;
     }
     .navbar-category {
         border-right: 0;
