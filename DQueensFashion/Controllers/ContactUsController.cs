@@ -1,4 +1,6 @@
-﻿using DQueensFashion.Models;
+﻿using DQueensFashion.Core.Model;
+using DQueensFashion.Models;
+using DQueensFashion.Service.Contract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +11,13 @@ namespace DQueensFashion.Controllers
 {
     public class ContactUsController : Controller
     {
+
+        private readonly IMessageService _messageService;
+        public ContactUsController(IMessageService messageService)
+        {
+            _messageService = messageService;
+        }
+
         // GET: ContactUs
         public ActionResult Index()
         {
@@ -27,9 +36,18 @@ namespace DQueensFashion.Controllers
                 return View();
             }
 
+            var message = new DQueensFashion.Core.Model.Message()
+            {
+                Fullname = contactUsModel.Fullname,
+                Email = contactUsModel.Email,
+                Phone = contactUsModel.Phone,
+                Subject = contactUsModel.Subject,
+                MessageSummary = contactUsModel.Message,
+            };
 
+            _messageService.AddMessage(message);
 
-            return View();
+            return RedirectToAction(nameof(Index));
         }
     }
 }

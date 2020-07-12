@@ -7,99 +7,103 @@
 }
 
 <style>
-    .contactus-address-header{
-        font-size:20px;
-        font-weight:500;
-    }
-    .contactus-address-body{
-        margin:5px 0;
+    .contactus-address-header {
+        font-size: 20px;
+        font-weight: 500;
     }
 
+    .contactus-address-body {
+        margin: 5px 0;
+    }
 </style>
 
-    <div class="container body-content">
+<div class="container body-content">
 
-        <div class="section_header mb-1">
-            <div class="section_header_text">
-                <h2 class="contact-us-header">CONTACT US</h2>
-            </div>
+    <div class="section_header mb-1">
+        <div class="section_header_text">
+            <h2 class="contact-us-header">CONTACT US</h2>
         </div>
-        <div class="row mt-5">
-            <div class="col-md-7 mb-5">
-                @using (Html.BeginForm())
-                {
-                    @Html.AntiForgeryToken()
+    </div>
+    <div class="row mt-5">
+        <div class="col-md-7 mb-5">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
 
-                    <div class="form-horizontal">
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                        <div class="row">
-                            <div class="col-md-6 pr-md-0">
-                                <div class="form-group">
-                                    <div class="col-12">
-                                        @Html.EditorFor(model => model.Fullname, new { htmlAttributes = new { @class = "form-control contactus-input", @placeholder="Fullname" } })
-                                        @Html.ValidationMessageFor(model => model.Fullname, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 pl-md-0">
-                                <div class="form-group">
-                                    <div class="col-12">
-                                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control contactus-input", @placeholder="Email" } })
-                                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-                                    </div>
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="row">
+                        <div class="col-md-6 pr-md-0">
+                            <div class="form-group">
+                                <div class="col-12">
+                                    @Html.EditorFor(model => model.Fullname, new { htmlAttributes = new { @class = "form-control contactus-input", @placeholder = "Fullname" } })
+                                    @Html.ValidationMessageFor(model => model.Fullname, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="col-12">
-                                @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control contactus-input", @placeholder="PHone" } })
-                                @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-12">
-                                @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control contactus-input", @placeholder="Subject" } })
-                                @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-12">
-                                @Html.TextAreaFor(model => model.Message, new { @class = "form-control contactus-input", @rows = 5, @placeholder = "Message" })
-                                @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-offset-2 col-md-10">
-                                <button type="submit" class="btn primary-table-button">
-                                    Send
-                                </button>
+                        <div class="col-md-6 pl-md-0">
+                            <div class="form-group">
+                                <div class="col-12">
+                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control contactus-input", @placeholder = "Email" } })
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                </div>
                             </div>
                         </div>
                     </div>
-                }
+                    <div class="form-group">
+                        <div class="col-12">
+                            @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control contactus-input", @placeholder = "Phone" } })
+                            @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-12">
+                            @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control contactus-input", @placeholder = "Subject" } })
+                            @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-12">
+                            @Html.TextAreaFor(model => model.Message, new { @class = "form-control contactus-input", @rows = 5, @placeholder = "Message" })
+                            @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <button type="submit" class="btn primary-table-button">
+                                Send
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="col-md-5 mb-5">
+            <div class="contactus-address-header">
+                Customer service
+                <hr class="m-0" />
             </div>
-            <div class="col-md-5 mb-5">
-                <div class="contactus-address-header">
-                    Customer service
-                    <hr class="m-0" />
-                </div>
-                <div class="contactus-address-body">
-                    Phone: @AppConstant.HDQPhoneNumber
-                </div>
-                <div class="contactus-address-body mb-5">
-                    E-mail: @AppConstant.HDQEmail
-                </div>
+            <div class="contactus-address-body">
+                Phone: @AppConstant.HDQPhoneNumber
+            </div>
+            <div class="contactus-address-body mb-5">
+                E-mail: @AppConstant.HDQEmail
+            </div>
 
 
 
-                <div class="contactus-address-header">
-                    Office address
-                    <hr class="m-0" />
-                </div>
-                <div class="contactus-address-body">
-                    @AppConstant.HDQAddress
-                </div>
+            <div class="contactus-address-header">
+                Office address
+                <hr class="m-0" />
+            </div>
+            <div class="contactus-address-body">
+                @AppConstant.HDQAddress
             </div>
         </div>
-
     </div>
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

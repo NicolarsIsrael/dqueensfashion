@@ -1,4 +1,5 @@
-﻿using DQueensFashion.Data.Contract;
+﻿using DQueensFashion.Core.Model;
+using DQueensFashion.Data.Contract;
 using DQueensFashion.Service.Contract;
 using System;
 using System.Collections.Generic;
@@ -20,5 +21,33 @@ namespace DQueensFashion.Service.Implementation
         {
             return uow.MessageRepo.Count();
         }
+
+        public void AddMessage(Message message)
+        {
+            if (!ValidateMessage(message))
+                throw new Exception();
+
+            uow.MessageRepo.Add(message);
+            uow.Save();
+        }
+
+        private bool ValidateMessage(Message message)
+        {
+            if (message == null)
+                return false;
+
+            if (string.IsNullOrEmpty(message.Fullname) || string.IsNullOrWhiteSpace(message.Fullname)
+                || !char.IsLetterOrDigit(message.Fullname[0]))
+                return false;
+
+            if (string.IsNullOrEmpty(message.Subject) || string.IsNullOrWhiteSpace(message.Subject))
+                return false;
+
+            if (string.IsNullOrEmpty(message.MessageSummary) || string.IsNullOrWhiteSpace(message.MessageSummary))
+                return false;
+
+            return true;
+        }
+
     }
 }
