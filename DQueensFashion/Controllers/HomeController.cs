@@ -43,20 +43,13 @@ namespace DQueensFashion.Controllers
 
         public ActionResult Test()
         {
-            //var products = _productService.GetAllProductsWithDelete().ToList();
-            //foreach (var roduct in products)
-            //{
-            //    roduct.DateCreatedUtc = DateTime.UtcNow;
-            //    roduct.DateModifiedUtc = DateTime.UtcNow;
-            //    _productService.UpdateProduct(roduct);
-            //}
-            //products = products.Where(p => p.DateCreatedUtc.Value == null || p.DateModifiedUtc.Value == null).ToList();
-            //foreach (var roduct in products)
-            //{
-            //    roduct.DateCreatedUtc = DateTime.UtcNow;
-            //    roduct.DateModifiedUtc = DateTime.UtcNow;
-            //    _productService.UpdateProduct(roduct);
-            //} 
+            var products = _productService.GetAllProducts();
+            foreach (var product in products)
+            {
+                product.AverageRating = _reviewService.GetAverageRating(product.Id);
+                product.SubTotal = _productService.CalculateProductPrice(product.Price, product.Discount);
+                _productService.UpdateProduct(product);
+            }
 
             ViewBag.GN = _generalValuesService.GetTotalGeneralValuesCount();
             return View();
@@ -111,22 +104,6 @@ namespace DQueensFashion.Controllers
             return View(homeIndex);
         }
 
-
-        public ActionResult About()
-        {
-
-            var products = _productService.GetAllProducts();
-            foreach (var product in products)
-            {
-                product.AverageRating = _reviewService.GetAverageRating(product.Id);
-                product.SubTotal = _productService.CalculateProductPrice(product.Price, product.Discount);
-                _productService.UpdateProduct(product);
-            }
-
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
 
         public ActionResult Review1()
         {
