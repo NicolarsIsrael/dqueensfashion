@@ -1,0 +1,94 @@
+﻿@model DQueensFashion.Models.CreateNewsLetterViewModel
+@{
+    ViewBag.Title = "CreateNewsLetter";
+    Layout = "~/Views/Shared/_dashboardLayout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+
+                    <div class="form-horizontal">
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-12" })
+                            <div class="col-12">
+                                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Message, htmlAttributes: new { @class = "control-label col-12" })
+                            <div class="col-12">
+                                @Html.TextAreaFor(model => model.Message, new { @class = "form-control", @rows = 12 })
+                                @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-12">
+                                <button type="submit" class="btn primary primary-table-button btn-block m-0">
+                                    Send
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="mb-2">
+                <input type="button" class="btn primary-table-button btn-sm m-0 mr-2" value="Check all" onclick="selectAllEmail()" />
+                <input type="button" class="btn secondary-table-button btn-sm m-0" value="Uncheck all" onclick="UnSelectAllEmail()" />
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    @for (int i = 0; i < Model.EmailList.Count; i++)
+                    {
+                    <div class="checkbox">
+                        @Html.CheckBoxFor(m => Model.EmailList[i].IsSelected, htmlAttributes: new { @class = "email-checkbox" })
+                        <span>@Model.EmailList[i].Email</span>
+                        @Html.HiddenFor(m => Model.EmailList[i].Email)
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+}
+
+
+
+
+<script type="text/javascript">
+    function selectAllEmail() {
+        var items = document.getElementsByClassName('email-checkbox');
+        for (var i = 0; i < items.length; i++) {
+            if (items[i].type == 'checkbox')
+                items[i].checked = true;
+        }
+    }
+
+    function UnSelectAllEmail() {
+        var items = document.getElementsByClassName('email-checkbox');
+        for (var i = 0; i < items.length; i++) {
+            if (items[i].type == 'checkbox')
+                items[i].checked = false;
+        }
+    }
+</script>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

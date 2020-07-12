@@ -62,8 +62,7 @@ namespace DQueensFashion.Utilities
 
             foreach (string emailAddress in multipleCCmail)
             {
-                message.CC.Add(new MailAddress(emailAddress));
-
+                message.Bcc.Add(new MailAddress(emailAddress));
             }
 
             try

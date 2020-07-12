@@ -1,10 +1,20 @@
-﻿@model IEnumerable<DQueensFashion.Core.Model.MailingList>
+﻿@model IEnumerable<DQueensFashion.Models.SubscribedEmailsViewModel>
 @{
     ViewBag.Title = "SubscribedEmails";
     Layout = "~/Views/Shared/_dashboardLayout.cshtml";
 }
 
+<input type="text" style="position:absolute;top:-100px" id="email-list" value="@ViewBag.EmailListCopy" />
 
+<div>
+    <div class="category-table-add-category-btn">
+        <a href="@Url.Action("CreateNewsletter")" class="btn primary-table-button btn-sm m-0">
+            <img src="~/Content/Images/plus.svg" />
+            Create newsletter
+        </a>
+        <button type="button" class="btn secondary-table-button btn-sm" onclick="copyListOfEmails()">Get copy</button>
+    </div>
+</div>
 <div class="card">
     <div class="card-header">
         <h3 class="card-title">Subscribed emails</h3>
@@ -22,7 +32,7 @@
                 {
                     <tr>
                         <td class="admin-subscribed-email">
-                            @Html.DisplayFor(modelItem => item.EmailAddress)
+                            @Html.DisplayFor(modelItem => item.Email)
                         </td>
                     </tr>
 
@@ -33,3 +43,20 @@
     <!-- /.card-body -->
 </div>
 <!-- /.card -->
+
+
+<script>
+    function copyListOfEmails() {
+        /* Get the text field */
+        var copyText = document.getElementById("email-list");
+
+        /* Select the text field */
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+
+        /* Copy the text inside the text field */
+        document.execCommand("copy");
+        ShowSnackbarMessage("Copied");
+    }
+
+</script>

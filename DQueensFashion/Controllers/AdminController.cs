@@ -1285,12 +1285,67 @@ namespace DQueensFashion.Controllers
 
         public ActionResult SubscribedEmails()
         {
-            var mailingList = _mailingListService.GetAllMailingList()
-                .OrderBy(m=>m.EmailAddress);
+            var allEmails = _mailingListService.GetAllMailingList();
+            IEnumerable<SubscribedEmailsViewModel> emailList = allEmails
+                .Select(em => new SubscribedEmailsViewModel()
+                {
+                    Id = em.Id,
+                    Email = em.EmailAddress,
+                    IsSelected = true,
+                }).OrderBy(e => e.Email).ToList();
 
-            return View(mailingList);
+            string emailListCopy = string.Empty;
+            foreach(var email in allEmails)
+            {
+                emailListCopy += email.EmailAddress.ToString() + " ";
+            }
+
+            ViewBag.EmailListCopy = emailListCopy;
+
+            return View(emailList);
         }
 
+        public ActionResult CreateNewsLetter()
+        {
+            IEnumerable<SubscribedEmailsViewModel> emailList = _mailingListService.GetAllMailingList()
+                .Select(em => new SubscribedEmailsViewModel()
+                {
+                    Id = em.Id,
+                    Email = em.EmailAddress,
+                    IsSelected = true,
+                }).OrderBy(e=>e.Email).ToList();
+
+            CreateNewsLetterViewModel newsLetterModel = new CreateNewsLetterViewModel()
+            {
+                EmailList = emailList.ToList(),
+            };
+
+            return View(newsLetterModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> CreateNewsLetter(CreateNewsLetterViewModel newsLetterModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "One or more validation errors");
+                throw new Exception();
+            }
+
+            List<string> emails = new List<string>();
+            foreach(var email in newsLetterModel.EmailList)
+            {
+                if (email.IsSelected)
+                    emails.Add(email.Email);
+            }
+
+            MailService mailService = new MailService();
+            var credentials = AppConstant.MAIL_CREDENTIALS;
+            await mailService.SendMailToMultiple(AppConstant.HDQ_EMAIL_ACCOUNT, newsLetterModel.Title, newsLetterModel.Message,credentials,emails);
+
+            return RedirectToAction(nameof(SubscribedEmails));
+        }
 
         public ActionResult ChangePassword()
         {

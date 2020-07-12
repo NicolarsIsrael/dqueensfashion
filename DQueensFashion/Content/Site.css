@@ -957,71 +957,6 @@ textarea {
         color: white;
     }
     
-    /*footer*/
-footer {
-    max-width: 100vw;
-    overflow-x: hidden
-}
-
-.footer-top {
-    background-color: #df7204;
-}
-
-.footer-bottom {
-    background-color: #212529;
-}
-.footer-subscribe-header {
-    color: white
-}
-.footer-subscribe-body {
-    color: white
-}
-
-.footer-bottom-date {
-    color: white;
-    margin: 0;
-    text-align: center
-}
-
-
-.footer-background {
-    padding: 30px 50px;
-}
-
-.footer-header {
-    font-size: 18px;
-    font-weight: 500;
-    color: white;
-    margin-bottom: 20px;
-    margin-top: 20px;
-}
-
-.footer-detail {
-    margin-bottom: 10px;
-    color: white;
-    font-weight: 500;
-    word-wrap: break-word;
-}
-
-.footer-link {
-    color: white !important;
-    font-weight: 500;
-}
-
-.footer-detail-img {
-    margin-right: 10px;
-}
-
-
-
-/*smart phones*/
-@media screen and (max-width: 420px) and (min-width: 0px) {
-
-    .footer-background {
-        padding: 50px 10px;
-    }
-}
-
 
 
 .form-control-borderless {
@@ -1033,32 +968,6 @@ footer {
         outline: none;
         box-shadow: none;
     }
-
-.subscribe-form-div {
-    padding: 1px;
-    border: 1px solid #a6adad;
-}
-
-.subscrcibe-button {
-    color: white;
-    border-radius: 0;
-    transition: all ease 0.3s;
-    background-color: #96157a;
-}
-
-    .subscrcibe-button:hover {
-        background-color: #9c3b8d;
-        color: white;
-    }
-
-
-/*screens less than md*/
-@media screen and (min-width:991px) {
-    .subscribe-form {
-        width: 50%;
-        margin-right: 10px;
-    }
-}
 
 
 /*screens less than md and greater than mobile*/
