@@ -561,6 +561,7 @@
     <Content Include="Views\Admin\CreateNewsLetter.cshtml" />
     <Content Include="Views\AboutUs\Index.cshtml" />
     <Content Include="Views\ContactUs\Index.cshtml" />
+    <Content Include="Views\ContactUs\ThankYou.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
