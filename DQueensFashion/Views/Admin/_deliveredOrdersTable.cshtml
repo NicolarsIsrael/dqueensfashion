@@ -37,10 +37,10 @@
                     @Html.Raw(item.DateCreatedString.Replace(Environment.NewLine, "<br/>"))
                 </td>
                 <td>
-                    <a href="@Url.Action(" ReturnOrder",new {id=item.OrderId})" class="primary-table-button">Returned</a>
-                    <a href="@Url.Action("CompleteOrder",new {id=item.OrderId})" class="primary-table-button">Completed</a>
+                    <a href="@Url.Action(" ReturnOrder",new {id=item.OrderId})" class="btn btn-xs primary-table-button">Returned</a>
+                    <a href="@Url.Action("CompleteOrder",new {id=item.OrderId})" class="btn btn-xs primary-table-button">Completed</a>
 
-                    <a href="@Url.Action("OrderDetails",new {id = item.OrderId})" class="secondary-table-button">
+                    <a href="@Url.Action("OrderDetails",new {id = item.OrderId})" class="sbtn btn-xs econdary-table-button">
                         <img src="~/Content/Images/info.svg" />
                     </a>
 

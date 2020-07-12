@@ -45,10 +45,10 @@
                 @Html.Raw(item.DateCreatedString.Replace(Environment.NewLine, "<br/>"))
             </td>
             <td>
-                <a href="@Url.Action("EditProduct",new {id=item.Id})" class="primary-table-button">
+                <a href="@Url.Action("EditProduct",new {id=item.Id})" class="primary-table-button btn btn-xs">
                     <img src="~/Content/Images/edit.svg" />
                 </a>
-                <a href="@Url.Action("ProductDetails",new {id = item.Id})" class="secondary-table-button">
+                <a href="@Url.Action("ProductDetails",new {id = item.Id})" class="secondary-table-button btn btn-xs">
                     <img src="~/Content/Images/info.svg" />
                 </a>
 
