@@ -20,6 +20,10 @@ namespace DQueensFashion.Utilities
 
         public const string HDQ_EMAIL_ACCOUNT = "bakarenicolarsisrael@gmail.com";
         public const string HDQ_EMAIL_TITLE = "HDQ";
+        public const string HDQFacebookLink = "https://facebook.com/hdq";
+        public const string HDQTwitterLink = "https://twitter.com/hdq";
+        public const string HDQInstagramLink = "https://instagram.com/hdq";
+        public const string HDQYoutubeLink = "https://youtube.com/hdq";
 
         public static readonly NetworkCredential MAIL_CREDENTIALS = new NetworkCredential(
                                       ConfigurationManager.AppSettings["mailAccount"],
