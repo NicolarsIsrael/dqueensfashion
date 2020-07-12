@@ -1,9 +1,21 @@
 ﻿@model DQueensFashion.Models.ContactUsViewModel
+@using DQueensFashion.Utilities
 
 @{
     ViewBag.Title = "Contact us";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<style>
+    .contactus-address-header{
+        font-size:20px;
+        font-weight:500;
+    }
+    .contactus-address-body{
+        margin:5px 0;
+    }
+
+</style>
 
     <div class="container body-content">
 
@@ -13,7 +25,7 @@
             </div>
         </div>
         <div class="row mt-5">
-            <div class="col-md-7">
+            <div class="col-md-7 mb-5">
                 @using (Html.BeginForm())
                 {
                     @Html.AntiForgeryToken()
@@ -66,23 +78,27 @@
                     </div>
                 }
             </div>
-            <div class="col-md-5">
+            <div class="col-md-5 mb-5">
                 <div class="contactus-address-header">
                     Customer service
+                    <hr class="m-0" />
                 </div>
                 <div class="contactus-address-body">
-                    Phone: +1 129 209 291
-                    E-mail: support@mysite.com
+                    Phone: @AppConstant.HDQPhoneNumber
                 </div>
+                <div class="contactus-address-body mb-5">
+                    E-mail: @AppConstant.HDQEmail
+                </div>
+
+
 
                 <div class="contactus-address-header">
-                    Customer service
+                    Office address
+                    <hr class="m-0" />
                 </div>
                 <div class="contactus-address-body">
-                    Phone: +1 129 209 291
-                    E-mail: support@mysite.com
+                    @AppConstant.HDQAddress
                 </div>
-
             </div>
         </div>
 
