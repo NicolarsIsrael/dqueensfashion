@@ -326,6 +326,7 @@
     <Content Include="Content\Images\x-circle.svg" />
     <Content Include="Content\Images\map-pin.svg" />
     <Content Include="Content\Images\search.svg" />
+    <Content Include="Content\Images\smile.svg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />

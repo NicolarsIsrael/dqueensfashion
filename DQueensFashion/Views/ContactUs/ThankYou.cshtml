@@ -3,7 +3,22 @@
     ViewBag.Title = "ThankYou";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-    <div class="container body-content">
-        <h2>ThankYou</h2>
 
+
+    <div class="container body-content">
+        <div class="mx-auto mt-5" style="width:100px">
+            <img src="~/Content/Images/smile.svg" class="mx-auto" />
+        </div>
+
+        <div class="card mx-auto my-1 login-card">
+            <div class="card-body">
+                <div>
+                    Thank you for contacting us, we appreciate it. We will get back to you as soon as possible
+                </div>
+
+            </div>
+        </div>
+        <div class="empty-cart-continue-shopping-div">
+            <a href="@Url.Action("Index","Product")" class="btn">Continue shopping</a>
+        </div>
     </div>
