@@ -1802,14 +1802,6 @@ namespace DQueensFashion.Controllers
             return View();
         }
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-            ViewBag.ReviewCount = _reviewService.GetAllReviewCount();
-            return View();
-        }
-
-
         public int GetCartNumber()
         {
             if (Session["cart"] != null)
