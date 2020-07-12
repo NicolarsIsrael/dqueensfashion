@@ -164,6 +164,14 @@
     <Compile Include="Migrations\202007121126498_MessageAddedToDb.Designer.cs">
       <DependentUpon>202007121126498_MessageAddedToDb.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007121700242_ReadAddedToDb.cs" />
+    <Compile Include="Migrations\202007121700242_ReadAddedToDb.Designer.cs">
+      <DependentUpon>202007121700242_ReadAddedToDb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007121707417_ReadAddedToDb2.cs" />
+    <Compile Include="Migrations\202007121707417_ReadAddedToDb2.Designer.cs">
+      <DependentUpon>202007121707417_ReadAddedToDb2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -183,6 +191,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007121126498_MessageAddedToDb.resx">
       <DependentUpon>202007121126498_MessageAddedToDb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007121700242_ReadAddedToDb.resx">
+      <DependentUpon>202007121700242_ReadAddedToDb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007121707417_ReadAddedToDb2.resx">
+      <DependentUpon>202007121707417_ReadAddedToDb2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

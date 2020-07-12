@@ -26,10 +26,11 @@ namespace DQueensFashion.Controllers
         private readonly ICustomerService _customerService;
         private readonly IGeneralValuesService _generalValuesService;
         private readonly IMailingListService _mailingListService;
+        private readonly IMessageService _messageService;
         private ApplicationUserManager _userManager;
 
         public AdminController(ICategoryService categoryService, IProductService productService, IOrderService orderService, IReviewService reviewService, IImageService imageService, ICustomerService customerService, IGeneralValuesService generalValuesService, IMailingListService mailingListService
-            , ApplicationUserManager userManager)
+            ,IMessageService messageService , ApplicationUserManager userManager)
         {
             _categoryService = categoryService;
             _productService = productService;
@@ -39,6 +40,7 @@ namespace DQueensFashion.Controllers
             _customerService = customerService;
             _generalValuesService = generalValuesService;
             _mailingListService = mailingListService;
+            _messageService = messageService;
             _userManager = userManager;
         }
         // GET: Admin
@@ -1345,6 +1347,44 @@ namespace DQueensFashion.Controllers
             await mailService.SendMailToMultiple(AppConstant.HDQ_EMAIL_ACCOUNT, newsLetterModel.Title, newsLetterModel.Message,credentials,emails);
 
             return RedirectToAction(nameof(SubscribedEmails));
+        }
+
+        public ActionResult Messages()
+        {
+            IEnumerable<MessageViewModel> messages = _messageService.GetMessages()
+                .Select(m => new MessageViewModel()
+                {
+                    Id= m.Id,
+                    Email = m.Email.Length > 20 ? m.Email.Substring(0, 17) + "..." : m.Email,
+                    Fullname = m.Fullname.Length > 20 ? m.Fullname.Substring(0, 17) + "..." : m.Fullname,
+                    Phone = m.Phone.Length > 20 ? m.Phone.Substring(0, 17) + "..." : m.Phone,
+                    MessageSummary = m.MessageSummary.Length > 20 ? m.MessageSummary.Substring(0, 17) + "..." : m.MessageSummary,
+                    DateCreated = m.DateCreatedUtc,
+                }).OrderByDescending(m => m.DateCreated).ToList();
+
+            return View(messages);
+        }
+
+        public ActionResult Message(int id=0)
+        {
+            DQueensFashion.Core.Model.Message message = _messageService.GetMessageById(id);
+            if (message == null)
+                return HttpNotFound();
+
+            message.Read = true;
+            _messageService.UpdateMessage(message);
+
+            MessageViewModel messageModel = new MessageViewModel()
+            {
+                Fullname = message.Fullname,
+                Email = message.Email,
+                Phone = message.Phone,
+                Subject = message.Subject,
+                MessageSummary = message.MessageSummary,
+                DateCreated = message.DateCreated,
+            };
+
+            return View(messageModel);
         }
 
         public ActionResult ChangePassword()

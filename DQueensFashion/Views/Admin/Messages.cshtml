@@ -1,0 +1,54 @@
+﻿@model IEnumerable<DQueensFashion.Models.MessageViewModel>
+
+@{
+    ViewBag.Title = "Messages";
+    Layout = "~/Views/Shared/_dashboardLayout.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Messages</h3>
+            </div>
+
+            <div class="card-body table-responsive p-0 custom-table">
+
+                <table class="table table-head-fixed  table-striped">
+                    <thead>
+                        <tr>
+                            <th>Fullname</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Message</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach(var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelitem=>item.Fullname)
+                                </td>
+
+                                <td>@Html.DisplayFor(modelItem=>item.Email)</td>
+                                <td>@Html.DisplayFor(modelItem=>item.Phone)</td>
+                                <td>@Html.DisplayFor(modelItem=>item.MessageSummary)</td>
+                                <td>
+                                    <a href="@Url.Action("Message","Admin",new { id = item.Id })" class="btn primary-table-button">
+                                        Read
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+</div>
+

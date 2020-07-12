@@ -22,12 +22,31 @@ namespace DQueensFashion.Service.Implementation
             return uow.MessageRepo.Count();
         }
 
+        public IEnumerable<Message> GetMessages()
+        {
+            return uow.MessageRepo.GetAll();
+        }
+
+        public Message GetMessageById(int id)
+        {
+            return uow.MessageRepo.Get(id);
+        }
+
         public void AddMessage(Message message)
         {
             if (!ValidateMessage(message))
                 throw new Exception();
 
             uow.MessageRepo.Add(message);
+            uow.Save();
+        }
+
+        public void UpdateMessage(Message message)
+        {
+            if (!ValidateMessage(message))
+                throw new Exception();
+
+            uow.MessageRepo.Update(message);
             uow.Save();
         }
 

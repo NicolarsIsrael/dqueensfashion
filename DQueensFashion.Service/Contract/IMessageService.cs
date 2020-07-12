@@ -11,5 +11,8 @@ namespace DQueensFashion.Service.Contract
     {
         int GetMessageCount();
         void AddMessage(Message message);
+        void UpdateMessage(Message message);
+        IEnumerable<Message> GetMessages();
+        Message GetMessageById(int id);
     }
 }
