@@ -145,4 +145,16 @@ namespace DQueensFashion.CustomFilters
         }
     }
 
+    public class FaqSetGlobalVariable : ActionFilterAttribute, IActionFilter
+    {
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            var controllersUsingThisAttribute = ((FaqController)filterContext.Controller);
+            filterContext.Controller.ViewBag.CartNumber = controllersUsingThisAttribute.GetCartNumber();
+            filterContext.Controller.ViewBag.Categories = controllersUsingThisAttribute.GetCategories();
+
+            base.OnActionExecuting(filterContext);
+        }
+    }
+
 }

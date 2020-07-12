@@ -254,6 +254,7 @@
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\ContactUsController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\FaqController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MailingListController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -311,6 +312,7 @@
     <Content Include="Content\Images\list.svg" />
     <Content Include="Content\Images\mail.svg" />
     <Content Include="Content\Images\phone.svg" />
+    <Content Include="Content\Images\plus-circle.svg" />
     <Content Include="Content\Images\shield.svg" />
     <Content Include="Content\Images\shopping-cart-nav.svg" />
     <Content Include="Content\Images\shopping-cart-big.svg" />
@@ -565,6 +567,7 @@
     <Content Include="Views\ContactUs\ThankYou.cshtml" />
     <Content Include="Views\Admin\Messages.cshtml" />
     <Content Include="Views\Admin\Message.cshtml" />
+    <Content Include="Views\Faq\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
