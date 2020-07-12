@@ -1230,26 +1230,6 @@ namespace DQueensFashion.Controllers
             return View(orderModel);
         }
 
-        public int GetCartNumber()
-        {
-            if (Session["cart"] != null)
-                return ((List<Cart>)Session["cart"]).Sum(c => c.Quantity);
-            else
-                return 0;
-        }
-
-        public IEnumerable<CategoryNameAndId> GetCategories()
-        {
-            IEnumerable<CategoryNameAndId> categories = _categoryService.GetAllCategories()
-                .Select(c => new CategoryNameAndId()
-                {
-                    Id = c.Id,
-                    Name = c.Name,
-                }).OrderBy(c => c.Name);
-
-            return categories;
-        }
-
         public ActionResult GeneralDetails(string success="")
         {
             GeneralValues generalValues = _generalValuesService.GetGeneralValues();
@@ -1413,6 +1393,35 @@ namespace DQueensFashion.Controllers
                 throw new Exception();
             }
         }
+
+
+        public int GetCartNumber()
+        {
+            if (Session["cart"] != null)
+                return ((List<Cart>)Session["cart"]).Sum(c => c.Quantity);
+            else
+                return 0;
+        }
+
+        public IEnumerable<CategoryNameAndId> GetCategories()
+        {
+            IEnumerable<CategoryNameAndId> categories = _categoryService.GetAllCategories()
+                .Select(c => new CategoryNameAndId()
+                {
+                    Id = c.Id,
+                    Name = c.Name,
+                }).OrderBy(c => c.Name);
+
+            return categories;
+        }
+
+        public int GetUnreadMessagesCount()
+        {
+            return _messageService.GetUnreadMessagesCount();
+        }
+
+
+
 
 
         #region private functions

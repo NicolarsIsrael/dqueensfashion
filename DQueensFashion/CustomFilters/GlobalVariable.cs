@@ -60,6 +60,14 @@ namespace DQueensFashion.CustomFilters
             base.OnActionExecuting(filterContext);
         }
 
+        public override void OnResultExecuting(ResultExecutingContext filterContext)
+        {
+            var controllersUsingThisAttribute = ((AdminController)filterContext.Controller);
+            filterContext.Controller.ViewBag.UnreadMessages = controllersUsingThisAttribute.GetUnreadMessagesCount();
+
+            base.OnResultExecuting(filterContext);
+        }
+
     }
 
     public class CustomerSetGlobalVariable : ActionFilterAttribute, IActionFilter

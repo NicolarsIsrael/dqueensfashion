@@ -49,6 +49,7 @@ namespace DQueensFashion.Controllers
                 Phone = contactUsModel.Phone,
                 Subject = contactUsModel.Subject,
                 MessageSummary = contactUsModel.Message,
+                Read = false,
             };
             _messageService.AddMessage(message);
 

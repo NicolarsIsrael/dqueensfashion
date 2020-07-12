@@ -14,5 +14,6 @@ namespace DQueensFashion.Service.Contract
         void UpdateMessage(Message message);
         IEnumerable<Message> GetMessages();
         Message GetMessageById(int id);
+        int GetUnreadMessagesCount();
     }
 }

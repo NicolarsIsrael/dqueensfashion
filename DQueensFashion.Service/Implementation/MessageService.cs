@@ -22,6 +22,11 @@ namespace DQueensFashion.Service.Implementation
             return uow.MessageRepo.Count();
         }
 
+        public int GetUnreadMessagesCount()
+        {
+            return uow.MessageRepo.GetAll().Where(m => m.Read == false).Count();
+        }
+
         public IEnumerable<Message> GetMessages()
         {
             return uow.MessageRepo.GetAll();
@@ -63,6 +68,9 @@ namespace DQueensFashion.Service.Implementation
                 return false;
 
             if (string.IsNullOrEmpty(message.MessageSummary) || string.IsNullOrWhiteSpace(message.MessageSummary))
+                return false;
+
+            if (message == null)
                 return false;
 
             return true;
