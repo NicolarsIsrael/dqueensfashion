@@ -16,5 +16,20 @@ namespace DQueensFashion.Controllers
 
             return View(contactUsModel);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Index(ContactUsViewModel contactUsModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "One or more validation errors");
+                return View();
+            }
+
+
+
+            return View();
+        }
     }
 }

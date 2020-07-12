@@ -18,6 +18,7 @@ namespace DQueensFashion.Data.Contract
         IImageRepo ImageRepo { get; set; }
         IMailingListRepo MailingListRepo { get; set; }
         IGeneralValuesRepo GeneralValuesRepo { get; set; }
+        IMessageRepo MessageRepo { get; set; }
         void Save();
     }
 }

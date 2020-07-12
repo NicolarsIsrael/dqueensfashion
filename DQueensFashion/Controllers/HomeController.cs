@@ -24,9 +24,10 @@ namespace DQueensFashion.Controllers
         private readonly IImageService _imageService;
         private readonly IMailingListService _mailingListService;
         private readonly IGeneralValuesService _generalValuesService;
+        private readonly IMessageService _messageService;
 
         public HomeController(IProductService productService, ICategoryService categoryService,ICustomerService customerService, IWishListService wishListService,
-            ILineItemService lineItemService, IOrderService orderService, IReviewService reviewService, IImageService imageService, IMailingListService mailingListService,
+            ILineItemService lineItemService, IOrderService orderService, IReviewService reviewService, IImageService imageService, IMailingListService mailingListService, IMessageService messageService,
             IGeneralValuesService generalValuesService)
         {
             _productService = productService;
@@ -38,20 +39,21 @@ namespace DQueensFashion.Controllers
             _reviewService = reviewService;
             _imageService = imageService;
             _mailingListService = mailingListService;
+            _messageService = messageService;
             _generalValuesService = generalValuesService;
         }
 
         public ActionResult Test()
         {
-            var products = _productService.GetAllProducts();
-            foreach (var product in products)
-            {
-                product.AverageRating = _reviewService.GetAverageRating(product.Id);
-                product.SubTotal = _productService.CalculateProductPrice(product.Price, product.Discount);
-                _productService.UpdateProduct(product);
-            }
+            //var products = _productService.GetAllProducts();
+            //foreach (var product in products)
+            //{
+            //    product.AverageRating = _reviewService.GetAverageRating(product.Id);
+            //    product.SubTotal = _productService.CalculateProductPrice(product.Price, product.Discount);
+            //    _productService.UpdateProduct(product);
+            //}
 
-            ViewBag.GN = _generalValuesService.GetTotalGeneralValuesCount();
+            ViewBag.Count = _messageService.GetMessageCount();
             return View();
         }
 
