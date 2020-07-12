@@ -14,12 +14,12 @@ namespace DQueensFashion.Models
         public int Id { get; set; }
 
         [Required]
-        [BeginWIthAlphaNumeric(ErrorMessage = "Product name must begin with an alphabeth")]
+        [BeginWIthAlphaNumeric(ErrorMessage = "Product name must begin with an alphabeth or number")]
         [StringLength(50, MinimumLength = 2, ErrorMessage = "Product name must at least be 2 characters long and not more than 50")]
         public string Name { get; set; }
 
         [Required]
-        [BeginWIthAlphaNumeric(ErrorMessage = "Description must begin with an alphabeth")]
+        [BeginWIthAlphaNumeric(ErrorMessage = "Description must begin with an alphabeth or number")]
         [StringLength(10000, MinimumLength = 2, ErrorMessage = "Description must at least be 2 characters long and not more than 10000")]
         public string Description { get; set; }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DQueensFashion.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,9 @@ namespace DQueensFashion.Controllers
         // GET: ContactUs
         public ActionResult Index()
         {
-            return View();
+            ContactUsViewModel contactUsModel = new ContactUsViewModel();
+
+            return View(contactUsModel);
         }
     }
 }

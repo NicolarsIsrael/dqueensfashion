@@ -410,7 +410,8 @@ textarea {
 }
 
 .home-bestdeals-header,
-.home-bestselling-header {
+.home-bestselling-header,
+.contact-us-header{
     margin-top: 15px;
 }
 
@@ -521,6 +522,23 @@ textarea {
     animation-play-state: running;
 }
 
+
+/*Contact us*/
+.contactus-input {
+    border: 0;
+    border-bottom: 1px solid #a6adad;
+    border-radius: 0;
+    width: 100%;
+}
+
+    .contactus-input:focus,
+    .contactus-input:active {
+        border: 0 !important;
+        border-bottom: 1px solid #a6adad;
+        border-radius: 0 !important;
+    }
+
+/*Contact us*/
 
 /*Product-Card*/
 
