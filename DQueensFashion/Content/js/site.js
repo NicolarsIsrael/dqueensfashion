@@ -233,28 +233,29 @@ function RemoveAllSnack() {
 //account/login
 function ShowPassword() {
     var passwordInput = document.getElementById("passwordInput");
-    var passwordShowText = document.getElementById("password-show-text")
+    var passwordLockIcon = document.getElementById("password-lock-icon");
+
     if (passwordInput.type === "password") {
         passwordInput.type = "text";
-        passwordShowText.innerHTML = "Hide";
     } else {
         passwordInput.type = "password";
-        passwordShowText.innerHTML = "Show";
     }
+
+    passwordLockIcon.classList.toggle("fa-eye-slash");
 }
 
 
 //account/register
 function ShowConfirmPassword() {
     var ConfirmPasswordInput = document.getElementById("ConfirmPasswordInput");
-    var ConfirmPasswordShowText = document.getElementById("confirm-password-show-text")
+    var ConfirmPasswordLockIcon = document.getElementById("confirm-password-lock-icon")
     if (ConfirmPasswordInput.type === "password") {
         ConfirmPasswordInput.type = "text";
-        ConfirmPasswordShowText.innerHTML = "Hide";
     } else {
         ConfirmPasswordInput.type = "password";
-        ConfirmPasswordShowText.innerHTML = "Show";
     } 
+
+    ConfirmPasswordLockIcon.classList.toggle("fa-eye-slash");
 }
 
 //customer/changepassword

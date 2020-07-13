@@ -822,6 +822,14 @@ textarea {
     box-shadow: 2px 2px 12px rgba(47, 47, 47, 0.40);
 }
 
+.login-register-logo-div {
+    width: 60px
+}
+
+    .login-register-logo-div > img {
+        width: 60px;
+        height: 60px;
+    }
 
 /*Cart/Index*/
 .empty-cart-div {
