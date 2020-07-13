@@ -110,9 +110,9 @@
                             {
                                 <li class="nav-item">
                                     <a class="nav-link" asp-area="" href="@Url.Action("dashboard","Admin")">
-                                        <img src="~/Content/Images/list.svg" />
+                                        <i class="fas fa-th"></i>
                                         <p class="dashboard-sidenav-link">
-                                            DASHBOARD
+                                            Dashboard
                                         </p>
                                     </a>
 
@@ -120,9 +120,9 @@
 
                                 <li class="nav-item">
                                     <a class="nav-link" asp-area="" href="@Url.Action("categories","Admin")">
-                                        <img src="~/Content/Images/list (2).svg" />
+                                        <i class="fas fa-clipboard"></i>
                                         <p class="dashboard-sidenav-link">
-                                            CATEGORIES
+                                            Categories
                                         </p>
                                     </a>
 
@@ -130,9 +130,9 @@
 
                                 <li class="nav-item">
                                     <a class="nav-link" asp-area="" href="@Url.Action("Products","Admin")">
-                                        <i class="fas fa-th"></i>
+                                        <i class="fas fa-barcode"></i>
                                         <p class="dashboard-sidenav-link">
-                                            PRODUCTS
+                                            Products
                                         </p>
                                     </a>
 
@@ -140,9 +140,9 @@
 
                                 <li class="nav-item">
                                     <a class="nav-link" asp-area="" href="@Url.Action("Customers","Admin")">
-                                        <i class="fas fa-th"></i>
+                                        <i class="fas fa-user"></i>
                                         <p class="dashboard-sidenav-link">
-                                            CUSTOMERS
+                                            Customers
                                         </p>
                                     </a>
 
@@ -150,9 +150,9 @@
 
                                 <li class="nav-item has-treeview">
                                     <a href="#" class="nav-link">
-                                        <i class="fas fa-users"></i>
+                                        <i class="fas fa-inbox"></i>
                                         <p class="dashboard-sidenav-link">
-                                            ORDERS
+                                            Orders
                                             <i class="fas fa-angle-left right"></i>
                                         </p>
                                     </a>
@@ -162,7 +162,7 @@
                                             <a class="nav-link" asp-area="" href="@Url.Action("Orders","Admin")">
                                                 <i class="fas fa-calendar"></i>
                                                 <p class="dashboard-sidenav-link">
-                                                    ALL ORDERS
+                                                    All orders
                                                 </p>
                                             </a>
 
@@ -172,7 +172,7 @@
                                             <a class="nav-link" asp-area="" href="@Url.Action("ProcessingOrders","Admin")">
                                                 <i class="fas fa-calendar"></i>
                                                 <p class="dashboard-sidenav-link">
-                                                    PROCESSING
+                                                    Processing
                                                 </p>
                                             </a>
 
@@ -182,7 +182,7 @@
                                             <a class="nav-link" asp-area="" href="@Url.Action("InTransitOrders","Admin")">
                                                 <i class="fas fa-calendar"></i>
                                                 <p class="dashboard-sidenav-link">
-                                                    IN TRANSIT
+                                                    In transit
                                                 </p>
                                             </a>
 
@@ -192,7 +192,7 @@
                                             <a class="nav-link" asp-area="" href="@Url.Action("DeliveredOrders","Admin")">
                                                 <i class="fas fa-calendar"></i>
                                                 <p class="dashboard-sidenav-link">
-                                                    DELIVERED
+                                                    Delivered
                                                 </p>
                                             </a>
 
@@ -201,7 +201,7 @@
                                             <a class="nav-link" asp-area="" href="@Url.Action("ReturnedOrders","Admin")">
                                                 <i class="fas fa-calendar"></i>
                                                 <p class="dashboard-sidenav-link">
-                                                    RETURNED
+                                                    Returned
                                                 </p>
                                             </a>
 
@@ -210,7 +210,7 @@
                                             <a class="nav-link" asp-area="" href="@Url.Action("CompletedOrders","Admin")">
                                                 <i class="fas fa-calendar"></i>
                                                 <p class="dashboard-sidenav-link">
-                                                    COMPLETED
+                                                    Completed
                                                 </p>
                                             </a>
 
@@ -219,7 +219,7 @@
                                             <a class="nav-link" asp-area="" href="@Url.Action("DeletedOrders","Admin")">
                                                 <i class="fas fa-calendar"></i>
                                                 <p class="dashboard-sidenav-link">
-                                                    DELETED
+                                                    Deleted
                                                 </p>
                                             </a>
 
@@ -229,27 +229,27 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" asp-area="" href="@Url.Action("Messages","Admin")">
-                                        <img src="~/Content/Images/list.svg" />
+                                        <i class="fas fa-envelope"></i>
                                         <p class="dashboard-sidenav-link">
-                                            MESSAGES (@ViewBag.UnreadMessages)
+                                            Messages (@ViewBag.UnreadMessages)
                                         </p>
                                     </a>
 
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" asp-area="" href="@Url.Action("subscribedemails","Admin")">
-                                        <img src="~/Content/Images/list.svg" />
+                                        <i class="fas fa-at"></i>
                                         <p class="dashboard-sidenav-link">
-                                            SUBSCRIBED EMAILS
+                                            Subscribed emails
                                         </p>
                                     </a>
 
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" asp-area="" href="@Url.Action("generaldetails","Admin")">
-                                        <img src="~/Content/Images/list.svg" />
+                                        <i class="fas fa-copy"></i>
                                         <p class="dashboard-sidenav-link">
-                                            GENERAL VALUES
+                                            General details
                                         </p>
                                     </a>
 
@@ -257,9 +257,9 @@
 
                                 <li class="nav-item">
                                     <a class="nav-link" asp-area="" href="@Url.Action("changepassword", "Admin")">
-                                        <i class="fas fa-th"></i>
+                                        <i class="fas fa-key"></i>
                                         <p class="dashboard-sidenav-link">
-                                            CHANGE PASSWORD
+                                            Change password
                                         </p>
                                     </a>
 
@@ -270,9 +270,20 @@
 
                                 <li class="nav-item">
                                     <a class="nav-link" asp-area="" href="@Url.Action("account", "customer")">
-                                        <img src="~/Content/Images/list.svg" />
+                                        <i class="fas fa-user"></i>
                                         <p class="dashboard-sidenav-link">
-                                            ACCOUNT
+                                            Account
+                                        </p>
+                                    </a>
+
+                                </li>
+
+
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" href="@Url.Action("orders", "customer")">
+                                        <i class="fas fa-inbox"></i>
+                                        <p class="dashboard-sidenav-link">
+                                            Orders
                                         </p>
                                     </a>
 
@@ -280,29 +291,21 @@
 
                                 <li class="nav-item">
                                     <a class="nav-link" asp-area="" href="@Url.Action("wishlist", "customer")">
-                                        <i class="fas fa-th"></i>
+                                        <i class="fas fa-heart"></i>
                                         <p class="dashboard-sidenav-link">
-                                            WISH LIST
+                                            Wishlist
                                         </p>
                                     </a>
 
                                 </li>
 
-                                <li class="nav-item">
-                                    <a class="nav-link" asp-area="" href="@Url.Action("orders", "customer")">
-                                        <i class="fas fa-th"></i>
-                                        <p class="dashboard-sidenav-link">
-                                            ORDERS
-                                        </p>
-                                    </a>
 
-                                </li>
 
                                 <li class="nav-item">
                                     <a class="nav-link" asp-area="" href="@Url.Action("pendingreviews", "customer")">
-                                        <i class="fas fa-th"></i>
+                                        <i class="fas fa-comment-alt"></i>
                                         <p class="dashboard-sidenav-link">
-                                            PENDING REVIEWS
+                                            Pending reviews
                                         </p>
                                     </a>
 
@@ -310,9 +313,9 @@
 
                                 <li class="nav-item">
                                     <a class="nav-link" asp-area="" href="@Url.Action("changepassword", "customer")">
-                                        <i class="fas fa-th"></i>
+                                        <i class="fas fa-key"></i>
                                         <p class="dashboard-sidenav-link">
-                                            CHANGE PASSWORD
+                                            Change password
                                         </p>
                                     </a>
 

@@ -309,7 +309,6 @@
     <Content Include="Content\Images\HDQ LOGO FINAL.png" />
     <Content Include="Content\Images\info.svg" />
     <Content Include="Content\Images\instagram.svg" />
-    <Content Include="Content\Images\list.svg" />
     <Content Include="Content\Images\mail.svg" />
     <Content Include="Content\Images\phone.svg" />
     <Content Include="Content\Images\plus-circle.svg" />
