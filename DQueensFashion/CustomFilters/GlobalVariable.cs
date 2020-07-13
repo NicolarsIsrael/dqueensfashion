@@ -157,4 +157,15 @@ namespace DQueensFashion.CustomFilters
         }
     }
 
+    public class TermsOfUseSetGlobalVariable : ActionFilterAttribute, IActionFilter
+    {
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            var controllersUsingThisAttribute = ((TermsOfUseController)filterContext.Controller);
+            filterContext.Controller.ViewBag.CartNumber = controllersUsingThisAttribute.GetCartNumber();
+            filterContext.Controller.ViewBag.Categories = controllersUsingThisAttribute.GetCategories();
+
+            base.OnActionExecuting(filterContext);
+        }
+    }
 }
