@@ -13,6 +13,7 @@ using Microsoft.Owin.Security;
 using DQueensFashion.Models;
 using DQueensFashion.Core.Model;
 using DQueensFashion.Data;
+using DQueensFashion.Core;
 
 namespace DQueensFashion
 {
@@ -53,14 +54,7 @@ namespace DQueensFashion
             };
 
             // Configure validation logic for passwords
-            manager.PasswordValidator = new PasswordValidator
-            {
-                RequiredLength = 6,
-                RequireNonLetterOrDigit = true,
-                RequireDigit = true,
-                RequireLowercase = true,
-                RequireUppercase = true,
-            };
+            manager.PasswordValidator = new CustomPasswordValidator(8);
 
             // Configure user lockout defaults
             manager.UserLockoutEnabledByDefault = true;
