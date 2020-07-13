@@ -259,6 +259,7 @@
     <Compile Include="Controllers\MailingListController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
+    <Compile Include="Controllers\PrivacyPolicyController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\TermsOfUseController.cs" />
     <Compile Include="Controllers\WishlistController.cs" />
@@ -569,6 +570,7 @@
     <Content Include="Views\Admin\Message.cshtml" />
     <Content Include="Views\Faq\Index.cshtml" />
     <Content Include="Views\TermsOfUse\Index.cshtml" />
+    <Content Include="Views\PrivacyPolicy\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
