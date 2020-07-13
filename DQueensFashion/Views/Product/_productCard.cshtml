@@ -3,7 +3,11 @@
 
 <div class="product-box">
     <div onclick="NavigateToProductDetails(@Model.Id)">
-        <div class="product-time-label">New</div>
+        @if (Model.IsNew)
+        {
+            <div class="product-time-label">New</div>
+        }
+
         @if (Model.Discount > 0)
         {
             <div class="product-discount-label">-@Model.Discount%</div>

@@ -84,6 +84,7 @@ namespace DQueensFashion.Controllers
                     },
                     NumberOfOrders = _lineItemService.NumberOfTimesPurchased(p.Id),
                     DateCreated = p.DateCreatedUtc,
+                    IsNew = _productService.CheckIfProductIsNew(p.DateCreatedUtc),
                 }).OrderByDescending(p=>p.DateCreated).ToList();
 
             IEnumerable<CategoryNameAndId> categories = _categoryService.GetAllCategories()

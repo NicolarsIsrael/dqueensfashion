@@ -97,6 +97,7 @@ namespace DQueensFashion.Controllers
                         FloorAverageRating = (int)Math.Floor(p.AverageRating)
                     },
                     NumberOfOrders = _lineItemService.NumberOfTimesPurchased(p.Id),
+                    IsNew = _productService.CheckIfProductIsNew(p.DateCreatedUtc),
                 }).OrderByDescending(p=>p.DateCreated).ToList();
 
 
@@ -178,6 +179,7 @@ namespace DQueensFashion.Controllers
                             FloorAverageRating = (int)Math.Floor(p.AverageRating)
                         },
                         NumberOfOrders = _lineItemService.NumberOfTimesPurchased(p.Id),
+                        IsNew = _productService.CheckIfProductIsNew(p.DateCreatedUtc),
                     }).ToList();
 
                 //sort
@@ -286,6 +288,7 @@ namespace DQueensFashion.Controllers
                             FloorAverageRating = (int)Math.Floor(p.AverageRating)
                         },
                         NumberOfOrders = _lineItemService.NumberOfTimesPurchased(p.Id),
+                        IsNew = _productService.CheckIfProductIsNew(p.DateCreatedUtc),
                     }).ToList();
 
                 //sort
@@ -430,6 +433,7 @@ namespace DQueensFashion.Controllers
                         IsDouble = (p.AverageRating % 1) == 0 ? false : true,
                         FloorAverageRating = (int)Math.Floor(p.AverageRating)
                     },
+                    IsNew = _productService.CheckIfProductIsNew(p.DateCreatedUtc),
                 }).ToList();
 
             ProductDetailsViewModel productModel = new ProductDetailsViewModel()
