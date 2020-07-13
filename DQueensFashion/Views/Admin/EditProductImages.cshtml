@@ -11,6 +11,8 @@
 
 <div class="edit-product-image-product-name">@Model.ProductName</div>
 <div class="edit-product-image-product-category">@Model.ProductCategory</div>
+<hr class="m-0" />
+<div class="text-danger">Images should not be more than 10MB</div>
 
 @using (Html.BeginForm("EditProductImages", "Admin", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
@@ -31,7 +33,7 @@
         <hr />
         <div class="form-group">
             <div class="">
-                <input type="submit" value="SAVE IMAGES" class="btn secondary-table-button"/>
+                <input type="submit" value="SAVE IMAGES" class="btn secondary-table-button" />
             </div>
         </div>
     </div>
@@ -85,7 +87,7 @@
             }
         });
         }
-       
+
     }
 
 </script>
