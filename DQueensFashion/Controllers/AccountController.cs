@@ -164,6 +164,12 @@ namespace DQueensFashion.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
+            if (!model.TermsAndCondition)
+            {
+                ModelState.AddModelError("", "You meed to agree to terms and condition before registering");
+                return View(model);
+            }
+
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };

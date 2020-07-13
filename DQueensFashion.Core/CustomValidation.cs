@@ -123,4 +123,20 @@ namespace DQueensFashion.Core
 
     }
 
+    public class AcceptTermsAndCondition : ValidationAttribute
+    {
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        {
+            bool? termsAndcondition = value as bool?;
+
+            if(termsAndcondition==null)
+                return new ValidationResult(this.FormatErrorMessage(validationContext.DisplayName));
+
+            if(termsAndcondition==false)
+                return new ValidationResult(this.FormatErrorMessage(validationContext.DisplayName));
+
+            return ValidationResult.Success;
+        }
+    }
+
 }

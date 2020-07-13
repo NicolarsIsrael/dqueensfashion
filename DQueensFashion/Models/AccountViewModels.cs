@@ -81,6 +81,9 @@ namespace DQueensFashion.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [AcceptTermsAndCondition(ErrorMessage = "You meed to agree to terms and condition before registering")]
+        public bool TermsAndCondition { get; set; }
     }
 
     public class ResetPasswordViewModel
