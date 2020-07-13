@@ -261,12 +261,12 @@ function ShowConfirmPassword() {
 //customer/changepassword
 function ShowOldPassword() {
     var OldPasswordInput = document.getElementById("OldPasswordInput");
-    var OldPasswordShowText = document.getElementById("old-password-show-text")
+    var OldPasswordLockIcon = document.getElementById("old-password-lock-icon")
     if (OldPasswordInput.type === "password") {
         OldPasswordInput.type = "text";
-        OldPasswordShowText.innerHTML = "Hide";
     } else {
         OldPasswordInput.type = "password";
-        OldPasswordShowText.innerHTML = "Show";
-    } 
+    }
+
+    OldPasswordLockIcon.classList.toggle("fa-eye-slash");
 }
