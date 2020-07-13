@@ -132,6 +132,9 @@ namespace DQueensFashion.Controllers
         {
             try
             {
+                if (id == AppConstant.CustomMadeCategoryId || id == AppConstant.ReadyMadeCategoryId)
+                    return RedirectToAction(nameof(Categories));
+
                 Category category = _categoryService.GetCategoryById(id);
                 if (category == null)
                     return HttpNotFound();
@@ -162,6 +165,9 @@ namespace DQueensFashion.Controllers
             }
             try
             {
+
+                if (categoryModel.Id == AppConstant.CustomMadeCategoryId || categoryModel.Id == AppConstant.ReadyMadeCategoryId)
+                    return RedirectToAction(nameof(Categories));
 
                 Category category = _categoryService.GetCategoryById(categoryModel.Id);
                 if (category == null)

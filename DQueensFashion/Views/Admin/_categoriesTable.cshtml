@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<DQueensFashion.Models.ViewCategoryViewModel>
-
+@using DQueensFashion.Utilities
 
 <table class="table table-head-fixed  table-striped" id="categoriesTable">
     <thead>
@@ -16,9 +16,15 @@
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 <td>
-                    <a href="@Url.Action("EditCategory", new {id=item.Id})", class="primary-table-button btn-xs category-table-edit-category-button">
-                        <img src="~/Content/Images/edit.svg" />
-                    </a>
+                    @{
+                        if (!(item.Id == AppConstant.CustomMadeCategoryId || item.Id == AppConstant.ReadyMadeCategoryId))
+                        {
+                            <a href="@Url.Action("EditCategory", new {id=item.Id})" , class="primary-table-button btn-xs category-table-edit-category-button">
+                                <img src="~/Content/Images/edit.svg" />
+                            </a>
+                        }
+                    }
+
                 </td>
             </tr>
 
