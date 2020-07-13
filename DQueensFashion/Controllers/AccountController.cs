@@ -29,16 +29,18 @@ namespace DQueensFashion.Controllers
         private ApplicationUserManager _userManager;
         private readonly ICustomerService _customerService;
         private readonly ICategoryService _categoryService;
+        private readonly IMailingListService _mailingListService;
         private DbContext _ctx;
         DpapiDataProtectionProvider provider = new DpapiDataProtectionProvider("HouseOfDQueens");
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager,ICustomerService customerService, 
-            ICategoryService categoryService, DbContext ctx)
+            ICategoryService categoryService,IMailingListService mailingListService, DbContext ctx)
         {
             UserManager = userManager;
             SignInManager = signInManager;
             _customerService = customerService;
             _categoryService = categoryService;
+            _mailingListService = mailingListService;
             _ctx = ctx;
             UserManager.UserTokenProvider = new DataProtectorTokenProvider<ApplicationUser>(provider.Create("SampleTokenName"));
         }
@@ -154,7 +156,12 @@ namespace DQueensFashion.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View();
+            RegisterViewModel model = new RegisterViewModel()
+            {
+                ReceiveNewsLetter = true,
+            };
+
+            return View(model);
         }
 
         //
@@ -165,10 +172,7 @@ namespace DQueensFashion.Controllers
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
             if (!model.TermsAndCondition)
-            {
-                ModelState.AddModelError("", "You meed to agree to terms and condition before registering");
                 return View(model);
-            }
 
             if (ModelState.IsValid)
             {
@@ -185,9 +189,6 @@ namespace DQueensFashion.Controllers
                         roleManager.Create(userRole);
                     }
                     UserManager.AddToRole(user.Id, AppConstant.CustomerRole);
-
-
-
 
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
@@ -206,6 +207,16 @@ namespace DQueensFashion.Controllers
                             UsedSubscriptionDiscount = false,
                         };
                         _customerService.AddCustomer(customer);
+
+                        if (model.ReceiveNewsLetter)
+                        {
+                            MailingList mailingList = new MailingList()
+                            {
+                                EmailAddress = model.Email,
+                            };
+                            _mailingListService.AddToMailingList(mailingList); 
+                        }
+
                     }
                     catch (Exception)
                     {

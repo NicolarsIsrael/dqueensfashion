@@ -84,6 +84,8 @@ namespace DQueensFashion.Models
 
         [AcceptTermsAndCondition(ErrorMessage = "You meed to agree to terms and condition before registering")]
         public bool TermsAndCondition { get; set; }
+
+        public bool ReceiveNewsLetter { get; set; }
     }
 
     public class ResetPasswordViewModel
