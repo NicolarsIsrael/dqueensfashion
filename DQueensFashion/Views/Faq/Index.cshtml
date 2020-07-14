@@ -1,159 +1,47 @@
-﻿
+﻿@using DQueensFashion.Utilities
 @{
     ViewBag.Title = "Faq";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="container body-content mb-5">
     @*<span>
-        <img src="~/Content/Images/help-circle.svg" />
-    </span>*@
+            <img src="~/Content/Images/help-circle.svg" />
+        </span>*@
     <span class="faq-needhelp-header">Need help?</span>
     <hr class="m-0 mb-5" />
     <div class="faq-faq-header mb-3">Frequently asked questions</div>
 
-    <div class="faq-body-container">
-        <div class="mb-3">
-            <a class="mr-3 faq-plus-button" data-toggle="collapse" href="#question1" role="button" aria-expanded="false" aria-controls="collapseExample">
-                <img src="~/Content/Images/plus-circle.svg" />
+    @for (int i = 0; i < AppConstant.faq.GetLength(0); i++)
+    {
+        string href = "question" + i.ToString();
+        string togglePlusIconId = "togglePlusIcon" + i.ToString();
+        string toggleMinusIconId = "toggleMinusIcon" + i.ToString();
+        <div class="mb-3 mx-md-5 mx-sm-1">
+            <a class="mr-3 faq-plus-button" data-toggle="collapse" href="#@href" role="button"
+               aria-expanded="false" aria-controls="collapseExample" onclick="ToggleIcon('@togglePlusIconId','@toggleMinusIconId')">
+                <span><i class="fas fa-plus-circle toggle-plus-icon" id="@togglePlusIconId"></i></span>
+                <span><i class="fas fa-minus-circle toggle-minus-icon" id="@toggleMinusIconId"></i></span>
             </a>
-            <span class="faq-question">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</span>
+            <span class="faq-question">@AppConstant.faq[i, 0]</span>
             <hr class="my-1" />
-            <div class="collapse" id="question1">
+            <div class="collapse" id="@href">
                 <div class="faq-answer-bodytext">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                    @AppConstant.faq[i, 1]
                 </div>
             </div>
         </div>
-        <div class="mb-3">
-            <a class="mr-3 faq-plus-button" data-toggle="collapse" href="#question2" role="button" aria-expanded="false" aria-controls="collapseExample">
-                <img src="~/Content/Images/plus-circle.svg" />
-            </a>
-            <span class="faq-question">
-                It is a long established fact that a reader will be distracted by the readable content
-            </span>
-            <hr class="my-1" />
-            <div class="collapse" id="question2">
-                <div class="faq-answer-bodytext">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-                </div>
-            </div>
-        </div>
-        <div class="mb-3">
-            <a class="mr-3 faq-plus-button" data-toggle="collapse" href="#question3" role="button" aria-expanded="false" aria-controls="collapseExample">
-                <img src="~/Content/Images/plus-circle.svg" />
-            </a>
-            <span class="faq-question">
-                It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum
-            </span>
-            <hr class="my-1" />
-            <div class="collapse" id="question3">
-                <div class="faq-answer-bodytext">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-                </div>
-            </div>
-        </div>
-        <div class="mb-3">
-            <a class="mr-3 faq-plus-button" data-toggle="collapse" href="#question4" role="button" aria-expanded="false" aria-controls="collapseExample">
-                <img src="~/Content/Images/plus-circle.svg" />
-            </a>
-            <span class="faq-question">
-                It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum
-            </span>
-            <hr class="my-1" />
-            <div class="collapse" id="question4">
-                <div class="faq-answer-bodytext">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-                </div>
-            </div>
-        </div>
-        <div class="mb-3">
-            <a class="mr-3 faq-plus-button" data-toggle="collapse" href="#question5" role="button" aria-expanded="false" aria-controls="collapseExample">
-                <img src="~/Content/Images/plus-circle.svg" />
-            </a>
-            <span class="faq-question">
-                It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum
-            </span>
-            <hr class="my-1" />
-            <div class="collapse" id="question5">
-                <div class="faq-answer-bodytext">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-                </div>
-            </div>
-        </div>
-        <div class="mb-3">
-            <a class="mr-3 faq-plus-button" data-toggle="collapse" href="#question6" role="button" aria-expanded="false" aria-controls="collapseExample">
-                <img src="~/Content/Images/plus-circle.svg" />
-            </a>
-            <span class="faq-question">
-                It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum
-            </span>
-            <hr class="my-1" />
-            <div class="collapse" id="question6">
-                <div class="faq-answer-bodytext">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-                </div>
-            </div>
-        </div>
-        <div class="mb-3">
-            <a class="mr-3 faq-plus-button" data-toggle="collapse" href="#question7" role="button" aria-expanded="false" aria-controls="collapseExample">
-                <img src="~/Content/Images/plus-circle.svg" />
-            </a>
-            <span class="faq-question">
-                It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum
-            </span>
-            <hr class="my-1" />
-            <div class="collapse" id="question7">
-                <div class="faq-answer-bodytext">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-                </div>
-            </div>
-        </div>
-        <div class="mb-3">
-            <a class="mr-3 faq-plus-button" data-toggle="collapse" href="#question8" role="button" aria-expanded="false" aria-controls="collapseExample">
-                <img src="~/Content/Images/plus-circle.svg" />
-            </a>
-            <span class="faq-question">
-                It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum
-            </span>
-            <hr class="my-1" />
-            <div class="collapse" id="question8">
-                <div class="faq-answer-bodytext">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-                </div>
-            </div>
-        </div>
-    </div>
+    }
 
 </div>
 
 <style>
-    .faq-needhelp-header {
-        font-size: 2rem;
-        font-weight: 500;
-        vertical-align: bottom;
-        margin-bottom:50px;
+
+    .toggle-minus-icon {
+        color: #E97128;
+        display: none;
     }
 
-    .faq-faq-header {
-        font-size: 1.5rem;
-        font-weight: 400;
-    }
-
-    .faq-body-container {
-        margin-right: 30px;
-        margin-left: 30px
-    }
-
-    .faq-plus-button:hover {
-        text-decoration: none;
-    }
-
-    .faq-answer-bodytext {
-        margin: 10px 50px;
-        text-justify:inter-word;text-align:justify
-    }
-
-    .faq-question{
-        font-size:16px;
+    .toggle-plus-icon {
+        color: #E97128;
     }
 </style>

@@ -270,3 +270,18 @@ function ShowOldPassword() {
 
     OldPasswordLockIcon.classList.toggle("fa-eye-slash");
 }
+
+//faq toggle
+function ToggleIcon(plusIconId, minusIconId) {
+    var faqTogglePlusIcon = document.getElementById(plusIconId);
+    var faqToggleMinusIcon = document.getElementById(minusIconId);
+
+    if (faqTogglePlusIcon.style.display === "none") {
+        faqTogglePlusIcon.style.display = "inline-block";
+        faqToggleMinusIcon.style.display = "none";
+    } else {
+        faqTogglePlusIcon.style.display = "none";
+        faqToggleMinusIcon.style.display = "inline-block";
+    }
+
+}

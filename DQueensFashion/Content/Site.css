@@ -996,6 +996,82 @@ textarea {
         box-shadow: none;
     }
 
+.faq-needhelp-header {
+    font-size: 2rem;
+    font-weight: 500;
+    vertical-align: bottom;
+    margin-bottom: 50px;
+}
+
+.faq-faq-header {
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+.faq-body-container {
+    margin-right: 30px;
+    margin-left: 30px
+}
+
+.faq-plus-button:hover {
+    text-decoration: none;
+}
+
+.faq-answer-bodytext {
+    margin: 10px 50px;
+    text-align: justify
+}
+
+.faq-question {
+    font-size: 16px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*screens less than md and greater than mobile*/
 @media screen and (min-width:421px) and (max-width: 991px) {
@@ -1087,6 +1163,11 @@ textarea {
         width:100%;
     }
 
+
+    /*faq*/
+    .faq-answer-bodytext{
+        margin:10px 30px;
+    }
   
 
 }
