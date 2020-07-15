@@ -229,9 +229,12 @@ namespace DQueensFashion.Controllers
                 string to = model.Email;
                 var credentials = AppConstant.MAIL_CREDENTIALS;
 
+                string logoUrl = Request.Url.Scheme + "://" + Request.Url.Authority + "/Content/Images/HdqLogo.png";
+                string logoDiv = $"<img src='{logoUrl}' style='width: 50px; height: 50px' alt='hdq_logo'/>";
+
                 string body = CreateHtmlBody("~/Content/HtmlPages/ForgotPasswordMessage.html");
                 body = body.Replace("{redirectUrl}", callbackUrl);
-                body = body.Replace("{logoUrl}", AppConstant.logoUrl);
+                body = body.Replace("{logo}", logoDiv);
 
                 //string body = $"Hi, you requested to change your password. Kindly ignore this message if you did not make the request" +
                 //    Environment.NewLine + $"Please reset your password by cliking <a href=\"" + callbackUrl + "\">here</a>"
