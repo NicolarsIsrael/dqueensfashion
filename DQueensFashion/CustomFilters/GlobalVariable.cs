@@ -181,4 +181,28 @@ namespace DQueensFashion.CustomFilters
             base.OnActionExecuting(filterContext);
         }
     }
+
+    public class NotFoundSetGlobalVariable : ActionFilterAttribute, IActionFilter
+    {
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            var controllersUsingThisAttribute = ((NotFoundController)filterContext.Controller);
+            filterContext.Controller.ViewBag.CartNumber = controllersUsingThisAttribute.GetCartNumber();
+            filterContext.Controller.ViewBag.Categories = controllersUsingThisAttribute.GetCategories();
+
+            base.OnActionExecuting(filterContext);
+        }
+    }
+
+    public class ErrorSetGlobalVariable : ActionFilterAttribute, IActionFilter
+    {
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            var controllersUsingThisAttribute = ((ErrorController)filterContext.Controller);
+            filterContext.Controller.ViewBag.CartNumber = controllersUsingThisAttribute.GetCartNumber();
+            filterContext.Controller.ViewBag.Categories = controllersUsingThisAttribute.GetCategories();
+
+            base.OnActionExecuting(filterContext);
+        }
+    }
 }

@@ -29,8 +29,8 @@ namespace DQueensFashion.Service.Implementation
 
         public void UpdateProduct(Product product)
         {
-            if (!ValidateProductDetails(product))
-                throw new Exception();
+            //if (!ValidateProductDetails(product))
+            //    throw new Exception();
 
             uow.ProductRepo.Update(product);
             uow.Save();

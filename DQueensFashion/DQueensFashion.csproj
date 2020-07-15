@@ -254,10 +254,12 @@
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\ContactUsController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\FaqController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MailingListController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\NotFoundController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\PrivacyPolicyController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -571,6 +573,8 @@
     <Content Include="Views\Faq\Index.cshtml" />
     <Content Include="Views\TermsOfUse\Index.cshtml" />
     <Content Include="Views\PrivacyPolicy\Index.cshtml" />
+    <Content Include="Views\NotFound\Index.cshtml" />
+    <Content Include="Views\Error\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
