@@ -13,15 +13,11 @@
                 <img src="~/Content/Images/plus.svg" />
                 Add
             </a>
-            <a href="@Url.Action("AddProduct","Admin",new { categoryId=AppConstant.ReadyMadeCategoryId})" class="btn btn-sm add-ready-made-btn">
+            <a href="@Url.Action("AddProduct","Admin",new { categoryId=AppConstant.OutfitsId})" class="btn btn-sm add-outfit-btn">
                 <img src="~/Content/Images/plus.svg" />
-                @AppConstant.ReadyMadeName
+                @AppConstant.OutfitsName
             </a>
-            <a href="@Url.Action("AddProduct","Admin",new { categoryId=AppConstant.CustomMadeCategoryId})" class="btn btn-sm add-custommade-btn">
-                <img src="~/Content/Images/plus.svg" />
-                @AppConstant.CustomMadeName
-            </a>
-
+         
         </div>
         <div class="card">
             <div class="card-header">

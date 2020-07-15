@@ -1,7 +1,7 @@
 ﻿@model DQueensFashion.Models.Cart
 @using DQueensFashion.Utilities
 
-@using (Html.BeginForm("AddToCartCustomReadyMade", "Cart"))
+@using (Html.BeginForm("AddToCartOutfits", "Cart"))
 {
     @Html.AntiForgeryToken()
 
@@ -231,7 +231,7 @@
         </div>
         <input type="button" value="ADD TO CART" class="btn mt-0"
                style="background-color:#96157a;color:white;border-radius:0;margin:10px;position:absolute;bottom:10px;right:10px;box-shadow: 2px 2px 12px rgba(47, 47, 47, 0.40);"
-               onclick="AddToCartCustomReadyMadePost()" />
+               onclick="AddToCartOutfitsPost()" />
 
     </div>
 }

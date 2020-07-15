@@ -112,14 +112,13 @@ namespace DQueensFashion.Controllers
             return PartialView("_navbarCartNumber");
         }
 
-        public ActionResult AddToCartCustomReadyMade(int id=0)
+        public ActionResult AddToCartOutfits(int id=0)
         {
             Product product = _productService.GetProductById(id);
             if (product == null)
                 throw new Exception();
 
-            if (!(product.CategoryId == AppConstant.CustomMadeCategoryId 
-                || product.CategoryId == AppConstant.ReadyMadeCategoryId))
+            if (product.CategoryId != AppConstant.OutfitsId)
                 throw new Exception();
 
             string mainImage = _imageService.GetImageFilesForProduct(product.Id).Count() < 1
@@ -154,11 +153,11 @@ namespace DQueensFashion.Controllers
                 SleeveLength = product.SleeveLength.HasValue ? product.SleeveLength.Value : false,
             };
 
-            return PartialView("_AddToCartCustomReadyMade", cartModel);
+            return PartialView("_AddToCartOutfits", cartModel);
         }
 
         [HttpPost]
-        public ActionResult AddToCartCustomReadyMade(Cart cartModel)
+        public ActionResult AddToCartOutfits(Cart cartModel)
         {
             Product product = _productService.GetProductById(cartModel.ProductId);
             if (product == null)
@@ -170,7 +169,7 @@ namespace DQueensFashion.Controllers
 
             List<Cart> cart = new List<Cart>();
 
-            int index = isExistCustomReadyMade(cartModel.ProductId,cartModel);
+            int index = isExistOutfits(cartModel.ProductId,cartModel);
             if (index > -1)
             {
                 cart = (List<Cart>)Session["cart"];
@@ -186,7 +185,7 @@ namespace DQueensFashion.Controllers
                 {
                     Product = product,
                     Quantity = cartModel.Quantity,
-                    MaxQuantity = AppConstant.MaxCustomMadeAddToCart,
+                    MaxQuantity = AppConstant.MaxOutfitAddToCart,
                     Discount = product.Discount,
                     InitialPrice = product.Price,
                     UnitPrice = product.SubTotal,
@@ -229,8 +228,7 @@ namespace DQueensFashion.Controllers
                 cart[index].Quantity = quantity;
                 cart[index].UnitPrice = cart[index].Product.SubTotal;
                 cart[index].TotalPrice = cart[index].Product.SubTotal * quantity;
-                if (product.CategoryId != AppConstant.CustomMadeCategoryId
-                    && product.CategoryId != AppConstant.ReadyMadeCategoryId)
+                if (product.CategoryId != AppConstant.OutfitsId)
                 {
                     cart[index].Description = cart[index].Quantity > 1
                     ? cart[index].Quantity.ToString() + " Pieces"
@@ -407,7 +405,7 @@ namespace DQueensFashion.Controllers
             return -1; //cart session is available but item not in cart
         }
 
-        private int isExistCustomReadyMade(int id, Cart cartModel)
+        private int isExistOutfits(int id, Cart cartModel)
         {
             if (Session["cart"] == null)
                 return -2; //no cart session yet
@@ -456,7 +454,7 @@ namespace DQueensFashion.Controllers
         private string GetCartDescription(Cart cartModel,int id)
         {
             string description = "";
-            if (id == AppConstant.CustomMadeCategoryId || id==AppConstant.ReadyMadeCategoryId)
+            if (id == AppConstant.OutfitsId)
             {
                 if (cartModel.ShoulderValue > 0)
                     description += "Shoulder : " + cartModel.ShoulderValue +"\"" + "\r\n";

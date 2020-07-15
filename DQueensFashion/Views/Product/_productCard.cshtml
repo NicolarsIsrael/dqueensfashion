@@ -30,10 +30,9 @@
             @Html.Partial("~/views/Product/_averageRating.cshtml", Model.Rating)
         </div>
         @{
-            if (Model.CategoryId == AppConstant.CustomMadeCategoryId ||
-                Model.CategoryId == AppConstant.ReadyMadeCategoryId)
+            if (Model.CategoryId == AppConstant.OutfitsId)
             {
-                <div class="cart" onclick="AddToCartCustomReadyMade(@Model.Id)">
+                <div class="cart" onclick="AddToCartOutfits(@Model.Id)">
                     <div href="#">Add to cart</div>
                 </div>
             }

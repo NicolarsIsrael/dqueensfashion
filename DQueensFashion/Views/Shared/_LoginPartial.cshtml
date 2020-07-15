@@ -18,13 +18,7 @@
                     @Html.ActionLink("Account", "Account", "Customer", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "nav-link navbar-link" })
                 </li>
             }
-            else if (User.IsInRole(AppConstant.EmployeeRole))
-            {
-                <li class="nav-item">
-                    @Html.ActionLink("Dashboard", "Dashboard", "Employee", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "nav-link navbar-link" })
-                </li>
-            }
-
+           
         }
 
         @*@using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))

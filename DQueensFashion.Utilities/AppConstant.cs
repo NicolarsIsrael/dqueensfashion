@@ -15,7 +15,6 @@ namespace DQueensFashion.Utilities
         public const string AdminEmail = "admin@gmail.com";
         public const string AdminPassword = "Abc123*";
         public const string AdminRole = "Admin";
-        public const string EmployeeRole = "Employee";
         public const string CustomerRole = "Customer";
 
         public const string HDQ_EMAIL_ACCOUNT = "bakarenicolarsisrael@gmail.com";
@@ -36,10 +35,8 @@ namespace DQueensFashion.Utilities
         public const int HomeIndexProductCount = 16;
 
         public const string ProductImageBasePath = "~/Content/Images/Products/";
-        public const int CustomMadeCategoryId = 4;
-        public const string CustomMadeName = "Custom-Made";
-        public const int ReadyMadeCategoryId = 3;
-        public const string ReadyMadeName = "Ready-Made";
+        public const string OutfitsName = "Outfits";
+        public const int OutfitsId = 1;
 
         //sort options
         public const int BestDeals = 1;
@@ -53,8 +50,9 @@ namespace DQueensFashion.Utilities
         public const int HighestRating = 9;
         public const int LowestRating = 10;
 
-        public static readonly string[] ReadyMadeSizes = { "Extra small (XS)", "Small (S)", "Medium (M)", "Large (L)", "Extra large (XL)" };
-        public static int MaxCustomMadeAddToCart = 50;
+        public static int MaxOutfitAddToCart = 50;
+
+        //outfit measurements
 
         public static readonly double[] ShoulderValues = { 10, 10.5, 11, 11.5, 12, 12.5, 13, 13.5, 14,
                                                         14.5, 15, 15.5, 16, 16.5, 17, 17.5, 18, 18.5, 19, 19.5, 20 };

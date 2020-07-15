@@ -132,7 +132,7 @@ namespace DQueensFashion.Controllers
         {
             try
             {
-                if (id == AppConstant.CustomMadeCategoryId || id == AppConstant.ReadyMadeCategoryId)
+                if (id == AppConstant.OutfitsId)
                     return RedirectToAction(nameof(Categories));
 
                 Category category = _categoryService.GetCategoryById(id);
@@ -166,7 +166,7 @@ namespace DQueensFashion.Controllers
             try
             {
 
-                if (categoryModel.Id == AppConstant.CustomMadeCategoryId || categoryModel.Id == AppConstant.ReadyMadeCategoryId)
+                if (categoryModel.Id == AppConstant.OutfitsId)
                     return RedirectToAction(nameof(Categories));
 
                 Category category = _categoryService.GetCategoryById(categoryModel.Id);
@@ -255,10 +255,8 @@ namespace DQueensFashion.Controllers
                 DeliveryDaysDuration = 1,
             };
 
-            if (categoryId == AppConstant.CustomMadeCategoryId)
-                productModel.CustomMadeCategory = true;
-            else if (categoryId == AppConstant.ReadyMadeCategoryId)
-                productModel.ReadyMadeCategory = true;
+            if (categoryId == AppConstant.OutfitsId)
+                productModel.OutfitCategory = true;
            
             return View(productModel);
         }
@@ -406,8 +404,7 @@ namespace DQueensFashion.Controllers
                 NipNip = product.NipNip.HasValue ? product.NipNip.Value : false,
                 SleeveLength = product.SleeveLength.HasValue ? product.SleeveLength.Value : false,
 
-                ReadyMadeCategory = product.CategoryId == AppConstant.ReadyMadeCategoryId ? true : false,
-                CustomMadeCategory = product.CategoryId == AppConstant.CustomMadeCategoryId ? true : false,
+                OutfitCategory = product.CategoryId == AppConstant.OutfitsId ? true : false,
             };
 
             foreach (var category in productModel.Categories)

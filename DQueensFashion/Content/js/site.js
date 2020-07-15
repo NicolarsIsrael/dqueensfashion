@@ -15,10 +15,10 @@ function AddToCart(productId, _quantity) {
     });
 }
 
-function AddToCartCustomReadyMade(productId) {
+function AddToCartOutfits(productId) {
 
     $.ajax({
-        url: "/Cart/AddToCartCustomReadyMade/" + productId,
+        url: "/Cart/AddToCartOutfits/" + productId,
         dataType: "html",
         data: {},
         success: function (result) {
@@ -32,7 +32,7 @@ function AddToCartCustomReadyMade(productId) {
 
 }
 
-function AddToCartCustomReadyMadePost() {
+function AddToCartOutfitsPost() {
 
     var cartModel = {
         ProductId: $('#ProductId').val(),
@@ -54,7 +54,7 @@ function AddToCartCustomReadyMadePost() {
     }
 
     $.ajax({
-        url: "/Cart/AddToCartCustomReadyMade",
+        url: "/Cart/AddToCartOutfits",
         data: JSON.stringify(cartModel),
         type: "POST",
         contentType: "application/json;charset=utf-8",

@@ -31,7 +31,7 @@ namespace DQueensFashion.Service.Implementation
             foreach(var lineItem in order.LineItems)
             {
                 Product p = uow.ProductRepo.Get(lineItem.Product.Id);
-                if (p.CategoryId != AppConstant.CustomMadeCategoryId || p.CategoryId != AppConstant.ReadyMadeCategoryId)
+                if (p.CategoryId != AppConstant.OutfitsId)
                 {
                     p.Quantity -= lineItem.Quantity;
                     if (p.Quantity < 0)

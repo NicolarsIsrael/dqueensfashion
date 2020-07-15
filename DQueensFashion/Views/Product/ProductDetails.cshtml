@@ -160,10 +160,9 @@
                     </div>
                     <div class="mt-1">
                         @{
-                            if (Model.Product.CategoryId == AppConstant.CustomMadeCategoryId 
-                                || Model.Product.CategoryId==AppConstant.ReadyMadeCategoryId)
+                            if (Model.Product.CategoryId == AppConstant.OutfitsId)
                             {
-                                <div class="cart" onclick="AddToCartCustomReadyMade(@Model.Product.Id)">
+                                <div class="cart" onclick="AddToCartOutfits(@Model.Product.Id)">
                                     <div href="#">Add to cart</div>
                                 </div>
                             }

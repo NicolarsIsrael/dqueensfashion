@@ -46,8 +46,7 @@ namespace DQueensFashion.Models
         public int CategoryId { get; set; }
         public IEnumerable<CategoryNameAndId> Categories { get; set; }
 
-        public bool CustomMadeCategory { get; set; }
-        public bool ReadyMadeCategory { get; set; }
+        public bool OutfitCategory { get; set; }
 
 
         //measurement

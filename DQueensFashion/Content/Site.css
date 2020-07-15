@@ -390,21 +390,17 @@ textarea {
         -webkit-background-clip: text;
     }
 
-.home-custommade-container,
-.home-readymade-container{
+.home-outfit-container{
     margin-top: 100px;
     margin-bottom: 100px
 }
 
-.home-custommade-img,
-.home-readymade-img {
+.home-outfit-img {
     width: 100%;
     height: 400px
 }
 
-.home-custommade-bodytext,
-.home-readymade-bodytext,
-.home-about-us-bodytext{
+.home-outfit-bodytext {
     text-align: justify;
     text-justify: inter-word
 }
@@ -416,17 +412,12 @@ textarea {
 }
 
 
-.home-custommade-header {
+.home-outfit-header {
     font-weight: 700;
     color: #212529;
     margin-bottom: 20px;
 }
 
-.home-readymade-header {
-    font-weight: 700;
-    color: #212529;
-    margin-bottom: 20px;
-}
 
 .primary-button {
     border-radius: 0;
@@ -1211,8 +1202,7 @@ textarea {
         }
 
 
-    .custommade-section,
-    .readymade-section {
+    .outfit-section {
         margin-top: 30px;
     }
 }

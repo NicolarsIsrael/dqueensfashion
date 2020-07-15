@@ -111,13 +111,15 @@ namespace DQueensFashion.Controllers
 
         public ActionResult Review1()
         {
-            var products = _productService.GetAllProducts().Take(10);
-
-            Random rand = new Random();
-
-            foreach (var product in products)
+            try
             {
-                var reviews = new List<Review>()
+                var products = _productService.GetAllProducts().Take(10);
+
+                Random rand = new Random();
+
+                foreach (var product in products)
+                {
+                    var reviews = new List<Review>()
                     {
                         new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
                         DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow,
@@ -442,10 +444,16 @@ namespace DQueensFashion.Controllers
 
 
                     };
-                _reviewService.AddRangeReveiew(reviews);
+                    _reviewService.AddRangeReveiew(reviews);
 
+                }
+                return View();
             }
-            return View();
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public ActionResult Review2()

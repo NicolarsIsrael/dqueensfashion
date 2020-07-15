@@ -216,15 +216,11 @@
     color: white;
 }
 
-.add-ready-made-btn {
+.add-outfit-btn {
     background-color: darkgoldenrod;
     color: white;
 }
 
-.add-custommade-btn {
-    background-color: blue;
-    color: white
-}
 
 .products-table-image {
     width: 80px;

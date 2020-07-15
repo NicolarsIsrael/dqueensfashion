@@ -68,14 +68,15 @@ namespace DQueensFashion
 
                 var categories = new List<Category>()
                  {
-                    new Category{ Name="Ankara",IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
+                    new Category{ Id=AppConstant.OutfitsId, Name=AppConstant.OutfitsName,IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
                         DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow,},
-                    new Category{ Name="Baby-Wears",IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
+                    new Category{Id=2, Name="Ankara",IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
+                        DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow,},
+                    new Category{Id =3, Name="Baby-Wears",IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
                         DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow},
-                    new Category{Id=AppConstant.ReadyMadeCategoryId, Name=AppConstant.ReadyMadeName,IsDeleted=false,DateCreated=DateTime.Now,
-                        DateModified =DateTime.Now,DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow},
-                    new Category{ Id=AppConstant.CustomMadeCategoryId, Name=AppConstant.CustomMadeName,IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
+                   new Category{Id=4, Name="Accessories",IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
                         DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow},
+
                 };
 
                 categories.ForEach(c => context.Category.Add(c));
@@ -309,204 +310,204 @@ namespace DQueensFashion
                     Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
                 },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(3),
-                //        DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow,
-                //    Name="Baby feeder",Price = 6,Discount=30,Quantity=10,Tags="baby",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(3),
+                        DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow,
+                    Name="Baby feeder",Price = 6,Discount=30,Quantity=10,Tags="baby",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(3),
-                //        DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow,
-                //    Name="Green baby shoes",Price = 8,Discount=6.55M,Quantity=16,Tags="babywears,male",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(3),
+                        DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow,
+                    Name="Green baby shoes",Price = 8,Discount=6.55M,Quantity=16,Tags="babywears,male",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(3),
-                //        DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow,
-                //    Name="Red baby shorts",Price = 10,Discount=0.25M,Quantity=6,Tags="baby,babywears,male,female",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",                },
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(3),
+                        DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow,
+                    Name="Red baby shorts",Price = 10,Discount=0.25M,Quantity=6,Tags="baby,babywears,male,female",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(3),
-                //        DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow,
-                //    Name="Baby red top",Price = 7,Discount=0,Quantity=13,Tags="baby,babywears,male,female",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(3),
+                        DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow,
+                    Name="Baby red top",Price = 7,Discount=0,Quantity=13,Tags="baby,babywears,male,female",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(3),
-                //        DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow,
-                //    Name="Baby blue cap",Price = 34,Discount=0,Quantity=14,Tags="baby,babywears,male,female",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(3),
+                        DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow,
+                    Name="Baby blue cap",Price = 34,Discount=0,Quantity=14,Tags="baby,babywears,male,female",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(3),
-                //        DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow,
-                //    Name="Baby layerd shoes",Price = 13,Discount=0,Quantity=14,Tags="ankara,african,male",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(3),
+                        DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow,
+                    Name="Baby layerd shoes",Price = 13,Discount=0,Quantity=14,Tags="ankara,african,male",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(4),
-                //        DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow,
-                //    Name="Custom made red dress",Price = 12,Discount=4.45M,Quantity=6,Tags="custommade",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(4),
+                        DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow,
+                    Name="Custom made red dress",Price = 12,Discount=4.45M,Quantity=6,Tags="custommade",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(4),
-                //        DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow,
-                //    Name="Custom made shoe",Price = 20,Discount=8.3M,Quantity=13,Tags="custommade",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(4),
+                        DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow,
+                    Name="Custom made shoe",Price = 20,Discount=8.3M,Quantity=13,Tags="custommade",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(4),
-                //        DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow,
-                //    Name="Custom made blue attire",Price = 23,Discount=14.5M,Quantity=14,Tags="custommade",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(4),
+                        DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow,
+                    Name="Custom made blue attire",Price = 23,Discount=14.5M,Quantity=14,Tags="custommade",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(1),
-                //        DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow,
-                //    Name="Custom made berret",Price = 20,Discount=7.5M,Quantity=10,Tags="custommade",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(1),
+                        DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow,
+                    Name="Custom made berret",Price = 20,Discount=7.5M,Quantity=10,Tags="custommade",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(4),
-                //        DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow,
-                //    Name="Custom made blue silk berret",Price = 20,Discount=4.5M,Quantity=10,Tags="custommade",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(4),
+                        DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow,
+                    Name="Custom made blue silk berret",Price = 20,Discount=4.5M,Quantity=10,Tags="custommade",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(4),
-                //        DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow,
-                //    Name="Custom blue joggers",Price = 14,Discount=0,Quantity=7,Tags="custommade",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(4),
+                        DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow,
+                    Name="Custom blue joggers",Price = 14,Discount=0,Quantity=7,Tags="custommade",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(4),
-                //        DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow,
-                //    Name="Custom made red skirt",Price = 13,Discount=12.35M,Quantity=8,Tags="custommade",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(4),
+                        DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow,
+                    Name="Custom made red skirt",Price = 13,Discount=12.35M,Quantity=8,Tags="custommade",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(4),
-                //        DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow,
-                //    Name="Custom shoes",Price = 16,Discount=1.5M,Quantity=8,Tags="custommade",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(4),
+                        DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow,
+                    Name="Custom shoes",Price = 16,Discount=1.5M,Quantity=8,Tags="custommade",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(1),
-                //        DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow,
-                //    Name="10 yards ankara",Price = 40,Discount=10.5M,Quantity=15,Tags="ankara,african,male",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(1),
+                        DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow,
+                    Name="10 yards ankara",Price = 40,Discount=10.5M,Quantity=15,Tags="ankara,african,male",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(1),
-                //        DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow,
-                //    Name="5 yards green ankara",Price = 24,Discount=3.9M,Quantity=13,Tags="ankara,african,male",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(1),
+                        DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow,
+                    Name="5 yards green ankara",Price = 24,Discount=3.9M,Quantity=13,Tags="ankara,african,male",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(1),
-                //        DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow,
-                //    Name="7 yards orange ankara",Price = 14,Discount=10,Quantity=9,Tags="ankara,african,male",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(1),
+                        DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow,
+                    Name="7 yards orange ankara",Price = 14,Discount=10,Quantity=9,Tags="ankara,african,male",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(2),
-                //        DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow,
-                //    Name="Affordable jump suits",Price = 23,Discount=9.55M,Quantity=10,Tags="Lace",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(2),
+                        DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow,
+                    Name="Affordable jump suits",Price = 23,Discount=9.55M,Quantity=10,Tags="Lace",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(1),
-                //        DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow,
-                //    Name="Baby velvet shoes",Price = 17,Discount=0,Quantity=8,Tags="Baby",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(1),
+                        DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow,
+                    Name="Baby velvet shoes",Price = 17,Discount=0,Quantity=8,Tags="Baby",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(1),
-                //        DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow,
-                //    Name="5 yards ankara",Price = 26,Discount=0,Quantity=10,Tags="ankara,african,female",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(1),
+                        DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow,
+                    Name="5 yards ankara",Price = 26,Discount=0,Quantity=10,Tags="ankara,african,female",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(1),
-                //        DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow,
-                //    Name="3 yards green ankara",Price = 22,Discount=0,Quantity=11,Tags="ankara,african,male",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(1),
+                        DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow,
+                    Name="3 yards green ankara",Price = 22,Discount=0,Quantity=11,Tags="ankara,african,male",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(3),
-                //        DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow,
-                //    Name="Baby blue and red overall",Price = 25,Discount=15.5M,Quantity=19,Tags="baby,babywears",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(3),
+                        DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow,
+                    Name="Baby blue and red overall",Price = 25,Discount=15.5M,Quantity=19,Tags="baby,babywears",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(3),
-                //        DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow,
-                //    Name="Baby feeder",Price = 5,Discount=7.3M,Quantity=10,Tags="baby",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(3),
+                        DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow,
+                    Name="Baby feeder",Price = 5,Discount=7.3M,Quantity=10,Tags="baby",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(1),
-                //        DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow,
-                //    Name="2 yards blue lace",Price = 20,Discount=7.75M,Quantity=10,Tags="lace,african",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(1),
+                        DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow,
+                    Name="2 yards blue lace",Price = 20,Discount=7.75M,Quantity=10,Tags="lace,african",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
-                // new Product
-                //{
-                //    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(1),
-                //        DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow,
-                //    Name="2 yards red lace",Price = 19,Discount=12.5M,Quantity=13,Tags="lace,african",
-                //    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //},
+                 new Product
+                {
+                    IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,Category=context.Category.Find(1),
+                        DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow,
+                    Name="2 yards red lace",Price = 19,Discount=12.5M,Quantity=13,Tags="lace,african",
+                    Description="Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+                },
 
             };
 
@@ -515,306 +516,9 @@ namespace DQueensFashion
 
                 Random rand = new Random();
 
-                //foreach (var product in products)
-                //{
-                //    var reviews = new List<Review>()
-                //    {
-                //        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
-                //            Comment = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-                //            Name = "James Victor",
-                //            Email = "adam@gmail.com",
-                //            Product = product,
-                //            ProductId = product.Id,
-                //            Rating = rand.Next(5,6),
-                //        },
+              
 
-                //        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
-                //            Comment = "using Content here, content here, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for lorem ipsum will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                //            Name="Victor Daniel",
-                //            Email = "balam@gmail.com",
-                //            Product = product,
-                //            ProductId = product.Id,
-                //            Rating = rand.Next(4,6),
-                //        },
-
-                //        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
-                //            Comment = "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.",
-                //            Name = "Adekunle Gold",
-                //            Email = "AGbaby@gmail.com",
-                //            Product = product,
-                //            ProductId = product.Id,
-                //            Rating = rand.Next(5,6),
-                //        },
-
-                //        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
-                //            Comment = "Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
-                //            Name = "Olorunfemi John",
-                //            Email = "john@gmail.com",
-                //            Product = product,
-                //            ProductId = product.Id,
-                //            Rating = rand.Next(3,6),
-                //        },
-
-                //        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
-                //            Comment = "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. ",
-                //            Name = "Simi oyekunke",
-                //            Email = "simi@gmail.com",
-                //            Product = product,
-                //            ProductId = product.Id,
-                //            Rating = rand.Next(5,6),
-                //        },
-
-                //        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
-                //            Comment = "If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. book.",
-                //            Name = "Eniola",
-                //            Email = "Eny@gmail.com",
-                //            Product = product,
-                //            ProductId = product.Id,
-                //            Rating = rand.Next(3,6),
-                //        },
-
-                //        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
-                //            Comment = " It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.",
-                //            Name = "Cornor",
-                //            Email = "cnor@gmail.com",
-                //            Product = product,
-                //            ProductId = product.Id,
-                //            Rating = rand.Next(5,6),
-                //        },
-
-                //        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
-                //            Comment = "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system",
-                //            Name = "Paul",
-                //            Email = "pp@gmail.com",
-                //            Product = product,
-                //            ProductId = product.Id,
-                //            Rating = rand.Next(3,6),
-                //        },
-
-                //        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
-                //            Comment = "Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure.",
-                //            Name = "Opeyemi",
-                //            Email = "opy@gmail.com",
-                //            Product = product,
-                //            ProductId = product.Id,
-                //            Rating = rand.Next(1,6),
-                //        },
-
-                //        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
-                //            Comment = "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. ",
-                //            Name = "KingBach",
-                //            Email = "king@gmail.com",
-                //            Product = product,
-                //            ProductId = product.Id,
-                //            Rating = rand.Next(5,6),
-                //        },
-
-                //        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
-                //            Comment = "Mauris eu purus sed ipsum egestas ullamcorper. Aenean nec sem pretium velit lacinia varius at vel leo. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean convallis ut nunc sit amet fermentum. Etiam non vehicula neque, iaculis luctus sem. Aenean efficitur, nibh a pellentesque rutrum, dui lorem sagittis ante, ut malesuada magna lacus quis dolor. Vestibulum feugiat commodo luctus",
-                //            Name = "Tresh",
-                //            Email = "adam@gmail.com",
-                //            Product = product,
-                //            ProductId = product.Id,
-                //            Rating = rand.Next(5,6),
-                //        },
-
-                //        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
-                //            Comment = "Praesent fringilla egestas lacus, sit amet consequat neque ultrices ultrices. Etiam sit amet sem dolor. Praesent rhoncus tincidunt ex eget mollis. Cras maximus, enim eu tempor tristique, quam augue volutpat dolor, a volutpat nibh ipsum at sapien. Nam turpis arcu, elementum sed laoreet quis, commodo vel felis. Sed sed pretium felis, sed iaculis urna. Suspendisse scelerisque lacinia purus eget porta. Cras eget tempor lorem",
-                //            Name = "Femi",
-                //            Email = "femi@gmail.com",
-                //            Product = product,
-                //            ProductId = product.Id,
-                //            Rating = rand.Next(3,6),
-                //        },
-
-                //        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
-                //            Comment = "Curabitur ullamcorper ante sed porttitor maximus. Proin pharetra vitae nunc nec tristique. Curabitur aliquam tristique diam a aliquam. Nulla tellus diam, commodo non condimentum at, hendrerit eu diam. Curabitur facilisis nunc sit amet leo cursus, at tristique purus blandit.",
-                //            Name = "Victor",
-                //            Email = "victo@gmail.com",
-                //            Product = product,
-                //            ProductId = product.Id,
-                //            Rating = rand.Next(5,6),
-                //        },
-
-                //        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
-                //            Comment = "Praesent fringilla egestas lacus, sit amet consequat neque ultrices ultrices. Etiam sit amet sem dolor. Praesent rhoncus tincidunt ex eget mollis. Cras maximus, enim eu tempor tristique, quam augue volutpat dolor, a volutpat nibh ipsum at sapien. Nam turpis arcu, elementum sed laoreet quis, commodo vel felis. Sed sed pretium felis, sed iaculis urna. Suspendisse scelerisque lacinia purus eget porta. Cras eget tempor lorem.",
-                //            Name = "Grizmann",
-                //            Email = "grizzy@gmail.com",
-                //            Product = product,
-                //            ProductId = product.Id,
-                //            Rating = rand.Next(4,6),
-                //        },
-
-                //        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
-                //            Comment = "Mauris mollis auctor velit, vitae scelerisque mauris feugiat sed. Mauris eget cursus tortor. Curabitur a dui in turpis consectetur gravida",
-                //            Name = "Sandra",
-                //            Email = "sandy@gmail.com",
-                //            Product = product,
-                //            ProductId = product.Id,
-                //            Rating = rand.Next(5,6),
-                //        },
-
-                //        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
-                //            Comment = "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aenean vel egestas dolor. Phasellus ac dictum tellus. Nam vel ante sit amet velit finibus finibus quis ut nisi. Mauris et varius est. Mauris vel efficitur odio. Duis faucibus nulla lacus, vel feugiat dui consectetur et.",
-                //            Name = "Saul goodman",
-                //            Email = "saulG@gmail.com",
-                //            Product = product,
-                //            ProductId = product.Id,
-                //            Rating = rand.Next(5,6),
-                //        },
-
-                //        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
-                //            Comment = "Duis aliquet, enim lobortis ultricies euismod, risus neque tincidunt risus, in vestibulum erat nunc vitae nisl. In congue erat vel ultricies egestas. Vestibulum placerat, elit non condimentum maximus, sapien ligula porttitor orci, at pellentesque est velit non est. Ut efficitur ligula magna, id laoreet est faucibus non.",
-                //            Name = "Kendel",
-                //            Email = "adam@gmail.com",
-                //            Product = product,
-                //            ProductId = product.Id,
-                //            Rating = rand.Next(3,6),
-                //        },
-
-                //        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
-                //            Comment = " Donec fermentum lacus et lacus pharetra, ut molestie justo semper. Curabitur id ultricies tortor. Fusce quis elit sit amet velit vulputate molestie. Vivamus at euismod ex. Etiam sit amet porttitor ligula.",
-                //            Name = "Jet Victor",
-                //            Email = "jv@gmail.com",
-                //            Product = product,
-                //            ProductId = product.Id,
-                //            Rating = rand.Next(5,6),
-                //        },
-
-                //        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
-                //            Comment = "Duis aliquet, enim lobortis ultricies euismod, risus neque tincidunt risus, in vestibulum erat nunc vitae nisl. In congue erat vel ultricies egestas. Vestibulum placerat, elit non condimentum maximus, sapien ligula porttitor orci, at pellentesque est velit non est. Ut efficitur ligula magna, id laoreet est faucibus non.",
-                //            Name = "Walter white",
-                //            Email = "walter@gmail.com",
-                //            Product = product,
-                //            ProductId = product.Id,
-                //            Rating = rand.Next(1,6),
-                //        },
-
-                //        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
-                //            Comment = "Aliquam euismod nisl imperdiet enim consectetur, eu dapibus massa placerat. Phasellus cursus vehicula mi, at tincidunt odio consectetur at. Integer neque turpis, sagittis vel ullamcorper imperdiet, ullamcorper quis dolor. Donec vitae rhoncus nunc. Maecenas placerat arcu in nisi viverra viverra.",
-                //            Name = "Dembele",
-                //            Email = "dd@gmail.com",
-                //            Product = product,
-                //            ProductId = product.Id,
-                //            Rating = rand.Next(5,6),
-                //        },
-
-                //        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
-                //            Comment = "Nam tempus fringilla ligula, eget consequat dolor tincidunt id. Aliquam tincidunt, lectus ac hendrerit cursus, dui odio facilisis ligula, et placerat nisi leo quis nunc. Donec fermentum lacus et lacus pharetra, ut molestie justo semper. Curabitur id ultricies tortor. Fusce quis elit sit amet velit vulputate molestie. Vivamus at euismod ex. Etiam sit amet porttitor ligula.",
-                //            Name = "Suarez",
-                //            Email = "suarez@gmail.com",
-                //            Product = product,
-                //            ProductId = product.Id,
-                //            Rating = rand.Next(5,6),
-                //        },
-
-                //        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
-                //            Comment = "Donec at ante a ante commodo consequat. Donec at cursus justo. Phasellus pretium elit sit amet enim placerat, non volutpat ligula sollicitudin. Curabitur a sem ac enim lacinia fringilla in nec nisl. Suspendisse potenti. Maecenas orci quam, eleifend eu metus at, placerat imperdiet elit. ",
-                //            Name = "Donald",
-                //            Email = "don@gmail.com",
-                //            Product = product,
-                //            ProductId = product.Id,
-                //            Rating = rand.Next(5,6),
-                //        },
-
-                //        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
-                //            Comment = "Curabitur pellentesque elementum mauris, ac vulputate purus vehicula at. Pellentesque non tortor ornare, consectetur nisl et, hendrerit quam. Morbi mattis accumsan purus eget ornare. Donec interdum tristique nulla, rutrum posuere felis tincidunt et. Praesent suscipit et nulla nec scelerisque.",
-                //            Name = "Shayme",
-                //            Email = "sh@gmail.com",
-                //            Product = product,
-                //            ProductId = product.Id,
-                //            Rating = rand.Next(3,6),
-                //        },
-
-                //        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
-                //            Comment = " Fusce vehicula lectus in ex aliquam sollicitudin. Nunc nec laoreet tellus. Mauris eu elit a nulla ultrices lobortis in condimentum mi. Curabitur porta nunc quis faucibus venenatis.",
-                //            Name = "torbido",
-                //            Email = "tr@gmail.com",
-                //            Product = product,
-                //            ProductId = product.Id,
-                //            Rating = rand.Next(1,6),
-                //        },
-
-                //        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
-                //            Comment = "Phasellus eleifend pharetra urna non maximus. Nulla in pretium risus. Sed aliquet tempor felis ac faucibus. Nulla posuere elit nec erat elementum egestas. Aenean convallis ligula vulputate posuere egestas. Etiam vestibulum, lectus sit amet rhoncus facilisis, nunc arcu hendrerit neque, ac auctor eros velit ut nisi.",
-                //            Name = "Benzema",
-                //            Email = "bel@gmail.com",
-                //            Product = product,
-                //            ProductId = product.Id,
-                //            Rating = rand.Next(4,6),
-                //        },
-
-                //        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
-                //            Comment = "Aenean id lobortis nulla. Phasellus pretium elit nec ullamcorper bibendum. Nullam bibendum erat a mi rhoncus iaculis eu sit amet mauris. Curabitur quam velit, sollicitudin at ultrices ut, mollis id augue. Nam dapibus facilisis sem. Nam malesuada nunc at est sollicitudin, a luctus sapien eleifend. Praesent mi purus",
-                //            Name = "Andrew",
-                //            Email = "andy@gmail.com",
-                //            Product = product,
-                //            ProductId = product.Id,
-                //            Rating = rand.Next(4,6),
-                //        },
-
-                //        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
-                //            Comment = "Mauris vestibulum dolor non est rutrum, quis consectetur quam pharetra. Donec a elementum sem. Quisque at nibh condimentum, fringilla diam et, volutpat magna. Sed consectetur vitae mauris et rhoncus. Etiam eget odio dolor. Sed vel justo nec est pellentesque volutpat eget eget enim",
-                //            Name = "Lumi",
-                //            Email = "lucas@gmail.com",
-                //            Product = product,
-                //            ProductId = product.Id,
-                //            Rating = rand.Next(5,6),
-                //        },
-
-                //        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
-                //            Comment = "Duis at blandit purus. Suspendisse potenti. Nam ac ornare ante. Aliquam posuere ultricies turpis et laoreet. Nam eleifend magna et nulla ultricies, sit amet fringilla ante varius. Donec blandit massa quam, nec finibus turpis dapibus id. Integer aliquet malesuada turpis eget euismod. ",
-                //            Name = "Jogn cena",
-                //            Email = "cena@gmail.com",
-                //            Product = product,
-                //            ProductId = product.Id,
-                //            Rating = rand.Next(5,6),
-                //        },
-
-                //        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
-                //            Comment = "Pellentesque malesuada, est nec egestas vulputate, velit mauris vehicula velit,.",
-                //            Name = "Cynthia",
-                //            Email = "cynrthia@gmail.com",
-                //            Product = product,
-                //            ProductId = product.Id,
-                //            Rating = rand.Next(4,6),
-                //        },
-
-                //        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
-                //            Comment = "Vestibulum tristique non magna gravida blandit. Duis consequat sodales massa ut sollicitudin. Donec imperdiet congue lectus eu mattis. Mauris pharetra blandit tincidunt. Aliquam erat mi, faucibus at tortor ut, elementum dictum leo. Proin nec volutpat dui.",
-                //            Name = "Lionel messi",
-                //            Email = "lmessi@gmail.com",
-                //            Product = product,
-                //            ProductId = product.Id,
-                //            Rating = rand.Next(5,6),
-                //        },
-
-                //        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
-                //            Comment = "Etiam dictum nec lorem in dignissim. Nam et ex volutpat, ultrices augue vel, aliquam tortor. Nunc volutpat euismod tortor.",
-                //            Name = "Ethanla",
-                //            Email = "thye@gmail.com",
-                //            Product = product,
-                //            ProductId = product.Id,
-                //            Rating = rand.Next(5,6),
-                //        },
-
-                //        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
-                //            Comment = "Morbi hendrerit lectus in magna mattis, sed scelerisque leo mattis. Nam blandit commodo turpis ut ornare. Donec non nisl ornare, ullamcorper massa quis, ultricies ipsum. Donec at sapien ac libero laoreet finibus. Sed ullamcorper nulla eu venenatis placerat. In sed lobortis eros. Nunc ut venenatis tortor",
-                //            Name = "Gabriel Victor",
-                //            Email = "gabriel@gmail.com",
-                //            Product = product,
-                //            ProductId = product.Id,
-                //            Rating = rand.Next(4,6),
-                //        },
-
-
-
-                //    };
-                //    reviews.ForEach(r => context.Review.Add(r));
-                //    context.SaveChanges();
-                //}
-
-                int productCount = 25;
+                int productCount = 53;
                 for (int i = 0; i < 5; i++)
                 {
 
@@ -954,15 +658,6 @@ namespace DQueensFashion
                 context.SaveChanges();
             }
 
-            if (!roleManager.RoleExists(AppConstant.EmployeeRole))
-            {
-                // we create a employee role 
-                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
-                role.Name = AppConstant.EmployeeRole;
-                roleManager.Create(role);
-
-            }
-
             if (!roleManager.RoleExists(AppConstant.CustomerRole))
             {
                 // we create a customer role 
@@ -974,3 +669,306 @@ namespace DQueensFashion
         }
     }
 }
+
+#region unused code
+
+//  foreach (var product in products)
+//                {
+//                    var reviews = new List<Review>()
+//                    {
+//                        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
+//                            Comment = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+//                            Name = "James Victor",
+//                            Email = "adam@gmail.com",
+//                            Product = product,
+//                            ProductId = product.Id,
+//                            Rating = rand.Next(5,6),
+//                        },
+
+//                        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
+//                            Comment = "using Content here, content here, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for lorem ipsum will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+//                            Name="Victor Daniel",
+//                            Email = "balam@gmail.com",
+//                            Product = product,
+//                            ProductId = product.Id,
+//                            Rating = rand.Next(4,6),
+//                        },
+
+//                        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
+//                            Comment = "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.",
+//                            Name = "Adekunle Gold",
+//                            Email = "AGbaby@gmail.com",
+//                            Product = product,
+//                            ProductId = product.Id,
+//                            Rating = rand.Next(5,6),
+//                        },
+
+//                        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
+//                            Comment = "Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
+//                            Name = "Olorunfemi John",
+//                            Email = "john@gmail.com",
+//                            Product = product,
+//                            ProductId = product.Id,
+//                            Rating = rand.Next(3,6),
+//                        },
+
+//                        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
+//                            Comment = "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. ",
+//                            Name = "Simi oyekunke",
+//                            Email = "simi@gmail.com",
+//                            Product = product,
+//                            ProductId = product.Id,
+//                            Rating = rand.Next(5,6),
+//                        },
+
+//                        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
+//                            Comment = "If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. book.",
+//                            Name = "Eniola",
+//                            Email = "Eny@gmail.com",
+//                            Product = product,
+//                            ProductId = product.Id,
+//                            Rating = rand.Next(3,6),
+//                        },
+
+//                        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
+//                            Comment = " It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.",
+//                            Name = "Cornor",
+//                            Email = "cnor@gmail.com",
+//                            Product = product,
+//                            ProductId = product.Id,
+//                            Rating = rand.Next(5,6),
+//                        },
+
+//                        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
+//                            Comment = "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system",
+//                            Name = "Paul",
+//                            Email = "pp@gmail.com",
+//                            Product = product,
+//                            ProductId = product.Id,
+//                            Rating = rand.Next(3,6),
+//                        },
+
+//                        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
+//                            Comment = "Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure.",
+//                            Name = "Opeyemi",
+//                            Email = "opy@gmail.com",
+//                            Product = product,
+//                            ProductId = product.Id,
+//                            Rating = rand.Next(1,6),
+//                        },
+
+//                        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
+//                            Comment = "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. ",
+//                            Name = "KingBach",
+//                            Email = "king@gmail.com",
+//                            Product = product,
+//                            ProductId = product.Id,
+//                            Rating = rand.Next(5,6),
+//                        },
+
+//                        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
+//                            Comment = "Mauris eu purus sed ipsum egestas ullamcorper. Aenean nec sem pretium velit lacinia varius at vel leo. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean convallis ut nunc sit amet fermentum. Etiam non vehicula neque, iaculis luctus sem. Aenean efficitur, nibh a pellentesque rutrum, dui lorem sagittis ante, ut malesuada magna lacus quis dolor. Vestibulum feugiat commodo luctus",
+//                            Name = "Tresh",
+//                            Email = "adam@gmail.com",
+//                            Product = product,
+//                            ProductId = product.Id,
+//                            Rating = rand.Next(5,6),
+//                        },
+
+//                        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
+//                            Comment = "Praesent fringilla egestas lacus, sit amet consequat neque ultrices ultrices. Etiam sit amet sem dolor. Praesent rhoncus tincidunt ex eget mollis. Cras maximus, enim eu tempor tristique, quam augue volutpat dolor, a volutpat nibh ipsum at sapien. Nam turpis arcu, elementum sed laoreet quis, commodo vel felis. Sed sed pretium felis, sed iaculis urna. Suspendisse scelerisque lacinia purus eget porta. Cras eget tempor lorem",
+//                            Name = "Femi",
+//                            Email = "femi@gmail.com",
+//                            Product = product,
+//                            ProductId = product.Id,
+//                            Rating = rand.Next(3,6),
+//                        },
+
+//                        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
+//                            Comment = "Curabitur ullamcorper ante sed porttitor maximus. Proin pharetra vitae nunc nec tristique. Curabitur aliquam tristique diam a aliquam. Nulla tellus diam, commodo non condimentum at, hendrerit eu diam. Curabitur facilisis nunc sit amet leo cursus, at tristique purus blandit.",
+//                            Name = "Victor",
+//                            Email = "victo@gmail.com",
+//                            Product = product,
+//                            ProductId = product.Id,
+//                            Rating = rand.Next(5,6),
+//                        },
+
+//                        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
+//                            Comment = "Praesent fringilla egestas lacus, sit amet consequat neque ultrices ultrices. Etiam sit amet sem dolor. Praesent rhoncus tincidunt ex eget mollis. Cras maximus, enim eu tempor tristique, quam augue volutpat dolor, a volutpat nibh ipsum at sapien. Nam turpis arcu, elementum sed laoreet quis, commodo vel felis. Sed sed pretium felis, sed iaculis urna. Suspendisse scelerisque lacinia purus eget porta. Cras eget tempor lorem.",
+//                            Name = "Grizmann",
+//                            Email = "grizzy@gmail.com",
+//                            Product = product,
+//                            ProductId = product.Id,
+//                            Rating = rand.Next(4,6),
+//                        },
+
+//                        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
+//                            Comment = "Mauris mollis auctor velit, vitae scelerisque mauris feugiat sed. Mauris eget cursus tortor. Curabitur a dui in turpis consectetur gravida",
+//                            Name = "Sandra",
+//                            Email = "sandy@gmail.com",
+//                            Product = product,
+//                            ProductId = product.Id,
+//                            Rating = rand.Next(5,6),
+//                        },
+
+//                        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
+//                            Comment = "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aenean vel egestas dolor. Phasellus ac dictum tellus. Nam vel ante sit amet velit finibus finibus quis ut nisi. Mauris et varius est. Mauris vel efficitur odio. Duis faucibus nulla lacus, vel feugiat dui consectetur et.",
+//                            Name = "Saul goodman",
+//                            Email = "saulG@gmail.com",
+//                            Product = product,
+//                            ProductId = product.Id,
+//                            Rating = rand.Next(5,6),
+//                        },
+
+//                        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
+//                            Comment = "Duis aliquet, enim lobortis ultricies euismod, risus neque tincidunt risus, in vestibulum erat nunc vitae nisl. In congue erat vel ultricies egestas. Vestibulum placerat, elit non condimentum maximus, sapien ligula porttitor orci, at pellentesque est velit non est. Ut efficitur ligula magna, id laoreet est faucibus non.",
+//                            Name = "Kendel",
+//                            Email = "adam@gmail.com",
+//                            Product = product,
+//                            ProductId = product.Id,
+//                            Rating = rand.Next(3,6),
+//                        },
+
+//                        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
+//                            Comment = " Donec fermentum lacus et lacus pharetra, ut molestie justo semper. Curabitur id ultricies tortor. Fusce quis elit sit amet velit vulputate molestie. Vivamus at euismod ex. Etiam sit amet porttitor ligula.",
+//                            Name = "Jet Victor",
+//                            Email = "jv@gmail.com",
+//                            Product = product,
+//                            ProductId = product.Id,
+//                            Rating = rand.Next(5,6),
+//                        },
+
+//                        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
+//                            Comment = "Duis aliquet, enim lobortis ultricies euismod, risus neque tincidunt risus, in vestibulum erat nunc vitae nisl. In congue erat vel ultricies egestas. Vestibulum placerat, elit non condimentum maximus, sapien ligula porttitor orci, at pellentesque est velit non est. Ut efficitur ligula magna, id laoreet est faucibus non.",
+//                            Name = "Walter white",
+//                            Email = "walter@gmail.com",
+//                            Product = product,
+//                            ProductId = product.Id,
+//                            Rating = rand.Next(1,6),
+//                        },
+
+//                        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
+//                            Comment = "Aliquam euismod nisl imperdiet enim consectetur, eu dapibus massa placerat. Phasellus cursus vehicula mi, at tincidunt odio consectetur at. Integer neque turpis, sagittis vel ullamcorper imperdiet, ullamcorper quis dolor. Donec vitae rhoncus nunc. Maecenas placerat arcu in nisi viverra viverra.",
+//                            Name = "Dembele",
+//                            Email = "dd@gmail.com",
+//                            Product = product,
+//                            ProductId = product.Id,
+//                            Rating = rand.Next(5,6),
+//                        },
+
+//                        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
+//                            Comment = "Nam tempus fringilla ligula, eget consequat dolor tincidunt id. Aliquam tincidunt, lectus ac hendrerit cursus, dui odio facilisis ligula, et placerat nisi leo quis nunc. Donec fermentum lacus et lacus pharetra, ut molestie justo semper. Curabitur id ultricies tortor. Fusce quis elit sit amet velit vulputate molestie. Vivamus at euismod ex. Etiam sit amet porttitor ligula.",
+//                            Name = "Suarez",
+//                            Email = "suarez@gmail.com",
+//                            Product = product,
+//                            ProductId = product.Id,
+//                            Rating = rand.Next(5,6),
+//                        },
+
+//                        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
+//                            Comment = "Donec at ante a ante commodo consequat. Donec at cursus justo. Phasellus pretium elit sit amet enim placerat, non volutpat ligula sollicitudin. Curabitur a sem ac enim lacinia fringilla in nec nisl. Suspendisse potenti. Maecenas orci quam, eleifend eu metus at, placerat imperdiet elit. ",
+//                            Name = "Donald",
+//                            Email = "don@gmail.com",
+//                            Product = product,
+//                            ProductId = product.Id,
+//                            Rating = rand.Next(5,6),
+//                        },
+
+//                        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
+//                            Comment = "Curabitur pellentesque elementum mauris, ac vulputate purus vehicula at. Pellentesque non tortor ornare, consectetur nisl et, hendrerit quam. Morbi mattis accumsan purus eget ornare. Donec interdum tristique nulla, rutrum posuere felis tincidunt et. Praesent suscipit et nulla nec scelerisque.",
+//                            Name = "Shayme",
+//                            Email = "sh@gmail.com",
+//                            Product = product,
+//                            ProductId = product.Id,
+//                            Rating = rand.Next(3,6),
+//                        },
+
+//                        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
+//                            Comment = " Fusce vehicula lectus in ex aliquam sollicitudin. Nunc nec laoreet tellus. Mauris eu elit a nulla ultrices lobortis in condimentum mi. Curabitur porta nunc quis faucibus venenatis.",
+//                            Name = "torbido",
+//                            Email = "tr@gmail.com",
+//                            Product = product,
+//                            ProductId = product.Id,
+//                            Rating = rand.Next(1,6),
+//                        },
+
+//                        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
+//                            Comment = "Phasellus eleifend pharetra urna non maximus. Nulla in pretium risus. Sed aliquet tempor felis ac faucibus. Nulla posuere elit nec erat elementum egestas. Aenean convallis ligula vulputate posuere egestas. Etiam vestibulum, lectus sit amet rhoncus facilisis, nunc arcu hendrerit neque, ac auctor eros velit ut nisi.",
+//                            Name = "Benzema",
+//                            Email = "bel@gmail.com",
+//                            Product = product,
+//                            ProductId = product.Id,
+//                            Rating = rand.Next(4,6),
+//                        },
+
+//                        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
+//                            Comment = "Aenean id lobortis nulla. Phasellus pretium elit nec ullamcorper bibendum. Nullam bibendum erat a mi rhoncus iaculis eu sit amet mauris. Curabitur quam velit, sollicitudin at ultrices ut, mollis id augue. Nam dapibus facilisis sem. Nam malesuada nunc at est sollicitudin, a luctus sapien eleifend. Praesent mi purus",
+//                            Name = "Andrew",
+//                            Email = "andy@gmail.com",
+//                            Product = product,
+//                            ProductId = product.Id,
+//                            Rating = rand.Next(4,6),
+//                        },
+
+//                        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
+//                            Comment = "Mauris vestibulum dolor non est rutrum, quis consectetur quam pharetra. Donec a elementum sem. Quisque at nibh condimentum, fringilla diam et, volutpat magna. Sed consectetur vitae mauris et rhoncus. Etiam eget odio dolor. Sed vel justo nec est pellentesque volutpat eget eget enim",
+//                            Name = "Lumi",
+//                            Email = "lucas@gmail.com",
+//                            Product = product,
+//                            ProductId = product.Id,
+//                            Rating = rand.Next(5,6),
+//                        },
+
+//                        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
+//                            Comment = "Duis at blandit purus. Suspendisse potenti. Nam ac ornare ante. Aliquam posuere ultricies turpis et laoreet. Nam eleifend magna et nulla ultricies, sit amet fringilla ante varius. Donec blandit massa quam, nec finibus turpis dapibus id. Integer aliquet malesuada turpis eget euismod. ",
+//                            Name = "Jogn cena",
+//                            Email = "cena@gmail.com",
+//                            Product = product,
+//                            ProductId = product.Id,
+//                            Rating = rand.Next(5,6),
+//                        },
+
+//                        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
+//                            Comment = "Pellentesque malesuada, est nec egestas vulputate, velit mauris vehicula velit,.",
+//                            Name = "Cynthia",
+//                            Email = "cynrthia@gmail.com",
+//                            Product = product,
+//                            ProductId = product.Id,
+//                            Rating = rand.Next(4,6),
+//                        },
+
+//                        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
+//                            Comment = "Vestibulum tristique non magna gravida blandit. Duis consequat sodales massa ut sollicitudin. Donec imperdiet congue lectus eu mattis. Mauris pharetra blandit tincidunt. Aliquam erat mi, faucibus at tortor ut, elementum dictum leo. Proin nec volutpat dui.",
+//                            Name = "Lionel messi",
+//                            Email = "lmessi@gmail.com",
+//                            Product = product,
+//                            ProductId = product.Id,
+//                            Rating = rand.Next(5,6),
+//                        },
+
+//                        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
+//                            Comment = "Etiam dictum nec lorem in dignissim. Nam et ex volutpat, ultrices augue vel, aliquam tortor. Nunc volutpat euismod tortor.",
+//                            Name = "Ethanla",
+//                            Email = "thye@gmail.com",
+//                            Product = product,
+//                            ProductId = product.Id,
+//                            Rating = rand.Next(5,6),
+//                        },
+
+//                        new Review{IsDeleted=false,DateCreated=DateTime.Now,DateModified=DateTime.Now,
+//                            Comment = "Morbi hendrerit lectus in magna mattis, sed scelerisque leo mattis. Nam blandit commodo turpis ut ornare. Donec non nisl ornare, ullamcorper massa quis, ultricies ipsum. Donec at sapien ac libero laoreet finibus. Sed ullamcorper nulla eu venenatis placerat. In sed lobortis eros. Nunc ut venenatis tortor",
+//                            Name = "Gabriel Victor",
+//                            Email = "gabriel@gmail.com",
+//                            Product = product,
+//                            ProductId = product.Id,
+//                            Rating = rand.Next(4,6),
+//                        },
+
+
+
+//                    };
+//reviews.ForEach(r => context.Review.Add(r));
+//                    context.SaveChanges();
+//                }
+
+#endregion
