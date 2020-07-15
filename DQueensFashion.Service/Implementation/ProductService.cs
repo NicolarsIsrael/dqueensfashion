@@ -52,6 +52,11 @@ namespace DQueensFashion.Service.Implementation
                 .Where(p => p.Quantity > 0);
         }
 
+        public IEnumerable<Product> GetAllProductsIncludingLowQuantity()
+        {
+            return uow.ProductRepo.GetAllProductsWithRelationships();
+        }
+
         public IEnumerable<Product> GetAllProductsForCategory(int categoryId)
         {
             return GetAllProducts().Where(p => p.CategoryId == categoryId)

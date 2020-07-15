@@ -45,8 +45,6 @@ namespace DQueensFashion.Controllers
 
         public ActionResult Test()
         {
-            throw new Exception();
-
             var products = _productService.GetAllProducts();
             foreach (var product in products)
 

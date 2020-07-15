@@ -19,5 +19,6 @@ namespace DQueensFashion.Service.Contract
         decimal CalculateProductPrice(decimal price, decimal discount);
         IEnumerable<Product> GetAllProductsWithDelete();
         bool CheckIfProductIsNew(DateTime datecreated);
+        IEnumerable<Product> GetAllProductsIncludingLowQuantity();
     }
 }

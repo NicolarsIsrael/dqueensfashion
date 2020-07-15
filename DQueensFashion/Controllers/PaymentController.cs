@@ -156,28 +156,27 @@ namespace DQueensFashion.Controllers
                     var credentials = AppConstant.MAIL_CREDENTIALS;
                     string body = CreateHtmlBody("~/Content/HtmlPages/OrderConfirmationMessage.html");
 
-                    string orderDetails = string.Empty;
-                    foreach (var lineItem in order.LineItems)
+                    string orderTableBody = string.Empty;
+                    foreach(var lineItem in order.LineItems)
                     {
-                        orderDetails += "<div style='break-word;color:black'> Item: " + lineItem.Product.Name + "</div>"
-                            + "<div style='break-word;color:black'> Desc: " + lineItem.Description + "</div>"
-                            + "<div style='break-word;color:black'> Qty: " + lineItem.Quantity + "</div>"
-                            + "<div style='break-word;color:black'> Unit: $" + lineItem.UnitPrice + "</div>"
-                            + "<div style='break-word;color:black'> Price: $" + lineItem.TotalAmount + "</div>"
-                            + "<hr style ='margin:5px 0;'/>";
+                        orderTableBody += $"  <tr> <td style = 'word-break:break-all' > {lineItem.Product.Name} </td>" +
+                            $"<td style = 'word-break:break-all'> ${lineItem.Quantity}</td>" +
+                            $"<td style = 'word-break:break-all'> ${lineItem.TotalAmount}</td > </tr>";
                     }
-                    string orderTotal = "<div style='break-word;font-size:20px;color:black'> Total: $" + order.TotalAmount.ToString() + "</div>";
+                    string orderTotal = "$" + order.TotalAmount.ToString();
+                    string redirectUrl = Request.Url.Scheme + "://" + Request.Url.Authority + "/Customer/OrderDetails/"+order.Id.ToString();
 
-                    body = body.Replace("{orderDetails}", orderDetails);
+                    body = body.Replace("{orderTableBody}", orderTableBody);
                     body = body.Replace("{orderTotal}", orderTotal);
                     body = body.Replace("{logoUrl}", AppConstant.logoUrl);
+                    body = body.Replace("{redirectUrl}", redirectUrl);
 
                     MailService mail = new MailService();
                     await mail.SendMail(to, subject, body, credentials);
                 }
-                catch (Exception)
+                catch (Exception ez)
                 {
-
+                    string aa="";
                 }
 
             }
