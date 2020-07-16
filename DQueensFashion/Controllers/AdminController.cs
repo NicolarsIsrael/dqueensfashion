@@ -187,12 +187,14 @@ namespace DQueensFashion.Controllers
 
         public ActionResult Products()
         {
-            var allImages = _imageService.GetAllImageFiles().ToList();
+            GeneralService generalService = new GeneralService();
 
+            var allImages = _imageService.GetAllImageFiles().ToList();
             IEnumerable<ViewProductsViewModel> products = _productService.GetAllProductsIncludingLowQuantity()
                 .Select(p => new ViewProductsViewModel()
                 {
                     Id = p.Id,
+                    GeneratedUrl = generalService.GenerateItemNameAsParam(p.Id,p.Name),
                     Name = p.Name,
                     Quantity = p.Quantity,
                     Price = p.Price,
@@ -210,12 +212,14 @@ namespace DQueensFashion.Controllers
 
         public ActionResult SearchProducts(string query)
         {
-            var allImages = _imageService.GetAllImageFiles().ToList();
+            GeneralService generalService = new GeneralService();
 
+            var allImages = _imageService.GetAllImageFiles().ToList();
             IEnumerable<ViewProductsViewModel> products = _productService.GetAllProductsIncludingLowQuantity()
               .Select(p => new ViewProductsViewModel()
               {
                   Id = p.Id,
+                  GeneratedUrl = generalService.GenerateItemNameAsParam(p.Id, p.Name),
                   Name = p.Name,
                   Quantity = p.Quantity,
                   Price = p.Price,
@@ -338,7 +342,7 @@ namespace DQueensFashion.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddProductImages(AddProductImageViewModel productImageModel)
         {
-
+            GeneralService generalService = new GeneralService();
             var imageFiles = Request.Files;
             if (!FileService.ValidateProductImages(imageFiles))
                 throw new Exception();
@@ -362,7 +366,7 @@ namespace DQueensFashion.Controllers
             }
 
             _imageService.AddRangeImages(ImageModel);
-            return RedirectToAction(nameof(ProductDetails),new { id = product.Id });
+            return RedirectToAction(nameof(ProductDetails), new { id = product.Id });
         }
 
         public ActionResult EditProduct(int id=0)
@@ -417,6 +421,7 @@ namespace DQueensFashion.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult EditProduct(ProductViewModel productModel)
         {
             if (!ModelState.IsValid)

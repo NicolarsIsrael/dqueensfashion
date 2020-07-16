@@ -109,8 +109,8 @@ function ShopByCategory(categoryId) {
     window.location.href = "/Product/Shop?categoryId=" + categoryId;
 }
 
-function NavigateToProductDetails(productId){
-    window.location.href = '/Product/ProductDetails/' + productId;
+function NavigateToProductDetails(url) {
+    window.location.href = '/Product/ProductDetails/' + url;
 }
 
 function productQuickView(productId) {

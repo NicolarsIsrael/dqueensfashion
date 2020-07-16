@@ -14,5 +14,7 @@ namespace DQueensFashion.Models
         public decimal ProductPrice { get; set; }
         public int CategoryId { get; set; }
         public string CategoryName { get; set; }
+
+        public string GeneratedUrl { get; set; }
     }
 }

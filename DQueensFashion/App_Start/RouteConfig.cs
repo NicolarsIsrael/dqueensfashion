@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DQueensFashion.Router;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,6 +13,15 @@ namespace DQueensFashion
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+            routes.Add("ProductDetails", new GetSEOFriendlyRoute("Product/ProductDetails/{id}",
+              new RouteValueDictionary(new { controller = "Product", action = "ProductDetails" }),
+              new MvcRouteHandler()));
+
+            routes.Add("AdminProductDetails", new GetSEOFriendlyRoute("Admin/ProductDetails/{id}",
+            new RouteValueDictionary(new { controller = "Admin", action = "ProductDetails" }),
+            new MvcRouteHandler()));
+
 
             routes.MapRoute(
                 name: "Default",

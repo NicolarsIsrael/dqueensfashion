@@ -21,7 +21,7 @@
                 <img src="@Url.Content(item.MainImage)"/>
             </td>
             <td class="product-name-desc">
-                <a href="@Url.Action("ProductDetails","Product",new { id = item.Id})" >
+                <a href="@Url.Action("ProductDetails","Admin",new { id = item.GeneratedUrl})" >
                     <div>
                         @item.Name
                     </div>
@@ -48,7 +48,7 @@
                 <a href="@Url.Action("EditProduct",new {id=item.Id})" class="primary-table-button btn btn-xs">
                     <img src="~/Content/Images/edit.svg" />
                 </a>
-                <a href="@Url.Action("ProductDetails",new {id = item.Id})" class="secondary-table-button btn btn-xs">
+                <a href="@Url.Action("ProductDetails",new {id = item.GeneratedUrl})" class="secondary-table-button btn btn-xs">
                     <img src="~/Content/Images/info.svg" />
                 </a>
 

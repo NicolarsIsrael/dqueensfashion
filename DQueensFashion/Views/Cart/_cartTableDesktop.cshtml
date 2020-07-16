@@ -46,7 +46,7 @@
             </td>
             <td class="desk-cart-itemname">
                
-                <a href="@Url.Action("ProductDetails","Product",new { id = item.Product.Id })" class="cartitemname">
+                <a href="@Url.Action("ProductDetails","Product",new { id = item.GeneratedUrl})" class="cartitemname">
                     <div>
                         @item.Product.Name
                     </div>

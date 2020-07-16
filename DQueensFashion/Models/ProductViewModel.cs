@@ -103,6 +103,7 @@ namespace DQueensFashion.Models
 
     public class ViewProductsViewModel
     {
+        public string GeneratedUrl { get; set; }
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }

@@ -58,6 +58,7 @@ namespace DQueensFashion.Controllers
         public ActionResult Shop(int categoryId = 0,int sort=0,string query="")
         {
             var allImages = _imageService.GetAllImageFiles();
+            GeneralService generalService = new GeneralService();
 
             IEnumerable<Product> _products = _productService.GetAllProducts().ToList();
 
@@ -78,6 +79,7 @@ namespace DQueensFashion.Controllers
                 {
                     Id = p.Id,
                     Name = p.Name.Length > 17 ? p.Name.Substring(0, 15) + "..." : p.Name,
+                    GeneratedUrl = generalService.GenerateItemNameAsParam(p.Id, p.Name),
                     Description = p.Description.Length > 35 ? p.Description.Substring(0, 35) + "..." : p.Description,
                     MainImage = allImages.Where(image => image.ProductId == p.Id).Count() < 1 ?
                         AppConstant.DefaultProductImage :
@@ -144,6 +146,7 @@ namespace DQueensFashion.Controllers
             try
             {
                 var allImages = _imageService.GetAllImageFiles();
+                GeneralService generalService = new GeneralService();
 
                 IEnumerable<Product> _products = _productService.GetAllProducts().ToList();
                 if (!string.IsNullOrEmpty(query))
@@ -160,6 +163,7 @@ namespace DQueensFashion.Controllers
                     {
                         Id = p.Id,
                         Name = p.Name.Length > 17 ? p.Name.Substring(0, 15) + "..." : p.Name,
+                        GeneratedUrl = generalService.GenerateItemNameAsParam(p.Id, p.Name),
                         Description = p.Description.Length > 35 ? p.Description.Substring(0, 35) + "..." : p.Description,
                         MainImage = allImages.Where(image => image.ProductId == p.Id).Count() < 1 ?
                             AppConstant.DefaultProductImage :
@@ -253,6 +257,7 @@ namespace DQueensFashion.Controllers
             try
             {
                 var allImages = _imageService.GetAllImageFiles();
+                GeneralService generalService = new GeneralService();
 
                 IEnumerable<Product> _products = _productService.GetAllProducts().ToList();
                 if (!string.IsNullOrEmpty(query))
@@ -269,6 +274,7 @@ namespace DQueensFashion.Controllers
                     {
                         Id = p.Id,
                         Name = p.Name.Length > 17 ? p.Name.Substring(0, 15) + "..." : p.Name,
+                        GeneratedUrl = generalService.GenerateItemNameAsParam(p.Id, p.Name),
                         Description = p.Description.Length > 35 ? p.Description.Substring(0, 35) + "..." : p.Description,
                         MainImage = allImages.Where(image => image.ProductId == p.Id).Count() < 1 ?
                             AppConstant.DefaultProductImage :
@@ -556,48 +562,7 @@ namespace DQueensFashion.Controllers
             return PartialView("_productReview", reviews);
         }
 
-        [Authorize(Roles = AppConstant.CustomerRole)]
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult BuyProduct(int id,int quantity)
-        {
-            Product product = _productService.GetProductById(id);
-            if (product == null || quantity<1)
-                throw new Exception();
-
-            Customer customer = GetLoggedInCustomer();
-            if (customer == null)
-                throw new Exception();
-
-            if (product.Quantity < quantity)
-                throw new Exception();
-
-            product.Quantity = product.Quantity - quantity;
-            LineItem lineItem = new LineItem()
-            {
-                Product = product,
-                Quantity = quantity,
-                TotalAmount = product.Price * quantity,
-                DateCreated=DateTime.Now,
-                DateModified= DateTime.Now,
-            };
-            List<LineItem> lineItems = new List<LineItem>();
-            lineItems.Add(lineItem);
-
-
-            Order order = new Order()
-            {
-                CustomerId = customer.Id,
-                LineItems = lineItems,
-                TotalAmount = lineItems.Sum(l => l.TotalAmount),
-                TotalQuantity = lineItems.Sum(l => l.Quantity),
-                OrderStatus=  OrderStatus.Processing,
-            };
-
-            _orderService.CreateOrder(order);
-            return RedirectToAction("Index");
-        }
-
+     
         public ActionResult ProductQuickView(int id=0)
         {
             Product product = _productService.GetProductById(id);

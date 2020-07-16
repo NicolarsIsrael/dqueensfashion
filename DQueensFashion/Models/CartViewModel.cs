@@ -22,6 +22,8 @@ namespace DQueensFashion.Models
         public decimal TotalPrice { get; set; }
         public string Description { get; set; }
 
+        public string GeneratedUrl { get; set; }
+
         //measurement
         public bool Shoulder { get; set; }
         public double ShoulderValue { get; set; }

@@ -2,7 +2,7 @@
 @using DQueensFashion.Utilities
 
 <div class="product-box">
-    <div onclick="NavigateToProductDetails(@Model.Id)">
+    <div onclick="NavigateToProductDetails('@Model.GeneratedUrl')">
         @if (Model.IsNew)
         {
             <div class="product-time-label">New</div>
@@ -17,7 +17,7 @@
         </div>
     </div>
     <div class="product-details">
-        <div onclick="NavigateToProductDetails(@Model.Id)">
+        <div onclick="NavigateToProductDetails('@Model.GeneratedUrl')">
             <div class="product-title">@Model.Name</div>
             <div class="product-category">@Model.Category</div>
             @if (Model.Discount > 0)

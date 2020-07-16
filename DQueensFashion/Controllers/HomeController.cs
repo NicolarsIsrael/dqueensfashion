@@ -60,6 +60,7 @@ namespace DQueensFashion.Controllers
 
         public ActionResult Index()
         {
+            GeneralService generalService = new GeneralService();
             var allImages = _imageService.GetAllImageFiles().ToList();
 
             IEnumerable<ViewProductsViewModel> products = _productService.GetAllProducts()
@@ -67,6 +68,7 @@ namespace DQueensFashion.Controllers
                 {
                     Id = p.Id,
                     Name = p.Name.Length > 17 ? p.Name.Substring(0, 15) + "..." : p.Name,
+                    GeneratedUrl = generalService.GenerateItemNameAsParam(p.Id,p.Name),
                     MainImage = allImages.Where(image=>image.ProductId==p.Id).Count()<1?
                         AppConstant.DefaultProductImage :
                         allImages.Where(image => image.ProductId == p.Id).FirstOrDefault().ImagePath,

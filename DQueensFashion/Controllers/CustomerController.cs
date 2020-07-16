@@ -78,6 +78,8 @@ namespace DQueensFashion.Controllers
             if (customer == null)
                 throw new Exception();
 
+            GeneralService generalService = new GeneralService();
+
             IEnumerable<ViewWishListViewModel> wishLists = _wishListService.GetAllCustomerWishList(customer.Id)
                 .Select(w => new ViewWishListViewModel()
                 {
@@ -88,6 +90,7 @@ namespace DQueensFashion.Controllers
                     CategoryId = w.CategoryId,
                     CategoryName = w.CategoryName,
                     ProductPrice = w.ProductPrice,
+                    GeneratedUrl = generalService.GenerateItemNameAsParam(w.ProductId,w.ProductName),
                 }).ToList();
 
             return View(wishLists);
@@ -99,6 +102,8 @@ namespace DQueensFashion.Controllers
             if (customer == null)
                 throw new Exception();
 
+            GeneralService generalService = new GeneralService();
+
             IEnumerable<ViewWishListViewModel> wishLists = _wishListService.GetAllCustomerWishList(customer.Id)
                 .Select(w => new ViewWishListViewModel()
                 {
@@ -109,6 +114,7 @@ namespace DQueensFashion.Controllers
                     CategoryName = w.CategoryName,
                     CategoryId = w.CategoryId,
                     ProductPrice = w.ProductPrice,
+                    GeneratedUrl = generalService.GenerateItemNameAsParam(w.ProductId, w.ProductName),
                 }).ToList();
 
             if (!string.IsNullOrEmpty(query))

@@ -82,6 +82,8 @@ namespace DQueensFashion.Controllers
                 ? AppConstant.DefaultProductImage
                 : _imageService.GetMainImageForProduct(product.Id).ImagePath;
 
+            GeneralService generalService = new GeneralService();
+
             List<Cart> cart = new List<Cart>();
             int index = isExist(id);
             if (index > -1)
@@ -109,6 +111,7 @@ namespace DQueensFashion.Controllers
                     MainImage = mainImage,
                     Description = quantity > 1 ? quantity.ToString() + " Pieces" : quantity.ToString() + " Piece",
                     MaxQuantity = product.Quantity,
+                    GeneratedUrl = generalService.GenerateItemNameAsParam(product.Id,product.Name),
                 });
             }
             Session["cart"] = cart;
@@ -172,6 +175,7 @@ namespace DQueensFashion.Controllers
                 ? AppConstant.DefaultProductImage
                 : _imageService.GetMainImageForProduct(product.Id).ImagePath;
 
+            GeneralService generalService = new GeneralService();
             List<Cart> cart = new List<Cart>();
 
             int index = isExistOutfits(cartModel.ProductId,cartModel);
@@ -197,6 +201,7 @@ namespace DQueensFashion.Controllers
                     TotalPrice = product.SubTotal * cartModel.Quantity,
                     MainImage = mainImage,
                     Description = GetCartDescription(cartModel,product.CategoryId),
+                    GeneratedUrl = generalService.GenerateItemNameAsParam(product.Id, product.Name),
 
                     //measurement
                     ShoulderValue = cartModel.ShoulderValue,

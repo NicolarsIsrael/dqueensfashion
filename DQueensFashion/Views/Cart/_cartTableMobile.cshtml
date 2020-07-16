@@ -24,7 +24,7 @@
             </td>
 
             <td style="word-wrap:break-word">
-                <a href="@Url.Action("ProductDetails","Product",new { id = item.Product.Id })" class="cartitemname">
+                <a href="@Url.Action("ProductDetails","Product",new { id = item.GeneratedUrl })" class="cartitemname">
                     <div style="font-size:15px;font-weight:500">
                         @item.Product.Name
                     </div>

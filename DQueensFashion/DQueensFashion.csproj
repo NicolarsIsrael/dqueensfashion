@@ -283,6 +283,7 @@
     <Compile Include="Models\ReviewViewModel.cs" />
     <Compile Include="Models\WishListViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Router\SeoFriendlyUrl.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
