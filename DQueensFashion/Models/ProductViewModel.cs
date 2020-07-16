@@ -38,7 +38,7 @@ namespace DQueensFashion.Models
         public int Quantity { get; set; }
 
         [Display(Name="Days to deliver")]
-        [Range(1,int.MaxValue, ErrorMessage ="Days to deliver must be greater than 1")]
+        [Range(1,int.MaxValue, ErrorMessage ="Days to deliver must be equal or greater than 1")]
         public int DeliveryDaysDuration { get; set; }
 
         public List<string> Tags { get; set; }
