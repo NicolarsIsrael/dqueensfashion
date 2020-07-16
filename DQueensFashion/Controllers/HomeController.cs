@@ -67,7 +67,7 @@ namespace DQueensFashion.Controllers
                 .Select(p => new ViewProductsViewModel()
                 {
                     Id = p.Id,
-                    Name = p.Name.Length > 17 ? p.Name.Substring(0, 15) + "..." : p.Name,
+                    Name = p.Name,
                     GeneratedUrl = generalService.GenerateItemNameAsParam(p.Id,p.Name),
                     MainImage = allImages.Where(image=>image.ProductId==p.Id).Count()<1?
                         AppConstant.DefaultProductImage :

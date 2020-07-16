@@ -18,7 +18,38 @@
     </div>
     <div class="product-details">
         <div onclick="NavigateToProductDetails('@Model.GeneratedUrl')">
-            <div class="product-title">@Model.Name</div>
+            <div class="d-sm-block d-md-none d-lg-none d-xl-none">
+                @if (Model.Name.Length > 17)
+                {
+                    <div class="product-title"> @Model.Name.Substring(0, 15) ...</div>
+                }
+                else
+                {
+                    <div class="product-title"> @Model.Name</div>
+                }
+            </div>
+            <div class="d-none d-md-block d-lg-block d-xl-none">
+                @if (Model.Name.Length > 24)
+                {
+                    <div class="product-title"> @Model.Name.Substring(0, 21) ...</div>
+                }
+                else
+                {
+                    <div class="product-title"> @Model.Name</div>
+                }
+            </div>
+            <div class="d-none d-xl-block">
+                @if (Model.Name.Length > 30)
+                {
+                    <div class="product-title"> @Model.Name.Substring(0, 27) ...</div>
+                }
+                else
+                {
+                    <div class="product-title"> @Model.Name</div>
+                }
+            </div>
+
+
             <div class="product-category">@Model.Category</div>
             @if (Model.Discount > 0)
             {

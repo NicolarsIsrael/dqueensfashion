@@ -78,7 +78,7 @@ namespace DQueensFashion.Controllers
                 .Select(p => new ViewProductsViewModel()
                 {
                     Id = p.Id,
-                    Name = p.Name.Length > 17 ? p.Name.Substring(0, 15) + "..." : p.Name,
+                    Name = p.Name,
                     GeneratedUrl = generalService.GenerateItemNameAsParam(p.Id, p.Name),
                     Description = p.Description.Length > 35 ? p.Description.Substring(0, 35) + "..." : p.Description,
                     MainImage = allImages.Where(image => image.ProductId == p.Id).Count() < 1 ?
@@ -161,7 +161,7 @@ namespace DQueensFashion.Controllers
                     .Select(p => new ViewProductsViewModel()
                     {
                         Id = p.Id,
-                        Name = p.Name.Length > 17 ? p.Name.Substring(0, 15) + "..." : p.Name,
+                        Name = p.Name,
                         GeneratedUrl = generalService.GenerateItemNameAsParam(p.Id, p.Name),
                         Description = p.Description.Length > 35 ? p.Description.Substring(0, 35) + "..." : p.Description,
                         MainImage = allImages.Where(image => image.ProductId == p.Id).Count() < 1 ?
@@ -271,7 +271,7 @@ namespace DQueensFashion.Controllers
                     .Select(p => new ViewProductsViewModel()
                     {
                         Id = p.Id,
-                        Name = p.Name.Length > 17 ? p.Name.Substring(0, 15) + "..." : p.Name,
+                        Name = p.Name,
                         GeneratedUrl = generalService.GenerateItemNameAsParam(p.Id, p.Name),
                         Description = p.Description.Length > 35 ? p.Description.Substring(0, 35) + "..." : p.Description,
                         MainImage = allImages.Where(image => image.ProductId == p.Id).Count() < 1 ?
@@ -417,10 +417,10 @@ namespace DQueensFashion.Controllers
             var allImages = _imageService.GetAllImageFiles();
 
             IEnumerable<ViewProductsViewModel> relatedProducts = _productService.GetRelatedProducts(product.Id, product.CategoryId)
-                .Take(4).Select(p => new ViewProductsViewModel()
+                .Take(8).Select(p => new ViewProductsViewModel()
                 {
                     Id = p.Id,
-                    Name = p.Name.Length > 20 ? p.Name.Substring(0, 18) + "..." : p.Name,
+                    Name = p.Name,
                     Description = p.Description.Length > 35 ? p.Description.Substring(0, 35) + "..." : p.Description,
                     MainImage = allImages.Where(image => image.ProductId == p.Id).Count() < 1 ?
                         AppConstant.DefaultProductImage :

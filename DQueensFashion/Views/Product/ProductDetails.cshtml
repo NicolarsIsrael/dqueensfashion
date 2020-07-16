@@ -277,7 +277,7 @@
 
         </div>
     </div>
-    <div class="row mt-1">
+    <div class="row mt-1 mb-3">
 
         @{
             foreach (var product in Model.RelatedProducts)
@@ -288,7 +288,7 @@
             }
         }
         <div class="col-12 mb-1">
-            <button class="btn" style="color: white;background-color:#df7204;" onclick="ShopByCategory(@Model.Product.CategoryId)">View more</button>
+            <button class="btn primary-table-button" onclick="ShopByCategory(@Model.Product.CategoryId)">View more</button>
         </div>
 
     </div>
