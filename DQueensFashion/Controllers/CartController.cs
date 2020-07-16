@@ -165,64 +165,73 @@ namespace DQueensFashion.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult AddToCartOutfits(Cart cartModel)
         {
-            Product product = _productService.GetProductById(cartModel.ProductId);
-            if (product == null)
-                throw new Exception();
-
-            string mainImage = _imageService.GetImageFilesForProduct(product.Id).Count() < 1
-                ? AppConstant.DefaultProductImage
-                : _imageService.GetMainImageForProduct(product.Id).ImagePath;
-
-            GeneralService generalService = new GeneralService();
-            List<Cart> cart = new List<Cart>();
-
-            int index = isExistOutfits(cartModel.ProductId,cartModel);
-            if (index > -1)
+            try
             {
-                cart = (List<Cart>)Session["cart"];
-                cart[index].Quantity += cartModel.Quantity;
-                cart[index].UnitPrice = cart[index].Product.SubTotal;
-                cart[index].TotalPrice = cart[index].Product.SubTotal * cart[index].Quantity;
-            }
-            else
-            {
-                if (index == -1)
-                    cart = (List<Cart>)Session["cart"];
-                cart.Add(new Cart
+                Product product = _productService.GetProductById(cartModel.ProductId);
+                if (product == null)
+                    throw new Exception();
+
+                string mainImage = _imageService.GetImageFilesForProduct(product.Id).Count() < 1
+                    ? AppConstant.DefaultProductImage
+                    : _imageService.GetMainImageForProduct(product.Id).ImagePath;
+
+                GeneralService generalService = new GeneralService();
+                List<Cart> cart = new List<Cart>();
+
+                int index = isExistOutfits(cartModel.ProductId, cartModel);
+                if (index > -1)
                 {
-                    Product = product,
-                    Quantity = cartModel.Quantity,
-                    MaxQuantity = AppConstant.MaxOutfitAddToCart,
-                    Discount = product.Discount,
-                    InitialPrice = product.Price,
-                    UnitPrice = product.SubTotal,
-                    TotalPrice = product.SubTotal * cartModel.Quantity,
-                    MainImage = mainImage,
-                    Description = GetCartDescription(cartModel,product.CategoryId),
-                    GeneratedUrl = generalService.GenerateItemNameAsParam(product.Id, product.Name),
+                    cart = (List<Cart>)Session["cart"];
+                    cart[index].Quantity += cartModel.Quantity;
+                    cart[index].UnitPrice = cart[index].Product.SubTotal;
+                    cart[index].TotalPrice = cart[index].Product.SubTotal * cart[index].Quantity;
+                }
+                else
+                {
+                    if (index == -1)
+                        cart = (List<Cart>)Session["cart"];
+                    cart.Add(new Cart
+                    {
+                        Product = product,
+                        Quantity = cartModel.Quantity,
+                        MaxQuantity = AppConstant.MaxOutfitAddToCart,
+                        Discount = product.Discount,
+                        InitialPrice = product.Price,
+                        UnitPrice = product.SubTotal,
+                        TotalPrice = product.SubTotal * cartModel.Quantity,
+                        MainImage = mainImage,
+                        Description = GetCartDescription(cartModel, product.CategoryId),
+                        GeneratedUrl = generalService.GenerateItemNameAsParam(product.Id, product.Name),
 
-                    //measurement
-                    ShoulderValue = cartModel.ShoulderValue,
-                    ArmHoleValue = cartModel.ArmHoleValue,
-                    BustValue =cartModel.BustValue,
-                    WaistValue = cartModel.WaistValue,
-                    HipsValue = cartModel.HipsValue,
-                    ThighValue = cartModel.ThighValue,
-                    FullBodyLengthValue = cartModel.FullBodyLengthValue,
-                    KneeGarmentLengthValue = cartModel.KneeGarmentLengthValue,
-                    TopLengthValue = cartModel.TopLengthValue,
-                    TrousersLengthValue = cartModel.TrousersLengthValue,
-                    RoundAnkleValue = cartModel.RoundAnkleValue,
-                    NipNipValue = cartModel.NipNipValue,
-                    SleeveLengthValue = cartModel.SleeveLengthValue,
-                });
+                        //measurement
+                        ShoulderValue = cartModel.ShoulderValue,
+                        ArmHoleValue = cartModel.ArmHoleValue,
+                        BustValue = cartModel.BustValue,
+                        WaistValue = cartModel.WaistValue,
+                        HipsValue = cartModel.HipsValue,
+                        ThighValue = cartModel.ThighValue,
+                        FullBodyLengthValue = cartModel.FullBodyLengthValue,
+                        KneeGarmentLengthValue = cartModel.KneeGarmentLengthValue,
+                        TopLengthValue = cartModel.TopLengthValue,
+                        TrousersLengthValue = cartModel.TrousersLengthValue,
+                        RoundAnkleValue = cartModel.RoundAnkleValue,
+                        NipNipValue = cartModel.NipNipValue,
+                        SleeveLengthValue = cartModel.SleeveLengthValue,
+                    });
+                }
+                Session["cart"] = cart;
+
+                ViewBag.CartNumber = GetCartNumber();
+                return PartialView("_navbarCartNumber");
             }
-            Session["cart"] = cart;
+            catch (Exception ex)
+            {
 
-            ViewBag.CartNumber = GetCartNumber();
-            return PartialView("_navbarCartNumber");
+                throw;
+            }
         }
 
         public ActionResult ChangeCartItemQuantity(int id,int quantity)

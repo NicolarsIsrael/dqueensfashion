@@ -1,7 +1,7 @@
 ﻿@model DQueensFashion.Models.Cart
 @using DQueensFashion.Utilities
 
-@using (Html.BeginForm("AddToCartOutfits", "Cart"))
+@using (Html.BeginForm("AddToCartOutfits", "Cart",FormMethod.Post, new { id = "addToCartOutfitsForm" }))
 {
     @Html.AntiForgeryToken()
 

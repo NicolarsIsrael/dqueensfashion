@@ -34,6 +34,9 @@ function AddToCartOutfits(productId) {
 
 function AddToCartOutfitsPost() {
 
+    var form = $('#addToCartOutfitsForm');
+    var token = $('input[name="__RequestVerificationToken"]', form).val();
+
     var cartModel = {
         ProductId: $('#ProductId').val(),
         Quantity: $('#Quantity').val(),
@@ -55,9 +58,12 @@ function AddToCartOutfitsPost() {
 
     $.ajax({
         url: "/Cart/AddToCartOutfits",
-        data: JSON.stringify(cartModel),
+        data: {
+            __RequestVerificationToken: token,
+            cartModel: cartModel,//JSON.stringify(cartModel),
+        },
         type: "POST",
-        contentType: "application/json;charset=utf-8",
+        contentType: 'application/x-www-form-urlencoded; charset=utf-8',
         dataType: "html",
         success: function (result) {
             $("#navbarCartNumber").html(result);
