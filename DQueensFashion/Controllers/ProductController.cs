@@ -22,6 +22,7 @@ namespace DQueensFashion.Controllers
         private readonly IReviewService _reviewService;
         private readonly IImageService _imageService;
         private readonly ILineItemService _lineItemService;
+        private GeneralService generalService;
 
         public ProductController(IProductService productService, ICustomerService customerService, IOrderService orderService, ICategoryService categoryService,
             IReviewService reviewService, IImageService imageService,ILineItemService lineItemService)
@@ -33,6 +34,7 @@ namespace DQueensFashion.Controllers
             _reviewService = reviewService;
             _imageService = imageService;
             _lineItemService = lineItemService;
+            generalService = new GeneralService();
         }
         // GET: Product
         public ActionResult Index(int categoryId=0)
@@ -58,8 +60,6 @@ namespace DQueensFashion.Controllers
         public ActionResult Shop(int categoryId = 0,int sort=0,string query="")
         {
             var allImages = _imageService.GetAllImageFiles();
-            GeneralService generalService = new GeneralService();
-
             IEnumerable<Product> _products = _productService.GetAllProducts().ToList();
 
             if (!string.IsNullOrEmpty(query))
@@ -146,7 +146,6 @@ namespace DQueensFashion.Controllers
             try
             {
                 var allImages = _imageService.GetAllImageFiles();
-                GeneralService generalService = new GeneralService();
 
                 IEnumerable<Product> _products = _productService.GetAllProducts().ToList();
                 if (!string.IsNullOrEmpty(query))
@@ -257,7 +256,6 @@ namespace DQueensFashion.Controllers
             try
             {
                 var allImages = _imageService.GetAllImageFiles();
-                GeneralService generalService = new GeneralService();
 
                 IEnumerable<Product> _products = _productService.GetAllProducts().ToList();
                 if (!string.IsNullOrEmpty(query))
@@ -373,7 +371,7 @@ namespace DQueensFashion.Controllers
 
             var allProductImages = _imageService.GetImageFilesForProduct(product.Id);
             var productImages = SetProductImages(allProductImages);
-        
+
             ViewProductsViewModel productDetails = new ViewProductsViewModel()
             {
                 Id = product.Id,
@@ -387,7 +385,7 @@ namespace DQueensFashion.Controllers
                 Category = product.Category.Name,
                 DeliveryDaysDuration = product.DeliveryDaysDuration,
                 Tags = product.Tags,
-                DateCreatedString = product.DateCreated.ToString("dd/MMM/yyyy : hh-mm-ss"),
+                DateCreatedString = generalService.GetDateInString(product.DateCreated, true, true),
                 MainImage = allProductImages.Count() < 1 ?
                         AppConstant.DefaultProductImage :
                         _imageService.GetMainImageForProduct(product.Id).ImagePath,
@@ -396,23 +394,24 @@ namespace DQueensFashion.Controllers
                 {
                     AverageRating = product.AverageRating.ToString("0.0"),
                     TotalReviewCount = _reviewService.GetReviewCountForProduct(product.Id).ToString(),
-                    IsDouble = (product.AverageRating % 1) == 0 ? false: true,
-                    FloorAverageRating = (int) Math.Floor(product.AverageRating)
+                    IsDouble = (product.AverageRating % 1) == 0 ? false : true,
+                    FloorAverageRating = (int)Math.Floor(product.AverageRating)
                 },
-                
+
                 Reviews = _reviewService.GetAllReviewsForProduct(product.Id).ToList()
-                    .Select(r => new ViewReviewViewModel() {
+                    .Select(r => new ViewReviewViewModel()
+                    {
                         ReviewId = r.Id,
                         Name = r.Name,
                         Email = r.Email,
                         Comment = r.Comment,
                         Rating = r.Rating,
-                        DateCreated = r.DateCreated.ToString("dd/MMM/yyyy"),
+                        DateCreated = generalService.GetDateInString(r.DateCreated),
                         DateOrder = r.DateCreated,
-                    }).OrderByDescending(r=>r.DateOrder).ToList(),
-                Waist=product.Waist.HasValue?product.Waist.Value:false,
-                Shoulder = product.Shoulder.HasValue?product.Shoulder.Value:false,
-                Bust = product.Bust.HasValue?product.Bust.Value:false,
+                    }).OrderByDescending(r => r.DateOrder).ToList(),
+                Waist = product.Waist.HasValue ? product.Waist.Value : false,
+                Shoulder = product.Shoulder.HasValue ? product.Shoulder.Value : false,
+                Bust = product.Bust.HasValue ? product.Bust.Value : false,
             };
 
             var allImages = _imageService.GetAllImageFiles();
@@ -473,7 +472,7 @@ namespace DQueensFashion.Controllers
                        Email = r.Email,
                        Comment = r.Comment,
                        Rating = r.Rating,
-                       DateCreated = r.DateCreated.ToString("dd/MMM/yyyy"),
+                       DateCreated = generalService.GetDateInString(r.DateCreated),
                        DateOrder = r.DateCreatedUtc,
                    }).OrderByDescending(r => r.DateOrder).ToList();
 
@@ -525,7 +524,7 @@ namespace DQueensFashion.Controllers
                        Email = r.Email,
                        Comment = r.Comment,
                        Rating = r.Rating,
-                       DateCreated = r.DateCreated.ToString("dd/MMM/yyyy"),
+                       DateCreated = generalService.GetDateInString(r.DateCreated),
                        DateOrder = r.DateCreated,
                    }).OrderByDescending(r=>r.DateOrder).ToList();
 

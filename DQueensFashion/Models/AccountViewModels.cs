@@ -82,7 +82,7 @@ namespace DQueensFashion.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
-        [AcceptTermsAndCondition(ErrorMessage = "You meed to agree to terms and condition before registering")]
+        [AcceptTermsAndCondition(ErrorMessage = "You meed to agree to terms and condition before you can register")]
         public bool TermsAndCondition { get; set; }
 
         public bool ReceiveNewsLetter { get; set; }

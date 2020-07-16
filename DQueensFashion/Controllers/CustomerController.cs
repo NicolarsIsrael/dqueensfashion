@@ -27,6 +27,7 @@ namespace DQueensFashion.Controllers
         private readonly IProductService _productService;
         private readonly IMailingListService _mailingListService;
         private ApplicationUserManager _userManager;
+        private GeneralService generalService;
 
         public CustomerController(ICustomerService customerService, IWishListService wishListService, IOrderService orderService, ICategoryService categoryService,IImageService imageService,IReviewService reviewService,ILineItemService lineItemService,IProductService productService,
             IMailingListService mailingListService, ApplicationUserManager userManager)
@@ -41,6 +42,7 @@ namespace DQueensFashion.Controllers
             _productService = productService;
             _mailingListService = mailingListService;
             _userManager = userManager;
+            generalService = new GeneralService();
         }
 
         // GET: Customer
@@ -78,8 +80,6 @@ namespace DQueensFashion.Controllers
             if (customer == null)
                 throw new Exception();
 
-            GeneralService generalService = new GeneralService();
-
             IEnumerable<ViewWishListViewModel> wishLists = _wishListService.GetAllCustomerWishList(customer.Id)
                 .Select(w => new ViewWishListViewModel()
                 {
@@ -101,8 +101,6 @@ namespace DQueensFashion.Controllers
             Customer customer = GetLoggedInCustomer();
             if (customer == null)
                 throw new Exception();
-
-            GeneralService generalService = new GeneralService();
 
             IEnumerable<ViewWishListViewModel> wishLists = _wishListService.GetAllCustomerWishList(customer.Id)
                 .Select(w => new ViewWishListViewModel()
@@ -184,7 +182,7 @@ namespace DQueensFashion.Controllers
                         }),
                     OrderStatus = order.OrderStatus.ToString(),
                     DateCreated = order.DateCreatedUtc,
-                    DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy : hh-mm-ss"),
+                    DateCreatedString = generalService.GetDateInString(order.DateCreated, true, false),
                 }).OrderByDescending(order => order.DateCreated).ToList();
 
             return View(orderModel);
@@ -212,7 +210,7 @@ namespace DQueensFashion.Controllers
                         }),
                     OrderStatus = order.OrderStatus.ToString(),
                     DateCreated = order.DateCreatedUtc,
-                    DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy : hh-mm-ss"),
+                    DateCreatedString = generalService.GetDateInString(order.DateCreated, true, false),
                     LineItemConcatenatedString = string.Join(",", order.LineItems.Select(x => x.Product.Name)),
                 }).OrderByDescending(order => order.DateCreated).ToList();
 
@@ -266,7 +264,7 @@ namespace DQueensFashion.Controllers
                         }),
                 OrderStatus = order.OrderStatus.ToString(),
                 DateCreated = order.DateCreatedUtc,
-                DateCreatedString = order.DateCreated.ToString("dd/MMM/yyyy - hh:mm:ss"),
+                DateCreatedString = generalService.GetDateInString(order.DateCreated, true, false),
                 LineItemConcatenatedString = string.Join(",", order.LineItems.Select(x => x.Product.Name)),
             };
 

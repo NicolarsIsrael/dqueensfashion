@@ -9,12 +9,6 @@ namespace DQueensFashion.Utilities
 {
     public class GeneralService
     {
-        public static int CalculateDeliveryDayDuration()
-        {
-          //  List<Cart>
-            return 0;
-        }
-
         public string GenerateItemNameAsParam(int Id, string Name)
         {
             string phrase = string.Format("{0}-{1}", Id, Name);// Creates in the specific pattern  
@@ -26,10 +20,26 @@ namespace DQueensFashion.Utilities
             return str;
         }
 
+        public string GetDateInString(DateTime date, bool showTime=false, bool breakLine=false)
+        {
+            if (showTime)
+            {
+                if(breakLine)
+                    return date.ToString("MMM dd, yyyy\r\nhh:mm:ss");
+                else
+                    return date.ToString("MMM dd, yyyy - hh:mm:ss");
+            }
+                
+            else
+                return date.ToString("MMM dd, yyyy");
+        }
+
         private string GetByteArray(string text)
         {
             byte[] bytes = System.Text.Encoding.GetEncoding("Cyrillic").GetBytes(text);
             return System.Text.Encoding.ASCII.GetString(bytes);
         }
+
+
     }
 }
