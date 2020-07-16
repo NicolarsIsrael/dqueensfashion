@@ -264,6 +264,7 @@ namespace DQueensFashion.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult AddProduct(ProductViewModel productModel)
         {
             if (!ModelState.IsValid)
@@ -1252,6 +1253,7 @@ namespace DQueensFashion.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult GeneralDetails(GeneralValuesViewModel generalValuesModel)
         {
             if (!ModelState.IsValid)
