@@ -38,8 +38,9 @@ namespace DQueensFashion.Controllers
             {
                 Count = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.Quantity),
                 Carts = Session["cart"] == null ? new List<Cart>() : (List<Cart>)Session["cart"],
-                SubTotal = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.TotalPrice) ,
+                SubTotal = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.TotalPrice),
                 ShippingPrice = _generalValuesService.GetGeneralValues().ShippingPrice,
+                EstimatedDeliveryDayDuration = CalculateDeliveryDuration(),
             };
             viewCart.TotalAfterShipping =viewCart.SubTotal + viewCart.ShippingPrice;
 
@@ -53,6 +54,10 @@ namespace DQueensFashion.Controllers
                 }
 
             }
+
+            //renew session
+            Session["cart"] = cart;
+
             return View(viewCart);
         }
 
@@ -246,6 +251,7 @@ namespace DQueensFashion.Controllers
                 Carts = Session["cart"] == null ? new List<Cart>() : (List<Cart>)Session["cart"],
                 SubTotal = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.TotalPrice),
                 ShippingPrice = _generalValuesService.GetGeneralValues().ShippingPrice,
+                EstimatedDeliveryDayDuration = CalculateDeliveryDuration(),
             };
             viewCart.TotalAfterShipping = viewCart.SubTotal + viewCart.ShippingPrice;
 
@@ -279,6 +285,8 @@ namespace DQueensFashion.Controllers
                 Count = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.Quantity),
                 Carts = Session["cart"] == null ? new List<Cart>() : (List<Cart>)Session["cart"],
                 SubTotal = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.TotalPrice),
+                ShippingPrice = _generalValuesService.GetGeneralValues().ShippingPrice,
+                EstimatedDeliveryDayDuration = CalculateDeliveryDuration(),
             };
 
             return PartialView("_cartTable", viewCart);
@@ -499,6 +507,31 @@ namespace DQueensFashion.Controllers
             return description;
         }
 
+        private int CalculateDeliveryDuration()
+        {
+            try
+            {
+                List<Cart> cart = Session["cart"] == null ? new List<Cart>() : (List<Cart>)Session["cart"];
+                if (cart.Count() == 0)
+                    return 0;
+
+                int duration = 0;
+                var outfits = cart.Where(c => c.Product.CategoryId == AppConstant.OutfitsId).ToList();
+                var otherCategories = cart.Where(c => c.Product.CategoryId != AppConstant.OutfitsId).ToList();
+                if (outfits.Count() > 0)
+                    duration = outfits.Sum(c => (c.Product.DeliveryDaysDuration * c.Quantity));
+                else
+                    duration = otherCategories.Max(c => c.Product.DeliveryDaysDuration);
+
+                return duration;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
         private string GetLoggedInUserId()
         {
             return User.Identity.GetUserId();
@@ -509,6 +542,8 @@ namespace DQueensFashion.Controllers
             var userId = GetLoggedInUserId();
             return _customerService.GedCustomerByUserId(userId);
         }
+
+
 
         #endregion
     }

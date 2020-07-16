@@ -59,6 +59,7 @@
     <Compile Include="AppConstant.cs" />
     <Compile Include="Enum.cs" />
     <Compile Include="FileService.cs" />
+    <Compile Include="GeneralService.cs" />
     <Compile Include="MailService.cs" />
     <Compile Include="PaypalConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

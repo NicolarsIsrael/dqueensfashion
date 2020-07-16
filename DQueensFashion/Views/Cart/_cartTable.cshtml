@@ -43,9 +43,22 @@
 
                                 @if (Model.CustomerSubscriptionDiscount)
                                 {
-                                    <div  class="text-danger">Your subscription discount will be added at checkout</div>
+                                    <div class="text-danger">Your subscription discount will be added at checkout</div>
                                     <hr class="m-0" />
                                 }
+
+                                <div>
+                                    Estimated delivery duration: @Model.EstimatedDeliveryDayDuration
+                                    @if (Model.EstimatedDeliveryDayDuration > 1)
+                                    {
+                                        <span>days</span>
+                                    }
+                                    else
+                                    {
+                                        <span>day</span>
+                                    }
+                                </div>
+                                <hr class="m-0"/>
 
                                 <div class="cart-total">
                                     <span>TOTAL: $@Model.TotalAfterShipping</span>

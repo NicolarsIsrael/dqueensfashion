@@ -81,6 +81,8 @@ namespace DQueensFashion.Models
         public decimal ShippingPrice { get; set; }
         public decimal TotalAfterShipping { get; set; }
 
+        public int EstimatedDeliveryDayDuration { get; set; }
+
         //shipping details
         [Required(ErrorMessage ="First name is requied")]
         [Display(Name ="First name")]
