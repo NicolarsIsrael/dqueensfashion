@@ -30,13 +30,13 @@
                         </ol>
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img class="product-details-image" src="@Url.Content(Model.Product.MainImage)" alt="First slide">
+                                <img class="product-details-image" src="@Url.Content(Model.Product.MainImage)" alt="@Model.Product.Name image_houseofdqueens">
                             </div>
                             @{
                                 foreach (var productImage in Model.Product.OtherImagePaths)
                                 {
                                     <div class="carousel-item">
-                                        <img class="product-details-image" src="@Url.Content(productImage)" alt="Second slide">
+                                        <img class="product-details-image" src="@Url.Content(productImage)" alt="@Model.Product.Name image_houseofdqueens">
                                     </div>
                                 }
                             }
@@ -94,7 +94,7 @@
                         <tbody>
                             <tr class="m-2">
                                 <td class="delivery-returns-icon">
-                                    <img src="~/Content/Images/delivery-truck.svg" />
+                                    <img src="~/Content/Images/delivery-truck.svg" alt="delivery_truck_image_houseofdqueens"/>
                                 </td>
                                 <td>
                                     <h6>Delivery information</h6>
@@ -115,7 +115,7 @@
                             </tr>
                             <tr>
                                 <td class="delivery-returns-icon">
-                                    <img src="~/Content/Images/corner-down-left.svg" />
+                                    <img src="~/Content/Images/corner-down-left.svg" alt="return_policy_image_houseofdqueens"/>
                                 </td>
                                 <td>
                                     <h6>Return policy</h6>

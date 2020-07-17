@@ -29,13 +29,14 @@
     <div class="row">
         <div class="col-md-8">
             <div class="product-details-main-image-container">
-                <img class="product-details-main-image" src="@Url.Content(Model.Product.MainImage)" id="product-details-img"/>
+                <img class="product-details-main-image" src="@Url.Content(Model.Product.MainImage)" id="product-details-img" 
+                     alt="@Model.Product.Name image houseofdqueens"/>
             </div>
             <div class="my-3">
                 <div class="product-details-nav-images-container">
                     <span>
                         <img src="@Url.Content(Model.Product.MainImage)" class="product-details-nav-images product-details-main-nav-image"
-                             id="main-nav-image" onclick="ChangeProductDetailsImage('@Model.Product.MainImage','main-nav-image')" />
+                             id="main-nav-image" onclick="ChangeProductDetailsImage('@Model.Product.MainImage','main-nav-image')" alt="@Model.Product.Name image houseofdqueens" />
                     </span>
                     @{
                         int idCount = 1;
@@ -44,7 +45,7 @@
                             string navImageId = "navImage" + idCount;
                             <span>
                                 <img class="product-details-nav-images" src="@Url.Content(productImage)"
-                                    id="@navImageId" onclick="ChangeProductDetailsImage('@productImage','@navImageId')" />
+                                    id="@navImageId" onclick="ChangeProductDetailsImage('@productImage','@navImageId')" alt="@Model.Product.Name image houseofdqueens" />
                             </span>
                             idCount++;
                         }
@@ -147,7 +148,7 @@
                         <tbody>
                             <tr class="m-2">
                                 <td style="width:50px;vertical-align:top">
-                                    <img src="~/Content/Images/delivery-truck.svg" />
+                                    <img src="~/Content/Images/delivery-truck.svg" alt="delivery_truck img houseofdqueens"/>
                                 </td>
                                 <td>
                                     <h6>Delivery information</h6>
@@ -168,7 +169,7 @@
                             </tr>
                             <tr>
                                 <td style="width:50px;vertical-align:top">
-                                    <img src="~/Content/Images/corner-down-left.svg" />
+                                    <img src="~/Content/Images/corner-down-left.svg" alt="return_policy image houseofdqueens"/>
                                 </td>
                                 <td>
                                     <h6>Return policy</h6>
