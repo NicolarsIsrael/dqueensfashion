@@ -5,11 +5,54 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+
+
+
+</style>
+
+<script>
+    function ChangeProductDetailsImage(imageUrl,navImageId) {
+        document.getElementById("product-details-img").src = imageUrl;
+        var allNavImages = document.getElementsByClassName("product-details-nav-images");
+        for (var i = 0; i < allNavImages.length; i++) {
+            allNavImages[i].style.border = 0;
+        }
+        document.getElementById(navImageId).style.border = "1px solid black";
+    }
+
+
+
+</script>
+
 <div class="container body-content">
     <div class="row">
         <div class="col-md-8">
+            <div class="product-details-main-image-container">
+                <img class="product-details-main-image" src="@Url.Content(Model.Product.MainImage)" id="product-details-img"/>
+            </div>
+            <div class="my-3">
+                <div class="product-details-nav-images-container">
+                    <span>
+                        <img src="@Url.Content(Model.Product.MainImage)" class="product-details-nav-images product-details-main-nav-image"
+                             id="main-nav-image" onclick="ChangeProductDetailsImage('@Model.Product.MainImage','main-nav-image')" />
+                    </span>
+                    @{
+                        int idCount = 1;
+                        foreach (var productImage in Model.Product.OtherImagePaths)
+                        {
+                            string navImageId = "navImage" + idCount;
+                            <span>
+                                <img class="product-details-nav-images" src="@Url.Content(productImage)"
+                                    id="@navImageId" onclick="ChangeProductDetailsImage('@productImage','@navImageId')" />
+                            </span>
+                            idCount++;
+                        }
+                    }
+                </div>
+            </div>
 
-            <div id="productCarousel" class="carousel slide mb-3" data-ride="carousel" data-interval="false">
+            @*<div id="productCarousel" class="carousel slide mb-3" data-ride="carousel" data-interval="false">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <img class="product-details-image" style="" src="@Url.Content(Model.Product.MainImage)" alt="First slide">
@@ -38,7 +81,7 @@
                     }
 
                 </ol>
-            </div>
+            </div>*@
         </div>
         <div class="col-md-4">
             <div class="row">
@@ -215,11 +258,6 @@
     var quantityValidationError = document.getElementById("quantityValidationError");
     var productImage = document.getElementById("productDisplayImage");
     var _sortReview = document.getElementById("sort-review");
-
-    function addToCartFromProductDetails(productId) {
-        AddToCart(productId, quantity.value);
-    }
-
 
     function ReviewPagination(productId, pageNumber) {
         document.getElementById("loading-effect").style.display = "block";
