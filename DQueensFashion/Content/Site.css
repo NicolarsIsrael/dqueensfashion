@@ -39,41 +39,6 @@ textarea {
     background-color:white;
 }
 
-.primary-custom-button {
-    display: inline-block;
-    padding: 5px 10px;
-    color: white;
-    background-color: #df7204;
-    cursor: pointer;
-    border-radius:0;
-}
-
-    .primary-custom-button:hover {
-        transform: scale(1.01);
-        background-color: #ff8d19;
-        box-shadow: 2px 2px 12px rgba(47, 47, 47, 0.40);
-        transition: all ease 0.3s;
-        color: white;
-    }
-
-.secondary-custom-button {
-    display: inline-block;
-    padding: 5px 10px;
-    color: white;
-    background-color: #96157a;
-    cursor: pointer;
-    border-radius: 0;
-}
-
-    .secondary-custom-button:hover {
-        transform: scale(1.01);
-        background-color: #9c3b8d;
-        box-shadow: 2px 2px 12px rgba(47, 47, 47, 0.40);
-        transition: all ease 0.3s;
-        color: white;
-    }
-
-
 /* navbar */
 .navbar {
     background-color: white;

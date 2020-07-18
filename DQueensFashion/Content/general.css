@@ -1,5 +1,41 @@
 ﻿
 
+.primary-custom-button {
+    display: inline-block;
+    padding: 5px 10px;
+    color: white;
+    background-color: #df7204;
+    cursor: pointer;
+    border-radius: 0;
+}
+
+    .primary-custom-button:hover {
+        transform: scale(1.01);
+        background-color: #ff8d19;
+        box-shadow: 2px 2px 12px rgba(47, 47, 47, 0.40);
+        transition: all ease 0.3s;
+        color: white;
+    }
+
+.secondary-custom-button {
+    display: inline-block;
+    padding: 5px 10px;
+    color: white;
+    background-color: #96157a;
+    cursor: pointer;
+    border-radius: 0;
+}
+
+    .secondary-custom-button:hover {
+        transform: scale(1.01);
+        background-color: #9c3b8d;
+        box-shadow: 2px 2px 12px rgba(47, 47, 47, 0.40);
+        transition: all ease 0.3s;
+        color: white;
+    }
+
+
+
 /*Dashboard*/
 .dashboard-sidenav-link {
     font-weight: 500;
@@ -81,11 +117,51 @@
     margin-left: 50px;
 }
 
+/*Add to cart outfit*/
 
+.add-to-cart-outfit-btn {
+    margin: 10px;
+    float:right;
+    box-shadow: 2px 2px 12px rgba(47, 47, 47, 0.40);
+}
+
+.add-to-cart-outfit {
+    min-height: 78vh;
+    max-height: 78vh;
+    overflow-y: auto;
+    overflow-x: hidden
+}
+
+.add-to-cart-outfit-img {
+    width: 100px;
+    height: 100px
+}
+
+.add-to-cart-outfit-product-name {
+    font-size: 15px;
+    font-weight: 500
+}
+
+.add-to-cart-outfit-category-name {
+    font-size: 15px;
+    font-weight: 400
+}
+
+.add-to-cart-outfit-initial-price {
+    font-size: 12px
+}
+.add-to-cart-outfit-discount {
+    font-size: 12px
+}
+.add-to-cart-outfit-unit-price {
+    font-weight: 500;
+    color: #B01A24
+}
+
+/*End add to cart outfit*/
 /*password*/
-
-.showpasswordcontainer{
-    text-align:right;
+.showpasswordcontainer {
+    text-align: right;
 }
 
 .showpassword,

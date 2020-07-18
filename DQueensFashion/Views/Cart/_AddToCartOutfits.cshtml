@@ -6,21 +6,21 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <div style="min-height:78vh;max-height:78vh;overflow-y:auto;overflow-x:hidden">
+        <div class="add-to-cart-outfit">
             <input type="hidden" id="ProductId" value="@Model.ProductId" />
 
             <div class="row">
                 <div class="col-5 p-1">
-                    <img src="@Url.Content(Model.MainImage)" style="width:100px;height:100px" alt="@Model.ProductName _image_houseofdqueens"/>
+                    <img src="@Url.Content(Model.MainImage)" class="add-to-cart-outfit-img" alt="@Model.ProductName _image_houseofdqueens"/>
                 </div>
                 <div class="col-7 p-1">
-                    <div style="font-size:15px;font-weight:500">
+                    <div class="add-to-cart-outfit-product-name">
                         @Model.ProductName
                     </div>
-                    <div style="font-size:15px;font-weight:400">@Model.CategoryName</div>
-                    <span class="product-initial-price" style="font-size:12px">$@Model.InitialPrice</span>
-                    <span class="pl-1" style="font-size:12px">-@Model.Discount%</span>
-                    <div style="font-weight:500;color:#B01A24">$@Model.UnitPrice</div>
+                    <div class="add-to-cart-outfit-category-name">@Model.CategoryName</div>
+                    <span class="product-initial-price add-to-cart-outfit-initial-price">$@Model.InitialPrice</span>
+                    <span class="pl-1 add-to-cart-outfit-discount">-@Model.Discount%</span>
+                    <div class="add-to-cart-outfit-unit-price">$@Model.UnitPrice</div>
                 </div>
 
             </div>
@@ -229,10 +229,11 @@
                 </div>
             </div>
         </div>
-        <input type="button" value="ADD TO CART" class="btn mt-0"
-               style="background-color:#96157a;color:white;border-radius:0;margin:10px;position:absolute;bottom:10px;right:10px;box-shadow: 2px 2px 12px rgba(47, 47, 47, 0.40);"
-               onclick="AddToCartOutfitsPost()" />
-
+        <div>
+            <hr class="my-2"/>
+            <input type="button" value="ADD TO CART" class="btn mt-0 primary-custom-button add-to-cart-outfit-btn"
+                   onclick="AddToCartOutfitsPost()" />
+        </div>
     </div>
 }
 
