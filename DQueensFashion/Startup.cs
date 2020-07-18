@@ -626,10 +626,6 @@ namespace DQueensFashion
 
                     new ImageFile{ IsDeleted=false, DateCreated=DateTime.Now, DateModified=DateTime.Now,
                         DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow,
-                        ImagePath ="https://cdn.pixabay.com/photo/2020/02/05/11/06/portrait-4820889__340.jpg",ProductId=rand.Next(1,productCount)},
-
-                    new ImageFile{ IsDeleted=false, DateCreated=DateTime.Now, DateModified=DateTime.Now,
-                        DateCreatedUtc = DateTime.UtcNow,DateModifiedUtc = DateTime.UtcNow,
                         ImagePath ="https://cdn.pixabay.com/photo/2017/03/01/05/43/pink-shoes-2107618__340.jpg",ProductId=rand.Next(1,productCount)},
 
                     new ImageFile{ IsDeleted=false, DateCreated=DateTime.Now, DateModified=DateTime.Now,

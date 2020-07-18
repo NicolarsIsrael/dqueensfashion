@@ -61,24 +61,27 @@
             </ul>
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link navbar-link" href="@Url.Action("Index","Cart")">
-                        <img src="~/Content/Images/shopping-cart-nav.svg"  alt="shopping_cart image houseofdqueens"/>
-                        @Html.Partial("~/Views/Cart/_navbarCartNumber.cshtml")
-                    </a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link navbar-link" href="@Url.Action("Index","Home")">
                         Home
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link navbar-link" href="@Url.Action("Index","Cart")">
+                        <img src="~/Content/Images/shopping-cart-nav.svg" alt="shopping_cart image houseofdqueens" />
+                        @Html.Partial("~/Views/Cart/_navbarCartNumber.cshtml")
+                    </a>
+                </li>
             </ul>
 
-            @Html.Partial("_LoginPartial")
             @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
             {
                 @Html.AntiForgeryToken()
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link navbar-link">Logout</a></li>
+                    <li class="nav-item">
+                        <a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link navbar-link">
+                            <img src="~/Content/Images/log-out.svg" alt="logout_btn houseofdqueens" />
+                        </a>
+                    </li>
                 </ul>
             }
 
@@ -96,7 +99,7 @@
                     </div>
 
                 </div>
-      
+
                 <!-- Sidebar -->
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
