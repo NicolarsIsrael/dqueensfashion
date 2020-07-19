@@ -72,7 +72,7 @@
         @{
             if (Model.IsOutOfStock)
             {
-                <div class="cart">
+                <div class="cart" onclick="RequestForProduct(@Model.Id)">
                     <div href="">Request</div>
                 </div>
             }

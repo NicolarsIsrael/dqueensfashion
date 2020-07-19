@@ -3,6 +3,7 @@ using DQueensFashion.CustomFilters;
 using DQueensFashion.Models;
 using DQueensFashion.Service.Contract;
 using DQueensFashion.Utilities;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,8 +21,7 @@ namespace DQueensFashion.Controllers
         private readonly IImageService _imageService;
         private readonly ILineItemService _lineItemService;
 
-        public HomeController(IProductService productService, ICategoryService categoryService, IReviewService reviewService,IImageService imageService,
-            ILineItemService lineItemService)
+        public HomeController(IProductService productService, ICategoryService categoryService, IReviewService reviewService,IImageService imageService,ILineItemService lineItemService)
         {
             _productService = productService;
             _categoryService = categoryService;
@@ -98,7 +98,6 @@ namespace DQueensFashion.Controllers
 
             return View(homeIndex);
         }
-
 
         public ActionResult Review1()
         {
@@ -1804,6 +1803,7 @@ namespace DQueensFashion.Controllers
             }
             return View();
         }
+
 
         public int GetCartNumber()
         {

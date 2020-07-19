@@ -1,0 +1,60 @@
+﻿@model DQueensFashion.Models.RequestViewModel
+@using DQueensFashion.Utilities
+
+@using (Html.BeginForm("RequestForProduct", "Home", FormMethod.Post, new { id = "addToCartOutfitsForm" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <div class="add-to-cart-outfit">
+            <input type="hidden" id="ProductId" value="@Model.ProductId" />
+
+            <div class="row">
+                <div class="col-5 p-1">
+                    <img src="@Url.Content(Model.MainImage)" class="add-to-cart-outfit-img" alt="@Model.Product.Name _image_houseofdqueens" />
+                </div>
+                <div class="col-7 p-1">
+                    <div class="add-to-cart-outfit-product-name">
+                        @Model.Product.Name
+                    </div>
+                    <div class="add-to-cart-outfit-category-name">@Model.Product.Category.Name</div>
+                    <span class="product-initial-price add-to-cart-outfit-initial-price">$@Model.Product.Price</span>
+                    <span class="pl-1 add-to-cart-outfit-discount">-@Model.Product.Discount%</span>
+                    <div class="add-to-cart-outfit-unit-price">$@Model.Product.SubTotal</div>
+                </div>
+            </div>
+
+            <div class="mr-2">
+                <div class="form-group">
+                    <div class="col-form-label">Quantity</div>
+                    <select class="form-control-sm col-12" id="Quantity">
+                        @for (int i = 1; i <= 100; i++)
+                        {
+                            <option value="@i">@i</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <hr />
+
+            <div class="">
+                When you request for this product, you will be immediately notified via email when the product is available
+            </div>
+
+        </div>
+        <div>
+            <hr class="my-2" />
+            <input type="button" value="REQUEST FOR PRODUCT" class="btn mt-0 primary-custom-button add-to-cart-outfit-btn"
+                   onclick="RequestForProductPost()" />
+        </div>
+    </div>
+}
+
+
+<style>
+    .col-form-label {
+        padding-bottom: 0;
+    }
+</style>
+

@@ -76,6 +76,53 @@ function AddToCartOutfitsPost() {
     });
 }
 
+function RequestForProduct(productId) {
+
+    $.ajax({
+        url: "/Wishlist/RequestForProduct/" + productId,
+        dataType: "html",
+        data: {},
+        success: function (result) {
+            $("#sidebarbody").html(result);
+            openNav();
+        },
+        error: function (xhr, status, error) {
+            ShowSnackbarError("Oops, sorry! Error");
+        }
+    });
+
+}
+
+function RequestForProductPost() {
+    var form = $('#addToCartOutfitsForm');
+    var token = $('input[name="__RequestVerificationToken"]', form).val();
+    var productId = $('#ProductId').val();
+    var quantity = $('#Quantity').val();
+
+    $.ajax({
+        url: "/Wishlist/RequestForProduct",
+        data: {
+            __RequestVerificationToken: token,
+            productId: productId,
+            quantity: quantity,
+        },
+        type: "POST",
+        contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+        success: function (result) {
+            closeNav();
+            if (result == "success") {
+                ShowSnackbarSuccess("You have successfully requested for the product");
+            } else if (result == "login") {
+                ShowSnackbarMessage("Login or register to request for product");
+            }
+        },
+        error: function (xhr, status, error) {
+            ShowSnackbarError("Oops, sorry! Error");
+        }
+    });
+
+}
+
 function UpdateCartNumber() {
 
     $.ajax({
@@ -97,7 +144,6 @@ function AddToWishList(productId) {
         url: '/wishlist/addtowishlist/' + productId,
         data: { id: productId },
         success: function (result) {
-            console.log(result);
             if (result == "success") {
                 ShowSnackbarSuccess("Item added to wishlist successfully");
             } else if (result == "login") {
