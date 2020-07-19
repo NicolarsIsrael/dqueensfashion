@@ -238,6 +238,10 @@ namespace DQueensFashion.Controllers
                     case AppConstant.LowestRating:
                         products = products.OrderBy(p => p.Rating.AverageRating);
                         break;
+
+                    default:
+                        products = products.OrderByDescending(p => p.DateCreated);
+                        break;
                 }
 
                 //pagination
@@ -348,6 +352,10 @@ namespace DQueensFashion.Controllers
 
                     case AppConstant.LowestRating:
                         products = products.OrderBy(p => p.Rating.AverageRating);
+                        break;
+
+                    default:
+                        products = products.OrderByDescending(p => p.DateCreated);
                         break;
                 }
 
