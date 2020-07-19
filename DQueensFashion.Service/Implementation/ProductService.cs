@@ -53,7 +53,8 @@ namespace DQueensFashion.Service.Implementation
 
         public IEnumerable<Product> GetRelatedProducts(int productId,int categoryId)
         {
-            return GetAllProducts().Where(p => p.Id!=productId && p.CategoryId == categoryId);
+            var products = GetAllProducts().Where(p => p.Id != productId && p.CategoryId == categoryId);
+            return products;
         }
 
 

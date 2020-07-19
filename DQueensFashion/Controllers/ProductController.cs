@@ -100,6 +100,7 @@ namespace DQueensFashion.Controllers
                     },
                     NumberOfOrders = _lineItemService.NumberOfTimesPurchased(p.Id),
                     IsNew = _productService.CheckIfProductIsNew(p.DateCreatedUtc),
+                    IsOutOfStock = p.Quantity < 1 ? true : false,
                 }).OrderByDescending(p=>p.DateCreated).ToList();
 
 
@@ -183,6 +184,7 @@ namespace DQueensFashion.Controllers
                         },
                         NumberOfOrders = _lineItemService.NumberOfTimesPurchased(p.Id),
                         IsNew = _productService.CheckIfProductIsNew(p.DateCreatedUtc),
+                        IsOutOfStock = p.Quantity < 1 ? true : false,
                     }).ToList();
 
                 //sort
@@ -293,6 +295,7 @@ namespace DQueensFashion.Controllers
                         },
                         NumberOfOrders = _lineItemService.NumberOfTimesPurchased(p.Id),
                         IsNew = _productService.CheckIfProductIsNew(p.DateCreatedUtc),
+                        IsOutOfStock = p.Quantity < 1 ? true : false,
                     }).ToList();
 
                 //sort
@@ -417,7 +420,7 @@ namespace DQueensFashion.Controllers
             var allImages = _imageService.GetAllImageFiles();
 
             IEnumerable<ViewProductsViewModel> relatedProducts = _productService.GetRelatedProducts(product.Id, product.CategoryId)
-                .Take(8).Select(p => new ViewProductsViewModel()
+                .Select(p => new ViewProductsViewModel()
                 {
                     Id = p.Id,
                     Name = p.Name,
@@ -431,6 +434,7 @@ namespace DQueensFashion.Controllers
                     SubTotal = p.SubTotal,
                     Category = p.Category.Name,
                     CategoryId = product.Category.Id,
+                    DateCreated = p.DateCreatedUtc,
                     Rating = new RatingViewModel()
                     {
                         AverageRating = p.AverageRating.ToString("0.0"),
@@ -439,12 +443,13 @@ namespace DQueensFashion.Controllers
                         FloorAverageRating = (int)Math.Floor(p.AverageRating)
                     },
                     IsNew = _productService.CheckIfProductIsNew(p.DateCreatedUtc),
-                }).ToList();
+                    IsOutOfStock = p.Quantity < 1 ? true : false,
+                }).OrderByDescending(p=>p.DateCreated).ToList();
 
             ProductDetailsViewModel productModel = new ProductDetailsViewModel()
             {
                 Product = productDetails,
-                RelatedProducts = relatedProducts,
+                RelatedProducts = relatedProducts.Take(8),
             };
 
             //pagination
