@@ -29,8 +29,8 @@ namespace DQueensFashion.Service.Implementation
 
         public void UpdateProduct(Product product)
         {
-            //if (!ValidateProductDetails(product))
-            //    throw new Exception();
+            if (!ValidateProductDetails(product))
+                throw new Exception();
 
             uow.ProductRepo.Update(product);
             uow.Save();
@@ -48,25 +48,12 @@ namespace DQueensFashion.Service.Implementation
 
         public IEnumerable<Product> GetAllProducts()
         {
-            return uow.ProductRepo.GetAllProductsWithRelationships()
-                .Where(p => p.Quantity > 0);
-        }
-
-        public IEnumerable<Product> GetAllProductsIncludingLowQuantity()
-        {
             return uow.ProductRepo.GetAllProductsWithRelationships();
-        }
-
-        public IEnumerable<Product> GetAllProductsForCategory(int categoryId)
-        {
-            return GetAllProducts().Where(p => p.CategoryId == categoryId)
-                .Where(p => p.Quantity > 0);
         }
 
         public IEnumerable<Product> GetRelatedProducts(int productId,int categoryId)
         {
-            return GetAllProducts().Where(p => p.Id!=productId && p.CategoryId == categoryId)
-                .Where(p => p.Quantity > 0);
+            return GetAllProducts().Where(p => p.Id!=productId && p.CategoryId == categoryId);
         }
 
 

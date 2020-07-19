@@ -543,6 +543,18 @@ textarea {
     padding: 10px;
 }
 
+.product-outofstock-label {
+    color: #fff;
+    background-color: #df7204;
+    font-size: 12px;
+    padding: 2px 7px;
+    display: block;
+    position: absolute;
+    top: 10px;
+    left: 0;
+    padding: 10px;
+}
+
 .product-discount-label {
     color: #fff;
     background-color: #96157a;
@@ -1167,7 +1179,8 @@ textarea {
         display:none;
     }
     .product-time-label,
-    .product-discount-label {
+    .product-discount-label,
+    .product-outofstock-label {
         padding: 3px;
         font-size: 8px;
     }

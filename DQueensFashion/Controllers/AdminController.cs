@@ -190,7 +190,7 @@ namespace DQueensFashion.Controllers
         public ActionResult Products()
         {
             var allImages = _imageService.GetAllImageFiles().ToList();
-            IEnumerable<ViewProductsViewModel> products = _productService.GetAllProductsIncludingLowQuantity()
+            IEnumerable<ViewProductsViewModel> products = _productService.GetAllProducts()
                 .Select(p => new ViewProductsViewModel()
                 {
                     Id = p.Id,
@@ -213,7 +213,7 @@ namespace DQueensFashion.Controllers
         public ActionResult SearchProducts(string query)
         {
             var allImages = _imageService.GetAllImageFiles().ToList();
-            IEnumerable<ViewProductsViewModel> products = _productService.GetAllProductsIncludingLowQuantity()
+            IEnumerable<ViewProductsViewModel> products = _productService.GetAllProducts()
               .Select(p => new ViewProductsViewModel()
               {
                   Id = p.Id,

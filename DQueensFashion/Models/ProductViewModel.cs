@@ -122,6 +122,7 @@ namespace DQueensFashion.Models
         public int DeliveryDaysDuration { get; set; }
         public int NumberOfOrders { get; set; }
         public bool IsNew { get; set; }
+        public bool IsOutOfStock { get; set; }
         public RatingViewModel Rating { get; set; }
         public IEnumerable<ViewReviewViewModel> Reviews { get; set; }
 

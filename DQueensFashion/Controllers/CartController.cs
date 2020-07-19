@@ -89,7 +89,12 @@ namespace DQueensFashion.Controllers
             if (index > -1)
             {
                 cart = (List<Cart>)Session["cart"];
-                cart[index].Quantity += quantity;
+
+                if (cart[index].Quantity >= product.Quantity)
+                    cart[index].Quantity = product.Quantity;
+                else
+                    cart[index].Quantity += quantity;
+
                 cart[index].UnitPrice = cart[index].Product.SubTotal;
                 cart[index].TotalPrice = cart[index].Product.SubTotal * cart[index].Quantity;
                 cart[index].Description = cart[index].Quantity > 1

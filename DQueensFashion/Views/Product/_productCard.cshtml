@@ -3,9 +3,18 @@
 
 <div class="product-box">
     <div onclick="NavigateToProductDetails('@Model.GeneratedUrl')">
-        @if (Model.IsNew)
-        {
-            <div class="product-time-label">New</div>
+        @{
+            if (Model.IsOutOfStock)
+            {
+                <div class="product-outofstock-label">Out of stock</div>
+            }
+            else
+            {
+                if (Model.IsNew)
+                {
+                    <div class="product-time-label">New</div>
+                }
+            }
         }
 
         @if (Model.Discount > 0)
@@ -61,18 +70,29 @@
             @Html.Partial("~/views/Product/_averageRating.cshtml", Model.Rating)
         </div>
         @{
-            if (Model.CategoryId == AppConstant.OutfitsId)
+            if (Model.IsOutOfStock)
             {
-                <div class="cart" onclick="AddToCartOutfits(@Model.Id)">
-                    <div href="#">Add to cart</div>
+                <div class="cart">
+                    <div href="">Request</div>
                 </div>
             }
             else
             {
-                <div class="cart" onclick="AddToCart(@Model.Id)">
-                    <div href="#">Add to cart</div>
-                </div>
+                if (Model.CategoryId == AppConstant.OutfitsId)
+                {
+                    <div class="cart" onclick="AddToCartOutfits(@Model.Id)">
+                        <div href="#">Add to cart</div>
+                    </div>
+                }
+                else
+                {
+                    <div class="cart" onclick="AddToCart(@Model.Id)">
+                        <div href="#">Add to cart</div>
+                    </div>
+                }
             }
+
+
         }
 
     </div>

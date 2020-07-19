@@ -55,12 +55,12 @@ namespace DQueensFashion.Controllers
                 {
                     Id = p.Id,
                     Name = p.Name,
-                    GeneratedUrl = generalService.GenerateItemNameAsParam(p.Id,p.Name),
-                    MainImage = allImages.Where(image=>image.ProductId==p.Id).Count()<1?
+                    GeneratedUrl = generalService.GenerateItemNameAsParam(p.Id, p.Name),
+                    MainImage = allImages.Where(image => image.ProductId == p.Id).Count() < 1 ?
                         AppConstant.DefaultProductImage :
                         allImages.Where(image => image.ProductId == p.Id).FirstOrDefault().ImagePath,
                     Quantity = p.Quantity,
-                    Price=p.Price,
+                    Price = p.Price,
                     Discount = p.Discount,
                     SubTotal = p.SubTotal,
                     Category = p.Category.Name,
@@ -75,7 +75,9 @@ namespace DQueensFashion.Controllers
                     NumberOfOrders = _lineItemService.NumberOfTimesPurchased(p.Id),
                     DateCreated = p.DateCreatedUtc,
                     IsNew = _productService.CheckIfProductIsNew(p.DateCreatedUtc),
-                }).OrderByDescending(p=>p.DateCreated).ToList();
+                    IsOutOfStock = p.Quantity < 1 ? true : false,
+
+                }).OrderByDescending(p => p.DateCreated).ToList();
 
             IEnumerable<CategoryNameAndId> categories = _categoryService.GetAllCategories()
                 .Select(category => new CategoryNameAndId()
