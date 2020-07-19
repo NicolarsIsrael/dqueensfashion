@@ -393,6 +393,7 @@ namespace DQueensFashion.Controllers
                         AppConstant.DefaultProductImage :
                         _imageService.GetMainImageForProduct(product.Id).ImagePath,
                 OtherImagePaths = productImages,
+                IsOutOfStock = product.Quantity < 1 ? true : false,
                 Rating = new RatingViewModel()
                 {
                     AverageRating = product.AverageRating.ToString("0.0"),
@@ -422,6 +423,7 @@ namespace DQueensFashion.Controllers
             IEnumerable<ViewProductsViewModel> relatedProducts = _productService.GetRelatedProducts(product.Id, product.CategoryId)
                 .Select(p => new ViewProductsViewModel()
                 {
+                    GeneratedUrl = generalService.GenerateItemNameAsParam(p.Id, p.Name),
                     Id = p.Id,
                     Name = p.Name,
                     Description = p.Description.Length > 35 ? p.Description.Substring(0, 35) + "..." : p.Description,

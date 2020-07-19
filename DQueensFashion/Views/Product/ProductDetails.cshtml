@@ -18,7 +18,7 @@
         for (var i = 0; i < allNavImages.length; i++) {
             allNavImages[i].style.border = 0;
         }
-        document.getElementById(navImageId).style.border = "1px solid black";
+        document.getElementById(navImageId).style.border = "1px solid #df7204";
     }
 
 
@@ -53,36 +53,6 @@
                 </div>
             </div>
 
-            @*<div id="productCarousel" class="carousel slide mb-3" data-ride="carousel" data-interval="false">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img class="product-details-image" style="" src="@Url.Content(Model.Product.MainImage)" alt="First slide">
-                    </div>
-                    @{
-                        foreach (var productImage in Model.Product.OtherImagePaths)
-                        {
-                            <div class="carousel-item">
-                                <img class="product-details-image" src="@Url.Content(productImage)" alt="Second slide">
-                            </div>
-                        }
-                    }
-
-                </div>
-                <ol class="carousel-indicators">
-                    <li data-target="#productCarousel" data-slide-to="0" class="active"></li>
-                    @{
-                        int productCount = 1;
-                        foreach (var productImage in Model.Product.OtherImagePaths)
-                        {
-                            <li style="width:50px;height:50px" data-target="#productCarousel" data-slide-to="@productCount">
-                                <img style="width:50px;height:50px" src="@Url.Content(productImage)" alt="Second slide">
-                            </li>
-                            productCount++;
-                        }
-                    }
-
-                </ol>
-            </div>*@
         </div>
         <div class="col-md-4">
             <div class="row">
@@ -125,18 +95,29 @@
             </div>
             <div class="mt-1">
                 @{
-                    if (Model.Product.CategoryId == AppConstant.OutfitsId)
+                    if (Model.Product.IsOutOfStock)
                     {
-                        <div class="cart" onclick="AddToCartOutfits(@Model.Product.Id)">
-                            <div href="#">Add to cart</div>
+                        <div class="cart" onclick="RequestForProduct(@Model.Product.Id)">
+                            <div href="">Request</div>
                         </div>
                     }
                     else
                     {
-                        <div class="cart" onclick="AddToCart(@Model.Product.Id)">
-                            <div href="#">Add to cart</div>
-                        </div>
+                        if (Model.Product.CategoryId == 1)
+                        {
+                            <div class="cart" onclick="AddToCartOutfits(@Model.Product.Id)">
+                                <div href="#">Add to cart</div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="cart" onclick="AddToCart(@Model.Product.Id)">
+                                <div href="#">Add to cart</div>
+                            </div>
+                        }
                     }
+
+
                 }
             </div>
             <div class="card mt-3" style="min-height:200px">
