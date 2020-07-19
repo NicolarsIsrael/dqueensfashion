@@ -84,9 +84,6 @@ namespace DQueensFashion.Utilities
 
 
         //general values
-        public const string HDQAddress = "123 Street, Old Trafford, New South London , UK";
-        public const string HDQEmail = "Hdq@gmail.com";
-        public const string HDQPhoneNumber = "+45 637 872";
         public const decimal HDQSubscriptionDiscount = 10;
         public const decimal ShippingPrice = 4.99M;
         public const int GeneralValId = 1;
