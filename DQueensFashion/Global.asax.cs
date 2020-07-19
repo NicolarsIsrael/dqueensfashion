@@ -60,6 +60,7 @@ namespace DQueensFashion
             container.Register<IMailingListService, MailingListService>(Lifestyle.Scoped);
             container.Register<IGeneralValuesService, GeneralValuesService>(Lifestyle.Scoped);
             container.Register<IMessageService, MessageService>(Lifestyle.Scoped);
+            container.Register<IRequestService, RequestService>(Lifestyle.Scoped);
 
             //configure the Repos
             container.Register<IUnitOfWork, UnitOfWork>(Lifestyle.Scoped);
@@ -74,6 +75,7 @@ namespace DQueensFashion
             container.Register<IMailingListRepo, MailingListRepo>(Lifestyle.Scoped);
             container.Register<IGeneralValuesRepo, GeneralValuesRepo>(Lifestyle.Scoped);
             container.Register<IMessageRepo, MessageRepo>(Lifestyle.Scoped);
+            container.Register<IRequestRepo, RequestRepo>(Lifestyle.Scoped);
             
             //registering Logic
             container.Register<IMailService, MailService>(Lifestyle.Scoped);

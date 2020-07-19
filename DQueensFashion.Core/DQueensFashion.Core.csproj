@@ -139,6 +139,7 @@
     <Compile Include="Model\Message.cs" />
     <Compile Include="Model\Order.cs" />
     <Compile Include="Model\Product.cs" />
+    <Compile Include="Model\Request.cs" />
     <Compile Include="Model\Review.cs" />
     <Compile Include="Model\WishList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

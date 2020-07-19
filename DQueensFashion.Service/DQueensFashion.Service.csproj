@@ -137,6 +137,7 @@
     <Compile Include="Contract\IMessageService.cs" />
     <Compile Include="Contract\IOrderService.cs" />
     <Compile Include="Contract\IProductService.cs" />
+    <Compile Include="Contract\IRequestService.cs" />
     <Compile Include="Contract\IReviewService.cs" />
     <Compile Include="Contract\IWishListService.cs" />
     <Compile Include="Implementation\CategoryService.cs" />
@@ -148,6 +149,7 @@
     <Compile Include="Implementation\MessageService.cs" />
     <Compile Include="Implementation\OrderService.cs" />
     <Compile Include="Implementation\ProductService.cs" />
+    <Compile Include="Implementation\RequestService.cs" />
     <Compile Include="Implementation\ReviewService.cs" />
     <Compile Include="Implementation\WishListService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

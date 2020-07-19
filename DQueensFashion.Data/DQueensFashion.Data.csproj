@@ -140,6 +140,7 @@
     <Compile Include="Contract\IMessageRepo.cs" />
     <Compile Include="Contract\IOrderRepo.cs" />
     <Compile Include="Contract\IProductRepo.cs" />
+    <Compile Include="Contract\IRequestRepo.cs" />
     <Compile Include="Contract\IReviewRepo.cs" />
     <Compile Include="Contract\IUnitOfWork.cs" />
     <Compile Include="Contract\IWishListRepo.cs" />
@@ -153,6 +154,7 @@
     <Compile Include="Implementation\MessageRepo.cs" />
     <Compile Include="Implementation\OrderRepo.cs" />
     <Compile Include="Implementation\ProductRepo.cs" />
+    <Compile Include="Implementation\RequestRepo.cs" />
     <Compile Include="Implementation\ReviewRepo.cs" />
     <Compile Include="Implementation\UnitOfWork.cs" />
     <Compile Include="Implementation\WishListRepo.cs" />
@@ -171,6 +173,10 @@
     <Compile Include="Migrations\202007121707417_ReadAddedToDb2.cs" />
     <Compile Include="Migrations\202007121707417_ReadAddedToDb2.Designer.cs">
       <DependentUpon>202007121707417_ReadAddedToDb2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007191028306_requestAddedtodb.cs" />
+    <Compile Include="Migrations\202007191028306_requestAddedtodb.Designer.cs">
+      <DependentUpon>202007191028306_requestAddedtodb.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -197,6 +203,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007121707417_ReadAddedToDb2.resx">
       <DependentUpon>202007121707417_ReadAddedToDb2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007191028306_requestAddedtodb.resx">
+      <DependentUpon>202007191028306_requestAddedtodb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
