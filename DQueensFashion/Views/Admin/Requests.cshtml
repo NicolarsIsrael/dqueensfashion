@@ -1,0 +1,50 @@
+﻿@model IEnumerable<DQueensFashion.Models.ViewRequestsViewModel>
+
+@{
+    ViewBag.Title = "Requests";
+    Layout = "~/Views/Shared/_dashboardLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Requests</h3></div>
+            <!-- /.card-header -->
+            <div class="card-body table-responsive p-0 custom-table">
+                <table  class="table table-head-fixed  table-striped" >
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Name</th>
+                            <th>Users (Qty)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="products-table-image">
+                                        <img src="@Url.Content(item.MainImage)" alt="@item.Product.Name _image_houseofdqueens" />
+                                    </td>
+                                    <td class="product-name-desc">
+                                        @item.Product.Name
+                                    </td>
+                                    <td>
+                                        @foreach(var user in item.UsersRequests)
+                                        {
+                                            <div>@user.CustomerEmail (@user.Quantity)</div>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+</div>

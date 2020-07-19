@@ -27,10 +27,11 @@ namespace DQueensFashion.Controllers
         private readonly IGeneralValuesService _generalValuesService;
         private readonly IMailingListService _mailingListService;
         private readonly IMessageService _messageService;
+        private readonly IRequestService _requestService;
         private ApplicationUserManager _userManager;
         private GeneralService generalService;
 
-        public AdminController(ICategoryService categoryService, IProductService productService, IOrderService orderService, IReviewService reviewService, IImageService imageService, ICustomerService customerService, IGeneralValuesService generalValuesService, IMailingListService mailingListService
+        public AdminController(ICategoryService categoryService, IProductService productService, IOrderService orderService, IReviewService reviewService, IImageService imageService, ICustomerService customerService, IGeneralValuesService generalValuesService, IMailingListService mailingListService,IRequestService requestService
             ,IMessageService messageService , ApplicationUserManager userManager)
         {
             _categoryService = categoryService;
@@ -41,6 +42,7 @@ namespace DQueensFashion.Controllers
             _customerService = customerService;
             _generalValuesService = generalValuesService;
             _mailingListService = mailingListService;
+            _requestService = requestService;
             _messageService = messageService;
             _userManager = userManager;
             generalService = new GeneralService();
@@ -1402,6 +1404,32 @@ namespace DQueensFashion.Controllers
             }
         }
 
+        public ActionResult Requests()
+        {
+            var allImages = _imageService.GetAllImageFiles().ToList();
+            var _reqGroup = (from r in _requestService.GetAllRequests()
+                             group r by r.ProductId into g
+                        select new { request = g.Key,
+                            users = g.OrderBy(rr => rr.CustomerEmail).ToList() }).ToList();
+
+            IEnumerable<ViewRequestsViewModel> requestsGroup = _reqGroup
+                .Select(r => new ViewRequestsViewModel()
+                {
+                    Product = _productService.GetProductById(r.request),
+                    ProductName = _productService.GetProductById(r.request).Name,
+                    MainImage = allImages.Where(image => image.ProductId == r.request).Count() < 1 ?
+                                AppConstant.DefaultProductImage :
+                                allImages.Where(image => image.ProductId == r.request).FirstOrDefault().ImagePath,
+                    UsersRequests = r.users
+                        .Select(user => new RequestViewModel()
+                        {
+                            CustomerEmail = user.CustomerEmail,
+                            Quantity = user.Quantity,
+                        }).ToList(),
+                }).OrderBy(r=>r.ProductName).ToList();
+
+            return View(requestsGroup);
+        }
 
         public int GetCartNumber()
         {
@@ -1428,7 +1456,10 @@ namespace DQueensFashion.Controllers
             return _messageService.GetUnreadMessagesCount();
         }
 
-
+        public int GetRequestCount()
+        {
+            return _requestService.GetTotalRequests();
+        }
 
 
 

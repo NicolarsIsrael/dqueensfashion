@@ -31,6 +31,16 @@ namespace DQueensFashion.Service.Implementation
             uow.Save();
         }
 
+        public int GetTotalRequests()
+        {
+            return uow.RequestRepo.GetAll().Sum(r => r.Quantity);
+        }
+
+        public IEnumerable<Request> GetAllRequests()
+        {
+            return uow.RequestRepo.GetAll();
+        }
+
         private bool ValidateRequestDetails(Request request)
         {
             if (request == null)

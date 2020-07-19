@@ -56,6 +56,7 @@ namespace DQueensFashion.CustomFilters
             var controllersUsingThisAttribute = ((AdminController)filterContext.Controller);
             filterContext.Controller.ViewBag.CartNumber = controllersUsingThisAttribute.GetCartNumber();
             filterContext.Controller.ViewBag.Categories = controllersUsingThisAttribute.GetCategories();
+            filterContext.Controller.ViewBag.RequestCount = controllersUsingThisAttribute.GetRequestCount();
 
             base.OnActionExecuting(filterContext);
         }

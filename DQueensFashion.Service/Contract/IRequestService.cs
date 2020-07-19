@@ -11,5 +11,7 @@ namespace DQueensFashion.Service.Contract
     {
         int GetRequestCount();
         void AddRequest(Request request);
+        int GetTotalRequests();
+        IEnumerable<Request> GetAllRequests();
     }
 }
