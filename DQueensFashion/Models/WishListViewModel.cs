@@ -16,5 +16,6 @@ namespace DQueensFashion.Models
         public string CategoryName { get; set; }
 
         public string GeneratedUrl { get; set; }
+        public bool IsOutOfStock { get; set; }
     }
 }

@@ -91,6 +91,7 @@ namespace DQueensFashion.Controllers
                     CategoryName = w.CategoryName,
                     ProductPrice = w.ProductPrice,
                     GeneratedUrl = generalService.GenerateItemNameAsParam(w.ProductId,w.ProductName),
+                    IsOutOfStock = (_productService.GetProductById(w.ProductId)).Quantity < 1 ? true : false,
                 }).ToList();
 
             return View(wishLists);
@@ -113,6 +114,7 @@ namespace DQueensFashion.Controllers
                     CategoryId = w.CategoryId,
                     ProductPrice = w.ProductPrice,
                     GeneratedUrl = generalService.GenerateItemNameAsParam(w.ProductId, w.ProductName),
+                    IsOutOfStock = (_productService.GetProductById(w.ProductId)).Quantity < 1 ? true : false,
                 }).ToList();
 
             if (!string.IsNullOrEmpty(query))
