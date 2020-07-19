@@ -78,7 +78,7 @@
                 <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="arrival-tab">
 
                     <div class="row">
-                        @foreach (var product in Model.Products.Take(AppConstant.HomeIndexProductCount))
+                        @foreach (var product in Model.Products.Take(16))
                         {
                             <div class="col-lg-3 col-6">
                                 @Html.Partial("~/Views/Product/_productCard.cshtml", product)
@@ -97,7 +97,7 @@
                             <div class="row">
                                 @foreach (var product in Model.Products)
                                 {
-                                    if (product.CategoryId == category.Id && productCount < AppConstant.HomeIndexProductCount)
+                                    if (product.CategoryId == category.Id && productCount < 16)
                                     {
                                         <div class="col-lg-3 col-6">
                                             @Html.Partial("~/Views/Product/_productCard.cshtml", product)
@@ -133,7 +133,8 @@
             <div>
                 <a href="@Url.Action("Index","AboutUs")" class="btn mt-1 primary-table-button">Learn more</a>
                 <br />
-                <a href="@Url.Action("Shop","Product",new {categoryId=AppConstant.OutfitsId})" class="btn mt-1 secondary-table-button">Shop</a>
+                @*outfitshop*@
+                <a href="@Url.Action("Shop","Product",new {categoryId=1})" class="btn mt-1 secondary-table-button">Shop</a>
             </div>
         </div>
     </div>
@@ -203,11 +204,5 @@
 
 
 <script>
-    function ShopByBestSelling() {
-    window.location.href = "/Product/Shop?sort=" + @AppConstant.BestSelling;
-}
 
-function ShopByBestDeals() {
-    window.location.href = "/Product/Shop?sort=" + @AppConstant.BestDeals;
-}
 </script>

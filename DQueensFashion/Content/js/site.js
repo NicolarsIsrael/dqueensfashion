@@ -173,6 +173,14 @@ function ShopByCategory(categoryId) {
     window.location.href = "/Product/Shop?categoryId=" + categoryId;
 }
 
+function ShopByBestSelling() {
+    window.location.href = "/Product/Shop?sort=2";
+}
+
+function ShopByBestDeals() {
+    window.location.href = "/Product/Shop?sort=1";
+}
+
 function NavigateToProductDetails(url) {
     window.location.href = '/Product/ProductDetails/' + url;
 }
