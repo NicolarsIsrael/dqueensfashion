@@ -76,7 +76,14 @@ namespace DQueensFashion.Controllers
             if (product == null)
                 throw new Exception();
 
-            string mainImage = _imageService.GetImageFilesForProduct(product.Id).Count() < 1
+            string customerEmail = string.Empty;
+
+            Customer customer = GetLoggedInCustomer();
+            if (customer != null)
+                customerEmail = customer.Email;
+            else customerEmail = "";
+
+                string mainImage = _imageService.GetImageFilesForProduct(product.Id).Count() < 1
                 ? AppConstant.DefaultProductImage
                 : _imageService.GetMainImageForProduct(product.Id).ImagePath;
 
@@ -85,6 +92,7 @@ namespace DQueensFashion.Controllers
                 Product = product,
                 ProductId = product.Id,
                 MainImage = mainImage,
+                CustomerEmail = customerEmail,
             };
 
             return PartialView("_requestForProduct", requestModel);
@@ -92,11 +100,10 @@ namespace DQueensFashion.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult RequestForproduct(int productId, int quantity)
+        public ActionResult RequestForproduct(int productId, int quantity,string customerEmail)
         {
-            Customer customer = GetLoggedInCustomer();
-            if (customer == null)
-                return Json("login", JsonRequestBehavior.AllowGet);
+            if (!IsValidEmail(customerEmail))
+                return Content("Invalid");
 
             Product product = _productService.GetProductById(productId);
             if (product == null)
@@ -104,7 +111,7 @@ namespace DQueensFashion.Controllers
 
             Request request = new Request()
             {
-                CustomerEmail = customer.Email,
+                CustomerEmail = customerEmail,
                 ProductId = productId,
                 Quantity = quantity,
             };
@@ -125,7 +132,18 @@ namespace DQueensFashion.Controllers
             var userId = GetLoggedInUserId();
             return _customerService.GedCustomerByUserId(userId);
         }
-
+        private bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
         #endregion
     }
 }

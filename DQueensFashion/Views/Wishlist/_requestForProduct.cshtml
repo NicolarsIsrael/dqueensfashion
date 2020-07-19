@@ -26,6 +26,10 @@
 
             <div class="mr-2">
                 <div class="form-group">
+                    <div class="col-form-label">Email</div>
+                    <input type="email" value="@Model.CustomerEmail" class="form-control-sm col-12" id="customerEmail" required/>
+                </div>
+                <div class="form-group">
                     <div class="col-form-label">Quantity</div>
                     <select class="form-control-sm col-12" id="Quantity">
                         @for (int i = 1; i <= 100; i++)

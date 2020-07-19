@@ -94,32 +94,44 @@ function RequestForProduct(productId) {
 }
 
 function RequestForProductPost() {
-    var form = $('#addToCartOutfitsForm');
-    var token = $('input[name="__RequestVerificationToken"]', form).val();
-    var productId = $('#ProductId').val();
-    var quantity = $('#Quantity').val();
 
-    $.ajax({
-        url: "/Wishlist/RequestForProduct",
-        data: {
-            __RequestVerificationToken: token,
-            productId: productId,
-            quantity: quantity,
-        },
-        type: "POST",
-        contentType: 'application/x-www-form-urlencoded; charset=utf-8',
-        success: function (result) {
-            closeNav();
-            if (result == "success") {
-                ShowSnackbarSuccess("You have successfully requested for the product");
-            } else if (result == "login") {
-                ShowSnackbarMessage("Login or register to request for product");
+    var customerEmail = $('#customerEmail').val();
+
+    if (customerEmail != "" && customerEmail != null) {
+        var form = $('#addToCartOutfitsForm');
+        var token = $('input[name="__RequestVerificationToken"]', form).val();
+        var productId = $('#ProductId').val();
+        var quantity = $('#Quantity').val();
+
+        $.ajax({
+            url: "/Wishlist/RequestForProduct",
+            data: {
+                __RequestVerificationToken: token,
+                productId: productId,
+                quantity: quantity,
+                customerEmail: customerEmail,
+            },
+            type: "POST",
+            contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+            success: function (result) {
+
+                if (result == "success") {
+                    ShowSnackbarSuccess("You have successfully requested for the product");
+                    closeNav();
+                } else if (result == "Invalid") {
+                    ShowSnackbarMessage("Enter valid email address");
+                }
+            },
+            error: function (xhr, status, error) {
+                ShowSnackbarError("Oops, sorry! Error");
             }
-        },
-        error: function (xhr, status, error) {
-            ShowSnackbarError("Oops, sorry! Error");
-        }
-    });
+        });
+
+    } else {
+        ShowSnackbarMessage("Enter email address");
+    }
+
+ 
 
 }
 
