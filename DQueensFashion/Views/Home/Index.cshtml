@@ -24,7 +24,7 @@
                         sapiente, fugiat! Commodi sequi non animi ea dolor molestiae
                         iste.
                     </h6>
-                    <a class="btn home-shop-now" href="@Url.Action("Index","Product")">Shop now</a>
+                    <a class="btn home-shop-now" href="@Url.Action("Shop","Product")">Shop now</a>
                     <a class="btn home-background-learnmore" href="@Url.Action("Index","AboutUs")">About us</a>
                 </div>
                 <!--Grid column-->
@@ -92,19 +92,14 @@
                     {
                         string categoryId = "category" + category.Id.ToString();
                         string categoryTab = category.Name + "_tab";
-                        int productCount = 0;
+
                         <div class="tab-pane fade" id="@categoryId" role="tabpanel" aria-labelledby="@categoryTab">
                             <div class="row">
-                                @foreach (var product in Model.Products)
+                                @foreach (var product in Model.Products.Where(c => c.CategoryId == category.Id).Take(16))
                                 {
-                                    if (product.CategoryId == category.Id && productCount < 16)
-                                    {
-                                        <div class="col-lg-3 col-6">
-                                            @Html.Partial("~/Views/Product/_productCard.cshtml", product)
-                                        </div>
-
-                                        productCount++;
-                                    }
+                                    <div class="col-lg-3 col-6">
+                                        @Html.Partial("~/Views/Product/_productCard.cshtml", product)
+                                    </div>
                                 }
 
                             </div>
@@ -201,8 +196,3 @@
     </div>
     <a class="btn primary-custom-button" href="@Url.Action("Index","AboutUs")">Learn more</a>
 </div>
-
-
-<script>
-
-</script>
