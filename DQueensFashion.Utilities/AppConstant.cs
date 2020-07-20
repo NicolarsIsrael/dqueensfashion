@@ -30,25 +30,13 @@ namespace DQueensFashion.Utilities
                                       );
 
         public const string DefaultProductImage = "https://image.freepik.com/free-vector/farmer-peasant-illustration-man-with-beard-spade-farmland_33099-575.jpg";
-        public const int ProductIndexPageSize = 5;
+        public const int ProductIndexPageSize = 16;
         public const int ReviewsPageSize = 10;
         public const int HomeIndexProductCount = 16;
 
         public const string ProductImageBasePath = "~/Content/Images/Products/";
         public const string OutfitsName = "Outfits";
         public const int OutfitsId = 1;
-
-        //sort options
-        public const int BestDeals = 1;
-        public const int BestSelling = 2;
-        public const int AlphabeticallyAZ = 3;
-        public const int AlphabeticallyZA = 4;
-        public const int PriceLowToHigh = 5;
-        public const int PriceHighToLow = 6;
-        public const int MostRecent = 7;
-        public const int LeastRecent = 8;
-        public const int HighestRating = 9;
-        public const int LowestRating = 10;
 
         public static int MaxOutfitAddToCart = 50;
 
@@ -111,6 +99,23 @@ namespace DQueensFashion.Utilities
             { "Phasellus laoreet, lorem sodales rhoncus feugiat, massa dolor varius purus",
                 "ultrices nunc arcu porttitor augue. In nec velit ut arcu suscipit varius sit amet at massa. Vivamus lacinia, lacus eu congue interdum, turpis libero vehicula purus, at aliquam risus dui nec nisi. Aenean id viverra nunc. Vivamus et magna non enim blandit sollicitudin. Integer porta purus ut venenatis scelerisque. Duis aliquet ipsum at ligula tincidunt varius. Suspendisse in porta justo." }
         };
+
+        //sort options
+        public const int BestDeals = 1;
+        public const int BestSelling = 2;
+        public const int AlphabeticallyAZ = 3;
+        public const int AlphabeticallyZA = 4;
+        public const int PriceLowToHigh = 5;
+        public const int PriceHighToLow = 6;
+        public const int MostRecent = 7;
+        public const int LeastRecent = 8;
+        public const int HighestRating = 9;
+        public const int LowestRating = 10;
+
+        //public static readonly string[,] SortOptions = {
+        //     {"BestDeals","1","How"},
+        //     {"Np","2","Yes"}
+        //    };
 
         //orange #E97128
         //deep blue #212529

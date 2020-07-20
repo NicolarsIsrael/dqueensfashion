@@ -16,5 +16,6 @@ namespace DQueensFashion.Service.Contract
         ImageFile GetImageById(int imageId);
         void DeleteImage(ImageFile image);
         IEnumerable<ImageFile> GetAllImageFiles();
+        IEnumerable<ImageFile> GetAllImageMainFiles();
     }
 }

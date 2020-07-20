@@ -54,6 +54,12 @@ namespace DQueensFashion.Service.Implementation
             return uow.ImageRepo.GetAll().OrderBy(image => image.DateCreated);
         }
 
+        public IEnumerable<ImageFile> GetAllImageMainFiles()
+        {
+            return GetAllImageFiles().GroupBy(image => image.ProductId)
+                .Select(x => x.First()).ToList();
+        }
+
         public ImageFile GetImageById(int imageId)
         {
             return uow.ImageRepo.Get(imageId);

@@ -1,7 +1,7 @@
 ﻿@model DQueensFashion.Models.ViewProductsViewModel
 @using DQueensFashion.Utilities
 
-<div class="product-box">
+<div class="product-box  my-3">
     <div onclick="NavigateToProductDetails('@Model.GeneratedUrl')">
         @{
             if (Model.IsOutOfStock)
@@ -22,7 +22,17 @@
             <div class="product-discount-label">-@Model.Discount%</div>
         }
         <div class="img-box">
-            <img src="@Url.Content(Model.MainImage)" alt="@Model.Name image houseofdqueens">
+            @{
+                if (Model.LazyLoad)
+                {
+                    <img data-src="@Url.Content(Model.MainImage)" alt="@Model.Name" class="lazy" />
+                }
+                else
+                {
+                    <img src="@Url.Content(Model.MainImage)" alt="@Model.Name image houseofdqueens">
+                }
+            }
+
         </div>
     </div>
     <div class="product-details">

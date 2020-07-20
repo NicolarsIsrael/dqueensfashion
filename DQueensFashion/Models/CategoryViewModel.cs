@@ -37,6 +37,6 @@ namespace DQueensFashion.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Selected { get; set; }
+        public bool Selected { get; set; }
     }
 }

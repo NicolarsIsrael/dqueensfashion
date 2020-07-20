@@ -123,6 +123,7 @@ namespace DQueensFashion.Models
         public int NumberOfOrders { get; set; }
         public bool IsNew { get; set; }
         public bool IsOutOfStock { get; set; }
+        public bool LazyLoad { get; set; }
         public RatingViewModel Rating { get; set; }
         public IEnumerable<ViewReviewViewModel> Reviews { get; set; }
 

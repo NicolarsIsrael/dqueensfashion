@@ -411,11 +411,11 @@ namespace DQueensFashion.Controllers
                 OutfitCategory = product.CategoryId == AppConstant.OutfitsId ? true : false,
             };
 
-            foreach (var category in productModel.Categories)
-            {
-                if (category.Id == product.CategoryId)
-                    category.Selected = "selected";
-            }
+            //foreach (var category in productModel.Categories)
+            //{
+            //    if (category.Id == product.CategoryId)
+            //        category.Selected = "selected";
+            //}
 
             return View(productModel);
         }
@@ -443,11 +443,11 @@ namespace DQueensFashion.Controllers
 
                 productModel.Tags = productModel.Tags == null ? new List<string>() : productModel.Tags;
 
-                foreach(var c in productModel.Categories)
-                {
-                    if (c.Id == productModel.CategoryId)
-                        c.Selected = "selected";
-                }
+                //foreach(var c in productModel.Categories)
+                //{
+                //    if (c.Id == productModel.CategoryId)
+                //        c.Selected = "selected";
+                //}
 
                 return View(productModel);
             }

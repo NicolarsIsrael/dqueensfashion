@@ -293,6 +293,9 @@ footer {
         color: white;
     }
 
+.lazy {
+    background-color: #F1F1FA;
+}
 
 /*screens less than md*/
 @media screen and (min-width:991px) {

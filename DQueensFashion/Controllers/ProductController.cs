@@ -37,9 +37,9 @@ namespace DQueensFashion.Controllers
             generalService = new GeneralService();
         }
         // GET: Product
-        public ActionResult Index(int categoryId=0)
+        public ActionResult Index()
         {
-            return RedirectToAction(nameof(Shop), new { categoryId = categoryId });
+            return RedirectToAction(nameof(Shop));
         }
 
         [HttpPost]
@@ -57,9 +57,9 @@ namespace DQueensFashion.Controllers
             }
         }
 
-        public ActionResult Shop(int categoryId = 0,int sort=0,string query="")
+        public ActionResult Shop(string query = "",int categoryId = 0,int sort=0,int pageNumber=1)
         {
-            var allImages = _imageService.GetAllImageFiles();
+            var allImages = _imageService.GetAllImageMainFiles();
             IEnumerable<Product> _products = _productService.GetAllProducts().ToList();
 
             if (!string.IsNullOrEmpty(query))
@@ -80,11 +80,9 @@ namespace DQueensFashion.Controllers
                     Id = p.Id,
                     Name = p.Name,
                     GeneratedUrl = generalService.GenerateItemNameAsParam(p.Id, p.Name),
-                    Description = p.Description.Length > 35 ? p.Description.Substring(0, 35) + "..." : p.Description,
                     MainImage = allImages.Where(image => image.ProductId == p.Id).Count() < 1 ?
                         AppConstant.DefaultProductImage :
                         allImages.Where(image => image.ProductId == p.Id).FirstOrDefault().ImagePath,
-                    Quantity = p.Quantity,
                     Price = p.Price,
                     Discount = p.Discount,
                     SubTotal = p.SubTotal,
@@ -101,25 +99,74 @@ namespace DQueensFashion.Controllers
                     NumberOfOrders = _lineItemService.NumberOfTimesPurchased(p.Id),
                     IsNew = _productService.CheckIfProductIsNew(p.DateCreatedUtc),
                     IsOutOfStock = p.Quantity < 1 ? true : false,
+                    LazyLoad = true,
                 }).OrderByDescending(p=>p.DateCreated).ToList();
 
+            //sort
+            switch (sort)
+            {
+                //sort by best deals
+                case AppConstant.BestDeals:
+                    products = products.OrderByDescending(p => p.Discount);
+                    break;
 
-            if (sort == AppConstant.BestSelling)
-            {
-                products = products.OrderByDescending(p => p.NumberOfOrders);
-                ViewBag.BestSellingSelected = true;
-            }
-            else if (sort == AppConstant.BestDeals)
-            {
-                products = products.OrderByDescending(p => p.Discount);
-                ViewBag.BestDealsSelected = true;
+                //sort by best selling
+                case AppConstant.BestSelling:
+                    products = products.OrderByDescending(p => p.NumberOfOrders);
+                    break;
+
+                //alphabetically a-z
+                case AppConstant.AlphabeticallyAZ:
+                    products = products.OrderBy(p => p.Name);
+                    break;
+
+                //alphabetically z-a
+                case AppConstant.AlphabeticallyZA:
+                    products = products.OrderByDescending(p => p.Name);
+                    break;
+
+                //price low to high
+                case AppConstant.PriceLowToHigh:
+                    products = products.OrderBy(p => p.SubTotal);
+                    break;
+
+                //price high to low
+                case AppConstant.PriceHighToLow:
+                    products = products.OrderByDescending(p => p.SubTotal);
+                    break;
+
+                //date new to old
+                case AppConstant.MostRecent:
+                    products = products.OrderByDescending(p => p.DateCreated);
+                    break;
+
+                //date old to new
+                case AppConstant.LeastRecent:
+                    products = products.OrderBy(p => p.DateCreated);
+                    break;
+
+                case AppConstant.HighestRating:
+                    products = products.OrderByDescending(p => p.Rating.AverageRating);
+                    break;
+
+                case AppConstant.LowestRating:
+                    products = products.OrderBy(p => p.Rating.AverageRating);
+                    break;
+
+                default:
+                    products = products.OrderByDescending(p => p.DateCreated);
+                    break;
             }
 
             //pagination
+            if (pageNumber < 1)
+                pageNumber = 1;
             ViewBag.NumberOfPages = Convert.ToInt32(Math.Ceiling((double)products.Count() / AppConstant.ProductIndexPageSize));
-            ViewBag.CurrentPage = 1;
-            products = products.Skip(AppConstant.ProductIndexPageSize * 0).Take(AppConstant.ProductIndexPageSize).ToList();
+            ViewBag.CurrentPage = pageNumber;
+            products = products.Skip(AppConstant.ProductIndexPageSize * (pageNumber - 1)).Take(AppConstant.ProductIndexPageSize).ToList();
 
+            //dont lazy load top images
+            products.Take(8).ToList().ForEach(p => p.LazyLoad = false);
 
             ProductIndexViewModel productIndex = new ProductIndexViewModel()
             {
@@ -129,249 +176,12 @@ namespace DQueensFashion.Controllers
                     {
                         Id = c.Id,
                         Name = c.Name,
+                        Selected = c.Id == categoryId ? true : false,
                     }).OrderBy(c => c.Name).ToList(),
+                SortValue = sort,
             };
-
-            foreach (var category in productIndex.Categories)
-            {
-                if (category.Id == categoryId)
-                    category.Selected = "selected";
-            }
-
-
+            
             return View(productIndex);
-        }
-
-        public ActionResult SearchProduct(string query, int sort, int categoryId=0)
-        {
-            try
-            {
-                var allImages = _imageService.GetAllImageFiles();
-
-                IEnumerable<Product> _products = _productService.GetAllProducts().ToList();
-                if (!string.IsNullOrEmpty(query))
-                    _products = _products.Where(p => p.Name.ToLower().Contains(query.ToLower())
-                    || p.Tags.ToLower().Contains(query.ToLower())
-                    || p.Tags.ToLower().Contains(query.ToLower())
-                    || p.Description.ToLower().Contains(query.ToLower())).ToList();
-
-                if (categoryId > 0)
-                    _products = _products.Where(p => p.Category.Id == categoryId);
-
-                IEnumerable<ViewProductsViewModel> products = _products
-                    .Select(p => new ViewProductsViewModel()
-                    {
-                        Id = p.Id,
-                        Name = p.Name,
-                        GeneratedUrl = generalService.GenerateItemNameAsParam(p.Id, p.Name),
-                        Description = p.Description.Length > 35 ? p.Description.Substring(0, 35) + "..." : p.Description,
-                        MainImage = allImages.Where(image => image.ProductId == p.Id).Count() < 1 ?
-                            AppConstant.DefaultProductImage :
-                            allImages.Where(image => image.ProductId == p.Id).FirstOrDefault().ImagePath,
-                        Category = p.Category.Name,
-                        CategoryId = p.CategoryId,
-                        Quantity = p.Quantity,
-                        Price = p.Price,
-                        Discount = p.Discount,
-                        SubTotal = p.SubTotal,
-                        DateCreated = p.DateCreatedUtc,
-                        Rating = new RatingViewModel()
-                        {
-                            AverageRating = p.AverageRating.ToString("0.0"),
-                            TotalReviewCount = _reviewService.GetReviewCountForProduct(p.Id).ToString(),
-                            IsDouble = (p.AverageRating % 1) == 0 ? false : true,
-                            FloorAverageRating = (int)Math.Floor(p.AverageRating)
-                        },
-                        NumberOfOrders = _lineItemService.NumberOfTimesPurchased(p.Id),
-                        IsNew = _productService.CheckIfProductIsNew(p.DateCreatedUtc),
-                        IsOutOfStock = p.Quantity < 1 ? true : false,
-                    }).ToList();
-
-                //sort
-                switch (sort)
-                {
-
-                    //sort by best deals
-                    case AppConstant.BestDeals:
-                        products = products.OrderByDescending(p => p.Discount);
-                        break;
-
-                    //sort by best selling
-                    case AppConstant.BestSelling:
-                        products = products.OrderByDescending(p => p.NumberOfOrders);
-                        break;
-
-                    //alphabetically a-z
-                    case AppConstant.AlphabeticallyAZ:
-                        products = products.OrderBy(p => p.Name);
-                        break;
-
-                    //alphabetically z-a
-                    case AppConstant.AlphabeticallyZA:
-                        products = products.OrderByDescending(p => p.Name);
-                        break;
-
-                    //price low to high
-                    case AppConstant.PriceLowToHigh:
-                        products = products.OrderBy(p => p.SubTotal);
-                        break;
-
-                    //price high to low
-                    case AppConstant.PriceHighToLow:
-                        products = products.OrderByDescending(p => p.SubTotal);
-                        break;
-
-                    //date new to old
-                    case AppConstant.MostRecent:
-                        products = products.OrderByDescending(p => p.DateCreated);
-                        break;
-
-                    //date old to new
-                    case AppConstant.LeastRecent:
-                        products = products.OrderBy(p => p.DateCreated);
-                        break;
-
-                    case AppConstant.HighestRating:
-                        products = products.OrderByDescending(p => p.Rating.AverageRating);
-                        break;
-
-                    case AppConstant.LowestRating:
-                        products = products.OrderBy(p => p.Rating.AverageRating);
-                        break;
-
-                    default:
-                        products = products.OrderByDescending(p => p.DateCreated);
-                        break;
-                }
-
-                //pagination
-                ViewBag.NumberOfPages = Convert.ToInt32(Math.Ceiling((double)products.Count() / AppConstant.ProductIndexPageSize));
-                ViewBag.CurrentPage = 1;
-                products = products.Skip(AppConstant.ProductIndexPageSize * 0).Take(AppConstant.ProductIndexPageSize).ToList();
-
-                return PartialView("_productsList", products);
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-        }
-
-        public ActionResult ProductPagination(string query, int sort, int categoryId = 0, int pageNumber = 1)
-        {
-            try
-            {
-                var allImages = _imageService.GetAllImageFiles();
-
-                IEnumerable<Product> _products = _productService.GetAllProducts().ToList();
-                if (!string.IsNullOrEmpty(query))
-                    _products = _products.Where(p => p.Name.ToLower().Contains(query.ToLower())
-                    || p.Tags.ToLower().Contains(query.ToLower())
-                    || p.Tags.ToLower().Contains(query.ToLower())
-                    || p.Description.ToLower().Contains(query.ToLower())).ToList();
-
-                if (categoryId > 0)
-                    _products = _products.Where(p => p.Category.Id == categoryId);
-
-                IEnumerable<ViewProductsViewModel> products = _products
-                    .Select(p => new ViewProductsViewModel()
-                    {
-                        Id = p.Id,
-                        Name = p.Name,
-                        GeneratedUrl = generalService.GenerateItemNameAsParam(p.Id, p.Name),
-                        Description = p.Description.Length > 35 ? p.Description.Substring(0, 35) + "..." : p.Description,
-                        MainImage = allImages.Where(image => image.ProductId == p.Id).Count() < 1 ?
-                            AppConstant.DefaultProductImage :
-                            allImages.Where(image => image.ProductId == p.Id).FirstOrDefault().ImagePath,
-                        Category = p.Category.Name,
-                        CategoryId = p.CategoryId,
-                        Quantity = p.Quantity,
-                        Price = p.Price,
-                        Discount = p.Discount,
-                        SubTotal = p.SubTotal,
-                        DateCreated = p.DateCreated,
-                        Rating = new RatingViewModel()
-                        {
-                            AverageRating = p.AverageRating.ToString("0.0"),
-                            TotalReviewCount = _reviewService.GetReviewCountForProduct(p.Id).ToString(),
-                            IsDouble = (p.AverageRating % 1) == 0 ? false : true,
-                            FloorAverageRating = (int)Math.Floor(p.AverageRating)
-                        },
-                        NumberOfOrders = _lineItemService.NumberOfTimesPurchased(p.Id),
-                        IsNew = _productService.CheckIfProductIsNew(p.DateCreatedUtc),
-                        IsOutOfStock = p.Quantity < 1 ? true : false,
-                    }).ToList();
-
-                //sort
-                switch (sort)
-                {
-
-                    //sort by best deals
-                    case AppConstant.BestDeals:
-                        products = products.OrderByDescending(p => p.Discount);
-                        break;
-
-                    //sort by best selling
-                    case AppConstant.BestSelling:
-                        products = products.OrderByDescending(p => p.NumberOfOrders);
-                        break;
-
-                    //alphabetically a-z
-                    case AppConstant.AlphabeticallyAZ:
-                        products = products.OrderBy(p => p.Name);
-                        break;
-
-                    //alphabetically z-a
-                    case AppConstant.AlphabeticallyZA:
-                        products = products.OrderByDescending(p => p.Name);
-                        break;
-
-                    //price low to high
-                    case AppConstant.PriceLowToHigh:
-                        products = products.OrderBy(p => p.SubTotal);
-                        break;
-
-                    //price high to low
-                    case AppConstant.PriceHighToLow:
-                        products = products.OrderByDescending(p => p.SubTotal);
-                        break;
-
-                    //date new to old
-                    case AppConstant.MostRecent:
-                        products = products.OrderByDescending(p => p.DateCreated);
-                        break;
-
-                    //date old to new
-                    case AppConstant.LeastRecent:
-                        products = products.OrderBy(p => p.DateCreated);
-                        break;
-
-                    case AppConstant.HighestRating:
-                        products = products.OrderByDescending(p => p.Rating.AverageRating);
-                        break;
-
-                    case AppConstant.LowestRating:
-                        products = products.OrderBy(p => p.Rating.AverageRating);
-                        break;
-
-                    default:
-                        products = products.OrderByDescending(p => p.DateCreated);
-                        break;
-                }
-
-                //pagination
-                if (pageNumber < 1)
-                    pageNumber = 1;
-                ViewBag.NumberOfPages = Convert.ToInt32(Math.Ceiling((double)products.Count() / AppConstant.ProductIndexPageSize));
-                ViewBag.CurrentPage = pageNumber;
-                products = products.Skip(AppConstant.ProductIndexPageSize * (pageNumber - 1)).Take(AppConstant.ProductIndexPageSize).ToList();
-
-                return PartialView("_productsList", products);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
         }
 
         public ActionResult ProductDetails(int id=0)

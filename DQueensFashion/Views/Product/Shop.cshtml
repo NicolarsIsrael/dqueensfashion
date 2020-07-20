@@ -12,56 +12,137 @@
     <div class="row">
         <div class="col-12">
             <div class="container">
-                <div class="row shop-filter-container">
 
+                @using (Html.BeginForm())
+                {
+
+                }
+                <div class="row shop-filter-container my-lg-3">
                     <div class="col-md-4 p-1">
-                        <input type="text" class="form-control-sm shop-filter-input" value="@ViewBag.Query" id="query"
+                        <input type="text" class="form-control-sm shop-filter-input" value="@ViewBag.Query" name="query" id="query"
                                placeholder="search by name, category, tags" />
                     </div>
                     <div class="col-md-3 col-6 p-1">
-                        <select class="form-control-sm col-12 shop-filter-input" id="categoryId">
+                        <select class="form-control-sm col-12 shop-filter-input" name="categoryId" id="categoryId">
                             <option value="0">Category</option>
                             <option value="0">All</option>
                             @foreach (var category in Model.Categories)
                             {
-                                <option value="@category.Id" selected="@category.Selected">@category.Name</option>
+                                if (category.Selected)
+                                {
+                                    <option value="@category.Id" selected>@category.Name</option>
+                                }
+                                else
+                                {
+                                    <option value="@category.Id">@category.Name</option>
+                                }
+
                             }
                         </select>
                     </div>
                     <div class="col-md-3 col-6 p-1">
-                        <select class="form-control-sm col-12 shop-filter-input" id="sortString">
+                        <select class="form-control-sm col-12 shop-filter-input" name="sort" id="sortString">
                             <option value="0">Sort by</option>
+                            @{
+                                if (Model.SortValue == AppConstant.BestDeals)
+                                {
+                                    <option value="@AppConstant.BestDeals" selected>Best deals</option>
+                                }
+                                else
+                                {
+                                    <option value="@AppConstant.BestDeals">Best deals</option>
+                                }
 
-                            @if (ViewBag.BestDealsSelected != null)
-                            {
-                                <option value="@AppConstant.BestDeals" selected>Best deals</option>
-                            }
-                            else
-                            {
-                                <option value="@AppConstant.BestDeals">Best deals</option>
-                            }
-                            @if (ViewBag.BestSellingSelected != null)
-                            {
-                                <option value="@AppConstant.BestSelling" selected>Best selling</option>
-                            }
-                            else
-                            {
-                                <option value="@AppConstant.BestSelling">Best selling</option>
-                            }
+                                if (ViewBag.BestSellingSelected != null)
+                                {
+                                    <option value="@AppConstant.BestSelling" selected>Best selling</option>
+                                }
+                                else
+                                {
+                                    <option value="@AppConstant.BestSelling">Best selling</option>
+                                }
 
-                            <option value="@AppConstant.AlphabeticallyAZ">Alphabetically, A - Z</option>
-                            <option value="@AppConstant.AlphabeticallyZA">Alphabetically, Z - A</option>
-                            <option value="@AppConstant.PriceLowToHigh">Price, low to high</option>
-                            <option value="@AppConstant.PriceHighToLow">Price, high to low</option>
-                            <option value="@AppConstant.MostRecent">Most recent</option>
-                            <option value="@AppConstant.LeastRecent">Least recent</option>
-                            <option value="@AppConstant.HighestRating">Highest rating</option>
-                            <option value="@AppConstant.LowestRating">Lowest rating</option>
+                                if (Model.SortValue == AppConstant.AlphabeticallyAZ)
+                                {
+                                    <option value="@AppConstant.AlphabeticallyAZ" selected>Alphabetically, A - Z</option>
+                                }
+                                else
+                                {
+                                    <option value="@AppConstant.AlphabeticallyAZ">Alphabetically, A - Z</option>
+                                }
+
+                                if (Model.SortValue == AppConstant.AlphabeticallyZA)
+                                {
+                                    <option value="@AppConstant.AlphabeticallyZA" selected>Alphabetically, Z - A</option>
+                                }
+                                else
+                                {
+                                    <option value="@AppConstant.AlphabeticallyZA">Alphabetically, Z - A</option>
+                                }
+
+                                if (Model.SortValue == AppConstant.PriceLowToHigh)
+                                {
+                                    <option value="@AppConstant.PriceLowToHigh" selected>Price, low to high</option>
+                                }
+                                else
+                                {
+                                    <option value="@AppConstant.PriceLowToHigh">Price, low to high</option>
+                                }
+
+                                if (Model.SortValue == AppConstant.PriceHighToLow)
+                                {
+                                    <option value="@AppConstant.PriceHighToLow" selected>Price, high to low</option>
+                                }
+                                else
+                                {
+                                    <option value="@AppConstant.PriceHighToLow">Price, high to low</option>
+                                }
+
+                                if (Model.SortValue == AppConstant.MostRecent)
+                                {
+                                    <option value="@AppConstant.MostRecent" selected>Most recent</option>
+                                }
+                                else
+                                {
+                                    <option value="@AppConstant.MostRecent">Most recent</option>
+                                }
+
+                                if (Model.SortValue == AppConstant.LeastRecent)
+                                {
+                                    <option value="@AppConstant.LeastRecent" selected>Least recent</option>
+                                }
+                                else
+                                {
+                                    <option value="@AppConstant.LeastRecent">Least recent</option>
+                                }
+
+                                if (Model.SortValue == AppConstant.HighestRating)
+                                {
+                                    <option value="@AppConstant.HighestRating" selected>Highest rating</option>
+                                }
+                                else
+                                {
+                                    <option value="@AppConstant.HighestRating">Highest rating</option>
+                                }
+
+                                if (Model.SortValue == AppConstant.LowestRating)
+                                {
+                                    <option value="@AppConstant.LowestRating" selected>Lowest rating</option>
+                                }
+                                else
+                                {
+                                    <option value="@AppConstant.LowestRating">Lowest rating</option>
+                                }
+                            }
                         </select>
                     </div>
+                    <input type="hidden" name="pageNumber" value="1" />
                     <div class="col-md-2 p-1">
-                        <button class="btn btn-sm btn-block shop-filter-btn" onclick="SearchProduct()" id="btnFilter">FILTER <img src="~/Content/Images/filter.svg" alt="filter_products _image houseofdqueens"/></button>
+                        <button type="button" class="btn btn-sm btn-block shop-filter-btn" id="btnFilter" onclick="ProductSearch()">
+                            FILTER <img src="~/Content/Images/filter.svg" alt="filter_products _image houseofdqueens" />
+                        </button>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -82,40 +163,18 @@
     var _sortString = document.getElementById("sortString");
     var _categoryId = document.getElementById("categoryId");
 
-    function SearchProduct() {
+    function ProductPagination(pageNumber) {
         document.getElementById("loading-effect").style.display = "block";
-        
-        $.ajax({
-            url: '/product/searchproduct',
-            dataType: "html",
-            data: { query: _query.value, sort: _sortString.value, categoryId: _categoryId.value },
-            success: function (result) {
-                $("#productsList").html(result);
-            },
-            error: function (xhr, status, error) {
-                ShowSnackbarError("Error");
-                document.getElementById("loading-effect").style.display = "none";
-            }
-        });
-
+        window.location.href = "/Product/Shop?query=" + _query.value
+            + "&categoryId=" + _categoryId.value
+            + "&sort=" + _sortString.value
+            + "&pageNumber=" + pageNumber;
     }
 
-    function ProductPagination(pageNumber) {
-         document.getElementById("loading-effect").style.display = "block";
-        
-        $.ajax({
-            url: '/product/ProductPagination',
-            dataType: "html",
-            data: { query: _query.value, sort: _sortString.value, categoryId: _categoryId.value, pageNumber: pageNumber },
-            success: function (result) {
-                $("#productsList").html(result);
-                $(window).scrollTop(0);
-            },
-            error: function (xhr, status, error) {
-                ShowSnackbarError("Error");
-                document.getElementById("loading-effect").style.display = "none";
-            }
-        });
+    function ProductSearch() {
+        window.location.href = "/Product/Shop?query=" + _query.value
+            + "&categoryId=" + _categoryId.value
+            + "&sort=" + _sortString.value;
     }
 
 </script>

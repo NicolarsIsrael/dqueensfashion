@@ -19,6 +19,7 @@ namespace DQueensFashion.Models
     {
         public IEnumerable<ViewProductsViewModel> Products { get; set; }
         public IEnumerable<CategoryNameAndId> Categories { get; set; }
+        public int SortValue { get; set; }
         public int NumberOfPages { get; set; }
         public int CurrentPageNumber { get; set; }
     }
