@@ -48,7 +48,7 @@ namespace DQueensFashion.Controllers
         public ActionResult Index()
         {
             GeneralService generalService = new GeneralService();
-            var allImages = _imageService.GetAllImageFiles().ToList();
+            var allImages = _imageService.GetAllImageMainFiles().ToList();
 
             IEnumerable<ViewProductsViewModel> products = _productService.GetAllProducts()
                 .Select(p => new ViewProductsViewModel()
@@ -59,7 +59,6 @@ namespace DQueensFashion.Controllers
                     MainImage = allImages.Where(image => image.ProductId == p.Id).Count() < 1 ?
                         AppConstant.DefaultProductImage :
                         allImages.Where(image => image.ProductId == p.Id).FirstOrDefault().ImagePath,
-                    Quantity = p.Quantity,
                     Price = p.Price,
                     Discount = p.Discount,
                     SubTotal = p.SubTotal,
@@ -76,8 +75,12 @@ namespace DQueensFashion.Controllers
                     DateCreated = p.DateCreatedUtc,
                     IsNew = _productService.CheckIfProductIsNew(p.DateCreatedUtc),
                     IsOutOfStock = p.Quantity < 1 ? true : false,
+                    LazyLoad = true,
 
                 }).OrderByDescending(p => p.DateCreated).ToList();
+
+            //dont lazy load top images
+            products.Take(4).ToList().ForEach(p => p.LazyLoad = false);
 
             IEnumerable<CategoryNameAndId> categories = _categoryService.GetAllCategories()
                 .Select(category => new CategoryNameAndId()
@@ -90,10 +93,8 @@ namespace DQueensFashion.Controllers
             {
                 Products = products,
                 Categories = categories,
-                BestSellingProducts = products.OrderByDescending(p => p.NumberOfOrders)
-                                    .Where(p => p.Quantity > 0).Take(4),
-                BestDealsProducts = products.OrderByDescending(p=>p.Discount)
-                                    .Where(p=>p.Quantity>0).Take(8),
+                BestSellingProducts = products.OrderByDescending(p => p.NumberOfOrders).Take(4).ToList(),
+                BestDealsProducts = products.OrderByDescending(p=>p.Discount).Take(8).ToList(),
             };
 
             return View(homeIndex);
