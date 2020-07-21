@@ -8,9 +8,9 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="row">
+    <div class="row mt-lg-4 mt-2">
         <div class="col-md-6">
-            <div class="card">
+            <div class="card box-shadow">
                 <div class="card-body">
 
                     <div class="form-horizontal">
@@ -48,7 +48,10 @@
                 <input type="button" class="btn primary-table-button btn-sm m-0 mr-2" value="Check all" onclick="selectAllEmail()" />
                 <input type="button" class="btn secondary-table-button btn-sm m-0" value="Uncheck all" onclick="UnSelectAllEmail()" />
             </div>
-            <div class="card">
+            <div class="card  box-shadow">
+                <div class="card-header">
+                    Send to
+                </div>
                 <div class="card-body">
                     @for (int i = 0; i < Model.EmailList.Count; i++)
                     {
