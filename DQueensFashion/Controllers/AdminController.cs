@@ -1334,7 +1334,7 @@ namespace DQueensFashion.Controllers
 
             MailService mailService = new MailService();
             var credentials = AppConstant.HDQ_INFO_ACCOUNT_MAIL_CREDENTIALS;
-            await mailService.SendMailToMultiple(AppConstant.HDQ_ADMIN_MAIL_ACCOUNT, newsLetterModel.Title, newsLetterModel.Message,credentials,emails,
+            await mailService.SendMailToMultiple(AppConstant.HDQ_MESSAGE_MAIL_ACCOUNT, newsLetterModel.Title, newsLetterModel.Message,credentials,emails,
                 AppConstant.HDQ_INFO_MAIL_ACCOUNT,"HDQ Newsletter");
 
             return RedirectToAction(nameof(SubscribedEmails));

@@ -34,6 +34,9 @@
         color: white;
     }
 
+.box-shadow {
+    box-shadow: 2px 2px 12px rgba(47, 47, 47, 0.40);
+}
 
 
 /*Dashboard*/
@@ -185,7 +188,6 @@
     background-color: #df7204;
     cursor: pointer;
     border-radius: 0;
-    margin-bottom:5px;
 }
 
     .primary-table-button:hover {
@@ -266,6 +268,10 @@ footer {
     word-wrap: break-word;
 }
 
+.footer-detail>a{
+    color:white;padding-right:20px;
+}
+
 .footer-link {
     color: white !important;
     font-weight: 500;
@@ -297,14 +303,28 @@ footer {
     background-color: #F1F1FA;
 }
 
-/*screens less than md*/
+/*screens greater than md*/
 @media screen and (min-width:991px) {
     .subscribe-form {
         width: 50%;
         margin-right: 10px;
     }
+
 }
 
+
+/*screens lesser than md*/
+@media screen and (max-width:990px) {
+
+  .table-edit-btn {
+        padding-right: 14px;
+        padding-left: 14px;
+    }
+
+    .secondary-table-button {
+        margin-top: 5px;
+    }
+}
 
 /*smart phones*/
 @media screen and (max-width: 420px) and (min-width: 0px) {
@@ -312,5 +332,6 @@ footer {
     .footer-background {
         padding: 50px 10px;
     }
+
 }
 

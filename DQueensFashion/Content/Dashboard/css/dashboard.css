@@ -17275,7 +17275,8 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .content-wrapper,
 }
 
     .content-wrapper > .content {
-        padding: 0 .5rem
+        padding: 0 .5rem;
+        background-color:white;
     }
 
 .main-sidebar, .main-sidebar::before {

@@ -46,10 +46,10 @@
             </td>
             <td>
                 <a href="@Url.Action("EditProduct",new {id=item.Id})" class="primary-table-button btn btn-xs">
-                    <img src="~/Content/Images/edit.svg" alt="edit_product_btn_image_houseofdqueens" />
+                    <i class="fas fa-pencil-alt"></i>
                 </a>
-                <a href="@Url.Action("ProductDetails",new {id = item.GeneratedUrl})" class="secondary-table-button btn btn-xs">
-                    <img src="~/Content/Images/info.svg" alt="product_details_image_houseofdqueens"/>
+                <a href="@Url.Action("ProductDetails",new {id = item.GeneratedUrl})" class="secondary-table-button table-edit-btn btn btn-xs">
+                    <i class="fas fa-info"></i>
                 </a>
 
             </td>
