@@ -182,6 +182,26 @@
     margin-bottom: 20px
 }
 
+.dashb-navbar-item:hover {
+    background-color: #4dccff;
+    color:white;
+}
+
+.dashboard-side-navitem:hover {
+    color: white;
+    opacity: 1 !important;
+}
+
+.dashboard-sidenav-link {
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.dashboard-side-navitem {
+    color: white !important;
+    opacity: 0.8 !important;
+}
+
 /*Admin/category*/
 .category-table-add-category-btn {
     text-align: right;
@@ -396,6 +416,9 @@ admin-subscribed-email {
     border-radius: 0;
 }
 
+.sidebar-color {
+    background-color: #384859;
+}
 /*smart phones*/
 @media screen and (max-width: 420px) and (min-width: 0px) {
     /*Admin/Category*/

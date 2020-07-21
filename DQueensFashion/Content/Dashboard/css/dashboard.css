@@ -17606,8 +17606,6 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .content-wrapper,
     height: calc(100% - 4rem);
     overflow-y: auto;
     padding-bottom: 0;
-    padding-left: .5rem;
-    padding-right: .5rem;
     padding-top: 0
 }
 
