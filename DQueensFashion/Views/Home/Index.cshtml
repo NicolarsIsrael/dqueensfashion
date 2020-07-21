@@ -88,14 +88,14 @@
                     <button class="btn primary-table-button" onclick="ShopByCategory(0)">View more</button>
                 </div>
                 @{
-                    foreach (var category in Model.Categories)
+                    foreach (var category in Model.CategorizedProducts)
                     {
-                        string categoryId = "category" + category.Id.ToString();
-                        string categoryTab = category.Name + "_tab";
+                        string categoryId = "category" + category.CategoryId.ToString();
+                        string categoryTab = category.CategoryName + "_tab";
 
                         <div class="tab-pane fade" id="@categoryId" role="tabpanel" aria-labelledby="@categoryTab">
                             <div class="row">
-                                @foreach (var product in Model.Products.Where(c => c.CategoryId == category.Id).Take(16))
+                                @foreach (var product in category.Products)
                                 {
                                     <div class="col-lg-3 col-6">
                                         @Html.Partial("~/Views/Product/_productCard.cshtml", product)
@@ -103,7 +103,7 @@
                                 }
 
                             </div>
-                            <button class="btn primary-table-button" onclick="ShopByCategory(@category.Id)">View more</button>
+                            <button class="btn primary-table-button" onclick="ShopByCategory(@category.CategoryId)">View more</button>
                         </div>
                     }
                 }

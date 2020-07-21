@@ -13,35 +13,35 @@ namespace DQueensFashion.Router
         {
         }
 
-        public override RouteData GetRouteData(HttpContextBase httpContext)
-        {
-            var routeData = base.GetRouteData(httpContext);
+        //public override RouteData GetRouteData(HttpContextBase httpContext)
+        //{
+        //    var routeData = base.GetRouteData(httpContext);
 
-            if (routeData != null)
-            {
-                if (routeData.Values.ContainsKey("id"))
-                    routeData.Values["id"] = GetIdValue(routeData.Values["id"]);
-            }
+        //    if (routeData != null)
+        //    {
+        //        if (routeData.Values.ContainsKey("id"))
+        //            routeData.Values["id"] = GetIdValue(routeData.Values["id"]);
+        //    }
 
-            return routeData;
-        }
+        //    return routeData;
+        //}
 
-        private object GetIdValue(object id)
-        {
-            if (id != null)
-            {
-                string idValue = id.ToString();
+        //private object GetIdValue(object id)
+        //{
+        //    if (id != null)
+        //    {
+        //        string idValue = id.ToString();
 
-                var regex = new Regex(@"^(?<id>\d+).*$");
-                var match = regex.Match(idValue);
+        //        var regex = new Regex(@"^(?<id>\d+).*$");
+        //        var match = regex.Match(idValue);
 
-                if (match.Success)
-                {
-                    return match.Groups["id"].Value;
-                }
-            }
+        //        if (match.Success)
+        //        {
+        //            return match.Groups["id"].Value;
+        //        }
+        //    }
 
-            return id;
-        }
+        //    return id;
+        //}
     }
 }

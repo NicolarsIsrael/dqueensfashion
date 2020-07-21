@@ -11,7 +11,7 @@ namespace DQueensFashion.Utilities
     {
         public string GenerateItemNameAsParam(int Id, string Name)
         {
-            string phrase = string.Format("{0}-{1}", Id, Name);// Creates in the specific pattern  
+            string phrase = string.Format("{0}-{1}", Name, Id);// Creates in the specific pattern  
             string str = GetByteArray(phrase).ToLower();
             str = Regex.Replace(str, @"[^a-z0-9\s-]", "");// Remove invalid characters for param  
             str = Regex.Replace(str, @"\s+", "-").Trim(); // convert multiple spaces into one hyphens   

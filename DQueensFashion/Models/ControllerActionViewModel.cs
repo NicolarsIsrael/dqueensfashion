@@ -11,8 +11,17 @@ namespace DQueensFashion.Models
     {
         public IEnumerable<ViewProductsViewModel> Products { get; set; }
         public IEnumerable<CategoryNameAndId> Categories { get; set; }
+        public IEnumerable<ProductsByCategory> CategorizedProducts { get; set; }
         public IEnumerable<ViewProductsViewModel> BestSellingProducts { get; set; }
         public IEnumerable<ViewProductsViewModel> BestDealsProducts { get; set; }
+
+    }
+
+    public class ProductsByCategory
+    {
+        public int CategoryId { get; set; }
+        public string CategoryName { get; set; }
+        public IEnumerable<ViewProductsViewModel> Products { get; set; }
     }
 
     public class ProductIndexViewModel

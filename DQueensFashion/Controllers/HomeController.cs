@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 
@@ -42,6 +43,22 @@ namespace DQueensFashion.Controllers
             //}
 
             //ViewBag.Count = _requestService.GetRequestCount();
+            Random rand = new Random();
+            string randomString = "Pellentesque a nisl sit amet augue vestibulum pretium. Class aptent taciti sociosqu ad litora torquent per conubia nostra per inceptos himenaeos. Nullam quis pellentesque erat. Donec semper ac arcu sit amet ornare. Vestibulum et dolor consequat lectus elementum pulvinar sit amet non nunc. Cras rutrum augue leo, eget convallis erat sodales et. Maecenas dignissim metus felis, ut euismod tellus consequat nec. Integer quis dapibus justo. Vivamus quis dolor eu ipsum sodales posuere. Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin nec libero orci. Nulla facilisi. Aliquam et eleifend ex. Vestibulum aliquam pretium gravida.Etiam eget dolor non metus consequat mattis.Suspendisse semper sodales sapien a vehicula. Sed nec sodales ante. Maecenas imperdiet orci ac ligula scelerisque, in rutrum risus viverra.Nam a sapien semper, laoreet augue et, vestibulum ex.Etiam at ipsum et ex sodales suscipit at non enim. Cras in ipsum risus. Nulla molestie lacinia turpis. Vestibulum vel mauris est. Donec vulputate, arcu ut finibus tristique, eros leo luctus nisi, eget tempus urna nulla nec nibh.Etiam luctus commodo diam, eget vestibulum libero molestie sed. Duis vel laoreet orci, vel dictum arcu. Phasellus vehicula ligula nulla. In nunc arcu, hendrerit eu risus dignissim, varius mollis metus.Donec malesuada semper metus non eleifend. Morbi in rutrum nulla, non aliquam libero. Cras sodales arcu facilisis dolor tempor, vitae interdum nulla fermentum.Fusce vel tellus ullamcorper, interdum odio in, sollicitudin ipsum. Nullam in nunc eget mi venenatis egestas in eget dui. Nam iaculis lorem velit, non finibus urna aliquet ut. Donec dignissim, velit et tincidunt tincidunt, erat sapien aliquet augue, quis egestas augue nibh eu orci.Sed aliquet sem at nunc cursus lacinia.Quisque lacinia ipsum nec urna feugiat ornare.Duis ultricies suscipit lacus eu pretium. Duis vel risus nulla. Vestibulum in tellus ac lorem fringilla consectetur ac non felis. Ut convallis suscipit turpis, nec fermentum dui ultrices ac.";
+            randomString = Regex.Replace(randomString, @"[^0-9a-zA-Z]+", "");
+
+            List<Product> products = new List<Product>();
+            for(int i = 0; i < 50; i++)
+            {
+                int nameStart = rand.Next(1, randomString.Length - 30);
+                products.Add(new Product()
+                {
+                    Name = randomString.Substring(nameStart, rand.Next(15, 30)),
+
+                });
+            }
+
+
             return View();
         }
 
@@ -82,6 +99,8 @@ namespace DQueensFashion.Controllers
             //dont lazy load top images
             products.Take(4).ToList().ForEach(p => p.LazyLoad = false);
 
+            List<ProductsByCategory> categorizedProducts = new List<ProductsByCategory>();
+
             IEnumerable<CategoryNameAndId> categories = _categoryService.GetAllCategories()
                 .Select(category => new CategoryNameAndId()
                 {
@@ -89,12 +108,25 @@ namespace DQueensFashion.Controllers
                     Name = category.Name.ToUpper(),
                 }).OrderBy(c=>c.Name).ToList();
 
+            foreach(var category in categories)
+            {
+                var _categorizedProduct = new ProductsByCategory()
+                {
+                    CategoryId = category.Id,
+                    CategoryName = category.Name,
+                    Products = products.Where(p => p.CategoryId == category.Id).Take(AppConstant.HomeIndexProductCount),
+                };
+                _categorizedProduct.Products.Take(4).ToList().ForEach(p => p.LazyLoad = false);
+                categorizedProducts.Add(_categorizedProduct);
+            }
+
             HomeIndexViewModel homeIndex = new HomeIndexViewModel()
             {
-                Products = products,
+                Products = products.Take(AppConstant.HomeIndexProductCount),
                 Categories = categories,
                 BestSellingProducts = products.OrderByDescending(p => p.NumberOfOrders).Take(4).ToList(),
                 BestDealsProducts = products.OrderByDescending(p=>p.Discount).Take(8).ToList(),
+                CategorizedProducts = categorizedProducts,
             };
 
             return View(homeIndex);
