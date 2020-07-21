@@ -18,6 +18,7 @@
                             <th></th>
                             <th>Name</th>
                             <th>Users (Qty)</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -37,6 +38,7 @@
                                             <div>@user.CustomerEmail (@user.Quantity)</div>
                                         }
                                     </td>
+                                    <td><a href="@Url.Action("RequestReply","Admin",new { id = item.Product.Id })">Send Reply</a></td>
                                 </tr>
                             }
                         }

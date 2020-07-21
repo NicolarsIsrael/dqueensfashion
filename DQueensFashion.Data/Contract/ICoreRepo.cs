@@ -61,6 +61,8 @@ namespace DQueensFashion.Data.Contract
         //totally delete item from db
         void DeleteFromDb(TEntity entity);
 
+        //totally delete range of items from db
+        void DeleteRangeFromDb(IEnumerable<TEntity> entities);
 
         /// <summary>
         /// Removes a group of entities from the collection

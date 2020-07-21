@@ -41,6 +41,17 @@ namespace DQueensFashion.Service.Implementation
             return uow.RequestRepo.GetAll();
         }
 
+        public IEnumerable<Request> GetAllRequestsForProduct(int productId)
+        {
+            return uow.RequestRepo.GetAll().Where(p => p.ProductId == productId).ToList();
+        }
+
+        public void DeleteRequestsRange(IEnumerable<Request> requests)
+        {
+            uow.RequestRepo.DeleteRangeFromDb(requests);
+            uow.Save();
+        }
+
         private bool ValidateRequestDetails(Request request)
         {
             if (request == null)

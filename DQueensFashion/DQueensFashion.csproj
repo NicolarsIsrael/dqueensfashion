@@ -556,6 +556,7 @@
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\Wishlist\_requestForProduct.cshtml" />
     <Content Include="Views\Admin\Requests.cshtml" />
+    <Content Include="Views\Admin\RequestReply.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

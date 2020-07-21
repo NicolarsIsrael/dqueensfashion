@@ -13,5 +13,7 @@ namespace DQueensFashion.Service.Contract
         void AddRequest(Request request);
         int GetTotalRequests();
         IEnumerable<Request> GetAllRequests();
+        IEnumerable<Request> GetAllRequestsForProduct(int productId);
+        void DeleteRequestsRange(IEnumerable<Request> requests);
     }
 }

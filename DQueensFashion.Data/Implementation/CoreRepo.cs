@@ -117,6 +117,11 @@ namespace DQueensFashion.Data.Implementation
         {
             _dbContext.Set<TEntity>().Remove(entity);
         }
+
+        public void DeleteRangeFromDb(IEnumerable<TEntity> entities)
+        {
+            _dbContext.Set<TEntity>().RemoveRange(entities);
+        }
     }
 
 }

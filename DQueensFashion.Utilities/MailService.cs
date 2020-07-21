@@ -62,7 +62,7 @@ namespace DQueensFashion.Utilities
             message.From = new MailAddress(from,title);
             message.Subject = subject;
             message.Body = body;
-            message.IsBodyHtml = false;
+            message.IsBodyHtml = true;
 
             foreach (string emailAddress in multipleCCmail)
             {

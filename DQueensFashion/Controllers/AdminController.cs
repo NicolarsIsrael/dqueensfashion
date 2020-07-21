@@ -1278,8 +1278,8 @@ namespace DQueensFashion.Controllers
         public ActionResult SubscribedEmails()
         {
             var allEmails = _mailingListService.GetAllMailingList();
-            IEnumerable<SubscribedEmailsViewModel> emailList = allEmails
-                .Select(em => new SubscribedEmailsViewModel()
+            IEnumerable<EmailsViewModel> emailList = allEmails
+                .Select(em => new EmailsViewModel()
                 {
                     Id = em.Id,
                     Email = em.EmailAddress,
@@ -1299,8 +1299,8 @@ namespace DQueensFashion.Controllers
 
         public ActionResult CreateNewsLetter()
         {
-            IEnumerable<SubscribedEmailsViewModel> emailList = _mailingListService.GetAllMailingList()
-                .Select(em => new SubscribedEmailsViewModel()
+            IEnumerable<EmailsViewModel> emailList = _mailingListService.GetAllMailingList()
+                .Select(em => new EmailsViewModel()
                 {
                     Id = em.Id,
                     Email = em.EmailAddress,
@@ -1431,6 +1431,76 @@ namespace DQueensFashion.Controllers
                 }).OrderBy(r=>r.ProductName).ToList();
 
             return View(requestsGroup);
+        }
+
+        public ActionResult RequestReply(int id=0)
+        {
+            Product product = _productService.GetProductById(id);
+            if (product == null)
+                throw new Exception();
+
+            var requests = _requestService.GetAllRequestsForProduct(id);
+            if (requests.Count() < 1)
+                return RedirectToAction(nameof(Request));
+            List<string> requestEmails = requests.Select(c => c.CustomerEmail).ToList();
+            requestEmails = requestEmails.Distinct().ToList();
+
+            var allProductImages = _imageService.GetImageFilesForProduct(product.Id);
+            var productImage = _imageService.GetMainImageForProduct(product.Id).ImagePath;
+
+            IEnumerable<EmailsViewModel> emailList = requestEmails
+              .Select(em => new EmailsViewModel()
+              {
+                  Email = em,
+                  IsSelected = true,
+              }).OrderBy(e => e.Email).ToList();
+
+            RequestsReplyViewModel requestModel = new RequestsReplyViewModel()
+            {
+                EmailList = emailList.ToList(),
+                Product = product,
+                ProductId = id,
+                Message = "Product link: https://houseofdqueens.com/Product/ProductDetails/" + id.ToString() + "-" + product.Name,
+                MainImage = string.IsNullOrEmpty(productImage)?
+                        AppConstant.DefaultProductImage :
+                        productImage
+            };
+
+            return View(requestModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> RequestReply(RequestsReplyViewModel requestModel)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    ModelState.AddModelError("", "One or more validation errors");
+                    return View(requestModel);
+                }
+
+                List<string> emails = new List<string>();
+                foreach (var email in requestModel.EmailList)
+                {
+                    if (email.IsSelected)
+                        emails.Add(email.Email);
+                }
+
+                MailService mailService = new MailService();
+                var credentials = AppConstant.HDQ_INFO_ACCOUNT_MAIL_CREDENTIALS;
+                await mailService.SendMailToMultiple(AppConstant.HDQ_MESSAGE_MAIL_ACCOUNT, requestModel.Title, requestModel.Message, credentials, emails,
+                    AppConstant.HDQ_INFO_MAIL_ACCOUNT, "HDQ Request Available");
+
+                var requests = _requestService.GetAllRequests().Where(r => r.ProductId == requestModel.ProductId);
+                _requestService.DeleteRequestsRange(requests);
+                return RedirectToAction(nameof(requests));
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public int GetCartNumber()

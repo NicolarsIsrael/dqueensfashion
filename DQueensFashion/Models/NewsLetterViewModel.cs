@@ -8,7 +8,7 @@ namespace DQueensFashion.Models
 {
     public class CreateNewsLetterViewModel
     {
-        public List<SubscribedEmailsViewModel> EmailList { get; set; }
+        public List<EmailsViewModel> EmailList { get; set; }
 
         [Required]
         public string Title { get; set; }
@@ -17,7 +17,7 @@ namespace DQueensFashion.Models
 
     }
 
-    public class SubscribedEmailsViewModel
+    public class EmailsViewModel
     {
         public int Id { get; set; }
         public string Email { get; set; }
