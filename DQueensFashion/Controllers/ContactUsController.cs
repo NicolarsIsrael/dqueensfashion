@@ -56,15 +56,21 @@ namespace DQueensFashion.Controllers
             //send mail
             try
             {
-                string messageSumarry = $"You receieved a message from {contactUsModel.Fullname} with Email address: {contactUsModel.Email}" +
-                     $" , Phone: {contactUsModel.Phone} <br />"  +
+                string messageSumarry = $"You receieved a message from {contactUsModel.Fullname} with the following contact. <br />" +
+                    $"Email address: {contactUsModel.Email} <br />" +
+                     $"Phone: {contactUsModel.Phone} <br />"  +
                      $"Message: <br /> {contactUsModel.Message}";
 
-                var credentials = AppConstant.MAIL_CREDENTIALS;
+                var credentials = AppConstant.HDQ_ADMIN_ACCOUNT_MAIL_CREDENTIALS;
+                //should be sent with message@houseofdqueens.com
+
                 MailService mailService = new MailService();
-                await mailService.SendMail(AppConstant.HDQ_EMAIL_ACCOUNT, contactUsModel.Subject, messageSumarry, credentials);
+                await mailService.SendMail(AppConstant.HDQ_INFO_MAIL_ACCOUNT, contactUsModel.Subject, messageSumarry, credentials,
+                    AppConstant.HDQ_ADMIN_MAIL_ACCOUNT,"Customer contact");
             }
-            catch (Exception) {}
+            catch (Exception ex) {
+                throw;
+            }
 
 
             return RedirectToAction(nameof(ThankYou));

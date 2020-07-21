@@ -153,7 +153,7 @@ namespace DQueensFashion.Controllers
                     //mail user
                     string subject = "Order confirmation";
                     string to = customer.Email;
-                    var credentials = AppConstant.MAIL_CREDENTIALS;
+                    var credentials = AppConstant.HDQ_INFO_ACCOUNT_MAIL_CREDENTIALS;
                     string body = CreateHtmlBody("~/Content/HtmlPages/OrderConfirmationMessage.html");
 
                     string orderTableBody = string.Empty;
@@ -172,7 +172,7 @@ namespace DQueensFashion.Controllers
                     body = body.Replace("{redirectUrl}", redirectUrl);
 
                     MailService mail = new MailService();
-                    await mail.SendMail(to, subject, body, credentials);
+                    await mail.SendMail(to, subject, body, credentials,AppConstant.HDQ_INFO_MAIL_ACCOUNT,"HDQ Orders");
                 }
                 catch (Exception ez)
                 {

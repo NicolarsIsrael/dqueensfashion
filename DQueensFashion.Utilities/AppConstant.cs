@@ -17,17 +17,24 @@ namespace DQueensFashion.Utilities
         public const string AdminRole = "Admin";
         public const string CustomerRole = "Customer";
 
-        public const string HDQ_EMAIL_ACCOUNT = "bakarenicolarsisrael@gmail.com";
-        public const string HDQ_EMAIL_TITLE = "HDQ";
+        //email accounts
+        public const string HDQ_INFO_MAIL_ACCOUNT = "info@houseofdqueens.com";
+        public static readonly NetworkCredential HDQ_INFO_ACCOUNT_MAIL_CREDENTIALS = new NetworkCredential(
+                                      ConfigurationManager.AppSettings["hdqInfoMailAccount"],
+                                      ConfigurationManager.AppSettings["hdqInfoMailPassword"]
+                                      );
+
+        public const string HDQ_ADMIN_MAIL_ACCOUNT = "admin@houseofdqueens.com";
+        public static readonly NetworkCredential HDQ_ADMIN_ACCOUNT_MAIL_CREDENTIALS = new NetworkCredential(
+                              ConfigurationManager.AppSettings["hdqAdminMailAccount"],
+                              ConfigurationManager.AppSettings["hdqAdminMailPassword"]
+                              );
+
         public const string HDQFacebookLink = "https://facebook.com/hdq";
         public const string HDQTwitterLink = "https://twitter.com/hdq";
         public const string HDQInstagramLink = "https://instagram.com/hdq";
         public const string HDQYoutubeLink = "https://youtube.com/hdq";
 
-        public static readonly NetworkCredential MAIL_CREDENTIALS = new NetworkCredential(
-                                      ConfigurationManager.AppSettings["mailAccount"],
-                                      ConfigurationManager.AppSettings["mailPassword"]
-                                      );
 
         public const string DefaultProductImage = "https://image.freepik.com/free-vector/farmer-peasant-illustration-man-with-beard-spade-farmland_33099-575.jpg";
         public const int ProductIndexPageSize = 16;

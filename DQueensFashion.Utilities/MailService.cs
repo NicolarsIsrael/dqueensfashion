@@ -10,19 +10,21 @@ namespace DQueensFashion.Utilities
 {
     public interface IMailService
     {
-        Task SendMail(string to, string subject, string body, NetworkCredential credential);
+        Task SendMail(string to, string subject, string body, NetworkCredential credential, string from, string title);
+        Task SendMailToMultiple(string to, string subject, string body, NetworkCredential credential,
+           List<string> multipleCCmail, string from, string title);
     }
 
     public class MailService : IMailService
     {
-        public async Task SendMail(string to, string subject, string body, NetworkCredential credential)
+        public async Task SendMail(string to, string subject, string body, NetworkCredential credential,string from, string title)
         {
             var message = new MailMessage();
             if (!isValidEmail(to))
                 throw new FormatException("The to-email does not have a valid format");
 
             message.To.Add(new MailAddress(to));
-            message.From = new MailAddress(AppConstant.HDQ_EMAIL_ACCOUNT, AppConstant.HDQ_EMAIL_TITLE);
+            message.From = new MailAddress(from,title);
             message.Subject = subject;
             message.Body = body;
             message.IsBodyHtml = true;
@@ -31,7 +33,8 @@ namespace DQueensFashion.Utilities
                 using (var smtp = new SmtpClient())
                 {
                     smtp.Credentials = credential;
-                    smtp.Host = "smtp.gmail.com";
+                    //smtp.Host = "smtp.gmail.com";
+                    smtp.Host = "plesk4200.is.cc";
                     smtp.Port = 587;
                     smtp.EnableSsl = true;
 
@@ -48,14 +51,15 @@ namespace DQueensFashion.Utilities
             }
         }
 
-        public async Task SendMailToMultiple(string to, string subject, string body, NetworkCredential credential, List<string> multipleCCmail)
+        public async Task SendMailToMultiple(string to, string subject, string body, NetworkCredential credential,
+            List<string> multipleCCmail,string from, string title)
         {
             var message = new MailMessage();
             if (!isValidEmail(to))
                 throw new FormatException("The to-email does not have a valid format");
 
             message.To.Add(new MailAddress(to));
-            message.From = new MailAddress(AppConstant.HDQ_EMAIL_ACCOUNT, AppConstant.HDQ_EMAIL_TITLE);
+            message.From = new MailAddress(from,title);
             message.Subject = subject;
             message.Body = body;
             message.IsBodyHtml = false;

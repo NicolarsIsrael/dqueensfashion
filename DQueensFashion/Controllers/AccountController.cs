@@ -227,7 +227,7 @@ namespace DQueensFashion.Controllers
 
                 string subject = "Reset Password";
                 string to = model.Email;
-                var credentials = AppConstant.MAIL_CREDENTIALS;
+                var credentials = AppConstant.HDQ_INFO_ACCOUNT_MAIL_CREDENTIALS;
 
                 string logoUrl = Request.Url.Scheme + "://" + Request.Url.Authority + "/Content/Images/HdqLogo.png";
                 string logoDiv = $"<img src='{logoUrl}' style='width: 50px; height: 50px' alt='hdq_logo'/>";
@@ -239,7 +239,7 @@ namespace DQueensFashion.Controllers
                 //string body = $"Hi, you requested to change your password. Kindly ignore this message if you did not make the request" +
                 //    Environment.NewLine + $"Please reset your password by cliking <a href=\"" + callbackUrl + "\">here</a>"
                 MailService mail = new MailService();
-                await mail.SendMail(to, subject, body, credentials);
+                await mail.SendMail(to, subject, body, credentials,AppConstant.HDQ_INFO_MAIL_ACCOUNT,"Password Reset");
 
                 //await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
                 return RedirectToAction("ForgotPasswordConfirmation", "Account");
