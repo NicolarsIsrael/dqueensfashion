@@ -24,6 +24,12 @@ namespace DQueensFashion.Utilities
                                       ConfigurationManager.AppSettings["hdqInfoMailPassword"]
                                       );
 
+        public const string HDQ_MESSAGE_MAIL_ACCOUNT = "message@houseofdqueens.com";
+        public static readonly NetworkCredential HDQ_MESSAGE_ACCOUNT_MAIL_CREDENTIALS = new NetworkCredential(
+                              ConfigurationManager.AppSettings["hdqMessageMailAccount"],
+                              ConfigurationManager.AppSettings["hdqMessageMailPassword"]
+                              );
+
         public const string HDQ_ADMIN_MAIL_ACCOUNT = "admin@houseofdqueens.com";
         public static readonly NetworkCredential HDQ_ADMIN_ACCOUNT_MAIL_CREDENTIALS = new NetworkCredential(
                               ConfigurationManager.AppSettings["hdqAdminMailAccount"],

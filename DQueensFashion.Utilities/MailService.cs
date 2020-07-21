@@ -74,7 +74,7 @@ namespace DQueensFashion.Utilities
                 using (var smtp = new SmtpClient())
                 {
                     smtp.Credentials = credential;
-                    smtp.Host = "smtp.gmail.com";
+                    smtp.Host = "plesk4200.is.cc";
                     smtp.Port = 587;
                     smtp.EnableSsl = true;
 
