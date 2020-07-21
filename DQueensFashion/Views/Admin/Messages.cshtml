@@ -8,7 +8,7 @@
 
 <div class="row">
     <div class="col-12">
-        <div class="card">
+        <div class="card mt-lg-4 mt-2 box-shadow">
             <div class="card-header">
                 <h3 class="card-title">Messages</h3>
             </div>
@@ -37,9 +37,14 @@
                                 <td>@Html.DisplayFor(modelItem=>item.Phone)</td>
                                 <td>@Html.DisplayFor(modelItem=>item.MessageSummary)</td>
                                 <td>
-                                    <a href="@Url.Action("Message","Admin",new { id = item.Id })" class="btn primary-table-button btn-xs">
+                                    @if (item.Read)
+                                    {
+                                        <span class="read-message"> <i class="fas fa-check"></i></span>
+                                    }
+                                    <a href="@Url.Action("Message","Admin",new { id = item.Id })" class="btn primary-table-button btn-xs float-right">
                                         Read
                                     </a>
+
                                 </td>
                             </tr>
                         }

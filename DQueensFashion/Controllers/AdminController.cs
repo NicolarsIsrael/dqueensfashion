@@ -1351,6 +1351,7 @@ namespace DQueensFashion.Controllers
                     Phone = m.Phone.Length > 20 ? m.Phone.Substring(0, 17) + "..." : m.Phone,
                     MessageSummary = m.MessageSummary.Length > 20 ? m.MessageSummary.Substring(0, 17) + "..." : m.MessageSummary,
                     DateCreated = m.DateCreatedUtc,
+                    Read = m.Read,
                 }).OrderByDescending(m => m.DateCreated).ToList();
 
             return View(messages);
