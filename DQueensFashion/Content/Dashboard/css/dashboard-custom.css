@@ -396,9 +396,6 @@ admin-subscribed-email {
     border-radius: 0;
 }
 
-.wishlist-table-button{
-   width:70px;
-}
 /*smart phones*/
 @media screen and (max-width: 420px) and (min-width: 0px) {
     /*Admin/Category*/

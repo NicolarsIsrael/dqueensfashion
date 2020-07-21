@@ -42,17 +42,17 @@
                         {
                             if (item.CategoryId == AppConstant.OutfitsId)
                             {
-                                <div class="primary-table-button btn-sm wishlist-table-button" onclick="AddToCartOutfits(@item.ProductId)">
-                                    <div href="#" class="pr-2">
-                                        <img src="~/Content/Images/shopping-cart.svg"  class="pl-3"  alt="add_to_cart image houseofdqueens" />
+                                <div class="primary-table-button btn-sm" onclick="AddToCartOutfits(@item.ProductId)">
+                                    <div href="#">
+                                        <i class="fas fa-cart-plus"></i>
                                     </div>
                                 </div>
                             }
                             else
                             {
-                                <div class="primary-table-button btn-sm wishlist-table-button" onclick="AddToCart(@item.ProductId)">
+                                <div class="primary-table-button btn-sm" onclick="AddToCart(@item.ProductId)">
                                     <div href="#">
-                                        <img src="~/Content/Images/shopping-cart.svg" class="pl-3"  alt="add_to_cart image houseofdqueens" />
+                                        <i class="fas fa-cart-plus"></i>
                                     </div>
                                 </div>
                             }
@@ -60,9 +60,9 @@
 
 
                     }
-                    <div class="secondary-table-button btn-sm wishlist-table-button" onclick="RemoveFromWishList(@item.WishListId)">
-                        <img src="~/Content/Images/delete.svg"  class="pl-3" alt="delete_wishlist_item_ image houseofdqueens" />
-                    </div>
+                <div class="secondary-table-button btn-sm mt-1" onclick="RemoveFromWishList(@item.WishListId)">
+                    <i class="far fa-trash-alt"></i>
+                </div>
                 </td>
             </tr>
 
