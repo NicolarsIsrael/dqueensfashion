@@ -92,7 +92,6 @@ namespace DQueensFashion.Controllers
                     Rating = new RatingViewModel()
                     {
                         AverageRating = p.AverageRating.ToString("0.0"),
-                        TotalReviewCount = _reviewService.GetReviewCountForProduct(p.Id).ToString(),
                         IsDouble = (p.AverageRating % 1) == 0 ? false : true,
                         FloorAverageRating = (int)Math.Floor(p.AverageRating)
                     },
@@ -258,7 +257,6 @@ namespace DQueensFashion.Controllers
                     Rating = new RatingViewModel()
                     {
                         AverageRating = p.AverageRating.ToString("0.0"),
-                        TotalReviewCount = _reviewService.GetReviewCountForProduct(p.Id).ToString(),
                         IsDouble = (p.AverageRating % 1) == 0 ? false : true,
                         FloorAverageRating = (int)Math.Floor(p.AverageRating)
                     },

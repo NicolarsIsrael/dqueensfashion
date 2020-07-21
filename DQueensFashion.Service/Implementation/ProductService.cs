@@ -27,6 +27,24 @@ namespace DQueensFashion.Service.Implementation
             uow.Save();
         }
 
+        public void AddProductRange(IEnumerable<Product> products)
+        {
+            //foreach(var product in products)
+            //{
+            //    if (!ValidateProductDetails(product))
+            //        throw new Exception();
+            //}
+
+            uow.ProductRepo.AddRange(products);
+            uow.Save();
+        }
+
+        public void UpdateProductNoVal(Product product)
+        {
+            uow.ProductRepo.Update(product);
+            uow.Save();
+        }
+
         public void UpdateProduct(Product product)
         {
             if (!ValidateProductDetails(product))
