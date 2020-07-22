@@ -15,7 +15,7 @@ namespace DQueensFashion.Utilities
             string str = GetByteArray(phrase).ToLower();
             str = Regex.Replace(str, @"[^a-z0-9\s-]", "");// Remove invalid characters for param  
             str = Regex.Replace(str, @"\s+", "-").Trim(); // convert multiple spaces into one hyphens   
-            str = str.Substring(0, str.Length <= 30 ? str.Length : 30).Trim(); //Trim to max 30 char  
+           // str = str.Substring(0, str.Length <= 30 ? str.Length : 30).Trim(); //Trim to max 30 char  
             str = Regex.Replace(str, @"\s", "-"); // Replaces spaces with hyphens     
             return str;
         }

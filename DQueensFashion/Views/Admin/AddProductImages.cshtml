@@ -10,7 +10,7 @@
 <div style="font-size:20px;font-weight:700">@Model.ProductName</div>
 <div style="font-size:15px;font-weight:500">@Model.ProductCategory</div>
 <hr class="m-0"/>
-<div class="text-danger">First image is main image, images should not be more than 10MB</div>
+<div class="text-danger">First image is main image, total sum of images upload should not be more than 50MB</div>
 
 
 @using (Html.BeginForm("AddProductImages", "Admin", null, FormMethod.Post, new { enctype = "multipart/form-data" }))

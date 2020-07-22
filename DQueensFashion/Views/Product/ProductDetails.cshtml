@@ -12,7 +12,9 @@
 </style>
 
 <script>
-    function ChangeProductDetailsImage(imageUrl,navImageId) {
+    function ChangeProductDetailsImage(imageUrl, navImageId) {
+        if (imageUrl.charAt(0) === '~')
+            imageUrl = imageUrl.substr(1);
         document.getElementById("product-details-img").src = imageUrl;
         var allNavImages = document.getElementsByClassName("product-details-nav-images");
         for (var i = 0; i < allNavImages.length; i++) {
@@ -71,7 +73,7 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <div class="product-details-detail"><span>PRODUCT AVAILABILITY:</span>@Model.Product.Quantity</div>
+                    <div class="product-details-detail"><span>IN STOCK:</span> @Model.Product.Quantity</div>
                 </div>
             </div>
             <div class="row">
