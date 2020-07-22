@@ -25,9 +25,9 @@ namespace DQueensFashion.Utilities
             if (showTime)
             {
                 if(breakLine)
-                    return date.ToString("MMM dd, yyyy\r\nhh:mm:ss");
+                    return date.ToString("MMM dd, yyyy\r\nhh:mm tt");
                 else
-                    return date.ToString("MMM dd, yyyy - hh:mm:ss");
+                    return date.ToString("MMM dd, yyyy - hh:mm tt");
             }
                 
             else

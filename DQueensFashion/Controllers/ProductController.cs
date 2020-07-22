@@ -243,11 +243,9 @@ namespace DQueensFashion.Controllers
                     GeneratedUrl = generalService.GenerateItemNameAsParam(p.Id, p.Name),
                     Id = p.Id,
                     Name = p.Name,
-                    Description = p.Description.Length > 35 ? p.Description.Substring(0, 35) + "..." : p.Description,
                     MainImage = allImages.Where(image => image.ProductId == p.Id).Count() < 1 ?
                         AppConstant.DefaultProductImage :
                         allImages.Where(image => image.ProductId == p.Id).FirstOrDefault().ImagePath,
-                    Quantity = p.Quantity,
                     Price = p.Price,
                     Discount = p.Discount,
                     SubTotal = p.SubTotal,

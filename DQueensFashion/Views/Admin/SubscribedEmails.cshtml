@@ -5,44 +5,45 @@
 }
 
 <input type="text" style="position:absolute;top:-100px" id="email-list" value="@ViewBag.EmailListCopy" />
-
-<div>
-    <div class="category-table-add-category-btn">
-        <a href="@Url.Action("CreateNewsletter")" class="btn primary-table-button btn-sm m-0">
-            <i class="far fa-envelope pr-2"></i>
-            Create newsletter
-        </a>
-        <button type="button" class="btn secondary-table-button btn-sm mt-0" onclick="copyListOfEmails()">Copy maillist</button>
+<div class="container">
+    <div>
+        <div class="category-table-add-category-btn">
+            <a href="@Url.Action("CreateNewsletter")" class="btn primary-table-button btn-sm m-0">
+                <i class="far fa-envelope pr-2"></i>
+                Create newsletter
+            </a>
+            <button type="button" class="btn secondary-table-button btn-sm mt-0" onclick="copyListOfEmails()">Copy maillist</button>
+        </div>
     </div>
-</div>
-<div class="card box-shadow">
-    <div class="card-header">
-        <h3 class="card-title">Subscribed emails</h3>
-    </div>
-    <!-- /.card-header -->
-    <div class="card-body table-responsive p-0 custom-table">
-        <table class="table table-head-fixed  table-striped">
-            <thead>
-                <tr>
-                    <th>Email</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
+    <div class="card box-shadow">
+        <div class="card-header">
+            <h3 class="card-title">Subscribed emails</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body table-responsive p-0 custom-table">
+            <table class="table table-head-fixed  table-striped">
+                <thead>
                     <tr>
-                        <td class="admin-subscribed-email">
-                            @Html.DisplayFor(modelItem => item.Email)
-                        </td>
+                        <th>Email</th>
                     </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="admin-subscribed-email">
+                                @Html.DisplayFor(modelItem => item.Email)
+                            </td>
+                        </tr>
 
-                }
-            </tbody>
-        </table>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <!-- /.card-body -->
     </div>
-    <!-- /.card-body -->
+    <!-- /.card -->
 </div>
-<!-- /.card -->
 
 
 <script>
