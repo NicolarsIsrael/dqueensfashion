@@ -95,7 +95,7 @@ namespace DQueensFashion.Controllers
                         IsDouble = (p.AverageRating % 1) == 0 ? false : true,
                         FloorAverageRating = (int)Math.Floor(p.AverageRating)
                     },
-                    NumberOfOrders = _lineItemService.NumberOfTimesPurchased(p.Id),
+                    NumberOfOrders = p.NumberOfItemsBought,
                     IsNew = _productService.CheckIfProductIsNew(p.DateCreatedUtc),
                     IsOutOfStock = p.Quantity < 1 ? true : false,
                     LazyLoad = true,
@@ -235,7 +235,7 @@ namespace DQueensFashion.Controllers
                 Bust = product.Bust.HasValue ? product.Bust.Value : false,
             };
 
-            var allImages = _imageService.GetAllImageFiles();
+            var allImages = _imageService.GetAllImageMainFiles();
 
             IEnumerable<ViewProductsViewModel> relatedProducts = _productService.GetRelatedProducts(product.Id, product.CategoryId)
                 .Select(p => new ViewProductsViewModel()

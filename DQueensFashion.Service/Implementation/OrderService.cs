@@ -37,6 +37,7 @@ namespace DQueensFashion.Service.Implementation
                     if (p.Quantity < 0)
                         p.Quantity = 0;
                 }
+                p.NumberOfItemsBought += lineItem.Quantity;
             }
 
             uow.OrderRepo.Add(order);

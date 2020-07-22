@@ -178,6 +178,10 @@
     <Compile Include="Migrations\202007191028306_requestAddedtodb.Designer.cs">
       <DependentUpon>202007191028306_requestAddedtodb.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007220921000_numberOFItemsDb.cs" />
+    <Compile Include="Migrations\202007220921000_numberOFItemsDb.Designer.cs">
+      <DependentUpon>202007220921000_numberOFItemsDb.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -206,6 +210,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007191028306_requestAddedtodb.resx">
       <DependentUpon>202007191028306_requestAddedtodb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007220921000_numberOFItemsDb.resx">
+      <DependentUpon>202007220921000_numberOFItemsDb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

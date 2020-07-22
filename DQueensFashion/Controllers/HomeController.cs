@@ -560,7 +560,7 @@ namespace DQueensFashion.Controllers
                         IsDouble = (p.AverageRating % 1) == 0 ? false : true,
                         FloorAverageRating = (int)Math.Floor(p.AverageRating)
                     },
-                    NumberOfOrders = _lineItemService.NumberOfTimesPurchased(p.Id), //work on this to not go to db
+                    NumberOfOrders = p.NumberOfItemsBought,
                     DateCreated = p.DateCreatedUtc,
                     IsNew = _productService.CheckIfProductIsNew(p.DateCreatedUtc),
                     IsOutOfStock = p.Quantity < 1 ? true : false,
