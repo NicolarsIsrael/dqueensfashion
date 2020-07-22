@@ -41,8 +41,12 @@
 .read-message {
     color: green
 }
-/*Dashboard*/
 
+.nav-item-logo {
+height: 20px;
+width: 20px
+}
+/*Dashboard*/
 /*snackbar*/
 #snackbar-success,
 #snackbar-error,

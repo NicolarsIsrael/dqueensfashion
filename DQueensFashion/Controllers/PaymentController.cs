@@ -158,19 +158,6 @@ namespace DQueensFashion.Controllers
                     var credentials = AppConstant.HDQ_INFO_ACCOUNT_MAIL_CREDENTIALS;
                     string body = CreateHtmlBody("~/Content/HtmlPages/OrderConfirmationMessage.html");
 
-                    //      <div style="padding:10px;border:1px solid #261f1f;margin-bottom:10px;box-shadow: 2px 2px 12px rgba(47, 47, 47, 0.40);">
-                    //    <div style="font-size:17px;font-weight:600">
-                    //        <span style="font-size:18px;font-weight:600">ITEM:</span>
-                    //        <span style="font-size:16px;font-weight:500;padding-left:5px">Hello how are you</span>
-                    //    </div>
-                    //    <div style="font-size:17px;font-weight:600">
-                    //        <span style="font-size:18px;font-weight:600">AMT:</span>
-                    //        <span style="font-size:16px;font-weight:500;padding-left:12px">$20 * 3</span>
-                    //        <span style="font-size:16px;font-weight:700;float:right">$60</span>
-                    //    </div>
-                    //</div>
-
-
                     string orderTableBody = string.Empty;
                     foreach(var lineItem in order.LineItems)
                     {

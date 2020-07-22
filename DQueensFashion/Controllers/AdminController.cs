@@ -1460,7 +1460,7 @@ namespace DQueensFashion.Controllers
                 EmailList = emailList.ToList(),
                 Product = product,
                 ProductId = id,
-                Message = "Product link: https://houseofdqueens.com/Product/ProductDetails/" + id.ToString() + "-" + product.Name,
+                Message = "Product link: https://houseofdqueens.com/Product/ProductDetails/" + product.Name + "-" + id.ToString(),
                 MainImage = string.IsNullOrEmpty(productImage)?
                         AppConstant.DefaultProductImage :
                         productImage

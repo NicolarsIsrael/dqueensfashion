@@ -277,6 +277,10 @@ namespace DQueensFashion.Controllers
 
         public ActionResult AddReview(int id = 0)
         {
+            Customer customer = GetLoggedInCustomer();
+            if (customer == null)
+                throw new Exception();
+
             if (!_reviewService.CanReview(id))
                 return HttpNotFound();
 
@@ -288,10 +292,10 @@ namespace DQueensFashion.Controllers
             if (product == null)
                 throw new Exception();
 
-            Customer customer = GetLoggedInCustomer();
-            if (customer == null)
+            Order order = _orderService.GetOrderById(lineItem.Order.Id);
+            if (customer.Id != order.CustomerId)
                 throw new Exception();
-
+           
             double averageRating = _reviewService.GetAverageRating(product.Id);
             var allProductImages = _imageService.GetImageFilesForProduct(product.Id);
 
@@ -333,6 +337,10 @@ namespace DQueensFashion.Controllers
 
             Customer customer = GetLoggedInCustomer();
             if (customer == null)
+                throw new Exception();
+
+            Order order = _orderService.GetOrderById(lineItem.Order.Id);
+            if (customer.Id != order.CustomerId)
                 throw new Exception();
 
             Review review = new Review()
@@ -411,6 +419,15 @@ namespace DQueensFashion.Controllers
             {
                 throw new Exception();
             }
+        }
+
+        public int GetPendingReviewsCount()
+        {
+            Customer customer = GetLoggedInCustomer();
+            if (customer == null)
+                throw new Exception();
+
+            return _reviewService.GetPendingReviews(customer.Id).Count();
         }
 
         public int GetCartNumber()

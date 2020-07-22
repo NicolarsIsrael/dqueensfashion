@@ -337,10 +337,7 @@ namespace DQueensFashion.Controllers
                 c.TotalPrice = product.SubTotal * c.Quantity;
                 c.Product = product;
             }
-
             viewCart.SubTotal = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.TotalPrice);
-            Session["cart"] = cart;
-
 
             Customer customer = GetLoggedInCustomer();
             if (customer != null)
@@ -356,7 +353,7 @@ namespace DQueensFashion.Controllers
                 }
 
             }
-
+            Session["cart"] = cart;
 
             return View(viewCart);
         }
@@ -414,7 +411,7 @@ namespace DQueensFashion.Controllers
             Session["Lastname"] = cartModel.LastName;
             Session["PhoneNumber"] = cartModel.Phone;
             Session["Address"] = cartModel.Address;
-
+            Session["cart"] = _cart;
             return RedirectToAction("PaymentWithPaypal", "Payment");
         }
 

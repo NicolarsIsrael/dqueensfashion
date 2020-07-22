@@ -82,6 +82,13 @@ namespace DQueensFashion.CustomFilters
             base.OnActionExecuting(filterContext);
         }
 
+        public override void OnResultExecuting(ResultExecutingContext filterContext)
+        {
+            var controllersUsingThisAttribute = ((CustomerController)filterContext.Controller);
+            filterContext.Controller.ViewBag.PendingReviews = controllersUsingThisAttribute.GetPendingReviewsCount();
+
+            base.OnResultExecuting(filterContext);
+        }
     }
 
     public class CartSetGlobalVariable : ActionFilterAttribute, IActionFilter
