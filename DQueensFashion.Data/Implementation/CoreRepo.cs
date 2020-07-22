@@ -96,6 +96,7 @@ namespace DQueensFashion.Data.Implementation
         public void Update(TEntity entity)
         {
             (entity as Entity).DateModified = DateTime.Now;
+            (entity as Entity).DateModifiedUtc = DateTime.UtcNow;
             _dbContext.Entry(entity).State = System.Data.Entity.EntityState.Modified;
         }
 

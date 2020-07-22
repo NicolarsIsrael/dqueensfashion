@@ -16,32 +16,16 @@
                     <div style="margin:5px 0"> It will be packaged and delivered to you as soon as possible.</div>
                     <div style="font-size:25px;color:#df7204;font-weight:600">Order details</div>
                     <hr style="margin:5px 0;" />
+                    {orderDetails}
 
-                    <table style="width:100%;border:1px solid #261f1f;padding:5px 10px;">
-                        <thead>
-                            <tr>
-                                <th style="width:60%;text-align:left">Item </th>
-                                <th style="width:20%;text-align:left">Quantity</th>
-                                <th style="width:20%;text-align:left">Total Amt</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {orderTableBody}
-                            <!--<tr>
-                                <td style="word-break:break-all">Hello </td>
-                                <td>2</td>
-                                <td>30</td>
-                            </tr>
-                            <tr>
-                                <td>ankara</td>
-                                <td>3</td>
-                                <td>35</td>
-                            </tr>-->
-                        </tbody>
-                    </table>
+                    <hr style="margin:5px 0 15px 0;" />
                     <div>
                         <div style="text-align:right;font-size:20px;font-weight:500">
-                            <div style="margin-bottom:25px;margin-top:10px">Total: {orderTotal}</div>
+                            <div style="margin-bottom:5px;margin-top:5px;font-size:17px">Subtotal: {subTotal}</div>
+                            <div style="margin-bottom:5px;margin-top:5px;font-size:17px">Shipping: {shippingPrice}</div>
+                            <div style="margin-bottom:5px;margin-top:5px;font-size:20px;font-weight:600">Total: {orderTotal}</div>
+
+                            <hr style="margin:5px 0 15px 0;" />
                             <div style="margin-bottom:20px">
                                 <a style="color:white;background-color:#df7204;border-radius:0;padding:10px;margin-top:10px;text-decoration:none !important" target="_blank"
                                    href="{redirectUrl}">Check order</a>
@@ -49,7 +33,7 @@
                         </div>
                     </div>
                 </div>
-            
+
 
             </div>
         </div>

@@ -558,6 +558,7 @@
     <Content Include="Views\Wishlist\_requestForProduct.cshtml" />
     <Content Include="Views\Admin\Requests.cshtml" />
     <Content Include="Views\Admin\RequestReply.cshtml" />
+    <Content Include="Views\Home\Det.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

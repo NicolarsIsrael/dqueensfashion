@@ -604,6 +604,11 @@ namespace DQueensFashion.Controllers
             return View(homeIndex);
         }
 
+        public ActionResult Det()
+        {
+            return View();
+        }
+
         public ActionResult Review1()
         {
             try

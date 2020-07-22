@@ -118,7 +118,9 @@ namespace DQueensFashion.Controllers
                     {
                         Product = _productService.GetProductById(Int32.Parse(item.sku)),
                         DateCreated = DateTime.Now,
+                        DateCreatedUtc= DateTime.UtcNow,
                         DateModified = DateTime.Now,
+                        DateModifiedUtc = DateTime.UtcNow,
                         IsDeleted = false,
                         Quantity = Int32.Parse(item.quantity),
                         UnitPrice = Decimal.Parse(item.price),
@@ -156,18 +158,45 @@ namespace DQueensFashion.Controllers
                     var credentials = AppConstant.HDQ_INFO_ACCOUNT_MAIL_CREDENTIALS;
                     string body = CreateHtmlBody("~/Content/HtmlPages/OrderConfirmationMessage.html");
 
+                    //      <div style="padding:10px;border:1px solid #261f1f;margin-bottom:10px;box-shadow: 2px 2px 12px rgba(47, 47, 47, 0.40);">
+                    //    <div style="font-size:17px;font-weight:600">
+                    //        <span style="font-size:18px;font-weight:600">ITEM:</span>
+                    //        <span style="font-size:16px;font-weight:500;padding-left:5px">Hello how are you</span>
+                    //    </div>
+                    //    <div style="font-size:17px;font-weight:600">
+                    //        <span style="font-size:18px;font-weight:600">AMT:</span>
+                    //        <span style="font-size:16px;font-weight:500;padding-left:12px">$20 * 3</span>
+                    //        <span style="font-size:16px;font-weight:700;float:right">$60</span>
+                    //    </div>
+                    //</div>
+
+
                     string orderTableBody = string.Empty;
                     foreach(var lineItem in order.LineItems)
                     {
-                        orderTableBody += $"  <tr> <td style = 'word-break:break-all' > {lineItem.Product.Name} </td>" +
-                            $"<td style = 'word-break:break-all'> ${lineItem.Quantity}</td>" +
-                            $"<td style = 'word-break:break-all'> ${lineItem.TotalAmount}</td > </tr>";
+                        orderTableBody += 
+                            $"<div style='padding:10px;border: 1px solid #261f1f;margin-bottom:10px;box-shadow: 2px 2px 12px rgba(47, 47, 47, 0.40);'>" 
+                                 +$"<div style='margin-bottom:5px'>"
+                                     + $"<span style='font-size:15px;font-weight:600'>ITEM:</span>" 
+                                     + $"<span style='font-size:13px;font-weight:500;padding-left:5px'>{lineItem.Product.Name}</span>"
+                                 +$"</div>"
+                                 +$"<div>"
+                                      +$"<span style='font-size:15px;font-weight:600'>AMT:</span>"
+                                      +$"<span style='font-size:13px;font-weight:500;padding-left:12px'> ${lineItem.UnitPrice} * {lineItem.Quantity}</span>"
+                                      +$"<span style='font-size:16px;font-weight:700;float:right'> ${lineItem.TotalAmount}</span>"
+                                 +$"</div>"
+                            +$"</div>";
+
                     }
                     string orderTotal = "$" + order.TotalAmount.ToString();
+                    string orderSubtotal = "$" + order.SubTotal.ToString();
+                    string orderShippingPrice = "$" + order.ShippingPrice.ToString();
                     string redirectUrl = Request.Url.Scheme + "://" + Request.Url.Authority + "/Customer/OrderDetails/"+order.Id.ToString();
 
-                    body = body.Replace("{orderTableBody}", orderTableBody);
+                    body = body.Replace("{orderDetails}", orderTableBody);
+                    body = body.Replace("{subTotal}", orderSubtotal);
                     body = body.Replace("{orderTotal}", orderTotal);
+                    body = body.Replace("{shippingPrice}", orderShippingPrice);
                     body = body.Replace("{logoUrl}", AppConstant.logoUrl);
                     body = body.Replace("{redirectUrl}", redirectUrl);
 
@@ -182,7 +211,7 @@ namespace DQueensFashion.Controllers
             }
             catch (Exception ex)
             {
-
+                throw;
                    //save raw info here
             }
             //on successful payment, show success page to user.
