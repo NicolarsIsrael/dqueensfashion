@@ -175,15 +175,15 @@ namespace DQueensFashion.Controllers
                     foreach(var lineItem in order.LineItems)
                     {
                         orderTableBody += 
-                            $"<div style='padding:10px;border: 1px solid #261f1f;margin-bottom:10px;box-shadow: 2px 2px 12px rgba(47, 47, 47, 0.40);'>" 
+                            $"<div style='box-shadow: 2px 2px 12px rgba(47, 47, 47, 0.40);padding:10px;border: 1px solid #261f1f;margin-bottom:10px;'>" 
                                  +$"<div style='margin-bottom:5px'>"
-                                     + $"<span style='font-size:15px;font-weight:600'>ITEM:</span>" 
-                                     + $"<span style='font-size:13px;font-weight:500;padding-left:5px'>{lineItem.Product.Name}</span>"
+                                     + $"<span style='font-size:10px;font-weight:500;padding-left:5px'>{lineItem.Product.Name}</span>"
+                                     +"<hr />"
                                  +$"</div>"
                                  +$"<div>"
-                                      +$"<span style='font-size:15px;font-weight:600'>AMT:</span>"
-                                      +$"<span style='font-size:13px;font-weight:500;padding-left:12px'> ${lineItem.UnitPrice} * {lineItem.Quantity}</span>"
-                                      +$"<span style='font-size:16px;font-weight:700;float:right'> ${lineItem.TotalAmount}</span>"
+                                      +$"<span style='font-size:10px;font-weight:500'>AMT:</span>"
+                                      +$"<span style='font-size:10px;font-weight:500;padding-left:7px'> ${lineItem.UnitPrice} * {lineItem.Quantity}</span>"
+                                      +$"<span style='font-size:10px;font-weight:500;float:right'> ${lineItem.TotalAmount}</span>"
                                  +$"</div>"
                             +$"</div>";
 
