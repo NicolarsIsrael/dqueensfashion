@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNet.Identity
+@using DQueensFashion.Utilities
+
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -16,14 +20,36 @@
         <a href="@Url.Action("Index","Home")">
             <img src="~/Content/Images/HdqLogo.png" class="navbar-logo" />
         </a>
-        
-        <ul class="navbar-nav flex-row ml-auto">
 
-            <li class="nav-item ml-lg-3 d-sm-block d-md-none d-lg-none d-xl-none">
-                <a class="nav-link navbar-link" href="@Url.Action("Account","Customer")">
-                    <img src="~/Content/Images/user.jpg" />
-                </a>
-            </li>
+        <ul class="navbar-nav flex-row ml-auto">
+            @if (Request.IsAuthenticated)
+            {
+                if (User.IsInRole(AppConstant.AdminRole))
+                {
+                    <li class="nav-item ml-lg-3 d-sm-block d-md-none d-lg-none d-xl-none">
+                        <a class="nav-link navbar-link" href="@Url.Action("Dashboard","Admin")">
+                            <img src="~/Content/Images/user.jpg" />
+                        </a>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item ml-lg-3 d-sm-block d-md-none d-lg-none d-xl-none">
+                        <a class="nav-link navbar-link" href="@Url.Action("Account","Customer")">
+                            <img src="~/Content/Images/user.jpg" />
+                        </a>
+                    </li>
+                }
+            }
+            else
+            {
+                <li class="nav-item ml-lg-3 d-sm-block d-md-none d-lg-none d-xl-none">
+                    <a class="nav-link navbar-link" href="@Url.Action("Account","Customer")">
+                        <img src="~/Content/Images/user.jpg" />
+                    </a>
+                </li>
+            }
+
             <li class="nav-item ml-lg-3">
                 <a class="nav-link navbar-link" href="@Url.Action("Index","Cart")">
                     <img src="~/Content/Images/shopping-cart.jpg" />
