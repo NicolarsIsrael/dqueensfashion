@@ -1030,6 +1030,7 @@ textarea {
     font-size: 30px;
     color: #29303b;
     margin-bottom: 0px;
+    word-wrap:break-word;
 }
 
 .product-details-detail {

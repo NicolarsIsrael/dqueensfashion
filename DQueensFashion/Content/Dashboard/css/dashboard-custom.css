@@ -312,6 +312,7 @@
     font-size: 30px;
     color: #29303b;
     margin-bottom: 0px;
+    word-wrap: break-word;
 }
 
 .product-details-detail {
@@ -326,6 +327,7 @@
         white-space: normal;
         font-size: 15px;
         font-weight: 400;
+        word-wrap:break-word;
     }
 
 
