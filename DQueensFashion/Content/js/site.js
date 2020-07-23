@@ -444,3 +444,44 @@ function ChangeProductDetailsImage(imageUrl, navImageId) {
     }
     document.getElementById(navImageId).style.border = "1px solid #df7204";
 }
+
+function ShowDeleteProduct(productId) {
+    $.ajax({
+        url: "/Admin/DeleteProduct/" + productId,
+        dataType: "html",
+        data: {},
+        success: function (result) {
+            $("#sidebarbody").html(result);
+            openNav();
+        },
+        error: function (xhr, status, error) {
+            ShowSnackbarError("Oops, sorry! Error");
+        }
+    });
+}
+
+function DeleteProductPost() {
+
+    var form = $('#deleteProductForm');
+    var token = $('input[name="__RequestVerificationToken"]', form).val();
+    var productId = $('#ProductId').val();
+    var password = $('#password').val();
+    debugger;
+    $.ajax({
+        url: "/Admin/DeleteProduct",
+        data: {
+            __RequestVerificationToken: token,
+            ProductId: productId,
+            AdminPassword: password,
+        },
+        type: "POST",
+        contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+        success: function (result) {
+            window.location.href="/Admin/Products"
+        },
+        error: function (xhr, status, error) {
+            ShowSnackbarError("Oops, sorry! Error");
+        }
+    });
+
+}

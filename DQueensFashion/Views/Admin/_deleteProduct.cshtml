@@ -1,0 +1,51 @@
+﻿@model DQueensFashion.Models.DeleteProductViewModel
+@using DQueensFashion.Utilities
+
+@using (Html.BeginForm("DeleteProduct", "Admin", FormMethod.Post, new { id = "deleteProductForm" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <div class="add-to-cart-outfit">
+            <input type="hidden" id="ProductId" value="@Model.ProductId" />
+
+            <div class="row">
+                <div class="col-5 p-1">
+                    <img src="@Url.Content(Model.ProductImage)" class="add-to-cart-outfit-img" alt="@Model.ProductName _image_houseofdqueens" />
+                </div>
+                <div class="col-7 p-1">
+                    <div class="add-to-cart-outfit-product-name">
+                        @Model.ProductName
+                    </div>
+                    <div class="add-to-cart-outfit-category-name">@Model.CategoryName</div>
+                </div>
+            </div>
+            <hr />
+            <div class="text-danger">
+                Are you sure you wish to delete this product? All records of the products will be deleted and this cannot be reversed.
+            </div>
+            <hr />
+            <div class="mr-2">
+                <div class="form-group">
+                    <div class="col-form-label">Password</div>
+                    <input type="password" value="@Model.AdminPassword" class="form-control-sm col-12" id="password" required />
+                </div>
+            </div>
+
+        </div>
+        <div>
+            <hr class="my-2" />
+            <input type="button" value="DELETE PRODUCT" class="btn mt-0 delete-btn"
+                   onclick="DeleteProductPost()" />
+        </div>
+    </div>
+}
+
+
+<style>
+    .col-form-label {
+        padding-bottom: 0;
+    }
+</style>
+
+

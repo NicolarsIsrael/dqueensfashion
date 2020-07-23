@@ -162,18 +162,13 @@ namespace DQueensFashion.Models
         public ViewProductsViewModel Product { get; set; }
         public IEnumerable<ViewProductsViewModel> RelatedProducts { get; set; }
     }
-}
 
-// shoulder
-//arm hole
-//Bust
-//waist
-//hips
-//thigh
-//full body length
-//kneel garment length
-//top length
-//trousers length
-//round ankle
-//nip - nip
-//sleeves length
+    public class DeleteProductViewModel
+    {
+        public string ProductName { get; set; }
+        public int ProductId { get; set; }
+        public string ProductImage { get; set; }
+        public string CategoryName { get; set; }
+        public string AdminPassword { get; set; }
+    }
+}

@@ -34,6 +34,22 @@
         color: white;
     }
 
+.delete-btn {
+    background-color: #dc3545;
+    display: inline-block;
+    padding: 5px 10px;
+    color: white;
+    cursor: pointer;
+    border-radius: 0;
+}
+
+    .delete-btn:hover {
+        transform: scale(1.05);
+        box-shadow: 2px 2px 12px rgba(47, 47, 47, 0.40);
+        transition: all ease 0.3s;
+        color: white;
+    }
+
 .box-shadow {
     box-shadow: 2px 2px 12px rgba(47, 47, 47, 0.40);
 }
@@ -304,6 +320,12 @@ footer {
 .lazy {
     background-color: #F1F1FA;
 }
+
+.delete_header_text {
+    color: #dc3545;
+}
+
+
 
 /*screens greater than md*/
 @media screen and (min-width:991px) {

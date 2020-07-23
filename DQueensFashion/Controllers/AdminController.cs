@@ -1503,6 +1503,62 @@ namespace DQueensFashion.Controllers
             }
         }
 
+        public ActionResult DeleteProduct(int id)
+        {
+            Product product = _productService.GetProductById(id);
+            if (product == null)
+                return HttpNotFound();
+
+            string mainImage = _imageService.GetImageFilesForProduct(product.Id).Count() < 1
+             ? AppConstant.DefaultProductImage
+             : _imageService.GetMainImageForProduct(product.Id).ImagePath;
+
+            DeleteProductViewModel productViewModel = new DeleteProductViewModel()
+            {
+                ProductName = product.Name,
+                ProductId = product.Id,
+                CategoryName = product.Category.Name,
+                ProductImage = mainImage,
+            };
+
+            return PartialView("_deleteProduct",productViewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteProduct(DeleteProductViewModel productModel)
+        {
+            var user = _userManager.FindById(GetLoggedInUserId());
+            if (!_userManager.CheckPassword(user, productModel.AdminPassword))
+                throw new Exception();
+
+            Product product = _productService.GetProductById(productModel.ProductId);
+            if (product == null)
+                throw new Exception();
+
+            IEnumerable<ImageFile> productImages = _imageService.GetImageFilesForProduct(product.Id);
+            foreach(var imageFile in productImages)
+            {
+                _imageService.DeleteImage(imageFile);
+                try
+                {
+                    string fullPath = Request.MapPath(imageFile.ImagePath);
+                    if (System.IO.File.Exists(fullPath))
+                    {
+                        System.IO.File.Delete(fullPath);
+                    }
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+
+            product.IsDeleted = true;
+            _productService.UpdateProduct(product);
+            return Json("success", JsonRequestBehavior.AllowGet);
+        }
+
         public int GetCartNumber()
         {
             if (Session["cart"] != null)
