@@ -523,6 +523,7 @@ textarea {
 .img-box {
     height: 250px;
     width: 100%;
+    background-color: #F1F1FA;
 }
 
     .img-box img {

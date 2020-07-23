@@ -392,3 +392,55 @@ function LazyLoadImages() {
     window.addEventListener("resize", lazyload);
     window.addEventListener("orientationChange", lazyload);
 }
+
+/*Product/ProductDetails*/
+
+function ReviewPagination(productId, pageNumber) {
+    let _sortReview = document.getElementById("sort-review");
+    document.getElementById("loading-effect").style.display = "block";
+
+    $.ajax({
+        url: '/product/ReviewPagination',
+        dataType: "html",
+        data: { productId: productId, pageNumber: pageNumber, sortId: _sortReview.value },
+        success: function (result) {
+            $("#reviewList").html(result);
+            document.getElementById("review-scroll-to").scrollIntoView();
+        },
+        error: function (xhr, status, error) {
+            ShowSnackbarError("Error");
+            document.getElementById("loading-effect").style.display = "none";
+        }
+    });
+}
+
+function SortReview(productId) {
+    let _sortReview = document.getElementById("sort-review");
+    document.getElementById("loading-effect").style.display = "block";
+
+    if (_sortReview.value > 0) {
+        $.ajax({
+            url: '/product/SortReview',
+            dataType: "html",
+            data: { productId: productId, sortId: _sortReview.value },
+            success: function (result) {
+                $("#reviewList").html(result);
+            },
+            error: function (xhr, status, error) {
+                ShowSnackbarError("Error");
+                document.getElementById("loading-effect").style.display = "none";
+            }
+        });
+    }
+}
+
+function ChangeProductDetailsImage(imageUrl, navImageId) {
+    if (imageUrl.charAt(0) === '~')
+        imageUrl = imageUrl.substr(1);
+    document.getElementById("product-details-img").src = imageUrl;
+    var allNavImages = document.getElementsByClassName("product-details-nav-images");
+    for (var i = 0; i < allNavImages.length; i++) {
+        allNavImages[i].style.border = 0;
+    }
+    document.getElementById(navImageId).style.border = "1px solid #df7204";
+}

@@ -310,6 +310,7 @@
     <Content Include="Content\js\jquery.js" />
     <Content Include="Content\js\site.js" />
     <Content Include="Content\Images\log-out.jpg" />
+    <Content Include="Content\Images\x-circle.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />

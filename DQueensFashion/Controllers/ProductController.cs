@@ -230,9 +230,6 @@ namespace DQueensFashion.Controllers
                         DateCreated = generalService.GetDateInString(r.DateCreated),
                         DateOrder = r.DateCreated,
                     }).OrderByDescending(r => r.DateOrder).ToList(),
-                Waist = product.Waist.HasValue ? product.Waist.Value : false,
-                Shoulder = product.Shoulder.HasValue ? product.Shoulder.Value : false,
-                Bust = product.Bust.HasValue ? product.Bust.Value : false,
             };
 
             var allImages = _imageService.GetAllImageMainFiles();

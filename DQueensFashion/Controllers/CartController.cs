@@ -307,7 +307,7 @@ namespace DQueensFashion.Controllers
                 ShippingPrice = _generalValuesService.GetGeneralValues().ShippingPrice,
                 EstimatedDeliveryDayDuration = CalculateDeliveryDuration(),
             };
-
+            viewCart.TotalAfterShipping = viewCart.SubTotal + viewCart.ShippingPrice;
             return PartialView("_cartTable", viewCart);
         }
 
