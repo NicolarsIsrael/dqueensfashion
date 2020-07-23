@@ -485,3 +485,42 @@ function DeleteProductPost() {
     });
 
 }
+
+function ShowDeleteCategory(categoryId) {
+    $.ajax({
+        url: "/Admin/DeleteCategory/" + categoryId,
+        dataType: "html",
+        data: {},
+        success: function (result) {
+            $("#sidebarbody").html(result);
+            openNav();
+        },
+        error: function (xhr, status, error) {
+            ShowSnackbarError("Oops, sorry! Error");
+        }
+    });
+}
+
+function DeleteCategoryPost() {
+    var form = $('#deleteCategoryForm');
+    var token = $('input[name="__RequestVerificationToken"]', form).val();
+    var categoryId = $('#CategoryId').val();
+    var password = $('#password').val();
+    debugger;
+    $.ajax({
+        url: "/Admin/DeleteCategory",
+        data: {
+            __RequestVerificationToken: token,
+            CategoryId: categoryId,
+            AdminPassword: password,
+        },
+        type: "POST",
+        contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+        success: function (result) {
+            window.location.href = "/Admin/Categories"
+        },
+        error: function (xhr, status, error) {
+            ShowSnackbarError("Oops, sorry! Error");
+        }
+    });
+}

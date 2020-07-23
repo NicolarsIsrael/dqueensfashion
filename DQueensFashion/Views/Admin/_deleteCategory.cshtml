@@ -1,0 +1,46 @@
+﻿@model DQueensFashion.Models.DeleteCategoryViewModel
+@using DQueensFashion.Utilities
+
+@using (Html.BeginForm("DeleteCategory", "Admin", FormMethod.Post, new { id = "deleteCategoryForm" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <div class="add-to-cart-outfit">
+            <input type="hidden" id="CategoryId" value="@Model.CategoryId" />
+            <hr />
+            <div class="font-weight-bold">
+                @Model.CategoryName
+            </div>
+            <hr />
+            <div class="text-danger">
+                Are you sure you wish to delete this category? All records of the category will be deleted and this cannot be reversed.
+                <br />
+                All products under this category will be removed from the database as well.
+            </div>
+            <hr />
+            <div class="mr-2">
+                <div class="form-group">
+                    <div class="col-form-label">Password</div>
+                    <input type="password" value="@Model.AdminPassword" class="form-control-sm col-12" id="password" required />
+                </div>
+            </div>
+
+        </div>
+        <div>
+            <hr class="my-2" />
+            <input type="button" value="DELETE CATEGORY" class="btn mt-0 delete-btn"
+                   onclick="DeleteCategoryPost()" />
+        </div>
+    </div>
+}
+
+
+<style>
+    .col-form-label {
+        padding-bottom: 0;
+    }
+</style>
+
+
+

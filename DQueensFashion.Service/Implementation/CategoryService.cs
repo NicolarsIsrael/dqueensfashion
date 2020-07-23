@@ -70,6 +70,12 @@ namespace DQueensFashion.Service.Implementation
             return uow.CategoryRepo.GetAll().ToList();
         }
 
+        public void DeleteCategory(Category category)
+        {
+            uow.CategoryRepo.Remove(category);
+            uow.Save();
+        }
+
         private bool ValidateCategoryDetails(Category category)
         {
             if (category == null)

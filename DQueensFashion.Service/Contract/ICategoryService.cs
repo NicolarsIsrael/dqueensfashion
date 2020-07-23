@@ -15,6 +15,7 @@ namespace DQueensFashion.Service.Contract
         IEnumerable<Category> GetAllCategories();
         Category GetCategoryByName(string categoryName);
         Category GetCategoryById(int id);
+        void DeleteCategory(Category category);
 
     }
 }

@@ -33,6 +33,13 @@ namespace DQueensFashion.Models
         public string Name { get; set; }
     }
 
+    public class DeleteCategoryViewModel
+    {
+        public int CategoryId { get; set; }
+        public string CategoryName { get; set; }
+        public string AdminPassword { get; set; }
+    }
+
     public class CategoryNameAndId
     {
         public int Id { get; set; }

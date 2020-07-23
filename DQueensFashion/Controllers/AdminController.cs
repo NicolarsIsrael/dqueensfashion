@@ -1554,9 +1554,63 @@ namespace DQueensFashion.Controllers
                 }
             }
 
-            product.IsDeleted = true;
-            _productService.UpdateProduct(product);
+            _productService.DeleteProduct(product);
             return Json("success", JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult DeleteCategory(int id)
+        {
+            Category category = _categoryService.GetCategoryById(id);
+            if (category == null)
+                return HttpNotFound();
+
+            DeleteCategoryViewModel categoryModel = new DeleteCategoryViewModel()
+            {
+                CategoryId = category.Id,
+                CategoryName = category.Name,
+            };
+            return PartialView("_deleteCategory", categoryModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteCategory(DeleteCategoryViewModel categoryModel)
+        {
+            var user = _userManager.FindById(GetLoggedInUserId());
+            if (!_userManager.CheckPassword(user, categoryModel.AdminPassword))
+                throw new Exception();
+
+            Category category = _categoryService.GetCategoryById(categoryModel.CategoryId);
+            if (category == null)
+                throw new Exception();
+
+            var allCategoryProducts = _productService.GetAllProducts()
+                .Where(p => p.CategoryId == categoryModel.CategoryId);
+
+            foreach(var product in allCategoryProducts)
+            {
+                IEnumerable<ImageFile> productImages = _imageService.GetImageFilesForProduct(product.Id);
+                foreach (var imageFile in productImages)
+                {
+                    _imageService.DeleteImage(imageFile);
+                    try
+                    {
+                        string fullPath = Request.MapPath(imageFile.ImagePath);
+                        if (System.IO.File.Exists(fullPath))
+                        {
+                            System.IO.File.Delete(fullPath);
+                        }
+                    }
+                    catch (Exception)
+                    {
+
+                    }
+                }
+                _productService.DeleteProduct(product);
+            }
+            _categoryService.DeleteCategory(category);
+            return Json("success", JsonRequestBehavior.AllowGet);
+
         }
 
         public int GetCartNumber()
