@@ -524,3 +524,18 @@ function DeleteCategoryPost() {
         }
     });
 }
+
+ function UpdateStatus(orderId) {
+     $.ajax({
+         url: "/Admin/UpdateOrderStatus/" + orderId,
+         dataType: "html",
+         data: {},
+         success: function (result) {
+             $("#sidebarbody").html(result);
+             openNav();
+         },
+         error: function (xhr, status, error) {
+             ShowSnackbarError("Oops, sorry! Error");
+         }
+     });
+    }

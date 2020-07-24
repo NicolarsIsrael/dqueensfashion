@@ -953,64 +953,64 @@ namespace DQueensFashion.Controllers
             return PartialView("_returnedOrdersTable", orderModel);
         }
 
-        public ActionResult DeletedOrders()
-        {
-            IEnumerable<ViewOrderViewModel> orderModel = _orderService.GetDeletedOrders()
-               .Select(order => new ViewOrderViewModel()
-               {
-                   OrderId = order.Id,
-                   CustomerId = order.CustomerId,
-                   CustomerName = order.FirstName + " " + order.LastName,
-                   TotalAmount = order.TotalAmount,
-                   TotalQuantity = order.TotalQuantity,
-                   LineItems = order.LineItems
-                       .Select(lineItem => new ViewLineItem()
-                       {
-                           ProductName = lineItem.Product.Name,
-                           Quantity = lineItem.Quantity,
-                           TotalAmount = lineItem.TotalAmount,
-                       }),
-                   DateCreated = order.DateCreatedUtc,
-                   DateCreatedString = generalService.GetDateInString(order.DateCreated, false, false),
-                   DateModified = order.DateModified,
-               }).OrderByDescending(order => order.DateModified).ToList();
+        //public ActionResult DeletedOrders()
+        //{
+        //    IEnumerable<ViewOrderViewModel> orderModel = _orderService.GetDeletedOrders()
+        //       .Select(order => new ViewOrderViewModel()
+        //       {
+        //           OrderId = order.Id,
+        //           CustomerId = order.CustomerId,
+        //           CustomerName = order.FirstName + " " + order.LastName,
+        //           TotalAmount = order.TotalAmount,
+        //           TotalQuantity = order.TotalQuantity,
+        //           LineItems = order.LineItems
+        //               .Select(lineItem => new ViewLineItem()
+        //               {
+        //                   ProductName = lineItem.Product.Name,
+        //                   Quantity = lineItem.Quantity,
+        //                   TotalAmount = lineItem.TotalAmount,
+        //               }),
+        //           DateCreated = order.DateCreatedUtc,
+        //           DateCreatedString = generalService.GetDateInString(order.DateCreated, false, false),
+        //           DateModified = order.DateModified,
+        //       }).OrderByDescending(order => order.DateModified).ToList();
 
-            return View(orderModel);
-        }
+        //    return View(orderModel);
+        //}
 
-        public ActionResult SearchDeletedOrders(string query)
-        {
-            IEnumerable<ViewOrderViewModel> orderModel = _orderService.GetDeletedOrders()
-              .Select(order => new ViewOrderViewModel()
-              {
-                  OrderId = order.Id,
-                  CustomerId = order.CustomerId,
-                  CustomerName = order.FirstName + " " + order.LastName,
-                  TotalAmount = order.TotalAmount,
-                  TotalQuantity = order.TotalQuantity,
-                  LineItems = order.LineItems
-                      .Select(lineItem => new ViewLineItem()
-                      {
-                          ProductName = lineItem.Product.Name,
-                          Quantity = lineItem.Quantity,
-                          TotalAmount = lineItem.TotalAmount,
-                      }),
-                  DateCreated = order.DateCreatedUtc,
-                  DateCreatedString = generalService.GetDateInString(order.DateCreated, false, false),
-                  LineItemConcatenatedString = string.Join(",", order.LineItems.Select(x => x.Product.Name)),
-                  DateModified = order.DateModified,
-              }).OrderByDescending(order => order.DateModified).ToList();
+        //public ActionResult SearchDeletedOrders(string query)
+        //{
+        //    IEnumerable<ViewOrderViewModel> orderModel = _orderService.GetDeletedOrders()
+        //      .Select(order => new ViewOrderViewModel()
+        //      {
+        //          OrderId = order.Id,
+        //          CustomerId = order.CustomerId,
+        //          CustomerName = order.FirstName + " " + order.LastName,
+        //          TotalAmount = order.TotalAmount,
+        //          TotalQuantity = order.TotalQuantity,
+        //          LineItems = order.LineItems
+        //              .Select(lineItem => new ViewLineItem()
+        //              {
+        //                  ProductName = lineItem.Product.Name,
+        //                  Quantity = lineItem.Quantity,
+        //                  TotalAmount = lineItem.TotalAmount,
+        //              }),
+        //          DateCreated = order.DateCreatedUtc,
+        //          DateCreatedString = generalService.GetDateInString(order.DateCreated, false, false),
+        //          LineItemConcatenatedString = string.Join(",", order.LineItems.Select(x => x.Product.Name)),
+        //          DateModified = order.DateModified,
+        //      }).OrderByDescending(order => order.DateModified).ToList();
 
 
 
-            if (!string.IsNullOrEmpty(query))
-                orderModel = orderModel.Where(order => order.CustomerName.ToLower().Contains(query.ToLower())
-                || order.LineItemConcatenatedString.ToLower().Contains(query.ToLower())
-                || (string.Compare(order.OrderId.ToString(), query, true) == 0)
-                ).ToList();
+        //    if (!string.IsNullOrEmpty(query))
+        //        orderModel = orderModel.Where(order => order.CustomerName.ToLower().Contains(query.ToLower())
+        //        || order.LineItemConcatenatedString.ToLower().Contains(query.ToLower())
+        //        || (string.Compare(order.OrderId.ToString(), query, true) == 0)
+        //        ).ToList();
 
-            return PartialView("_deletedOrdersTable", orderModel);
-        }
+        //    return PartialView("_deletedOrdersTable", orderModel);
+        //}
 
         public ActionResult CompletedOrders()
         {

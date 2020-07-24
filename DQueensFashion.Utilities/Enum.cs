@@ -14,7 +14,7 @@ namespace DQueensFashion.Utilities
         InTransit,
         Delivered,
         Returned,
-        Deleted,
+        //Deleted,
         Completed
     }
 

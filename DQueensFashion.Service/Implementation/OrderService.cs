@@ -79,11 +79,11 @@ namespace DQueensFashion.Service.Implementation
                 .Where(order => order.OrderStatus == OrderStatus.Returned);
         }
 
-        public IEnumerable<Order> GetDeletedOrders()
-        {
-            return uow.OrderRepo.GetAllOrdersWithRelationships()
-                .Where(order => order.OrderStatus == OrderStatus.Deleted);
-        }
+        //public IEnumerable<Order> GetDeletedOrders()
+        //{
+        //    return uow.OrderRepo.GetAllOrdersWithRelationships()
+        //        .Where(order => order.OrderStatus == OrderStatus.Deleted);
+        //}
 
         public IEnumerable<Order> GetCompletedOrders()
         {

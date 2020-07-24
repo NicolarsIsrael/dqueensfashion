@@ -1,5 +1,6 @@
 ﻿@model DQueensFashion.Models.UpdateOrderStatusViewModel
 
+<hr />
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -7,6 +8,12 @@
     <div class="form-horizontal">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model=>model.Id)
+
+        <div class="form-group">
+            <div class="col-12">
+                Order ID: @Model.Id
+            </div>
+        </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.OrderStatus, htmlAttributes: new { @class = "control-label col-12" })

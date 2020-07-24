@@ -15,7 +15,7 @@ namespace DQueensFashion.Service.Contract
         IEnumerable<Order> GetProcessingOrders();
         IEnumerable<Order> GetDeliveredOrders();
         IEnumerable<Order> GetReturnedOrders();
-        IEnumerable<Order> GetDeletedOrders();
+       // IEnumerable<Order> GetDeletedOrders();
         IEnumerable<Order> GetCompletedOrders();
         IEnumerable<Order> GetAllOrdersForCustomer(int customerId);
         Order GetOrderById(int id);
