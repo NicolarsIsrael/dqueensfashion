@@ -486,7 +486,7 @@ namespace DQueensFashion.Controllers
                 if (cartModel.ArmHoleValue > 0)
                     description += "Arm hole : " + cartModel.ArmHoleValue + "\"" + "\r\n";
 
-                if (cartModel.BustValue > 0)
+                if (cartModel.BustValue > 0)    
                     description += "Bust : " + cartModel.BustValue + "\"" + "\r\n";
               
                 if (cartModel.WaistValue > 0)
@@ -502,7 +502,7 @@ namespace DQueensFashion.Controllers
                     description += "Full body : " + cartModel.FullBodyLengthValue + "\"" + "\r\n";
 
                 if (cartModel.KneeGarmentLengthValue > 0)
-                    description += "Knee garment : " + cartModel.KneeGarmentLengthValue + "\"" + "\r\n";
+                    description += "Knee garment length: " + cartModel.KneeGarmentLengthValue + "\"" + "\r\n";
 
                 if (cartModel.TopLengthValue > 0)
                     description += "Top length : " + cartModel.TopLengthValue + "\"" + "\r\n";

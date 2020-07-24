@@ -34,9 +34,18 @@
                         <img src="@Url.Content(item.ProductImage)" class="orderdetails-product-image" alt="order_details_image_btn_houseofdqeens"/>
                     </div>
                     <div class="col-9 col-md-10">
-                        @item.ProductName 
+                        @item.ProductName
                         <div class="orderdetails-unitprice">$@item.UnitPrice * @item.Quantity</div>
                         <div class="orderdetails-totalamouont">$@item.TotalAmount</div>
+                        @{
+                            if (item.IsOutfit)
+                            {
+                                <div>
+                                    Desc:
+                                    @item.Description
+                                </div>
+                            }
+                        }
                     </div>
                 </div>
 

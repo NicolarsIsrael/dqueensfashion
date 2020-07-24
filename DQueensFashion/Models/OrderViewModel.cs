@@ -37,6 +37,7 @@ namespace DQueensFashion.Models
         public string ProductImage { get; set; }
         public string Description { get; set; }
         public bool CanReview { get; set; }
+        public bool IsOutfit { get; set; }
     }
 
     public class UpdateOrderStatusViewModel

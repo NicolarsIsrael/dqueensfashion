@@ -184,7 +184,7 @@ namespace DQueensFashion.Controllers
                         }),
                     OrderStatus = order.OrderStatus.ToString(),
                     DateCreated = order.DateCreatedUtc,
-                    DateCreatedString = generalService.GetDateInString(order.DateCreated, true, false),
+                    DateCreatedString = generalService.GetDateInString(order.DateCreated, false, false),
                 }).OrderByDescending(order => order.DateCreated).ToList();
 
             return View(orderModel);
@@ -212,7 +212,7 @@ namespace DQueensFashion.Controllers
                         }),
                     OrderStatus = order.OrderStatus.ToString(),
                     DateCreated = order.DateCreatedUtc,
-                    DateCreatedString = generalService.GetDateInString(order.DateCreated, true, false),
+                    DateCreatedString = generalService.GetDateInString(order.DateCreated, false, false),
                     LineItemConcatenatedString = string.Join(",", order.LineItems.Select(x => x.Product.Name)),
                 }).OrderByDescending(order => order.DateCreated).ToList();
 
@@ -239,7 +239,7 @@ namespace DQueensFashion.Controllers
             if (order.CustomerId != customer.Id)
                 return HttpNotFound();
 
-            var allImages = _imageService.GetAllImageFiles();
+            var allImages = _imageService.GetAllImageMainFiles();
 
             ViewOrderViewModel orderModel = new ViewOrderViewModel()
             {
@@ -261,8 +261,9 @@ namespace DQueensFashion.Controllers
                             ProductImage = allImages.Where(image => image.ProductId == lineItem.Product.Id).Count() < 1 ?
                                 AppConstant.DefaultProductImage :
                                 allImages.Where(image => image.ProductId == lineItem.Product.Id).FirstOrDefault().ImagePath,
-                            Description = lineItem.Description,
+                            Description = string.IsNullOrEmpty(lineItem.Description) ? "" : lineItem.Description.Replace("\r\n", " , "),
                             CanReview = _reviewService.CanReview(lineItem.Id),
+                            IsOutfit = lineItem.Product.CategoryId == AppConstant.OutfitsId ? true : false,
                         }),
                 OrderStatus = order.OrderStatus.ToString(),
                 DateCreated = order.DateCreatedUtc,
