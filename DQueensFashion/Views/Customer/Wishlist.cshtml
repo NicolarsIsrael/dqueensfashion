@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<DQueensFashion.Models.ViewWishListViewModel>
+@using DQueensFashion.Utilities
 
 @{
     ViewBag.Title = "Wishlist";
@@ -9,30 +10,101 @@
 <div class="row">
     <div class="col-md-2"></div>
     <div class="col-md-8">
-        <div class="card box-shadow">
-            <div class="card-header">
-                <h3 class="card-title">Wishlist</h3>
+        @using (Html.BeginForm())
+        {
+            <div class="card box-shadow">
+                <div class="card-header">
+                    <h3 class="card-title">Wishlist</h3>
 
-                <div class="card-tools">
-                    <div class="input-group input-group-sm" style="width: 150px;">
-                        <input type="text" name="table_search" class="form-control float-right" id="wishListSearch" placeholder="Search">
+                    <div class="card-tools">
+                        <div class="input-group input-group-sm" style="width: 150px;">
+                            <input type="text" name="query" class="form-control float-right" id="wishListSearch" value="@ViewBag.Query" placeholder="Search">
 
-                        <div class="input-group-append">
-                            <button type="submit" class="btn btn-default" style="width:50px" onclick="SearchWishListTable()">
-                                <i class="fas fa-search"></i>
-                            </button>
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-default" style="width:50px">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body table-responsive p-0" style="height: 78vh;">
+                <!-- /.card-header -->
+                <div class="card-body table-responsive p-0" style="height: 78vh;">
+                    <table class="table table-head-fixed table-striped" id="wishlistTable">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
 
-                @Html.Partial("_wishlistTable", Model)
+                                    <td style="width:80px">
+                                        <img src="@Url.Content(item.ProductImagePath)" style="width:70px;height:70px" alt="@item.ProductName image houseofdqueens" />
+                                    </td>
+                                    <td class="product-name-desc" style="word-wrap:break-word;">
+
+                                        <a href="@Url.Action("ProductDetails","Product",new { id = item.GeneratedUrl})" class="cartitemname">
+                                            <div style="font-size:15px;font-weight:600;color:black">
+                                                @item.ProductName
+                                            </div>
+                                        </a>
+                                        <div style="font-size:15px;font-weight:400;color:#818181">@item.CategoryName</div>
+                                        <div>$@item.ProductPrice</div>
+                                    </td>
+
+                                    <td>
+                                        @{
+                                            if (item.IsOutOfStock)
+                                            {
+                                                <div class="primary-table-button btn-sm wishlist-table-button" onclick="RequestForProduct(@item.ProductId)">
+                                                    <div href="#">
+                                                        request
+                                                    </div>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                if (item.CategoryId == AppConstant.OutfitsId)
+                                                {
+                                                    <div class="primary-table-button btn-sm" onclick="AddToCartOutfits(@item.ProductId)">
+                                                        <div href="#">
+                                                            <i class="fas fa-cart-plus"></i>
+                                                        </div>
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="primary-table-button btn-sm" onclick="AddToCart(@item.ProductId)">
+                                                        <div href="#">
+                                                            <i class="fas fa-cart-plus"></i>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            }
+
+
+                                        }
+                                        <div class="secondary-table-button btn-sm mt-1" onclick="RemoveFromWishList(@item.WishListId)">
+                                            <i class="far fa-trash-alt"></i>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            }
+                        </tbody>
+                    </table>
+
+
+                </div>
+                <!-- /.card-body -->
             </div>
-            <!-- /.card-body -->
-        </div>
-        <!-- /.card -->
+        }
+
     </div>
 </div>
 
@@ -58,19 +130,35 @@
     function RemoveFromWishList(wishlistId) {
         console.log(wishListSearch.value);
         debugger;
-            $.ajax({
-                url: '/Customer/removefromwishlist/',
-                dataType: "html",
-                data: { id: wishlistId, query: wishListSearch.value },
-                success: function (result) {
-                    $("#wishlistTable").html(result);
-                },
-                error: function (xhr, status, error) {
+        $.ajax({
+            url: '/Customer/removefromwishlist/',
+            data: { id: wishlistId, query: wishListSearch.value },
+            success: function (result) {
+                window.location.href="/Customer/wishlist"
+            },
+            error: function (xhr, status, error) {
 
-                }
-            });
+            }
+        });
 
-        }
+    }
 
 
 </script>
+
+
+<style>
+
+    .product-name-desc {
+        width: 500px;
+    }
+
+
+
+    /*smart phones*/
+    @@media screen and (max-width: 420px) and (min-width: 0px) {
+        .product-name-desc {
+            width: 200px;
+        }
+    }
+</style>

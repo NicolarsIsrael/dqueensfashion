@@ -74,7 +74,7 @@ namespace DQueensFashion.Controllers
             return View(customerModel);
         }
 
-        public ActionResult Wishlist()
+        public ActionResult Wishlist(string query ="")
         {
             Customer customer = GetLoggedInCustomer();
             if (customer == null)
@@ -91,36 +91,27 @@ namespace DQueensFashion.Controllers
                     CategoryName = w.CategoryName,
                     ProductPrice = w.ProductPrice,
                     GeneratedUrl = generalService.GenerateItemNameAsParam(w.ProductId,w.ProductName),
-                    IsOutOfStock = (_productService.GetProductById(w.ProductId)).Quantity < 1 ? true : false,
                 }).ToList();
 
-            return View(wishLists);
-        }
-
-        public ActionResult SearchWishList(string query)
-        {
-            Customer customer = GetLoggedInCustomer();
-            if (customer == null)
-                throw new Exception();
-
-            IEnumerable<ViewWishListViewModel> wishLists = _wishListService.GetAllCustomerWishList(customer.Id)
-                .Select(w => new ViewWishListViewModel()
+            foreach(var wishlist in wishLists)
+            {
+                if (_productService.GetProductById(wishlist.ProductId) == null)
                 {
-                    ProductId = w.ProductId,
-                    ProductImagePath = w.ProductImagePath,
-                    ProductName = w.ProductName.Length > 50 ? w.ProductName.Substring(0, 47) + "..." : w.ProductName,
-                    WishListId = w.Id,
-                    CategoryName = w.CategoryName,
-                    CategoryId = w.CategoryId,
-                    ProductPrice = w.ProductPrice,
-                    GeneratedUrl = generalService.GenerateItemNameAsParam(w.ProductId, w.ProductName),
-                    IsOutOfStock = (_productService.GetProductById(w.ProductId)).Quantity < 1 ? true : false,
-                }).ToList();
+                    wishLists.ToList().Remove(wishlist);
+                    _wishListService.DeleteWishList(_wishListService.GetWishListById(wishlist.WishListId));
+                }
+                else
+                {
+                    wishlist.IsOutOfStock = _productService.GetProductById(wishlist.ProductId).Quantity < 1 ? true : false;
+                }
+            }
 
             if (!string.IsNullOrEmpty(query))
-                wishLists = wishLists.Where(w => w.ProductName.ToLower().Contains(query.ToLower()));
+                wishLists = wishLists.Where(w => w.ProductName.ToLower().Contains(query.ToLower()) 
+                || w.CategoryName.ToLower().Contains(query.ToLower()));
 
-            return PartialView("_wishlistTable",wishLists);
+            ViewBag.Query = query;
+            return View(wishLists);
         }
 
         public ActionResult RemoveFromWishList(int id, string query)
@@ -140,19 +131,7 @@ namespace DQueensFashion.Controllers
 
                 _wishListService.DeleteWishList(wishList);
 
-                IEnumerable<ViewWishListViewModel> wishLists = _wishListService.GetAllCustomerWishList(customer.Id)
-                    .Select(w => new ViewWishListViewModel()
-                    {
-                        ProductId = w.ProductId,
-                        ProductImagePath = w.ProductImagePath,
-                        ProductName = w.ProductName,
-                        WishListId = w.Id,
-                    }).ToList();
-
-                if (!string.IsNullOrEmpty(query))
-                    wishLists = wishLists.Where(w => w.ProductName.ToLower().Contains(query.ToLower()));
-
-                return PartialView("_wishlistTable", wishLists);
+                return Content("");
             }
             catch (Exception)
             {
