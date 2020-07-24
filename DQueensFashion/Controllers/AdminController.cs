@@ -676,7 +676,7 @@ namespace DQueensFashion.Controllers
             return View(orderModel);
         }
 
-        public ActionResult Orders()
+        public ActionResult Orders(string query="")
         {
             IEnumerable<ViewOrderViewModel> orderModel = _orderService.GetAllOrders()
                 .Select(order => new ViewOrderViewModel()
@@ -696,43 +696,17 @@ namespace DQueensFashion.Controllers
                     OrderStatus= order.OrderStatus.ToString(),
                     DateCreated = order.DateCreatedUtc,
                     DateCreatedString = generalService.GetDateInString(order.DateCreated,false,false),
+                    LineItemConcatenatedString = string.Join(",", order.LineItems.Select(x => x.Product.Name)),
                 }).OrderByDescending(order=>order.DateCreated).ToList();
-
-            return View(orderModel);
-        }
-
-        public ActionResult SearchOrders(string query)
-        {
-            
-            IEnumerable<ViewOrderViewModel> orderModel = _orderService.GetAllOrders()
-                .Select(order => new ViewOrderViewModel()
-                {
-                    OrderId = order.Id,
-                    CustomerId = order.CustomerId,
-                    CustomerName = order.FirstName + " " + order.LastName,
-                    TotalAmount = order.TotalAmount,
-                    TotalQuantity = order.TotalQuantity,
-                    LineItems = order.LineItems
-                        .Select(lineItem => new ViewLineItem()
-                        {
-                            ProductName = lineItem.Product.Name,
-                            Quantity = lineItem.Quantity,
-                            TotalAmount = lineItem.TotalAmount,
-                        }),
-                    OrderStatus = order.OrderStatus.ToString(),
-                    DateCreated = order.DateCreatedUtc,
-                    DateCreatedString = generalService.GetDateInString(order.DateCreated, false, false),
-                    LineItemConcatenatedString = string.Join(",",order.LineItems.Select(x=>x.Product.Name)),
-                }).OrderByDescending(order => order.DateCreated).ToList();
 
             if (!string.IsNullOrEmpty(query))
                 orderModel = orderModel.Where(order => order.CustomerName.ToLower().Contains(query.ToLower())
                 || order.LineItemConcatenatedString.ToLower().Contains(query.ToLower())
                 || order.OrderStatus.ToString().ToLower().Contains(query.ToLower())
-                || (string.Compare(order.OrderId.ToString(), query, true)==0)
+                || (string.Compare(order.OrderId.ToString(), query, true) == 0)
                 ).ToList();
 
-            return PartialView("_ordersTable",orderModel);
+            return View(orderModel);
         }
 
         public ActionResult ProcessingOrders()
