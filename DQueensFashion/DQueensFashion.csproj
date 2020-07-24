@@ -510,7 +510,6 @@
     <Content Include="Views\Product\_productListPagination.cshtml" />
     <Content Include="Views\Admin\_deletedOrdersTable.cshtml" />
     <Content Include="Views\Admin\_categoriesTable.cshtml" />
-    <Content Include="Views\Admin\_productsTable.cshtml" />
     <Content Include="Views\Customer\_wishlistTable.cshtml" />
     <Content Include="Views\Customer\_ordersTable.cshtml" />
     <Content Include="Views\Product\_productReview.cshtml" />

@@ -189,9 +189,9 @@ namespace DQueensFashion.Controllers
             }
         }
 
-        public ActionResult Products()
+        public ActionResult Products(string query="")
         {
-            var allImages = _imageService.GetAllImageFiles().ToList();
+            var allImages = _imageService.GetAllImageMainFiles().ToList();
             IEnumerable<ViewProductsViewModel> products = _productService.GetAllProducts()
                 .Select(p => new ViewProductsViewModel()
                 {
@@ -207,31 +207,8 @@ namespace DQueensFashion.Controllers
                         AppConstant.DefaultProductImage :
                         allImages.Where(image => image.ProductId == p.Id).FirstOrDefault().ImagePath,
                     DateCreated = p.DateCreatedUtc,
-                    DateCreatedString = generalService.GetDateInString(p.DateCreated,true,true),
+                    DateCreatedString = generalService.GetDateInString(p.DateCreated,false,true),
                 }).OrderByDescending(p=>p.DateCreated).ToList();
-            return View(products);
-        }
-
-        public ActionResult SearchProducts(string query)
-        {
-            var allImages = _imageService.GetAllImageFiles().ToList();
-            IEnumerable<ViewProductsViewModel> products = _productService.GetAllProducts()
-              .Select(p => new ViewProductsViewModel()
-              {
-                  Id = p.Id,
-                  GeneratedUrl = generalService.GenerateItemNameAsParam(p.Id, p.Name),
-                  Name = p.Name,
-                  Quantity = p.Quantity,
-                  Price = p.Price,
-                  Discount = p.Discount,
-                  SubTotal = p.SubTotal,
-                  Category = p.Category.Name,
-                  MainImage = allImages.Where(image => image.ProductId == p.Id).Count() < 1 ?
-                        AppConstant.DefaultProductImage :
-                        allImages.Where(image => image.ProductId == p.Id).FirstOrDefault().ImagePath,
-                  DateCreated = p.DateCreatedUtc,
-                  DateCreatedString = generalService.GetDateInString(p.DateCreated, true, true),
-              }).OrderByDescending(p => p.DateCreated).ToList();
 
             if (!string.IsNullOrEmpty(query))
                 products = products.Where(p => p.Name.ToLower().Contains(query.ToLower())
@@ -240,7 +217,8 @@ namespace DQueensFashion.Controllers
                 || p.Price.ToString().Contains(query)
                 );
 
-            return PartialView("_productsTable",products);
+            ViewBag.Query = query;
+            return View(products);
         }
 
         public ActionResult AddProduct(int categoryId=0)

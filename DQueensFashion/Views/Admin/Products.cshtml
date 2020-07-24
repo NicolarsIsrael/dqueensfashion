@@ -17,51 +17,91 @@
                 <i class="fas fa-plus"></i>
                 @AppConstant.OutfitsName
             </a>
-         
+
         </div>
-        <div class="card box-shadow">
-            <div class="card-header">
-                <h3 class="card-title">Products</h3>
-                <div class="card-tools">
-                    <div class="input-group input-group-sm">
-                        <input type="text" name="table_search" class="form-control float-right" id="search" placeholder="Search">
-                        <div class="input-group-append">
-                            <button type="submit" class="btn btn-default table-search-btn" onclick="SearchProductsTable()">
-                                <i class="fas fa-search"></i>
-                            </button>
+        @using (Html.BeginForm())
+        {
+            <div class="card box-shadow">
+                <div class="card-header">
+                    <h3 class="card-title">Products</h3>
+                    <div class="card-tools">
+                        <div class="input-group input-group-sm">
+                            <input type="text" name="query" class="form-control float-right" value="@ViewBag.Query" placeholder="Search">
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-default table-search-btn">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
                         </div>
+
                     </div>
 
                 </div>
+                <!-- /.card-header -->
+                <div class="card-body table-responsive p-0 custom-table">
+                    <table class="table table-head-fixed  table-striped" id="productsTable">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Name</th>
+                                <th>Price ($)</th>
+                                <th>Discount (%)</th>
+                                <th>Total ($)</th>
+                                <th>Qty</th>
+                                <th>Date created</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="products-table-image">
+                                        <img src="@Url.Content(item.MainImage)" alt="@item.Name _image_houseofdqueens" />
+                                    </td>
+                                    <td class="product-name-desc">
+                                        <a href="@Url.Action("ProductDetails","Admin",new { id = item.GeneratedUrl})">
+                                            <div>
+                                                @item.Name
+                                            </div>
+                                        </a>
+                                        <div>@item.Category</div>
+                                    </td>
 
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Price)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Discount)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.SubTotal)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Quantity)
+                                    </td>
+                                    <td>
+                                        @Html.Raw(item.DateCreatedString.Replace(Environment.NewLine, "<br/>"))
+                                    </td>
+                                    <td>
+                                        <a href="@Url.Action("EditProduct",new {id=item.Id})" class="primary-table-button btn btn-xs">
+                                            <i class="fas fa-pencil-alt"></i>
+                                        </a>
+                                        <a href="@Url.Action("ProductDetails",new {id = item.GeneratedUrl})" class="secondary-table-button table-edit-btn btn btn-xs">
+                                            <i class="fas fa-info"></i>
+                                        </a>
+
+                                    </td>
+                                </tr>
+
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.card-body -->
             </div>
-            <!-- /.card-header -->
-            <div class="card-body table-responsive p-0 custom-table">
-                @Html.Partial("_productsTable", Model)
-            </div>
-            <!-- /.card-body -->
-        </div>
-        <!-- /.card -->
+            <!-- /.card -->
+        }
+
     </div>
 </div>
-
-
-
-<script>
-    var search = document.getElementById("search");
-
-    function SearchProductsTable() {
-        $.ajax({
-            url: '/Admin/SearchProducts',
-            dataType: "html",
-            data: { query: search.value },
-            success: function (result) {
-
-                $("#productsTable").html(result);
-            },
-            error: function (xhr, status, error) {
-                ShowSnackbarError("Error");
-            }
-        });
-    }
-</script>
