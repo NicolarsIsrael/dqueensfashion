@@ -18,7 +18,7 @@
                 @foreach (var item in Model)
                 {
                     <div class="row">
-                        <div class="col-3 col-md-2">
+                        <div class="col-3 col-md-1">
                             <img src="@Url.Content(item.ProductImage)" style="display:inline-block;width:100%;height:80px" alt="@item.ProductName image houseofdqueens"/>
                         </div>
                         <div class="col-9 col-md-10">
@@ -26,7 +26,7 @@
                             <div style="font-size:15px;font-weight:400;color:#818181">$@item.UnitPrice * @item.Quantity</div>
                             <span style="font-size:18px;font-weight:600;">$@item.TotalAmount</span>
                             <span style="float:right">
-                                <a class="btn btn-sm secondary-table-button" style="text-align:right;color:white;border-radius:0" href="@Url.Action("AddReview","Customer",new { id=item.LineItemId})">ADD REVIEW</a>
+                                <a class="btn btn-sm primary-table-button" href="@Url.Action("AddReview","Customer",new { id=item.LineItemId})">ADD REVIEW</a>
                             </span>
 
                         </div>

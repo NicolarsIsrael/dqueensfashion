@@ -307,6 +307,8 @@ namespace DQueensFashion.Controllers
             };
 
             _reviewService.AddReview(review);
+            product.AverageRating = _reviewService.GetAverageRating(review.Product.Id);
+            _productService.UpdateProduct(product);
             return RedirectToAction(nameof(OrderDetails), new { id = lineItem.Order.Id });
         }
 
@@ -331,7 +333,8 @@ namespace DQueensFashion.Controllers
                                 AppConstant.DefaultProductImage :
                                 allImages.Where(image => image.ProductId == l.Product.Id).FirstOrDefault().ImagePath,
                     Description = l.Description,
-                });
+                    DateCreated = l.DateCreatedUtc,
+                }).OrderByDescending(l=>l.DateCreated);
 
             return View(lineItems);
         }

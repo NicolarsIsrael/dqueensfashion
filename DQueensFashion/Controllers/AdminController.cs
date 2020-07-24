@@ -379,11 +379,11 @@ namespace DQueensFashion.Controllers
                 OutfitCategory = product.CategoryId == AppConstant.OutfitsId ? true : false,
             };
 
-            //foreach (var category in productModel.Categories)
-            //{
-            //    if (category.Id == product.CategoryId)
-            //        category.Selected = "selected";
-            //}
+            foreach (var category in productModel.Categories)
+            {
+                if (category.Id == product.CategoryId)
+                    category.Selected = true;
+            }
 
             return View(productModel);
         }
@@ -411,11 +411,11 @@ namespace DQueensFashion.Controllers
 
                 productModel.Tags = productModel.Tags == null ? new List<string>() : productModel.Tags;
 
-                //foreach(var c in productModel.Categories)
-                //{
-                //    if (c.Id == productModel.CategoryId)
-                //        c.Selected = "selected";
-                //}
+                foreach (var c in productModel.Categories)
+                {
+                    if (c.Id == productModel.CategoryId)
+                        c.Selected = true;
+                }
 
                 return View(productModel);
             }
@@ -1206,7 +1206,8 @@ namespace DQueensFashion.Controllers
                 EmailList = emailList.ToList(),
                 Product = product,
                 ProductId = id,
-                Message = "Product link: https://houseofdqueens.com/Product/ProductDetails/" + product.Name + "-" + id.ToString(),
+                Message = "Product link: https://houseofdqueens.com/Product/ProductDetails/" +
+                    generalService.GenerateItemNameAsParam(product.Id,product.Name),
                 MainImage = string.IsNullOrEmpty(productImage)?
                         AppConstant.DefaultProductImage :
                         productImage
