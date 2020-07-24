@@ -1,37 +1,4 @@
 ﻿@model IEnumerable<DQueensFashion.Models.ViewCategoryViewModel>
 @using DQueensFashion.Utilities
 
-<table class="table table-head-fixed  table-striped" id="categoriesTable">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td class="category-table-category-name">
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td class="float-right">
-                    @{
-                        if (item.Id != AppConstant.OutfitsId)
-                        {
-                            <a href="@Url.Action("EditCategory", new {id=item.Id})" , class="primary-table-button btn-xs">
-                                <i class="fas fa-pencil-alt"></i>
-                            </a>
 
-                            <button type="button" class="btn delete-btn btn-xs" onclick="ShowDeleteCategory(@item.Id)">
-                                <i class="far fa-trash-alt"></i>
-                            </button>   
-                        }
-                    }
-
-                </td>
-            </tr>
-
-        }
-    </tbody>
-</table>

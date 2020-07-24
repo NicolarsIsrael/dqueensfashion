@@ -65,7 +65,7 @@ namespace DQueensFashion.Controllers
             return View(adminModel);
         }
 
-        public ActionResult Categories()
+        public ActionResult Categories(string query="")
         {
             IEnumerable<ViewCategoryViewModel> categories = _categoryService.GetAllCategories()
                 .Select(c => new ViewCategoryViewModel()
@@ -73,26 +73,16 @@ namespace DQueensFashion.Controllers
                     Id = c.Id,
                     Name = c.Name,
                 }).OrderBy(c => c.Name);
-            return View(categories);
-        }
-        
-        public ActionResult SearchCategories(string query)
-        {
-            IEnumerable<ViewCategoryViewModel> categories = _categoryService.GetAllCategories()
-               .Select(c => new ViewCategoryViewModel()
-               {
-                   Id = c.Id,
-                   Name = c.Name,
-               }).OrderBy(c => c.Name);
 
             if (!string.IsNullOrEmpty(query))
                 categories = categories.Where(c => c.Name.ToLower().Contains(query.ToLower())
-                || string.Compare(c.Id.ToString(), query, true)==0
+                || string.Compare(c.Id.ToString(), query, true) == 0
                 );
 
-            return PartialView("_categoriesTable",categories);
+            ViewBag.Query = query;
+            return View(categories);
         }
-
+        
         public ActionResult AddCategory()
         {
             return View();
