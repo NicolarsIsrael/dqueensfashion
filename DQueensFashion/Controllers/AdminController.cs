@@ -929,7 +929,7 @@ namespace DQueensFashion.Controllers
             return RedirectToAction(nameof(Orders));
         }
 
-        public ActionResult Customers()
+        public ActionResult Customers(string query="")
         {
             IEnumerable<CustomerViewModel> allCustomers = _customerService.GetAllCustomers()
                 .Select(c => new CustomerViewModel
@@ -939,24 +939,11 @@ namespace DQueensFashion.Controllers
                     TotalCustomerOrders = _orderService.GetAllOrdersForCustomer(c.Id).Count()
                 }).ToList();
 
-            return View(allCustomers);
-        }
-
-        public ActionResult SearchCustomers(string query)
-        {
-            IEnumerable<CustomerViewModel> allCustomers = _customerService.GetAllCustomers()
-               .Select(c => new CustomerViewModel
-               {
-                   CustomerId = c.Id,
-                   CustomerEmail = c.Email,
-                   TotalCustomerOrders = _orderService.GetAllOrdersForCustomer(c.Id).Count()
-               }).ToList();
-
             if (!string.IsNullOrEmpty(query))
                 allCustomers = allCustomers.Where(c => c.CustomerEmail.ToLower().Contains(query.ToLower()));
 
-            return PartialView("_customersTable", allCustomers);
-
+            ViewBag.Query = query;
+            return View(allCustomers);
         }
 
         public ActionResult CustomerOrders(int id)

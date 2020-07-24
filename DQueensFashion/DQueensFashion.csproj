@@ -509,7 +509,6 @@
     <Content Include="Views\Customer\Orders.cshtml" />
     <Content Include="Views\Product\_productListPagination.cshtml" />
     <Content Include="Views\Admin\_deletedOrdersTable.cshtml" />
-    <Content Include="Views\Admin\_categoriesTable.cshtml" />
     <Content Include="Views\Customer\_wishlistTable.cshtml" />
     <Content Include="Views\Customer\_ordersTable.cshtml" />
     <Content Include="Views\Product\_productReview.cshtml" />
@@ -530,7 +529,6 @@
     <Content Include="Views\Cart\CheckOut.cshtml" />
     <Content Include="Views\Home\Test.cshtml" />
     <Content Include="Views\Admin\Customers.cshtml" />
-    <Content Include="Views\Admin\_customersTable.cshtml" />
     <Content Include="Views\Admin\CustomerOrders.cshtml" />
     <Content Include="Views\Customer\OrderDetails.cshtml" />
     <Content Include="Views\Customer\AddReview.cshtml" />
