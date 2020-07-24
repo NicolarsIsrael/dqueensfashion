@@ -7,50 +7,82 @@
 
 <div class="row">
     <div class="col-12">
-        <div class="card mt-lg-4 mt-2 box-shadow">
-            <div class="card-header">
-                <h3 class="card-title">Returned</h3>
+        @using (Html.BeginForm())
+        {
+            <div class="card mt-lg-4 mt-2 box-shadow">
+                <div class="card-header">
+                    <h3 class="card-title">Returned</h3>
 
-                <div class="card-tools">
-                    <div class="input-group input-group-sm">
-                        <input type="text" name="table_search" class="form-control float-right" id="search" placeholder="Search">
+                    <div class="card-tools">
+                        <div class="input-group input-group-sm">
+                            <input type="text" name="query" class="form-control float-right" value="@ViewBag.Query" placeholder="Search">
 
-                        <div class="input-group-append">
-                            <button type="submit" class="btn btn-default table-search-btn" onclick="SearchReturnedOrderTable()">
-                                <i class="fas fa-search"></i>
-                            </button>
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-default table-search-btn">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body table-responsive p-0 custom-table">
+                <!-- /.card-header -->
+                <div class="card-body table-responsive p-0 custom-table">
+                    <table class="table table-head-fixed  table-striped" id="returnedOrdersTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Items (Qty)</th>
+                                <th>Customer</th>
+                                <th>Total Qty</th>
+                                <th>Total Amt</th>
+                                <th>Date</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.OrderId)
+                                    </td>
+                                    <td>
+                                        @{
+                                            foreach (var lineItem in item.LineItems)
+                                            {
+                                                <p class="m-0">@lineItem.ProductName (@lineItem.Quantity) </p>
+                                            }
+                                        }
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CustomerName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TotalQuantity)
+                                    </td>
+                                    <td>
+                                        $@Html.DisplayFor(modelItem => item.TotalAmount)
+                                    </td>
+                                    <td>
+                                        @Html.Raw(item.DateCreatedString.Replace(Environment.NewLine, "<br/>"))
+                                    </td>
+                                    <td>
+                                        <a href="@Url.Action("OrderDetails",new {id = item.OrderId})" class="btn btn-xs secondary-table-button">
+                                            <i class="fas fa-info"></i>
+                                        </a>
 
-                @Html.Partial("_returnedOrdersTable", Model)
+                                    </td>
+                                </tr>
+
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.card-body -->
             </div>
-            <!-- /.card-body -->
-        </div>
-        <!-- /.card -->
+            <!-- /.card -->
+        }
+
     </div>
 </div>
-
-
-<script>
-
-    var search = document.getElementById("search");
-
-    function SearchReturnedOrderTable() {
-        $.ajax({
-            url: '/Admin/SearchReturnedOrders',
-            dataType: "html",
-            data: { query: search.value },
-            success: function (result) {
-
-                $("#returnedOrdersTable").html(result);
-            },
-            error: function (xhr, status, error) {
-                ShowSnackbarError("Error");
-            }
-        });
-    }
-</script>

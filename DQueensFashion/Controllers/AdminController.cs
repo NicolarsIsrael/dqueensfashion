@@ -706,10 +706,12 @@ namespace DQueensFashion.Controllers
                 || (string.Compare(order.OrderId.ToString(), query, true) == 0)
                 ).ToList();
 
+            ViewBag.Query = query;
+
             return View(orderModel);
         }
 
-        public ActionResult ProcessingOrders()
+        public ActionResult ProcessingOrders(string query="")
         {
             IEnumerable<ViewOrderViewModel> orderModel = _orderService.GetProcessingOrders()
                 .Select(order => new ViewOrderViewModel()
@@ -729,78 +731,20 @@ namespace DQueensFashion.Controllers
                     DateCreated = order.DateCreatedUtc,
                     DateCreatedString = generalService.GetDateInString(order.DateCreated, false, false),
                     DateModified = order.DateModified,
+                    LineItemConcatenatedString = string.Join(",", order.LineItems.Select(x => x.Product.Name)),
                 }).OrderByDescending(order => order.DateModified).ToList();
 
+            if (!string.IsNullOrEmpty(query))
+                orderModel = orderModel.Where(order => order.CustomerName.ToLower().Contains(query.ToLower())
+                || order.LineItemConcatenatedString.ToLower().Contains(query.ToLower())
+                || (string.Compare(order.OrderId.ToString(), query, true) == 0)
+                ).ToList();
+
+            ViewBag.Query = query;
             return View(orderModel);
         }
 
-        public ActionResult SearchProcessingOrders(string query)
-        {
-            try
-            {
-                IEnumerable<ViewOrderViewModel> orderModel = _orderService.GetProcessingOrders()
-                       .Select(order => new ViewOrderViewModel()
-                       {
-                           OrderId = order.Id,
-                           CustomerId = order.CustomerId,
-                           CustomerName = order.FirstName + " " + order.LastName,
-                           TotalAmount = order.TotalAmount,
-                           TotalQuantity = order.TotalQuantity,
-                           LineItems = order.LineItems
-                               .Select(lineItem => new ViewLineItem()
-                               {
-                                   ProductName = lineItem.Product.Name,
-                                   Quantity = lineItem.Quantity,
-                                   TotalAmount = lineItem.TotalAmount,
-                               }),
-                           DateCreated = order.DateCreatedUtc,
-                           DateCreatedString = generalService.GetDateInString(order.DateCreated, false, false),
-                           LineItemConcatenatedString = string.Join(",", order.LineItems.Select(x => x.Product.Name)),
-                           DateModified = order.DateModified,
-                       }).OrderByDescending(order => order.DateModified).ToList();
-
-                if (!string.IsNullOrEmpty(query))
-                    orderModel = orderModel.Where(order => order.CustomerName.ToLower().Contains(query.ToLower())
-                    || order.LineItemConcatenatedString.ToLower().Contains(query.ToLower())
-                    || (string.Compare(order.OrderId.ToString(), query, true) == 0)
-                    ).ToList();
-
-                
-                return PartialView("_processingOrdersTable", orderModel);
-            }
-            catch (Exception ex)
-            {
-                var a = ex;
-                throw;
-            }
-        }
-        
-        public ActionResult InTransitOrders()
-        {
-            IEnumerable<ViewOrderViewModel> orderModel = _orderService.GetInTransitOrders()
-               .Select(order => new ViewOrderViewModel()
-               {
-                   OrderId = order.Id,
-                   CustomerId = order.CustomerId,
-                   CustomerName = order.FirstName + " " + order.LastName,
-                   TotalAmount = order.TotalAmount,
-                   TotalQuantity = order.TotalQuantity,
-                   LineItems = order.LineItems
-                       .Select(lineItem => new ViewLineItem()
-                       {
-                           ProductName = lineItem.Product.Name,
-                           Quantity = lineItem.Quantity,
-                           TotalAmount = lineItem.TotalAmount,
-                       }),
-                   DateCreated = order.DateCreatedUtc,
-                   DateCreatedString = generalService.GetDateInString(order.DateCreated, false, false),
-                   DateModified = order.DateModified,
-               }).OrderByDescending(order => order.DateModified).ToList();
-
-            return View(orderModel);
-        }
-
-        public ActionResult SearchInTransitOrders(string query)
+        public ActionResult InTransitOrders(string query="")
         {
             IEnumerable<ViewOrderViewModel> orderModel = _orderService.GetInTransitOrders()
                .Select(order => new ViewOrderViewModel()
@@ -823,18 +767,17 @@ namespace DQueensFashion.Controllers
                    DateModified = order.DateModified,
                }).OrderByDescending(order => order.DateModified).ToList();
 
-
-
             if (!string.IsNullOrEmpty(query))
                 orderModel = orderModel.Where(order => order.CustomerName.ToLower().Contains(query.ToLower())
                 || order.LineItemConcatenatedString.ToLower().Contains(query.ToLower())
                 || (string.Compare(order.OrderId.ToString(), query, true) == 0)
                 ).ToList();
 
-            return PartialView("_inTransitOrderTable", orderModel);
+            ViewBag.Query = query;
+            return View(orderModel);
         }
 
-        public ActionResult DeliveredOrders()
+        public ActionResult DeliveredOrders(string query="")
         {
             IEnumerable<ViewOrderViewModel> orderModel = _orderService.GetDeliveredOrders()
                 .Select(order => new ViewOrderViewModel()
@@ -853,37 +796,9 @@ namespace DQueensFashion.Controllers
                         }),
                     DateCreated = order.DateCreatedUtc,
                     DateCreatedString = generalService.GetDateInString(order.DateCreated, false, false),
+                    LineItemConcatenatedString = string.Join(",", order.LineItems.Select(x => x.Product.Name)),
                     DateModified = order.DateModified,
                 }).OrderByDescending(order => order.DateModified).ToList();
-
-            return View(orderModel);
-        }
-
-        public ActionResult SearchDeliveredOrders(string query)
-        {
-
-            IEnumerable<ViewOrderViewModel> orderModel = _orderService.GetDeliveredOrders()
-                 .Select(order => new ViewOrderViewModel()
-                 {
-                     OrderId = order.Id,
-                     CustomerId = order.CustomerId,
-                     CustomerName = order.FirstName + " " + order.LastName,
-                     TotalAmount = order.TotalAmount,
-                     TotalQuantity = order.TotalQuantity,
-                     LineItems = order.LineItems
-                         .Select(lineItem => new ViewLineItem()
-                         {
-                             ProductName = lineItem.Product.Name,
-                             Quantity = lineItem.Quantity,
-                             TotalAmount = lineItem.TotalAmount,
-                         }),
-                     DateCreated = order.DateCreatedUtc,
-                     DateCreatedString = generalService.GetDateInString(order.DateCreated, false, false),
-                     LineItemConcatenatedString = string.Join(",", order.LineItems.Select(x => x.Product.Name)),
-                     DateModified = order.DateModified,
-                 }).OrderByDescending(order => order.DateModified).ToList();
-
-
 
             if (!string.IsNullOrEmpty(query))
                 orderModel = orderModel.Where(order => order.CustomerName.ToLower().Contains(query.ToLower())
@@ -891,35 +806,11 @@ namespace DQueensFashion.Controllers
                 || (string.Compare(order.OrderId.ToString(), query, true) == 0)
                 ).ToList();
 
-            return PartialView("_deliveredOrdersTable", orderModel);
-        }
-
-        public ActionResult ReturnedOrders()
-        {
-            IEnumerable<ViewOrderViewModel> orderModel = _orderService.GetReturnedOrders()
-                .Select(order => new ViewOrderViewModel()
-                {
-                    OrderId = order.Id,
-                    CustomerId = order.CustomerId,
-                    CustomerName = order.FirstName + " " + order.LastName,
-                    TotalAmount = order.TotalAmount,
-                    TotalQuantity = order.TotalQuantity,
-                    LineItems = order.LineItems
-                        .Select(lineItem => new ViewLineItem()
-                        {
-                            ProductName = lineItem.Product.Name,
-                            Quantity = lineItem.Quantity,
-                            TotalAmount = lineItem.TotalAmount,
-                        }),
-                    DateCreated = order.DateCreatedUtc,
-                    DateCreatedString = generalService.GetDateInString(order.DateCreated, false, false),
-                    DateModified = order.DateModified,
-                }).OrderByDescending(order => order.DateModified).ToList();
-
+            ViewBag.Query = query;
             return View(orderModel);
         }
 
-        public ActionResult SearchReturnedOrders(string query)
+        public ActionResult ReturnedOrders(string query="")
         {
             IEnumerable<ViewOrderViewModel> orderModel = _orderService.GetReturnedOrders()
                 .Select(order => new ViewOrderViewModel()
@@ -942,77 +833,17 @@ namespace DQueensFashion.Controllers
                     DateModified = order.DateModified,
                 }).OrderByDescending(order => order.DateModified).ToList();
 
-
-
             if (!string.IsNullOrEmpty(query))
                 orderModel = orderModel.Where(order => order.CustomerName.ToLower().Contains(query.ToLower())
                 || order.LineItemConcatenatedString.ToLower().Contains(query.ToLower())
                 || (string.Compare(order.OrderId.ToString(), query, true) == 0)
                 ).ToList();
 
-            return PartialView("_returnedOrdersTable", orderModel);
+            ViewBag.Query = query;
+            return View(orderModel);
         }
 
-        //public ActionResult DeletedOrders()
-        //{
-        //    IEnumerable<ViewOrderViewModel> orderModel = _orderService.GetDeletedOrders()
-        //       .Select(order => new ViewOrderViewModel()
-        //       {
-        //           OrderId = order.Id,
-        //           CustomerId = order.CustomerId,
-        //           CustomerName = order.FirstName + " " + order.LastName,
-        //           TotalAmount = order.TotalAmount,
-        //           TotalQuantity = order.TotalQuantity,
-        //           LineItems = order.LineItems
-        //               .Select(lineItem => new ViewLineItem()
-        //               {
-        //                   ProductName = lineItem.Product.Name,
-        //                   Quantity = lineItem.Quantity,
-        //                   TotalAmount = lineItem.TotalAmount,
-        //               }),
-        //           DateCreated = order.DateCreatedUtc,
-        //           DateCreatedString = generalService.GetDateInString(order.DateCreated, false, false),
-        //           DateModified = order.DateModified,
-        //       }).OrderByDescending(order => order.DateModified).ToList();
-
-        //    return View(orderModel);
-        //}
-
-        //public ActionResult SearchDeletedOrders(string query)
-        //{
-        //    IEnumerable<ViewOrderViewModel> orderModel = _orderService.GetDeletedOrders()
-        //      .Select(order => new ViewOrderViewModel()
-        //      {
-        //          OrderId = order.Id,
-        //          CustomerId = order.CustomerId,
-        //          CustomerName = order.FirstName + " " + order.LastName,
-        //          TotalAmount = order.TotalAmount,
-        //          TotalQuantity = order.TotalQuantity,
-        //          LineItems = order.LineItems
-        //              .Select(lineItem => new ViewLineItem()
-        //              {
-        //                  ProductName = lineItem.Product.Name,
-        //                  Quantity = lineItem.Quantity,
-        //                  TotalAmount = lineItem.TotalAmount,
-        //              }),
-        //          DateCreated = order.DateCreatedUtc,
-        //          DateCreatedString = generalService.GetDateInString(order.DateCreated, false, false),
-        //          LineItemConcatenatedString = string.Join(",", order.LineItems.Select(x => x.Product.Name)),
-        //          DateModified = order.DateModified,
-        //      }).OrderByDescending(order => order.DateModified).ToList();
-
-
-
-        //    if (!string.IsNullOrEmpty(query))
-        //        orderModel = orderModel.Where(order => order.CustomerName.ToLower().Contains(query.ToLower())
-        //        || order.LineItemConcatenatedString.ToLower().Contains(query.ToLower())
-        //        || (string.Compare(order.OrderId.ToString(), query, true) == 0)
-        //        ).ToList();
-
-        //    return PartialView("_deletedOrdersTable", orderModel);
-        //}
-
-        public ActionResult CompletedOrders()
+        public ActionResult CompletedOrders(string query="")
         {
             IEnumerable<ViewOrderViewModel> orderModel = _orderService.GetCompletedOrders()
               .Select(order => new ViewOrderViewModel()
@@ -1031,36 +862,9 @@ namespace DQueensFashion.Controllers
                       }),
                   DateCreated = order.DateCreatedUtc,
                   DateCreatedString = generalService.GetDateInString(order.DateCreated, false, false),
+                  LineItemConcatenatedString = string.Join(",", order.LineItems.Select(x => x.Product.Name)),
                   DateModified = order.DateModified,
               }).OrderByDescending(order => order.DateModified).ToList();
-
-            return View(orderModel);
-        }
-
-        public ActionResult SearchCompletedOrders(string query)
-        {
-            IEnumerable<ViewOrderViewModel> orderModel = _orderService.GetCompletedOrders()
-               .Select(order => new ViewOrderViewModel()
-               {
-                   OrderId = order.Id,
-                   CustomerId = order.CustomerId,
-                   CustomerName = order.FirstName + " " + order.LastName,
-                   TotalAmount = order.TotalAmount,
-                   TotalQuantity = order.TotalQuantity,
-                   LineItems = order.LineItems
-                       .Select(lineItem => new ViewLineItem()
-                       {
-                           ProductName = lineItem.Product.Name,
-                           Quantity = lineItem.Quantity,
-                           TotalAmount = lineItem.TotalAmount,
-                       }),
-                   DateCreated = order.DateCreatedUtc,
-                   DateCreatedString = generalService.GetDateInString(order.DateCreated, false, false),
-                   LineItemConcatenatedString = string.Join(",", order.LineItems.Select(x => x.Product.Name)),
-                   DateModified = order.DateModified,
-               }).OrderByDescending(order => order.DateModified).ToList();
-
-
 
             if (!string.IsNullOrEmpty(query))
                 orderModel = orderModel.Where(order => order.CustomerName.ToLower().Contains(query.ToLower())
@@ -1068,7 +872,8 @@ namespace DQueensFashion.Controllers
                 || (string.Compare(order.OrderId.ToString(), query, true) == 0)
                 ).ToList();
 
-            return PartialView("_completedOrdersTable", orderModel);
+            ViewBag.Query = query;
+            return View(orderModel);
         }
 
         public ActionResult TransitOrder(int id)
