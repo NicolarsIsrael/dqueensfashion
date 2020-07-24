@@ -33,7 +33,15 @@ namespace DQueensFashion.Service.Implementation
 
         public int GetTotalRequests()
         {
-            return uow.RequestRepo.GetAll().Sum(r => r.Quantity);
+            int count = 0;
+            var requests = uow.RequestRepo.GetAll().ToList();
+            foreach(var req in requests)
+            {
+                var product = uow.ProductRepo.GetProductByIdWithRelationships(req.ProductId);
+                if (product != null)
+                    count++;
+            };
+            return count;
         }
 
         public IEnumerable<Request> GetAllRequests()

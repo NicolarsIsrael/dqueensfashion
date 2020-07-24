@@ -1143,29 +1143,40 @@ namespace DQueensFashion.Controllers
 
         public ActionResult Requests()
         {
-            var allImages = _imageService.GetAllImageFiles().ToList();
-            var _reqGroup = (from r in _requestService.GetAllRequests()
-                             group r by r.ProductId into g
-                        select new { request = g.Key,
-                            users = g.OrderBy(rr => rr.CustomerEmail).ToList() }).ToList();
+            try
+            {
+                var allImages = _imageService.GetAllImageMainFiles().ToList();
+                var _reqGroup = (from r in _requestService.GetAllRequests()
+                                 group r by r.ProductId into g
+                                 select new
+                                 {
+                                     request = g.Key,
+                                     users = g.OrderBy(rr => rr.CustomerEmail).ToList()
+                                 }).ToList();
 
-            IEnumerable<ViewRequestsViewModel> requestsGroup = _reqGroup
-                .Select(r => new ViewRequestsViewModel()
-                {
-                    Product = _productService.GetProductById(r.request),
-                    ProductName = _productService.GetProductById(r.request).Name,
-                    MainImage = allImages.Where(image => image.ProductId == r.request).Count() < 1 ?
-                                AppConstant.DefaultProductImage :
-                                allImages.Where(image => image.ProductId == r.request).FirstOrDefault().ImagePath,
-                    UsersRequests = r.users
-                        .Select(user => new RequestViewModel()
-                        {
-                            CustomerEmail = user.CustomerEmail,
-                            Quantity = user.Quantity,
-                        }).ToList(),
-                }).OrderBy(r=>r.ProductName).ToList();
+                IEnumerable<ViewRequestsViewModel> requestsGroup = _reqGroup
+                    .Select(r => new ViewRequestsViewModel()
+                    {
+                        Product = _productService.GetProductById(r.request),
+                        MainImage = allImages.Where(image => image.ProductId == r.request).Count() < 1 ?
+                                    AppConstant.DefaultProductImage :
+                                    allImages.Where(image => image.ProductId == r.request).FirstOrDefault().ImagePath,
+                        UsersRequests = r.users
+                            .Select(user => new RequestViewModel()
+                            {
+                                CustomerEmail = user.CustomerEmail,
+                                Quantity = user.Quantity,
+                            }).ToList(),
+                    }).OrderBy(r => r.ProductName).ToList();
 
-            return View(requestsGroup);
+                requestsGroup = requestsGroup.Where(r => r.Product != null);
+                return View(requestsGroup);
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
 
         public ActionResult RequestReply(int id=0)
