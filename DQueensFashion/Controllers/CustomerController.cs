@@ -141,35 +141,7 @@ namespace DQueensFashion.Controllers
         }
 
 
-        public ActionResult Orders()
-        {
-            Customer customer = GetLoggedInCustomer();
-            if (customer == null)
-                throw new Exception(); ;
-
-            IEnumerable<ViewOrderViewModel> orderModel = _orderService.GetAllOrdersForCustomer(customer.Id)
-                .Select(order => new ViewOrderViewModel()
-                {
-                    OrderId = order.Id,
-                    CustomerId = order.CustomerId,
-                    TotalAmount = order.TotalAmount,
-                    TotalQuantity = order.TotalQuantity,
-                    LineItems = order.LineItems
-                        .Select(lineItem => new ViewLineItem()
-                        {
-                            ProductName = lineItem.Product.Name,
-                            Quantity = lineItem.Quantity,
-                            TotalAmount = lineItem.TotalAmount,
-                        }),
-                    OrderStatus = order.OrderStatus.ToString(),
-                    DateCreated = order.DateCreatedUtc,
-                    DateCreatedString = generalService.GetDateInString(order.DateCreated, false, false),
-                }).OrderByDescending(order => order.DateCreated).ToList();
-
-            return View(orderModel);
-        }
-
-        public ActionResult SearchOrders(string query)
+        public ActionResult Orders(string query="")
         {
             Customer customer = GetLoggedInCustomer();
             if (customer == null)
@@ -201,8 +173,8 @@ namespace DQueensFashion.Controllers
                 || (string.Compare(order.OrderId.ToString(), query, true) == 0)
                 ).ToList();
 
-
-            return PartialView("_ordersTable", orderModel);
+            ViewBag.Query = query;
+            return View(orderModel);
         }
 
         public ActionResult OrderDetails(int id = 0)
