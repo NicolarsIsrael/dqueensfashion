@@ -262,6 +262,7 @@ namespace DQueensFashion.Controllers
                 Name = productModel.Name,
                 Description = productModel.Description,
                 Quantity = productModel.Quantity,
+                QuantityVariation = productModel.QuantityVariation,
                 Price = Math.Round(productModel.Price, 2,MidpointRounding.AwayFromZero),
                 Discount = Math.Round(productModel.Discount, 2,MidpointRounding.AwayFromZero),
                 SubTotal = _productService.CalculateProductPrice(productModel.Price, productModel.Discount),
@@ -350,6 +351,7 @@ namespace DQueensFashion.Controllers
                 Name = product.Name,
                 Description = product.Description,
                 Quantity = product.Quantity,
+                QuantityVariation = product.QuantityVariation,
                 Price = product.Price,
                 Discount = product.Discount,
                 SubTotal = product.SubTotal,
@@ -431,6 +433,7 @@ namespace DQueensFashion.Controllers
             product.Name = productModel.Name;
             product.Description = productModel.Description;
             product.Quantity = productModel.Quantity;
+            product.QuantityVariation = productModel.QuantityVariation;
             product.Price = Math.Round(productModel.Price,2,MidpointRounding.AwayFromZero);
             product.Discount = Math.Round(productModel.Discount, 2,MidpointRounding.AwayFromZero);
             product.SubTotal = _productService.CalculateProductPrice(productModel.Price, productModel.Discount);

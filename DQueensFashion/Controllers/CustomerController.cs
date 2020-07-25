@@ -259,7 +259,6 @@ namespace DQueensFashion.Controllers
                 ProductImage = allProductImages.Count() < 1 ?
                         AppConstant.DefaultProductImage :
                         _imageService.GetMainImageForProduct(product.Id).ImagePath,
-                ProductCategory = product.Category.Name,
                 Name = lineItem.Order.FirstName + " " + lineItem.Order.LastName,
             };
 

@@ -301,7 +301,27 @@
                                 </div>
                             </div>
                         }
-
+                        else
+                        {
+                            <div class="col-12">
+                                <div class="card box-shadow">
+                                    <div class="card-header">
+                                        VARIATIONS
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.QuantityVariation, htmlAttributes: new { @class = "control-label col-12" })
+                                                <div class="col-12">
+                                                    @Html.EnumDropDownListFor(model => model.QuantityVariation, htmlAttributes: new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(model => model.QuantityVariation, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
                     }
                 </div>
 

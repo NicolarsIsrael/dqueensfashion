@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DQueensFashion.Utilities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -21,6 +22,7 @@ namespace DQueensFashion.Core.Model
         public decimal Discount { get; set; }
         public decimal SubTotal { get; set; }
         public int Quantity { get; set; }
+        public QuantityVariation QuantityVariation { get; set; }
         public string Tags { get; set; }
         public double AverageRating { get; set; }
         public IEnumerable<ImageFile> Images { get; set; }

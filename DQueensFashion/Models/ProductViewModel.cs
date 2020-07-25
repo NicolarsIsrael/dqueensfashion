@@ -1,5 +1,6 @@
 ﻿using DQueensFashion.Core;
 using DQueensFashion.Core.Model;
+using DQueensFashion.Utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -36,6 +37,9 @@ namespace DQueensFashion.Models
         [Range(1, int.MaxValue, ErrorMessage = "Quantity must be greater than 1")]
         [Required]
         public int Quantity { get; set; }
+
+        [Display(Name="Quantity Variation")]
+        public QuantityVariation QuantityVariation { get; set; }
 
         [Display(Name="Days to deliver")]
         [Range(1,int.MaxValue, ErrorMessage ="Days to deliver must be equal or greater than 1")]

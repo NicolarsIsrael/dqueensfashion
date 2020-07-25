@@ -14,8 +14,13 @@ namespace DQueensFashion.Utilities
         InTransit,
         Delivered,
         Returned,
-        //Deleted,
         Completed
+    }
+
+    public enum QuantityVariation
+    {
+        Yards,
+        Pieces,
     }
 
 }

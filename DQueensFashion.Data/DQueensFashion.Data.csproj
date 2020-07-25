@@ -182,6 +182,10 @@
     <Compile Include="Migrations\202007220921000_numberOFItemsDb.Designer.cs">
       <DependentUpon>202007220921000_numberOFItemsDb.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007251955423_qtyvariation.cs" />
+    <Compile Include="Migrations\202007251955423_qtyvariation.Designer.cs">
+      <DependentUpon>202007251955423_qtyvariation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -213,6 +217,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007220921000_numberOFItemsDb.resx">
       <DependentUpon>202007220921000_numberOFItemsDb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007251955423_qtyvariation.resx">
+      <DependentUpon>202007251955423_qtyvariation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
