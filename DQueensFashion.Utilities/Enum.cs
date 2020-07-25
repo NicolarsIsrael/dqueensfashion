@@ -19,8 +19,8 @@ namespace DQueensFashion.Utilities
 
     public enum QuantityVariation
     {
-        Yards,
-        Pieces,
+        yards,
+        pieces,
     }
 
 }

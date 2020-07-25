@@ -62,18 +62,42 @@
                     <p class="text-danger">Measurements are in inches*</p>
                 }
             </td>
-            <td style="width:50px;">
+            <td style="width:120px;">
                 <select class="form-group-sm" style="width:100%" onchange="ChangeCartItemQuantity(@item.Product.Id,this.value)">
                     @{
-                        for (int i = 1; i <= item.MaxQuantity; i++)
+                        if (item.Product.CategoryId == AppConstant.OutfitsId)
                         {
-                            if (i == item.Quantity)
+                            for (int i = 1; i <= item.MaxQuantity; i++)
                             {
-                                <option value="@i" selected>@i</option>
+                                if (i == item.Quantity)
+                                {
+                                    <option value="@i" selected>@i</option>
+                                }
+                                else
+                                {
+                                    <option value="@i">@i</option>
+                                }
                             }
-                            else
+                        }
+                        else
+                        {
+                            string quantityVariation = "";
+                            for (int i = 1; i <= item.MaxQuantity; i++)
                             {
-                                <option value="@i">@i</option>
+                                if (i == 1)
+                                { quantityVariation = i.ToString() + " " + item.SingleQuantityVariation; }
+                                else
+                                { quantityVariation = i.ToString() + " " + item.PluralQuantityVariation; }
+
+                                if (i == item.Quantity)
+                                {
+                                    <option value="@i" selected>@quantityVariation</option>
+                                }
+                                else
+                                {
+                                    <option value="@i">@quantityVariation</option>
+                                }
+
                             }
                         }
                     }

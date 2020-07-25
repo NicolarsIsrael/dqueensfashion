@@ -41,8 +41,10 @@
                 {
                     <p class="text-danger mb-0">Measurements are in inches*</p>
                 }
-                <select class="form-group-sm mb-1" style="width:100px;margin-top:5px;" onchange="ChangeCartItemQuantity(@item.Product.Id,this.value)">
-                    @{
+            <select class="form-group-sm mb-1" style="width:120px;margin-top:5px;" onchange="ChangeCartItemQuantity(@item.Product.Id,this.value)">
+                @{
+                    if (item.Product.CategoryId == AppConstant.OutfitsId)
+                    {
                         for (int i = 1; i <= item.MaxQuantity; i++)
                         {
                             if (i == item.Quantity)
@@ -55,7 +57,29 @@
                             }
                         }
                     }
-                </select>
+                    else
+                    {
+                        string quantityVariation = "";
+                        for (int i = 1; i <= item.MaxQuantity; i++)
+                        {
+                            if (i == 1)
+                            { quantityVariation = i.ToString() + " " + item.SingleQuantityVariation; }
+                            else
+                            { quantityVariation = i.ToString() + " " + item.PluralQuantityVariation; }
+
+                            if (i == item.Quantity)
+                            {
+                                <option value="@i" selected>@quantityVariation</option>
+                            }
+                            else
+                            {
+                                <option value="@i">@quantityVariation</option>
+                            }
+
+                        }
+                    }
+                }
+            </select>
                 <div style="font-weight:500">
                     $@Html.DisplayFor(modelItem => item.TotalPrice)
                 </div>

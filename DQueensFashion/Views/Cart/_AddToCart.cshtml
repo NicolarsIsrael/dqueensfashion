@@ -1,0 +1,71 @@
+﻿@model DQueensFashion.Models.Cart
+@using DQueensFashion.Utilities
+
+<hr class="m-0"/>
+@using (Html.BeginForm("AddToCart", "Cart", FormMethod.Post, new { id = "addToCartForm" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <div class="add-to-cart-outfit">
+            <input type="hidden" id="ProductId" value="@Model.ProductId" />
+
+            <div class="row">
+                <div class="col-5 p-1">
+                    <img src="@Url.Content(Model.MainImage)" class="add-to-cart-outfit-img" alt="@Model.ProductName _image_houseofdqueens" />
+                </div>
+                <div class="col-7 p-1">
+                    <div class="add-to-cart-outfit-product-name">
+                        @Model.ProductName
+                    </div>
+                    <div class="add-to-cart-outfit-category-name">@Model.CategoryName</div>
+                    <span class="product-initial-price add-to-cart-outfit-initial-price">$@Model.InitialPrice</span>
+                    <span class="pl-1 add-to-cart-outfit-discount">-@Model.Discount%</span>
+                    <div class="add-to-cart-outfit-unit-price">$@Model.UnitPrice</div>
+                </div>
+
+            </div>
+
+            <div class="mr-2">
+                <div class="form-group">
+                    <div class="col-form-label">Quantity</div>
+                    <select class="form-control-sm col-12" id="Quantity">
+                        @{
+                            string quantityVariation = "";
+                            for (int i = 1; i <= Model.MaxQuantity; i++)
+                            {
+                                if (i == 1)
+                                { quantityVariation = i.ToString() + " " + Model.SingleQuantityVariation; }
+                                else
+                                { quantityVariation = i.ToString() + " " + Model.PluralQuantityVariation; }
+
+                                if (i == Model.Quantity)
+                                {
+                                    <option value="@i" selected>@quantityVariation</option>
+                                }
+                                else
+                                {
+                                    <option value="@i">@quantityVariation</option>
+                                }
+
+                            }
+                        }
+                    </select>
+                </div>
+
+            </div>
+        </div>
+        <div>
+            <hr class="my-2" />
+            <input type="button" value="ADD TO CART" class="btn mt-0 primary-custom-button add-to-cart-outfit-btn"
+                   onclick="AddToCartPost()" />
+        </div>
+    </div>
+}
+
+
+<style>
+    .col-form-label {
+        padding-bottom: 0;
+    }
+</style>

@@ -1,12 +1,53 @@
 ﻿
-function AddToCart(productId, _quantity) {
-    
+function AddToCart(productId) {
+
     $.ajax({
-        url: '/Cart/addtocart/',
+        url: "/Cart/AddToCart/" + productId,
         dataType: "html",
-        data: { id: productId, quantity:_quantity },
+        data: {},
+        success: function (result) {
+            $("#sidebarbody").html(result);
+            openNav();
+        },
+        error: function (xhr, status, error) {
+            ShowSnackbarError("Oops, sorry! Error");
+        }
+    });
+
+    //$.ajax({
+    //    url: '/Cart/addtocart/',
+    //    dataType: "html",
+    //    data: { id: productId, quantity:_quantity },
+    //    success: function (result) {
+    //        $("#navbarCartNumber").html(result);
+    //        ShowSnackbarSuccess("Item added to cart successfully");
+    //    },
+    //    error: function (xhr, status, error) {
+    //        ShowSnackbarError("Oops, sorry! Error");
+    //    }
+    //});
+}
+
+function AddToCartPost() {
+
+    var form = $('#addToCartForm');
+    var token = $('input[name="__RequestVerificationToken"]', form).val();
+    var productId = $('#ProductId').val();
+    var quantity = $('#Quantity').val();
+
+    $.ajax({
+        url: "/Cart/AddToCart",
+        data: {
+            __RequestVerificationToken: token,
+            id:productId,
+            quantity : quantity,
+        },
+        type: "POST",
+        contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+        dataType: "html",
         success: function (result) {
             $("#navbarCartNumber").html(result);
+            closeNav();
             ShowSnackbarSuccess("Item added to cart successfully");
         },
         error: function (xhr, status, error) {

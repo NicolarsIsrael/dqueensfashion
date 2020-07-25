@@ -1,6 +1,8 @@
 ﻿@model DQueensFashion.Models.Cart
 @using DQueensFashion.Utilities
 
+<hr class="m-0" />
+
 @using (Html.BeginForm("AddToCartOutfits", "Cart",FormMethod.Post, new { id = "addToCartOutfitsForm" }))
 {
     @Html.AntiForgeryToken()

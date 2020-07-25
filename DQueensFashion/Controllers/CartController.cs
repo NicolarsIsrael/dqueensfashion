@@ -20,6 +20,7 @@ namespace DQueensFashion.Controllers
         private readonly IImageService _imageService;
         private readonly IGeneralValuesService _generalValuesService;
         private readonly ICustomerService _customerService;
+        private readonly GeneralService generalService;
 
         public CartController(IProductService productService, ICategoryService categoryService, IImageService imageService,
             IGeneralValuesService generalValuesService,ICustomerService customerService)
@@ -29,6 +30,7 @@ namespace DQueensFashion.Controllers
             _imageService = imageService;
             _generalValuesService = generalValuesService;
             _customerService = customerService;
+            generalService = new GeneralService();
         }
         // GET: Cart
         public ActionResult Index()
@@ -72,39 +74,67 @@ namespace DQueensFashion.Controllers
             return PartialView("_navbarCartNumber");
         }
 
-        public ActionResult AddToCart(int id=0,int quantity=1)
+        public ActionResult AddToCart(int id=0)
         {
             Product product = _productService.GetProductById(id);
             if (product == null)
+                throw new Exception();
+
+            if (product.CategoryId == AppConstant.OutfitsId)
                 throw new Exception();
 
             string mainImage = _imageService.GetImageFilesForProduct(product.Id).Count() < 1
                 ? AppConstant.DefaultProductImage
                 : _imageService.GetMainImageForProduct(product.Id).ImagePath;
 
-            GeneralService generalService = new GeneralService();
+            string quantityVariation = product.QuantityVariation.ToString();
+            Cart cartModel = new Cart()
+            {
+                ProductId = product.Id,
+                ProductName = product.Name.Length > 20 ? product.Name.Substring(0, 18) + "..." : product.Name,
+                CategoryName = product.Category.Name.Length > 20
+                            ? product.Category.Name.Substring(0, 18) + "..." : product.Category.Name,
+                MainImage = mainImage,
+                InitialPrice = product.Price,
+                Discount = product.Discount,
+                UnitPrice = product.SubTotal,
+                MaxQuantity = product.Quantity,
+                SingleQuantityVariation = quantityVariation.Remove(quantityVariation.Length - 1, 1),
+                PluralQuantityVariation = quantityVariation,
+            };
 
-            List<Cart> cart = new List<Cart>();
             int index = isExist(id);
-            if (index > -1)
+            if(index>-1) //item exists in product
             {
-                cart = (List<Cart>)Session["cart"];
-
-                if (cart[index].Quantity >= product.Quantity)
-                    cart[index].Quantity = product.Quantity;
-                else
-                    cart[index].Quantity += quantity;
-
-                cart[index].UnitPrice = cart[index].Product.SubTotal;
-                cart[index].TotalPrice = cart[index].Product.SubTotal * cart[index].Quantity;
-                cart[index].Description = cart[index].Quantity > 1
-                    ? cart[index].Quantity.ToString() + " Pieces"
-                    : cart[index].Quantity.ToString() + " Piece";
+                List<Cart> cart = (List<Cart>)Session["cart"];
+                cartModel.Quantity = cart[index].Quantity;
             }
-            else
+
+            return PartialView("_AddToCart", cartModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddToCart(int id=0,int quantity=1)
+        {
+            try
             {
-                if (index == -1)
+                Product product = _productService.GetProductById(id);
+                if (product == null)
+                    throw new Exception();
+
+                string mainImage = _imageService.GetImageFilesForProduct(product.Id).Count() < 1
+                    ? AppConstant.DefaultProductImage
+                    : _imageService.GetMainImageForProduct(product.Id).ImagePath;
+
+                List<Cart> cart = new List<Cart>();
+                if ((List<Cart>)Session["cart"] != null)
                     cart = (List<Cart>)Session["cart"];
+
+                int index = isExist(id);
+                if (index > -1)
+                    cart.RemoveAt(index);
+
                 cart.Add(new Cart
                 {
                     Product = product,
@@ -114,15 +144,26 @@ namespace DQueensFashion.Controllers
                     UnitPrice = product.SubTotal,
                     TotalPrice = product.SubTotal * quantity,
                     MainImage = mainImage,
-                    Description = quantity > 1 ? quantity.ToString() + " Pieces" : quantity.ToString() + " Piece",
+                    Description = quantity > 1
+                                ? quantity.ToString() + " " + product.QuantityVariation.ToString()
+                                 : quantity.ToString() + " " + product.QuantityVariation.ToString()
+                                        .Remove(product.QuantityVariation.ToString().Length - 1, 1),
                     MaxQuantity = product.Quantity,
-                    GeneratedUrl = generalService.GenerateItemNameAsParam(product.Id,product.Name),
+                    GeneratedUrl = generalService.GenerateItemNameAsParam(product.Id, product.Name),
+                    SingleQuantityVariation = product.QuantityVariation.ToString()
+                                            .Remove(product.QuantityVariation.ToString().Length - 1, 1),
+                    PluralQuantityVariation = product.QuantityVariation.ToString(),
                 });
-            }
-            Session["cart"] = cart;
+                Session["cart"] = cart;
 
-            ViewBag.CartNumber = GetCartNumber();
-            return PartialView("_navbarCartNumber");
+                ViewBag.CartNumber = GetCartNumber();
+                return PartialView("_navbarCartNumber");
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
 
         public ActionResult AddToCartOutfits(int id=0)
@@ -183,7 +224,6 @@ namespace DQueensFashion.Controllers
                     ? AppConstant.DefaultProductImage
                     : _imageService.GetMainImageForProduct(product.Id).ImagePath;
 
-                GeneralService generalService = new GeneralService();
                 List<Cart> cart = new List<Cart>();
 
                 int index = isExistOutfits(cartModel.ProductId, cartModel);
@@ -255,11 +295,12 @@ namespace DQueensFashion.Controllers
                 if (product.CategoryId != AppConstant.OutfitsId)
                 {
                     cart[index].Description = cart[index].Quantity > 1
-                    ? cart[index].Quantity.ToString() + " Pieces"
-                    : cart[index].Quantity.ToString() + " Piece";
+                          ? cart[index].Quantity.ToString() + " " + product.QuantityVariation.ToString()
+                           : cart[index].Quantity.ToString() + " " + product.QuantityVariation.ToString()
+                                  .Remove(product.QuantityVariation.ToString().Length - 1, 1);
                 }
 
-                if (cart[index].Quantity == 0)
+                if (cart[index].Quantity < 1)
                     cart.RemoveAt(index);
             }
             Session["cart"] = cart;
