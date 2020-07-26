@@ -288,6 +288,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\dashboard.css" />
     <Content Include="Content\Dashboard\css\dashboard.css" />
     <Content Include="Content\general.css" />
     <Content Include="Content\HtmlPages\ForgotPasswordMessage.html" />
@@ -354,6 +355,7 @@
     <None Include="Properties\PublishProfiles\FolderProfile4.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile5.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile6.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile7.pubxml" />
     <None Include="Properties\PublishProfiles\houseofdqueens.com - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\houseofdqueens.com - Web Deploy1.pubxml" />
     <None Include="Properties\PublishProfiles\houseofdqueens.com - Web Deploy2.pubxml" />
