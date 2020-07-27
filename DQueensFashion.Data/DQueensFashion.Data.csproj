@@ -186,6 +186,10 @@
     <Compile Include="Migrations\202007251955423_qtyvariation.Designer.cs">
       <DependentUpon>202007251955423_qtyvariation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007271628452_freeshipping.cs" />
+    <Compile Include="Migrations\202007271628452_freeshipping.Designer.cs">
+      <DependentUpon>202007271628452_freeshipping.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -220,6 +224,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007251955423_qtyvariation.resx">
       <DependentUpon>202007251955423_qtyvariation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007271628452_freeshipping.resx">
+      <DependentUpon>202007271628452_freeshipping.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

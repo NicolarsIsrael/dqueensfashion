@@ -288,7 +288,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\dashboard.css" />
     <Content Include="Content\Dashboard\css\dashboard.css" />
     <Content Include="Content\general.css" />
     <Content Include="Content\HtmlPages\ForgotPasswordMessage.html" />

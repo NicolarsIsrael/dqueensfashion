@@ -28,5 +28,10 @@ namespace DQueensFashion.Models
         [Range(0,int.MaxValue,ErrorMessage ="Shipping price must be equal to or greater than 0")]
         [Display(Name ="Shipping price")]
         public decimal ShippingPrice { get; set; }
+
+        [Required(ErrorMessage = "Min free shipping is requirsd")]
+        [Range(0, int.MaxValue, ErrorMessage = "Min free Shipping price must be equal to or greater than 0")]
+        [Display(Name = "Min for free shipping")]
+        public decimal MinFreeShippingPrice { get; set; }
     }
 }

@@ -128,17 +128,18 @@ namespace DQueensFashion.Controllers
                         Description= item.description,
                     }).ToList();
 
+                decimal shippingPrice = Decimal.Parse(_payment.transactions.FirstOrDefault().amount.details.shipping);
                 DQueensFashion.Core.Model.Order order = new DQueensFashion.Core.Model.Order()
                 {
-                    CustomerId =customer.Id,
+                    CustomerId = customer.Id,
                     FirstName = _payment.payer.payer_info.first_name,
                     LastName = _payment.payer.payer_info.last_name,
                     Phone = Session["PhoneNumber"].ToString(),
                     Address = Session["Address"].ToString(),
                     LineItems = lineItems,
                     SubTotal = lineItems.Sum(l => l.TotalAmount),
-                    ShippingPrice = generalValues.ShippingPrice,
-                    TotalAmount = lineItems.Sum(l => l.TotalAmount) + generalValues.ShippingPrice,
+                    ShippingPrice =shippingPrice, //generalValues.ShippingPrice,
+                    TotalAmount = lineItems.Sum(l => l.TotalAmount) +shippingPrice,
                     TotalQuantity = lineItems.Sum(l => l.Quantity),
                     OrderStatus = OrderStatus.Processing,
                 };
@@ -244,7 +245,13 @@ namespace DQueensFashion.Controllers
                 SubTotal = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.TotalPrice),
             };
 
-            if(customer.AvailableSubcriptionDiscount.Value 
+            decimal shippingPrice = 0;
+            if (carts.SubTotal >= _generalValService.GetGeneralValues().MinFreeShippingPrice)
+                shippingPrice = 0;
+            else
+                shippingPrice = _generalValService.GetGeneralValues().ShippingPrice;
+
+            if (customer.AvailableSubcriptionDiscount.Value 
                 && !customer.UsedSubscriptionDiscount.Value)
             {
                 foreach(var cartItem in carts.Carts)
@@ -299,11 +306,13 @@ namespace DQueensFashion.Controllers
                 cancel_url = redirectUrl + "&Cancel=true",
                 return_url = redirectUrl
             };
+
+                
             // Adding Tax, shipping and Subtotal details
             var details = new Details()
             {
                 tax = "0",
-                shipping = generalVal.ShippingPrice.ToString(),
+                shipping = shippingPrice.ToString(),
                 subtotal = carts.SubTotal.ToString(),
                 
             };
@@ -311,7 +320,7 @@ namespace DQueensFashion.Controllers
             var amount = new Amount()
             {
                 currency = "USD",
-                total = (carts.SubTotal + generalVal.ShippingPrice).ToString(), // Total must be equal to sum of tax, shipping and subtotal.
+                total = (carts.SubTotal +shippingPrice).ToString(), // Total must be equal to sum of tax, shipping and subtotal.
                 details = details,
             };
             var transactionList = new List<Transaction>();

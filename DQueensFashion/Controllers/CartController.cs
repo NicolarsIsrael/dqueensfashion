@@ -44,7 +44,9 @@ namespace DQueensFashion.Controllers
                 ShippingPrice = _generalValuesService.GetGeneralValues().ShippingPrice,
                 EstimatedDeliveryDayDuration = CalculateDeliveryDuration(),
             };
-            viewCart.TotalAfterShipping =viewCart.SubTotal + viewCart.ShippingPrice;
+            if (viewCart.SubTotal >= _generalValuesService.GetGeneralValues().MinFreeShippingPrice)
+                viewCart.ShippingPrice = 0;
+            viewCart.TotalAfterShipping = viewCart.SubTotal + viewCart.ShippingPrice;
 
             Customer customer = GetLoggedInCustomer();
             if (customer != null)
@@ -313,7 +315,10 @@ namespace DQueensFashion.Controllers
                 ShippingPrice = _generalValuesService.GetGeneralValues().ShippingPrice,
                 EstimatedDeliveryDayDuration = CalculateDeliveryDuration(),
             };
+            if (viewCart.SubTotal >= _generalValuesService.GetGeneralValues().MinFreeShippingPrice)
+                viewCart.ShippingPrice = 0;
             viewCart.TotalAfterShipping = viewCart.SubTotal + viewCart.ShippingPrice;
+
 
             Customer customer = GetLoggedInCustomer();
             if (customer != null)
@@ -348,7 +353,10 @@ namespace DQueensFashion.Controllers
                 ShippingPrice = _generalValuesService.GetGeneralValues().ShippingPrice,
                 EstimatedDeliveryDayDuration = CalculateDeliveryDuration(),
             };
+            if (viewCart.SubTotal >= _generalValuesService.GetGeneralValues().MinFreeShippingPrice)
+                viewCart.ShippingPrice = 0;
             viewCart.TotalAfterShipping = viewCart.SubTotal + viewCart.ShippingPrice;
+
             return PartialView("_cartTable", viewCart);
         }
 
@@ -364,6 +372,8 @@ namespace DQueensFashion.Controllers
                 SubTotal = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.TotalPrice),
                 ShippingPrice = _generalValuesService.GetGeneralValues().ShippingPrice,
             };
+            if (viewCart.SubTotal >= _generalValuesService.GetGeneralValues().MinFreeShippingPrice)
+                viewCart.ShippingPrice = 0;
             viewCart.TotalAfterShipping = viewCart.SubTotal + viewCart.ShippingPrice;
 
             if (viewCart.Count < 1)
@@ -414,6 +424,8 @@ namespace DQueensFashion.Controllers
                     SubTotal = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.TotalPrice),
                     ShippingPrice = _generalValuesService.GetGeneralValues().ShippingPrice,
                 };
+                if (viewCart.SubTotal >= _generalValuesService.GetGeneralValues().MinFreeShippingPrice)
+                    viewCart.ShippingPrice = 0;
                 viewCart.TotalAfterShipping = viewCart.SubTotal + viewCart.ShippingPrice;
 
                 ModelState.AddModelError("", "One or more validation errors");

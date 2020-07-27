@@ -35,7 +35,15 @@
                                 </div>
                                 <hr class="m-0" />
                                 <div class="cart-shipping-details">
-                                    <span>Shipping price: $@Model.ShippingPrice anywhere in USA</span>
+                                    @if (Model.ShippingPrice == 0)
+                                    {
+                                        <span>FREE SHIPPING</span>
+                                    }
+                                    else
+                                    {
+                                        <span>Shipping price: $@Model.ShippingPrice anywhere in USA</span>
+                                    }
+
                                 </div>
                                 <hr class="m-0" />
                                 <div>Prices are updated at check out</div>
