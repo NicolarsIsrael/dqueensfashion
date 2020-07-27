@@ -119,6 +119,10 @@ width: 20px
     padding-top: 60px;
 }
 
+.sideNavBorder {
+    border: 1px solid black;
+}
+
 .closebtn {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
@@ -129,7 +133,7 @@ width: 20px
 }
 
     .closebtn:hover {
-        color: black;
+        color: #dc3545;
     }
 
 .sidenav .closebtn {

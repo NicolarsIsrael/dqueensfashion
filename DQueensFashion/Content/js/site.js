@@ -250,11 +250,15 @@ function SetProductTotalPrice(price,discount) {
 }
 
 function openNav() {
-    document.getElementById("sidenav").style.width = "300px";
+    var sideNav = document.getElementById("sidenav");
+    sideNav.style.width = "300px";
+    sideNav.classList.add("sideNavBorder");
 }
 
 function closeNav() {
-    document.getElementById("sidenav").style.width = "0";
+    var sideNav = document.getElementById("sidenav");
+    sideNav.style.width = "0";
+    sideNav.classList.remove("sideNavBorder");
 }
 
 function SubscribeToMailingList() {
