@@ -79,29 +79,30 @@
             @Html.Partial("~/views/Product/_averageRating.cshtml", Model.Rating)
         </div>
         @{
-            if (Model.IsOutOfStock)
+            if (Model.ForSale)
             {
-                <div class="cart" onclick="RequestForProduct(@Model.Id)">
-                    <div href="">Request</div>
-                </div>
-            }
-            else
-            {
-                if (Model.CategoryId == 1)
+                if (Model.IsOutOfStock)
                 {
-                    <div class="cart" onclick="AddToCartOutfits(@Model.Id)">
-                        <div href="#">Add to cart</div>
+                    <div class="cart" onclick="RequestForProduct(@Model.Id)">
+                        <div href="">Request</div>
                     </div>
                 }
                 else
                 {
-                    <div class="cart" onclick="AddToCart(@Model.Id)">
-                        <div href="#">Add to cart</div>
-                    </div>
+                    if (Model.CategoryId == 1)
+                    {
+                        <div class="cart" onclick="AddToCartOutfits(@Model.Id)">
+                            <div href="#">Add to cart</div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="cart" onclick="AddToCart(@Model.Id)">
+                            <div href="#">Add to cart</div>
+                        </div>
+                    }
                 }
             }
-
-
         }
 
     </div>

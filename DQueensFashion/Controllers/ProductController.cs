@@ -60,7 +60,8 @@ namespace DQueensFashion.Controllers
         public ActionResult Shop(string query = "",int categoryId = 0,int sort=0,int pageNumber=1)
         {
             var allImages = _imageService.GetAllImageMainFiles();
-            IEnumerable<Product> _products = _productService.GetAllProducts().ToList();
+            IEnumerable<Product> _products = _productService.GetAllProducts()
+                .Where(p => p.ForSale).ToList();
 
             if (!string.IsNullOrEmpty(query))
             {
@@ -99,6 +100,7 @@ namespace DQueensFashion.Controllers
                     IsNew = _productService.CheckIfProductIsNew(p.DateCreatedUtc),
                     IsOutOfStock = p.Quantity < 1 ? true : false,
                     LazyLoad = true,
+                    ForSale = p.ForSale,
                 }).OrderByDescending(p=>p.DateCreated).ToList();
 
             //sort
@@ -235,6 +237,7 @@ namespace DQueensFashion.Controllers
             var allImages = _imageService.GetAllImageMainFiles();
 
             IEnumerable<ViewProductsViewModel> relatedProducts = _productService.GetRelatedProducts(product.Id, product.CategoryId)
+                .Where(p => p.ForSale).Take(8)
                 .Select(p => new ViewProductsViewModel()
                 {
                     GeneratedUrl = generalService.GenerateItemNameAsParam(p.Id, p.Name),
@@ -257,12 +260,13 @@ namespace DQueensFashion.Controllers
                     },
                     IsNew = _productService.CheckIfProductIsNew(p.DateCreatedUtc),
                     IsOutOfStock = p.Quantity < 1 ? true : false,
+                    ForSale = p.ForSale,
                 }).OrderByDescending(p=>p.DateCreated).ToList();
 
             ProductDetailsViewModel productModel = new ProductDetailsViewModel()
             {
                 Product = productDetails,
-                RelatedProducts = relatedProducts.Take(8),
+                RelatedProducts = relatedProducts
             };
 
             //pagination

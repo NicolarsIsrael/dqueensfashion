@@ -490,9 +490,9 @@ function ChangeProductDetailsImage(imageUrl, navImageId) {
     document.getElementById(navImageId).style.border = "1px solid #df7204";
 }
 
-function ShowDeleteProduct(productId) {
+function ShowRemoveProduct(productId) {
     $.ajax({
-        url: "/Admin/DeleteProduct/" + productId,
+        url: "/Admin/RemoveProduct/" + productId,
         dataType: "html",
         data: {},
         success: function (result) {
@@ -505,7 +505,7 @@ function ShowDeleteProduct(productId) {
     });
 }
 
-function DeleteProductPost() {
+function RemoveProductPost() {
 
     var form = $('#deleteProductForm');
     var token = $('input[name="__RequestVerificationToken"]', form).val();
@@ -513,7 +513,7 @@ function DeleteProductPost() {
     var password = $('#password').val();
     debugger;
     $.ajax({
-        url: "/Admin/DeleteProduct",
+        url: "/Admin/RemoveProduct",
         data: {
             __RequestVerificationToken: token,
             ProductId: productId,

@@ -190,6 +190,14 @@
     <Compile Include="Migrations\202007271628452_freeshipping.Designer.cs">
       <DependentUpon>202007271628452_freeshipping.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007272130389_forSale.cs" />
+    <Compile Include="Migrations\202007272130389_forSale.Designer.cs">
+      <DependentUpon>202007272130389_forSale.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007272155575_forSale2.cs" />
+    <Compile Include="Migrations\202007272155575_forSale2.Designer.cs">
+      <DependentUpon>202007272155575_forSale2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -227,6 +235,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007271628452_freeshipping.resx">
       <DependentUpon>202007271628452_freeshipping.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007272130389_forSale.resx">
+      <DependentUpon>202007272130389_forSale.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007272155575_forSale2.resx">
+      <DependentUpon>202007272155575_forSale2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

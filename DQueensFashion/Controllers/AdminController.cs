@@ -183,7 +183,7 @@ namespace DQueensFashion.Controllers
         {
             var allImages = _imageService.GetAllImageMainFiles().ToList();
             IEnumerable<ViewProductsViewModel> products = _productService.GetAllProducts()
-                .Select(p => new ViewProductsViewModel()
+                .Where(p=>p.ForSale).Select(p => new ViewProductsViewModel()
                 {
                     Id = p.Id,
                     GeneratedUrl = generalService.GenerateItemNameAsParam(p.Id, p.Name),
@@ -1255,7 +1255,7 @@ namespace DQueensFashion.Controllers
             }
         }
 
-        public ActionResult DeleteProduct(int id)
+        public ActionResult RemoveProduct(int id)
         {
             Product product = _productService.GetProductById(id);
             if (product == null)
@@ -1265,7 +1265,7 @@ namespace DQueensFashion.Controllers
              ? AppConstant.DefaultProductImage
              : _imageService.GetMainImageForProduct(product.Id).ImagePath;
 
-            DeleteProductViewModel productViewModel = new DeleteProductViewModel()
+            RemoveProductViewModel productViewModel = new RemoveProductViewModel()
             {
                 ProductName = product.Name,
                 ProductId = product.Id,
@@ -1273,12 +1273,12 @@ namespace DQueensFashion.Controllers
                 ProductImage = mainImage,
             };
 
-            return PartialView("_deleteProduct",productViewModel);
+            return PartialView("_removeProduct",productViewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteProduct(DeleteProductViewModel productModel)
+        public ActionResult RemoveProduct(RemoveProductViewModel productModel)
         {
             var user = _userManager.FindById(GetLoggedInUserId());
             if (!_userManager.CheckPassword(user, productModel.AdminPassword))
@@ -1288,25 +1288,7 @@ namespace DQueensFashion.Controllers
             if (product == null)
                 throw new Exception();
 
-            IEnumerable<ImageFile> productImages = _imageService.GetImageFilesForProduct(product.Id);
-            foreach(var imageFile in productImages)
-            {
-                _imageService.DeleteImage(imageFile);
-                try
-                {
-                    string fullPath = Request.MapPath(imageFile.ImagePath);
-                    if (System.IO.File.Exists(fullPath))
-                    {
-                        System.IO.File.Delete(fullPath);
-                    }
-                }
-                catch (Exception)
-                {
-
-                }
-            }
-
-            _productService.DeleteProduct(product);
+            _productService.RemoveProduct(product);
             return Json("success", JsonRequestBehavior.AllowGet);
         }
 
@@ -1358,7 +1340,7 @@ namespace DQueensFashion.Controllers
 
                     }
                 }
-                _productService.DeleteProduct(product);
+               // _productService.DeleteProduct(product);
             }
             _categoryService.DeleteCategory(category);
             return Json("success", JsonRequestBehavior.AllowGet);

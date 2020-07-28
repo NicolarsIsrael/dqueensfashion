@@ -95,9 +95,10 @@ namespace DQueensFashion.Service.Implementation
             return false;
         }
 
-        public void DeleteProduct(Product product)
+        public void RemoveProduct(Product product)
         {
-            uow.ProductRepo.Remove(product);
+            product.ForSale = false;
+            UpdateProduct(product);
             uow.Save();
         }
 

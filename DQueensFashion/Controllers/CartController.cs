@@ -88,7 +88,7 @@ namespace DQueensFashion.Controllers
             string mainImage = _imageService.GetImageFilesForProduct(product.Id).Count() < 1
                 ? AppConstant.DefaultProductImage
                 : _imageService.GetMainImageForProduct(product.Id).ImagePath;
-
+            
             string quantityVariation = product.QuantityVariation.ToString();
             Cart cartModel = new Cart()
             {
@@ -125,45 +125,47 @@ namespace DQueensFashion.Controllers
                 if (product == null)
                     throw new Exception();
 
-                string mainImage = _imageService.GetImageFilesForProduct(product.Id).Count() < 1
-                    ? AppConstant.DefaultProductImage
-                    : _imageService.GetMainImageForProduct(product.Id).ImagePath;
-
-                List<Cart> cart = new List<Cart>();
-                if ((List<Cart>)Session["cart"] != null)
-                    cart = (List<Cart>)Session["cart"];
-
-                int index = isExist(id);
-                if (index > -1)
-                    cart.RemoveAt(index);
-
-                cart.Add(new Cart
+                if (product.ForSale)
                 {
-                    Product = product,
-                    Quantity = quantity,
-                    Discount = product.Discount,
-                    InitialPrice = product.Price,
-                    UnitPrice = product.SubTotal,
-                    TotalPrice = product.SubTotal * quantity,
-                    MainImage = mainImage,
-                    Description = quantity > 1
-                                ? quantity.ToString() + " " + product.QuantityVariation.ToString()
-                                 : quantity.ToString() + " " + product.QuantityVariation.ToString()
-                                        .Remove(product.QuantityVariation.ToString().Length - 1, 1),
-                    MaxQuantity = product.Quantity,
-                    GeneratedUrl = generalService.GenerateItemNameAsParam(product.Id, product.Name),
-                    SingleQuantityVariation = product.QuantityVariation.ToString()
+                    string mainImage = _imageService.GetImageFilesForProduct(product.Id).Count() < 1
+                        ? AppConstant.DefaultProductImage
+                        : _imageService.GetMainImageForProduct(product.Id).ImagePath;
+
+                    List<Cart> cart = new List<Cart>();
+                    if ((List<Cart>)Session["cart"] != null)
+                        cart = (List<Cart>)Session["cart"];
+
+                    int index = isExist(id);
+                    if (index > -1)
+                        cart.RemoveAt(index);
+
+                    cart.Add(new Cart
+                    {
+                        Product = product,
+                        Quantity = quantity,
+                        Discount = product.Discount,
+                        InitialPrice = product.Price,
+                        UnitPrice = product.SubTotal,
+                        TotalPrice = product.SubTotal * quantity,
+                        MainImage = mainImage,
+                        Description = quantity > 1
+                                    ? quantity.ToString() + " " + product.QuantityVariation.ToString()
+                                     : quantity.ToString() + " " + product.QuantityVariation.ToString()
                                             .Remove(product.QuantityVariation.ToString().Length - 1, 1),
-                    PluralQuantityVariation = product.QuantityVariation.ToString(),
-                });
-                Session["cart"] = cart;
+                        MaxQuantity = product.Quantity,
+                        GeneratedUrl = generalService.GenerateItemNameAsParam(product.Id, product.Name),
+                        SingleQuantityVariation = product.QuantityVariation.ToString()
+                                                .Remove(product.QuantityVariation.ToString().Length - 1, 1),
+                        PluralQuantityVariation = product.QuantityVariation.ToString(),
+                    });
+                    Session["cart"] = cart;
+                }
 
                 ViewBag.CartNumber = GetCartNumber();
                 return PartialView("_navbarCartNumber");
             }
             catch (Exception ex)
             {
-
                 throw;
             }
         }
@@ -222,61 +224,63 @@ namespace DQueensFashion.Controllers
                 if (product == null)
                     throw new Exception();
 
-                string mainImage = _imageService.GetImageFilesForProduct(product.Id).Count() < 1
-                    ? AppConstant.DefaultProductImage
-                    : _imageService.GetMainImageForProduct(product.Id).ImagePath;
-
-                List<Cart> cart = new List<Cart>();
-
-                int index = isExistOutfits(cartModel.ProductId, cartModel);
-                if (index > -1)
+                if (product.ForSale)
                 {
-                    cart = (List<Cart>)Session["cart"];
-                    cart[index].Quantity += cartModel.Quantity;
-                    cart[index].UnitPrice = cart[index].Product.SubTotal;
-                    cart[index].TotalPrice = cart[index].Product.SubTotal * cart[index].Quantity;
-                }
-                else
-                {
-                    if (index == -1)
-                        cart = (List<Cart>)Session["cart"];
-                    cart.Add(new Cart
+                    string mainImage = _imageService.GetImageFilesForProduct(product.Id).Count() < 1
+                   ? AppConstant.DefaultProductImage
+                   : _imageService.GetMainImageForProduct(product.Id).ImagePath;
+
+                    List<Cart> cart = new List<Cart>();
+
+                    int index = isExistOutfits(cartModel.ProductId, cartModel);
+                    if (index > -1)
                     {
-                        Product = product,
-                        Quantity = cartModel.Quantity,
-                        MaxQuantity = AppConstant.MaxOutfitAddToCart,
-                        Discount = product.Discount,
-                        InitialPrice = product.Price,
-                        UnitPrice = product.SubTotal,
-                        TotalPrice = product.SubTotal * cartModel.Quantity,
-                        MainImage = mainImage,
-                        Description = GetCartDescription(cartModel, product.CategoryId),
-                        GeneratedUrl = generalService.GenerateItemNameAsParam(product.Id, product.Name),
+                        cart = (List<Cart>)Session["cart"];
+                        cart[index].Quantity += cartModel.Quantity;
+                        cart[index].UnitPrice = cart[index].Product.SubTotal;
+                        cart[index].TotalPrice = cart[index].Product.SubTotal * cart[index].Quantity;
+                    }
+                    else
+                    {
+                        if (index == -1)
+                            cart = (List<Cart>)Session["cart"];
+                        cart.Add(new Cart
+                        {
+                            Product = product,
+                            Quantity = cartModel.Quantity,
+                            MaxQuantity = AppConstant.MaxOutfitAddToCart,
+                            Discount = product.Discount,
+                            InitialPrice = product.Price,
+                            UnitPrice = product.SubTotal,
+                            TotalPrice = product.SubTotal * cartModel.Quantity,
+                            MainImage = mainImage,
+                            Description = GetCartDescription(cartModel, product.CategoryId),
+                            GeneratedUrl = generalService.GenerateItemNameAsParam(product.Id, product.Name),
 
-                        //measurement
-                        ShoulderValue = cartModel.ShoulderValue,
-                        ArmHoleValue = cartModel.ArmHoleValue,
-                        BustValue = cartModel.BustValue,
-                        WaistValue = cartModel.WaistValue,
-                        HipsValue = cartModel.HipsValue,
-                        ThighValue = cartModel.ThighValue,
-                        FullBodyLengthValue = cartModel.FullBodyLengthValue,
-                        KneeGarmentLengthValue = cartModel.KneeGarmentLengthValue,
-                        TopLengthValue = cartModel.TopLengthValue,
-                        TrousersLengthValue = cartModel.TrousersLengthValue,
-                        RoundAnkleValue = cartModel.RoundAnkleValue,
-                        NipNipValue = cartModel.NipNipValue,
-                        SleeveLengthValue = cartModel.SleeveLengthValue,
-                    });
+                            //measurement
+                            ShoulderValue = cartModel.ShoulderValue,
+                            ArmHoleValue = cartModel.ArmHoleValue,
+                            BustValue = cartModel.BustValue,
+                            WaistValue = cartModel.WaistValue,
+                            HipsValue = cartModel.HipsValue,
+                            ThighValue = cartModel.ThighValue,
+                            FullBodyLengthValue = cartModel.FullBodyLengthValue,
+                            KneeGarmentLengthValue = cartModel.KneeGarmentLengthValue,
+                            TopLengthValue = cartModel.TopLengthValue,
+                            TrousersLengthValue = cartModel.TrousersLengthValue,
+                            RoundAnkleValue = cartModel.RoundAnkleValue,
+                            NipNipValue = cartModel.NipNipValue,
+                            SleeveLengthValue = cartModel.SleeveLengthValue,
+                        });
+                    }
+                    Session["cart"] = cart;
                 }
-                Session["cart"] = cart;
-
                 ViewBag.CartNumber = GetCartNumber();
                 return PartialView("_navbarCartNumber");
+
             }
             catch (Exception ex)
             {
-
                 throw;
             }
         }
@@ -288,23 +292,27 @@ namespace DQueensFashion.Controllers
                 throw new Exception();
 
             List<Cart> cart = (List<Cart>)Session["cart"];
-            int index = isExist(id);
-            if (index != -1)
+            if (product.ForSale)
             {
-                cart[index].Quantity = quantity;
-                cart[index].UnitPrice = cart[index].Product.SubTotal;
-                cart[index].TotalPrice = cart[index].Product.SubTotal * quantity;
-                if (product.CategoryId != AppConstant.OutfitsId)
+                int index = isExist(id);
+                if (index != -1)
                 {
-                    cart[index].Description = cart[index].Quantity > 1
-                          ? cart[index].Quantity.ToString() + " " + product.QuantityVariation.ToString()
-                           : cart[index].Quantity.ToString() + " " + product.QuantityVariation.ToString()
-                                  .Remove(product.QuantityVariation.ToString().Length - 1, 1);
-                }
+                    cart[index].Quantity = quantity;
+                    cart[index].UnitPrice = cart[index].Product.SubTotal;
+                    cart[index].TotalPrice = cart[index].Product.SubTotal * quantity;
+                    if (product.CategoryId != AppConstant.OutfitsId)
+                    {
+                        cart[index].Description = cart[index].Quantity > 1
+                              ? cart[index].Quantity.ToString() + " " + product.QuantityVariation.ToString()
+                               : cart[index].Quantity.ToString() + " " + product.QuantityVariation.ToString()
+                                      .Remove(product.QuantityVariation.ToString().Length - 1, 1);
+                    }
 
-                if (cart[index].Quantity < 1)
-                    cart.RemoveAt(index);
+                    if (cart[index].Quantity < 1)
+                        cart.RemoveAt(index);
+                }
             }
+        
             Session["cart"] = cart;
 
             ViewCartViewModel viewCart = new ViewCartViewModel()

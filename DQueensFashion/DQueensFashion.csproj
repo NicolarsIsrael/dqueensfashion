@@ -555,7 +555,7 @@
     <Content Include="Views\Admin\Requests.cshtml" />
     <Content Include="Views\Admin\RequestReply.cshtml" />
     <Content Include="Views\Home\Det.cshtml" />
-    <Content Include="Views\Admin\_deleteProduct.cshtml" />
+    <Content Include="Views\Admin\_removeProduct.cshtml" />
     <Content Include="Views\Admin\_deleteCategory.cshtml" />
     <Content Include="Views\Cart\_AddToCart.cshtml" />
   </ItemGroup>

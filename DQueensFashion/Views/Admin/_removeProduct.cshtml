@@ -1,7 +1,7 @@
-﻿@model DQueensFashion.Models.DeleteProductViewModel
+﻿@model DQueensFashion.Models.RemoveProductViewModel
 @using DQueensFashion.Utilities
 
-@using (Html.BeginForm("DeleteProduct", "Admin", FormMethod.Post, new { id = "deleteProductForm" }))
+@using (Html.BeginForm("RemoveProduct", "Admin", FormMethod.Post, new { id = "deleteProductForm" }))
 {
     @Html.AntiForgeryToken()
 
@@ -22,21 +22,23 @@
             </div>
             <hr />
             <div class="text-danger">
-                Are you sure you wish to delete this product? All records of the product will be deleted and this cannot be reversed.
+                Are you sure you wish to remove this product? Customers will no longer be able to buy this product.
+                <br />
+                This cannot be reversed
             </div>
             <hr />
             <div class="mr-2">
                 <div class="form-group">
                     <div class="col-form-label">Password</div>
-                    <input type="password" value="@Model.AdminPassword" class="form-control-sm col-12" id="password" required />
+                    <input type="text" value="@Model.AdminPassword" class="form-control-sm col-12" id="password" autocomplete="off" required />
                 </div>
             </div>
 
         </div>
         <div>
             <hr class="my-2" />
-            <input type="button" value="DELETE PRODUCT" class="btn mt-0 delete-btn"
-                   onclick="DeleteProductPost()" />
+            <input type="button" value="REMOVE PRODUCT" class="btn mt-0 delete-btn"
+                   onclick="RemoveProductPost()" />
         </div>
     </div>
 }

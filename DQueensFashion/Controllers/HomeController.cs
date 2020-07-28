@@ -31,6 +31,76 @@ namespace DQueensFashion.Controllers
             _lineItemService = lineItemService;
         }
 
+        public ActionResult Index()
+        {
+            GeneralService generalService = new GeneralService();
+            var allImages = _imageService.GetAllImageMainFiles().ToList();
+
+            IEnumerable<ViewProductsViewModel> products = _productService.GetAllProducts()
+                .Where(p=>p.ForSale)
+                .Select(p => new ViewProductsViewModel()
+                {
+                    Id = p.Id,
+                    Name = p.Name,
+                    GeneratedUrl = generalService.GenerateItemNameAsParam(p.Id, p.Name),
+                    MainImage = allImages.Where(image => image.ProductId == p.Id).Count() < 1 ?
+                        AppConstant.DefaultProductImage :
+                        allImages.Where(image => image.ProductId == p.Id).FirstOrDefault().ImagePath,
+                    Price = p.Price,
+                    Discount = p.Discount,
+                    SubTotal = p.SubTotal,
+                    Category = p.Category.Name,
+                    CategoryId = p.Category.Id,
+                    Rating = new RatingViewModel()
+                    {
+                        AverageRating = p.AverageRating.ToString("0.0"),
+                        IsDouble = (p.AverageRating % 1) == 0 ? false : true,
+                        FloorAverageRating = (int)Math.Floor(p.AverageRating)
+                    },
+                    NumberOfOrders = p.NumberOfItemsBought,
+                    DateCreated = p.DateCreatedUtc,
+                    IsNew = _productService.CheckIfProductIsNew(p.DateCreatedUtc),
+                    IsOutOfStock = p.Quantity < 1 ? true : false,
+                    LazyLoad = true,
+                    ForSale = p.ForSale,
+                }).OrderByDescending(p => p.DateCreated).ToList();
+
+            //dont lazy load top images
+            products.Take(4).ToList().ForEach(p => p.LazyLoad = false);
+
+            List<ProductsByCategory> categorizedProducts = new List<ProductsByCategory>();
+
+            IEnumerable<CategoryNameAndId> categories = _categoryService.GetAllCategories()
+                .Select(category => new CategoryNameAndId()
+                {
+                    Id = category.Id,
+                    Name = category.Name.ToUpper(),
+                }).OrderBy(c => c.Name).ToList();
+
+            foreach (var category in categories)
+            {
+                var _categorizedProduct = new ProductsByCategory()
+                {
+                    CategoryId = category.Id,
+                    CategoryName = category.Name,
+                    Products = products.Where(p => p.CategoryId == category.Id).Take(AppConstant.HomeIndexProductCount),
+                };
+                _categorizedProduct.Products.Take(4).ToList().ForEach(p => p.LazyLoad = false);
+                categorizedProducts.Add(_categorizedProduct);
+            }
+
+            HomeIndexViewModel homeIndex = new HomeIndexViewModel()
+            {
+                Products = products.Take(AppConstant.HomeIndexProductCount),
+                Categories = categories,
+                BestSellingProducts = products.OrderByDescending(p => p.NumberOfOrders).Take(4).ToList(),
+                BestDealsProducts = products.OrderByDescending(p => p.Discount).Take(8).ToList(),
+                CategorizedProducts = categorizedProducts,
+            };
+
+            return View(homeIndex);
+        }
+
         public ActionResult Test()
         {
             var categories = _categoryService.GetAllCategories();
@@ -535,77 +605,21 @@ namespace DQueensFashion.Controllers
             return View();
         }
 
-        public ActionResult Index()
-        {
-            GeneralService generalService = new GeneralService();
-            var allImages = _imageService.GetAllImageMainFiles().ToList();
-
-            IEnumerable<ViewProductsViewModel> products = _productService.GetAllProducts()
-                .Select(p => new ViewProductsViewModel()
-                {
-                    Id = p.Id,
-                    Name = p.Name,
-                    GeneratedUrl = generalService.GenerateItemNameAsParam(p.Id, p.Name),
-                    MainImage = allImages.Where(image => image.ProductId == p.Id).Count() < 1 ?
-                        AppConstant.DefaultProductImage :
-                        allImages.Where(image => image.ProductId == p.Id).FirstOrDefault().ImagePath,
-                    Price = p.Price,
-                    Discount = p.Discount,
-                    SubTotal = p.SubTotal,
-                    Category = p.Category.Name,
-                    CategoryId = p.Category.Id,
-                    Rating = new RatingViewModel()
-                    {
-                        AverageRating = p.AverageRating.ToString("0.0"),
-                        IsDouble = (p.AverageRating % 1) == 0 ? false : true,
-                        FloorAverageRating = (int)Math.Floor(p.AverageRating)
-                    },
-                    NumberOfOrders = p.NumberOfItemsBought,
-                    DateCreated = p.DateCreatedUtc,
-                    IsNew = _productService.CheckIfProductIsNew(p.DateCreatedUtc),
-                    IsOutOfStock = p.Quantity < 1 ? true : false,
-                    LazyLoad = true,
-
-                }).OrderByDescending(p => p.DateCreated).ToList();
-
-            //dont lazy load top images
-            products.Take(4).ToList().ForEach(p => p.LazyLoad = false);
-
-            List<ProductsByCategory> categorizedProducts = new List<ProductsByCategory>();
-
-            IEnumerable<CategoryNameAndId> categories = _categoryService.GetAllCategories()
-                .Select(category => new CategoryNameAndId()
-                {
-                    Id = category.Id,
-                    Name = category.Name.ToUpper(),
-                }).OrderBy(c=>c.Name).ToList();
-
-            foreach(var category in categories)
-            {
-                var _categorizedProduct = new ProductsByCategory()
-                {
-                    CategoryId = category.Id,
-                    CategoryName = category.Name,
-                    Products = products.Where(p => p.CategoryId == category.Id).Take(AppConstant.HomeIndexProductCount),
-                };
-                _categorizedProduct.Products.Take(4).ToList().ForEach(p => p.LazyLoad = false);
-                categorizedProducts.Add(_categorizedProduct);
-            }
-
-            HomeIndexViewModel homeIndex = new HomeIndexViewModel()
-            {
-                Products = products.Take(AppConstant.HomeIndexProductCount),
-                Categories = categories,
-                BestSellingProducts = products.OrderByDescending(p => p.NumberOfOrders).Take(4).ToList(),
-                BestDealsProducts = products.OrderByDescending(p=>p.Discount).Take(8).ToList(),
-                CategorizedProducts = categorizedProducts,
-            };
-
-            return View(homeIndex);
-        }
 
         public ActionResult Det()
         {
+            var allProducuts = _productService.GetAllProductsWithDelete().ToList();
+            Random rand = new Random();
+            foreach (var product in allProducuts)
+            {
+                product.ForSale = true;
+                if (product.Quantity < 1)
+                    product.Quantity = rand.Next(1, 31);
+                if (product.SubTotal < 1)
+                    product.SubTotal = _productService.CalculateProductPrice(product.Price, product.Discount);
+                _productService.UpdateProductNoVal(product);
+            }
+            return Content(allProducuts.Where(p => p.ForSale == null).Count().ToString());
             return View();
         }
 

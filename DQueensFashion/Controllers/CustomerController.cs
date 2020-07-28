@@ -308,7 +308,8 @@ namespace DQueensFashion.Controllers
             _reviewService.AddReview(review);
             product.AverageRating = _reviewService.GetAverageRating(review.Product.Id);
             _productService.UpdateProduct(product);
-            return RedirectToAction(nameof(OrderDetails), new { id = lineItem.Order.Id });
+
+            return RedirectToAction(nameof(PendingReviews));
         }
 
         public ActionResult PendingReviews()

@@ -20,6 +20,6 @@ namespace DQueensFashion.Service.Contract
         bool CheckIfProductIsNew(DateTime datecreated);
         void AddProductRange(IEnumerable<Product> products);
         void UpdateProductNoVal(Product product);
-        void DeleteProduct(Product product);
+        void RemoveProduct(Product product);
     }
 }

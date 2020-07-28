@@ -68,33 +68,42 @@
                     }
                 </div>
             </div>
-            <div class="mt-1 mb-1">
-                <div class="wishlist-button" onclick="AddToWishList(@Model.Product.Id)">
-                    <div href="#">Add to wishlist</div>
+
+            @if (Model.Product.ForSale)
+            {
+                <div class="mt-1 mb-1">
+                    <div class="wishlist-button" onclick="AddToWishList(@Model.Product.Id)">
+                        <div href="#">Add to wishlist</div>
+                    </div>
                 </div>
-            </div>
+            }
+
             <div class="mt-1">
                 @{
-                    if (Model.Product.IsOutOfStock)
+                    if (Model.Product.ForSale)
                     {
-                        <div class="cart" onclick="RequestForProduct(@Model.Product.Id)">
-                            <div href="">Request</div>
-                        </div>
-                    }
-                    else
-                    {
-                        if (Model.Product.CategoryId == 1)
+                        if (Model.Product.IsOutOfStock)
                         {
-                            <div class="cart" onclick="AddToCartOutfits(@Model.Product.Id)">
-                                <div href="#">Add to cart</div>
+                            <div class="cart" onclick="RequestForProduct(@Model.Product.Id)">
+                                <div href="">Request</div>
                             </div>
                         }
                         else
                         {
-                            <div class="cart" onclick="AddToCart(@Model.Product.Id)">
-                                <div href="#">Add to cart</div>
-                            </div>
+                            if (Model.Product.CategoryId == 1)
+                            {
+                                <div class="cart" onclick="AddToCartOutfits(@Model.Product.Id)">
+                                    <div href="#">Add to cart</div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="cart" onclick="AddToCart(@Model.Product.Id)">
+                                    <div href="#">Add to cart</div>
+                                </div>
+                            }
                         }
+
                     }
 
 
@@ -109,8 +118,8 @@
                         <span>
                             <i class="fas fa-truck"></i>
                             <span>Delivery information</span>
-                        </span> 
-                        <hr class="m-0"/>
+                        </span>
+                        <hr class="m-0" />
                         <div style="font-weight:300;font-size:15px">
                             Normally delivered within @Model.Product.DeliveryDaysDuration@{
                                 if (Model.Product.DeliveryDaysDuration < 2)
@@ -135,7 +144,7 @@
                             No returns
                         </div>
                     </div>
-               
+
                 </div>
             </div>
         </div>

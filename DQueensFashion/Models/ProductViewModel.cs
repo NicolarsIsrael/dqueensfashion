@@ -128,6 +128,7 @@ namespace DQueensFashion.Models
         public bool IsNew { get; set; }
         public bool IsOutOfStock { get; set; }
         public bool LazyLoad { get; set; }
+        public bool ForSale { get; set; }
         public RatingViewModel Rating { get; set; }
         public IEnumerable<ViewReviewViewModel> Reviews { get; set; }
 
@@ -167,7 +168,7 @@ namespace DQueensFashion.Models
         public IEnumerable<ViewProductsViewModel> RelatedProducts { get; set; }
     }
 
-    public class DeleteProductViewModel
+    public class RemoveProductViewModel
     {
         public string ProductName { get; set; }
         public int ProductId { get; set; }

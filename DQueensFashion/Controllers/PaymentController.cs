@@ -16,6 +16,7 @@ using Order = DQueensFashion.Core.Model.Order;
 
 namespace DQueensFashion.Controllers
 {
+    [Authorize(Roles =AppConstant.CustomerRole)]
     [PaymentSetGlobalVariable]
     public class PaymentController : Controller
     {
@@ -199,6 +200,7 @@ namespace DQueensFashion.Controllers
             }
             catch (Exception ex)
             {
+
                 throw;
                    //save raw info here
             }
@@ -320,7 +322,7 @@ namespace DQueensFashion.Controllers
             var amount = new Amount()
             {
                 currency = "USD",
-                total = (carts.SubTotal +shippingPrice).ToString(), // Total must be equal to sum of tax, shipping and subtotal.
+                total = (carts.SubTotal + shippingPrice).ToString(), // Total must be equal to sum of tax, shipping and subtotal.
                 details = details,
             };
             var transactionList = new List<Transaction>();
