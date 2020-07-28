@@ -270,6 +270,7 @@ namespace DQueensFashion.Controllers
                 Category = category,
                 Tags = productModel.Tags != null ? String.Join(",", productModel.Tags) : "",
                 DeliveryDaysDuration = productModel.DeliveryDaysDuration,
+                ForSale = true,
 
                 //measurement
                 Shoulder = productModel.Shoulder,
