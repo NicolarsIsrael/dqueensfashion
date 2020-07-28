@@ -1323,29 +1323,18 @@ namespace DQueensFashion.Controllers
             if (category == null)
                 throw new Exception();
 
+            if (category.Id == AppConstant.OutfitsId)
+                throw new Exception();
+
             var allCategoryProducts = _productService.GetAllProducts()
                 .Where(p => p.CategoryId == categoryModel.CategoryId);
 
             foreach(var product in allCategoryProducts)
             {
-                IEnumerable<ImageFile> productImages = _imageService.GetImageFilesForProduct(product.Id);
-                foreach (var imageFile in productImages)
-                {
-                    _imageService.DeleteImage(imageFile);
-                    try
-                    {
-                        string fullPath = Request.MapPath(imageFile.ImagePath);
-                        if (System.IO.File.Exists(fullPath))
-                        {
-                            System.IO.File.Delete(fullPath);
-                        }
-                    }
-                    catch (Exception)
-                    {
-
-                    }
-                }
-               // _productService.DeleteProduct(product);
+                _productService.RemoveProduct(product);
+                var wishists = _wishListService.GetAllWishList().Where(w => w.ProductId == product.Id);
+                foreach (var wishlist in wishists)
+                    _wishListService.DeleteWishList(wishlist);
             }
             _categoryService.DeleteCategory(category);
             return Json("success", JsonRequestBehavior.AllowGet);
