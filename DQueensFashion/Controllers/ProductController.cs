@@ -213,6 +213,7 @@ namespace DQueensFashion.Controllers
                         _imageService.GetMainImageForProduct(product.Id).ImagePath,
                 OtherImagePaths = productImages,
                 IsOutOfStock = product.Quantity < 1 ? true : false,
+                ForSale = product.ForSale,
                 Rating = new RatingViewModel()
                 {
                     AverageRating = product.AverageRating.ToString("0.0"),

@@ -31,6 +31,11 @@ namespace DQueensFashion.Service.Implementation
             
         }
 
+        public IEnumerable<WishList> GetAllWishList()
+        {
+            return uow.WishListRepo.GetAll();
+        }
+
         public void DeleteWishList(WishList wishList)
         {
             if (wishList != null)

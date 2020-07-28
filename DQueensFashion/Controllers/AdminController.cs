@@ -28,11 +28,11 @@ namespace DQueensFashion.Controllers
         private readonly IMailingListService _mailingListService;
         private readonly IMessageService _messageService;
         private readonly IRequestService _requestService;
+        private readonly IWishListService _wishListService;
         private ApplicationUserManager _userManager;
         private GeneralService generalService;
 
-        public AdminController(ICategoryService categoryService, IProductService productService, IOrderService orderService, IReviewService reviewService, IImageService imageService, ICustomerService customerService, IGeneralValuesService generalValuesService, IMailingListService mailingListService,IRequestService requestService
-            ,IMessageService messageService , ApplicationUserManager userManager)
+        public AdminController(ICategoryService categoryService, IProductService productService, IOrderService orderService, IReviewService reviewService, IImageService imageService, ICustomerService customerService, IGeneralValuesService generalValuesService, IMailingListService mailingListService,IWishListService wishListService, IRequestService requestService, IMessageService messageService , ApplicationUserManager userManager)
         {
             _categoryService = categoryService;
             _productService = productService;
@@ -42,6 +42,7 @@ namespace DQueensFashion.Controllers
             _customerService = customerService;
             _generalValuesService = generalValuesService;
             _mailingListService = mailingListService;
+            _wishListService = wishListService;
             _requestService = requestService;
             _messageService = messageService;
             _userManager = userManager;
@@ -1289,6 +1290,10 @@ namespace DQueensFashion.Controllers
                 throw new Exception();
 
             _productService.RemoveProduct(product);
+            var wishists = _wishListService.GetAllWishList().Where(w => w.ProductId == product.Id);
+            foreach (var wishlist in wishists)
+                _wishListService.DeleteWishList(wishlist);
+
             return Json("success", JsonRequestBehavior.AllowGet);
         }
 
