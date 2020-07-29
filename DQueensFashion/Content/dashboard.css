@@ -1,0 +1,109 @@
+﻿/* The side navigation menu */
+.dashboard-sidenav {
+    height: inherit;
+    min-height: 100%;
+    display: block;
+    width: 0; /* 0 width - change this with JavaScript */
+    position: absolute; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: 0;
+    background-color: #384859;
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 10px; /* Place content 60px from the top */
+    transition: .3s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+
+    /* When you mouse over the navigation links, change their color */
+    .dashboard-sidenav a:hover {
+        color: #f1f1f1;
+    }
+
+.dashboard-side-navitem > * {
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.dashboard-side-navitem > i {
+    margin-right: 10px;
+}
+
+.navbar-toggle-link:hover {
+    cursor: pointer;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main-content {
+    transition: margin-left .3s;
+}
+
+.main-content-wrapper {
+    padding: 20px;
+}
+
+
+.dashb-navbar-item {
+    border-radius: 0;
+}
+
+    .dashb-navbar-item:hover {
+        background-color: #4dccff;
+        color: white;
+        border-radius: 0 !important;
+    }
+
+.dashboard-side-navitem:hover {
+    color: white;
+    opacity: 1 !important;
+}
+
+.dashboard-sidenav-link {
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.dashboard-side-navitem {
+    color: white !important;
+    opacity: 0.8 !important;
+}
+
+.nav-treeview > li {
+    margin-left: 30px;
+}
+
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .dashboard-sidenav {
+        padding-top: 15px;
+    }
+
+        .dashboard-sidenav a {
+            font-size: 18px;
+        }
+}
+
+/*@@media screen and (max-width:990){
+        .dashboard-sidenav{
+            width:0;
+        }
+    }*/
+
+/*screens greater than md*/
+@media screen and (min-width:991px) {
+    /* The sidenav */
+    .dashboard-sidenav {
+        width: 250px;
+    }
+    /* Page content */
+    #main-content {
+        margin-left: 250px; /* Same as the width of the sidenav */
+    }
+}
+
+.dashboard-dropdown-item {
+    display: none;
+}

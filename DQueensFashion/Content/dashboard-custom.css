@@ -80,8 +80,8 @@
     padding: .25rem .5rem;
 }
 
-.nav-link{
-    font-weight:600;
+.nav-link {
+    font-weight: 600;
 }
 
 /*orderdetails*/
@@ -233,7 +233,7 @@
         color: #818181
     }
 
-    /*Admin/EdittProduct*/
+/*Admin/EdittProduct*/
 .select2-container--default .select2-selection--multiple .select2-selection__choice {
     background-color: #df7204 !important;
 }
@@ -306,7 +306,7 @@
         white-space: normal;
         font-size: 15px;
         font-weight: 400;
-        word-wrap:break-word;
+        word-wrap: break-word;
     }
 
 
@@ -378,8 +378,8 @@
 }
 
 /*Admin/GeneralDetails*/
-.admin-generaldetails-card{
-    width:400px;
+.admin-generaldetails-card {
+    width: 400px;
 }
 
 /*Admin/subscribedemails*/

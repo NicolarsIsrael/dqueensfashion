@@ -288,6 +288,8 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\dashboard-custom.css" />
+    <Content Include="Content\dashboard.css" />
     <Content Include="Content\Dashboard\css\dashboard.css" />
     <Content Include="Content\general.css" />
     <Content Include="Content\HtmlPages\ForgotPasswordMessage.html" />
@@ -307,6 +309,7 @@
     <Content Include="Content\Images\shopping-cart.jpg" />
     <Content Include="Content\Images\user.jpg" />
     <Content Include="Content\js\content-file-input.js" />
+    <Content Include="Content\js\dashboard.js" />
     <Content Include="Content\js\jquery.js" />
     <Content Include="Content\js\site.js" />
     <Content Include="Content\Images\log-out.jpg" />
@@ -355,6 +358,7 @@
     <None Include="Properties\PublishProfiles\FolderProfile5.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile6.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile7.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile8.pubxml" />
     <None Include="Properties\PublishProfiles\houseofdqueens.com - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\houseofdqueens.com - Web Deploy1.pubxml" />
     <None Include="Properties\PublishProfiles\houseofdqueens.com - Web Deploy2.pubxml" />

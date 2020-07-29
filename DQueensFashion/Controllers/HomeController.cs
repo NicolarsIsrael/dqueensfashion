@@ -609,17 +609,17 @@ namespace DQueensFashion.Controllers
         public ActionResult Det()
         {
             var allProducuts = _productService.GetAllProductsWithDelete().ToList();
-            Random rand = new Random();
-            foreach (var product in allProducuts)
-            {
-                product.ForSale = true;
-                if (product.Quantity < 1)
-                    product.Quantity = rand.Next(1, 31);
-                if (product.SubTotal < 1)
-                    product.SubTotal = _productService.CalculateProductPrice(product.Price, product.Discount);
-                _productService.UpdateProductNoVal(product);
-            }
-            return Content(allProducuts.Where(p => p.ForSale == null).Count().ToString());
+            //Random rand = new Random();
+            //foreach (var product in allProducuts)
+            //{
+            //    product.ForSale = true;
+            //    if (product.Quantity < 1)
+            //        product.Quantity = rand.Next(1, 31);
+            //    if (product.SubTotal < 1)
+            //        product.SubTotal = _productService.CalculateProductPrice(product.Price, product.Discount);
+            //    _productService.UpdateProductNoVal(product);
+            //}
+            //return Content(allProducuts.Where(p => p.ForSale == null).Count().ToString());
             return View();
         }
 
