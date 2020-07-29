@@ -139,10 +139,17 @@
 
 .table-search-btn {
     width: 50px;
+    background-color:grey;
+}
+
+.btn-default {
+    background-color: #f8f9fa;
+    border-color: #ddd;
+    color: #444;
 }
 
 .custom-table {
-    height: 70vh;
+    height: 55vh;
 }
 
 /*Admin/Dashboard, customer/account*/

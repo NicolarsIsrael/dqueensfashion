@@ -13,7 +13,7 @@ function toggleDashboardNav() {
 }
 
 window.onresize = function () {
-    if (window.innerWidth <= 990) {
+    if ($(document).width() <= 990) {
         document.getElementById("dashboard-sidenav").style.width = "0";
         document.getElementById("main-content").style.marginLeft = "0";
         dashboardSieNavOpen = false;
@@ -22,7 +22,7 @@ window.onresize = function () {
 
 /* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
 function openDashboardSideNav() {
-    if (window.screen.width < 991) {
+    if ($(document).width() < 991) {
         document.getElementById("dashboard-sidenav").style.width = "250px";
 
     } else {
@@ -34,7 +34,7 @@ function openDashboardSideNav() {
 
 /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
 function closeDashboardSideNav() {
-    if (window.screen.width < 991) {
+    if ($(document).width() < 991) {
         document.getElementById("dashboard-sidenav").style.width = "0";
     } else {
         document.getElementById("dashboard-sidenav").style.width = "0px";
@@ -43,11 +43,11 @@ function closeDashboardSideNav() {
     dashboardSieNavOpen = false;
 }
 
-function mediumScreenCloseSideNav() {
-    if (window.screen.width < 991) {
-        closeDashboardSideNav();
-    }
-}
+//function mediumScreenCloseSideNav() {
+//    if (window.screen.width < 991) {
+//        closeDashboardSideNav();
+//    }
+//}
 
 $(".dashboard-dropdown > a").click(function () {
     $(".dashboard-dropdown-item").slideUp(200);

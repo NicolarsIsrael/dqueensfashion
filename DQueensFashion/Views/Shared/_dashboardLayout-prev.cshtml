@@ -1,0 +1,446 @@
+﻿@using Microsoft.AspNet.Identity
+@using DQueensFashion.Utilities
+
+<!DOCTYPE html>
+<style>
+
+    .card-center {
+        margin-left: auto;
+        margin-right: auto;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        height: 80vh;
+    }
+
+    .email-button, .password-button {
+        max-width: 100%;
+    }
+
+    .nav-link {
+        font-weight: 500 !important;
+    }
+</style>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>@ViewBag.Title - HDQ</title>
+    <link rel="icon" href="~/Content/Images/HdqLogo.png" type="image/icon type">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link href="~/Content/Dashboard/css/dashboard.css" rel="stylesheet" />
+    <link href="~/Content/general.css" rel="stylesheet" />
+    <link href="~/Content/Dashboard/css/dashboard-custom.css" rel="stylesheet" />
+    <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
+
+</head>
+
+<body class="hold-transition sidebar-mini" style="height:90vh">
+    <style>
+        .user-panel img {
+            width: auto;
+            max-width: 7rem;
+            max-height: 7rem;
+            height: 7rem;
+            width: 7rem;
+        }
+
+        .user-panel {
+            flex-direction: column;
+        }
+    </style>
+    <div class="wrapper">
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light box-shadow">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav" style="margin-right:auto">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+                </li>
+                <li class="nav-item d-none d-md-block" style="padding-top: 0.5rem">
+                    @User.Identity.Name
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link navbar-link" href="@Url.Action("Index","Home")">
+                        Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link navbar-link" href="@Url.Action("Index","Cart")">
+                        <img src="~/Content/Images/shopping-cart.jpg" />
+                        @Html.Partial("~/Views/Cart/_navbarCartNumber.cshtml")
+                    </a>
+                </li>
+            </ul>
+
+            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+            {
+                @Html.AntiForgeryToken()
+                <ul class="navbar-nav">
+                    <li class="nav-item" data-toggle="tooltip" data-placement="bottom" title="Logout">
+                        <a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link navbar-link">
+                            <img src="~/Content/Images/log-out.jpg" />
+                        </a>
+                    </li>
+                </ul>
+            }
+
+        </nav>
+        <!-- /.navbar -->
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-color ">
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                @*<div style="margin-top:10px;margin-left:10px">
+                    <img src="~/Content/Images/HdqLogo.png" style="width:30px;height:30px" />
+                    <span style="font-weight:500;color:white;padding-right:20px;font-size:19px">
+                        HouseofDQueens
+                    </span>
+                    <hr />
+                </div>*@
+                @*<div class="user-panel d-flex">
+                    <div class="info m-auto">
+                        <p class="d-block mt-1" style="color:white;font-weight:400;font-size:14px">@User.Identity.Name</p>
+                    </div>
+
+                </div>*@
+
+                <!-- Sidebar -->
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                        data-accordion="false">
+
+                        <li class="nav-item">
+                            <a class="nav-link dashboard-side-navitem" asp-area="" href="@Url.Action("Index","Home")">
+                                <img src="~/Content/Images/HdqLogo.png" style="width:30px;height:30px" />
+                                <p class="dashboard-sidenav-link">
+                                    HouseOfDQueens
+                                </p>
+                            </a>
+
+                        </li>
+                        <hr class="m-0" />
+
+                        @if (Request.IsAuthenticated)
+                        {
+
+                            if (User.IsInRole(AppConstant.AdminRole))
+                            {
+                                <li class="nav-item dashb-navbar-item">
+                                    <a class="nav-link dashboard-side-navitem " asp-area="" href="@Url.Action("dashboard","Admin")">
+                                        <i class="fas fa-th"></i>
+                                        <p class="dashboard-sidenav-link">
+                                            Dashboard
+                                        </p>
+                                    </a>
+
+                                </li>
+
+                                <li class="nav-item dashb-navbar-item">
+                                    <a class="nav-link dashboard-side-navitem " asp-area="" href="@Url.Action("categories","Admin")">
+                                        <i class="fas fa-clipboard"></i>
+                                        <p class="dashboard-sidenav-link">
+                                            Categories
+                                        </p>
+                                    </a>
+
+                                </li>
+
+                                <li class="nav-item dashb-navbar-item">
+                                    <a class="nav-link dashboard-side-navitem " asp-area="" href="@Url.Action("Products","Admin")">
+                                        <i class="fas fa-barcode"></i>
+                                        <p class="dashboard-sidenav-link">
+                                            Products
+                                        </p>
+                                    </a>
+
+                                </li>
+
+                                <li class="nav-item dashb-navbar-item">
+                                    <a class="nav-link dashboard-side-navitem " asp-area="" href="@Url.Action("Customers","Admin")">
+                                        <i class="fas fa-user"></i>
+                                        <p class="dashboard-sidenav-link">
+                                            Customers
+                                        </p>
+                                    </a>
+
+                                </li>
+
+                                <li class="nav-item has-treeview">
+                                    <a href="#" class="nav-link  dashboard-side-navitem dashb-navbar-item">
+                                        <i class="fas fa-inbox"></i>
+                                        <p class="dashboard-sidenav-link">
+                                            Orders
+                                            <i class="fas fa-angle-left right"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item dashb-navbar-item">
+                                            <a class="nav-link dashboard-side-navitem " asp-area="" href="@Url.Action("Orders","Admin")">
+                                                <i class="fas fa-calendar"></i>
+                                                <p class="dashboard-sidenav-link">
+                                                    All orders
+                                                </p>
+                                            </a>
+
+                                        </li>
+
+                                        <li class="nav-item dashb-navbar-item">
+                                            <a class="nav-link dashboard-side-navitem " asp-area="" href="@Url.Action("ProcessingOrders","Admin")">
+                                                <i class="fas fa-calendar"></i>
+                                                <p class="dashboard-sidenav-link">
+                                                    Processing
+                                                </p>
+                                            </a>
+
+                                        </li>
+
+                                        <li class="nav-item dashb-navbar-item">
+                                            <a class="nav-link dashboard-side-navitem " asp-area="" href="@Url.Action("InTransitOrders","Admin")">
+                                                <i class="fas fa-calendar"></i>
+                                                <p class="dashboard-sidenav-link">
+                                                    In transit
+                                                </p>
+                                            </a>
+
+                                        </li>
+
+                                        <li class="nav-item dashb-navbar-item">
+                                            <a class="nav-link dashboard-side-navitem " asp-area="" href="@Url.Action("DeliveredOrders","Admin")">
+                                                <i class="fas fa-calendar"></i>
+                                                <p class="dashboard-sidenav-link">
+                                                    Delivered
+                                                </p>
+                                            </a>
+
+                                        </li>
+                                        <li class="nav-item dashb-navbar-item">
+                                            <a class="nav-link dashboard-side-navitem " asp-area="" href="@Url.Action("ReturnedOrders","Admin")">
+                                                <i class="fas fa-calendar"></i>
+                                                <p class="dashboard-sidenav-link">
+                                                    Returned
+                                                </p>
+                                            </a>
+
+                                        </li>
+                                        <li class="nav-item dashb-navbar-item">
+                                            <a class="nav-link dashboard-side-navitem " asp-area="" href="@Url.Action("CompletedOrders","Admin")">
+                                                <i class="fas fa-calendar"></i>
+                                                <p class="dashboard-sidenav-link">
+                                                    Completed
+                                                </p>
+                                            </a>
+
+                                        </li>
+                                    </ul>
+
+                                </li>
+                                <li class="nav-item dashb-navbar-item">
+                                    <a class="nav-link dashboard-side-navitem " asp-area="" href="@Url.Action("Messages","Admin")">
+                                        <i class="fas fa-envelope"></i>
+                                        <p class="dashboard-sidenav-link">
+                                            Messages (@ViewBag.UnreadMessages)
+                                        </p>
+                                    </a>
+
+                                </li>
+                                <li class="nav-item dashb-navbar-item">
+                                    <a class="nav-link dashboard-side-navitem " asp-area="" href="@Url.Action("Requests","Admin")">
+                                        <i class="far fa-comment-alt"></i>
+                                        <p class="dashboard-sidenav-link">
+                                            Requests (@ViewBag.RequestCount)
+                                        </p>
+                                    </a>
+
+                                </li>
+                                <li class="nav-item dashb-navbar-item">
+                                    <a class="nav-link dashboard-side-navitem " asp-area="" href="@Url.Action("subscribedemails","Admin")">
+                                        <i class="fas fa-at"></i>
+                                        <p class="dashboard-sidenav-link">
+                                            Subscribed emails
+                                        </p>
+                                    </a>
+
+                                </li>
+                                <li class="nav-item dashb-navbar-item">
+                                    <a class="nav-link dashboard-side-navitem " asp-area="" href="@Url.Action("generaldetails","Admin")">
+                                        <i class="fas fa-copy"></i>
+                                        <p class="dashboard-sidenav-link">
+                                            General details
+                                        </p>
+                                    </a>
+
+                                </li>
+
+                                <li class="nav-item dashb-navbar-item">
+                                    <a class="nav-link dashboard-side-navitem " asp-area="" href="@Url.Action("changepassword", "Admin")">
+                                        <i class="fas fa-key"></i>
+                                        <p class="dashboard-sidenav-link">
+                                            Change password
+                                        </p>
+                                    </a>
+
+                                </li>
+                                <li class="nav-item dashb-navbar-item">
+                                    <a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link navbar-link dashboard-side-navitem ">
+                                        <i class="fas fa-sign-out-alt"></i>
+                                        <p class="dashboard-sidenav-link">
+                                            Logout
+                                        </p>
+                                    </a>
+                                </li>
+
+                            }
+                            else if (User.IsInRole(AppConstant.CustomerRole))
+                            {
+
+                                <li class="nav-item dashb-navbar-item">
+                                    <a class="nav-link dashboard-side-navitem " asp-area="" href="@Url.Action("account", "customer")">
+                                        <i class="fas fa-user"></i>
+                                        <p class="dashboard-sidenav-link">
+                                            Account
+                                        </p>
+                                    </a>
+
+                                </li>
+
+
+                                <li class="nav-item dashb-navbar-item">
+                                    <a class="nav-link dashboard-side-navitem " asp-area="" href="@Url.Action("orders", "customer")">
+                                        <i class="fas fa-inbox"></i>
+                                        <p class="dashboard-sidenav-link">
+                                            Orders
+                                        </p>
+                                    </a>
+
+                                </li>
+
+                                <li class="nav-item dashb-navbar-item">
+                                    <a class="nav-link dashboard-side-navitem " asp-area="" href="@Url.Action("wishlist", "customer")">
+                                        <i class="fas fa-heart"></i>
+                                        <p class="dashboard-sidenav-link">
+                                            Wishlist
+                                        </p>
+                                    </a>
+
+                                </li>
+
+
+
+                                <li class="nav-item dashb-navbar-item">
+                                    <a class="nav-link dashboard-side-navitem " asp-area="" href="@Url.Action("pendingreviews", "customer")">
+                                        <i class="fas fa-comment-alt"></i>
+                                        <p class="dashboard-sidenav-link">
+                                            Pending reviews (@ViewBag.PendingReviews)
+                                        </p>
+                                    </a>
+
+                                </li>
+
+                                <li class="nav-item dashb-navbar-item">
+                                    <a class="nav-link dashboard-side-navitem " asp-area="" href="@Url.Action("changepassword", "customer")">
+                                        <i class="fas fa-key"></i>
+                                        <p class="dashboard-sidenav-link">
+                                            Change password
+                                        </p>
+                                    </a>
+
+                                </li>
+                                <li class="nav-item dashb-navbar-item">
+                                    <a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link navbar-link dashboard-side-navitem ">
+                                        <i class="fas fa-sign-out-alt"></i>
+                                        <p class="dashboard-sidenav-link">
+                                            Logout
+                                        </p>
+                                    </a>
+                                </li>
+                            }
+
+                        }
+
+
+
+                    </ul>
+
+                </nav>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+
+        </aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+
+            <!-- Main content -->
+            <div class="content">
+                <div class="container-fluid" style="padding-top:20px;min-height:90vh">
+
+                    @RenderBody()
+                    <div id="sidenav" class="sidenav">
+                        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                        <div id="sidebarbody" style="padding:10px 20px;"></div>
+                    </div>
+
+                    <div id="snackbar-success"></div>
+                    <div id="snackbar-error"></div>
+                    <div id="snackbar-message"></div>
+                </div>
+                <!-- /.container-fluid -->
+            </div>
+            <!-- /.content -->
+
+        </div>
+        <!-- Main Footer -->
+        <footer class="main-footer">
+            <div class="container text-center">
+                &copy; @DateTime.Now.Year - HouseOfDQueens
+            </div>
+        </footer>
+        <!-- /.content-wrapper -->
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+
+        <style>
+            .main-footer {
+                background-color: #f5f5f5 !important;
+                border-top:1px solid #dedede;
+                color: white !important;
+            }
+
+            .main-footer>div{
+                color:#df7204;
+            }
+
+            @@media screen and (max-width: 2000px) and (min-width: 520px) {
+                .main-footer {
+                    margin-left: 0rem !important;
+                }
+            }
+        </style>
+    </div>
+    <!-- Main Footer -->
+    @*<footer style="max-width:100vw;overflow-x:hidden">
+        @Html.Partial("_footer")
+    </footer>*@
+
+    <!-- ./wrapper -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <!-- REQUIRED SCRIPTS -->
+    <script src="~/Content/js/site.js"></script>
+    <script src="~/Content/Dashboard/js/main.js"></script>
+
+
+</body>
+
+</html>
