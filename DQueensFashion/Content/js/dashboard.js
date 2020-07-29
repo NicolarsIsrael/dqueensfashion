@@ -18,6 +18,7 @@ window.onresize = function () {
         document.getElementById("main-content").style.marginLeft = "0";
         dashboardSieNavOpen = false;
     }
+    $(".dashboard-sidenav").height($(document).height());
 }
 
 /* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
@@ -69,4 +70,8 @@ $(".dashboard-dropdown > a").click(function () {
             .parent()
             .addClass("active");
     }
+});
+
+$(document).ready(function () {
+    $(".dashboard-sidenav").height($(document).height());
 });
