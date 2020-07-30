@@ -608,7 +608,7 @@ namespace DQueensFashion.Controllers
 
         public ActionResult Det()
         {
-            var allProducuts = _productService.GetAllProductsWithDelete().ToList();
+            //var allProducuts = _productService.GetAllProductsWithDelete().ToList();
             //Random rand = new Random();
             //foreach (var product in allProducuts)
             //{

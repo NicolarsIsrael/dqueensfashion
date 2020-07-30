@@ -16,6 +16,7 @@
     <link href="~/Content/general.css" rel="stylesheet" />
     <link href="~/Content/dashboard-custom.css" rel="stylesheet" />
     @Scripts.Render("~/bundles/jquery")
+    <script src="~/Content/js/jquery.js"></script>
 </head>
 <body>
     <div id="dashboard-sidenav" class="dashboard-sidenav">
@@ -48,7 +49,7 @@
 
                     <li class="nav-item dashb-navbar-item">
                         <a class="nav-link dashboard-side-navitem " asp-area="" href="@Url.Action("categories","Admin")">
-                            <i class="fas fa-clipboard"></i>
+                            <i class="far fa-clipboard"></i>
                             <p class="dashboard-sidenav-link">
                                 Categories
                             </p>
@@ -68,7 +69,7 @@
 
                     <li class="nav-item dashb-navbar-item">
                         <a class="nav-link dashboard-side-navitem " asp-area="" href="@Url.Action("Customers","Admin")">
-                            <i class="fas fa-user"></i>
+                            <i class="far fa-user"></i>
                             <p class="dashboard-sidenav-link">
                                 Customers
                             </p>
@@ -86,7 +87,7 @@
                             <ul style="list-style:none">
                                 <li class="nav-item dashb-navbar-item">
                                     <a class="nav-link dashboard-side-navitem " asp-area="" href="@Url.Action("Orders","Admin")">
-                                        <i class="fas fa-calendar"></i>
+                                        <i class="far fa-calendar"></i>
                                         <p class="dashboard-sidenav-link">
                                             All orders
                                         </p>
@@ -96,7 +97,7 @@
 
                                 <li class="nav-item dashb-navbar-item">
                                     <a class="nav-link dashboard-side-navitem " asp-area="" href="@Url.Action("ProcessingOrders","Admin")">
-                                        <i class="fas fa-calendar"></i>
+                                        <i class="far fa-calendar"></i>
                                         <p class="dashboard-sidenav-link">
                                             Processing
                                         </p>
@@ -106,7 +107,7 @@
 
                                 <li class="nav-item dashb-navbar-item">
                                     <a class="nav-link dashboard-side-navitem " asp-area="" href="@Url.Action("InTransitOrders","Admin")">
-                                        <i class="fas fa-calendar"></i>
+                                        <i class="far fa-calendar"></i>
                                         <p class="dashboard-sidenav-link">
                                             In transit
                                         </p>
@@ -116,7 +117,7 @@
 
                                 <li class="nav-item dashb-navbar-item">
                                     <a class="nav-link dashboard-side-navitem " asp-area="" href="@Url.Action("DeliveredOrders","Admin")">
-                                        <i class="fas fa-calendar"></i>
+                                        <i class="far fa-calendar"></i>
                                         <p class="dashboard-sidenav-link">
                                             Delivered
                                         </p>
@@ -125,7 +126,7 @@
                                 </li>
                                 <li class="nav-item dashb-navbar-item">
                                     <a class="nav-link dashboard-side-navitem " asp-area="" href="@Url.Action("ReturnedOrders","Admin")">
-                                        <i class="fas fa-calendar"></i>
+                                        <i class="far fa-calendar"></i>
                                         <p class="dashboard-sidenav-link">
                                             Returned
                                         </p>
@@ -134,7 +135,7 @@
                                 </li>
                                 <li class="nav-item dashb-navbar-item">
                                     <a class="nav-link dashboard-side-navitem " asp-area="" href="@Url.Action("CompletedOrders","Admin")">
-                                        <i class="fas fa-calendar"></i>
+                                        <i class="far fa-calendar"></i>
                                         <p class="dashboard-sidenav-link">
                                             Completed
                                         </p>
@@ -147,7 +148,7 @@
 
                     <li class="nav-item dashb-navbar-item">
                         <a class="nav-link dashboard-side-navitem " asp-area="" href="@Url.Action("Messages","Admin")">
-                            <i class="fas fa-envelope"></i>
+                            <i class="far fa-envelope"></i>
                             <p class="dashboard-sidenav-link">
                                 Messages (@ViewBag.UnreadMessages)
                             </p>
@@ -174,7 +175,7 @@
                     </li>
                     <li class="nav-item dashb-navbar-item">
                         <a class="nav-link dashboard-side-navitem " asp-area="" href="@Url.Action("generaldetails","Admin")">
-                            <i class="fas fa-copy"></i>
+                            <i class="far fa-copy"></i>
                             <p class="dashboard-sidenav-link">
                                 General details
                             </p>
@@ -318,8 +319,7 @@
 
         </nav>
         <div class="main-content-wrapper">
-            <div>
-
+            <div class="content-wrapper-body">
                 @RenderBody()
                 <div id="sidenav" class="sidenav">
                     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -331,6 +331,12 @@
                 <div id="snackbar-message"></div>
             </div>
             <!-- /.container-fluid -->
+            <footer class="main-footer">
+                <div class="container text-center">
+                    &copy; @DateTime.Now.Year - HouseOfDQueens
+                </div>
+            </footer>
+
         </div>
         <!-- /.content -->
     </div>
@@ -342,3 +348,21 @@
 <!-- REQUIRED SCRIPTS -->
 <script src="~/Content/js/site.js"></script>
 <script src="~/Content/js/dashboard.js"></script>
+
+<style>
+         .main-footer {
+                background-color: white !important;
+                border-top:1px solid #dedede;
+                padding-top:10px;
+            }
+
+            .main-footer>div{
+                color:black;
+            }
+
+            @@media screen and (max-width: 2000px) and (min-width: 520px) {
+                .main-footer {
+                    margin-left: 0rem !important;
+                }
+            }
+</style>

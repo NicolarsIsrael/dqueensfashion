@@ -58,11 +58,11 @@ a:hover{
     transition: margin-left .3s;
 }
 
-.main-content-wrapper {
-    padding: 20px;
-    min-height:80vh
-}
 
+.content-wrapper-body{
+    min-height:85vh;
+    padding:20px;
+}
 
 .dashb-navbar-item {
     border-radius: 0;

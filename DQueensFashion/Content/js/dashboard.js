@@ -1,4 +1,6 @@
 ﻿var dashboardSieNavOpen = true;
+var dashboardSidenav = document.getElementById("dashboard-sidenav");
+
 if (window.screen.width < 991) {
     dashboardSieNavOpen = false;
     console.log(dashboardSieNavOpen);
@@ -18,7 +20,7 @@ window.onresize = function () {
         document.getElementById("main-content").style.marginLeft = "0";
         dashboardSieNavOpen = false;
     }
-    $(".dashboard-sidenav").height($(document).height());
+    dashboardSidenav.style.minHeight = $(document).height();
 }
 
 /* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
@@ -73,5 +75,6 @@ $(".dashboard-dropdown > a").click(function () {
 });
 
 $(document).ready(function () {
-    $(".dashboard-sidenav").height($(document).height());
+    console.log($(document).height());
+    document.getElementById("dashboard-sidenav").style.height = $(document).height();
 });
