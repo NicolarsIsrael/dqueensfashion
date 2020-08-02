@@ -33,6 +33,7 @@ function openDashboardSideNav() {
         document.getElementById("main-content").style.marginLeft = "250px";
     }
     dashboardSieNavOpen = true;
+    SetSideNavHeight();
 }
 
 /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
@@ -75,6 +76,9 @@ $(".dashboard-dropdown > a").click(function () {
 });
 
 $(document).ready(function () {
-    console.log($(document).height());
-    document.getElementById("dashboard-sidenav").style.height = $(document).height();
+    SetSideNavHeight();
 });
+
+function SetSideNavHeight() {
+    dashboardSidenav.style.minHeight = $(document).height() + "px";
+}
