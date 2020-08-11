@@ -1,6 +1,7 @@
 ﻿using DQueensFashion.Core.Model;
 using DQueensFashion.Data.Contract;
 using DQueensFashion.Service.Contract;
+using DQueensFashion.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,21 +54,21 @@ namespace DQueensFashion.Service.Implementation
 
         public int GetAllCategoriesCount()
         {
-            return uow.CategoryRepo.Count();
+            return GetAllCategories().Count();
         }
         public Category GetCategoryById(int id)
         {
-            return uow.CategoryRepo.Get(id);
+            return GetAllCategories().Where(c => c.Id == id).FirstOrDefault();
         }
 
         public Category GetCategoryByName(string categoryName)
         {
-            return uow.CategoryRepo.GetAll().Where(c => string.Compare(c.Name, categoryName, true) == 0).FirstOrDefault();
+            return GetAllCategories().Where(c => string.Compare(c.Name, categoryName, true) == 0).FirstOrDefault();
         }
 
         public IEnumerable<Category> GetAllCategories()
         {
-            return uow.CategoryRepo.GetAll().ToList();
+            return uow.CategoryRepo.GetAll().Where(c=>c.Id!=AppConstant.OutfitsId).ToList();
         }
 
         public void DeleteCategory(Category category)
