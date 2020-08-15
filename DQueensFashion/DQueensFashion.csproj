@@ -280,6 +280,7 @@
     <Compile Include="Models\MessageViewModel.cs" />
     <Compile Include="Models\NewsLetterViewModel.cs" />
     <Compile Include="Models\OrderViewModel.cs" />
+    <Compile Include="Models\OutfitSampleViewModel.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
     <Compile Include="Models\RequestViewModel.cs" />
     <Compile Include="Models\ReviewViewModel.cs" />
@@ -566,9 +567,14 @@
     <Content Include="Views\Cart\_AddToCart.cshtml" />
     <Content Include="Views\Shared\_dashboardLayout.cshtml" />
     <Content Include="Views\Outfits\Index.cshtml" />
+    <Content Include="Views\Admin\OutfitSamples.cshtml" />
+    <Content Include="Views\Admin\AddOutfitSamples.cshtml" />
+    <Content Include="Views\Admin\ViewOutfitSample.cshtml" />
+    <Content Include="Views\Outfits\ViewOutfit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Images\OutfitSamples\" />
     <Folder Include="Content\Images\Products\" />
     <Folder Include="Views\MailingList\" />
   </ItemGroup>

@@ -1,8 +1,25 @@
-﻿
+﻿@model IEnumerable<DQueensFashion.Models.OutfitSampleViewModel>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+    <div class="container body-content">
+        <div class="section_header mb-1">
+            <div class="section_header_text">
+                <h2 class="home-bestselling-header">Outfit samples</h2>
+            </div>
+        </div>
+
+        <div class="row">
+            @foreach (var sample in Model)
+            {
+                <div class="col-md-3">
+                    <a href="@Url.Action("ViewOutfit","Outfits",new { id=sample.SampleId})">
+                        <img src="@Url.Content(sample.MainPath)" alt="@sample.SampleName _image_houseofdqueens" style="height:300px;width:100%" class="p-1" />
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
 

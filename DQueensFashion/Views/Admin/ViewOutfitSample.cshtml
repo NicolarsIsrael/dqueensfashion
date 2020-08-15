@@ -1,0 +1,19 @@
+﻿@model DQueensFashion.Models.OutfitSampleViewModel
+@{
+    ViewBag.Title = "ViewOutfitSample";
+    Layout = "~/Views/Shared/_dashboardLayout.cshtml";
+}
+
+<div class="text-bold">
+    Name: @Model.SampleName
+</div>
+
+<hr />
+<div class="row">
+    @foreach (var image in Model.OtherPaths)
+    {
+        <div class="col-md-4">
+            <img src="@Url.Content(image.ImagePath)" alt="@Model.SampleName _image_houseofdqueens" style="height:300px;width:100%" class="p-1" />
+        </div>
+    }
+</div>

@@ -1,0 +1,58 @@
+﻿@model IEnumerable<DQueensFashion.Models.OutfitSampleViewModel>
+@{
+    ViewBag.Title = "OutfitSamples";
+    Layout = "~/Views/Shared/_dashboardLayout.cshtml";
+}
+
+<div>
+    <div class="" style="text-align:right">
+        <a href="@Url.Action("AddOutfitSamples")" class="btn primary-table-button btn-sm">
+            <i class="fas fa-plus"></i>
+            Add new
+        </a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+
+        @using (Html.BeginForm())
+        {
+            <div class="card mt-lg-4 mt-2 box-shadow">
+                <div class="card-header">
+                    <h3 class="card-title">Outfit samples</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body table-responsive p-0 custom-table">
+                    <table class="table table-head-fixed  table-striped" id="ordersTable">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Sample name</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+
+                                    <td class="products-table-image">
+                                        <img src="@Url.Content(item.MainPath)" alt="@item.SampleName _image_houseofdqueens" />
+                                    </td>
+                                    <td>@item.SampleName</td>
+                                    <td>
+                                        <a class="btn btn-sm primary-custom-button" href="@Url.Action("ViewOutfitSample","Admin", new { id=item.SampleId})">View</a>
+                                    </td>
+                                </tr>
+
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        }
+    </div>
+</div>
+

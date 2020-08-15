@@ -48,6 +48,8 @@ namespace DQueensFashion.Utilities
         public const int HomeIndexProductCount = 16;
 
         public const string ProductImageBasePath = "~/Content/Images/Products/";
+        public const string OutfitSampleImageBasePath = "~/Content/Images/OutfitSamples/";
+
         public const string OutfitsName = "Outfits";
         public const int OutfitsId = 1;
 

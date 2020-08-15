@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "ViewOutfit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+    <div class="container body-content">
+        <div class="text-bold">
+            Name: @Model.SampleName
+        </div>
+
+        <hr />
+        <div class="row">
+            @foreach (var image in Model.OtherPaths)
+            {
+                <div class="col-md-3">
+                    <img src="@Url.Content(image.ImagePath)" alt="@Model.SampleName _image_houseofdqueens" style="height:300px;width:100%" class="p-1" />
+                </div>
+            }
+        </div>
+    </div>

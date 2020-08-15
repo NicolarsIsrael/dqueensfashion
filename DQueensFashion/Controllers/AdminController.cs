@@ -29,10 +29,13 @@ namespace DQueensFashion.Controllers
         private readonly IMessageService _messageService;
         private readonly IRequestService _requestService;
         private readonly IWishListService _wishListService;
+        private readonly IOutfitSampleService _outfitsampleService;
+        private readonly IOutfitSampleImageFileService _outfitSampleImageFileService;
         private ApplicationUserManager _userManager;
         private GeneralService generalService;
 
-        public AdminController(ICategoryService categoryService, IProductService productService, IOrderService orderService, IReviewService reviewService, IImageService imageService, ICustomerService customerService, IGeneralValuesService generalValuesService, IMailingListService mailingListService,IWishListService wishListService, IRequestService requestService, IMessageService messageService , ApplicationUserManager userManager)
+        public AdminController(ICategoryService categoryService, IProductService productService, IOrderService orderService, IReviewService reviewService, IImageService imageService, ICustomerService customerService, IGeneralValuesService generalValuesService, IMailingListService mailingListService,IWishListService wishListService, IRequestService requestService, IMessageService messageService , ApplicationUserManager userManager, IOutfitSampleImageFileService outfitSampleImageFileService,
+            IOutfitSampleService outfitsampleService)
         {
             _categoryService = categoryService;
             _productService = productService;
@@ -46,6 +49,8 @@ namespace DQueensFashion.Controllers
             _requestService = requestService;
             _messageService = messageService;
             _userManager = userManager;
+            _outfitSampleImageFileService = outfitSampleImageFileService;
+            _outfitsampleService = outfitsampleService;
             generalService = new GeneralService();
         }
         // GET: Admin
@@ -607,7 +612,89 @@ namespace DQueensFashion.Controllers
 
         public ActionResult OutfitSamples()
         {
+            var allImages = _outfitSampleImageFileService.GetAllImageMainFiles().ToList();
+            IEnumerable<OutfitSampleViewModel> outfits = _outfitsampleService.GetAll()
+                .Select(sample => new OutfitSampleViewModel()
+                {
+                    SampleId = sample.Id,
+                    SampleName = sample.OutfitName,
+                    MainPath = allImages.Where(image => image.OutfitSampleId == sample.Id).Count() < 1 ?
+                          AppConstant.DefaultProductImage :
+                          allImages.Where(image => image.OutfitSampleId == sample.Id).FirstOrDefault().ImagePath,
+                    DateCreated = sample.DateCreated,
+                }).OrderByDescending(sample=>sample.DateCreated);
+           
+            return View(outfits);
+        }
+
+        public ActionResult ViewOutfitSample(int id = 0)
+        {
+            var images = _outfitSampleImageFileService.GetAllImageFiles().Where(sample => sample.OutfitSampleId == id);
+
+            OutfitSample outfitSample = _outfitsampleService.GetOutfitSampleById(id);
+            if (outfitSample == null)
+                throw new Exception();
+
+            OutfitSampleViewModel outfitsampleModel = new OutfitSampleViewModel()
+            {
+                SampleName = outfitSample.OutfitName,
+                OtherPaths = images.Select(s=>new OutfitSampleImageFileViewModel() {
+                        ImagePath = s.ImagePath,
+                }),
+            };
+            return View(outfitsampleModel);
+        }
+
+        public ActionResult AddOutfitSamples()
+        {
             return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddOutfitSamples(AddOutfitSampleViewModel sampleModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "One or more validation errors");
+                return View(sampleModel);
+            }
+
+            try
+            {
+                var imageFiles = Request.Files;
+                if (imageFiles.Count < 1)
+                    throw new Exception();
+
+                if (!FileService.ValidateProductImages(imageFiles))
+                    throw new Exception();
+
+                OutfitSample outfitsample = new OutfitSample()
+                {
+                    OutfitName = sampleModel.SampleName,
+                };
+                _outfitsampleService.AddOutfitSample(outfitsample);
+
+                List<OutfitSampleImageFile> outfitSampleImages = new List<OutfitSampleImageFile>();
+                for (int i = 0; i < imageFiles.Count; i++)
+                {
+                    if (imageFiles[i] != null && imageFiles[i].ContentLength > 0)
+                    {
+                        string fileName = FileService.GetFileName(imageFiles[i]);
+                        string imgPath = AppConstant.OutfitSampleImageBasePath + fileName;
+                        fileName = Path.Combine(Server.MapPath(AppConstant.OutfitSampleImageBasePath), fileName);
+                        FileService.SaveImage(imageFiles[i], fileName);
+                        outfitSampleImages.Add(new OutfitSampleImageFile { ImagePath = imgPath, OutfitSampleId = outfitsample.Id });
+                    }
+                }
+                _outfitSampleImageFileService.AddOutfitSampleImageFile(outfitSampleImages);
+                return RedirectToAction(nameof(OutfitSamples));
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
 
         public ActionResult OrderDetails(int id=0)
