@@ -260,6 +260,7 @@
     <Compile Include="Controllers\MailingListController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NotFoundController.cs" />
+    <Compile Include="Controllers\OutfitsController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\PrivacyPolicyController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -306,6 +307,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\HdqLogo.png" />
+    <Content Include="Content\Images\bukola-profile.jpg" />
     <Content Include="Content\Images\shopping-cart.jpg" />
     <Content Include="Content\Images\user.jpg" />
     <Content Include="Content\js\content-file-input.js" />
@@ -563,6 +565,7 @@
     <Content Include="Views\Admin\_deleteCategory.cshtml" />
     <Content Include="Views\Cart\_AddToCart.cshtml" />
     <Content Include="Views\Shared\_dashboardLayout.cshtml" />
+    <Content Include="Views\Outfits\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

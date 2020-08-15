@@ -22,6 +22,7 @@ namespace DQueensFashion.Controllers
         private readonly IImageService _imageService;
         private readonly ILineItemService _lineItemService;
 
+
         public HomeController(IProductService productService, ICategoryService categoryService, IReviewService reviewService,IImageService imageService,ILineItemService lineItemService)
         {
             _productService = productService;

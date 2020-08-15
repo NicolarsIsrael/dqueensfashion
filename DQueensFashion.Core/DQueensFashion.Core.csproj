@@ -138,6 +138,8 @@
     <Compile Include="Model\MailingList.cs" />
     <Compile Include="Model\Message.cs" />
     <Compile Include="Model\Order.cs" />
+    <Compile Include="Model\OutfitSample.cs" />
+    <Compile Include="Model\OutfitSampleImageFile.cs" />
     <Compile Include="Model\Product.cs" />
     <Compile Include="Model\Request.cs" />
     <Compile Include="Model\Review.cs" />

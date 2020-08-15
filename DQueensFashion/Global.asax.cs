@@ -61,6 +61,8 @@ namespace DQueensFashion
             container.Register<IGeneralValuesService, GeneralValuesService>(Lifestyle.Scoped);
             container.Register<IMessageService, MessageService>(Lifestyle.Scoped);
             container.Register<IRequestService, RequestService>(Lifestyle.Scoped);
+            container.Register<IOutfitSampleService, OutfitSampleService>(Lifestyle.Scoped);
+            container.Register<IOutfitSampleImageFileService, OutfitSampleImageFileService>(Lifestyle.Scoped);
 
             //configure the Repos
             container.Register<IUnitOfWork, UnitOfWork>(Lifestyle.Scoped);
@@ -76,6 +78,8 @@ namespace DQueensFashion
             container.Register<IGeneralValuesRepo, GeneralValuesRepo>(Lifestyle.Scoped);
             container.Register<IMessageRepo, MessageRepo>(Lifestyle.Scoped);
             container.Register<IRequestRepo, RequestRepo>(Lifestyle.Scoped);
+            container.Register<IOutfitSampleRepo, OutfitSampleRepo>(Lifestyle.Scoped);
+            container.Register<IOutfitSampleImageFileRepo, OutfitSampleImageFileRepo>(Lifestyle.Scoped);
             
             //registering Logic
             container.Register<IMailService, MailService>(Lifestyle.Scoped);

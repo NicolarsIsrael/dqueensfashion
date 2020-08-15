@@ -478,7 +478,19 @@ textarea {
     animation-play-state: running;
 }
 
+.about-us-img-div{
+    text-align:center;
+}
 
+    .about-us-img-div > img {
+        border-radius: 50%;
+        height: 150px;
+        width: 150px
+    }
+
+.about-us-text {
+    font-size: 20px;
+}
 /*Contact us*/
 .contactus-input {
     border: 0;

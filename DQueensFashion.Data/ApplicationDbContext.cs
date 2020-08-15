@@ -28,6 +28,8 @@ namespace DQueensFashion.Data
         public DbSet<GeneralValues> GeneralValues { get; set; }
         public DbSet<Message> Message { get; set; }
         public DbSet<Request> Request { get; set; }
+        public DbSet<OutfitSample> OutfitSample { get; set; }
+        public DbSet<OutfitSampleImageFile> OutfitSampleImageFile { get; set; }
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

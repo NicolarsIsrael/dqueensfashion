@@ -139,6 +139,8 @@
     <Compile Include="Contract\IMailingListRepo.cs" />
     <Compile Include="Contract\IMessageRepo.cs" />
     <Compile Include="Contract\IOrderRepo.cs" />
+    <Compile Include="Contract\IOutfitSampleImageFileRepo.cs" />
+    <Compile Include="Contract\IOutfitSampleRepo.cs" />
     <Compile Include="Contract\IProductRepo.cs" />
     <Compile Include="Contract\IRequestRepo.cs" />
     <Compile Include="Contract\IReviewRepo.cs" />
@@ -153,6 +155,8 @@
     <Compile Include="Implementation\MailingListRepo.cs" />
     <Compile Include="Implementation\MessageRepo.cs" />
     <Compile Include="Implementation\OrderRepo.cs" />
+    <Compile Include="Implementation\OutfitSampleImageFileRepo.cs" />
+    <Compile Include="Implementation\OutfitSampleRepo.cs" />
     <Compile Include="Implementation\ProductRepo.cs" />
     <Compile Include="Implementation\RequestRepo.cs" />
     <Compile Include="Implementation\ReviewRepo.cs" />
@@ -198,6 +202,10 @@
     <Compile Include="Migrations\202007272155575_forSale2.Designer.cs">
       <DependentUpon>202007272155575_forSale2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202008150654332_outfitsample.cs" />
+    <Compile Include="Migrations\202008150654332_outfitsample.Designer.cs">
+      <DependentUpon>202008150654332_outfitsample.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -241,6 +249,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007272155575_forSale2.resx">
       <DependentUpon>202007272155575_forSale2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008150654332_outfitsample.resx">
+      <DependentUpon>202008150654332_outfitsample.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

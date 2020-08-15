@@ -136,6 +136,8 @@
     <Compile Include="Contract\IMailingListService.cs" />
     <Compile Include="Contract\IMessageService.cs" />
     <Compile Include="Contract\IOrderService.cs" />
+    <Compile Include="Contract\IOutfitSampleImageFileService.cs" />
+    <Compile Include="Contract\IOutfitSampleService.cs" />
     <Compile Include="Contract\IProductService.cs" />
     <Compile Include="Contract\IRequestService.cs" />
     <Compile Include="Contract\IReviewService.cs" />
@@ -148,6 +150,8 @@
     <Compile Include="Implementation\MailingListService.cs" />
     <Compile Include="Implementation\MessageService.cs" />
     <Compile Include="Implementation\OrderService.cs" />
+    <Compile Include="Implementation\OutfitSampleImageFileService.cs" />
+    <Compile Include="Implementation\OutfitSampleService.cs" />
     <Compile Include="Implementation\ProductService.cs" />
     <Compile Include="Implementation\RequestService.cs" />
     <Compile Include="Implementation\ReviewService.cs" />
