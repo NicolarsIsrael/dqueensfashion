@@ -697,6 +697,22 @@ namespace DQueensFashion.Controllers
             }
         }
 
+        public ActionResult DeleteOutfitSample(int id = 0)
+        {
+            var images = _outfitSampleImageFileService.GetAllImageFiles().Where(sample => sample.OutfitSampleId == id);
+
+            OutfitSample outfitSample = _outfitsampleService.GetOutfitSampleById(id);
+            if (outfitSample == null)
+                throw new Exception();
+
+            _outfitsampleService.DeleteOutfitSampleFromDb(outfitSample);
+            foreach(var image in images)
+            {
+                FileService.DeleteFile(image.ImagePath);
+            }
+            return RedirectToAction(nameof(OutfitSamples));
+        }
+
         public ActionResult OrderDetails(int id=0)
         {
             Order order = _orderService.GetOrderById(id);

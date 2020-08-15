@@ -39,9 +39,10 @@
                                     <td class="products-table-image">
                                         <img src="@Url.Content(item.MainPath)" alt="@item.SampleName _image_houseofdqueens" />
                                     </td>
-                                    <td>@item.SampleName</td>
+                                    <td style="min-width:70%">@item.SampleName</td>
                                     <td>
-                                        <a class="btn btn-sm primary-custom-button" href="@Url.Action("ViewOutfitSample","Admin", new { id=item.SampleId})">View</a>
+                                        <a class="btn btn-sm primary-custom-button mb-1" href="@Url.Action(" ViewOutfitSample","Admin", new { id=item.SampleId})">View</a>
+                                        <a class="btn btn-sm secondary-custom-button mb-1" href="#" onclick="DeleteOutfitSample(@item.SampleId)">Delete</a>
                                     </td>
                                 </tr>
 
@@ -56,3 +57,12 @@
     </div>
 </div>
 
+<script>
+    function DeleteOutfitSample(id) {
+        if (confirm("Are you sure you want to delete this outfit")) {
+            window.location.href = "/Admin/DeleteOutfitSample/" + id;
+        } else {
+            
+        }
+    }
+</script>
