@@ -58,7 +58,7 @@ namespace DQueensFashion.Controllers
                 }
 
             }
-
+            ViewBag.MinFreeShippingPrice = _generalValuesService.GetGeneralValues().MinFreeShippingPrice;
             //renew session
             Session["cart"] = cart;
 
