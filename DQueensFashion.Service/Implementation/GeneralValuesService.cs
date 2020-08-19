@@ -45,10 +45,10 @@ namespace DQueensFashion.Service.Implementation
             if (generalValues.NewsLetterSubscriptionDiscount < 0 || generalValues.NewsLetterSubscriptionDiscount > 100)
                 return false;
 
-            if (generalValues.ShippingPrice < 0)
+            if (generalValues.UsaShippingPrice < 0)
                 return false;
 
-            if (generalValues.MinFreeShippingPrice < 0)
+            if (generalValues.OtherShippingPrice < 0)
                 return false;
 
             return true;

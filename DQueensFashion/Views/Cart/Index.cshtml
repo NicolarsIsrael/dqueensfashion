@@ -13,11 +13,13 @@
 <script>
   
     function RemoveCartItem(productId) {
+          var e = document.getElementById("ship-to");
+        var shipTo = e.options[e.selectedIndex].value;
 
         $.ajax({
             url: '/Cart/removecartitem/',
             dataType: "html",
-            data: { id: productId },
+            data: { id: productId, shipTo: shipTo  },
             success: function (result) {
                 UpdateCartNumber()
                 $(".viewCartTable").html(result);
@@ -29,12 +31,14 @@
 
     }
 
-    function ChangeCartItemQuantity(productId,quantity) {
-       
+    function ChangeCartItemQuantity(productId, quantity) {
+        var e = document.getElementById("ship-to");
+        var shipTo = e.options[e.selectedIndex].value;
+
         $.ajax({
             url: '/Cart/ChangeCartItemQuantity',
             dataType: "html",
-            data: { id: productId, quantity: quantity },
+            data: { id: productId, quantity: quantity, shipTo: shipTo },
             success: function (result) {
                 UpdateCartNumber();
                 $(".viewCartTable").html(result);
@@ -44,4 +48,30 @@
             }
         });
     }
+
+    function ChangeShipTo() {
+          var e = document.getElementById("ship-to");
+        var shipTo = e.options[e.selectedIndex].value;
+
+        $.ajax({
+            url: '/Cart/ChangeShipTo',
+            dataType: "html",
+            data: { shipTo: shipTo },
+            success: function (result) {
+                UpdateCartNumber();
+                $(".viewCartTable").html(result);
+            },
+            error: function (xhr, status, error) {
+
+            }
+        });
+    }
+
+    function CheckoutCart() {
+           var e = document.getElementById("ship-to");
+        var shipTo = e.options[e.selectedIndex].value;
+
+        window.location.href = "/Cart/Checkout/" + shipTo;
+    }
+
 </script>

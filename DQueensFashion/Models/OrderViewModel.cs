@@ -16,6 +16,7 @@ namespace DQueensFashion.Models
         public string CustomerName { get; set; }
         public int CustomerId { get; set; }
         public string CustomerPhone { get; set; }
+        public string CustomerZipCode { get; set; }
         public string CustomerAddress { get; set; }
         public decimal SubTotal { get; set; }
         public decimal ShippingPrice { get; set; }

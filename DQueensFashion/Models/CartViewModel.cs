@@ -76,6 +76,13 @@ namespace DQueensFashion.Models
         public double SleeveLengthValue { get; set; }
     }
 
+    public class ShipToSelectList
+    {
+        public int Value { get; set; }
+        public string Text { get; set; }
+        public bool Selected { get; set; }
+    }
+
     public class ViewCartViewModel
     {
         public decimal SubTotal { get; set; }
@@ -84,6 +91,9 @@ namespace DQueensFashion.Models
         public bool CustomerSubscriptionDiscount { get; set; }
         public decimal SubDiscountPrice { get; set; }
         public decimal ShippingPrice { get; set; }
+        public IEnumerable<ShipToSelectList> ShipTo { get; set; }
+        public decimal UsaShippingPrice { get; set; }
+        public decimal OtherShippingPrice { get; set; }
         public decimal TotalAfterShipping { get; set; }
 
         public int EstimatedDeliveryDayDuration { get; set; }
@@ -104,7 +114,6 @@ namespace DQueensFashion.Models
         [Required(ErrorMessage ="Address is required")]
         public string Address { get; set; }
 
-        [BeginWIthAlphaNumeric(ErrorMessage ="Must begin with alphabeth or number")]
         public string ZipCode { get; set; }
     }
 

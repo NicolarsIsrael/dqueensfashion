@@ -88,8 +88,8 @@ namespace DQueensFashion.Utilities
 
         //general values
         public const decimal HDQSubscriptionDiscount = 10;
-        public const decimal ShippingPrice = 4.99M;
-        public const decimal MinFreeShippingPrice = 35.00M;
+        public const decimal UsaShippingPrice = 4.99M;
+        public const decimal OtherShippingPrice = 14.99M;
         public const int GeneralValId = 1;
 
 

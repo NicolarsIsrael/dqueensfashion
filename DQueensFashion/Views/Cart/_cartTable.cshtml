@@ -34,16 +34,22 @@
                                     <span>SUBTOTAL: $@Model.SubTotal</span>
                                 </div>
                                 <hr class="m-0" />
-                                <div class="cart-shipping-details">
-                                    @if (Model.ShippingPrice == 0)
-                                    {
-                                        <span>FREE SHIPPING</span>
-                                    }
-                                    else
-                                    {
-                                        <span>Shipping price: $@Model.ShippingPrice anywhere in USA</span>
-                                    }
+                                <div class="cart-shipping-details my-1">
+                                    <span>Ship to: </span>
+                                    <select class="form-control-sm" id="ship-to" onchange="ChangeShipTo()">
+                                        @foreach (var shipto in Model.ShipTo)
+                                        {
+                                            if (shipto.Selected)
+                                            {
+                                                <option value="@shipto.Value" selected>@shipto.Text</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@shipto.Value">@shipto.Text</option>
+                                            }
 
+                                        }
+                                    </select>
                                 </div>
                                 <hr class="m-0" />
                                 <div>Prices are updated at check out</div>
@@ -81,7 +87,7 @@
                                     else
                                     {
                                         <input type="button" class="btn cart-checkout-btn"
-                                               value="CHECK OUT" onclick="CheckOut()" />
+                                               value="CHECK OUT" onclick="CheckoutCart()" />
 
                                     }
                                 }
@@ -95,14 +101,6 @@
                             <a href="@Url.Action("Index", "Product")" class="btn btn-block box-shadow cart-continue-shipping-btn">Continue shopping</a>
                         </div>
 
-                    </div>
-
-                    <div class="card box-shadow mt-3">
-                        <div class="card-body">
-                            <div class="text-bold" style="font-weight:bold">
-                                Buy at least $@ViewBag.MinFreeShippingPrice worth of items and get free shipping
-                            </div>
-                        </div>
                     </div>
 
                 </div>
@@ -131,9 +129,3 @@
 
     </div>
    
-
-<script>
-    function CheckOut() {
-        window.location.href = "@Url.Action("CheckOut","Cart")";
-    }
-</script>

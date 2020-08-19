@@ -727,6 +727,7 @@ namespace DQueensFashion.Controllers
                 CustomerId = order.CustomerId,
                 CustomerName = order.FirstName + " " + order.LastName,
                 CustomerPhone = order.Phone,
+                CustomerZipCode = order.ZipCode,
                 CustomerAddress = order.Address,
                 SubTotal = order.SubTotal,
                 ShippingPrice = order.ShippingPrice,
@@ -1094,8 +1095,8 @@ namespace DQueensFashion.Controllers
             {
                 GeneralValId = generalValues.Id,
                 NewsLetterSubscriptionDiscount = generalValues.NewsLetterSubscriptionDiscount,
-                ShippingPrice = generalValues.ShippingPrice,
-                MinFreeShippingPrice = generalValues.MinFreeShippingPrice,
+                UsaShippingPrice = generalValues.UsaShippingPrice,
+                OtherShippingPrice = generalValues.OtherShippingPrice,
             };
 
             ViewBag.Success = success;
@@ -1118,8 +1119,8 @@ namespace DQueensFashion.Controllers
 
             GeneralValues generalValues = _generalValuesService.GetGeneralValues();
             generalValues.NewsLetterSubscriptionDiscount = generalValuesModel.NewsLetterSubscriptionDiscount;
-            generalValues.ShippingPrice = generalValuesModel.ShippingPrice;
-            generalValues.MinFreeShippingPrice = generalValuesModel.MinFreeShippingPrice;
+            generalValues.UsaShippingPrice = generalValuesModel.UsaShippingPrice;
+            generalValues.OtherShippingPrice = generalValuesModel.OtherShippingPrice;
 
             _generalValuesService.UpdateGeneralValues(generalValues);
             return RedirectToAction(nameof(GeneralDetails), new { success = "success" });

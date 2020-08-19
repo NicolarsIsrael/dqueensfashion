@@ -210,6 +210,10 @@
     <Compile Include="Migrations\202008191849101_zipcode.Designer.cs">
       <DependentUpon>202008191849101_zipcode.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202008191924329_usashippingprice.cs" />
+    <Compile Include="Migrations\202008191924329_usashippingprice.Designer.cs">
+      <DependentUpon>202008191924329_usashippingprice.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -259,6 +263,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202008191849101_zipcode.resx">
       <DependentUpon>202008191849101_zipcode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008191924329_usashippingprice.resx">
+      <DependentUpon>202008191924329_usashippingprice.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

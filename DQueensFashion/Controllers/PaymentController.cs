@@ -248,11 +248,11 @@ namespace DQueensFashion.Controllers
                 SubTotal = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.TotalPrice),
             };
 
-            decimal shippingPrice = 0;
-            if (carts.SubTotal >= _generalValService.GetGeneralValues().MinFreeShippingPrice)
-                shippingPrice = 0;
-            else
-                shippingPrice = _generalValService.GetGeneralValues().ShippingPrice;
+            decimal shippingPrice = decimal.Parse(Session["ShippingPrice"].ToString());
+            //if (carts.SubTotal >= _generalValService.GetGeneralValues().MinFreeShippingPrice)
+            //    shippingPrice = 0;
+            //else
+            //    shippingPrice = _generalValService.GetGeneralValues().ShippingPrice;
 
             if (customer.AvailableSubcriptionDiscount.Value 
                 && !customer.UsedSubscriptionDiscount.Value)

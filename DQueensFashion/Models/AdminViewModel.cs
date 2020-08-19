@@ -24,14 +24,14 @@ namespace DQueensFashion.Models
         [Display(Name ="Subscription discount (%)")]
         public decimal NewsLetterSubscriptionDiscount { get; set; }
 
-        [Required(ErrorMessage ="Shipping price is requirsd")]
-        [Range(0,int.MaxValue,ErrorMessage ="Shipping price must be equal to or greater than 0")]
-        [Display(Name ="Shipping price")]
-        public decimal ShippingPrice { get; set; }
+        [Required(ErrorMessage ="USA Shipping price is requirsd")]
+        [Range(0,int.MaxValue,ErrorMessage ="USA Shipping price must be equal to or greater than 0")]
+        [Display(Name ="USA Shipping price")]
+        public decimal UsaShippingPrice { get; set; }
 
-        [Required(ErrorMessage = "Min free shipping is requirsd")]
-        [Range(0, int.MaxValue, ErrorMessage = "Min free Shipping price must be equal to or greater than 0")]
-        [Display(Name = "Min for free shipping")]
-        public decimal MinFreeShippingPrice { get; set; }
+        [Required(ErrorMessage = "Other Shipping price is requirsd")]
+        [Range(0, int.MaxValue, ErrorMessage = "Other Shipping price must be equal to or greater than 0")]
+        [Display(Name = "Other Shipping price")]
+        public decimal OtherShippingPrice { get; set; }
     }
 }

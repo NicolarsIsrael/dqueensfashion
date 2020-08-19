@@ -35,17 +35,19 @@ namespace DQueensFashion.Controllers
         // GET: Cart
         public ActionResult Index()
         {
+            var generalValues = _generalValuesService.GetGeneralValues();
             List<Cart> cart = (List<Cart>)Session["cart"];
             ViewCartViewModel viewCart = new ViewCartViewModel()
             {
                 Count = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.Quantity),
                 Carts = Session["cart"] == null ? new List<Cart>() : (List<Cart>)Session["cart"],
                 SubTotal = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.TotalPrice),
-                ShippingPrice = _generalValuesService.GetGeneralValues().ShippingPrice,
+                ShippingPrice = generalValues.UsaShippingPrice,
+                ShipTo = GetShipToSelectList(0),
+                UsaShippingPrice = generalValues.UsaShippingPrice,
+                OtherShippingPrice = generalValues.OtherShippingPrice,
                 EstimatedDeliveryDayDuration = CalculateDeliveryDuration(),
             };
-            if (viewCart.SubTotal >= _generalValuesService.GetGeneralValues().MinFreeShippingPrice)
-                viewCart.ShippingPrice = 0;
             viewCart.TotalAfterShipping = viewCart.SubTotal + viewCart.ShippingPrice;
 
             Customer customer = GetLoggedInCustomer();
@@ -58,10 +60,9 @@ namespace DQueensFashion.Controllers
                 }
 
             }
-            ViewBag.MinFreeShippingPrice = _generalValuesService.GetGeneralValues().MinFreeShippingPrice;
+
             //renew session
             Session["cart"] = cart;
-
             return View(viewCart);
         }
 
@@ -285,7 +286,7 @@ namespace DQueensFashion.Controllers
             }
         }
 
-        public ActionResult ChangeCartItemQuantity(int id,int quantity)
+        public ActionResult ChangeCartItemQuantity(int id,int quantity,int shipTo)
         {
             Product product = _productService.GetProductById(id);
             if (product == null)
@@ -314,17 +315,23 @@ namespace DQueensFashion.Controllers
             }
         
             Session["cart"] = cart;
-
+            var generalValues = _generalValuesService.GetGeneralValues();
             ViewCartViewModel viewCart = new ViewCartViewModel()
             {
                 Count = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.Quantity),
                 Carts = Session["cart"] == null ? new List<Cart>() : (List<Cart>)Session["cart"],
                 SubTotal = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.TotalPrice),
-                ShippingPrice = _generalValuesService.GetGeneralValues().ShippingPrice,
+                UsaShippingPrice = generalValues.UsaShippingPrice,
+                OtherShippingPrice = generalValues.OtherShippingPrice,
+                ShipTo = GetShipToSelectList(shipTo),
                 EstimatedDeliveryDayDuration = CalculateDeliveryDuration(),
             };
-            if (viewCart.SubTotal >= _generalValuesService.GetGeneralValues().MinFreeShippingPrice)
-                viewCart.ShippingPrice = 0;
+            if (shipTo == 1)
+                viewCart.ShippingPrice = generalValues.UsaShippingPrice;
+            else if (shipTo == 2)
+                viewCart.ShippingPrice = generalValues.OtherShippingPrice;
+            else
+                throw new Exception();
             viewCart.TotalAfterShipping = viewCart.SubTotal + viewCart.ShippingPrice;
 
 
@@ -341,7 +348,7 @@ namespace DQueensFashion.Controllers
             return PartialView("_cartTable", viewCart);
         }
 
-        public ActionResult RemoveCartItem(int id)
+        public ActionResult RemoveCartItem(int id,int shipTo)
         {
             Product product = _productService.GetProductById(id);
             if (product == null)
@@ -352,38 +359,69 @@ namespace DQueensFashion.Controllers
             cart.RemoveAt(index);
 
             Session["cart"] = cart;
-
+            var generalValues = _generalValuesService.GetGeneralValues();
             ViewCartViewModel viewCart = new ViewCartViewModel()
             {
                 Count = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.Quantity),
                 Carts = Session["cart"] == null ? new List<Cart>() : (List<Cart>)Session["cart"],
                 SubTotal = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.TotalPrice),
-                ShippingPrice = _generalValuesService.GetGeneralValues().ShippingPrice,
+                UsaShippingPrice = generalValues.UsaShippingPrice,
+                OtherShippingPrice = generalValues.OtherShippingPrice,
+                ShipTo = GetShipToSelectList(shipTo),
                 EstimatedDeliveryDayDuration = CalculateDeliveryDuration(),
             };
-            if (viewCart.SubTotal >= _generalValuesService.GetGeneralValues().MinFreeShippingPrice)
-                viewCart.ShippingPrice = 0;
+            if (shipTo == 1)
+                viewCart.ShippingPrice = generalValues.UsaShippingPrice;
+            else if (shipTo == 2)
+                viewCart.ShippingPrice = generalValues.OtherShippingPrice;
+            else
+                throw new Exception();
             viewCart.TotalAfterShipping = viewCart.SubTotal + viewCart.ShippingPrice;
 
             return PartialView("_cartTable", viewCart);
         }
 
-        [HttpGet]
-        [Authorize(Roles = AppConstant.CustomerRole)]
-        public ActionResult CheckOut()
+        public ActionResult ChangeShipTo(int shipTo)
         {
             List<Cart> cart = (List<Cart>)Session["cart"];
+            Session["cart"] = cart;
+            var generalValues = _generalValuesService.GetGeneralValues();
             ViewCartViewModel viewCart = new ViewCartViewModel()
             {
                 Count = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.Quantity),
                 Carts = Session["cart"] == null ? new List<Cart>() : (List<Cart>)Session["cart"],
                 SubTotal = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.TotalPrice),
-                ShippingPrice = _generalValuesService.GetGeneralValues().ShippingPrice,
+                UsaShippingPrice = generalValues.UsaShippingPrice,
+                OtherShippingPrice = generalValues.OtherShippingPrice,
+                ShipTo = GetShipToSelectList(shipTo),
+                EstimatedDeliveryDayDuration = CalculateDeliveryDuration(),
             };
-            if (viewCart.SubTotal >= _generalValuesService.GetGeneralValues().MinFreeShippingPrice)
-                viewCart.ShippingPrice = 0;
+            if (shipTo == 1)
+                viewCart.ShippingPrice = generalValues.UsaShippingPrice;
+            else if (shipTo == 2)
+                viewCart.ShippingPrice = generalValues.OtherShippingPrice;
+            else
+                throw new Exception();
             viewCart.TotalAfterShipping = viewCart.SubTotal + viewCart.ShippingPrice;
 
+            return PartialView("_cartTable", viewCart);
+
+        }
+
+
+        [HttpGet]
+        [Authorize(Roles = AppConstant.CustomerRole)]
+        public ActionResult CheckOut(int id)
+        {
+            var shipTo = id;
+            List<Cart> cart = (List<Cart>)Session["cart"];
+            var generalValues = _generalValuesService.GetGeneralValues();
+            ViewCartViewModel viewCart = new ViewCartViewModel()
+            {
+                Count = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.Quantity),
+                Carts = Session["cart"] == null ? new List<Cart>() : (List<Cart>)Session["cart"],
+                SubTotal = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.TotalPrice),
+            };
             if (viewCart.Count < 1)
                 return RedirectToAction(nameof(Index));
 
@@ -396,7 +434,14 @@ namespace DQueensFashion.Controllers
                 c.TotalPrice = product.SubTotal * c.Quantity;
                 c.Product = product;
             }
+            if (shipTo == 1)
+                viewCart.ShippingPrice = generalValues.UsaShippingPrice;
+            else if (shipTo == 2)
+                viewCart.ShippingPrice = generalValues.OtherShippingPrice;
+            else
+                throw new Exception();
             viewCart.SubTotal = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.TotalPrice);
+            viewCart.TotalAfterShipping = viewCart.SubTotal + viewCart.ShippingPrice;
 
             Customer customer = GetLoggedInCustomer();
             if (customer != null)
@@ -425,15 +470,14 @@ namespace DQueensFashion.Controllers
             if (!ModelState.IsValid)
             {
                 List<Cart> cart = (List<Cart>)Session["cart"];
+                var generalValues = _generalValuesService.GetGeneralValues();
                 ViewCartViewModel viewCart = new ViewCartViewModel()
                 {
                     Count = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.Quantity),
                     Carts = Session["cart"] == null ? new List<Cart>() : (List<Cart>)Session["cart"],
                     SubTotal = Session["cart"] == null ? 0 : ((List<Cart>)Session["cart"]).Sum(c => c.TotalPrice),
-                    ShippingPrice = _generalValuesService.GetGeneralValues().ShippingPrice,
+                    ShippingPrice = cartModel.ShippingPrice,
                 };
-                if (viewCart.SubTotal >= _generalValuesService.GetGeneralValues().MinFreeShippingPrice)
-                    viewCart.ShippingPrice = 0;
                 viewCart.TotalAfterShipping = viewCart.SubTotal + viewCart.ShippingPrice;
 
                 ModelState.AddModelError("", "One or more validation errors");
@@ -473,6 +517,7 @@ namespace DQueensFashion.Controllers
             Session["PhoneNumber"] = cartModel.Phone;
             Session["Address"] = cartModel.Address;
             Session["ZipCode"] = cartModel.ZipCode;
+            Session["ShippingPrice"] = cartModel.ShippingPrice;
             Session["cart"] = _cart;
             return RedirectToAction("PaymentWithPaypal", "Payment");
         }
@@ -621,7 +666,15 @@ namespace DQueensFashion.Controllers
             return _customerService.GedCustomerByUserId(userId);
         }
 
+        private List<ShipToSelectList> GetShipToSelectList(int selectedId=0)
+        {
+            var generalValues = _generalValuesService.GetGeneralValues();
+            List<ShipToSelectList> shipToSelectList = new List<ShipToSelectList>();
+            shipToSelectList.Add(new ShipToSelectList { Text = $"USA (${generalValues.UsaShippingPrice})", Value = 1, Selected = selectedId == 1 ? true : false });
+            shipToSelectList.Add(new ShipToSelectList { Text = $"Canada/Europe (${generalValues.OtherShippingPrice})", Value = 2, Selected = selectedId == 2 ? true : false });
 
+            return shipToSelectList;
+        }
 
         #endregion
     }
