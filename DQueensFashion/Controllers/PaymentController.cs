@@ -137,10 +137,11 @@ namespace DQueensFashion.Controllers
                     LastName = _payment.payer.payer_info.last_name,
                     Phone = Session["PhoneNumber"].ToString(),
                     Address = Session["Address"].ToString(),
+                    ZipCode = Session["ZipCode"].ToString(),
                     LineItems = lineItems,
                     SubTotal = lineItems.Sum(l => l.TotalAmount),
-                    ShippingPrice =shippingPrice, //generalValues.ShippingPrice,
-                    TotalAmount = lineItems.Sum(l => l.TotalAmount) +shippingPrice,
+                    ShippingPrice = shippingPrice, //generalValues.ShippingPrice,
+                    TotalAmount = lineItems.Sum(l => l.TotalAmount) + shippingPrice,
                     TotalQuantity = lineItems.Sum(l => l.Quantity),
                     OrderStatus = OrderStatus.Processing,
                 };
@@ -150,6 +151,7 @@ namespace DQueensFashion.Controllers
                 Session["Lastname"] = null;
                 Session["PhoneNumber"] = null;
                 Session["Address"] = null;
+                Session["ZipCode"] = null;
                 _orderService.CreateOrder(order);
 
                 try
@@ -200,7 +202,6 @@ namespace DQueensFashion.Controllers
             }
             catch (Exception ex)
             {
-
                 throw;
                    //save raw info here
             }

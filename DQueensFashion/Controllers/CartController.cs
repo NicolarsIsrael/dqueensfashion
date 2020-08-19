@@ -472,6 +472,7 @@ namespace DQueensFashion.Controllers
             Session["Lastname"] = cartModel.LastName;
             Session["PhoneNumber"] = cartModel.Phone;
             Session["Address"] = cartModel.Address;
+            Session["ZipCode"] = cartModel.ZipCode;
             Session["cart"] = _cart;
             return RedirectToAction("PaymentWithPaypal", "Payment");
         }

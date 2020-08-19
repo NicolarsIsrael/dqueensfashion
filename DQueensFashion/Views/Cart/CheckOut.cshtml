@@ -19,70 +19,79 @@
                 @Html.HiddenFor(model=>model.SubDiscountPrice)
 
 
-                <div class="row">
-                    <div class="col-md-6 pr-md-0">
-                        <div class="form-group">
-                            <div class="col-12">
-                                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", @placeholder = "First name" } })
-                                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 pl-md-0">
-                        <div class="form-group">
-                            <div class="col-12">
-                                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Last name" } })
-                                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                    </div>
+        <div class="row">
+            <div class="col-md-6 pr-md-0">
+                <div class="form-group">
                     <div class="col-12">
-                        <div class="form-group">
-                            <div class="col-12">
-                                @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control", @placeholder = "Phone number" } })
-                                @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="form-group">
-                            <div class="col-12">
-                                @Html.TextAreaFor(model => model.Address, new { @class = "form-control", @rows = 2, @placeholder = "Address" })
-                                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="col-12">
-                            @{
-                                if (Model.CustomerSubscriptionDiscount)
-                                {
-                                    <div style="font-weight:400;font-size:15px"> SUBTOTAL: (Before discount): $@Model.SubTotal</div>
-                                    <div style="font-weight:400;font-size:18px"> SUBTOTAL: $@Model.SubDiscountPrice</div>
-                                }
-                                else
-                                {
-                                    <div style="font-weight:400;font-size:18px"> SUBTOTAL: $@Model.SubTotal</div>
-                                }
-                            }
-                            <div style="font-weight:400;font-size:18px">SHIPPING: $@Model.ShippingPrice</div>
-                            <div style="font-weight:500;font-size:18px">TOTAL: $@Model.TotalAfterShipping</div>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div style="font-size:20px;font-weight:300;width:100%;margin-top:20px;margin-bottom:10px;
-                        border-bottom:1px solid rgba(0, 0, 0, 0.1);">PAY WITH</div>
-
-                        <div>
-                            <button type="submit" class="paypal-button" style="">
-                                <span>
-                                    <i style="color:#253b80">Pay</i>
-                                    <i style="color:#179bd7">Pal</i>
-                                </span>
-                            </button>
-                        </div>
+                        @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", @placeholder = "First name" } })
+                        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
                     </div>
                 </div>
+            </div>
+            <div class="col-md-6 pl-md-0">
+                <div class="form-group">
+                    <div class="col-12">
+                        @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Last name" } })
+                        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 pr-md-0">
+                <div class="form-group">
+                    <div class="col-12">
+                        @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control", @placeholder = "Phone number" } })
+                        @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 pl-md-0">
+                <div class="form-group">
+                    <div class="col-12">
+                        @Html.EditorFor(model => model.ZipCode, new { htmlAttributes = new { @class = "form-control", @placeholder = "Zip code" } })
+                        @Html.ValidationMessageFor(model => model.ZipCode, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-group">
+                    <div class="col-12">
+                        @Html.TextAreaFor(model => model.Address, new { @class = "form-control", @rows = 2, @placeholder = "Address" })
+                        @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="col-12">
+                    @{
+                        if (Model.CustomerSubscriptionDiscount)
+                        {
+                            <div style="font-weight:400;font-size:15px"> SUBTOTAL: (Before discount): $@Model.SubTotal</div>
+                            <div style="font-weight:400;font-size:18px"> SUBTOTAL: $@Model.SubDiscountPrice</div>
+                        }
+                        else
+                        {
+                            <div style="font-weight:400;font-size:18px"> SUBTOTAL: $@Model.SubTotal</div>
+                        }
+                    }
+                    <div style="font-weight:400;font-size:18px">SHIPPING: $@Model.ShippingPrice</div>
+                    <div style="font-weight:500;font-size:18px">TOTAL: $@Model.TotalAfterShipping</div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div style="font-size:20px;font-weight:300;width:100%;margin-top:20px;margin-bottom:10px;
+                        border-bottom:1px solid rgba(0, 0, 0, 0.1);">PAY WITH</div>
+
+                <div>
+                    <button type="submit" class="paypal-button" style="">
+                        <span>
+                            <i style="color:#253b80">Pay</i>
+                            <i style="color:#179bd7">Pal</i>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
             }
 
         </div>

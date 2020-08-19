@@ -1,4 +1,5 @@
-﻿using DQueensFashion.Core.Model;
+﻿using DQueensFashion.Core;
+using DQueensFashion.Core.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -102,6 +103,9 @@ namespace DQueensFashion.Models
 
         [Required(ErrorMessage ="Address is required")]
         public string Address { get; set; }
+
+        [BeginWIthAlphaNumeric(ErrorMessage ="Must begin with alphabeth or number")]
+        public string ZipCode { get; set; }
     }
 
 }
