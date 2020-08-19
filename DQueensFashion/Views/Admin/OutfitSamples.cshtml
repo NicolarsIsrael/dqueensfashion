@@ -41,8 +41,9 @@
                                     </td>
                                     <td style="min-width:70%">@item.SampleName</td>
                                     <td>
-                                        <a class="btn btn-sm primary-custom-button mb-1" href="@Url.Action(" ViewOutfitSample","Admin", new { id=item.SampleId})">View</a>
-                                        <a class="btn btn-sm secondary-custom-button mb-1" href="#" onclick="DeleteOutfitSample(@item.SampleId)">Delete</a>
+                                        @Html.ActionLink("View", "ViewOutfitSample", "Admin",new { id=item.SampleId},null)
+                                        @*<a class="btn btn-sm primary-custom-button mb-1" href="@Url.Action(" ViewOutfitSample","Admin", new { id=item.SampleId})">View</a>*@
+                                        <a class="btn btn-sm secondary-custom-button m-2" href="#" onclick="DeleteOutfitSample(@item.SampleId)">Delete</a>
                                     </td>
                                 </tr>
 

@@ -95,25 +95,60 @@ namespace DQueensFashion.Utilities
 
         //frequent asked questions
         public static readonly string[,] faq = {
-            { "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,",
-                "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident." },
-            { "It is a long established fact that a reader will be distracted by the readable content",
-                " it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy." },
-            { "more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.","There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable."},
-            { "Sed laoreet arcu mauris, a condimentum ante pharetra id.",
-                "Donec a neque dolor. Nam in pharetra ipsum. Fusce fringilla, massa ut ultrices tempor, nulla est bibendum massa, vitae interdum sapien velit id ante. Fusce mollis convallis odio, et aliquet neque euismod sit amet. Donec posuere odio eu vulputate congue. Praesent id feugiat augue. Nam at sapien aliquam, dapibus turpis ut, aliquam mi." },
-            { "Nulla id quam in sem efficitur facilisis id semper nulla.",
-                "Suspendisse posuere ornare sapien id ullamcorper. Pellentesque lacinia vehicula varius. Integer lectus mi, condimentum nec pretium ut, hendrerit eu nulla. Nam a suscipit nunc, ac dignissim nibh. Proin finibus lacinia nulla eu suscipit. Nulla ac mauris eu sapien cursus laoreet. Proin molestie viverra aliquet. Nam at tellus maximus, rhoncus dolor nec, consequat erat. Duis feugiat mauris at tellus aliquet, fringilla commodo risus pharetra." },
-            { "Etiam volutpat ex id feugiat accumsan. Integer purus augue, tincidunt sed tempor ac,",
-                "aliquam eget eros. Aliquam porta eros at tortor blandit, quis tincidunt odio rutrum. Donec a sodales urna. Morbi vitae velit elit. Aliquam at leo nulla. Integer non augue eu lorem accumsan faucibus. Donec et vehicula est. Aenean euismod diam in purus fringilla dictum." },
-            { "Nulla imperdiet neque eu velit interdum porta.",
-                "Curabitur aliquet congue arcu, non varius eros. Vestibulum sagittis ultricies sem, ac consectetur augue tincidunt id. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed sit amet justo id sapien auctor pulvinar eu ac leo. Vestibulum ac pretium arcu. Aenean sed elit posuere, fringilla tellus sed, cursus dui. Nullam sed urna rhoncus, fermentum metus ac, imperdiet urna. Proin eget rutrum enim, eget molestie lacus. Cras bibendum porta mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos." },
-            { "Suspendisse eget aliquam risus. Sed eleifend orci leo.",
-                "Ut facilisis elementum erat ac elementum. Maecenas quam neque, maximus ut tellus dignissim, elementum commodo nulla. Nulla molestie, dui in iaculis ultricies, lectus enim blandit lorem, id pulvinar nibh elit vitae lacus. Praesent gravida porttitor semper. Nulla dapibus elit sit amet volutpat pulvinar. Nam vitae justo eget nisl rhoncus tempus. Suspendisse blandit nibh a velit faucibus condimentum." },
-            { "Maecenas tincidunt, tortor sed consectetur consectetur",
-                "nunc arcu vulputate eros, a sollicitudin risus dolor eu ligula. Nulla ante purus, elementum eu dui et, efficitur fringilla ex. Sed luctus erat vel dolor scelerisque, non porta leo mattis. Sed volutpat, libero ac ultrices pellentesque, sem elit rutrum orci, a faucibus metus diam pretium elit. Donec nibh leo, placerat vitae nisl ut, porta accumsan magna. Donec venenatis sagittis turpis in mollis. Proin orci ex, lobortis vel accumsan et, iaculis sit amet erat." },
-            { "Phasellus laoreet, lorem sodales rhoncus feugiat, massa dolor varius purus",
-                "ultrices nunc arcu porttitor augue. In nec velit ut arcu suscipit varius sit amet at massa. Vivamus lacinia, lacus eu congue interdum, turpis libero vehicula purus, at aliquam risus dui nec nisi. Aenean id viverra nunc. Vivamus et magna non enim blandit sollicitudin. Integer porta purus ut venenatis scelerisque. Duis aliquet ipsum at ligula tincidunt varius. Suspendisse in porta justo." }
+            { "What  is African print fabric?",
+                "African fabrics have beautiful bright colors, idiosyncratic designs and patterns which give  a sense of a rich heritage and cultural meaning.\r\n\r\n African print fabrics are worn for special occasions such as family reunions, weddings, and events. It can also be used for various accessories such as head wraps, face mask, bags, shoes, decoration,  dresses shirt, and more. African fabric forms part of a cultural identity and cultural heritage.\r\n\r\n We stock up on  high quality African print fabrics and we have a wide range of varieties. We have largest collections of African fabrics  like African wax, hitarget, african kente, etc. Our fabrics are sold wholesale price." },
+
+            { "Do you have a physical store?",
+                "Houseofdqueens is basically an online store with a  warehouse distribution facility. We do not have a traditional brick and mortar store." },
+
+            { "Do you have a catalog?",
+                "Since our inventory changes often, because of this , we do not offer a printed catalog. All of our fabrics can be found on our website with a picture, price, and description." },
+
+            { "Do you have samples?",
+                "We do sell samples of most of our fabrics. Look for the 'Buy Sample' button associated with each fabric. But kindly note that many of the fabrics we stock are not re-orderable, it is possible that a fabric could sell out by the time you receive your sample." },
+
+            { "I need more quantity than your website has in stock?",
+                "If you need more than the available quantity we have on the website in a large quantity kindly contact us via our email." },
+
+            { "Can I order multiple cut for same fabrics?",
+                "No. If multiple cuts are required for the same fabric, individual orders must be placed." },
+
+            { "What is the minimun yardage I can have?",
+                "Minimum cut length is 1 yard. " },
+
+            { "What is 1 yard?",
+                "1 yard is Between  34inches- 36inches  by width And Between 44inches to 46inches by length" },
+
+            { "Apart from African print fabrics, what other items do you have?",
+                "All our availabile items are on the website which includes African lace fabrics, silk materials,  headwraps and other african accessories." },
+        };
+
+        public static readonly string[,] faqPurchasingSupport = {
+            { "What are you payment method?",
+                "We accept PayPal\r\n Always include your name" },
+
+            { "After payment what  next?",
+                "We will confirm your payment from our account \r\nWe will send you a confirmation number " +
+                    "\r\n We will then process ur item and send you tracking number for your item." },
+
+            
+        };
+
+        public static readonly string[,] faqShippingReturn = {
+            { "Do you ship internationally?",
+                "Yes, North America and Europe." },
+
+            { "Shipping information.",
+                "Kindly fill in your correct address including zip code and your full name " },
+
+            { "When can I expect my order?",
+                "Estimated delivery is Between 3-7 business days. We use USPS and UPS for shipping your item within USA." +
+                    "\r\nWe also use usps for international delivery but the time frame is usually Between 2-6 weeks as we are not in control of custom policies." },
+
+            { "What is your return policy?",
+                "We take serious measure while packing right product and color which you have asked for. We make sure we are sending right product and color and complete new and intake product. However if there is any issue about order we request you to contact us  via our emal with 7days." },
+
+
         };
 
         //sort options
