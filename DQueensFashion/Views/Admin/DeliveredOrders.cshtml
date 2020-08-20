@@ -31,7 +31,7 @@
                     <table class="table table-head-fixed  table-striped" id="deliveredOrdersTable">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>Order NO</th>
                                 <th>Items (Qty)</th>
                                 <th>Customer</th>
                                 <th>Total Amt</th>
@@ -44,7 +44,7 @@
                             {
                                 <tr>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.OrderId)
+                                        @Html.DisplayFor(modelItem => item.OrderNumber)
                                     </td>
                                     <td>
                                         @{

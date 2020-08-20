@@ -10,6 +10,7 @@ namespace DQueensFashion.Models
     public class ViewOrderViewModel
     {
         public int OrderId { get; set; }
+        public string OrderNumber { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime DateModified { get; set; }
         public string DateCreatedString { get; set; }

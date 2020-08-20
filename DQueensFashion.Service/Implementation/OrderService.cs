@@ -42,6 +42,9 @@ namespace DQueensFashion.Service.Implementation
 
             uow.OrderRepo.Add(order);
             uow.Save();
+            order.OrderNumber = order.Id.ToString() + DateTime.UtcNow.ToString("mmssfff");
+            uow.OrderRepo.Update(order);
+            uow.Save();
         }
 
         public IEnumerable<Order> GetAllOrdersForCustomer(int customerId)

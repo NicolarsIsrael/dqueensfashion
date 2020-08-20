@@ -48,6 +48,13 @@ namespace DQueensFashion.Controllers
         // GET: Customer
         public ActionResult Index()
         {
+            //var orders = _orderService.GetAllOrders();
+            //foreach(var order in orders)
+            //{
+            //    order.OrderNumber = order.Id.ToString() + DateTime.UtcNow.ToString("mmssfff");
+            //    _orderService.UpdateOrder(order);
+            //}
+
             return RedirectToAction(nameof(Account));
         }
 
@@ -151,6 +158,7 @@ namespace DQueensFashion.Controllers
                 .Select(order => new ViewOrderViewModel()
                 {
                     OrderId = order.Id,
+                    OrderNumber = order.OrderNumber,
                     CustomerId = order.CustomerId,
                     TotalAmount = order.TotalAmount,
                     TotalQuantity = order.TotalQuantity,
@@ -171,6 +179,7 @@ namespace DQueensFashion.Controllers
                 orderModel = orderModel.Where(order => order.LineItemConcatenatedString.ToLower().Contains(query.ToLower())
                 || order.OrderStatus.ToString().ToLower().Contains(query.ToLower())
                 || (string.Compare(order.OrderId.ToString(), query, true) == 0)
+                || order.OrderNumber.ToLower().Contains(query.ToLower())
                 ).ToList();
 
             ViewBag.Query = query;
@@ -195,6 +204,7 @@ namespace DQueensFashion.Controllers
             ViewOrderViewModel orderModel = new ViewOrderViewModel()
             {
                 OrderId = order.Id,
+                OrderNumber = order.OrderNumber,
                 CustomerId = order.CustomerId,
                 SubTotal = order.SubTotal,
                 ShippingPrice = order.ShippingPrice,

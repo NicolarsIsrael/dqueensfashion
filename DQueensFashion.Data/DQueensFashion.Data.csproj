@@ -214,6 +214,10 @@
     <Compile Include="Migrations\202008191924329_usashippingprice.Designer.cs">
       <DependentUpon>202008191924329_usashippingprice.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202008200756372_odernumber.cs" />
+    <Compile Include="Migrations\202008200756372_odernumber.Designer.cs">
+      <DependentUpon>202008200756372_odernumber.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -266,6 +270,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202008191924329_usashippingprice.resx">
       <DependentUpon>202008191924329_usashippingprice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008200756372_odernumber.resx">
+      <DependentUpon>202008200756372_odernumber.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

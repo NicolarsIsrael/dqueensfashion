@@ -724,6 +724,7 @@ namespace DQueensFashion.Controllers
             ViewOrderViewModel orderModel = new ViewOrderViewModel()
             {
                 OrderId = order.Id,
+                OrderNumber = order.OrderNumber,
                 CustomerId = order.CustomerId,
                 CustomerName = order.FirstName + " " + order.LastName,
                 CustomerPhone = order.Phone,
@@ -764,6 +765,7 @@ namespace DQueensFashion.Controllers
                 .Select(order => new ViewOrderViewModel()
                 {
                     OrderId = order.Id,
+                    OrderNumber = order.OrderNumber,
                     CustomerId = order.CustomerId,
                     CustomerName = order.FirstName + " "+ order.LastName,
                     TotalAmount = order.TotalAmount,
@@ -786,10 +788,10 @@ namespace DQueensFashion.Controllers
                 || order.LineItemConcatenatedString.ToLower().Contains(query.ToLower())
                 || order.OrderStatus.ToString().ToLower().Contains(query.ToLower())
                 || (string.Compare(order.OrderId.ToString(), query, true) == 0)
+                || order.OrderNumber.ToLower().Contains(query.ToLower())
                 ).ToList();
 
             ViewBag.Query = query;
-
             return View(orderModel);
         }
 
@@ -799,6 +801,7 @@ namespace DQueensFashion.Controllers
                 .Select(order => new ViewOrderViewModel()
                 {
                     OrderId = order.Id,
+                    OrderNumber = order.OrderNumber,
                     CustomerId = order.CustomerId,
                     CustomerName = order.FirstName + " " + order.LastName,
                     TotalAmount = order.TotalAmount,
@@ -820,6 +823,7 @@ namespace DQueensFashion.Controllers
                 orderModel = orderModel.Where(order => order.CustomerName.ToLower().Contains(query.ToLower())
                 || order.LineItemConcatenatedString.ToLower().Contains(query.ToLower())
                 || (string.Compare(order.OrderId.ToString(), query, true) == 0)
+                || order.OrderNumber.ToLower().Contains(query.ToLower())
                 ).ToList();
 
             ViewBag.Query = query;
@@ -833,6 +837,7 @@ namespace DQueensFashion.Controllers
                {
                    OrderId = order.Id,
                    CustomerId = order.CustomerId,
+                   OrderNumber = order.OrderNumber,
                    CustomerName = order.FirstName + " " + order.LastName,
                    TotalAmount = order.TotalAmount,
                    TotalQuantity = order.TotalQuantity,
@@ -853,6 +858,7 @@ namespace DQueensFashion.Controllers
                 orderModel = orderModel.Where(order => order.CustomerName.ToLower().Contains(query.ToLower())
                 || order.LineItemConcatenatedString.ToLower().Contains(query.ToLower())
                 || (string.Compare(order.OrderId.ToString(), query, true) == 0)
+                || order.OrderNumber.ToLower().Contains(query.ToLower())
                 ).ToList();
 
             ViewBag.Query = query;
@@ -866,6 +872,7 @@ namespace DQueensFashion.Controllers
                 {
                     OrderId = order.Id,
                     CustomerId = order.CustomerId,
+                    OrderNumber = order.OrderNumber,
                     CustomerName = order.FirstName + " " + order.LastName,
                     TotalAmount = order.TotalAmount,
                     TotalQuantity = order.TotalQuantity,
@@ -886,6 +893,7 @@ namespace DQueensFashion.Controllers
                 orderModel = orderModel.Where(order => order.CustomerName.ToLower().Contains(query.ToLower())
                 || order.LineItemConcatenatedString.ToLower().Contains(query.ToLower())
                 || (string.Compare(order.OrderId.ToString(), query, true) == 0)
+                || order.OrderNumber.ToLower().Contains(query.ToLower())
                 ).ToList();
 
             ViewBag.Query = query;
@@ -898,6 +906,7 @@ namespace DQueensFashion.Controllers
                 .Select(order => new ViewOrderViewModel()
                 {
                     OrderId = order.Id,
+                    OrderNumber = order.OrderNumber,
                     CustomerId = order.CustomerId,
                     CustomerName = order.FirstName + " " + order.LastName,
                     TotalAmount = order.TotalAmount,
@@ -919,6 +928,7 @@ namespace DQueensFashion.Controllers
                 orderModel = orderModel.Where(order => order.CustomerName.ToLower().Contains(query.ToLower())
                 || order.LineItemConcatenatedString.ToLower().Contains(query.ToLower())
                 || (string.Compare(order.OrderId.ToString(), query, true) == 0)
+                || order.OrderNumber.ToLower().Contains(query.ToLower())
                 ).ToList();
 
             ViewBag.Query = query;
@@ -932,6 +942,7 @@ namespace DQueensFashion.Controllers
               {
                   OrderId = order.Id,
                   CustomerId = order.CustomerId,
+                  OrderNumber = order.OrderNumber,
                   CustomerName = order.FirstName + " " + order.LastName,
                   TotalAmount = order.TotalAmount,
                   TotalQuantity = order.TotalQuantity,
@@ -952,6 +963,7 @@ namespace DQueensFashion.Controllers
                 orderModel = orderModel.Where(order => order.CustomerName.ToLower().Contains(query.ToLower())
                 || order.LineItemConcatenatedString.ToLower().Contains(query.ToLower())
                 || (string.Compare(order.OrderId.ToString(), query, true) == 0)
+                || order.OrderNumber.ToLower().Contains(query.ToLower())
                 ).ToList();
 
             ViewBag.Query = query;

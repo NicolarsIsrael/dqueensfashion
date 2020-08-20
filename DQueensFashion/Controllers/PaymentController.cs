@@ -183,7 +183,8 @@ namespace DQueensFashion.Controllers
                     string orderSubtotal = "$" + order.SubTotal.ToString();
                     string orderShippingPrice = "$" + order.ShippingPrice.ToString();
                     string redirectUrl = Request.Url.Scheme + "://" + Request.Url.Authority + "/Customer/OrderDetails/"+order.Id.ToString();
-
+                    
+                    body = body.Replace("{orderNumber}", order.OrderNumber);
                     body = body.Replace("{orderDetails}", orderTableBody);
                     body = body.Replace("{subTotal}", orderSubtotal);
                     body = body.Replace("{orderTotal}", orderTotal);
