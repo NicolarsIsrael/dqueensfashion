@@ -380,7 +380,7 @@ textarea {
 .home-outfit-header {
     font-weight: 700;
     color: #212529;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
 }
 
 
@@ -489,7 +489,7 @@ textarea {
     }
 
 .about-us-text {
-    font-size: 20px;
+    font-size: 17px;
 }
 /*Contact us*/
 .contactus-input {

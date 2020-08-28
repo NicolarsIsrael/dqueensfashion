@@ -9,6 +9,7 @@ namespace DQueensFashion.Models
 {
     public class HomeIndexViewModel
     {
+        public string OutfitMainImagePath { get; set; }
         public IEnumerable<ViewProductsViewModel> Products { get; set; }
         public IEnumerable<CategoryNameAndId> Categories { get; set; }
         public IEnumerable<ProductsByCategory> CategorizedProducts { get; set; }

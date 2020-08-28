@@ -218,6 +218,10 @@
     <Compile Include="Migrations\202008200756372_odernumber.Designer.cs">
       <DependentUpon>202008200756372_odernumber.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202008281416485_outfitMainImage.cs" />
+    <Compile Include="Migrations\202008281416485_outfitMainImage.Designer.cs">
+      <DependentUpon>202008281416485_outfitMainImage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -273,6 +277,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202008200756372_odernumber.resx">
       <DependentUpon>202008200756372_odernumber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008281416485_outfitMainImage.resx">
+      <DependentUpon>202008281416485_outfitMainImage.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

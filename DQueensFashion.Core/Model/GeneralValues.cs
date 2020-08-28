@@ -11,5 +11,6 @@ namespace DQueensFashion.Core.Model
         public decimal NewsLetterSubscriptionDiscount { get; set; }
         public decimal UsaShippingPrice { get; set; }
         public decimal OtherShippingPrice { get; set; }
+        public string OutfitMainPicture { get; set; }
     }
 }

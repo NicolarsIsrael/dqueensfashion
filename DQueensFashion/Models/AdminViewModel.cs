@@ -33,5 +33,8 @@ namespace DQueensFashion.Models
         [Range(0, int.MaxValue, ErrorMessage = "Other Shipping price must be equal to or greater than 0")]
         [Display(Name = "Other Shipping price")]
         public decimal OtherShippingPrice { get; set; }
+
+        [Display(Name ="Outfit main image")]
+        public string OutfitMainImage { get; set; }
     }
 }

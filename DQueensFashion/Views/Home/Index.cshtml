@@ -115,21 +115,34 @@
 
 <div class="container home-outfit-container">
     <div class="row">
-        <div class="col-md-6 d-none d-md-block">
-            <img data-src="https://cdn.pixabay.com/photo/2016/11/14/04/57/young-1822656__340.jpg" class="home-outfit-img lazy" alt="outfit_image_ houseofdqueens"/>
-        </div>
-        <div class="col-md-6 mt-4">
+        @if (!string.IsNullOrEmpty(Model.OutfitMainImagePath))
+        {
+            <div class="col-md-6">
+                <img data-src="@Url.Content(Model.OutfitMainImagePath)" class="home-outfit-img lazy" alt="outfit_image_ houseofdqueens" />
+            </div>
+        }
+
+        <div class="col-md-6 mt-1">
             <h2 class="home-outfit-header">
                 OUTFITS
             </h2>
-            <div class="home-outfit-bodytext">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            <div class="home-outfit-bodytext about-us-text">
+                All our outfits are made to order(bespoke) because we understand that there are different needs to our customers and we are ready to satisfy you based on your needs.
+                <br />
+                Getting an outfit from us is without hassle. Kindly contact us here. We will attend to you personally.
+                <br />
+                You can pick a style from our catalog or send in a style/outfit. All our outfit are ready to be shipped out within 7-14 days.
+                <br />
+                Kindly note that all the outfits on our website are samples and can not be sold out you can only pick the styles.
+                <br />
+                When you contact us, we will ask about your size and body shape.  We are swift at answering you so kindly send in any requests or questions.
+                <br />
+                Thank you.
             </div>
             <div>
-                <a href="@Url.Action("Index","AboutUs")" class="btn mt-1 primary-table-button">Learn more</a>
-                <br />
-                @*outfitshop*@
-                <a href="@Url.Action("Shop","Product",new {categoryId=1})" class="btn mt-1 secondary-table-button">Shop</a>
+                <a href="@Url.Action("Index","Outfits")" class="btn mt-1 primary-table-button">View samples</a>
+
+                <a href="@Url.Action("Shop","Product")" class="btn mt-1 secondary-table-button">Shop</a>
             </div>
         </div>
     </div>
@@ -208,7 +221,7 @@
                 You are indeed a queen so own it.
                 <br />
                 Our <a href="@Url.Action("Index","Outfits")">outfits</a> are made to order. You will have to <a href="@Url.Action("Index","ContactUs")">contact us</a> personally to serve you best in this aspect.
-
+                <br />
                 <a class="btn primary-table-button mt-2" href="@Url.Action("Index","Outfits")">View samples</a>
                 <a class="btn secondary-custom-button mt-2" href="@Url.Action("Index","ContactUs")">Contact us</a>
             </div>

@@ -1109,6 +1109,7 @@ namespace DQueensFashion.Controllers
                 NewsLetterSubscriptionDiscount = generalValues.NewsLetterSubscriptionDiscount,
                 UsaShippingPrice = generalValues.UsaShippingPrice,
                 OtherShippingPrice = generalValues.OtherShippingPrice,
+                OutfitMainImage = generalValues.OutfitMainPicture,
             };
 
             ViewBag.Success = success;
@@ -1120,6 +1121,10 @@ namespace DQueensFashion.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult GeneralDetails(GeneralValuesViewModel generalValuesModel)
         {
+            var imageFile = Request.Files;
+            if (!FileService.ValidateProductImages(imageFile))
+                throw new Exception();
+
             if (!ModelState.IsValid)
             {
                 ModelState.AddModelError("", "One or more validation errors");
@@ -1129,7 +1134,22 @@ namespace DQueensFashion.Controllers
             if (generalValuesModel.GeneralValId != AppConstant.GeneralValId)
                 throw new Exception();
 
+            if (imageFile.Count > 1)
+                throw new Exception();
+
             GeneralValues generalValues = _generalValuesService.GetGeneralValues();
+            if (imageFile.Count==1)
+            {
+                if (imageFile[0] != null && imageFile[0].ContentLength > 0)
+                {
+                    string fileName = FileService.GetFileName(imageFile[0]);
+                    string imgPath = AppConstant.ProductImageBasePath + fileName;
+                    fileName = Path.Combine(Server.MapPath(AppConstant.ProductImageBasePath), fileName);
+                    FileService.SaveImage(imageFile[0], fileName);
+                    generalValues.OutfitMainPicture = imgPath;
+                } 
+            }
+
             generalValues.NewsLetterSubscriptionDiscount = generalValuesModel.NewsLetterSubscriptionDiscount;
             generalValues.UsaShippingPrice = generalValuesModel.UsaShippingPrice;
             generalValues.OtherShippingPrice = generalValuesModel.OtherShippingPrice;

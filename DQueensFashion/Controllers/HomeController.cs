@@ -21,15 +21,16 @@ namespace DQueensFashion.Controllers
         private readonly IReviewService _reviewService;
         private readonly IImageService _imageService;
         private readonly ILineItemService _lineItemService;
+        private readonly IGeneralValuesService _generalValueService;
 
-
-        public HomeController(IProductService productService, ICategoryService categoryService, IReviewService reviewService,IImageService imageService,ILineItemService lineItemService)
+        public HomeController(IProductService productService, ICategoryService categoryService, IReviewService reviewService,IImageService imageService,ILineItemService lineItemService, IGeneralValuesService generalValuesService)
         {
             _productService = productService;
             _categoryService = categoryService;
             _reviewService = reviewService;
             _imageService = imageService;
             _lineItemService = lineItemService;
+            _generalValueService = generalValuesService;
         }
 
         public ActionResult Index()
@@ -92,6 +93,7 @@ namespace DQueensFashion.Controllers
 
             HomeIndexViewModel homeIndex = new HomeIndexViewModel()
             {
+                OutfitMainImagePath = _generalValueService.GetGeneralValues().OutfitMainPicture,
                 Products = products.Take(AppConstant.HomeIndexProductCount),
                 Categories = categories,
                 BestSellingProducts = products.OrderByDescending(p => p.NumberOfOrders).Take(4).ToList(),
