@@ -309,6 +309,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\HdqLogo.png" />
     <Content Include="Content\Images\bukola-profile.jpg" />
+    <Content Include="Content\Images\backgroundImage.jpg" />
     <Content Include="Content\Images\shopping-cart.jpg" />
     <Content Include="Content\Images\user.jpg" />
     <Content Include="Content\js\content-file-input.js" />

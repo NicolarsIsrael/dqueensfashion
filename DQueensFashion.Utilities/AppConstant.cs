@@ -136,7 +136,7 @@ namespace DQueensFashion.Utilities
 
         public static readonly string[,] faqShippingReturn = {
             { "Do you ship internationally?",
-                "Yes, Canada and Europe." },
+                "Yes, we ship to USA, Canada and Europe." },
 
             { "Shipping information.",
                 "Kindly fill in your correct address including zip code and your full name " },

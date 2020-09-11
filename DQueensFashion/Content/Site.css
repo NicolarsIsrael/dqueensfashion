@@ -219,7 +219,7 @@ textarea {
 /* background */
 
 .background {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("Images/background-image.jpg");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("Images/backgroundImage.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
